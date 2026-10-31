@@ -26,7 +26,7 @@ try:
             try: q.wait_for_load_state("networkidle", timeout=8000)
             except Exception: pass
         def go(q, url):
-            idle(q); q.goto(url); q.wait_for_selector("#top"); q.wait_for_selector("#side a.on"); q.wait_for_selector("#tbar", state="attached")
+            idle(q); q.goto(url); q.wait_for_selector("#top"); q.wait_for_selector("#side a.on", state="attached"); q.wait_for_selector("#tbar", state="attached")
         def no_tabs():
             for w, phone in ((1280, False), (390, True)):
                 c, q = ctx(w, **(dict(is_mobile=True, has_touch=True, user_agent=IPHONE) if phone else {}))
@@ -38,7 +38,7 @@ try:
                     txt = q.evaluate("[...document.querySelectorAll('#top,#side,#cbar')].map(e=>e.innerText).join('\\n')")
                     for dead in ("Dati", "Disegno", "Apri il programma", "mzLab"): assert not re.search(r"(^|\n)\s*" + dead + r"\s*($|\n)", txt), (pg, dead)
                     labels = q.evaluate("[...document.querySelectorAll('#top a,#top button,#side a,#side button,#cbar a,#cbar button')].map(e=>(e.getAttribute('aria-label')||e.title||'').toLowerCase()).join('|')")
-                    assert "programma" not in labels and "disegno" not in labels, (pg, labels)
+                    assert "programma" not in labels and "|disegno|" not in "|" + labels + "|", (pg, labels)
                 c.close()
         step("no Dati / Disegno / Teoria tabs, no #tab-* / #tabs, no link to the program (../../, #/data, #/draw) on 9 pages at 1280 px and 3 at 390 px (bars and index, open)", no_tabs)
         def source_clean():

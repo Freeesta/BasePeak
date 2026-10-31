@@ -476,3 +476,14 @@ html:not(.tp-emb) body:not(.hdr)::before{content:"";display:block;height:var(--t
 .storia-chip[aria-pressed=true]{border:2px solid var(--accent);background:var(--sel);font-weight:700}
 .storia-chip[aria-pressed=true]::before{content:"\2713\00a0"}
 .storia-comandi button:focus-visible,.storia-chip:focus-visible,.storia-link a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* ---- light <-> dark: one slow, gentle cross-fade of the whole page (tema.js adds html.theme-x, and html.theme-vt when the browser has view transitions).
+   --theme-fade is THE duration (tema.js reads it); 0 with reduced motion: the theme then changes at once. ---- */
+:root{--theme-fade:1400ms}
+:root[data-a11y-reduce]{--theme-fade:0ms}
+@media (prefers-reduced-motion:reduce){:root{--theme-fade:0ms}}
+html.theme-vt #top,html.theme-vt #side{view-transition-name:none}
+html.theme-vt::view-transition-group(root){animation-duration:var(--theme-fade);animation-timing-function:ease-in-out}
+html.theme-vt::view-transition-old(root){animation:-ua-view-transition-fade-out var(--theme-fade) ease-in-out both}
+html.theme-vt::view-transition-new(root){animation:-ua-view-transition-fade-in var(--theme-fade) ease-in-out both}
+html.theme-x:not(.theme-vt),html.theme-x:not(.theme-vt) *,html.theme-x:not(.theme-vt) *::before,html.theme-x:not(.theme-vt) *::after{transition:background-color var(--theme-fade) ease-in-out,color var(--theme-fade) ease-in-out,border-color var(--theme-fade) ease-in-out,fill var(--theme-fade) ease-in-out,stroke var(--theme-fade) ease-in-out,box-shadow var(--theme-fade) ease-in-out!important}
