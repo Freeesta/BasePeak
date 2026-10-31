@@ -9,7 +9,7 @@ One line to the COO session: `DEV storia-pubblica started, branch dev/storia-pub
 You are a DEV (Sonnet). You apply the must-fix list of `docs/piani/storia-ms-revisione.md` and make the part public. You do NOT add new content, do NOT merge.
 
 ## 2. Scope
-- Touches: `capitoli/*-storia-*.html` and `capitoli/src/*-storia-*.md` (corrections; drop `data-esteso`, the noindex meta, header `verification: verified`), `assets/storia-dati.js` (corrections), `assets/teoria.js` (remove the 5th field `true` from the ten history rows only), `index.html` (remove `hidden` from the "VII. Storia" group), `docs/IMMAGINI.md` / `LICENZE-TERZI.md` (corrections only), regenerated `assets/indice-ricerca.js`.
+- Touches: `capitoli/*-storia-*.html` and `capitoli/src/*-storia-*.md` (corrections; drop `data-esteso`, the noindex meta, header `verification: verified`), `assets/storia-dati.js` (corrections), `assets/teoria.js` (remove the 5th field `true` from the ten history rows only), `index.html` (remove `hidden` from the "VIII. Storia" group), `docs/IMMAGINI.md` / `LICENZE-TERZI.md` (corrections only), regenerated `assets/indice-ricerca.js`.
 - Does not touch: tests, CSS, other chapters, `.github/`.
 
 ## 3. Context
@@ -24,9 +24,9 @@ You are a DEV (Sonnet). You apply the must-fix list of `docs/piani/storia-ms-rev
 4. Checks, commit, push, PR (ready).
 
 ## 5. Acceptance
-- `grep -l 'data-esteso' capitoli/*-storia-*.html` -> no output; `grep -c 'VII. Storia", true' assets/teoria.js` -> 0.
+- `grep -l 'data-esteso' capitoli/*-storia-*.html` -> no output; `grep -c 'VIII. Storia", true' assets/teoria.js` -> 0.
 - `python3 tools/controlla_teoria.py`, `python3 -m pytest -q tests`, `python3 tests_e2e/run_all.py` -> pass.
-- The public menu (no administrator flag) lists the ten history chapters under "VII. Storia"; the index page shows the card group.
+- The public menu (no administrator flag) lists the ten history chapters under "VIII. Storia"; the index page shows the card group.
 
 ## Rules that always apply (read before starting)
 - Repository `Freeesta/BasePeak` only; never touch another repository.
