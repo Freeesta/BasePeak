@@ -88,7 +88,7 @@ Al tempo in cui il candidato è più abbondante si registra il suo product ion s
 </ul>
 ```
 
-Con questi vincoli si disegnano le strutture candidate (scheda Disegno di QqQ lab), si verifica che formula e m/z tornino (calcolatrice m/z) e si propone una via di trasformazione.
+Con questi vincoli si disegnano le strutture candidate con un programma di disegno chimico (capitolo 20), si verifica che formula e m/z tornino (capitolo 13) e si propone una via di trasformazione.
 
 ## Esempio svolto: l'atrazina
 

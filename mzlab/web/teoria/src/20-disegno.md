@@ -1,67 +1,221 @@
-# Disegnare le molecole {kicker: Capitolo 20}
+<!-- title: Disegno sperimentale e rappresentazione delle strutture -->
+# Disegno sperimentale e rappresentazione delle strutture {kicker: Capitolo 20}
 
-{.lead} Come usare l'editor chimico della scheda Disegno (Ketcher) per molecole, ioni, frammenti e vie di trasformazione. Sotto ogni struttura compaiono da soli formula e massa e sopra ogni freccia la differenza di formula; gli schemi, gli ioni e i frammenti li disegnate voi.
+{.lead} Come pianificare una serie di analisi perché i risultati si possano interpretare: bianchi, controlli di qualità, repliche, taratura, ordine di iniezione. In fondo, come scrivere le strutture in un rapporto.
+
+## Dalla domanda al disegno
+
+Un buon disegno parte da una domanda. Esempio: "la concentrazione dell'analita cambia con il trattamento, e di quanto?". Ogni campione serve a rispondere, oppure a escludere una spiegazione alternativa.
+
+Prima di iniettare, si scrive:
 
 ```html
-<div class="box"><b>Due schemi, due significati</b><p>Nello schema di <b>trasformazione</b> i prodotti sono <i>molecole</i> (neutre: quelle che si formano nel reattore) e la freccia &egrave; una reazione chimica; l'<i>m/z</i> scritto sopra un TP &egrave; quello dell'ione che si sceglie di osservare, di solito [M+H]<sup>+</sup>. Nello schema di <b>frammentazione</b> tutto avviene in fase gassosa dentro lo strumento: il precursore e ogni frammento sono <i>ioni</i> (a numero pari di elettroni), tutti con la carica, e la freccia &egrave; una dissociazione; sopra la freccia va la <b>perdita neutra</b> (&minus;NH<sub>3</sub>, &minus;H<sub>2</sub>O, &minus;CO ...), che nello spettro non si vede. Nei due esempi gli <i>m/z</i> sono calcolati dal programma; la posizione degli OH nei TP &egrave; un'ipotesi plausibile, non l'unica possibile: a risoluzione unitaria l'<i>m/z</i> non la decide.</p></div>
+<ul>
+<li>che cosa si vuole misurare (un analita, più analiti, composti sconosciuti);</li>
+<li>quali fattori cambiano (tempo, dose, trattamento, matrice);</li>
+<li>quali controlli dicono che l'effetto è reale;</li>
+<li>quanti campioni, in quale ordine, con quale metodo.</li>
+</ul>
 ```
 
-## Comandi e consigli
+Il disegno non si cambia a metà corsa. Si cambia prima.
 
-### Atomi
+## Bianchi e controlli
+
+Un bianco è un campione senza l'analita. Dice da dove viene il segnale che non è l'analita.
 
 ```html
-<p>scegli l'elemento nella barra a destra (o il tasto: <kbd>C</kbd>, <kbd>N</kbd>, <kbd>O</kbd>, <kbd>S</kbd>, <kbd>L</kbd> = Cl, <kbd>B</kbd> = Br) e fai clic su un atomo per sostituirlo, o su un punto vuoto per aggiungerlo.</p>
+<table>
+<caption>Campioni di controllo e che cosa verificano</caption>
+<tr><th>Campione</th><th>Che cosa contiene</th><th>Che cosa verifica</th></tr>
+<tr><td><b>Bianco di solvente</b></td><td>Solo il solvente di iniezione</td><td>Fondo dello strumento, trasporto da una corsa all'altra (carry-over)</td></tr>
+<tr><td><b>Bianco di processo</b></td><td>Tutti i reagenti, senza analita</td><td>Contaminazioni da vetreria, reagenti, filtri, plastiche</td></tr>
+<tr><td><b>Bianco di matrice</b></td><td>La matrice reale, senza analita</td><td>Interferenze della matrice e soppressione ionica</td></tr>
+<tr><td><b>Controllo a t0</b></td><td>Il campione prima del trattamento</td><td>Segnali già presenti: non sono effetto del trattamento</td></tr>
+<tr><td><b>Controllo senza trattamento</b></td><td>Il campione trattato allo stesso modo, ma senza il fattore studiato (per esempio senza reagente o senza la fase di prova)</td><td>Perdite che non dipendono dal trattamento: adsorbimento, volatilità, idrolisi</td></tr>
+</table>
 ```
 
-### Carica + o −
+L'ultima riga è la più importante quando si cerca un effetto. Senza questo controllo, una perdita per adsorbimento sulle pareti della vial si scambia per un effetto del trattamento.
 
 ```html
-<p>strumenti <b>A+</b> e <b>A&minus;</b> nella barra a sinistra (tasti <kbd>=</kbd> e <kbd>-</kbd>), poi clic sull'atomo. Ogni clic aggiunge una carica. Per uno ione [M+H]<sup>+</sup> metti la carica sull'atomo protonato (di solito N od O) e aggiungi l'H: la formula diventa quella dello ione e la scritta mostra <i>m/z</i>. Se invece disegni la molecola neutra e vuoi mostrare l'ione, scegli l'addotto nel menu <b>Ione</b> della barra a destra.</p>
+<div class="box warn"><b>Errore frequente</b><p>Un segnale presente nel bianco, o a t0 con la stessa intensità, non è un effetto del trattamento. Va tolto dalla lista dei candidati (capitolo 12).</p></div>
 ```
 
-### Aggiungere un atomo (es. +O)
+## Repliche
+
+Le repliche misurano la variabilità. Non sono tutte uguali.
 
 ```html
-<p>per una struttura vera, scegli O e fai clic su un atomo della molecola (si crea il legame). Per una semplice scritta accanto a una freccia (&laquo;+O&raquo;, &laquo;&minus;CH<sub>2</sub>&raquo;, &laquo;+H<sub>2</sub>O&raquo;) usa lo strumento testo <b>T</b> (<kbd>Alt</kbd>+<kbd>T</kbd>); nel riquadro del testo ci sono i pulsanti pedice e apice.</p>
+<ul>
+<li><b>Replica strumentale</b>: la stessa vial iniettata più volte. Misura la ripetibilità dello strumento.</li>
+<li><b>Replica di preparazione</b>: lo stesso campione preparato più volte (diluizione, estrazione). Misura anche la preparazione.</li>
+<li><b>Replica indipendente</b>: l'intero esperimento ripetuto da capo, anche in giorni diversi. Misura la variabilità vera dell'esperimento.</li>
+</ul>
 ```
 
-### Parentesi
+Tre repliche indipendenti sono un minimo ragionevole per dare una media e una deviazione standard. Iniettare tre volte la stessa vial non è una replica indipendente: dà una buona ripetibilità e nasconde la variabilità del resto.
+
+## Controlli di qualità (QC)
+
+I QC sono campioni uguali tra loro, iniettati a intervalli regolari. Se la risposta cambia nel tempo, i QC lo mostrano.
 
 ```html
-<p>Ketcher non ha parentesi semplici per gli ioni (gli S-Group mettono parentesi da polimero, con una &laquo;n&raquo;). Per uno ione la cosa corretta &egrave; mettere la carica sull'atomo con <b>A+</b>: la scritta sotto diventa m/z. Se vuoi proprio la notazione [&nbsp;]<sup>+</sup>, scrivila con lo strumento testo <b>T</b> (pulsante apice per il +).</p>
+<ul>
+<li><b>QC di condizionamento</b>: alcune iniezioni all'inizio, scartate, per stabilizzare colonna e sorgente.</li>
+<li><b>QC di controllo</b>: uno standard a concentrazione nota, iniettato ogni 5–10 campioni. Dice se la risposta è rimasta nel limite scelto (di solito ±15–20%).</li>
+<li><b>QC combinato</b> (<i>pooled</i>): una miscela di piccole parti di tutti i campioni. Serve per vedere la deriva del tempo di ritenzione e della risposta di tutti i segnali.</li>
+<li><b>Standard interno</b>: un composto aggiunto in quantità uguale a ogni campione. Corregge le variazioni di iniezione e di ionizzazione.</li>
+</ul>
 ```
 
-### Vie di trasformazione
+Il limite di accettazione si decide prima, nel metodo. Un QC fuori limite segnala che i campioni iniettati intorno a lui vanno guardati con sospetto.
 
-freccia di reazione e segno + nella barra a sinistra. Se disegni composto di partenza → freccia → prodotto, sopra la freccia compare da sola la differenza (es. «+O Δm +16»). Il nome o il numero di un composto («Paracetamolo», «TP1 *m/z* 168») lo scrivi tu con lo strumento testo **T**, sopra la struttura: l'*m/z* lo calcoli tu in base alla composizione elementare attesa. Con più prodotti metti le strutture una accanto all'altra o su righe diverse, con una freccia per ogni passaggio.
+## Taratura
 
-### Un frammento senza rompere legami
+La retta di taratura mette in relazione area e concentrazione (capitolo 12). Al disegno spetta decidere come prepararla.
 
 ```html
-<p>seleziona solo gli atomi del pezzo (rettangolo di selezione, oppure clic sugli atomi tenendo premuto <kbd>Maiusc</kbd>) e premi <kbd>Alt</kbd>+<kbd>C</kbd> (&laquo;Valori calcolati&raquo; di Ketcher): d&agrave; formula e massa della parte selezionata. Quale ione sia (H spostati, dove sta la carica) lo decidi tu.</p>
+<ul>
+<li><b>Livelli</b>: almeno 5–6, ben distribuiti, con il livello più basso vicino al limite di quantificazione.</li>
+<li><b>Intervallo</b>: i campioni cadono dentro, mai fuori. Se superano l'ultimo livello si diluiscono e si iniettano di nuovo.</li>
+<li><b>Solvente o matrice</b>: gli standard nella matrice reale (o simile) compensano la soppressione ionica. In solvente puro il segnale può risultare più alto.</li>
+<li><b>Preparazione indipendente</b>: i livelli si preparano da diluizioni separate, non tutti dalla stessa soluzione di partenza a catena. Un errore sul primo si propagherebbe a tutti.</li>
+<li><b>Posizione</b>: una taratura all'inizio e una alla fine della sequenza (<i>bracketing</i>) mostrano se la risposta è derivata.</li>
+</ul>
 ```
 
-### Rompere un legame (frammenti)
+## Randomizzazione e blocchi
+
+Se i campioni sono iniettati nell'ordine del tempo di prelievo (t0, poi t1, poi t2...), la deriva dello strumento si confonde con l'effetto del tempo. Una sorgente che si sporca lentamente sembra una perdita di analita.
+
+La soluzione è la randomizzazione.
 
 ```html
-<p>strumento <b>gomma</b> (<kbd>Del</kbd>) e clic sul legame: la molecola si divide e sotto ogni pezzo compaiono formula e massa. Attenzione: un frammento in MS/MS &egrave; uno <i>ione</i>, quasi sempre con un H spostato; aggiungi carica e H dove servono e confronta l'm/z con lo spettro di ioni prodotto. Se sbagli: <kbd>Ctrl</kbd>+<kbd>Z</kbd>.</p>
+<ul>
+<li><b>Ordine casuale</b>: i campioni di tempi e condizioni diverse sono mescolati con un generatore di numeri casuali, non a mano.</li>
+<li><b>Blocchi</b>: se l'esperimento è lungo (più giorni, più lotti), ogni blocco contiene tutte le condizioni, in ordine casuale al suo interno. Le differenze tra giorni non si sommano a quelle tra condizioni.</li>
+<li><b>Repliche vicine</b>: le repliche dello stesso campione non vanno iniettate una dopo l'altra.</li>
+</ul>
 ```
 
-### Altro
+Un'eccezione sensata: standard di taratura in ordine di concentrazione crescente, per ridurre il carry-over.
+
+Un campione prelevato da un processo in corso va fermato (_quenched_) al momento del prelievo, se il processo continua nella vial. Altrimenti il tempo di attesa nell'autocampionatore diventa un fattore nascosto.
+
+## La sequenza di iniezione
+
+Un esempio di sequenza. È un modello da adattare, non una regola.
 
 ```html
-<p><kbd>Ctrl</kbd>+<kbd>A</kbd> seleziona tutto, <kbd>Ctrl</kbd>+<kbd>L</kbd> riordina il disegno, <kbd>Ctrl</kbd>+rotella ingrandisce.</p>
+<table>
+<caption>Esempio di sequenza di iniezione</caption>
+<tr><th>Passo</th><th>Campioni</th><th>Scopo</th></tr>
+<tr><td>1</td><td>Condizionamento (2–3 QC)</td><td>Stabilizzare lo strumento; si scartano</td></tr>
+<tr><td>2</td><td>Bianco di solvente</td><td>Fondo di partenza</td></tr>
+<tr><td>3</td><td>Taratura, dal livello più basso al più alto</td><td>Retta; carry-over ridotto</td></tr>
+<tr><td>4</td><td>Bianco di solvente</td><td>Carry-over dopo il livello più alto</td></tr>
+<tr><td>5</td><td>QC</td><td>Prima verifica</td></tr>
+<tr><td>6</td><td>5–10 campioni in ordine casuale, poi QC (si ripete)</td><td>Dati, con controllo della deriva</td></tr>
+<tr><td>7</td><td>Bianco di solvente</td><td>Carry-over finale</td></tr>
+<tr><td>8</td><td>Taratura finale (alcuni livelli) e QC</td><td>Deriva sull'intera sequenza</td></tr>
+</table>
 ```
 
 ```html
-<div class="box"><b>SMILES, disegno veloce e propriet&agrave; previste</b><p>Nel riquadro <b>Disegna veloce</b> incolli uno SMILES e la molecola compare sulla tela. Se invece selezioni una molecola, o anche solo un pezzo (rettangolo di selezione o <kbd>Maiusc</kbd>+clic), a destra compare il suo <b>SMILES</b> con il pulsante Copia; i legami tagliati sono chiusi con H. Sotto, le <b>propriet&agrave; previste</b> dalla struttura (se non selezioni nulla, di tutte le strutture della tela): <b>logP</b>, logS, superficie polare (TPSA) e numero di donatori/accettori di legame H. Servono per ragionare sulla ritenzione in fase inversa: a parit&agrave; di condizioni, un composto pi&ugrave; polare (logP pi&ugrave; basso) esce prima su C18. Limiti e precisione delle stime (forma neutra, errore del logP, logD): nel &laquo;?&raquo; del riquadro. Il logP aiuta a confrontare candidati simili, non decide da solo quale sia un TP.</p></div>
+<div class="box lab"><b>Registro</b><p>Per ogni corsa si annotano: nome del file, campione, replica, blocco, posizione in vial, ordine di iniezione, data, metodo e versione. Il nome del file deve permettere di ricostruire tutto questo senza aprire il file (capitolo 12).</p></div>
 ```
 
-```html
-<div class="box"><b>Formula e massa</b><p>Le due spunte in cima alla barra a destra scelgono cosa scrivere sotto ogni struttura: la formula bruta, la massa monoisotopica (M per una specie neutra, <i>m/z</i> se c'&egrave; una carica) o tutte e due. Per la massa si sceglie il numero di decimali (0 = all'unit&agrave;, come nello spettro a risoluzione unitaria). Il menu <b>Ione</b> mostra invece la molecola come ione ([M+H]<sup>+</sup>, [M+Na]<sup>+</sup>, [M&minus;H]<sup>&minus;</sup> ...): sotto compare la formula dello ione con la carica e, sotto ancora, l'<i>m/z</i>. Se la struttura ha gi&agrave; una carica disegnata, vale quella e il menu non cambia nulla. La scritta compare anche nelle immagini esportate.</p></div>
-```
+## Controllo prima di iniziare
 
 ```html
-<div class="box"><b>Esportare</b><p>PNG e JPEG sono salvati ad alta risoluzione (almeno 3 volte la dimensione a schermo, circa 3600 pixel di larghezza); l'SVG &egrave; vettoriale e si ingrandisce senza perdere qualit&agrave;. Lo sfondo &egrave; bianco; con la spunta <b>Sfondo trasparente</b> PNG e SVG hanno lo sfondo trasparente (il JPEG non lo supporta e in quella modalit&agrave; &egrave; disattivato). I file si chiamano <code>disegno_data_ora</code> (stesso nome per i quattro formati dello stesso minuto, <code>_trasparente</code> se lo sfondo &egrave; trasparente); il campo <b>Nome file</b> permette di sceglierne uno diverso.</p></div>
+<ul>
+<li>La domanda è scritta e ogni campione serve a rispondere.</li>
+<li>Ci sono bianchi di solvente, di processo e, se serve, di matrice.</li>
+<li>C'è un controllo senza trattamento.</li>
+<li>Le repliche indipendenti sono almeno tre.</li>
+<li>I QC e i limiti di accettazione sono decisi.</li>
+<li>La taratura copre l'intervallo dei campioni.</li>
+<li>L'ordine è casuale, con blocchi se l'esperimento è lungo.</li>
+<li>Il registro è pronto.</li>
+</ul>
+```
+
+## Rappresentare le strutture in un rapporto
+
+Il rapporto deve dire in modo chiaro e verificabile quale struttura si propone. Qualunque programma di disegno va bene, purché si rispettino alcune regole.
+
+### Molecola o ione?
+
+Due schemi diversi hanno significati diversi.
+
+```html
+<div class="box"><b>Due schemi, due significati</b><p>Nello schema di <b>trasformazione</b> i prodotti sono <i>molecole</i> (neutre: quelle che si formano in soluzione) e la freccia è una reazione chimica. L'<i>m/z</i> scritto sopra un prodotto è quello dell'ione che si sceglie di osservare, di solito [M+H]<sup>+</sup>. Nello schema di <b>frammentazione</b> tutto avviene in fase gassosa dentro lo strumento: il precursore e ogni frammento sono <i>ioni</i> (a numero pari di elettroni), tutti con la carica, e la freccia è una dissociazione. Sopra la freccia va la <b>perdita neutra</b> (−NH<sub>3</sub>, −H<sub>2</sub>O, −CO ...), che nello spettro non si vede.</p></div>
+```
+
+La posizione dei gruppi nuovi (per esempio gli OH in un prodotto ossidato) è un'ipotesi plausibile, non l'unica possibile. A risoluzione unitaria l'*m/z* non la decide. Nel rapporto si scrive "ipotesi" e si dice su che cosa si basa.
+
+### SMILES
+
+Lo SMILES è una riga di testo che descrive una struttura. È facile da copiare nel rapporto e da leggere con qualunque programma di chimica.
+
+```html
+<table>
+<caption>Esempi di SMILES</caption>
+<tr><th>Composto</th><th>SMILES</th></tr>
+<tr><td>Paracetamolo</td><td><code>CC(=O)Nc1ccc(O)cc1</code></td></tr>
+<tr><td>Atrazina</td><td><code>CCNc1nc(Cl)nc(NC(C)C)n1</code></td></tr>
+</table>
+```
+
+Alcune regole:
+
+```html
+<ul>
+<li>Un atomo carico si scrive tra parentesi quadre con la carica: <code>[NH4+]</code>, <code>[O-]</code>.</li>
+<li>Uno ione si scrive con la carica sull'atomo giusto. Il simbolo [M+H]<sup>+</sup> è una notazione di massa, non una struttura.</li>
+<li>Lo stesso composto ha più SMILES validi. Per confrontare e cercare si usa lo SMILES canonico del programma, e si scrive quale.</li>
+<li>Per gli isomeri si indicano stereochimica e doppi legami (<code>@</code>, <code>/</code>, <code>\</code>), se sono noti. Se non sono noti si lascia la struttura senza e si dice che non è nota.</li>
+<li>Insieme allo SMILES si possono dare formula bruta, massa monoisotopica e un identificatore (InChIKey, numero CAS, CID di PubChem).</li>
+</ul>
+```
+
+### Figure e tabelle di strutture
+
+```html
+<ul>
+<li><b>Un solo stile</b>: stessa lunghezza dei legami, stesso carattere, stesso orientamento della parte comune a tutte le molecole.</li>
+<li><b>Etichette</b>: nome o codice del composto (composto di partenza, prodotto 1, prodotto 2), formula, <i>m/z</i> osservato dell'ione e, se si vuole, errore in ppm.</li>
+<li><b>Frammenti</b>: per ogni frammento, la carica e gli H spostati; la perdita neutra sopra la freccia.</li>
+<li><b>Formato</b>: grafica vettoriale (SVG o PDF) quando possibile; altrimenti PNG ad almeno 300 dpi. Sfondo bianco, o trasparente se la figura va su un fondo colorato.</li>
+<li><b>Accessibilità</b>: contrasto alto, testo non troppo piccolo, descrizione della figura nella didascalia.</li>
+</ul>
+```
+
+### Quanto è sicura la struttura?
+
+Una struttura proposta non è tutta uguale. Conviene scrivere il livello di confidenza dell'identificazione: confermata con standard, probabile da spettro, solo candidata per formula. Una scala condivisa (Schymanski e collaboratori) è indicata sotto.
+
+## Verifica
+
+??? Perché, in una serie nel tempo, i campioni non si iniettano nell'ordine dei tempi di prelievo?
+Perché la deriva dello strumento (sorgente che si sporca, risposta che cala) si confonderebbe con l'effetto del tempo. Si randomizza l'ordine, con i QC a intervalli regolari per vedere la deriva.
+
+??? Hai tre iniezioni dello stesso vial. Sono tre repliche?
+Sono repliche strumentali, non indipendenti. Misurano la ripetibilità dello strumento, non la variabilità dell'esperimento. Servono repliche dell'esperimento intero.
+
+??? Un segnale a m/z 168 compare a t0, nel controllo senza trattamento e nel bianco di processo. È un prodotto del trattamento?
+No. È fondo, contaminazione o impurezza. Un prodotto del trattamento deve comparire con il trattamento e mancare, o essere molto più basso, nei controlli.
+
+??? Che differenza c'è tra uno schema di trasformazione e uno di frammentazione?
+Nel primo i prodotti sono molecole neutre che si formano in soluzione; nel secondo precursore e frammenti sono ioni in fase gassosa e le frecce portano le perdite neutre.
+
+## Per approfondire
+
+```html
+<ul class="refs">
+<li><span class="tag">identificazione</span>Schymanski E.L. et al. (2014) Identifying small molecules via high resolution mass spectrometry: communicating confidence. <i>Environ. Sci. Technol.</i> 48, 2097–2098. <a href="https://doi.org/10.1021/es5002105" target="_blank" rel="noopener">doi:10.1021/es5002105</a></li>
+<li><span class="tag">validazione</span>Eurachem, guida <i>The Fitness for Purpose of Analytical Methods</i> (bianchi, repliche, controlli di qualità): <a href="https://www.eurachem.org" target="_blank" rel="noopener">eurachem.org</a></li>
+<li><span class="tag">banche dati</span><a href="https://pubchem.ncbi.nlm.nih.gov" target="_blank" rel="noopener">PubChem</a> (strutture, SMILES, InChIKey, masse).</li>
+</ul>
 ```
