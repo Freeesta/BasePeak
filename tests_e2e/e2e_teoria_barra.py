@@ -57,8 +57,13 @@ try:
             pb, sb = q.locator("#tc-prec svg").bounding_box(), q.locator("#tc-prec .l").bounding_box(); assert pb["x"] < sb["x"], "arrow left of the number (previous)"
             pb, sb = q.locator("#tc-succ svg").bounding_box(), q.locator("#tc-succ .l").bounding_box(); assert pb["x"] > sb["x"], "arrow right of the number (next)"
             assert q.get_attribute("#tc-prec", "title").startswith("Precedente: 10.") and q.get_attribute("#tc-succ", "title").startswith("Successivo: 12."), (q.get_attribute("#tc-prec", "title"), q.get_attribute("#tc-succ", "title"))
-            for f, gone, kept in (("index.html", "#tc-prec", "#tc-succ"), ("capitoli/32-esempio.html", "#tc-succ", "#tc-prec")):
+            for f, gone, kept in (("index.html", "#tc-prec", "#tc-succ"), ("capitoli/21-tempi.html", "#tc-succ", "#tc-prec")):      # reader: part VII is hidden, 21 is the last page
                 q.goto(T + f); q.wait_for_selector("#tbar"); assert not q.query_selector(gone) and q.query_selector(kept), (f, gone)
+            qa = new(); qa.add_init_script("try{localStorage.setItem('mzlab.admin','1')}catch(_){}")      # administrator mode: 21 -> 22 ... 32 (other drafts, e.g. the Storia, may follow 32)
+            for f, gone, kept in (("index.html", "#tc-prec", "#tc-succ"), ("capitoli/32-esempio.html", None, "#tc-prec"), ("capitoli/21-tempi.html", None, "#tc-succ")):
+                qa.goto(T + f); qa.wait_for_selector("#tbar"); assert (gone is None or not qa.query_selector(gone)) and qa.query_selector(kept), (f, gone)
+            qa.goto(T + "capitoli/21-tempi.html"); qa.wait_for_selector("#tbar"); assert qa.get_attribute("#tc-succ", "href") == "../capitoli/22-segnale.html", qa.get_attribute("#tc-succ", "href")
+            qa.close()
             for w in (1280, 1000):
                 q.set_viewport_size({"width": w, "height": 900}); q.goto(T + "capitoli/11-formula.html"); q.wait_for_selector("#tbar")
                 assert q.evaluate("document.querySelector('#top').getBoundingClientRect().height") < 80, "header on one row"

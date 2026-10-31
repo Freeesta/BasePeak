@@ -4,6 +4,7 @@
 // [file, number shown in the menu, title, part]. The order is the study path: each chapter uses only what comes before it.
 // The "Pratica" pages (pratica/*.html) are the exercises and games; they use the same layout.
 // The menu has three parts, in this order: Teoria (chapters 1-18 and the introduction), Pratica, Reference (part "Reference": glossary, formulary, timings), see groupOf().
+// A 5th field `true` marks an administrator-only draft: it is removed from CHAPTERS for readers (menu, breadcrumb, prev/next, home cards, search, glossary links) and its URL shows a notice; to publish a chapter delete that field from its row.
 // Files are written relative to the site root (the folder above assets/); SITE.up is the way from the current page back to that root.
 const SITE = (() => {
   const src = document.currentScript && document.currentScript.src;
@@ -46,17 +47,17 @@ const CHAPTERS = [
   ["capitoli/19-glossario.html", "19", "Glossario e bibliografia", "Reference"],
   ["capitoli/20-formulario.html", "20", "Formulario", "Reference"],
   ["capitoli/21-tempi.html", "21", "Tempi degli analizzatori: dwell time, sweep e duty cycle", "Reference"],
-  ["capitoli/22-segnale.html", "22", "Segnale, profilo e centroide", "VII. Chemioinformatica"],
-  ["capitoli/23-formati.html", "23", "File e formati aperti", "VII. Chemioinformatica"],
-  ["capitoli/24-tracce.html", "24", "Tracce di massa e ROI", "VII. Chemioinformatica"],
-  ["capitoli/25-picchi.html", "25", "Trovare i picchi", "VII. Chemioinformatica"],
-  ["capitoli/26-gruppi.html", "26", "Isotopi, addotti, frammenti", "VII. Chemioinformatica"],
-  ["capitoli/27-tabella.html", "27", "La tabella delle feature", "VII. Chemioinformatica"],
-  ["capitoli/28-somiglianza.html", "28", "Somiglianza spettrale", "VII. Chemioinformatica"],
-  ["capitoli/29-librerie.html", "29", "Librerie e falsi positivi", "VII. Chemioinformatica"],
-  ["capitoli/30-candidati.html", "30", "Formule e candidati in silico", "VII. Chemioinformatica"],
-  ["capitoli/31-confidenza.html", "31", "Livelli di confidenza", "VII. Chemioinformatica"],
-  ["capitoli/32-esempio.html", "32", "Esempio completo", "VII. Chemioinformatica"],
+  ["capitoli/22-segnale.html", "22", "Segnale, profilo e centroide", "VII. Chemioinformatica", true],
+  ["capitoli/23-formati.html", "23", "File e formati aperti", "VII. Chemioinformatica", true],
+  ["capitoli/24-tracce.html", "24", "Tracce di massa e ROI", "VII. Chemioinformatica", true],
+  ["capitoli/25-picchi.html", "25", "Trovare i picchi", "VII. Chemioinformatica", true],
+  ["capitoli/26-gruppi.html", "26", "Isotopi, addotti, frammenti", "VII. Chemioinformatica", true],
+  ["capitoli/27-tabella.html", "27", "La tabella delle feature", "VII. Chemioinformatica", true],
+  ["capitoli/28-somiglianza.html", "28", "Somiglianza spettrale", "VII. Chemioinformatica", true],
+  ["capitoli/29-librerie.html", "29", "Librerie e falsi positivi", "VII. Chemioinformatica", true],
+  ["capitoli/30-candidati.html", "30", "Formule e candidati in silico", "VII. Chemioinformatica", true],
+  ["capitoli/31-confidenza.html", "31", "Livelli di confidenza", "VII. Chemioinformatica", true],
+  ["capitoli/32-esempio.html", "32", "Esempio completo", "VII. Chemioinformatica", true],
   ["capitoli/33-storia-mappa.html", "33", "La storia in una pagina", "VII. Storia", true],
   ["capitoli/34-storia-origini.html", "34", "Le origini: raggi catodici, raggi canale, raggi positivi", "VII. Storia", true],
   ["capitoli/35-storia-aston-dempster.html", "35", "Aston e Dempster: isotopi e numeri interi", "VII. Storia", true],
@@ -84,7 +85,13 @@ const ESTESO = QADMIN.on();
 (window.TEORIA = window.TEORIA || {}).esteso = () => ESTESO;
 // the text of the Teoria is Italian only, but the bar shared with the program (tabs, full screen) speaks the language chosen there
 window.TEORIA.lang = (() => { try { return localStorage.getItem("mzlab.lang") === "en" ? "en" : "it"; } catch (_) { return "it"; } })();
+const DRAFTS = CHAPTERS.filter(c => c[4]).map(c => c[0]);   // the files of the drafts, kept after they are taken out of CHAPTERS
 if (ESTESO) document.documentElement.classList.add("esteso"); else for (let i = CHAPTERS.length; i--;) if (CHAPTERS[i][4]) CHAPTERS.splice(i, 1);
+/** True for a draft file (path from the site root, no # or ?) that the reader must not see: administrator mode off. */
+const hiddenFile = f => !ESTESO && DRAFTS.includes(f);
+window.TEORIA.nascosto = hiddenFile;
+/** Path from the site root of a link's target, or "" when it points outside the site. */
+const rootPath = href => { try { const u = new URL(href, location.href).href.replace(/[?#].*$/, ""); return u.startsWith(SITE.root) ? decodeURIComponent(u.slice(SITE.root.length)) : ""; } catch (_) { return ""; } };
 // the chapters were written before the name changed: the old name in the text of the page is shown as the current one
 function renameApp(root = document.body) {
   const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => /^(SCRIPT|STYLE|TEXTAREA)$/.test(n.parentNode.nodeName) || !n.nodeValue.includes("QqQ lab") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT }), l = [];
@@ -432,6 +439,32 @@ const TP = (() => {
   const sci = (v, d = 2) => { if (v === 0) return "0"; const e = Math.floor(Math.log10(Math.abs(v))); const mnt = v / Math.pow(10, e); return fmt(mnt, d) + "·10" + sup(e); };
 
 
+  // ---------------------------------------------------------------- drafts (administrator-only chapters)
+  /** A reader who opens the address of a draft by hand gets this notice instead of the chapter (the notice is not in the chapter file). */
+  function draftNotice() {
+    document.title = "Pagina non ancora pubblicata · " + APP;
+    const robots = document.createElement("meta"); robots.name = "robots"; robots.content = "noindex"; document.head.appendChild(robots);
+    const m = document.createElement("main"); m.id = "bozza-avviso"; m.style.cssText = "max-width:40rem;margin:12vh auto;padding:0 16px";
+    m.innerHTML = `<h1>Questa pagina non è ancora pubblicata</h1><p><a href="${SITE.up}index.html">Vai alla home</a></p>`;
+    document.body.className = ""; document.body.replaceChildren(m);
+  }
+  /** Home page: the cards of the drafts and the part headings left without cards go away; «Sei parti di teoria» follows the parts that remain. */
+  function homeDrafts() {
+    if (here !== "index.html") return;
+    document.querySelectorAll("main .cards a[href]").forEach(a => { if (hiddenFile(rootPath(a.getAttribute("href")))) a.remove(); });
+    document.querySelectorAll("main h3").forEach(h => { const d = h.nextElementSibling; if (d && d.classList.contains("cards") && !d.children.length) { d.remove(); h.remove(); } });
+    const n = new Set([...document.querySelectorAll("main h3:not([hidden])")].map(h => (h.textContent.trim().match(/^([IVX]+)\. /) || [])[1]).filter(Boolean)).size;   // distinct numerals of the parts on show
+    const W = ["", "Una", "Due", "Tre", "Quattro", "Cinque", "Sei", "Sette", "Otto", "Nove", "Dieci", "Undici", "Dodici"];
+    document.querySelectorAll("main p").forEach(p => { if (/^[A-Z][a-z]+ parti di teoria/.test(p.textContent) && W[n]) p.firstChild.nodeValue = p.firstChild.nodeValue.replace(/^[A-Z][a-z]+/, W[n]); });
+  }
+  /** Links inside the text that point to a draft: in the glossary the «Cap. N» link is dropped, elsewhere only the link goes and the text stays. */
+  function unlinkDrafts() {
+    document.querySelectorAll("main a[href]").forEach(a => {
+      if (!hiddenFile(rootPath(a.getAttribute("href")))) return;
+      if (a.closest("dd")) { const p = a.previousSibling; if (p && p.nodeType === 3) p.nodeValue = p.nodeValue.replace(/\s+$/, ""); a.remove(); } else a.replaceWith(...a.childNodes);
+    });
+  }
+
   // ---------------------------------------------------------------- glossary hints
   // Every glossary term (glossario-dati.js, generated from 19-glossario.html by tools/genera_glossario.py) found in the text gets a dotted
   // underline; the mouse over it (or focus / tap) shows the short definition and a link to its chapter.
@@ -470,7 +503,7 @@ const TP = (() => {
     const show = el => {
       clearTimeout(timer); if (cur === el) return; cur = el;
       const e = G[+el.dataset.g];
-      tip.innerHTML = `<b>${e.t}</b><p>${e.d}</p>` + (e.h ? `<a href="${SITE.up + e.h}">${e.n} &rarr;</a>` : "");
+      tip.innerHTML = `<b>${e.t}</b><p>${e.d}</p>` + (e.h && !hiddenFile(e.h) ? `<a href="${SITE.up + e.h}">${e.n} &rarr;</a>` : "");
       tip.hidden = false;
       const r = el.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
       const x = Math.max(8, Math.min(r.left, innerWidth - w - 8)), below = r.bottom + 6 + h < innerHeight || r.top - 6 - h < 0;
@@ -495,6 +528,6 @@ const TP = (() => {
   // esporta.js: export modal (PDF, Word, Markdown, HTML) for single chapters and complete course
   // the panel styles (settings button and sheet): a <link>, because an @import in teoria.css would be resolved against the page by some tools (axe)
   const cssPanel = document.createElement("link"); cssPanel.rel = "stylesheet"; cssPanel.href = SITE.assets + "impostazioni-comp.css"; document.head.appendChild(cssPanel);
-  document.addEventListener("DOMContentLoaded", () => { layout(); glossary(); ["comandi.js", "impostazioni-comp.js", "impostazioni.js", "lettura.js", "cerca.js", "sblocco.js", "strumenti/pannello.js", "editor.js", "esporta.js"].forEach(load); });
+  document.addEventListener("DOMContentLoaded", () => { if (hiddenFile(here)) return draftNotice(); homeDrafts(); unlinkDrafts(); layout(); glossary(); ["comandi.js", "impostazioni-comp.js", "impostazioni.js", "lettura.js", "cerca.js", "sblocco.js", "strumenti/pannello.js", "editor.js", "esporta.js"].forEach(load); });
   return { reduced: () => document.documentElement.hasAttribute("data-a11y-reduce"), $, controls, buttons, canvas, axes, line, sticks, label, legend, nice, DASH, fmt, sci, sup };
 })();

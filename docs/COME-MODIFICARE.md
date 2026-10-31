@@ -95,6 +95,10 @@ Caratteri speciali: si possono scrivere direttamente (à è ≈ → Δ λ ±), i
 
 Menu laterale, indice della pagina e pulsanti avanti/indietro si aggiornano da soli.
 
+### Capitoli in bozza (visibili solo all'amministratore)
+
+Un capitolo non finito non deve vedersi ai lettori, e non deve mai contenere un riquadro «in costruzione». Per nasconderlo basta un quinto campo `true` nella sua riga di `CHAPTERS`: `["capitoli/22-segnale.html", "22", "Titolo", "VII. Chemioinformatica", true],`. Con la modalità amministratore spenta (chiave `mzlab.admin` in `localStorage`, 5 clic sul logo) il capitolo sparisce da menu, percorso, avanti/indietro, schede della home (con il titolo della parte, se resta senza schede, e il conto «Sei parti di teoria», che per i lettori diventa «Cinque»), ricerca e rimandi del glossario; chi ne apre l'indirizzo a mano trova solo l'avviso «Questa pagina non è ancora pubblicata» con il collegamento alla home (l'avviso lo scrive `teoria.js`, non il capitolo). Per **pubblicare** il capitolo si toglie `true` dalla riga: nient'altro da cambiare. Il test `tests/test_numerazione.py` rifiuta la pubblicazione se il file contiene «in costruzione».
+
 ## L'icona del sito
 
 Sta in `assets/icone/` (`icon.svg` scritta a mano, più i PNG), con `assets/favicon.ico` e `assets/site.webmanifest`. Ogni pagina ha nell'`<head>` i link all'icona (un capitolo creato con `tools/nuovo_capitolo.py` li ha già; se copi un capitolo a mano restano quelli del capitolo copiato). Per cambiarla: modifica `assets/icone/icon.svg` e lancia `python3 tools/genera_icone.py` (serve Pillow, solo qui): rigenera PNG e `.ico`, che si committano. `python3 -m pytest -q tests/test_icone.py` controlla link e dimensioni.
