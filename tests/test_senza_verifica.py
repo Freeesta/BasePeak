@@ -23,8 +23,6 @@ def test_no_review_boxes_or_pages():
 # Their owners drop the section and may delete the line here; a listed file that is already clean is fine (merge order of the
 # other PRs does not matter), but no file outside this set may contain the section, and no new file may be added to it.
 VERIFICA_PENDING = {
-    "22-segnale.html",
-    "23-formati.html",
     "26-gruppi.html",
     "27-tabella.html",
     "32-esempio.html",
