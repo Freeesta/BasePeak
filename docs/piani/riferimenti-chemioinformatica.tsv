@@ -89,6 +89,9 @@ xcms-src		verified	19,24	xcms R package source, `R/functions-Params.R` (CentWave
 NIST-MSSearch		verified		NIST Mass Spectral Search Program, manual v2.2, p. 39 (match factor, reverse match factor; composite formula not verified)
 GNPS-docs		verified		GNPS documentation, molecular networking parameters, ccms-ucsd.github.io/GNPSDocumentation/networking/ (read 2026-10-31)
 MassBank-licences		verified		MassBank record format, §2.1.5 LICENSE (github.com/MassBank/MassBank-web, Documentation/MassBankRecordFormat.md)
+Thomson1897	10.1080/14786449708621070	verified	34	Thomson J.J. (1897) Cathode Rays. Phil. Mag. (5th ser.) 44, 293-316
+Wien1898	10.1002/andp.18983010618	verified	34	Wien W. (1898) Untersuchungen über die electrische Entladung in verdünnten Gasen. Ann. Phys. 301, 440-452
+Thomson1913Bakerian	10.1098/rspa.1913.0057	verified	34	Thomson J.J. (1913) Bakerian Lecture: Rays of positive electricity. Proc. R. Soc. Lond. A 89, 1-20
 preexisting-01	10.1002/0471479357	preexisting		
 preexisting-02	10.1002/hlca.19580410703	preexisting		
 preexisting-03	10.1002/jms.1190301102	preexisting		
@@ -131,7 +134,19 @@ preexisting-39	10.1146/annurev.anchem.1.031207.112945	preexisting
 preexisting-40	10.1177/1529100612453266	preexisting		
 preexisting-41	10.1351/pac199365040819	preexisting		
 preexisting-42	10.1373/49.7.1041	preexisting		
-Griffiths2008	10.1021/ac8013065	verified	33	Griffiths J. (2008) A brief history of mass spectrometry. Anal. Chem. 80, 5678-5683
+Lawrence1932	10.1103/PhysRev.40.19	verified	39	Lawrence E.O., Livingston M.S. (1932) The production of high speed light ions without the use of high voltages. Phys. Rev. 40, 19-35
+Hipple1949	10.1103/PhysRev.76.1877.2	verified	39	Hipple J.A., Sommer H., Thomas H.A. (1949) A precise method of determining the Faraday by magnetic resonance. Phys. Rev. 76, 1877-1878
+Sommer1951	10.1103/PhysRev.82.697	verified	39	Sommer H., Thomas H.A., Hipple J.A. (1951) The measurement of e/M by cyclotron resonance. Phys. Rev. 82, 697-702 (Crossref record checked 2026-10-31)
+Kingdon1923	10.1103/PhysRev.21.408	verified	39	Kingdon K.H. (1923) A method for the neutralization of electron space charge by positive ionization at very low gas pressures. Phys. Rev. 21, 408-418
+Marshall1998	10.1002/(SICI)1098-2787(1998)17:1%3C1::AID-MAS1%3E3.0.CO;2-K	verified	39	Marshall A.G., Hendrickson C.L., Jackson G.S. (1998) Fourier transform ion cyclotron resonance mass spectrometry: a primer. Mass Spectrom. Rev. 17, 1-35
+Michalski2011	10.1074/mcp.M111.011015	verified	39,41	Michalski A. et al. (2011) Mass spectrometry-based proteomics using Q Exactive, a high-performance benchtop quadrupole Orbitrap mass spectrometer. Mol. Cell. Proteomics 10, M111.011015
+Aston1919a	10.1080/14786441208636004	verified	35	Aston F.W. (1919) A positive ray spectrograph. Philos. Mag. 38, 707-714
+Aston1919b	10.1038/104393b0	verified	35	Aston F.W. (1919) The constitution of the elements. Nature 104, 393
+Dempster1918	10.1103/PhysRev.11.316	verified	35	Dempster A.J. (1918) A new method of positive ray analysis. Phys. Rev. 11, 316-325
+Dempster1935	10.1038/136180a0	verified	35	Dempster A.J. (1935) Isotopic constitution of uranium. Nature 136, 180
+Downard2007	10.1255/ejms.878	verified	35	Downard K.M. (2007) Francis William Aston: the man behind the mass spectrograph. Eur. J. Mass Spectrom. 13, 177-190
+Budzikiewicz2006	10.1002/mas.20061	verified	35	Budzikiewicz H., Grigsby R.D. (2006) Mass spectrometry and isotopes: a century of research and discussion. Mass Spectrom. Rev. 25, 146-157
+Griffiths2008	10.1021/ac8013065	verified	33,35	Griffiths J. (2008) A brief history of mass spectrometry. Anal. Chem. 80, 5678-5683
 Yates2011	10.1038/nmeth.1659	verified	33	Yates J.R. III (2011) A century of mass spectrometry: from atoms to proteomes. Nat. Methods 8, 633-637
 Fenn2003	10.1002/anie.200300605	verified	33	Fenn J.B. (2003) Electrospray wings for molecular elephants (Nobel lecture). Angew. Chem. Int. Ed. 42, 3871-3894
 Wolff1953	10.1063/1.1770801	verified	37	Wolff M.M., Stephens W.E. (1953) A Pulsed Mass Spectrometer with Time Dispersion. Rev. Sci. Instrum. 24, 616-617
@@ -148,7 +163,6 @@ Arpino1989	10.1002/mas.1280080103	verified	41	Arpino P. (1989) Combined liquid c
 BlakleyVestal1983	10.1021/ac00255a036	verified	41	Blakley C.R., Vestal M.L. (1983) Thermospray interface for liquid chromatography/mass spectrometry. Anal. Chem. 55, 750-754
 Horning1973	10.1021/ac60328a035	verified	41	Horning E.C. et al. (1973) New picogram detection system based on a mass spectrometer with an external ionization source at atmospheric pressure. Anal. Chem. 45, 936-943
 YostEnke1978	10.1021/ja00475a072	verified	41	Yost R.A., Enke C.G. (1978) Selected ion fragmentation with a tandem quadrupole mass spectrometer. J. Am. Chem. Soc. 100, 2274-2275
-Michalski2011	10.1074/mcp.m111.011015	verified	41	Michalski A. et al. (2011) Mol. Cell. Proteomics 10, M111.011015
 CohenKarasek1970	10.1093/chromsci/8.6.330	verified	41	Cohen M.J., Karasek F.W. (1970) Plasma chromatography. J. Chromatogr. Sci. 8, 330-337
 Allen1947	10.1063/1.1740838	verified	42	Allen J.S. (1947) An improved electron multiplier particle counter. Rev. Sci. Instrum. 18, 739-749
 Wiza1979	10.1016/0029-554X(79)90734-1	verified	42	Wiza J.L. (1979) Microchannel plate detectors. Nucl. Instrum. Methods 162, 587-601
