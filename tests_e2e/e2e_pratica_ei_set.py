@@ -61,7 +61,7 @@ try:
               document.head.appendChild = n => { if (n.tagName === 'SCRIPT' && /ei-dati-l5/.test(n.src)) { window.__held.push(() => ap(n)); return n; } return ap(n); }; })()""")
             pg.select_option("#path", "5")
             assert pg.get_attribute("#game", "aria-busy") == "true", "the page must say it is loading while the level file is pending"
-            assert item()["path"] != 5, "level 5 data is held back: the card on screen is still the previous one"
+            assert item().get("path") != 5, "level 5 data is held back: the card on screen is still the previous one"
             pg.select_option("#path", "1"); settled()
             assert item()["path"] == 1
             pg.evaluate("document.querySelector('#game .eispec').dataset.mark = 'same'")
