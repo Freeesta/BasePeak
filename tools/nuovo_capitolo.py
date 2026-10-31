@@ -76,7 +76,7 @@ def build(n: int, titolo: str, card: str) -> str:
     esc = titolo.replace("&", "&amp;").replace("<", "&lt;")
     text = (TEMPLATE.replace("@N@", str(n)).replace("@TITLE_C@", titolo.replace("--", "-"))
             .replace("@TITLE@", esc).replace("@CARD@", card))
-    return tema_testa.inject(text, "teoria")
+    return tema_testa.inject(text)
 
 
 def main(argv=None) -> int:

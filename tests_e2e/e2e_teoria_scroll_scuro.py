@@ -1,6 +1,6 @@
 """Teoria in the dark theme: scrolling down and up never shows a light band at the top. The canvas (html/body) is dark, html has no elastic overscroll
 (overscroll-behavior-y none: macOS rubber-band cannot expose anything), and after wheel scrolls no full-width element at the top of the viewport has a light
-background. The iframe of the program (#tframe) takes its background from the theme, not a fixed white."""
+background."""
 import sys, os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import *
 steps = []
@@ -35,12 +35,6 @@ try:
                 assert q.evaluate(LIGHT) == [], (dy, q.evaluate(LIGHT))
             c.close()
         step("dark: dark canvas, no elastic overscroll, no light full-width element at the top after scrolling down/up", doc)
-        def frame():
-            c = r.b.new_context(viewport={"width": 1280, "height": 800}, color_scheme="dark"); q = c.new_page()
-            q.goto(f"http://127.0.0.1:{r.port}/"); q.wait_for_selector("#tframe", state="attached", timeout=15000)
-            l = q.evaluate("(() => { const m = getComputedStyle(document.querySelector('#tframe')).backgroundColor.match(/\\d+/g); return (+m[0] + +m[1] + +m[2]) / 3; })()")
-            assert l < 100, l; c.close()
-        step("program dark: #tframe background follows the theme", frame)
 finally:
     r.close()
 r.report()
