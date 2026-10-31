@@ -65,12 +65,10 @@ def test_generated_files_follow_the_pages(monkeypatch):
     assert len(out) == 1 and "glossario-dati.js" in out[0] and "COO" in out[0]
 
 
-def test_nothing_reads_the_markdown_twins_as_a_source():
-    """The html is the only source: the only code that still looks at capitoli/src/*.md is a test that checks a twin IF it exists."""
+def test_no_tool_or_script_reads_the_markdown_twins():
+    """The html is the only source: no tool or script of the site reads capitoli/src/*.md (the tests only look at a twin that happens to exist)."""
     import re
-    quelli = set()
-    for d in ("tests", "tools", "assets"):
+    for d in ("tools", "assets"):
         for f in (ROOT / d).glob("*.*"):
-            if f.suffix in (".py", ".js", ".mjs") and f.name != "test_controlla_modifica.py" and re.search(r"capitoli/src|\"capitoli\" / \"src\"", f.read_text(encoding="utf-8")):
-                quelli.add(f.name)
-    assert quelli == {"test_numerazione.py"}, quelli
+            if f.suffix in (".py", ".js", ".mjs"):
+                assert not re.search(r"capitoli/src|\"capitoli\" / \"src\"", f.read_text(encoding="utf-8")), f.name
