@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 
-from mzlab.chem.elements import parse_formula, mass
+from chem_ref import parse_formula, mass  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
