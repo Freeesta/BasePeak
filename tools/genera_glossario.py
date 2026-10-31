@@ -32,6 +32,7 @@ EXTRA = {
     "Ione prodotto": ["ioni prodotto", "ioni prodotti"], "Transizione": ["transizioni"], "Addotto": ["addotti"],
     "Piatti teorici": ["piatti", "numero di piatti"], "Radicale catione": ["radicali cationi"],
     "Trappola ionica": ["trappole ioniche"], "Ione molecolare": ["ioni molecolari"],
+    "Frammentazione in sorgente (ISF)": ["frammento in sorgente", "frammenti in sorgente"],
 }
 
 
