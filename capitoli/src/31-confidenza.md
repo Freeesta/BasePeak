@@ -18,6 +18,10 @@ Il livello non dipende da quanto un programma si dichiara sicuro, ma da quali da
 
 ## La scala di Schymanski (2014)
 
+```html
+<!-- to verify against source: Schymanski 2014 level names, translation and minimum data per level (abstract has no level text; full text not reachable) -->
+```
+
 I nomi sono tradotti dall'inglese; l'originale è tra parentesi. La traduzione è nostra.
 
 ```html
@@ -36,6 +40,10 @@ I nomi sono tradotti dall'inglese; l'originale è tra parentesi. La traduzione �
 Dal livello 2 in giù non basta un nome: il livello 2 ha due sottolivelli, uno per ciascun tipo di prova. Solo il livello 1 richiede uno standard di riferimento.
 
 ## La scala MSI (2007)
+
+```html
+<!-- to verify against source: Sumner 2007 MSI level names and level-1 wording (abstract has no level text; full text not reachable) -->
+```
 
 Sumner et al. (2007) distinguono quattro livelli. Il livello 1 richiede che almeno due proprietà ortogonali, per esempio tempo di ritenzione e spettro, coincidano con quelle di uno standard autentico misurato nelle stesse condizioni.
 
