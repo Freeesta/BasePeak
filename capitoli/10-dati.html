@@ -27,7 +27,7 @@
 <tr><td><b>Profilo</b></td><td>Tutti i punti del segnale, con la forma del picco</td><td>Valutare risoluzione, forma e saturazione dei picchi</td></tr>
 <tr><td><b>Centroide</b></td><td>Un solo punto per picco: <i>m/z</i> al centro e intensità</td><td>Lavoro di routine: file più piccoli, ricerca nelle banche dati</td></tr>
 </table>
-<p>Il passaggio da profilo a centroide si chiama <em>peak picking</em>. Non si può invertire. Dal centroide non si recupera la forma del picco. Per questo si conserva sempre il file originale.</p>
+<p>Il passaggio da profilo a centroide si chiama <em>peak picking</em>. Non si può invertire. Dal centroide non si recupera la forma del picco. Per questo si conserva sempre il file originale. <span class="solo-esteso" hidden>Approfondimento: <a href="22-segnale.html">capitolo 22 (Segnale, profilo e centroide)</a>.</span></p>
 <h3>Cromatogrammi: TIC, BPC, XIC</h3>
 <p>Mettendo in fila gli spettri si ottiene un cubo di dati: tempo × <i>m/z</i> × intensità. Un cromatogramma è una sua fetta.</p>
 <ul>
@@ -38,7 +38,7 @@
 <h3>La finestra di estrazione</h3>
 <p>Con risoluzione unitaria il profilo di uno ione è largo ~0,7 Da a metà altezza e va da circa −0,5 a +0,5 Da dal centro. Una finestra di ±0,5 Da centrata sul valore <em>osservato</em> raccoglie quasi tutto il segnale senza prendere i vicini.</p>
 <p>Se l'asse di massa è spostato, la finestra va allargata. Esempio: con uno spostamento di +0,3 Da, centrare la finestra sul valore teorico taglia il picco. Si usa ±1 Da sul valore teorico, oppure ±0,5 Da sul valore osservato nello spettro dello standard.</p>
-<p>Con l'alta risoluzione la finestra si esprime in ppm (di solito 5–10 ppm).</p>
+<p>Con l'alta risoluzione la finestra si esprime in ppm (di solito 5–10 ppm). <span class="solo-esteso" hidden>Approfondimento: <a href="24-tracce.html">capitolo 24 (Tracce di massa e ROI)</a>.</span></p>
 <h3>Spettro di un picco e sottrazione del fondo</h3>
 <p>Lo spettro "di un composto" si ottiene mediando gli spettri lungo il picco cromatografico e sottraendo quelli di una zona vicina senza picchi (o lo stesso intervallo nel bianco). Senza sottrazione, ioni del fondo (plastificanti, polisilossani, cluster della fase mobile) contaminano lo spettro e possono sembrare frammenti o addotti.</p>
 <div class="box warn"><b>Errori frequenti nel full scan</b>
@@ -57,7 +57,7 @@
 </ul>
 <p>Negli stessi file gli array di <i>m/z</i> e di intensità sono codificati in binario e di solito compressi. Il file è molto più piccolo di quello che si vede aprendolo in un editor di testo.</p>
 <p>In mzML, full scan e MS2 sono serie di spettri. I dati di MRM sono salvati come cromatogrammi (SRM), uno per transizione.</p>
-<p>Per la GC-MS esiste anche il vecchio formato CDF (ANDI-MS), ancora letto da molti programmi di deconvoluzione.</p>
+<p>Per la GC-MS esiste anche il vecchio formato CDF (ANDI-MS), ancora letto da molti programmi di deconvoluzione. <span class="solo-esteso" hidden>Approfondimento: <a href="23-formati.html">capitolo 23 (File e formati aperti)</a>.</span></p>
 <h3>Formati dei costruttori e conversione</h3>
 <p>Ogni costruttore salva i dati nel proprio formato. Spesso è una cartella e non un singolo file.</p>
 <table>
@@ -134,7 +134,7 @@
 <li><b>Esclusione dinamica</b>: uno ione già frammentato è escluso per un po', così lo strumento passa a quelli meno intensi.</li>
 <li><b>Lista di inclusione</b>: si possono forzare ioni di interesse, anche se deboli.</li>
 </ul>
-<p>Gli spettri MS2 sono puliti perché il precursore è isolato in una finestra stretta. Il limite è che la scelta dipende dall'intensità: ioni deboli o coeluenti possono non essere frammentati, e due corse della stessa miscela non scelgono sempre gli stessi ioni. Un esempio di uso è nel capitolo 17.</p>
+<p>Gli spettri MS2 sono puliti perché il precursore è isolato in una finestra stretta. Il limite è che la scelta dipende dall'intensità: ioni deboli o coeluenti possono non essere frammentati, e due corse della stessa miscela non scelgono sempre gli stessi ioni. Un esempio di uso è nel capitolo 17. <span class="solo-esteso" hidden>Approfondimento: <a href="28-somiglianza.html">capitolo 28 (Somiglianza spettrale)</a>.</span></p>
 <h3>DIA</h3>
 <p>Nella <em>data-independent acquisition</em> non c'è scelta. Lo strumento divide l'intervallo di <i>m/z</i> in finestre larghe (per esempio 20–25 Da) e frammenta tutto ciò che entra in ogni finestra, a ogni ciclo.</p>
 <ul>
@@ -155,7 +155,7 @@
 <tr><td>S</td><td><sup>34</sup>S, 4,25%</td><td>M+2 ≈ 4,4% per ogni S</td></tr>
 <tr><td>N, O</td><td>piccoli</td><td>Contributi minori a M+1 (N) e M+2 (O)</td></tr>
 </table>
-<p>Per i TP è un controllo potentissimo: se il parent contiene un cloro e il candidato mostra ancora M+2 al ~32%, il cloro è rimasto; se il pattern scompare e la massa è calata di 18 (−Cl +OH), la declorurazione idrossilativa è un'ipotesi coerente.</p>
+<p>Per i TP è un controllo potentissimo: se il parent contiene un cloro e il candidato mostra ancora M+2 al ~32%, il cloro è rimasto; se il pattern scompare e la massa è calata di 18 (−Cl +OH), la declorurazione idrossilativa è un'ipotesi coerente. <span class="solo-esteso" hidden>Approfondimento: <a href="26-gruppi.html">capitolo 26 (Isotopi, addotti, frammenti)</a>.</span></p>
 <div class="sim" id="sim-iso"><h4>Cluster isotopico a risoluzione unitaria</h4>
 <p class="note">Scrivete una formula bruta (elementi C, H, N, O, S, P, F, Cl, Br, I, Si, Na, K). Il calcolo convolve le distribuzioni isotopiche per massa nominale. L'esempio è l'atrazina, un erbicida usato come esempio svolto nel capitolo 16.</p></div>
 <h3>Regola dell'azoto e insaturazioni</h3>

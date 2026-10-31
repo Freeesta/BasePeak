@@ -325,6 +325,7 @@ const INDICE_RICERCA = [
 ["Fotocatalisi e prodotti di trasformazione", "sezione", "capitoli/19-glossario.html#fotocatalisi-e-prodotti-di-trasformazione", "Cap. 19", "fotocatalisi e prodotti di trasformazione"],
 ["Cromatografia", "sezione", "capitoli/19-glossario.html#cromatografia", "Cap. 19", "cromatografia"],
 ["Spettri EI, alta risoluzione e formule", "sezione", "capitoli/19-glossario.html#spettri-ei-alta-risoluzione-e-formule", "Cap. 19", "spettri ei, alta risoluzione e formule 70 ev hrms ionizzazione elettronica orbitrap tof"],
+["Chemioinformatica e trattamento dei dati", "sezione", "capitoli/19-glossario.html#chemioinformatica-e-trattamento-dei-dati", "Cap. 19", "chemioinformatica e trattamento dei dati"],
 ["Come sono costruite la Teoria e la Pratica", "sezione", "capitoli/19-glossario.html#come-sono-costruite-la-teoria-e-la-pratica", "Cap. 19", "come sono costruite la teoria e la pratica"],
 ["Strumenti e banche dati gratuite", "sezione", "capitoli/19-glossario.html#strumenti-e-banche-dati-gratuite", "Cap. 19", "strumenti e banche dati gratuite"],
 ["Manuali e trattati di riferimento", "sezione", "capitoli/19-glossario.html#manuali-e-trattati-di-riferimento", "Cap. 19", "manuali e trattati di riferimento"],

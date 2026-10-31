@@ -36,7 +36,7 @@ Un bianco è un campione senza l'analita. Dice da dove viene il segnale che non 
 </table>
 ```
 
-L'ultima riga è la più importante quando si cerca un effetto. Senza questo controllo, una perdita per adsorbimento sulle pareti della vial si scambia per un effetto del trattamento.
+L'ultima riga è la più importante quando si cerca un effetto. Senza questo controllo, una perdita per adsorbimento sulle pareti della vial si scambia per un effetto del trattamento. <span class="solo-esteso" hidden>Approfondimento: <a href="27-tabella.html">capitolo 27 (La tabella delle feature)</a>.</span>
 
 ```html
 <div class="box warn"><b>Errore frequente</b><p>Un segnale presente nel bianco, o a t0 con la stessa intensità, non è un effetto del trattamento. Va tolto dalla lista dei candidati (capitolo 10).</p></div>
@@ -194,7 +194,7 @@ Alcune regole:
 
 ### Quanto è sicura la struttura?
 
-Una struttura proposta non è tutta uguale. Conviene scrivere il livello di confidenza dell'identificazione: confermata con standard, probabile da spettro, solo candidata per formula. Una scala condivisa (Schymanski e collaboratori) è indicata sotto.
+Una struttura proposta non è tutta uguale. Conviene scrivere il livello di confidenza dell'identificazione: confermata con standard, probabile da spettro, solo candidata per formula. Una scala condivisa (Schymanski e collaboratori) è indicata sotto. <span class="solo-esteso" hidden>Approfondimento: <a href="31-confidenza.html">capitolo 31 (Livelli di confidenza)</a>.</span>
 
 ## Per approfondire
 
