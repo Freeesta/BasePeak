@@ -24,7 +24,7 @@ Se in ogni scansione una frazione fissa *r* del progenitore si rompe, l'intensit
 
 ### 3. Il comportamento nel tempo di trattamento
 
-Un frammento segue il progenitore: scende con lui. Un intermedio di degradazione parte da zero, sale e poi scende (cinetica A → B → C, capitolo 2). È un indizio, non una regola: con pochi tempi molti andamenti sono compatibili con entrambe le ipotesi, e un prodotto che si forma e si consuma in modo proporzionale al progenitore può imitare un frammento.
+Un frammento segue il progenitore: scende con lui. Un intermedio di degradazione parte da zero, sale e poi scende (cinetica A → B → C). È un indizio, non una regola: con pochi tempi molti andamenti sono compatibili con entrambe le ipotesi, e un prodotto che si forma e si consuma in modo proporzionale al progenitore può imitare un frammento.
 
 ### 4. Il DP e l'MS^2^
 
