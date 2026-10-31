@@ -7,30 +7,79 @@
 <div class="kicker">Capitolo 29</div>
 <h1>Ricerca in libreria e falsi positivi</h1>
 <p class="lead">Il miglior risultato di una ricerca in libreria non è ancora un'identificazione. Qui si vede come stimare i falsi positivi e come i punteggi costruiscono una rete molecolare.</p>
-<div class="box key"><b>Capitolo in costruzione</b><p>Questo capitolo è ancora in scrittura: per ora trovi la scaletta, con una riga per ogni sezione, e il posto delle figure interattive.</p></div>
-<details class="q storia"><summary>Un po' di storia</summary><p>Le librerie di spettri sono cresciute dalle raccolte EI a quelle MS/MS aperte; il capitolo racconterà le tappe principali.</p></details>
+<details class="q storia"><summary>Un po' di storia</summary><p>Le librerie di spettri nascono dagli archivi EI; Stein (2012) ne ripercorre la crescita fino alle raccolte attuali. MassBank, repository pubblico di spettri di riferimento, è descritto nel 2010 (Horai et al., 2010); GNPS, con la condivisione e la cura da parte della comunità, nel 2016 (Wang et al., 2016); un protocollo per reti molecolari riproducibili nel 2020 (Aron et al., 2020). L'idea delle esche (<i>decoy</i>) viene dalla proteomica (Elias e Gygi, 2007) e fu adattata alle piccole molecole nel 2017 (Scheubert et al., 2017).</p></details>
 <h2>Le librerie spettrali</h2>
-<p>Quali raccolte di spettri esistono, che cosa contengono e a quali condizioni si usano.</p>
+<p>Una libreria è una raccolta di spettri di riferimento: di ognuno si conoscono composto, strumento, polarità, energia e, per l'EI, l'indice di ritenzione. Le raccolte principali:</p>
+<table>
+<caption>Le principali librerie di spettri</caption>
+<tr><th>Libreria</th><th>Contenuto</th><th>Licenza</th></tr>
+<tr><td>NIST</td><td>spettri EI e MS/MS</td><td>commerciale: i suoi spettri non sono riprodotti in questo manuale</td></tr>
+<tr><td>MassBank (Horai et al., 2010)</td><td>repository pubblico di spettri di riferimento</td><td>indicata per ogni record: si legge nel record</td></tr>
+<tr><td>GNPS (Wang et al., 2016)</td><td>librerie MS/MS condivise e curate dalla comunità</td><td>condizioni d'uso sul sito</td></tr>
+<tr><td>MoNA</td><td>spettri raccolti da fonti diverse</td><td>per ogni record</td></tr>
+</table>
+<p>Stein (2012) e Vinaixa et al. (2016) passano in rassegna le raccolte e le banche dati per GC-MS e LC-MS; Kind et al. (2018) trattano la ricerca MS/MS in accurata. Programmi come MS-DIAL integrano la ricerca in libreria nell'elaborazione dei dati (Tsugawa et al., 2015) e, nella versione 4, l'annotazione dei lipidi (Tsugawa et al., 2020).</p>
 <h2>Ricerca EI: match factor e indice di ritenzione</h2>
-<p>In EI si combinano il punteggio dello spettro e l'indice di ritenzione.</p>
+<p>In EI il programma confronta lo spettro cercato con quelli di libreria e dà un <b>match factor</b> e un <b>match factor inverso</b> su una scala da 0 a 999 (programma NIST MS Search); il calcolo preciso è nel manuale del programma. Il secondo ignora i picchi dello spettro cercato assenti in libreria, come la ricerca inversa del capitolo 28.</p>
+<p>Allo spettro si aggiunge l'<b>indice di ritenzione</b> (RI, <a href="03-gc.html">capitolo 3</a>): si scartano i candidati il cui RI differisce da quello misurato oltre una finestra (nella figura ±35 unità). Vale solo se la fase della colonna è la stessa. L'idea di associare una probabilità a ciascun risultato risale a McLafferty et al. (1974). Se il composto manca, lo spettro può comunque indicare sottostrutture (Stein, 1995). L'interpretazione a mano è nel <a href="13-ei-metodo.html">capitolo 13</a>.</p>
 <h2>Ricerca MS/MS: precursore, energia, punteggio</h2>
-<p>In MS/MS contano anche il precursore, la polarità e l'energia di collisione.</p>
+<p>In MS/MS la libreria si filtra prima: massa del precursore entro la tolleranza, polarità, addotto, classe di strumento, energia di collisione. Poi si calcola un punteggio (capitolo 28) e si richiede un numero minimo di picchi accoppiati. Una libreria con una sola energia per composto può non riconoscere uno spettro misurato a un'altra energia: conviene guardare più di un risultato. Per una rassegna della ricerca MS/MS ad accurata, Kind et al. (2018).</p>
 <h2>Quanti risultati sono falsi?</h2>
-<p>Un punteggio alto non basta: bisogna stimare la quota di errori.</p>
+<p>Il miglior risultato esiste sempre, anche per un composto assente: è il meno diverso. Più la libreria è grande, più è facile trovarne uno somigliante per caso.</p>
 <h3>L'approccio target-decoy</h3>
-<p>Si cerca anche in una libreria di spettri falsi per contare gli errori.</p>
+<p>L'idea viene dalla proteomica (Elias e Gygi, 2007) ed è stata adattata alle piccole molecole da Scheubert et al. (2017):</p>
+<ol>
+<li>si costruisce una libreria di <b>esche</b> (<i>decoy</i>): spettri falsi, per esempio con picchi riassegnati o mescolati, oppure costruiti dagli alberi di frammentazione, come in Scheubert et al.;</li>
+<li>ogni query si cerca nei bersagli e nelle esche insieme, e si tiene il miglior risultato;</li>
+<li>le esche che vincono contano i risultati sbagliati che vincono fra i bersagli.</li>
+</ol>
+<p>Tutto dipende dalla qualità delle esche: esche troppo facili da riconoscere fanno stimare troppo pochi errori.</p>
 <h3>FDR e q-value</h3>
-<p>La quota di falsi nella lista e il valore associato a ogni soglia.</p>
+<p>Il tasso di falsi scoperti (FDR; Benjamini e Hochberg, 1995, ne hanno definito il controllo) alla soglia <i>t</i> si stima con D esche e T bersagli che hanno il miglior risultato con punteggio ≥ <i>t</i>:</p>
+<span class="eq">FDR(<i>t</i>) ≈ <span class="frac"><span><i>D</i>(<i>t</i>)</span><span><i>T</i>(<i>t</i>)</span></span><span class="no">(29.1)</span></span>
+<p>Il <b>q-value</b> di un risultato di punteggio <i>s</i> è la FDR minima a cui verrebbe accettato:</p>
+<span class="eq"><i>q</i>(<i>s</i>) = min<sub><i>t</i> ≤ <i>s</i></sub> FDR(<i>t</i>)<span class="no">(29.2)</span></span>
+<p>Di solito si tengono i risultati con q ≤ 0,01 o 0,05.</p>
+<details class="poe"><summary>Prima di provare: a parità di soglia ci sono più risultati sbagliati con 100 voci o con 2000? Con esche casuali, la FDR stimata è più alta o più bassa di quella vera?</summary><p>Con più voci crescono i risultati sbagliati sopra la stessa soglia. Le esche casuali sono troppo facili da riconoscere: la FDR stimata scende sotto quella vera.</p></details>
 <div class="sim" id="sim-chemi-libreria" data-sim="../assets/sim-chemi-librerie.js"><h4>Figura 29.1 Classifica dei risultati e falsi positivi</h4>
-<p class="note nota">Stima la quota di falsi con una libreria di spettri falsi e la confronta con quella vera. Dati sintetici, a scopo didattico.</p></div>
+<p class="note nota">Stima la quota di falsi con una libreria di esche e la confronta con quella vera. Dati sintetici, a scopo didattico.</p></div>
 <h2>Le reti molecolari</h2>
-<p>Gli spettri simili si collegano in famiglie di molecole imparentate.</p>
+<p>Nel modello di Watrous et al. (2012) ogni <b>nodo</b> è uno spettro MS2 di consenso; due nodi si collegano se il coseno modificato supera una soglia e hanno abbastanza picchi in comune. Ogni nodo tiene al più i K legami migliori (nella figura il legame resta se è fra i K migliori di entrambi). Le componenti connesse sono <b>famiglie</b> di molecole imparentate, e l'annotazione di un nodo trovato in libreria si propaga ai vicini.</p>
+<p>GNPS e il suo protocollo (Wang et al., 2016; Aron et al., 2020) rendono la procedura riproducibile. Le soglie decidono tutto: permissive, collegano ogni cosa; strette, spezzano le famiglie. I valori predefiniti dei programmi vanno letti nella loro documentazione.</p>
+<details class="poe"><summary>Prima di provare: passando dal coseno modificato al semplice, le famiglie di analoghi restano unite?</summary><p>No: il coseno semplice non accoppia i frammenti spostati dalla modifica e i legami cadono. Con soglie molto basse ricompare invece un legame fra famiglie diverse.</p></details>
 <div class="sim" id="sim-chemi-rete" data-sim="../assets/sim-chemi-librerie.js"><h3>Figura 29.2 Una rete molecolare</h3>
 <p class="note nota">Collega quattordici spettri sintetici in famiglie secondo soglia di coseno e picchi in comune. Spettri sintetici, a scopo didattico.</p></div>
+<div class="box warn"><b>Errori frequenti</b>
+<ul>
+<li>prendere il primo risultato per un'identificazione;</li>
+<li>usare un RI misurato su una fase di colonna diversa;</li>
+<li>cercare in una libreria con una sola energia di collisione;</li>
+<li>leggere «nessun risultato» come «composto assente»;</li>
+<li>stimare la FDR con esche scadenti;</li>
+<li>costruire reti con soglie permissive, che collegano tutto.</li>
+</ul></div>
 <h2>Verifica</h2>
-<p>Qualche domanda per controllare di avere capito i punti principali.</p>
+<details class="q"><summary>Perché il miglior risultato di una ricerca non è un'identificazione?</summary><p>Perché esiste sempre un miglior risultato, anche per un composto assente: è il meno diverso. Serve una soglia e una stima della quota di errori.</p></details>
+<details class="q"><summary>Una soglia dà 200 bersagli e 8 esche. Quanto vale la FDR stimata?</summary><p>8 / 200 = 0,04, cioè il 4 %. Se le esche fossero più facili dei falsi bersagli, la FDR vera sarebbe più alta.</p></details>
+<details class="q"><summary>Perché un filtro sull'indice di ritenzione riduce i falsi positivi in EI?</summary><p>Scarta i candidati con RI troppo diverso: restano meno voci di libreria che possono somigliare per caso, quindi i migliori risultati sbagliati hanno punteggi più bassi.</p></details>
+<details class="q"><summary>Con soglie permissive una rete molecolare collega famiglie diverse. Che cosa ne deduci?</summary><p>Che i legami fra famiglie sono sospetti: si alza la soglia del coseno o il numero minimo di picchi, o si riduce K, e si controllano i legami che restano.</p></details>
 <h2>Per approfondire</h2>
-<p>Le letture consigliate su librerie, falsi positivi e reti molecolari.</p>
+<ul class="refs">
+<li><span class="tag">articolo</span>Hertz H.S., Hites R.A., Biemann K. (1971) Identification of mass spectra by computer-searching a file of known spectra. <i>Anal. Chem.</i> 43, 681-691 <a href="https://doi.org/10.1021/ac60301a009" target="_blank" rel="noopener">doi:10.1021/ac60301a009</a></li>
+<li><span class="tag">articolo</span>McLafferty F.W. et al. (1974) Probability based matching of mass spectra. Rapid identification of specific compounds in mixtures. <i>Org. Mass Spectrom.</i> 9, 690-702 <a href="https://doi.org/10.1002/oms.1210090710" target="_blank" rel="noopener">doi:10.1002/oms.1210090710</a></li>
+<li><span class="tag">articolo</span>Stein S.E. (1995) Chemical substructure identification by mass spectral library searching. <i>J. Am. Soc. Mass Spectrom.</i> 6, 644-655 <a href="https://doi.org/10.1016/1044-0305(95)00291-K" target="_blank" rel="noopener">doi:10.1016/1044-0305(95)00291-K</a></li>
+<li><span class="tag">articolo</span>Stein S. (2012) Mass spectral reference libraries: an ever-expanding resource for chemical identification. <i>Anal. Chem.</i> 84, 7274-7282 <a href="https://doi.org/10.1021/ac301205z" target="_blank" rel="noopener">doi:10.1021/ac301205z</a></li>
+<li><span class="tag">articolo</span>Horai H. et al. (2010) MassBank: a public repository for sharing mass spectral data for life sciences. <i>J. Mass Spectrom.</i> 45, 703-714 <a href="https://doi.org/10.1002/jms.1777" target="_blank" rel="noopener">doi:10.1002/jms.1777</a></li>
+<li><span class="tag">articolo</span>Wang M. et al. (2016) Sharing and community curation of mass spectrometry data with GNPS. <i>Nat. Biotechnol.</i> 34, 828-837 <a href="https://doi.org/10.1038/nbt.3597" target="_blank" rel="noopener">doi:10.1038/nbt.3597</a></li>
+<li><span class="tag">articolo</span>Aron A.T. et al. (2020) Reproducible molecular networking of untargeted mass spectrometry data using GNPS. <i>Nat. Protoc.</i> 15, 1954-1991 <a href="https://doi.org/10.1038/s41596-020-0317-5" target="_blank" rel="noopener">doi:10.1038/s41596-020-0317-5</a></li>
+<li><span class="tag">articolo</span>Tsugawa H. et al. (2015) MS-DIAL: data-independent MS/MS deconvolution for comprehensive metabolome analysis. <i>Nat. Methods</i> 12, 523-526 <a href="https://doi.org/10.1038/nmeth.3393" target="_blank" rel="noopener">doi:10.1038/nmeth.3393</a></li>
+<li><span class="tag">articolo</span>Tsugawa H. et al. (2020) A lipidome atlas in MS-DIAL 4. <i>Nat. Biotechnol.</i> 38, 1159-1163 <a href="https://doi.org/10.1038/s41587-020-0531-2" target="_blank" rel="noopener">doi:10.1038/s41587-020-0531-2</a></li>
+<li><span class="tag">articolo</span>Vinaixa M. et al. (2016) Mass spectral databases for LC/MS- and GC/MS-based metabolomics: state of the field and future prospects. <i>TrAC</i> 78, 23-35 <a href="https://doi.org/10.1016/j.trac.2015.09.005" target="_blank" rel="noopener">doi:10.1016/j.trac.2015.09.005</a></li>
+<li><span class="tag">articolo</span>Kind T. et al. (2018; online 2017) Identification of small molecules using accurate mass MS/MS search. <i>Mass Spectrom. Rev.</i> 37, 513-532 <a href="https://doi.org/10.1002/mas.21535" target="_blank" rel="noopener">doi:10.1002/mas.21535</a></li>
+<li><span class="tag">articolo</span>Elias J.E., Gygi S.P. (2007) Target-decoy search strategy for increased confidence in large-scale protein identifications by mass spectrometry. <i>Nat. Methods</i> 4, 207-214 <a href="https://doi.org/10.1038/nmeth1019" target="_blank" rel="noopener">doi:10.1038/nmeth1019</a></li>
+<li><span class="tag">articolo</span>Scheubert K. et al. (2017) Significance estimation for large scale metabolomics annotations by spectral matching. <i>Nat. Commun.</i> 8, 1494 <a href="https://doi.org/10.1038/s41467-017-01318-5" target="_blank" rel="noopener">doi:10.1038/s41467-017-01318-5</a></li>
+<li><span class="tag">articolo</span>Benjamini Y., Hochberg Y. (1995) Controlling the false discovery rate. <i>J. R. Stat. Soc. B</i> 57, 289-300 <a href="https://doi.org/10.1111/j.2517-6161.1995.tb02031.x" target="_blank" rel="noopener">doi:10.1111/j.2517-6161.1995.tb02031.x</a></li>
+</ul>
 </main></div>
 <script src="../assets/appname.js"></script><script src="../assets/teoria.js"></script><script src="../assets/chemi-common.js"></script>
 </body></html>
