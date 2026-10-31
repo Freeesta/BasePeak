@@ -102,15 +102,16 @@ try:
         step("breadcrumb BasePeak > part > chapter", breadcrumb)
         def prevnext(admin):
             c, q = ctx(admin=admin); q.goto(T + "index.html"); q.wait_for_selector("#side")
-            last = "capitoli/32-esempio.html" if admin else "capitoli/21-tempi.html"      # reader: part VII is absent, the Reference pages end the path
-            order = q.evaluate("CHAPTERS.map(c=>c[0])"); assert order[0] == "index.html" and order[-1] == last, (admin, order[0], order[-1])
+            last = None if admin else "capitoli/21-tempi.html"      # reader: every draft is absent, the Reference pages end the path (admin: other drafts, e.g. the Storia, may follow 32)
+            order = q.evaluate("CHAPTERS.map(c=>c[0])"); assert order[0] == "index.html" and (last is None or order[-1] == last), (admin, order[0], order[-1])
             groups = [("Teoria" if not f.startswith("pratica") and not re.search(r"/(19|20|21)-", f) else "Pratica" if f.startswith("pratica") else "Reference") for f in order]
             part7 = [f for f in order if re.search(r"capitoli/(2[2-9]|3[0-2])-", f)]      # part VII (22-32) is in the Teoria group but must follow row 21 (numbers run 1..32 in array order)
             assert len(part7) == (11 if admin else 0), (admin, part7)
             if admin:
-                assert order[-len(part7):] == part7, "part VII is not the last block"
-                assert order[order.index("capitoli/21-tempi.html") + 1] == "capitoli/22-segnale.html", "21 is not followed by 22"
-                groups = groups[:-len(part7)]
+                i21 = order.index("capitoli/21-tempi.html")
+                assert order[i21 + 1:i21 + 12] == part7, "part VII does not follow row 21"
+                assert order[i21 + 1] == "capitoli/22-segnale.html" and order[i21 + 11] == "capitoli/32-esempio.html", "21 is not followed by 22 ... 32"
+                groups = groups[:i21 + 1]      # everything after row 21 is an administrator-only draft
             assert groups == sorted(groups, key={"Teoria": 0, "Pratica": 1, "Reference": 2}.get), "order is not Teoria > Pratica > Reference"
             for i, f in enumerate(order):
                 q.goto(T + f); q.wait_for_selector("main .pn")
