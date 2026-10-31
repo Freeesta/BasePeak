@@ -198,7 +198,7 @@ body.noex main>:not(.navtop):not(.kicker):not(h1):not(.phex):not(.pn){display:no
 :root[data-theme=dark] .box.hr{background:#241d33;border-left-color:#a78bfa}:root[data-theme=dark] .box.hr>b:first-child{color:#c4b5fd}
 :root[data-theme=dark] .box.gym{background:#12272b;border-left-color:#22d3ee}:root[data-theme=dark] .box.gym>b:first-child{color:#67e8f9}
 :root[data-theme=dark] .box.oral{background:#2a2216;border-left-color:#fbbf24}:root[data-theme=dark] .box.oral>b:first-child{color:#fcd34d}
-:root[data-theme=dark] details.poe{background:#12272b;border-color:#22d3ee}
+:root[data-theme=dark] details.poe{background:#12272b;border-color:#22d3ee}:root[data-theme=dark] details.poe summary{color:#67e8f9}
 
 /* ---- Lettura facilitata (impostazioni.js; the choices live in localStorage «qqq.a11y», tema.js puts them on <html> as data-a11y-*) ---- */
 @font-face{font-family:"Atkinson Hyperlegible Next";src:url(fonts/AtkinsonHyperlegibleNext-Regular.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
