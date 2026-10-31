@@ -38,7 +38,7 @@
 </ol>
 <span class="eq">caratteri = 4 · ⌈<i>n</i> / 3⌉<span class="no">(23.1)</span></span>
 <p>con <i>n</i> byte. Esempio: 500 m/z a 64 bit sono 4000 byte e 5336 caratteri. Un float a 32 bit ha 24 bit di mantissa, quindi un errore relativo fino a 2<sup>−24</sup>, circa 0,06 ppm: piccolo rispetto agli errori di misura, ma la figura lo calcola.</p>
-<details class="poe"><summary><span style="color:var(--ink)">Prima di provare: con la previsione lineare, 500 m/z di un profilo occupano più o meno di 500 centroidi irregolari?</span></summary>
+<details class="poe"><summary>Prima di provare: con la previsione lineare, 500 m/z di un profilo occupano più o meno di 500 centroidi irregolari?</summary>
 <p>Meno: in un profilo i punti sono equidistanti, la previsione è quasi perfetta e basta circa un byte per valore (510 byte contro 4000). Con centroidi irregolari servono più byte (circa 1500). Provalo nella figura.</p></details>
 <div class="sim" id="sim-chemi-codifica" data-sim="../assets/sim-chemi-formati.js"><h4>Figura 23.1 Come si scrive uno spettro in un file</h4>
 <p class="note nota">Mostra che cosa fanno precisione, compressione e base64 alla dimensione e ai numeri di un array. Dati sintetici, a scopo didattico.</p></div>
@@ -54,7 +54,7 @@
 <p>JCAMP-DX nacque per gli spettri infrarossi (McDonald e Wilks, 1988) e fu esteso alla spettrometria di massa (Lampen et al., 1994): testo con campi etichettati. netCDF (ANDI) è un formato binario storico, usato soprattutto per la gascromatografia.</p>
 <h3>mzTab-M: i risultati, non i dati</h3>
 <p>Non contiene spettri ma risultati: una tabella di testo, con righe <code>MTD</code> per i metadati e <code>SML</code> per i composti (Griss et al., 2014, per mzTab; Hoffmann et al., 2019, per la versione per piccole molecole).</p>
-<details class="poe"><summary><span style="color:var(--ink)">Prima di provare: quali metadati si perdono passando da mzML a MGF?</span></summary>
+<details class="poe"><summary>Prima di provare: quali metadati si perdono passando da mzML a MGF?</summary>
 <p>Si perdono la dichiarazione profilo o centroide, il software di conversione e l'energia di collisione; la polarità resta solo nel segno della carica e l'unità del tempo solo nel nome della chiave. Controlla la tabella sotto lo spettro.</p></details>
 <div class="sim" id="sim-chemi-formati" data-sim="../assets/sim-chemi-formati.js"><h4>Figura 23.2 Lo stesso spettro in cinque formati</h4>
 <p class="note nota">Mostra lo stesso spettro scritto in cinque formati e quali metadati ciascuno conserva. Spettro sintetico, a scopo didattico.</p></div>
@@ -84,11 +84,6 @@
 <li>Polarità persa nel passaggio a MGF.</li>
 <li>File della stessa serie convertiti con versioni diverse del programma.</li>
 </ul></div>
-<h2>Verifica</h2>
-<details class="q"><summary>Un array di 500 m/z a 64 bit, senza compressione, quanti caratteri base64 occupa? E a 32 bit?</summary><p>A 64 bit: 4000 byte, 4 · ⌈4000 / 3⌉ = 5336 caratteri. A 32 bit: 2000 byte, 4 · ⌈2000 / 3⌉ = 2668 caratteri.</p></details>
-<details class="q"><summary>Quali codici descrivono un array di m/z a 64 bit senza compressione?</summary><p>MS:1000514 (m/z array), MS:1000523 (64-bit float) e MS:1000576 (no compression).</p></details>
-<details class="q"><summary>Perché si perde la polarità passando a MGF?</summary><p>Perché MGF non ha un campo standard per la polarità: si può dedurla solo dal segno della carica (<code>CHARGE=1+</code> o <code>1-</code>), se è scritto.</p></details>
-<details class="q"><summary>Dopo una conversione in centroidi non hai più il profilo. Quando è un problema?</summary><p>Quando vuoi confrontare algoritmi di centroide o rielaborare i dati con parametri diversi. Il costruttore ha scelto per te e non puoi tornare indietro, a meno di riconvertire il file originale.</p></details>
 <h2>Per approfondire</h2>
 <ul class="refs">
 <li><span class="tag">articolo</span>Pedrioli P.G.A. et al. (2004) A common open representation of mass spectrometry data and its application to proteomics research (mzXML). <i>Nat. Biotechnol.</i> 22, 1459-1466. <a href="https://doi.org/10.1038/nbt1031" target="_blank" rel="noopener">doi:10.1038/nbt1031</a></li>

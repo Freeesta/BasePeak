@@ -88,7 +88,7 @@ Nello stesso esempio il risultato è 200,1211.
 Ogni costruttore applica un suo algoritmo, descritto solo in parte. Il file dice se i dati sono in profilo o in centroidi, non come sono stati calcolati ([capitolo 23, «I metadati che contano»](23-formati.html)).
 
 ```html
-<details class="poe"><summary><span style="color:var(--ink)">Prima di provare: con 5 punti per FWHM e il picco a 0,3 passi dal punto più vicino, quale algoritmo sbaglia meno in media?</span></summary>
+<details class="poe"><summary>Prima di provare: con 5 punti per FWHM e il picco a 0,3 passi dal punto più vicino, quale algoritmo sbaglia meno in media?</summary>
 <p>Parabola e gaussiana (+0,01 e −0,03 ppm, dispersione 0,2 ppm a S/N 100). Il massimo dà +1,2 ppm, il baricentro +0,75 ppm. Verifica con «Ripeti 200 volte».</p></details>
 ```
 
@@ -158,22 +158,13 @@ Poi la scala deriva. La **massa di riferimento** (*lock mass*) è un composto no
 Corregge bene un errore uguale in ppm per tutte le masse, meno bene se cambia con m/z. Toglie la deriva, non la dispersione casuale.
 
 ```html
-<details class="poe"><summary><span style="color:var(--ink)">Prima di provare: con una deriva di 4 ppm/ora e senza errore casuale, quanto vale l'errore assoluto medio in un'ora? E con la massa di riferimento?</span></summary>
+<details class="poe"><summary>Prima di provare: con una deriva di 4 ppm/ora e senza errore casuale, quanto vale l'errore assoluto medio in un'ora? E con la massa di riferimento?</summary>
 <p>L'errore cresce da 0 a 4 ppm: la media è 2,0 ppm. Con la massa di riferimento torna a 0. Nella figura l'errore casuale resta, quindi i valori dopo la correzione non sono zero.</p></details>
 ```
 
 ```html
 <div class="sim" id="sim-chemi-taratura" data-sim="../assets/sim-chemi-segnale.js"><h4>Figura 22.2 Taratura e lock mass</h4>
 <p class="note nota">Mostra l'errore di massa in 60 minuti, prima e dopo la correzione con una massa di riferimento. Dati sintetici, a scopo didattico.</p></div>
-```
-
-## Verifica
-
-```html
-<details class="q"><summary>Un picco a m/z 400 ha <i>R</i> = 40 000. Quanto vale la FWHM? Con un passo di 2 mDa, quanti punti cadono nella FWHM?</summary><p>FWHM = 400 / 40 000 = 0,010 Da = 10 mDa, quindi 10 / 2 = 5 punti per FWHM.</p></details>
-<details class="q"><summary>Un errore di 2 mDa a m/z 250 e a m/z 1000: quanti ppm?</summary><p>2 / 250 × 1000 = 8 ppm e 2 / 1000 × 1000 = 2 ppm. Lo stesso scarto pesa quattro volte meno a massa quattro volte maggiore.</p></details>
-<details class="q"><summary>Con <i>k</i> = 1 ione per bin e per spinta, perché il TDC ne conta 0,63?</summary><p>Perché un bin registra al più un arrivo per spinta: 1 − e<sup>−1</sup> = 0,632. Il 37% degli ioni non viene visto.</p></details>
-<details class="q"><summary>La massa di riferimento elimina l'errore casuale?</summary><p>No. Elimina la parte comune a tutte le masse, cioè la deriva. La dispersione di ciascuna misura resta; anzi, la stessa massa di riferimento ha un suo errore casuale, più piccolo perché il segnale è intenso.</p></details>
 ```
 
 ## Per approfondire

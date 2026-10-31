@@ -53,7 +53,7 @@ Gli array sono scritti in tre passaggi:
 con *n* byte. Esempio: 500 m/z a 64 bit sono 4000 byte e 5336 caratteri. Un float a 32 bit ha 24 bit di mantissa, quindi un errore relativo fino a 2^−24^, circa 0,06 ppm: piccolo rispetto agli errori di misura, ma la figura lo calcola.
 
 ```html
-<details class="poe"><summary><span style="color:var(--ink)">Prima di provare: con la previsione lineare, 500 m/z di un profilo occupano più o meno di 500 centroidi irregolari?</span></summary>
+<details class="poe"><summary>Prima di provare: con la previsione lineare, 500 m/z di un profilo occupano più o meno di 500 centroidi irregolari?</summary>
 <p>Meno: in un profilo i punti sono equidistanti, la previsione è quasi perfetta e basta circa un byte per valore (510 byte contro 4000). Con centroidi irregolari servono più byte (circa 1500). Provalo nella figura.</p></details>
 ```
 
@@ -87,7 +87,7 @@ JCAMP-DX nacque per gli spettri infrarossi (McDonald e Wilks, 1988) e fu esteso 
 Non contiene spettri ma risultati: una tabella di testo, con righe <code>MTD</code> per i metadati e <code>SML</code> per i composti (Griss et al., 2014, per mzTab; Hoffmann et al., 2019, per la versione per piccole molecole).
 
 ```html
-<details class="poe"><summary><span style="color:var(--ink)">Prima di provare: quali metadati si perdono passando da mzML a MGF?</span></summary>
+<details class="poe"><summary>Prima di provare: quali metadati si perdono passando da mzML a MGF?</summary>
 <p>Si perdono la dichiarazione profilo o centroide, il software di conversione e l'energia di collisione; la polarità resta solo nel segno della carica e l'unità del tempo solo nel nome della chiave. Controlla la tabella sotto lo spettro.</p></details>
 ```
 
@@ -134,15 +134,6 @@ Alcune informazioni, se si perdono, cambiano il risultato senza avvisare.
 <li>Polarità persa nel passaggio a MGF.</li>
 <li>File della stessa serie convertiti con versioni diverse del programma.</li>
 </ul></div>
-```
-
-## Verifica
-
-```html
-<details class="q"><summary>Un array di 500 m/z a 64 bit, senza compressione, quanti caratteri base64 occupa? E a 32 bit?</summary><p>A 64 bit: 4000 byte, 4 · ⌈4000 / 3⌉ = 5336 caratteri. A 32 bit: 2000 byte, 4 · ⌈2000 / 3⌉ = 2668 caratteri.</p></details>
-<details class="q"><summary>Quali codici descrivono un array di m/z a 64 bit senza compressione?</summary><p>MS:1000514 (m/z array), MS:1000523 (64-bit float) e MS:1000576 (no compression).</p></details>
-<details class="q"><summary>Perché si perde la polarità passando a MGF?</summary><p>Perché MGF non ha un campo standard per la polarità: si può dedurla solo dal segno della carica (<code>CHARGE=1+</code> o <code>1-</code>), se è scritto.</p></details>
-<details class="q"><summary>Dopo una conversione in centroidi non hai più il profilo. Quando è un problema?</summary><p>Quando vuoi confrontare algoritmi di centroide o rielaborare i dati con parametri diversi. Il costruttore ha scelto per te e non puoi tornare indietro, a meno di riconvertire il file originale.</p></details>
 ```
 
 ## Per approfondire
