@@ -3,20 +3,6 @@
 {.lead} Come usare l'editor chimico della scheda Disegno (Ketcher) per molecole, ioni, frammenti e vie di trasformazione. Sotto ogni struttura compaiono da soli formula e massa e sopra ogni freccia la differenza di formula; gli schemi, gli ioni e i frammenti li disegnate voi.
 
 ```html
-<figure>
-<img src="../esempio-trasformazione-m.png" data-full="../esempio-trasformazione.png" width="1400" height="487" loading="lazy" decoding="async" alt="Schema di trasformazione: una molecola madre e tre prodotti collegati da frecce, con nome o TP e m/z sopra ogni struttura" style="max-width:100%;height:auto">
-<figcaption><b>Schema di trasformazione</b> esportato dalla scheda Disegno (esempio: paracetamolo). Sopra la madre il nome; sopra ogni prodotto (TP) il numero e l'<i>m/z</i> dell'ione che si osserva; sopra le frecce la differenza di formula. Un TP pu&ograve; derivare da un altro TP (madre &rarr; TP1 &rarr; TP2).</figcaption>
-</figure>
-```
-
-```html
-<figure>
-<img src="../esempio-frammentazione-m.png" data-full="../esempio-frammentazione.png" width="1400" height="217" loading="lazy" decoding="async" alt="Schema di frammentazione: lo ione precursore e i suoi frammenti, tutti con la carica, con le perdite neutre sulle frecce" style="max-width:100%;height:auto">
-<figcaption><b>Schema di frammentazione</b> (stesso composto). Precursore e frammenti sono ioni, tutti con la carica; sulle frecce la perdita neutra; sotto ogni ione formula e <i>m/z</i>.</figcaption>
-</figure>
-```
-
-```html
 <div class="box"><b>Due schemi, due significati</b><p>Nello schema di <b>trasformazione</b> i prodotti sono <i>molecole</i> (neutre: quelle che si formano nel reattore) e la freccia &egrave; una reazione chimica; l'<i>m/z</i> scritto sopra un TP &egrave; quello dell'ione che si sceglie di osservare, di solito [M+H]<sup>+</sup>. Nello schema di <b>frammentazione</b> tutto avviene in fase gassosa dentro lo strumento: il precursore e ogni frammento sono <i>ioni</i> (a numero pari di elettroni), tutti con la carica, e la freccia &egrave; una dissociazione; sopra la freccia va la <b>perdita neutra</b> (&minus;NH<sub>3</sub>, &minus;H<sub>2</sub>O, &minus;CO ...), che nello spettro non si vede. Nei due esempi gli <i>m/z</i> sono calcolati dal programma; la posizione degli OH nei TP &egrave; un'ipotesi plausibile, non l'unica possibile: a risoluzione unitaria l'<i>m/z</i> non la decide.</p></div>
 ```
 

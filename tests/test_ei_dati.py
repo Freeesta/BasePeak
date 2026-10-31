@@ -11,24 +11,9 @@ import json
 import re
 from pathlib import Path
 
+from chem_ref import parse_formula, mass  # noqa: E402  (reference chemistry shared by the tests)
+
 ROOT = Path(__file__).resolve().parents[1]
-MONO = {"H": 1.00782503, "C": 12.0, "N": 14.0030740, "O": 15.9949146, "F": 18.9984032, "Si": 27.9769265, "P": 30.9737620,
-        "S": 31.9720707, "Cl": 34.9688527, "Br": 78.9183376, "I": 126.904473}   # monoisotopic masses of the most abundant isotopes
-
-
-def parse_formula(text: str) -> dict:
-    """'C6H5Cl' -> {'C': 6, 'H': 5, 'Cl': 1} (plain formulas only, no brackets)."""
-    assert re.fullmatch(r"(?:[A-Z][a-z]?\d*)+", text), text
-    out: dict = {}
-    for el, n in re.findall(r"([A-Z][a-z]?)(\d*)", text):
-        out[el] = out.get(el, 0) + int(n or 1)
-    return out
-
-
-def mass(f: dict) -> float:
-    return sum(MONO[e] * n for e, n in f.items())
-
-
 DATA = ROOT / "mzlab" / "web" / "teoria" / "pratica" / "ei-dati.js"
 NOMINAL = {"H": 1, "C": 12, "N": 14, "O": 16, "F": 19, "Si": 28, "P": 31, "S": 32, "Cl": 35, "Br": 79, "I": 127}
 AIUTI = ROOT / "mzlab" / "web" / "teoria" / "pratica" / "ei-aiuti.js"

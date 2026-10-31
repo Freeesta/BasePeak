@@ -11,6 +11,8 @@ r = Run(port=8902, wd="/tmp/wdpr")
 try:
     with sync_playwright() as p:
         pg = r.page(p)
+        # the drawing editor (Ketcher, 30 MB, a third-party app) is not shipped in this repository: the game falls back to the SMILES field, which is what this test types
+        pg.context.route("**/vendor/ketcher/**", lambda rt: rt.fulfill(status=200, content_type="text/html", body="<!doctype html><title>Ketcher not shipped</title>"))
         base = f"http://127.0.0.1:{r.port}/static/teoria/"
         def ei_game():
             pg.goto(base + "pratica-ei.html"); pg.wait_for_timeout(1500)
