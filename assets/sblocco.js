@@ -4,7 +4,7 @@
    No animation under reduced motion (the system setting or data-a11y-reduce). Classic script, no network: it works from file:// too. */
 "use strict";
 (function () {
-  const target = document.getElementById("logo") || document.getElementById("tab-teoria");
+  const target = document.getElementById("logo");
   if (!target) return;
   const fx = target.querySelector("img") || target;   // an inline link does not scale: animate the image
   let note = document.getElementById("sblocco");

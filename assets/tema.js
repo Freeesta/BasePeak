@@ -23,8 +23,7 @@
     if (["auto", "light", "dark"].indexOf(x) < 0) return;
     try { if (parent !== window && parent.uipSetTheme) { parent.uipSetTheme(x); return; } } catch (e) { /* not reachable: own preference */ }
     try { var raw = localStorage.getItem("mzlab.prefs"); if (raw === null) raw = localStorage.getItem("qqq.prefs"); var o = JSON.parse(raw || "{}") || {}; o.theme = x; localStorage.setItem("mzlab.prefs", JSON.stringify(o)); } catch (e) { /* not stored */ }
-    var before = R.getAttribute("data-theme"); apply(x);
-    if (before !== R.getAttribute("data-theme")) { try { sessionStorage.setItem("qqq.teoria.y", String(scrollY)); } catch (y) { /* nothing to keep */ } location.reload(); }
+    fadeTo(x);
   }
   function themePref() { try { var raw = localStorage.getItem("mzlab.prefs"); if (raw === null) raw = localStorage.getItem("qqq.prefs"); var t = JSON.parse(raw || "{}").theme; if (t === "light" || t === "dark") return t; } catch (e) { /* none */ } return "auto"; }
   window.QTEMA = { set: setTheme, get: themePref };
@@ -63,16 +62,42 @@
       d.set.call(this, v);
     } });
   });
-  // colours written in the <style> blocks and style="" attributes of the pages (the figures define classes such as .bx{fill:#fff}) get the same swap
+  // colours written in the <style> blocks and style="" attributes of the pages (the figures define classes such as .bx{fill:#fff}) get the same swap.
+  // The original text is kept the first time, so the theme can change back and forth without loading the page again.
+  var ORIG = new Map();
   function swapText(t) {
     var hc = R.getAttribute("data-a11y-bg") === "hc" ? HC[R.getAttribute("data-theme") === "dark" ? "dark" : "light"] : null;
     return t.replace(/#[0-9a-fA-F]{3,6}\b|rgba\([0-9, .]+\)/g, function (c) { var k = c.replace(/\s/g, "").toLowerCase(); return (hc && hc[k]) || (R.getAttribute("data-theme") === "dark" && MAP[k]) || c; });
   }
+  function restyle() {
+    document.querySelectorAll("body style").forEach(function (st) { if (!ORIG.has(st)) ORIG.set(st, st.textContent); st.textContent = swapText(ORIG.get(st)); });
+    document.querySelectorAll("[style]").forEach(function (el) { var v = ORIG.has(el) ? ORIG.get(el) : el.getAttribute("style"); if (/#|rgba/.test(v)) { ORIG.set(el, v); el.setAttribute("style", swapText(v)); } });
+  }
   document.addEventListener("DOMContentLoaded", function () {
     if (R.getAttribute("data-theme") !== "dark" && R.getAttribute("data-a11y-bg") !== "hc") return;
-    document.querySelectorAll("body style").forEach(function (st) { st.textContent = swapText(st.textContent); });
-    document.querySelectorAll("[style]").forEach(function (el) { var v = el.getAttribute("style"); if (/#|rgba/.test(v)) el.setAttribute("style", swapText(v)); });
+    restyle();
   });
+  // ---- light <-> dark: ONE slow cross-fade of the whole page. The duration is the CSS variable --theme-fade (teoria.css, one place to tune it); with reduced motion
+  // (the system setting or «Riduci movimento») the variable is 0 and the theme changes at once. The page is not loaded again: colours come from the CSS variables, the figures
+  // written with fixed colours are swapped back and forth (restyle), the drawings on canvas are drawn again (the «resize» of the window makes them do it).
+  var fadeToken = 0, fadeView = null;
+  function reduced() { return R.hasAttribute("data-a11y-reduce") || !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches); }
+  function fadeMs() { var v = parseFloat(getComputedStyle(R).getPropertyValue("--theme-fade")); return isFinite(v) ? v : 1400; }
+  function settle(x) { apply(x); restyle(); window.dispatchEvent(new Event("resize")); }
+  function fadeTo(x) {
+    if (["auto", "light", "dark"].indexOf(x) < 0) return;
+    if (eff(x) === R.getAttribute("data-theme") && !fadeView) { apply(x); return; }
+    var ms = reduced() ? 0 : fadeMs();
+    if (fadeView) { try { fadeView.skipTransition(); } catch (e) { /* already over */ } fadeView = null; }
+    if (!ms || !R.isConnected) { R.classList.remove("theme-x", "theme-vt"); settle(x); return; }
+    var mine = ++fadeToken, end = function () { if (mine === fadeToken) { R.classList.remove("theme-x", "theme-vt"); fadeView = null; } };   // a second toggle takes over: only the last one cleans up
+    R.classList.add("theme-x");
+    if (document.startViewTransition) {
+      R.classList.add("theme-vt");
+      var t = fadeView = document.startViewTransition(function () { settle(x); });
+      t.finished.then(end, end); t.ready.catch(function () { /* skipped */ });
+    } else { settle(x); setTimeout(end, ms + 120); }   // no view transitions: CSS transitions on every element (teoria.css) for the same time
+  }
   // the app changed the theme: the simulations read their colours once, so the page is simply loaded again, at the same place
   addEventListener("message", function (e) {
     if (!e.data || (e.data.type !== "mzlab-theme" && e.data.type !== "qqq-theme")) return;
@@ -80,5 +105,5 @@
     if (before !== R.getAttribute("data-theme")) { try { sessionStorage.setItem("qqq.teoria.y", String(scrollY)); } catch (x) { /* nothing to keep */ } location.reload(); }
   });
   addEventListener("load", function () { try { var y = sessionStorage.getItem("qqq.teoria.y"); if (y != null) { sessionStorage.removeItem("qqq.teoria.y"); scrollTo(0, +y); } } catch (x) { /* ignore */ } });
-  if (mq && mq.addEventListener) mq.addEventListener("change", function () { if (pref === "auto" && parentPref() === "auto") { var before = R.getAttribute("data-theme"); apply("auto"); if (before !== R.getAttribute("data-theme")) location.reload(); } });
+  if (mq && mq.addEventListener) mq.addEventListener("change", function () { if (pref === "auto" && parentPref() === "auto") fadeTo("auto"); });
 })();

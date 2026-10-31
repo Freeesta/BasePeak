@@ -39,9 +39,10 @@ try:
                 lab = q.inner_text(sel).strip(); assert lab and lab in q.get_attribute(sel, "aria-label"), (sel, lab)   # visible label in the name (WCAG 2.5.3)
             assert q.get_attribute("#tc-indice", "aria-pressed") == "true"
             for dead in ("Esporta capitolo o corso", "Avanzamento"): assert dead not in q.inner_text("#top") + q.inner_text("#sidecmd"), dead
-            for t in ("Dati", "Disegno", "Teoria"): assert q.is_visible(f"#tabs >> text={t}")
+            assert q.locator("#tabs, [id^=tab-]").count() == 0 and q.is_visible("#side #logo"), "no tabs; the logo is at the top of the index"
+            for t in ("Dati", "Disegno"): assert not q.query_selector(f"#top >> text='{t}'"), t
             for dead in ("Calculator", "Losses", "Adducts", "Lists", "Table", "More", "Search", "New session", "Segnalibri", "Nuova sessione"): assert not q.query_selector(f"#tbar >> text='{dead}'"), dead
-        step("order, names, labels in the names, tabs kept, no data or discarded commands", order)
+        step("order, names, labels in the names, no tabs, no data or discarded commands", order)
         def targets():
             for s in ("#tc-indice", "#tc-prec", "#tc-succ", "#a11y-btn"):
                 b = q.locator(s).bounding_box(); assert b["height"] >= 32 and b["width"] >= 32, (s, b)

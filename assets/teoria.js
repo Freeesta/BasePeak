@@ -150,28 +150,72 @@ const TP = (() => {
     const a = document.createElement("a"); a.className = "ha"; a.href = "#" + h.id; a.setAttribute("aria-label", "Link a questa sezione"); a.textContent = "#";
     h.appendChild(a);
   }
-  /** The menu: Teoria / Pratica / Reference, every chapter with its title; the current one also lists the h2 and h3 of the page. Returns the page sections [{h, a}] for the scroll-spy. */
+  // ---- collapsible index: every part (Guida, II..VII, Pratica, Reference) and the sections of the current chapter open and close with a real button
+  // (aria-expanded + aria-controls). The parts the reader opened or closed are kept in sessionStorage; the part and the sections of the current chapter are always open on arrival.
+  const NAVKEY = "qqq.teoria.nav";
+  const navStore = {
+    get() { try { const o = JSON.parse(sessionStorage.getItem(NAVKEY)); return o && typeof o === "object" ? o : {}; } catch (_) { return {}; } },
+    set(o) { try { sessionStorage.setItem(NAVKEY, JSON.stringify(o)); } catch (_) { /* no storage: the state lasts for this page only */ } },
+  };
+  const CHEV = '<svg class="chev" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2.5 9.5 7 5 11.5"/></svg>';
+  /** Opens or closes the region a toggle button controls (and says so with aria-expanded). */
+  function setOpen(btn, open) {
+    const box = document.getElementById(btn.getAttribute("aria-controls"));
+    btn.setAttribute("aria-expanded", String(open)); if (box) box.hidden = !open;
+  }
+  /** «Apri tutto» / «Chiudi tutto»: the label says what a press does. */
+  function syncAll(side) {
+    const all = side.querySelector("#navall"); if (!all) return;
+    const some = [...side.querySelectorAll("button[aria-controls][aria-expanded]")].some(b => b.id !== "menu" && b.getAttribute("aria-expanded") === "false");
+    all.textContent = some ? "Apri tutto" : "Chiudi tutto"; all.dataset.act = some ? "open" : "close";
+  }
+  function wireToggles(side) {
+    const st = navStore.get(); st.p = st.p || {};
+    side.addEventListener("click", e => {
+      const b = e.target.closest("button.ptog, button.ctog"); if (b) {
+        const open = b.getAttribute("aria-expanded") !== "true"; setOpen(b, open);
+        if (b.classList.contains("ptog")) st.p[b.dataset.k] = open ? 1 : 0;   // the sections of the current chapter are always open on arrival: nothing to keep
+        navStore.set(st); syncAll(side); return;
+      }
+      if (e.target.closest("#navall")) {
+        const open = side.querySelector("#navall").dataset.act === "open";
+        side.querySelectorAll("button.ptog, button.ctog").forEach(x => { setOpen(x, open); if (x.classList.contains("ptog")) st.p[x.dataset.k] = open ? 1 : 0; });
+        navStore.set(st); syncAll(side);
+      }
+    });
+  }
+  /** The top of the index: the logo (the way to the home page) and the name of the site. */
+  const brandHtml = () => `<div class="brand"><a id="logo" href="${SITE.up}index.html"><img src="${SITE.assets}icone/icon.svg" alt="" width="28" height="28"><span>BasePeak</span></a></div>`;
+  /** The menu: the parts (Guida, II...VII, Pratica, Reference), every chapter with its title; the current one also lists the h2 and h3 of the page. Returns the page sections [{h, a}] for the scroll-spy. */
   function buildSide(side) {
-    const here0 = CHAPTERS[idx];
     const sections = [...document.querySelectorAll("main h2, main h3")].filter(h => h.id && htext(h) && !h.closest(".box,figure,.sim,details,.phex,#phnote"));
     const items = [];
     const tree = [];
     sections.forEach(h => { const it = { h, kids: [] }; items.push(it); if (h.tagName === "H3" && tree.length) tree[tree.length - 1].kids.push(it); else tree.push(it); });
     const node = it => { const li = document.createElement("li"), a = document.createElement("a"); a.className = "sl"; a.href = "#" + it.h.id; a.textContent = htext(it.h); it.a = a; li.appendChild(a);
       if (it.kids.length) { const ol = document.createElement("ol"); it.kids.forEach(k => ol.appendChild(node(k))); li.appendChild(ol); } return li; };
-    let html = "";
-    ["Teoria", "Pratica", "Reference"].forEach(g => {
-      let lis = "", part = "";
-      CHAPTERS.forEach((c, i) => {
-        if (groupOf(c) !== g) return;
-        if (g === "Teoria" && c[3] && c[3] !== part) { part = c[3]; lis += `<li class="part">${esc(part)}</li>`; }
-        const on = i === idx;
-        lis += `<li${on ? ' class="cur-ch"' : ""}><a href="${SITE.up + c[0]}" class="${on ? "on" : ""}"${on ? ' aria-current="page"' : ""}><b>${esc(c[1])}</b><span>${esc(c[2])}</span></a>${on && tree.length ? '<ol class="toc"></ol>' : ""}</li>`;
-      });
-      html += `<section class="grp"><h4 id="grp-${g.toLowerCase()}">${g}</h4><ol aria-labelledby="grp-${g.toLowerCase()}">${lis}</ol></section>`;
+    // parts in menu order: those of the Teoria (one per value of the 4th field), then Pratica, then Reference
+    const parts = [];
+    ["Teoria", "Pratica", "Reference"].forEach(g => CHAPTERS.forEach((c, i) => {
+      if (groupOf(c) !== g) return;
+      const label = g === "Teoria" ? c[3] || "Teoria" : g, last = parts[parts.length - 1];
+      if (last && last.g === g && last.label === label) last.ix.push(i); else parts.push({ g, label, ix: [i] });
+    }));
+    const st = navStore.get(), sp = st.p || {};
+    let html = `<div class="navtools"><button type="button" id="navall" class="navall" data-act="open">Apri tutto</button></div><div class="navparts" role="group" aria-label="Capitoli">`;
+    parts.forEach((pt, n) => {
+      const key = String(n), here0 = pt.ix.includes(idx), open = here0 || sp[key] === 1;   // a part with the current chapter is open whatever was kept
+      const lis = pt.ix.map(i => {
+        const c = CHAPTERS[i], on = i === idx, cur = on && tree.length;
+        const link = `<a href="${SITE.up + c[0]}" class="${on ? "on" : ""}"${on ? ' aria-current="page"' : ""}><b>${esc(c[1])}</b><span>${esc(c[2])}</span></a>`;
+        if (!cur) return `<li${on ? ' class="cur-ch"' : ""}>${link}</li>`;
+        return `<li class="cur-ch"><div class="chrow">${link}<button type="button" class="ctog" aria-expanded="true" aria-controls="toc-cur" aria-label="Sezioni del capitolo">${CHEV}</button></div><ol class="toc" id="toc-cur"></ol></li>`;
+      }).join("");
+      html += `<section class="grp"><h4 id="h-part-${key}"><button type="button" class="ptog" data-k="${key}" aria-expanded="${open}" aria-controls="part-${key}">${CHEV}<span>${esc(pt.label)}</span></button></h4><ol id="part-${key}" aria-labelledby="h-part-${key}"${open ? "" : " hidden"}>${lis}</ol></section>`;
     });
-    side.innerHTML = html;
+    side.innerHTML = brandHtml() + html + "</div>";
     const toc = side.querySelector("ol.toc"); if (toc) tree.forEach(it => toc.appendChild(node(it)));
+    wireToggles(side); syncAll(side);
     return items;
   }
   /** Scroll-spy: the last section whose heading is above 30% of the window is the current one (aria-current="location"). IntersectionObserver only wakes the check up. */
@@ -184,8 +228,9 @@ const TP = (() => {
       if (cur) { cur.removeAttribute("aria-current"); cur.classList.remove("cur"); }
       cur = a; if (!a) return;
       a.setAttribute("aria-current", "location"); a.classList.add("cur");
-      const sr = side.getBoundingClientRect(), ar = a.getBoundingClientRect();   // keep it in view inside the menu only (the page never moves)
-      if (sr.height && (ar.top < sr.top + 8 || ar.bottom > sr.bottom - 8)) side.scrollTop += ar.top - sr.top - sr.height / 3;
+      if (!a.offsetParent) return;   // inside a closed chapter: nothing to show
+      const sr = side.getBoundingClientRect(), ar = a.getBoundingClientRect(), hd = side.querySelector(".brand"), pin = hd && getComputedStyle(hd).position === "sticky" ? hd.offsetHeight : 0;   // keep it in view inside the menu only (the page never moves)
+      if (sr.height && (ar.top < sr.top + pin + 8 || ar.bottom > sr.bottom - 8)) side.scrollTop += ar.top - sr.top - sr.height / 3;
     };
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver(update, { rootMargin: "0px 0px -70% 0px" });
@@ -209,17 +254,10 @@ const TP = (() => {
     // wide tables scroll horizontally on phones instead of widening the page
     document.querySelectorAll("main table").forEach(t => { const w = document.createElement("div"); w.className = "tw"; t.parentNode.insertBefore(w, t); w.appendChild(t); });
     const top = document.createElement("header"); top.id = "top";
-    // inside the program the main bar already has the logo and the tabs: no second header there (only the index button on narrow screens)
+    // embedded in another page (iframe): no second header there (only the index button on narrow screens)
     if (embedded) document.body.classList.add("emb");
-    // standalone header: logo (to the program), title and the same three tabs as the program (Dati · Disegno · Teoria); always visible.
-    // From file:// the relative links to the program do not exist (as before: logo to the index, no tabs); on a phone only the logo (to the notice) and Teoria.
-    const prog = location.protocol !== "file:";
-    const TAB = window.TEORIA.lang === "en" ? { dati: "Data", disegno: "Drawing", teoria: "Theory", sez: "Sections of" } : { dati: "Dati", disegno: "Disegno", teoria: "Teoria", sez: "Sezioni di" };
-    const tabs = `<nav id="tabs" aria-label="${TAB.sez} ${APP}">` +
-      (!prog || PHONE ? "" : `<a id="tab-dati" href="../../#/data">${TAB.dati}</a><a id="tab-disegno" href="../../#/draw">${TAB.disegno}</a>`) +
-      `<a id="tab-teoria" href="${SITE.up}index.html" class="on" aria-current="page">${TAB.teoria}</a></nav>`;
-    top.innerHTML = `<button id="menu" type="button" aria-label="Indice" aria-expanded="false" aria-controls="side">&#9776;</button>` + (embedded ? "" :
-      `<a id="logo" href="${!prog ? SITE.up + "index.html" : PHONE ? "../../" : "../../#/data"}" aria-label="${!prog ? "Teoria: introduzione" : PHONE ? APP : APP + ": Dati"}"><img src="${SITE.assets}icone/icon.svg" alt="m/z" width="28" height="28"></a>` + tabs + `<span class="sp"></span>`);
+    // standalone header: only the tools of the page (comandi.js fills the bar). The logo and the name of the site stand at the top of the side index (brand()).
+    top.innerHTML = `<button id="menu" type="button" aria-label="Indice" aria-expanded="false" aria-controls="side">&#9776;</button>` + (embedded ? "" : `<span class="sp"></span>`);
     document.body.prepend(top); document.body.classList.add("hdr");   // the blank box that stood in for the header (teoria.css) is gone
     const side = $("#side"); side.setAttribute("aria-label", "Indice dei capitoli e della pagina");
     // «Salta al contenuto»: first thing reached with Tab, visible only on focus
