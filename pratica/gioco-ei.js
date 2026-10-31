@@ -70,9 +70,15 @@ function pathInfo() {
   const g = PAL.load().items[gameKey()] || {}, all = PLAY.filter(i => i.path === path), ok = all.filter(i => g[i.id] && g[i.id].box >= 1).length;
   el.textContent = `Percorso ${path}: ${ok} di ${all.length} composti risolti`;
 }
+let nextSeq = 0;
+/** Pick and start the next compound. The level file may still be loading: while it does, #game is aria-busy (the card on screen is the previous one),
+ *  and a call that a newer one has superseded stops after its await, so a slow level file can never start a compound the student has already moved away from. */
 async function next(id) {
+  const mine = ++nextSeq, game = $("#game");
+  game.setAttribute("aria-busy", "true");
   if (id && EI_DATA.extra && EI_DATA.extra[id]) await loadLevel(EI_DATA.extra[id]);
   if ($("#path").value) await loadLevel(+$("#path").value);
+  if (mine !== nextSeq) return;
   let it = id && ITEMS.find(i => i.id === id);
   if (!it && S && S.chall) it = S.chall.list[S.chall.k];
   if (!it) {
@@ -84,7 +90,7 @@ async function next(id) {
       it = ITEMS.find(i => i.id === ch.id);
     }
   }
-  start(it);
+  try { start(it); } finally { game.removeAttribute("aria-busy"); }
 }
 
 // ------------------------------------------------------------------ the spectrum card (click = select a peak, Shift+click = second peak and Δm)
