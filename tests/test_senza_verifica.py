@@ -33,7 +33,6 @@ VERIFICA_PENDING = {
     "38-storia-rf.html",
     "39-storia-ft.html",
     "40-storia-sorgenti.html",
-    "41-storia-accoppiamenti.html",
     "42-storia-rivelatori-dati.html",
 }
 
