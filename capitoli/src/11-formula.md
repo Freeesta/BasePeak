@@ -30,6 +30,10 @@ Solo il ^12^C ha massa intera. L'idrogeno pesa un po' più di 1 (1,00783), l'oss
 <p>Per gli <b>ioni</b> si toglie la massa dell'elettrone (0,00055) per ogni carica positiva: [M+H]<sup>+</sup> = M + 1,00728 (la massa del protone), M<sup>+•</sup> = M − 0,00055.</p>
 ```
 
+```html
+<p class="storia-link solo-esteso" hidden>Per la storia: <a href="35-storia-aston-dempster.html">Aston e Dempster: isotopi e numeri interi</a>.</p>
+```
+
 ## La regola dell'azoto
 
 Gli elementi comuni delle molecole organiche hanno massa e valenza entrambe pari (C 12, valenza 4; O 16, valenza 2; S 32, valenza 2) o entrambe dispari (H 1, Cl 35, Br 79, valenza 1; P 31, valenza 3 o 5). L'azoto no: massa 14 pari, valenza 3 dispari. Ne segue:
