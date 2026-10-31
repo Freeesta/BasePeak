@@ -44,7 +44,19 @@ Le figure dei capitoli di Teoria sono disegnate dal programma stesso (SVG e simu
 
 L'elenco di tutte le immagini del sito, con fonte, autore, data, licenza e attribuzione, è in `docs/IMMAGINI.md`. Nella parte Storia sono ammessi solo pubblico dominio, CC0, CC BY e disegni originali (CC BY 4.0, BasePeak); le fotografie di terzi stanno in `assets/img/storia/foto/` e ognuna è nominata qui sotto, con autore e licenza. Il test `tests/test_immagini.py` controlla l'elenco.
 
-Fotografie di terzi: nessuna per ora.
+Fotografie e tavole di terzi (cartella `assets/img/storia/foto/`), tutte controllate sulla pagina della fonte il 2026-10-31:
+
+| File | Autore | Licenza | Fonte |
+|---|---|---|---|
+| `aston-spettrografo-1919.webp` | Francis William Aston | Public Domain Mark 1.0 (pagina Science History Institute) | https://digital.sciencehistory.org/works/9w0324230 |
+| `aston-spettri.webp` | Francis William Aston | Public Domain Mark 1.0 (pagina Science History Institute) | https://digital.sciencehistory.org/works/9s1617373 |
+| `neon-parabole.webp` | Francis William Aston | Public Domain Mark 1.0 (pagina Science History Institute) | https://digital.sciencehistory.org/works/79407z32j |
+| `nier-strumento.webp` | Science History Institute (oggetto progettato da Alfred O. Nier) | CC BY 4.0 (pagina Science History Institute) | https://digital.sciencehistory.org/works/klwoj0c |
+| `thomson-ritratto.webp` | Bain News Service (Library of Congress) | Public domain (Commons: PD-Bain; Library of Congress, nessuna restrizione nota) | https://commons.wikimedia.org/wiki/File:J.J._Thomson_LCCN2014715407.jpg |
+| `wien-ritratto.webp` | Autore sconosciuto | Public domain (Commons: PD-Sweden-photo; pubblicata nel 1912 in Les Prix Nobel) | https://commons.wikimedia.org/wiki/File:Wilhelm_Wien_1911.jpg |
+| `aston-ritratto.webp` | Bain News Service (Library of Congress) | Public domain (Commons: PD-Bain; Library of Congress, nessuna restrizione nota) | https://commons.wikimedia.org/wiki/File:Dr._F.W._Aston_LCCN2014715455.jpg |
+| `calutron-racetrack.webp` | James Edward Westcott (fotografo del governo degli Stati Uniti) | Public domain (Commons: PD-USGov) | https://commons.wikimedia.org/wiki/File:Y-12_Calutron_Alpha_racetrack.jpg |
+| `trappola-paul-demo.webp` | Jan Pavelka | CC BY 4.0 (Commons: opera propria) | https://commons.wikimedia.org/wiki/File:Paul_quadrupole_trap.jpg |
 
 ## Spettri EI della Teoria e della Pratica
 
