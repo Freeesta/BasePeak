@@ -29,10 +29,8 @@ VERIFICA_PENDING = {
     "34-storia-origini.html",
     "35-storia-aston-dempster.html",
     "36-storia-settori.html",
-    "37-storia-tof.html",
     "38-storia-rf.html",
     "40-storia-sorgenti.html",
-    "41-storia-accoppiamenti.html",
     "42-storia-rivelatori-dati.html",
 }
 
