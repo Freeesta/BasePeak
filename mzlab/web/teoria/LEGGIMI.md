@@ -80,6 +80,10 @@ Caratteri speciali: si possono scrivere direttamente (à è ≈ → Δ λ ±), i
 
 Menu laterale, indice della pagina e pulsanti avanti/indietro si aggiornano da soli.
 
+## L'icona del sito
+
+Sta in `icone/` (`icon.svg` scritta a mano, più i PNG), con `favicon.ico` e `site.webmanifest` nella cartella principale. Ogni pagina ha nell'`<head>` i link all'icona (un capitolo creato con `tools/nuovo_capitolo.py` li ha già; se copi un capitolo a mano restano quelli del capitolo copiato). Per cambiarla: modifica `icone/icon.svg` e lancia `python3 tools/genera_icone.py` (serve Pillow, solo qui): rigenera PNG e `.ico`, che si committano. `python3 -m pytest -q tests/test_icone.py` controlla link e dimensioni.
+
 ## Da non cambiare
 
 - Le prime righe (`<!doctype …>` … `<main>`) e le ultime (`</main>` … `</html>`) di ogni capitolo.
