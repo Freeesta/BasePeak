@@ -16,8 +16,10 @@ try:
     with sync_playwright() as p:
         r.page(p)
         T = f"http://127.0.0.1:{r.port}/static/"
-        def ctx(w=1280, h=800, **k):
+        ADMIN_ON = "try{localStorage.setItem('mzlab.admin','1')}catch(_){}"      # administrator mode: unfinished chapters (part VII) are listed
+        def ctx(w=1280, h=800, admin=False, **k):
             c = r.b.new_context(viewport={"width": w, "height": h}, **k); q = c.new_page()
+            if admin: q.add_init_script(ADMIN_ON)
             q.on("pageerror", lambda e: r.errs.append(("pageerror", str(e)))); return c, q
         def go(q, f):
             q.goto(T + f); q.wait_for_selector("#side a.on"); q.wait_for_selector("main .ha")
@@ -98,13 +100,18 @@ try:
             go(q, "capitoli/21-tempi.html"); assert items()[1] == "Reference", items()
             c.close()
         step("breadcrumb BasePeak > part > chapter", breadcrumb)
-        def prevnext():
-            c, q = ctx(); q.goto(T + "index.html"); q.wait_for_selector("#side")
-            order = q.evaluate("CHAPTERS.map(c=>c[0])"); assert order[0] == "index.html" and order[-1] == "capitoli/32-esempio.html", (order[0], order[-1])
+        def prevnext(admin):
+            c, q = ctx(admin=admin); q.goto(T + "index.html"); q.wait_for_selector("#side")
+            last = None if admin else "capitoli/21-tempi.html"      # reader: every draft is absent, the Reference pages end the path (admin: other drafts, e.g. the Storia, may follow 32)
+            order = q.evaluate("CHAPTERS.map(c=>c[0])"); assert order[0] == "index.html" and (last is None or order[-1] == last), (admin, order[0], order[-1])
             groups = [("Teoria" if not f.startswith("pratica") and not re.search(r"/(19|20|21)-", f) else "Pratica" if f.startswith("pratica") else "Reference") for f in order]
             part7 = [f for f in order if re.search(r"capitoli/(2[2-9]|3[0-2])-", f)]      # part VII (22-32) is in the Teoria group but must follow row 21 (numbers run 1..32 in array order)
-            assert order[-len(part7):] == part7 and len(part7) == 11, "part VII is not the last block"
-            groups = groups[:-len(part7)]
+            assert len(part7) == (11 if admin else 0), (admin, part7)
+            if admin:
+                i21 = order.index("capitoli/21-tempi.html")
+                assert order[i21 + 1:i21 + 12] == part7, "part VII does not follow row 21"
+                assert order[i21 + 1] == "capitoli/22-segnale.html" and order[i21 + 11] == "capitoli/32-esempio.html", "21 is not followed by 22 ... 32"
+                groups = groups[:i21 + 1]      # everything after row 21 is an administrator-only draft
             assert groups == sorted(groups, key={"Teoria": 0, "Pratica": 1, "Reference": 2}.get), "order is not Teoria > Pratica > Reference"
             for i, f in enumerate(order):
                 q.goto(T + f); q.wait_for_selector("main .pn")
@@ -115,7 +122,35 @@ try:
                     assert nxt == ([up + order[i + 1]] if i < len(order) - 1 else []), (f, sel, nxt)
                 for href in prev + nxt: assert q.request.get(q.evaluate("h=>new URL(h,location.href).href", href)).ok, (f, href)
             c.close()
-        step("previous / next (top and bottom) resolve on every page; first has no previous, last no next", prevnext)
+        step("previous / next (top and bottom) resolve on every page; first has no previous, last no next (reader mode: last is 21)", lambda: prevnext(False))
+        step("previous / next in administrator mode: 21 -> 22 ... 32 last", lambda: prevnext(True))
+        def drafts():
+            F = re.findall(r'"capitoli/((?:2[2-9]|3[0-2])-[^"]+\.html)", "\d+", "[^"]+", "VII\. Chemioinformatica"', (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8")); assert len(F) == 11, F
+            for admin in (False, True):
+                c, q = ctx(admin=admin); q.goto(T + "index.html"); q.wait_for_selector("#side"); q.wait_for_selector("main h3")
+                heads = q.eval_on_selector_all("main h3", "e=>e.map(h=>h.textContent.trim())"); cards = q.eval_on_selector_all("main .cards a", "e=>e.map(a=>a.getAttribute('href'))")
+                menu = q.eval_on_selector_all("#side a", "e=>e.map(a=>a.getAttribute('href'))"); intro = q.inner_text("main p:has-text('parti di teoria')")
+                has = lambda L: [h for h in L if re.search(r"(2[2-9]|3[0-2])-", h)]
+                assert any(h.startswith("VII. Chemioinformatica") for h in heads) == admin and bool(has(cards)) == admin and bool(has(menu)) == admin, (admin, heads, has(cards), has(menu))
+                assert intro.startswith("Sei parti" if admin else "Cinque parti"), (admin, intro)
+                q.keyboard.press("Control+k"); q.wait_for_selector("#cerca-in", state="visible"); q.fill("#cerca-in", "centroide")
+                q.wait_for_function("document.querySelector('#cerca-st').textContent.trim().length > 0")
+                found = q.inner_text("#cerca-list")
+                assert ("cap. 22" in found.lower()) == admin and (not admin or "ntroide" in found), (admin, found[:200])
+                q.keyboard.press("Escape")
+                q.goto(T + "capitoli/19-glossario.html"); q.wait_for_selector("#side a.on")
+                links = q.eval_on_selector_all("main dd a", "e=>e.map(a=>a.getAttribute('href'))")
+                assert bool(has(links)) == admin, (admin, has(links)[:3])
+                q.goto(T + "capitoli/01-cromatografia.html"); q.wait_for_selector("#side a.on")
+                if not admin:
+                    q.goto(T + "capitoli/22-segnale.html"); q.wait_for_selector("#bozza-avviso")
+                    assert q.inner_text("#bozza-avviso h1") == "Questa pagina non è ancora pubblicata" and q.get_attribute("#bozza-avviso a", "href") == "../index.html"
+                    assert q.locator("main .kicker, #side").count() == 0, "the chapter must not be shown to a reader"
+                else:
+                    q.goto(T + "capitoli/22-segnale.html"); q.wait_for_selector("#side a.on"); assert q.locator("#bozza-avviso").count() == 0
+                c.close()
+        step("draft chapters: absent for readers (home cards, heading count, menu, search, glossary links, direct URL notice), present in administrator mode", drafts)
+
         def drawer():
             c, q = ctx(390, 844, is_mobile=True, has_touch=True)
             q.goto(T + LONG); q.wait_for_selector("#menu"); q.wait_for_selector("main .ha", state="attached")
