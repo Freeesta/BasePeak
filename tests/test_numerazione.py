@@ -22,7 +22,7 @@ def stub_target(p):
 
 def test_numbers_run_from_1_without_gaps():
     rows = chapter_rows()
-    assert [int(n) for _, n in rows] == list(range(1, len(rows) + 1)) and len(rows) == 32
+    assert [int(n) for _, n in rows] == list(range(1, len(rows) + 1)) and len(rows) == 42
     for f, n in rows:
         assert Path(f).name.startswith(f"{int(n):02d}-"), (f, n)
         assert (ROOT / f).is_file(), f
@@ -49,7 +49,7 @@ def test_old_names_redirect_to_the_same_chapter():
         assert (CAP / t).resolve().is_file(), (p.name, t)
         assert t == "../index.html" or t in new.values(), (p.name, t)       # a redirect never points to another redirect
     # the 21 names of the chapters before the renumbering
-    for f, n in chapter_rows()[:21]:      # part VII (22-32) is new: it never had an old name
+    for f, n in chapter_rows()[:21]:      # parts VII (22-32) and VII Storia (33-42) are new: it never had an old name
         slug = Path(f).name.split("-", 1)[1]
         old = CAP / f"{int(n) + 2:02d}-{slug}"
         assert stub_target(old) == Path(f).name, (old.name, Path(f).name)
