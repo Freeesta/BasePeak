@@ -12,8 +12,8 @@ Accessibile: font Atkinson Hyperlegible e OpenDyslexic, spaziatura WCAG, sfondi 
 index.html        introduzione e mappa del percorso (pagina iniziale del sito)
 capitoli/         un file per capitolo (NN-nome.html) e i vecchi nomi come rimandi automatici;
                   capitoli/src/ = i sorgenti Markdown (non pubblicati)
-pratica/          index.html (pagina iniziale della Pratica), una pagina per gioco (ei.html, orale.html, ...)
-                  e il codice e i dati dei giochi (motore.js, domande.js, ei-dati*.js, ...)
+pratica/          index.html (pagina iniziale della Pratica), una pagina per gioco (ei.html, perdite.html, ...)
+                  e il codice e i dati dei giochi (motore.js, ei-dati*.js, ...)
 assets/           stile (teoria.css), motore JavaScript (teoria.js, cerca.js, sim-*.js, ...), caratteri,
                   icone, indice di ricerca e glossario generati, librerie di terzi in vendor/
 tools/            script di servizio (indice di ricerca, glossario, controllo dei capitoli, nuovo capitolo, server locale)

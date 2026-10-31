@@ -34,7 +34,7 @@ One `send_later` (30 min, Federico's rule; name "GIRO COO BasePeak"), re-armed a
 |---|---|---|
 | DEV-CHEMI-00 | session_01Ly8Apnp6YNiXasgQwS2kQC | skeleton of part VII Chemioinformatica (prompt: docs/piani/prompt-chemioinformatica/DEV-00-scheletro.md) |
 ### Waiting for Federico
-- Strip the photocatalysis/TP story also from ch.18 strategia, pratica/tp (P8), glossary bibliography, pratica/giochi.js, cinetica-lcms.js, and stale refs to old chapters 1-2 (formulario, strategia)? (1 yes/no)
+- Strip the photocatalysis/TP story also from ch.18 strategia, pratica/tp (P7), glossary bibliography, pratica/giochi.js, cinetica-lcms.js, and stale refs to old chapters 1-2 (formulario, strategia)? (1 yes/no)
 - Copilot policy above (yes/no).
 - Allow CC BY-SA images in the history section? (default: no)
 ### Queue

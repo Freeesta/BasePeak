@@ -293,22 +293,6 @@ Praticamente lo stesso spettro: l'EI dice «diclorobenzene», non quale isomero 
 </table>
 ```
 
-```html
-<div class="box oral"><b>Concetti chiave e domande di ripasso</b>
-<p>Dopo il passo 2 (ione molecolare e formula), dire la famiglia e giustificarla con la firma: «m/z 31 intenso, M debole, M−18: un alcol primario». Poi i meccanismi che portano agli ioni diagnostici. Se lo spettro non distingue due isomeri, dirlo: è una risposta corretta, non un errore.</p></div>
-```
-
-## Verifica
-
-??? Uno spettro ha M a 102 (debole), picco base 60, poi 73 e 45. Famiglia e struttura?
-60 pari e intenso senza azoto: ione OE da McLafferty; 60 + 45 + 73 sono la firma di un acido carbossilico. M = 102 = C~5~H~10~O~2~: acido pentanoico (catena lineare con γ-H). L'acido 2-metilbutanoico darebbe il McLafferty a 74.
-
-??? Un composto C~8~H~10~ ha picco base 91 e M = 106 al 30%. Etilbenzene o xilene?
-Probabilmente etilbenzene: la scissione benzilica con perdita di CH~3~ rende 91 molto più intenso di M. Negli xileni la perdita di un H dal metile dà 105 e il rapporto 91/106 è più vicino a 1. La conferma viene dallo spettro di riferimento o dalla ritenzione.
-
-??? Picco base 58, M = 73 debole, nessun picco a 30 o 44 intenso. Quale ammina C~4~H~11~N?
-Terz-butilammina (perdita di CH~3~ dal carbonio legato a N, che porta due metili) o dietilammina (perdita di CH~3~ da un etile). La dietilammina ha anche 30 dalla perdita di etene dallo ione 58 e un M più visibile; servono i dettagli dello spettro.
-
 ## Per approfondire
 
 ```html

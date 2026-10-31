@@ -92,7 +92,7 @@ def test_nothing_is_absolute_and_no_base_tag():
 
 
 def test_site_files_listed_in_the_data_exist():
-    """The chapter list, the search index, the glossary and the review questions name pages relative to the site root."""
+    """The chapter list, the search index, the glossary name pages relative to the site root."""
     js = (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8")
     block = js[js.index("const CHAPTERS = ["):]
     block = block[:block.index("\n];")]
@@ -100,8 +100,7 @@ def test_site_files_listed_in_the_data_exist():
     assert len(listed) > 25
     index = [e[2] for e in json.loads("[" + (ROOT / "assets" / "indice-ricerca.js").read_text(encoding="utf-8").split("const INDICE_RICERCA = [")[1].rsplit("];", 1)[0] + "]")]
     gloss = re.findall(r'"h": "([^"]+)"', (ROOT / "assets" / "glossario-dati.js").read_text(encoding="utf-8"))
-    domande = re.findall(r'cap: "([^"]+)"', (ROOT / "pratica" / "domande.js").read_text(encoding="utf-8"))
-    bad = [r for r in listed + index + gloss + domande if r and not (ROOT / r.split("#")[0]).is_file()]
+    bad = [r for r in listed + index + gloss if r and not (ROOT / r.split("#")[0]).is_file()]
     assert not bad, bad
 
 

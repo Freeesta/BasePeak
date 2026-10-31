@@ -326,31 +326,6 @@ L'identità dell'analita è confermata se: RT coincide con quello dello standard
 
 Con le concentrazioni del parent si traccia *C*/*C*~0~ e ln(*C*~0~/*C*) in funzione del tempo. Per i TP, senza standard, si tracciano le aree degli XIC (dal full scan) o delle transizioni MRM, eventualmente normalizzate al loro massimo: si confronta la forma della curva, non l'altezza tra TP diversi.
 
-## Verifica
-
-??? Che cosa si perde convertendo un file da profilo a centroide?
-La forma del picco: non si può più valutare la risoluzione né riconoscere la saturazione. Il passaggio non si inverte, quindi si conserva il file originale.
-
-??? Un file ha 4 scansioni sul picco cromatografico. È un problema?
-Sì. Con così poche scansioni la forma del picco è descritta male e l'area è poco ripetibile. Servono almeno 10–12 punti per picco: si riduce l'intervallo di *m/z*, il numero di transizioni o il tempo di ciclo.
-
-??? Quale modo di acquisizione scegliete per cercare TP sconosciuti, e quale per quantificare il parent?
-Per cercare l'ignoto, full scan (o DDA/DIA se si vogliono anche gli MS2). Per quantificare il parent con sensibilità e selettività, MRM.
-
-??? Qual è il limite principale della DDA, e come lo affronta la DIA?
-La DDA sceglie i precursori in base all'intensità: gli ioni deboli o coeluenti possono non essere frammentati. La DIA frammenta tutto per finestre larghe, ma ogni MS2 contiene frammenti di più precursori e va deconvoluto.
-
-??? Un candidato TP ha cluster 100 : 12 : 33 : 4. Che cosa contiene probabilmente?
-Un atomo di cloro (M+2 ≈ 32%) e circa 10–11 atomi di carbonio (M+1 ≈ 12%, tenendo conto del piccolo contributo dell'azoto).
-
-```html
-<details class="q"><summary>Lo ione [M+H]<sup>+</sup> del parent è a m/z dispari. Un candidato TP ha [M+H]<sup>+</sup> pari. Che cosa è cambiato?</summary>
-<p>La parità del numero di atomi di azoto: il TP ha perso (o guadagnato) un numero dispari di N, oppure non è un TP del parent. Esempio: perdita di NH<sub>3</sub>, sostituzione di un gruppo amminico con OH.</p></details>
-```
-
-??? La retta MRM ha R^2^ = 0,995 ma i residui sono positivi in mezzo e negativi agli estremi. Che cosa fate?
-La risposta è curva (probabilmente saturazione ai livelli alti). Restringete l'intervallo, o usate una regressione pesata/quadratica giustificata, e diluite i campioni che cadono nella zona alta.
-
 ## Per approfondire
 
 ```html

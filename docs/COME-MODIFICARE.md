@@ -21,8 +21,7 @@ Sul sito (https://freeesta.github.io/BasePeak/) arrivano solo `index.html`, `cap
 |---|---|
 | Introduzione e mappa | `index.html` |
 | Capitoli 1–21 | `capitoli/01-cromatografia.html` … `capitoli/21-tempi.html` (il numero del capitolo è nel nome del file e va da 1 a 32 senza buchi, contando anche la parte VII; i vecchi nomi, come `capitoli/04-lc.html` o `capitoli/06-quadrupolo.html`, sono rimandi automatici al nuovo capitolo) |
-| Pratica (giochi ed esercizi) | `pratica/index.html` (pagina iniziale), `pratica/ei.html`, `pratica/orale.html`, `pratica/perdite.html`, `pratica/isotopi.html`, `pratica/formula.html`, `pratica/strumento.html`, `pratica/quadrupolo.html`, `pratica/tp.html`; codice e dati negli stessi file `.js` di `pratica/` |
-| Domande di ripasso (testo e punti della risposta) | `pratica/domande.js` |
+| Pratica (giochi ed esercizi) | `pratica/index.html` (pagina iniziale), `pratica/ei.html`, `pratica/perdite.html`, `pratica/isotopi.html`, `pratica/formula.html`, `pratica/strumento.html`, `pratica/quadrupolo.html`, `pratica/tp.html`; codice e dati negli stessi file `.js` di `pratica/` |
 | Spettri EI dei capitoli 13-14 e del gioco | `pratica/ei-dati.js` e `pratica/ei-dati-l1.js`…`l5.js` (da MassBank Europe; struttura e come aggiungerne uno a mano: `docs/DATI-EI.md`) |
 | Glossario (parole sottolineate nel testo) | `capitoli/19-glossario.html`, poi `python3 tools/genera_glossario.py` (crea `assets/glossario-dati.js`) e `python3 tools/genera_indice_teoria.py` (ricerca: `assets/indice-ricerca.js`) |
 | Elenco dei capitoli nel menu laterale | `assets/teoria.js`, in alto: lista `CHAPTERS` (i file sono scritti a partire dalla cartella principale: `capitoli/02-lc.html`, `pratica/ei.html`) |
@@ -62,7 +61,6 @@ Caratteri speciali: si possono scrivere direttamente (à è ≈ → Δ λ ±), i
 <div class="box warn"><b>Errore frequente</b><p>Testo.</p></div>      riquadro arancione
 <div class="box lab"><b>In laboratorio</b><p>Testo.</p></div>         riquadro verde
 <div class="box math"><b>Derivazione</b><p>Testo.</p></div>           riquadro viola
-<div class="box oral"><b>Domande di ripasso</b><p>Testo.</p></div>     quesiti e concetti chiave di verifica
 <div class="box lr">…</div> <div class="box hr">…</div>              bassa / alta risoluzione (dentro <div class="duo"> stanno affiancati)
 <details class="poe"><summary>Prevedi, poi guarda</summary><p>…</p></details>   domanda prima di una figura
 <div class="eispec" data-ei="2-esanone" data-keys="1"></div>        spettro EI vero (id in pratica/ei-dati.js)
@@ -75,7 +73,7 @@ Caratteri speciali: si possono scrivere direttamente (à è ≈ → Δ λ ±), i
 <tr><td>testo</td><td class="n">1,23</td></tr>
 </table>                                         class="n" allinea i numeri a destra
 
-<details class="q"><summary>Domanda di verifica?</summary>
+<details class="q"><summary>Domanda?</summary>
 <p>Risposta, nascosta finché lo studente non clicca.</p></details>
 
 <li><span class="tag">articolo</span>Autore A. (anno) Titolo. <i>Rivista</i> vol, pagine. <a href="https://doi.org/..." target="_blank" rel="noopener">doi:...</a></li>
@@ -136,7 +134,6 @@ Nei capitoli 22–32 il file di una figura non si collega in fondo alla pagina: 
 
 - Ogni gioco (in `pratica/`) salva i progressi solo nel browser (`localStorage`, chiave `qqq.pratica`): nessun dato esce dal computer, nessuna classifica.
 - Il motore comune è `pratica/motore.js` (livello per competenza con una regola tipo Elo, ripasso distanziato 1-3-7-21 giorni, codici sfida, conti chimici). I giochi brevi sono in `pratica/giochi.js`, il gioco EI in `pratica/gioco-ei.js`.
-- Le domande di ripasso si gestiscono in `pratica/domande.js`: ogni domanda ha un `id` (non cambiarlo: i progressi sono salvati per id), un'area, il capitolo dove sta la risposta (scritto come `capitoli/NN-nome.html`) e i punti di una risposta completa.
 - Il gioco EI e l'editor di strutture funzionano dal sito (o da un server locale, per esempio `python3 -m http.server` dalla cartella principale), non da un file aperto con doppio clic (il browser blocca i moduli JavaScript da `file://`). I capitoli e gli altri giochi funzionano anche da disco.
 - Spettri: solo da MassBank (licenza CC BY-NC-SA, fonte indicata sotto ogni spettro), mai dalla libreria NIST. Mai usare composti dei metodi del laboratorio.
 

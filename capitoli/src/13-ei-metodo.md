@@ -298,7 +298,7 @@ Applica il procedimento e scrivi i numeri dei passi; la soluzione si apre sotto 
 ```
 
 ```html
-<div class="box oral"><b>Guida metodologica: lo schema d'interpretazione</b>
+<div class="box key"><b>Guida metodologica: lo schema d'interpretazione</b>
 <p>Schema logico consigliato per presentare o documentare l'interpretazione (tempo indicativo: 10–15 minuti), associando a ogni deduzione il relativo passaggio numerato:</p>
 <ol>
 <li>«Il picco base è …; l'ultimo gruppo importante è a m/z …» (lettura, 1.1).</li>
@@ -332,17 +332,6 @@ Applica il procedimento e scrivi i numeri dei passi; la soluzione si apre sotto 
 <div class="box gym"><b>Allenati nella Pratica</b>
 <p><a href="../pratica/ei.html">Dallo spettro alla struttura</a>: problemi su spettri sperimentali reali, dal livello guidato alla modalità autonoma (senza aiuti, con verifica del ragionamento e soluzione commentata).</p></div>
 ```
-
-## Verifica
-
-??? Il picco più alto è a m/z 120, il successivo importante a 115. Che cosa concludi?
-Una perdita di 5 è impossibile (4-14): 120 non è lo ione molecolare dei picchi importanti; è fondo, un'impurezza o un coeluito, oppure 115 e 120 vengono da molecole diverse. Cerca M fra i gruppi successivi e controlla le perdite.
-
-??? Uno spettro ha m/z 30 come picco base e M a 87, debole. Che famiglia?
-M dispari: un azoto (2.3). 30 pari e intenso a bassa massa: lo ione iminio CH~2~=NH~2~^+^ (2.6) da scissione α: un'ammina primaria con il gruppo NH~2~ su un CH~2~. 87 = C~5~H~13~N: una pentilammina primaria (a catena lineare o ramificata lontano dall'azoto).
-
-??? Perché gli ioni di McLafferty sono a massa pari, mentre gli ioni α degli stessi chetoni sono a massa dispari?
-Il McLafferty rompe due legami e perde una molecola neutra: lo ione resta a elettroni dispari come M, e senza azoto un OE ha massa pari. La scissione α rompe un legame e perde un radicale: lo ione è a elettroni pari e, senza azoto, a massa dispari.
 
 ## Per approfondire
 
