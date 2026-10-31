@@ -38,7 +38,13 @@ I file in `mzlab/web/esempi/` (offerti da «Prova con i file di esempio») sono 
 
 ## Figure della Teoria
 
-Le figure dei capitoli di Teoria sono disegnate dal programma stesso (SVG e simulazioni in JavaScript): non contengono immagini di terzi.
+Le figure dei capitoli di Teoria sono disegnate dal programma stesso (SVG e simulazioni in JavaScript): non contengono immagini di terzi, tranne le immagini della parte Storia, elencate in `docs/IMMAGINI.md`.
+
+## Immagini della Storia
+
+L'elenco di tutte le immagini del sito, con fonte, autore, data, licenza e attribuzione, è in `docs/IMMAGINI.md`. Nella parte Storia sono ammessi solo pubblico dominio, CC0, CC BY e disegni originali (CC BY 4.0, BasePeak); le fotografie di terzi stanno in `assets/img/storia/foto/` e ognuna è nominata qui sotto, con autore e licenza. Il test `tests/test_immagini.py` controlla l'elenco.
+
+Fotografie di terzi: nessuna per ora.
 
 ## Spettri EI della Teoria e della Pratica
 
