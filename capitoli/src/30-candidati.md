@@ -55,7 +55,7 @@ Kind e Fiehn (2007) hanno raccolto sette regole per togliere le formule chimicam
 La figura usa tre filtri di questo tipo: RDB intero e non negativo, H/C tra 0,2 e 3,1 (come nel capitolo 11) e punteggio isotopico minimo. I limiti dei singoli elementi sono quelli, più stretti, della ricerca didattica.
 
 ```html
-<details class="poe"><summary style="color:var(--ink)">Prima di provare: quante formule restano per l'atrazina con C H N O, S e Cl, a 5 ppm? E se il rivelatore è saturo?</summary>
+<details class="poe"><summary>Prima di provare: quante formule restano per l'atrazina con C H N O, S e Cl, a 5 ppm? E se il rivelatore è saturo?</summary>
 <p>Dopo la sola massa restano pochi candidati; il filtro RDB ne toglie qualcuno, quello H/C quasi nessuno. Il filtro isotopico lascia solo la formula vera. Con il pattern saturo, invece, anche la formula vera viene scartata: prova.</p></details>
 ```
 
@@ -101,7 +101,7 @@ SIRIUS (Dührkop et al., 2019) costruisce un albero di frammentazione, in cui og
 CSI:FingerID (Dührkop et al., 2015) prevede dallo spettro, con l'apprendimento automatico, un'impronta molecolare e cerca nelle banche dati le strutture con impronta più simile. CANOPUS (Dührkop et al., 2021) ne ricava la classe del composto. Blaženović et al. (2018) li confrontano con altri strumenti.
 
 ```html
-<details class="poe"><summary style="color:var(--ink)">Prima di provare: tre isomeri, uno spettro. Possono avere punteggi molto diversi?</summary>
+<details class="poe"><summary>Prima di provare: tre isomeri, uno spettro. Possono avere punteggi molto diversi?</summary>
 <p>Dipende dai frammenti predetti: isomeri che si rompono nello stesso modo pareggiano. Cambia il peso dell'intensità e guarda.</p></details>
 ```
 

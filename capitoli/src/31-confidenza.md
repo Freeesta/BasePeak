@@ -71,7 +71,7 @@ Un coseno di 0,95 con una libreria non porta oltre il livello 2a: senza il confr
 ```
 
 ```html
-<details class="poe"><summary style="color:var(--ink)">Prima di provare: con un punteggio 0,99 e 8 picchi in comune, ma senza standard, quale livello ottieni?</summary>
+<details class="poe"><summary>Prima di provare: con un punteggio 0,99 e 8 picchi in comune, ma senza standard, quale livello ottieni?</summary>
 <p>Il livello 2a. Alza il punteggio quanto vuoi: senza lo standard iniettato con lo stesso metodo non si passa al livello 1.</p></details>
 ```
 
