@@ -15,11 +15,19 @@ def axe_path():
 AXE = axe_path()
 RUN = "axe.run(%s, {runOnly: {type: 'tag', values: ['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}}).then(r => r.violations.filter(v => ['serious','critical'].includes(v.impact)).map(v => [v.id, v.impact, v.nodes.length, v.nodes.slice(0,3).map(n => n.target.join(' ') + ' :: ' + (n.failureSummary||'').split('\\n').slice(0,3).join(' | '))]))"
 steps = []
+def snapshot():
+    """What the page looked like when a step failed: the game state, whether a level file was still loading, which scripts it had, the selects, the JS errors."""
+    try:
+        return pg.evaluate("""(() => { const S = PRATICA_EI.state(), g = document.querySelector('#game');
+          return JSON.stringify({url: location.pathname + location.search, item: S && S.item && [S.item.id, S.item.path], busy: g.getAttribute('aria-busy'), path: document.querySelector('#path').value,
+            mode: document.querySelector('#mode').value, lv: document.querySelector('#lv').value, pathinfo: document.querySelector('#pathinfo').innerText,
+            levelScripts: [...document.scripts].map(s => s.src.split('/').pop()).filter(n => /ei-dati-l/.test(n)), items: EI_DATA.items.length}) })()""") + " errs=" + str(r.errs[-3:])
+    except Exception as e2: return "no snapshot: " + str(e2)[:120]
 def step(name, fn):
     try: fn(); steps.append((name, "ok"))
     except Exception as e:
         import traceback; ln = [f.lineno for f in traceback.extract_tb(e.__traceback__) if f.filename.endswith("e2e_pratica_ei_set.py")][-1]
-        steps.append((name, f"FAIL line {ln}: " + str(e).replace("\n"," | ")[:400]))
+        steps.append((name, f"FAIL line {ln}: " + str(e).replace("\n"," | ")[:400] + " || state: " + snapshot()))
 r = Run(port=8903, wd="/tmp/wdpe")
 IPHONE = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
 try:
@@ -28,21 +36,40 @@ try:
         base = f"http://127.0.0.1:{r.port}/static/"
         def item(): return pg.evaluate("PRATICA_EI.state().item")
         def sel(mz): pg.evaluate(f"PRATICA_EI.state().sel=[{mz}]")
+        def settled(timeout=15000):
+            """The real readiness signal: the page sets aria-busy on #game while it loads a level file and picks the compound; a card on screen before that is the previous one."""
+            pg.wait_for_function("(() => { const g = document.querySelector('#game'); return !g.hasAttribute('aria-busy') && g.querySelector('.eispec canvas') && PRATICA_EI.state() && PRATICA_EI.state().item; })()", timeout=timeout)
         def open_game(q="pratica/ei.html"):
-            pg.goto(base + q); pg.wait_for_selector("#game .eispec canvas", timeout=15000); pg.wait_for_timeout(300)
+            pg.goto(base + q); settled(); pg.wait_for_timeout(300)
         def path_levels():
             open_game()
             seen = []
             for lv in "12345":
-                pg.select_option("#path", lv); pg.wait_for_selector("#game .eispec canvas"); pg.wait_for_timeout(300)
+                pg.select_option("#path", lv); settled()
                 it = item(); assert it["path"] == int(lv), (lv, it["id"], it.get("path"))
                 assert "Percorso " + lv in pg.inner_text("#pathinfo")
                 seen.append(it["id"])
             assert len(set(seen)) == 5, seen
-            pg.select_option("#path", "1"); pg.wait_for_timeout(300)
+            pg.select_option("#path", "1"); settled()
             first = pg.evaluate("EI_DATA.items.filter(i=>i.path===1).sort((a,b)=>a.order-b.order)[0].id")
             assert item()["id"] == first, (item()["id"], first)             # a fresh student starts at the first compound of the path
         step("path 1-5: one compound per level, the first of the path comes first", path_levels)
+        def slow_level_superseded():
+            # A student who changes the path twice while a level file is still loading: the first change must not start a compound after the second one did.
+            open_game()
+            pg.evaluate("""(() => { const ap = document.head.appendChild.bind(document.head); window.__held = [];
+              document.head.appendChild = n => { if (n.tagName === 'SCRIPT' && /ei-dati-l5/.test(n.src)) { window.__held.push(() => ap(n)); return n; } return ap(n); }; })()""")
+            pg.select_option("#path", "5")
+            assert pg.get_attribute("#game", "aria-busy") == "true", "the page must say it is loading while the level file is pending"
+            assert item()["path"] != 5, "level 5 data is held back: the card on screen is still the previous one"
+            pg.select_option("#path", "1"); settled()
+            assert item()["path"] == 1
+            pg.evaluate("document.querySelector('#game .eispec').dataset.mark = 'same'")
+            pg.evaluate("window.__held.forEach(f => f())")                 # now the stale level-5 load finishes
+            pg.wait_for_function("EI_DATA.items.some(i => i.id === 'tioanisolo')", timeout=15000); pg.wait_for_timeout(200)
+            assert pg.evaluate("document.querySelector('#game .eispec').dataset.mark") == "same", "the superseded change restarted the game"
+            assert item()["path"] == 1 and not pg.get_attribute("#game", "aria-busy")
+        step("a slow level file: a superseded path change does not start a compound", slow_level_superseded)
         def extra_levels():
             open_game()
             assert pg.evaluate("EI_DATA.items.some(i=>i.id==='tioanisolo')") is False, "level 5 data must not be loaded before it is needed"
