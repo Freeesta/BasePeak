@@ -1,6 +1,6 @@
 <!-- script: sim-misc.js -->
 <!-- title: Strategia per i TP -->
-# Strategia per trovare (e non inventare) i TP {kicker: Capitolo 18}
+# Strategia per trovare (e non inventare) i TP {kicker: Capitolo 16}
 
 {.lead} Il metodo di lavoro sistematico, passo per passo, dalla caratterizzazione del precursore all'identificazione dei prodotti di trasformazione. Include un esempio pratico dettagliato e criteri rigorosi per stabilire il livello di confidenza di ciascun candidato.
 
@@ -8,7 +8,7 @@
 
 ```html
 <figure>
-<svg viewBox="0 0 880 210" role="img" aria-label="Flusso di lavoro in cinque passi: dal parent ai candidati confermati in MS2" aria-describedby="fd-18-0">
+<svg viewBox="0 0 880 210" role="img" aria-label="Flusso di lavoro in cinque passi: dal parent ai candidati confermati in MS2" aria-describedby="fd-16-0">
 <style>.b{fill:#fff;stroke:#c9c5bb;stroke-width:1.3}.n{font:700 20px system-ui,sans-serif;fill:#2b5c8a}.t{font:600 13px system-ui,sans-serif;fill:#24231f}.s{font:11.5px system-ui,sans-serif;fill:#6b675c}</style>
 <defs><marker id="m9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#9b978c"/></marker></defs>
 <g><rect class="b" x="6" y="20" width="160" height="170" rx="8"/><text class="n" x="18" y="48">1</text><text class="t" x="18" y="72">Conoscere il parent</text><text class="s" x="18" y="94">[M+H]⁺, addotti, RT,</text><text class="s" x="18" y="110">isotopi, MS2 a più CE,</text><text class="s" x="18" y="126">transizioni MRM</text><text class="s" x="18" y="150">standard</text></g>
@@ -20,8 +20,8 @@
 <g><rect class="b" x="540" y="20" width="160" height="170" rx="8"/><text class="n" x="552" y="48">4</text><text class="t" x="552" y="72">Filtrare e ipotizzare</text><text class="s" x="552" y="94">criteri, Δm, isotopi,</text><text class="s" x="552" y="110">regola dell'azoto, RT</text><text class="s" x="552" y="150">ragionamento</text></g>
 <path d="M702 105 H716" stroke="#9b978c" stroke-width="1.6" marker-end="url(#m9)"/>
 <g><rect class="b" x="718" y="20" width="156" height="170" rx="8"/><text class="n" x="730" y="48">5</text><text class="t" x="730" y="72">Confermare in MS2</text><text class="s" x="730" y="94">frammenti condivisi</text><text class="s" x="730" y="110">o spostati rispetto</text><text class="s" x="730" y="126">al parent; struttura</text><text class="s" x="730" y="150">MS2 al tempo migliore</text></g>
-</svg><details class="figdesc" id="fd-18-0"><summary>Descrizione della figura</summary><p>Cinque riquadri in sequenza: 1 Conoscere il parent ([M+H]⁺, addotti, RT, isotopi, MS2 a più CE, transizioni MRM); 2 Quantificare il parent (MRM, retta di taratura, C/C₀ e k nel tempo; t0–t60); 3 Trovare i candidati (full scan t0 vs tₙ, bianco, XIC di ipotesi, mappa RT–m/z); 4 Filtrare e ipotizzare (Δm, isotopi, regola dell'azoto, RT); 5 Confermare in MS2 (frammenti condivisi o spostati rispetto al parent).</p></details>
-<figcaption><b>Figura 18.1</b> Il percorso dall'esperimento alla proposta strutturale. I passi 3–5 si ripetono: ogni MS2 può suggerire nuove masse da cercare nel full scan.</figcaption>
+</svg><details class="figdesc" id="fd-16-0"><summary>Descrizione della figura</summary><p>Cinque riquadri in sequenza: 1 Conoscere il parent ([M+H]⁺, addotti, RT, isotopi, MS2 a più CE, transizioni MRM); 2 Quantificare il parent (MRM, retta di taratura, C/C₀ e k nel tempo; t0–t60); 3 Trovare i candidati (full scan t0 vs tₙ, bianco, XIC di ipotesi, mappa RT–m/z); 4 Filtrare e ipotizzare (Δm, isotopi, regola dell'azoto, RT); 5 Confermare in MS2 (frammenti condivisi o spostati rispetto al parent).</p></details>
+<figcaption><b>Figura 16.1</b> Il percorso dall'esperimento alla proposta strutturale. I passi 3–5 si ripetono: ogni MS2 può suggerire nuove masse da cercare nel full scan.</figcaption>
 </figure>
 ```
 
@@ -40,7 +40,7 @@ Tutto il lavoro successivo è un confronto con il parent, quindi la sua caratter
 
 ## 2. Quantificare il parent
 
-Retta MRM, concentrazioni nei campioni, grafico di scomparsa e costante pseudo-primo ordine (capitoli 2 e 12). Confrontate t0 con lo standard per stimare l'adsorbimento sul TiO~2~.
+Retta MRM, concentrazioni nei campioni, grafico di scomparsa e costante pseudo-primo ordine (capitoli 2 e 10). Confrontate t0 con lo standard per stimare l'adsorbimento sul TiO~2~.
 
 ## 3. Trovare i candidati nel full scan
 
@@ -88,7 +88,7 @@ Al tempo in cui il candidato è più abbondante si registra il suo product ion s
 </ul>
 ```
 
-Con questi vincoli si disegnano le strutture candidate con un programma di disegno chimico (capitolo 20), si verifica che formula e m/z tornino (capitolo 13) e si propone una via di trasformazione.
+Con questi vincoli si disegnano le strutture candidate con un programma di disegno chimico (capitolo 18), si verifica che formula e m/z tornino (capitolo 11) e si propone una via di trasformazione.
 
 ## Esempio svolto: l'atrazina
 

@@ -27,7 +27,7 @@ try:
         step("dark system theme: the Teoria is dark with readable text", open_dark)
         def chapters():
             f = tf()
-            for name, shot in (("capitoli/06-esi.html", "esi"), ("capitoli/04-lc.html", "lc"), ("capitoli/05-gc.html", "gc")):
+            for name, shot in (("capitoli/04-esi.html", "esi"), ("capitoli/02-lc.html", "lc"), ("capitoli/03-gc.html", "gc")):
                 f.goto(base + name); f.wait_for_timeout(1200)
                 assert f.evaluate("document.documentElement.dataset.theme") == "dark", name
                 assert contrast(f, "getComputedStyle(document.body).color", "getComputedStyle(document.body).backgroundColor") > 7
@@ -38,7 +38,7 @@ try:
                 assert not bad, (name, bad[:3])
         step("three chapters (text, SVG figure, table): dark and readable", chapters)
         def sim():
-            f = tf(); f.goto(base + "capitoli/06-esi.html"); f.wait_for_timeout(1500)
+            f = tf(); f.goto(base + "capitoli/04-esi.html"); f.wait_for_timeout(1500)
             n = f.evaluate("document.querySelectorAll('.sim canvas').length"); assert n >= 1, n
             dark = f.evaluate("(()=>{const c=document.querySelector('.sim canvas');const g=c.getContext('2d');const d=g.getImageData(Math.floor(c.width/2),Math.floor(c.height/2),1,1).data;return d[0]+d[1]+d[2]})()")
             assert dark < 400, dark                                                      # the middle of the canvas is not the white of the light theme

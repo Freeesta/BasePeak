@@ -1,10 +1,10 @@
 <!-- script: sim-tempi.js -->
 <!-- title: 23. I tempi degli analizzatori: dwell time, sweep e duty cycle -->
-# I tempi degli analizzatori: dwell time, sweep e duty cycle {kicker: Capitolo 23}
+# I tempi degli analizzatori: dwell time, sweep e duty cycle {kicker: Capitolo 21}
 
 {.lead} La sorgente cromatografica (ESI) produce un fascio continuo di ioni nel tempo, mentre gli analizzatori di massa gestiscono questo flusso in modo sequenziale o pulsato. Capire i tempi di scansione spiega perché quadrupolo, TOF e Orbitrap si comportano in modo radicalmente diverso fra analisi mirata e screening non target.
 
-## 23.1 Le tre definizioni fondamentali
+## 21.1 Le tre definizioni fondamentali
 
 Per padroneggiare il funzionamento di qualunque spettrometro accoppiato alla cromatografia liquida bisogna chiarire tre parametri temporali chiave:
 
@@ -17,7 +17,7 @@ Per padroneggiare il funzionamento di qualunque spettrometro accoppiato alla cro
 ```
 
 ```html
-<span class="eq">Duty Cycle (%) = <span class="frac"><span><i>t</i><sub>rilevazione effettiva</sub></span><span><i>t</i><sub>ciclo totale</sub></span></span> × 100<span class="no">(23.1)</span></span>
+<span class="eq">Duty Cycle (%) = <span class="frac"><span><i>t</i><sub>rilevazione effettiva</sub></span><span><i>t</i><sub>ciclo totale</sub></span></span> × 100<span class="no">(21.1)</span></span>
 ```
 
 ```html
@@ -25,7 +25,7 @@ Per padroneggiare il funzionamento di qualunque spettrometro accoppiato alla cro
 <p>Un duty cycle dell'1% significa che il 99% degli ioni dell'analita usciti dalla sorgente continua sbatte contro gli elettrodi o le pareti delle ottiche ioniche senza raggiungere il rivelatore.</p></div>
 ```
 
-## 23.2 Il quadrupolo in full scan e in MRM
+## 21.2 Il quadrupolo in full scan e in MRM
 
 ```html
 <p>In modalità full scan il quadrupolo varia in modo continuo le ampiezze della tensione continua (<i>U</i>) e a radiofrequenza (<i>V</i>) mantenendo costante il rapporto <i>U/V</i>. In ogni istante, solo una stretta finestra di stabilità (tipicamente Δ<i>m/z</i> ≈ 0,7–1 Da a risoluzione unitaria) attraversa le quattro barre.</p>
@@ -47,7 +47,7 @@ In modalità SRM/MRM, invece, il quadrupolo smette di fare sweep: fissa i potenz
 <p>Per integrare e quantificare un picco cromatografico in modo accurato servono <b>almeno 12–15 punti per picco</b>. Se in MRM si monitorano troppe transizioni con dwell time eccessivo, il tempo di ciclo sale sopra 1–2 s e i punti crollano, rendendo l'integrazione inaffidabile.</p></div>
 ```
 
-## 23.3 TOF e Orbitrap in full scan
+## 21.3 TOF e Orbitrap in full scan
 
 A differenza del quadrupolo, gli analizzatori ad alta risoluzione non scartano la maggior parte dello spettro quando acquisiscono in full scan:
 
@@ -59,12 +59,12 @@ A differenza del quadrupolo, gli analizzatori ad alta risoluzione non scartano l
 ```
 
 ```html
-<span class="eq"><i>R</i> ∝ <i>t</i><sub>transiente</sub><span class="no">(23.2)</span></span>
+<span class="eq"><i>R</i> ∝ <i>t</i><sub>transiente</sub><span class="no">(21.2)</span></span>
 ```
 
 Per raddoppiare la risoluzione bisogna raddoppiare il tempo di ascolto del transiente (es. da 128 ms a 256 ms), dimezzando la velocità in Hz. Nei sistemi moderni l'acquisizione è parallelizzata: mentre l'Orbitrap misura il pacchetto *n*, la C-Trap accumula già il pacchetto *n+1*, raggiungendo duty cycle elevati su campioni diluiti.
 
-## 23.4 Confronto diretto in full scan
+## 21.4 Confronto diretto in full scan
 
 ```html
 <table>
@@ -78,7 +78,7 @@ Per raddoppiare la risoluzione bisogna raddoppiare il tempo di ascolto del trans
 </table>
 ```
 
-Termini nel [glossario](21-glossario.md); formule nel [formulario](22-formulario.md).
+Termini nel [glossario](19-glossario.md); formule nel [formulario](20-formulario.md).
 
 ## Verifica
 

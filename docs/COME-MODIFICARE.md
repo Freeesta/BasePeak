@@ -20,12 +20,12 @@ Sul sito (https://freeesta.github.io/BasePeak/) arrivano solo `index.html`, `cap
 | Che cosa | File |
 |---|---|
 | Introduzione e mappa | `index.html` |
-| Capitoli 3–23 | `capitoli/03-cromatografia.html` … `capitoli/23-tempi.html` (i capitoli 1 e 2, Prodotti di trasformazione e Fotocatalisi, sono stati tolti; il numero è nel nome; i vecchi nomi, come `capitoli/06-quadrupolo.html`, sono rimandi automatici al nuovo capitolo) |
+| Capitoli 1–21 | `capitoli/01-cromatografia.html` … `capitoli/21-tempi.html` (il numero del capitolo è nel nome del file e va da 1 a 21 senza buchi; i vecchi nomi, come `capitoli/04-lc.html` o `capitoli/06-quadrupolo.html`, sono rimandi automatici al nuovo capitolo) |
 | Pratica (giochi ed esercizi) | `pratica/index.html` (pagina iniziale), `pratica/ei.html`, `pratica/orale.html`, `pratica/perdite.html`, `pratica/isotopi.html`, `pratica/formula.html`, `pratica/strumento.html`, `pratica/quadrupolo.html`, `pratica/tp.html`; codice e dati negli stessi file `.js` di `pratica/` |
 | Domande di ripasso (testo e punti della risposta) | `pratica/domande.js` |
-| Spettri EI dei capitoli 15-16 e del gioco | `pratica/ei-dati.js` e `pratica/ei-dati-l1.js`…`l5.js` (da MassBank Europe; struttura e come aggiungerne uno a mano: `docs/DATI-EI.md`) |
-| Glossario (parole sottolineate nel testo) | `capitoli/21-glossario.html`, poi `python3 tools/genera_glossario.py` (crea `assets/glossario-dati.js`) e `python3 tools/genera_indice_teoria.py` (ricerca: `assets/indice-ricerca.js`) |
-| Elenco dei capitoli nel menu laterale | `assets/teoria.js`, in alto: lista `CHAPTERS` (i file sono scritti a partire dalla cartella principale: `capitoli/04-lc.html`, `pratica/ei.html`) |
+| Spettri EI dei capitoli 13-14 e del gioco | `pratica/ei-dati.js` e `pratica/ei-dati-l1.js`…`l5.js` (da MassBank Europe; struttura e come aggiungerne uno a mano: `docs/DATI-EI.md`) |
+| Glossario (parole sottolineate nel testo) | `capitoli/19-glossario.html`, poi `python3 tools/genera_glossario.py` (crea `assets/glossario-dati.js`) e `python3 tools/genera_indice_teoria.py` (ricerca: `assets/indice-ricerca.js`) |
+| Elenco dei capitoli nel menu laterale | `assets/teoria.js`, in alto: lista `CHAPTERS` (i file sono scritti a partire dalla cartella principale: `capitoli/02-lc.html`, `pratica/ei.html`) |
 | Colori, caratteri, aspetto dei riquadri | `assets/teoria.css` |
 | Figure interattive (calcoli e grafici) | in `assets/`: `sim-quad.js`, `sim-esi.js`, `sim-qqq.js`, `sim-frag.js`, `sim-misc.js`, `sim-chrom.js` (cromatografia), `sim-ei.js` (EI), `sim-hr.js` (risoluzione e formule) |
 
@@ -87,8 +87,8 @@ Caratteri speciali: si possono scrivere direttamente (à è ≈ → Δ λ ±), i
 
 ## Aggiungere o togliere un capitolo
 
-1. Copia un capitolo esistente in `capitoli/`, rinominalo (es. `capitoli/12-nuovo.html`), cambia `kicker`, `<h1>` e testo. Oppure `python3 tools/nuovo_capitolo.py 12 nuovo "Titolo"` crea lo scheletro.
-2. In `assets/teoria.js` aggiungi una riga alla lista `CHAPTERS`: `["capitoli/12-nuovo.html", "12", "Titolo nel menu", "IV. Analizzare gli ioni"],` (l'ultimo campo è la parte del percorso: il menu mette un titoletto quando cambia)
+1. Copia un capitolo esistente in `capitoli/`, rinominalo (es. `capitoli/22-nuovo.html`), cambia `kicker`, `<h1>` e testo. Oppure `python3 tools/nuovo_capitolo.py 22 nuovo "Titolo"` crea lo scheletro.
+2. In `assets/teoria.js` aggiungi una riga alla lista `CHAPTERS`: `["capitoli/22-nuovo.html", "22", "Titolo nel menu", "IV. Analizzare gli ioni"],` (l'ultimo campo è la parte del percorso: il menu mette un titoletto quando cambia)
 3. Se vuoi, aggiungi una scheda in `index.html` (sezione "I capitoli").
 4. Rigenera la ricerca: `python3 tools/genera_indice_teoria.py` (e il glossario, se l'hai toccato).
 

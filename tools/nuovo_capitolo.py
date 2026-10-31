@@ -56,7 +56,7 @@ Do not copy sentences from the sources (tools/controlla_teoria.py rejects runs o
 <tr><td>TODO</td><td class="n">TODO</td></tr>
 </table>
 
-<p>Termini nel <a href="21-glossario.html">glossario</a>; formule nel <a href="22-formulario.html">formulario</a>.</p>
+<p>Termini nel <a href="19-glossario.html">glossario</a>; formule nel <a href="20-formulario.html">formulario</a>.</p>
 
 <h2>Verifica</h2>
 <details class="q"><summary>TODO: domanda 1?</summary><p>TODO: risposta.</p></details>

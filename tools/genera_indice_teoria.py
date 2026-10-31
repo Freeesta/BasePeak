@@ -1,7 +1,7 @@
 """Builds assets/indice-ricerca.js, the static index behind the search of the Teoria (assets/cerca.js). Entry URLs are relative to the site root (capitoli/NN-x.html#id).
 
 Entries: chapter and Pratica page titles, h2/h3 sections (anchor = the id teoria.js gives them at run time), glossary terms
-(anchors added to the <dt> of 21-glossario.html), titles of the boxes (.box.gym and the Verifica sections) and the Pratica games.
+(anchors added to the <dt> of 19-glossario.html), titles of the boxes (.box.gym and the Verifica sections) and the Pratica games.
 Each entry is [text, type, url, chapter label, normalised search string]. Deterministic.
 
   python3 tools/genera_indice_teoria.py             write the file
@@ -105,9 +105,9 @@ def build() -> list[list[str]]:
                 classes, t = m.group(4).split(), plain(m.group(5))
                 if "gym" in classes and t:
                     out.append(entry(t, "esercizio", f"{f}#{last}" if last else f, cap))
-    g = (D / "capitoli" / "21-glossario.html").read_text(encoding="utf-8")
+    g = (D / "capitoli" / "19-glossario.html").read_text(encoding="utf-8")
     for i, dt in re.findall(r'<dt id="([^"]+)">(.*?)</dt>', g, re.S):
-        out.append(entry(plain(dt), "glossario", f"capitoli/21-glossario.html#{i}", "Glossario"))
+        out.append(entry(plain(dt), "glossario", f"capitoli/19-glossario.html#{i}", "Glossario"))
     return out
 
 

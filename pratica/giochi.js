@@ -295,7 +295,7 @@ const GIOCHI = (() => {
   }
 
   // =========================================================== 5. drive the quadrupole
-  // virtual instrument as in chapter 9: r0 = 4 mm, f = 1 MHz -> q = KQ * V / (m/z), a = 2 KQ * U / (m/z)
+  // virtual instrument as in chapter 7: r0 = 4 mm, f = 1 MHz -> q = KQ * V / (m/z), a = 2 KQ * U / (m/z)
   const E = 1.602176634e-19, U_KG = 1.66053907e-27, R0 = 4e-3, OM = 2 * Math.PI * 1e6;
   const KQ = 4 * E / (U_KG * R0 * R0 * OM * OM);
   const aTop = q => Math.min(q * q / 2 - 7 * q ** 4 / 128 + 29 * q ** 6 / 2304,            // -a0(q): y-stability boundary

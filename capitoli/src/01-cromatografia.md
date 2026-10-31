@@ -1,5 +1,5 @@
 <!-- script: sim-chrom.js -->
-# Fondamenti di cromatografia {kicker: Capitolo 3}
+# Fondamenti di cromatografia {kicker: Capitolo 1}
 
 {.lead} GC e LC sono due versioni dello stesso fenomeno: molecole che si ripartiscono fra una fase che si muove e una che sta ferma. Le grandezze di questo capitolo (k, α, N, H, R~s~) valgono per entrambe e costituiscono i parametri essenziali per comprendere e ottimizzare qualsiasi separazione cromatografica.
 
@@ -11,7 +11,7 @@ La preferenza per la fase stazionaria si misura con la **costante di distribuzio
 
 ```html
 <figure>
-<svg viewBox="0 0 860 250" role="img" aria-label="Cromatogramma con un picco non trattenuto a t₀ e due picchi a tR,1 e tR,2, con le larghezze w½ e wb" aria-describedby="fd-03-0">
+<svg viewBox="0 0 860 250" role="img" aria-label="Cromatogramma con un picco non trattenuto a t₀ e due picchi a tR,1 e tR,2, con le larghezze w½ e wb" aria-describedby="fd-01-0">
 <style>.ax{stroke:#9b978c}.t{font:12.5px system-ui,sans-serif;fill:#6b675c}.b{font:600 13px system-ui,sans-serif;fill:#24231f}</style>
 <path class="ax" d="M50 200 H830 M50 200 V20"/>
 <path d="M50 200 L110 200 C116 200 118 170 122 170 C126 170 128 200 134 200 L300 200 C318 200 324 60 340 60 C356 60 362 200 380 200 L470 200 C492 200 500 90 520 90 C540 90 548 200 570 200 L830 200" fill="none" stroke="#2b5c8a" stroke-width="2.2"/>
@@ -21,8 +21,8 @@ La preferenza per la fase stazionaria si misura con la **costante di distribuzio
 <path d="M300 200 L321 70 M380 200 L359 70" stroke="#047857" stroke-dasharray="4 3"/><text class="t" x="230" y="190">w<tspan baseline-shift="sub" font-size="9">b</tspan> (tangenti)</text>
 <text class="t" x="128" y="165">non trattenuto</text>
 <text class="t" x="600" y="230">tempo →</text>
-</svg><details class="figdesc" id="fd-03-0"><summary>Descrizione della figura</summary><p>Asse orizzontale: tempo. Da sinistra: un picco piccolo e stretto, «non trattenuto», a t₀; un picco alto a tR,1, con una linea orizzontale a metà altezza (w½) e due tangenti ai fianchi che indicano la larghezza alla base (wb); un secondo picco più basso e più largo a tR,2.</p></details>
-<figcaption><b>Figura 3.1</b> Le misure di un cromatogramma. t<sub>0</sub> (tempo morto) è il tempo di una molecola che non interagisce con la fase stazionaria; la larghezza alla base w<sub>b</sub> si misura fra le intersezioni delle tangenti nei punti di flesso con la linea di base (w<sub>b</sub> = 4σ per un picco gaussiano, w½ = 2,355σ).</figcaption>
+</svg><details class="figdesc" id="fd-01-0"><summary>Descrizione della figura</summary><p>Asse orizzontale: tempo. Da sinistra: un picco piccolo e stretto, «non trattenuto», a t₀; un picco alto a tR,1, con una linea orizzontale a metà altezza (w½) e due tangenti ai fianchi che indicano la larghezza alla base (wb); un secondo picco più basso e più largo a tR,2.</p></details>
+<figcaption><b>Figura 1.1</b> Le misure di un cromatogramma. t<sub>0</sub> (tempo morto) è il tempo di una molecola che non interagisce con la fase stazionaria; la larghezza alla base w<sub>b</sub> si misura fra le intersezioni delle tangenti nei punti di flesso con la linea di base (w<sub>b</sub> = 4σ per un picco gaussiano, w½ = 2,355σ).</figcaption>
 </figure>
 ```
 
@@ -31,7 +31,7 @@ La preferenza per la fase stazionaria si misura con la **costante di distribuzio
 Il tempo di ritenzione *t*~R~ dipende dalla colonna e dal flusso; per confrontare colonne diverse si usa il **fattore di ritenzione** *k* (un tempo «normalizzato»), che è anche il rapporto fra le quantità di analita nelle due fasi:
 
 ```html
-<span class="eq"><i>k</i> = <span class="frac"><span><i>t</i><sub>R</sub> − <i>t</i><sub>0</sub></span><span><i>t</i><sub>0</sub></span></span> = <span class="frac"><span><i>n</i><sub>S</sub></span><span><i>n</i><sub>M</sub></span></span> = <i>K</i> · <span class="frac"><span><i>V</i><sub>S</sub></span><span><i>V</i><sub>M</sub></span></span> = <span class="frac"><span><i>K</i></span><span>β</span></span>, &nbsp;&nbsp; <i>t</i><sub>R</sub> = <i>t</i><sub>0</sub> (1 + <i>k</i>)<span class="no">(3.1)</span></span>
+<span class="eq"><i>k</i> = <span class="frac"><span><i>t</i><sub>R</sub> − <i>t</i><sub>0</sub></span><span><i>t</i><sub>0</sub></span></span> = <span class="frac"><span><i>n</i><sub>S</sub></span><span><i>n</i><sub>M</sub></span></span> = <i>K</i> · <span class="frac"><span><i>V</i><sub>S</sub></span><span><i>V</i><sub>M</sub></span></span> = <span class="frac"><span><i>K</i></span><span>β</span></span>, &nbsp;&nbsp; <i>t</i><sub>R</sub> = <i>t</i><sub>0</sub> (1 + <i>k</i>)<span class="no">(1.1)</span></span>
 ```
 
 ```html
@@ -41,7 +41,7 @@ Il tempo di ritenzione *t*~R~ dipende dalla colonna e dal flusso; per confrontar
 La **selettività** (o fattore di separazione) α confronta due picchi adiacenti:
 
 ```html
-<span class="eq">α = <span class="frac"><span><i>k</i><sub>2</sub></span><span><i>k</i><sub>1</sub></span></span> = <span class="frac"><span><i>K</i><sub>2</sub></span><span><i>K</i><sub>1</sub></span></span> ≥ 1<span class="no">(3.2)</span></span>
+<span class="eq">α = <span class="frac"><span><i>k</i><sub>2</sub></span><span><i>k</i><sub>1</sub></span></span> = <span class="frac"><span><i>K</i><sub>2</sub></span><span><i>K</i><sub>1</sub></span></span> ≥ 1<span class="no">(1.2)</span></span>
 ```
 
 α dipende solo dalla chimica: natura delle due fasi e temperatura. Se α = 1 nessuna colonna, per quanto efficiente, separerà i due composti.
@@ -51,7 +51,7 @@ La **selettività** (o fattore di separazione) α confronta due picchi adiacenti
 Una banda stretta all'iniezione esce larga: le molecole dello stesso composto non percorrono tutte lo stesso cammino né restano lo stesso tempo nella fase stazionaria. Se l'allargamento è dovuto a tanti piccoli passi casuali il picco è **gaussiano**, con varianza σ^2^ che cresce in proporzione alla lunghezza percorsa. L'efficienza si esprime con il **numero di piatti teorici** *N* e con l'**altezza equivalente a un piatto teorico** *H* (HETP):
 
 ```html
-<span class="eq"><i>N</i> = <span class="frac"><span><i>t</i><sub>R</sub><sup>2</sup></span><span>σ<sup>2</sup></span></span> = 16 <span class="frac"><span><i>t</i><sub>R</sub><sup>2</sup></span><span><i>w</i><sub>b</sub><sup>2</sup></span></span> = 5,54 <span class="frac"><span><i>t</i><sub>R</sub><sup>2</sup></span><span><i>w</i><sub>1/2</sub><sup>2</sup></span></span>, &nbsp;&nbsp; <i>H</i> = <span class="frac"><span><i>L</i></span><span><i>N</i></span></span><span class="no">(3.3)</span></span>
+<span class="eq"><i>N</i> = <span class="frac"><span><i>t</i><sub>R</sub><sup>2</sup></span><span>σ<sup>2</sup></span></span> = 16 <span class="frac"><span><i>t</i><sub>R</sub><sup>2</sup></span><span><i>w</i><sub>b</sub><sup>2</sup></span></span> = 5,54 <span class="frac"><span><i>t</i><sub>R</sub><sup>2</sup></span><span><i>w</i><sub>1/2</sub><sup>2</sup></span></span>, &nbsp;&nbsp; <i>H</i> = <span class="frac"><span><i>L</i></span><span><i>N</i></span></span><span class="no">(1.3)</span></span>
 ```
 
 Il «piatto» è un'eredità della distillazione: non esiste fisicamente, è solo un modo di misurare la varianza per unità di lunghezza. Ordini di grandezza: colonna HPLC da 15 cm con particelle da 3 µm, N ≈ 15 000-25 000; colonna capillare GC da 30 m, N ≈ 100 000-150 000.
@@ -61,7 +61,7 @@ Il «piatto» è un'eredità della distillazione: non esiste fisicamente, è sol
 Van Deemter, Zuiderweg e Klinkenberg (1956) scomposero H in tre contributi che dipendono in modo diverso dalla velocità lineare media della fase mobile *u* = *L*/*t*~0~:
 
 ```html
-<span class="eq"><i>H</i> = <i>A</i> + <span class="frac"><span><i>B</i></span><span><i>u</i></span></span> + <i>C</i> · <i>u</i><span class="no">(3.4)</span></span>
+<span class="eq"><i>H</i> = <i>A</i> + <span class="frac"><span><i>B</i></span><span><i>u</i></span></span> + <i>C</i> · <i>u</i><span class="no">(1.4)</span></span>
 ```
 
 ```html
@@ -82,7 +82,7 @@ La somma ha un minimo: la **velocità ottimale** *u*~ott~ = √(B/C), con *H*~mi
 
 ```html
 <div class="sim" id="sim-vandeemter" data-mode="lc"><h4>Curva di van Deemter per una colonna HPLC</h4>
-<p class="note">H in funzione della velocità per quattro tipi di particelle. I cursori cambiano i coefficienti ridotti (a, b, c, in unità di d<sub>p</sub>): i punti segnano il minimo di ogni curva. Nel capitolo 5 la stessa figura per la GC (curve di Golay con tre gas).</p></div>
+<p class="note">H in funzione della velocità per quattro tipi di particelle. I cursori cambiano i coefficienti ridotti (a, b, c, in unità di d<sub>p</sub>): i punti segnano il minimo di ogni curva. Nel capitolo 3 la stessa figura per la GC (curve di Golay con tre gas).</p></div>
 ```
 
 ```html
@@ -99,13 +99,13 @@ Anche iniettore, tubi, celle del rivelatore e connessioni contribuiscono alla va
 La **risoluzione** dice quanto due picchi adiacenti sono separati rispetto alla loro larghezza:
 
 ```html
-<span class="eq"><i>R</i><sub>s</sub> = <span class="frac"><span>2 (<i>t</i><sub>R,2</sub> − <i>t</i><sub>R,1</sub>)</span><span><i>w</i><sub>b,1</sub> + <i>w</i><sub>b,2</sub></span></span> = 1,18 <span class="frac"><span><i>t</i><sub>R,2</sub> − <i>t</i><sub>R,1</sub></span><span><i>w</i><sub>1/2,1</sub> + <i>w</i><sub>1/2,2</sub></span></span><span class="no">(3.5)</span></span>
+<span class="eq"><i>R</i><sub>s</sub> = <span class="frac"><span>2 (<i>t</i><sub>R,2</sub> − <i>t</i><sub>R,1</sub>)</span><span><i>w</i><sub>b,1</sub> + <i>w</i><sub>b,2</sub></span></span> = 1,18 <span class="frac"><span><i>t</i><sub>R,2</sub> − <i>t</i><sub>R,1</sub></span><span><i>w</i><sub>1/2,1</sub> + <i>w</i><sub>1/2,2</sub></span></span><span class="no">(1.5)</span></span>
 ```
 
 Con *R*~s~ = 1 i picchi si sovrappongono per circa il 2%; con ***R*~s~ ≥ 1,5** sono separati alla base (sovrapposizione dello 0,1%), il riferimento per una quantificazione affidabile. Esprimendo tempi e larghezze con k, α e N si ottiene l'**equazione di Purnell** (1960), la più utile della cromatografia:
 
 ```html
-<span class="eq"><i>R</i><sub>s</sub> = <span class="frac"><span>√<i>N</i></span><span>4</span></span> · <span class="frac"><span>α − 1</span><span>α</span></span> · <span class="frac"><span><i>k</i><sub>2</sub></span><span>1 + <i>k</i><sub>2</sub></span></span><span class="no">(3.6)</span></span>
+<span class="eq"><i>R</i><sub>s</sub> = <span class="frac"><span>√<i>N</i></span><span>4</span></span> · <span class="frac"><span>α − 1</span><span>α</span></span> · <span class="frac"><span><i>k</i><sub>2</sub></span><span>1 + <i>k</i><sub>2</sub></span></span><span class="no">(1.6)</span></span>
 ```
 
 Tre leve indipendenti: **efficienza** (√N), **selettività** (α), **ritenzione** (k).
@@ -120,7 +120,7 @@ Tre leve indipendenti: **efficienza** (√N), **selettività** (α), **ritenzion
 
 ```html
 <details class="poe"><summary>Prima di provare: con α = 1,02 quanti piatti servono per R<sub>s</sub> = 1,5 (k = 5)?</summary>
-<p>Dalla 3.6: √N = 1,5 · 4 · 1,02/0,02 · 6/5 ≈ 367, cioè N ≈ 135 000. Una colonna HPLC non ci arriva; una capillare GC sì. Per due isomeri «difficili» si cambia α, non N.</p></details>
+<p>Dalla 1.6: √N = 1,5 · 4 · 1,02/0,02 · 6/5 ≈ 367, cioè N ≈ 135 000. Una colonna HPLC non ci arriva; una capillare GC sì. Per due isomeri «difficili» si cambia α, non N.</p></details>
 ```
 
 ```html
@@ -143,15 +143,15 @@ Tre leve indipendenti: **efficienza** (√N), **selettività** (α), **ritenzion
 </table>
 ```
 
-Il programma calcola N, w½ e il fattore di coda dei picchi integrati (capitolo 12): parametri utili per valutare e documentare la qualità del cromatogramma e delle separazioni.
+Il programma calcola N, w½ e il fattore di coda dei picchi integrati (capitolo 10): parametri utili per valutare e documentare la qualità del cromatogramma e delle separazioni.
 
 ## Il problema generale dell'eluizione
 
 Con condizioni costanti (eluizione **isocratica** in LC, **isoterma** in GC) un campione con composti di polarità o volatilità molto diverse dà un cromatogramma sbilanciato: i primi picchi escono vicini e mal risolti (k piccolo), gli ultimi larghi, bassi e in ritardo (k grande). La soluzione è cambiare le condizioni durante la corsa in modo che ogni composto esca con un k «buono»:
 
 ```html
-<div class="duo"><div class="box key"><b>GC: programmata di temperatura</b><p>La temperatura del forno sale durante la corsa (per esempio 60 → 300 °C a 10 °C/min): K diminuisce con la temperatura e i composti meno volatili escono prima di quanto farebbero in isoterma. Capitolo 5.</p></div>
-<div class="box key"><b>LC: gradiente di eluizione</b><p>La percentuale di solvente organico sale durante la corsa (per esempio 5 → 95% di acetonitrile): k diminuisce in modo esponenziale con la frazione di organico. Capitolo 4.</p></div></div>
+<div class="duo"><div class="box key"><b>GC: programmata di temperatura</b><p>La temperatura del forno sale durante la corsa (per esempio 60 → 300 °C a 10 °C/min): K diminuisce con la temperatura e i composti meno volatili escono prima di quanto farebbero in isoterma. Capitolo 3.</p></div>
+<div class="box key"><b>LC: gradiente di eluizione</b><p>La percentuale di solvente organico sale durante la corsa (per esempio 5 → 95% di acetonitrile): k diminuisce in modo esponenziale con la frazione di organico. Capitolo 2.</p></div></div>
 ```
 
 In gradiente o in programmata i picchi hanno larghezza simile lungo tutta la corsa; il potere separativo si misura con la **capacità di picco**, il numero massimo di picchi che entrano affiancati nella finestra della corsa (n~c~ ≈ 1 + t~G~/w, con t~G~ la durata del gradiente e w la larghezza media alla base): con w = 6 s e un gradiente di 15 min, n~c~ ≈ 150.
@@ -162,13 +162,13 @@ Per un rivelatore lineare l'**area** del picco è proporzionale alla quantità d
 
 ```html
 <ul>
-<li><b>Standard esterno</b>: una retta di taratura area contro concentrazione con soluzioni standard; semplice, ma ogni variazione di volume iniettato o di risposta (effetto matrice in ESI, capitolo 6) diventa un errore.</li>
+<li><b>Standard esterno</b>: una retta di taratura area contro concentrazione con soluzioni standard; semplice, ma ogni variazione di volume iniettato o di risposta (effetto matrice in ESI, capitolo 4) diventa un errore.</li>
 <li><b>Standard interno</b>: una quantità nota di un composto simile (ideale: lo stesso analita marcato con <sup>2</sup>H o <sup>13</sup>C, che coeluisce e si ionizza allo stesso modo) aggiunta a tutti i campioni; si usa il rapporto delle aree. Corregge perdite nella preparazione, variazioni di iniezione ed effetto matrice.</li>
 <li><b>Aggiunte standard</b> e <b>taratura in matrice</b>: quando la matrice cambia la risposta e non c'è uno standard marcato.</li>
 </ul>
 ```
 
-Limiti di rivelabilità e di quantificazione (LOD ≈ 3,3 σ/pendenza, LOQ ≈ 10 σ/pendenza, oppure da S/N = 3 e 10), linearità e campo di lavoro si ricavano dalla retta di taratura costruita con le aree MRM (capitolo 12).
+Limiti di rivelabilità e di quantificazione (LOD ≈ 3,3 σ/pendenza, LOQ ≈ 10 σ/pendenza, oppure da S/N = 3 e 10), linearità e campo di lavoro si ricavano dalla retta di taratura costruita con le aree MRM (capitolo 10).
 
 ## GC o LC?
 
@@ -185,7 +185,7 @@ Limiti di rivelabilità e di quantificazione (LOD ≈ 3,3 σ/pendenza, LOQ ≈ 1
 
 ```html
 <div class="box key"><b>Applicazione pratica: LC-MS vs GC-MS</b>
-<p>Quando le molecole d'interesse e i rispettivi prodotti di degradazione sono specie polari o termolabili, la scelta d'elezione è la LC-ESI-MS. I prodotti di trasformazione sono in genere <em>più</em> polari del composto di partenza (capitolo 4), rendendo l'analisi in GC complessa o impraticabile senza preventiva derivatizzazione chimica.</p></div>
+<p>Quando le molecole d'interesse e i rispettivi prodotti di degradazione sono specie polari o termolabili, la scelta d'elezione è la LC-ESI-MS. I prodotti di trasformazione sono in genere <em>più</em> polari del composto di partenza (capitolo 2), rendendo l'analisi in GC complessa o impraticabile senza preventiva derivatizzazione chimica.</p></div>
 ```
 
 ```html

@@ -97,7 +97,7 @@ try:
         step("formula page: levels 3 (non-target) and 4 (fine isotopes)", hr_levels)
         pg.screenshot(path=SH + "pr_02_quadrupolo.png", full_page=True)
         def formulario():
-            pg.goto(base + "capitoli/22-formulario.html"); pg.wait_for_timeout(800)
+            pg.goto(base + "capitoli/20-formulario.html"); pg.wait_for_timeout(800)
             n = pg.locator("main .eq").count(); assert n >= 25, n
             pg.click("#hide"); assert pg.locator("main .eq.shut").count() == n
             pg.locator("main .eq.shut").first.click(); assert pg.locator("main .eq.shut").count() == n - 1

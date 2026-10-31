@@ -1,5 +1,5 @@
 <!-- title: Disegno sperimentale e rappresentazione delle strutture -->
-# Disegno sperimentale e rappresentazione delle strutture {kicker: Capitolo 20}
+# Disegno sperimentale e rappresentazione delle strutture {kicker: Capitolo 18}
 
 {.lead} Come pianificare una serie di analisi perché i risultati si possano interpretare: bianchi, controlli di qualità, repliche, taratura, ordine di iniezione. In fondo, come scrivere le strutture in un rapporto.
 
@@ -39,7 +39,7 @@ Un bianco è un campione senza l'analita. Dice da dove viene il segnale che non 
 L'ultima riga è la più importante quando si cerca un effetto. Senza questo controllo, una perdita per adsorbimento sulle pareti della vial si scambia per un effetto del trattamento.
 
 ```html
-<div class="box warn"><b>Errore frequente</b><p>Un segnale presente nel bianco, o a t0 con la stessa intensità, non è un effetto del trattamento. Va tolto dalla lista dei candidati (capitolo 12).</p></div>
+<div class="box warn"><b>Errore frequente</b><p>Un segnale presente nel bianco, o a t0 con la stessa intensità, non è un effetto del trattamento. Va tolto dalla lista dei candidati (capitolo 10).</p></div>
 ```
 
 ## Repliche
@@ -73,7 +73,7 @@ Il limite di accettazione si decide prima, nel metodo. Un QC fuori limite segnal
 
 ## Taratura
 
-La retta di taratura mette in relazione area e concentrazione (capitolo 12). Al disegno spetta decidere come prepararla.
+La retta di taratura mette in relazione area e concentrazione (capitolo 10). Al disegno spetta decidere come prepararla.
 
 ```html
 <ul>
@@ -123,7 +123,7 @@ Un esempio di sequenza. È un modello da adattare, non una regola.
 ```
 
 ```html
-<div class="box lab"><b>Registro</b><p>Per ogni corsa si annotano: nome del file, campione, replica, blocco, posizione in vial, ordine di iniezione, data, metodo e versione. Il nome del file deve permettere di ricostruire tutto questo senza aprire il file (capitolo 12).</p></div>
+<div class="box lab"><b>Registro</b><p>Per ogni corsa si annotano: nome del file, campione, replica, blocco, posizione in vial, ordine di iniezione, data, metodo e versione. Il nome del file deve permettere di ricostruire tutto questo senza aprire il file (capitolo 10).</p></div>
 ```
 
 ## Controllo prima di iniziare

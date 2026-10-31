@@ -11,8 +11,8 @@ def step(name, fn):
         steps.append((name, f"FAIL (line {ln}) " + str(e).split("\n")[0][:200]))
 IPHONE = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
 r = Run(port=8921, wd="/tmp/wdtm")
-CH = ["capitoli/03-cromatografia", "capitoli/04-lc", "capitoli/05-gc", "capitoli/06-esi", "capitoli/07-ei-ci", "capitoli/08-vuoto", "capitoli/09-quadrupolo", "capitoli/10-qqq", "capitoli/11-risoluzione",
-      "capitoli/12-dati", "capitoli/13-formula", "capitoli/14-frammentazione-esi", "capitoli/15-ei-metodo", "capitoli/16-ei-famiglie", "capitoli/17-origine", "capitoli/18-strategia", "capitoli/19-hr-dda", "capitoli/20-disegno", "capitoli/21-glossario", "capitoli/22-formulario", "index"]
+CH = ["capitoli/01-cromatografia", "capitoli/02-lc", "capitoli/03-gc", "capitoli/04-esi", "capitoli/05-ei-ci", "capitoli/06-vuoto", "capitoli/07-quadrupolo", "capitoli/08-qqq", "capitoli/09-risoluzione",
+      "capitoli/10-dati", "capitoli/11-formula", "capitoli/12-frammentazione-esi", "capitoli/13-ei-metodo", "capitoli/14-ei-famiglie", "capitoli/15-origine", "capitoli/16-strategia", "capitoli/17-hr-dda", "capitoli/18-disegno", "capitoli/19-glossario", "capitoli/20-formulario", "index"]
 try:
     with sync_playwright() as p:
         r.page(p)
@@ -29,7 +29,7 @@ try:
         cdp = ctx.new_cdp_session(q)
 
         def button():
-            q.goto(T + "capitoli/04-lc.html"); q.wait_for_selector("#cbar #menu")
+            q.goto(T + "capitoli/02-lc.html"); q.wait_for_selector("#cbar #menu")
             b = q.locator("#menu").bounding_box()
             assert b["height"] >= 44 and b["width"] > 200, b
             assert "Cromatografia liquida" in q.inner_text("#menu")
@@ -63,25 +63,25 @@ try:
         step("sheet: swipe down closes", swipe)
 
         def jump():
-            q.click("#menu"); q.click("#side a[href$='capitoli/09-quadrupolo.html']"); q.wait_for_url("**/09-quadrupolo.html")
+            q.click("#menu"); q.click("#side a[href$='capitoli/07-quadrupolo.html']"); q.wait_for_url("**/07-quadrupolo.html")
             q.wait_for_selector("#menu"); assert "Il quadrupolo" in q.inner_text("#menu") and "Il quadrupolo" in q.title()
-            q.click("#menu"); q.click("#side a[href$='capitoli/10-qqq.html']"); q.wait_for_selector("#side", state="hidden")
+            q.click("#menu"); q.click("#side a[href$='capitoli/08-qqq.html']"); q.wait_for_selector("#side", state="hidden")
             assert q.is_hidden("#side") and q.is_hidden("#sheetbg"), "sheet/backdrop stays after a chapter link"
         step("jump to a chapter and to a section; title and button follow", jump)
 
         def memory():
-            q.goto(T + "capitoli/13-formula.html"); q.wait_for_selector("#menu")
+            q.goto(T + "capitoli/11-formula.html"); q.wait_for_selector("#menu")
             h = q.evaluate("document.documentElement.scrollHeight - innerHeight"); q.evaluate(f"scrollTo(0, {int(h * 0.5)})"); frames(q, 2)
             q.evaluate("dispatchEvent(new Event('pagehide'))")
             st = q.evaluate("JSON.parse(localStorage.getItem('mzlab.teoria.pos'))")
-            assert st["last"] == "capitoli/13-formula.html" and 0.4 < st["pos"]["capitoli/13-formula.html"] < 0.6, st
-            q.goto("about:blank"); q.goto(T + "capitoli/13-formula.html"); q.wait_for_load_state("load"); q.wait_for_function("scrollY > 300")
+            assert st["last"] == "capitoli/11-formula.html" and 0.4 < st["pos"]["capitoli/11-formula.html"] < 0.6, st
+            q.goto("about:blank"); q.goto(T + "capitoli/11-formula.html"); q.wait_for_load_state("load"); q.wait_for_function("scrollY > 300")
             assert q.evaluate("scrollY") > 300, "position not restored"
-            q.goto(T + "capitoli/04-lc.html"); q.wait_for_selector("#menu"); q.click("#menu")
+            q.goto(T + "capitoli/02-lc.html"); q.wait_for_selector("#menu"); q.click("#menu")
             assert "Riprendi" in q.inner_text("#side .resume") and "formula" in q.get_attribute("#side .resume", "href")
             q.keyboard.press("Escape")
             c3, d = phone(); d.add_init_script("Object.defineProperty(window,'localStorage',{get(){throw new Error('blocked')}})")
-            d.goto(T + "capitoli/13-formula.html"); d.wait_for_selector("#menu"); d.click("#menu"); assert d.is_visible("#side"); c3.close()
+            d.goto(T + "capitoli/11-formula.html"); d.wait_for_selector("#menu"); d.click("#menu"); assert d.is_visible("#side"); c3.close()
         step("last reading position is kept and offered (storage failures tolerated)", memory)
 
         FIG = None
@@ -128,7 +128,7 @@ try:
 
         def wheel():
             c2 = r.b.new_context(viewport={"width": 1280, "height": 800}); d = c2.new_page()
-            d.goto(T + (FIG or "capitoli/03-cromatografia") + ".html"); d.wait_for_selector(".fzoom"); d.locator(".fzoom").first.click(); d.wait_for_selector("#lb:not([hidden])")
+            d.goto(T + (FIG or "capitoli/01-cromatografia") + ".html"); d.wait_for_selector(".fzoom"); d.locator(".fzoom").first.click(); d.wait_for_selector("#lb:not([hidden])")
             a = lambda: d.evaluate("new DOMMatrix(getComputedStyle(document.querySelector('.lbnode')).transform).a")
             s0 = a(); d.mouse.move(640, 400); d.mouse.wheel(0, -400); d.wait_for_function("s0 => new DOMMatrix(getComputedStyle(document.querySelector('.lbnode')).transform).a > s0", arg=s0); assert a() > s0, "wheel zoom"
             d.mouse.move(640, 400); d.mouse.down(); d.mouse.move(540, 360); d.mouse.up()
@@ -146,7 +146,7 @@ try:
 
         def contrast(scheme):
             c, d = phone(scheme)
-            d.goto(T + "capitoli/12-dati.html"); d.wait_for_selector("#menu")
+            d.goto(T + "capitoli/10-dati.html"); d.wait_for_selector("#menu")
             vals = d.evaluate("""() => { const lum = c => { const m = c.match(/[\\d.]+/g).map(Number); const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4 }; return .2126 * f(m[0]) + .7152 * f(m[1]) + .0722 * f(m[2]) };
                 const bgOf = e => { for (; e; e = e.parentElement) { const c = getComputedStyle(e).backgroundColor; if (!/rgba\\(.*, 0\\)|transparent/.test(c)) return c } return "rgb(255,255,255)" };
                 const ratio = e => { const a = lum(getComputedStyle(e).color), b = lum(bgOf(e)); return (Math.max(a, b) + .05) / (Math.min(a, b) + .05) };
@@ -161,7 +161,7 @@ try:
             c, d = phone(); tot = [0]
             d.on("response", lambda resp: tot.__setitem__(0, tot[0] + len(resp.body() or b"")) if resp.url.startswith(T[:-14]) and resp.ok else None)
             d.add_init_script("window.__lcp=0;new PerformanceObserver(l=>{for(const e of l.getEntries())window.__lcp=e.startTime}).observe({type:'largest-contentful-paint',buffered:true})")
-            for n in ("capitoli/04-lc", "capitoli/20-disegno"):
+            for n in ("capitoli/02-lc", "capitoli/18-disegno"):
                 tot[0] = 0; d.goto(T + n + ".html", wait_until="networkidle"); d.wait_for_function("window.__lcp > 0")
                 print(f"MEASURE {n} 390px: {tot[0]/1024:.0f} kB, LCP {d.evaluate('window.__lcp'):.0f} ms")
             c.close()

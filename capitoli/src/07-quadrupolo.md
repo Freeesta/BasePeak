@@ -1,6 +1,6 @@
 <!-- script: sim-quad.js -->
 <!-- title: Il quadrupolo -->
-# Il quadrupolo: la teoria vera {kicker: Capitolo 9}
+# Il quadrupolo: la teoria vera {kicker: Capitolo 7}
 
 {.lead} Quattro barre, una tensione continua e una a radiofrequenza: perché solo gli ioni di un certo m/z attraversano il filtro, da dove viene il famoso triangolo di stabilità e che cosa decide risoluzione e sensibilità.
 
@@ -18,7 +18,7 @@ Il principio è dovuto a Wolfgang Paul (premio Nobel per la fisica 1989, condivi
 Quattro barre parallele all'asse *z*, idealmente a sezione iperbolica, sono collegate a coppie opposte. A una coppia si applica +Φ~0~, all'altra −Φ~0~, con
 
 ```html
-<span class="eq">Φ<sub>0</sub>(<i>t</i>) = <i>U</i> − <i>V</i> cos Ω<i>t</i><span class="no">(9.1)</span></span>
+<span class="eq">Φ<sub>0</sub>(<i>t</i>) = <i>U</i> − <i>V</i> cos Ω<i>t</i><span class="no">(7.1)</span></span>
 ```
 
 ```html
@@ -26,14 +26,14 @@ Quattro barre parallele all'asse *z*, idealmente a sezione iperbolica, sono coll
 ```
 
 ```html
-<span class="eq">Φ(<i>x</i>, <i>y</i>, <i>t</i>) = Φ<sub>0</sub>(<i>t</i>) <span class="frac"><span><i>x</i><sup>2</sup> − <i>y</i><sup>2</sup></span><span><i>r</i><sub>0</sub><sup>2</sup></span></span><span class="no">(9.2)</span></span>
+<span class="eq">Φ(<i>x</i>, <i>y</i>, <i>t</i>) = Φ<sub>0</sub>(<i>t</i>) <span class="frac"><span><i>x</i><sup>2</sup> − <i>y</i><sup>2</sup></span><span><i>r</i><sub>0</sub><sup>2</sup></span></span><span class="no">(7.2)</span></span>
 ```
 
 È un **potenziale a sella**: lungo *x* è una parabola rivolta verso l'alto, lungo *y* verso il basso (o viceversa, mezzo periodo RF dopo). Il campo è lineare nelle coordinate e non ha componente lungo *z*: lo ione viaggia lungo l'asse con l'energia cinetica con cui è entrato (pochi eV), mentre nel piano *x*–*y* viene spinto avanti e indietro.
 
 ```html
 <figure>
-<svg viewBox="0 0 360 360" style="max-width:420px;margin:auto" role="img" aria-label="Sezione del quadrupolo: quattro barre iperboliche, due a +Φ₀ ai lati e due a −Φ₀ sopra e sotto, con linee equipotenziali" aria-describedby="fd-09-0">
+<svg viewBox="0 0 360 360" style="max-width:420px;margin:auto" role="img" aria-label="Sezione del quadrupolo: quattro barre iperboliche, due a +Φ₀ ai lati e due a −Φ₀ sopra e sotto, con linee equipotenziali" aria-describedby="fd-07-0">
 <style>.eqp{fill:none;stroke:#c2410c;stroke-opacity:.45;stroke-width:1.2}.eqn{fill:none;stroke:#2b5c8a;stroke-opacity:.45;stroke-width:1.2}.tx{font:600 13px system-ui,sans-serif;fill:#fff}.lb{font:12px system-ui,sans-serif;fill:#24231f}</style>
 <rect width="360" height="360" fill="#fff"/>
 <path d="M351.6,12.0 L348.9,14.8 L346.1,17.6 L343.4,20.4 L340.7,23.2 L337.9,26.0 L335.2,28.8 L332.5,31.6 L329.7,34.4 L327.0,37.2 L324.3,40.0 L321.6,42.8 L318.9,45.6 L316.2,48.4 L313.5,51.2 L310.8,54.0 L308.1,56.8 L305.4,59.6 L302.7,62.4 L300.0,65.2 L297.3,68.0 L294.7,70.8 L292.0,73.6 L289.4,76.4 L286.7,79.2 L284.1,82.0 L281.4,84.8 L278.8,87.6 L276.2,90.4 L273.6,93.2 L271.0,96.0 L268.4,98.8 L265.9,101.6 L263.3,104.4 L260.8,107.2 L258.3,110.0 L255.8,112.8 L253.3,115.6 L250.8,118.4 L248.4,121.2 L246.0,124.0 L243.7,126.8 L241.4,129.6 L239.1,132.4 L236.9,135.2 L234.7,138.0 L232.6,140.8 L230.5,143.6 L228.5,146.4 L226.6,149.2 L224.8,152.0 L223.1,154.8 L221.6,157.6 L220.1,160.4 L218.8,163.2 L217.7,166.0 L216.7,168.8 L216.0,171.6 L215.4,174.4 L215.1,177.2 L215.0,180.0 L215.1,182.8 L215.4,185.6 L216.0,188.4 L216.7,191.2 L217.7,194.0 L218.8,196.8 L220.1,199.6 L221.6,202.4 L223.1,205.2 L224.8,208.0 L226.6,210.8 L228.5,213.6 L230.5,216.4 L232.6,219.2 L234.7,222.0 L236.9,224.8 L239.1,227.6 L241.4,230.4 L243.7,233.2 L246.0,236.0 L248.4,238.8 L250.8,241.6 L253.3,244.4 L255.8,247.2 L258.3,250.0 L260.8,252.8 L263.3,255.6 L265.9,258.4 L268.4,261.2 L271.0,264.0 L273.6,266.8 L276.2,269.6 L278.8,272.4 L281.4,275.2 L284.1,278.0 L286.7,280.8 L289.4,283.6 L292.0,286.4 L294.7,289.2 L297.3,292.0 L300.0,294.8 L302.7,297.6 L305.4,300.4 L308.1,303.2 L310.8,306.0 L313.5,308.8 L316.2,311.6 L318.9,314.4 L321.6,317.2 L324.3,320.0 L327.0,322.8 L329.7,325.6 L332.5,328.4 L335.2,331.2 L337.9,334.0 L340.7,336.8 L343.4,339.6 L346.1,342.4 L348.9,345.2 L351.6,348.0" class="eqp"/>
@@ -56,8 +56,8 @@ Quattro barre parallele all'asse *z*, idealmente a sezione iperbolica, sono coll
 <path d="M180 180 L242 147" stroke="#24231f"/><text class="lb" x="214" y="150">r₀</text>
 <text class="tx" x="306" y="185">+Φ₀</text><text class="tx" x="20" y="185">+Φ₀</text><text class="tx" x="166" y="30">−Φ₀</text><text class="tx" x="166" y="345">−Φ₀</text>
 <path d="M180 180 h40 M180 180 v-40" stroke="#24231f" stroke-width="1.2"/><text class="lb" x="222" y="194">x</text><text class="lb" x="186" y="140">y</text>
-</svg><details class="figdesc" id="fd-09-0"><summary>Descrizione della figura</summary><p>Quattro barre a profilo iperbolico intorno a un cerchio tratteggiato di raggio r₀; al centro gli assi x (orizzontale) e y (verticale). Le barre a sinistra e a destra, lungo x, sono a +Φ₀; quelle in alto e in basso, lungo y, a −Φ₀. Linee curve arancioni intorno alle barre +Φ₀ e azzurre intorno alle −Φ₀ mostrano le superfici equipotenziali.</p></details>
-<figcaption><b>Figura 9.1</b> Sezione di un quadrupolo ideale. Le superfici delle barre sono le iperboli <i>x</i><sup>2</sup> − <i>y</i><sup>2</sup> = ±<i>r</i><sub>0</sub><sup>2</sup>; le linee sottili sono equipotenziali (iperboli anch'esse). Le barre reali sono spesso cilindriche, con raggio ≈ 1,13–1,15 <i>r</i><sub>0</sub>, che approssima bene il campo vicino all'asse.</figcaption>
+</svg><details class="figdesc" id="fd-07-0"><summary>Descrizione della figura</summary><p>Quattro barre a profilo iperbolico intorno a un cerchio tratteggiato di raggio r₀; al centro gli assi x (orizzontale) e y (verticale). Le barre a sinistra e a destra, lungo x, sono a +Φ₀; quelle in alto e in basso, lungo y, a −Φ₀. Linee curve arancioni intorno alle barre +Φ₀ e azzurre intorno alle −Φ₀ mostrano le superfici equipotenziali.</p></details>
+<figcaption><b>Figura 7.1</b> Sezione di un quadrupolo ideale. Le superfici delle barre sono le iperboli <i>x</i><sup>2</sup> − <i>y</i><sup>2</sup> = ±<i>r</i><sub>0</sub><sup>2</sup>; le linee sottili sono equipotenziali (iperboli anch'esse). Le barre reali sono spesso cilindriche, con raggio ≈ 1,13–1,15 <i>r</i><sub>0</sub>, che approssima bene il campo vicino all'asse.</figcaption>
 </figure>
 ```
 
@@ -71,7 +71,7 @@ Quattro barre parallele all'asse *z*, idealmente a sezione iperbolica, sono coll
 Dal potenziale si ricava il campo, *E*~*x*~ = −∂Φ/∂*x* = −2Φ~0~*x*/*r*~0~^2^ ed *E*~*y*~ = +2Φ~0~*y*/*r*~0~^2^, e con *F* = *ze E* la seconda legge di Newton:
 
 ```html
-<span class="eq"><i>m</i> <span class="frac"><span>d<sup>2</sup><i>x</i></span><span>d<i>t</i><sup>2</sup></span></span> + <span class="frac"><span>2<i>ze</i></span><span><i>r</i><sub>0</sub><sup>2</sup></span></span>(<i>U</i> − <i>V</i> cos Ω<i>t</i>) <i>x</i> = 0, &nbsp;&nbsp; <i>m</i> <span class="frac"><span>d<sup>2</sup><i>y</i></span><span>d<i>t</i><sup>2</sup></span></span> − <span class="frac"><span>2<i>ze</i></span><span><i>r</i><sub>0</sub><sup>2</sup></span></span>(<i>U</i> − <i>V</i> cos Ω<i>t</i>) <i>y</i> = 0<span class="no">(9.3)</span></span>
+<span class="eq"><i>m</i> <span class="frac"><span>d<sup>2</sup><i>x</i></span><span>d<i>t</i><sup>2</sup></span></span> + <span class="frac"><span>2<i>ze</i></span><span><i>r</i><sub>0</sub><sup>2</sup></span></span>(<i>U</i> − <i>V</i> cos Ω<i>t</i>) <i>x</i> = 0, &nbsp;&nbsp; <i>m</i> <span class="frac"><span>d<sup>2</sup><i>y</i></span><span>d<i>t</i><sup>2</sup></span></span> − <span class="frac"><span>2<i>ze</i></span><span><i>r</i><sub>0</sub><sup>2</sup></span></span>(<i>U</i> − <i>V</i> cos Ω<i>t</i>) <i>y</i> = 0<span class="no">(7.3)</span></span>
 ```
 
 ```html
@@ -79,19 +79,19 @@ Dal potenziale si ricava il campo, *E*~*x*~ = −∂Φ/∂*x* = −2Φ~0~*x*/*r*
 ```
 
 ```html
-<span class="eq"><i>a</i><sub><i>x</i></sub> = −<i>a</i><sub><i>y</i></sub> = <span class="frac"><span>8 <i>ze U</i></span><span><i>m</i> <i>r</i><sub>0</sub><sup>2</sup> Ω<sup>2</sup></span></span>, &nbsp;&nbsp;&nbsp; <i>q</i><sub><i>x</i></sub> = −<i>q</i><sub><i>y</i></sub> = <span class="frac"><span>4 <i>ze V</i></span><span><i>m</i> <i>r</i><sub>0</sub><sup>2</sup> Ω<sup>2</sup></span></span><span class="no">(9.4–9.5)</span></span>
+<span class="eq"><i>a</i><sub><i>x</i></sub> = −<i>a</i><sub><i>y</i></sub> = <span class="frac"><span>8 <i>ze U</i></span><span><i>m</i> <i>r</i><sub>0</sub><sup>2</sup> Ω<sup>2</sup></span></span>, &nbsp;&nbsp;&nbsp; <i>q</i><sub><i>x</i></sub> = −<i>q</i><sub><i>y</i></sub> = <span class="frac"><span>4 <i>ze V</i></span><span><i>m</i> <i>r</i><sub>0</sub><sup>2</sup> Ω<sup>2</sup></span></span><span class="no">(7.4–7.5)</span></span>
 ```
 
 entrambe le equazioni assumono la forma canonica dell'**equazione di Mathieu** (1868):
 
 ```html
-<span class="eq"><span class="frac"><span>d<sup>2</sup><i>u</i></span><span>dξ<sup>2</sup></span></span> + (<i>a</i><sub><i>u</i></sub> − 2<i>q</i><sub><i>u</i></sub> cos 2ξ) <i>u</i> = 0, &nbsp;&nbsp; <i>u</i> = <i>x</i>, <i>y</i><span class="no">(9.6)</span></span>
+<span class="eq"><span class="frac"><span>d<sup>2</sup><i>u</i></span><span>dξ<sup>2</sup></span></span> + (<i>a</i><sub><i>u</i></sub> − 2<i>q</i><sub><i>u</i></sub> cos 2ξ) <i>u</i> = 0, &nbsp;&nbsp; <i>u</i> = <i>x</i>, <i>y</i><span class="no">(7.6)</span></span>
 ```
 
 ```html
 <div class="box math"><b>Perché è un risultato potente</b>
 <p>Tutta la fisica (massa, carica, tensioni, dimensioni, frequenza) è riassunta in due numeri adimensionali, <i>a</i> e <i>q</i>. Due ioni con lo stesso (<i>a</i>, <i>q</i>) hanno traiettorie identiche in ξ, qualunque siano m/z e strumento. Notate anche che <i>a</i> e <i>q</i> sono entrambi proporzionali a <i>z</i>/<i>m</i>: a tensioni fissate, ioni più pesanti hanno <i>a</i> e <i>q</i> più piccoli. E il loro rapporto</p>
-<span class="eq"><span class="frac"><span><i>a</i></span><span><i>q</i></span></span> = <span class="frac"><span>2<i>U</i></span><span><i>V</i></span></span><span class="no">(9.7)</span></span>
+<span class="eq"><span class="frac"><span><i>a</i></span><span><i>q</i></span></span> = <span class="frac"><span>2<i>U</i></span><span><i>V</i></span></span><span class="no">(7.7)</span></span>
 <p>non dipende dalla massa: a <i>U</i>/<i>V</i> fissato, tutti gli ioni stanno sulla stessa retta per l'origine del piano (<i>q</i>, <i>a</i>), ciascuno in un punto diverso (la <b>retta di lavoro</b> o <i>scan line</i>).</p></div>
 ```
 
@@ -99,7 +99,7 @@ entrambe le equazioni assumono la forma canonica dell'**equazione di Mathieu** (
 
 ### Soluzioni stabili e instabili
 
-Per la teoria di Floquet, le soluzioni dell'equazione 9.6 sono di due soli tipi, e quale dei due dipende _solo_ da (*a*, *q*), non dalle condizioni iniziali:
+Per la teoria di Floquet, le soluzioni dell'equazione 7.6 sono di due soli tipi, e quale dei due dipende _solo_ da (*a*, *q*), non dalle condizioni iniziali:
 
 ```html
 <ul>
@@ -111,7 +111,7 @@ Per la teoria di Floquet, le soluzioni dell'equazione 9.6 sono di due soli tipi,
 Uno ione attraversa il filtro solo se è stabile _sia_ in *x* _sia_ in *y*. Sovrapponendo le regioni di stabilità per *x* (parametri *a*, *q*) e per *y* (parametri −*a*, −*q*) si ottengono le regioni di stabilità comune; quella usata in pratica è la prima, a forma di triangolo curvilineo, con il vertice in
 
 ```html
-<span class="eq"><i>q</i> = 0,706, &nbsp;&nbsp; <i>a</i> = 0,237 &nbsp;&nbsp; (<i>U</i>/<i>V</i> = 0,168)<span class="no">(9.8)</span></span>
+<span class="eq"><i>q</i> = 0,706, &nbsp;&nbsp; <i>a</i> = 0,237 &nbsp;&nbsp; (<i>U</i>/<i>V</i> = 0,168)<span class="no">(7.8)</span></span>
 ```
 
 ### L'intuizione fisica
@@ -141,11 +141,11 @@ Prima della matematica, conviene capire perché il quadrupolo è un filtro _pass
 ### Come si ottiene lo spettro
 
 ```html
-<p>Dall'equazione 9.5, lo ione che sta in un certo punto <i>q</i>* della finestra ha</p>
+<p>Dall'equazione 7.5, lo ione che sta in un certo punto <i>q</i>* della finestra ha</p>
 ```
 
 ```html
-<span class="eq"><span class="frac"><span><i>m</i></span><span><i>z</i></span></span> = <span class="frac"><span>4 <i>e</i></span><span><i>q</i>* <i>r</i><sub>0</sub><sup>2</sup> Ω<sup>2</sup></span></span> <i>V</i><span class="no">(9.9)</span></span>
+<span class="eq"><span class="frac"><span><i>m</i></span><span><i>z</i></span></span> = <span class="frac"><span>4 <i>e</i></span><span><i>q</i>* <i>r</i><sub>0</sub><sup>2</sup> Ω<sup>2</sup></span></span> <i>V</i><span class="no">(7.9)</span></span>
 ```
 
 cioè il m/z trasmesso è **proporzionale a *V***. Aumentando linearmente *V* (e *U* insieme, per mantenere il rapporto) la finestra scorre lungo la scala delle masse: i diversi ioni diventano stabili uno dopo l'altro e il rivelatore registra lo spettro. Di qui una scala di massa lineare e una calibrazione semplice, fatta con ioni noti (per gli strumenti SCIEX, soluzioni di polipropilenglicoli, PPG).
@@ -177,7 +177,7 @@ Più la retta si avvicina al vertice, più il tratto stabile è corto: la finest
 ### Limite superiore di massa
 
 ```html
-<p>Dall'equazione 9.9 con <i>q</i>* ≈ 0,706, la massa massima è fissata dalla <i>V</i> massima che l'elettronica può erogare: <i>m</i><sub>max</sub> ∝ <i>V</i><sub>max</sub>/(<i>r</i><sub>0</sub><sup>2</sup> Ω<sup>2</sup>). Si estende riducendo <i>r</i><sub>0</sub> o la frequenza, a spese di accettanza o risoluzione. Per i tripli quadrupoli tipici il limite è tra 1000 e 3000 m/z, più che sufficiente per le piccole molecole.</p>
+<p>Dall'equazione 7.9 con <i>q</i>* ≈ 0,706, la massa massima è fissata dalla <i>V</i> massima che l'elettronica può erogare: <i>m</i><sub>max</sub> ∝ <i>V</i><sub>max</sub>/(<i>r</i><sub>0</sub><sup>2</sup> Ω<sup>2</sup>). Si estende riducendo <i>r</i><sub>0</sub> o la frequenza, a spese di accettanza o risoluzione. Per i tripli quadrupoli tipici il limite è tra 1000 e 3000 m/z, più che sufficiente per le piccole molecole.</p>
 ```
 
 ## Il quadrupolo "solo RF"
@@ -187,7 +187,7 @@ Più la retta si avvicina al vertice, più il tratto stabile è corto: la finest
 ```
 
 ```html
-<span class="eq"><i>D</i> ≈ <span class="frac"><span><i>q V</i></span><span>4</span></span> &nbsp;(in volt), &nbsp;&nbsp; valida per <i>q</i> ≲ 0,4<span class="no">(9.10)</span></span>
+<span class="eq"><i>D</i> ≈ <span class="frac"><span><i>q V</i></span><span>4</span></span> &nbsp;(in volt), &nbsp;&nbsp; valida per <i>q</i> ≲ 0,4<span class="no">(7.10)</span></span>
 ```
 
 Ioni molto pesanti (*q* piccolo) sono confinati debolmente. Questo è il principio delle guide di ioni (Q0) e delle celle di collisione (q2): gli ioni, deviati dagli urti, vengono riportati verso l'asse invece di andare persi. È la "q" minuscola di QqQ.
@@ -204,7 +204,7 @@ Ioni molto pesanti (*q* piccolo) sono confinati debolmente. Questo è il princip
 <ul>
 <li><b>Risoluzione unitaria</b>: Q1 e Q3 lavorano tipicamente a risoluzione unitaria (FWHM ≈ 0,7 Da). Ogni picco nello spettro ha una larghezza di quasi un'unità di massa: si risolvono M, M+1, M+2, ma non si ottiene la massa accurata necessaria per risalire direttamente alla formula elementare.</li>
 <li><b>Calibrazione dell'asse m/z</b>: può capitare che l'asse di massa mostri un lieve offset sperimentale rispetto al valore teorico esatto. È un fattore strumentale da considerare quando si estraggono i cromatogrammi XIC, impostando tolleranze adeguate (es. ±0,5 o ±1 Da).</li>
-<li><b>Velocità di scansione</b>: una scansione completa da m/z 100 a 1000 dura tipicamente poche centinaia di millisecondi; il tempo effettivo dedicato a ciascuna frazione di m/z è solo una piccola quota del ciclo totale (capitolo 10).</li>
+<li><b>Velocità di scansione</b>: una scansione completa da m/z 100 a 1000 dura tipicamente poche centinaia di millisecondi; il tempo effettivo dedicato a ciascuna frazione di m/z è solo una piccola quota del ciclo totale (capitolo 8).</li>
 <li><b>Configurazioni ibride (QTRAP)</b>: negli strumenti QTRAP, Q3 può funzionare alternativamente sia come quadrupolo a trasmissione sia come trappola ionica lineare (modalità "enhanced").</li>
 </ul></div>
 ```
@@ -212,7 +212,7 @@ Ioni molto pesanti (*q* piccolo) sono confinati debolmente. Questo è il princip
 ## Verifica
 
 ??? Raddoppiate V e U mantenendo il rapporto. Che cosa succede alla massa trasmessa?
-Raddoppia (eq. 9.9): la finestra si sposta a m/z doppio. La larghezza relativa (R) non cambia perché la retta di lavoro è la stessa.
+Raddoppia (eq. 7.9): la finestra si sposta a m/z doppio. La larghezza relativa (R) non cambia perché la retta di lavoro è la stessa.
 
 ```html
 <details class="q"><summary>Perché un quadrupolo "solo RF" non separa le masse ma è indispensabile nella cella di collisione?</summary>

@@ -1,4 +1,4 @@
-/* mzLab - Teoria: «Massa e addotti» (chapters 6 and 13). From a formula: nominal and monoisotopic mass atom by atom, then [M+H]+, [M+Na]+, [M−H]−.
+/* mzLab - Teoria: «Massa e addotti» (chapters 4 and 11). From a formula: nominal and monoisotopic mass atom by atom, then [M+H]+, [M+Na]+, [M−H]−.
    Only the arithmetic, shown step by step: no identification. Formula parser and masses are PAL.parse / PAL.exact (pratica/motore.js, masse.js). */
 "use strict";
 (function () {

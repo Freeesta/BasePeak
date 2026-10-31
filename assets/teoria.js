@@ -16,27 +16,27 @@ const SITE = (() => {
 (window.TEORIA = window.TEORIA || {}).sito = SITE;
 const CHAPTERS = [
   ["index.html", "0", "Introduzione e mappa del percorso", "Guida"],
-  ["capitoli/03-cromatografia.html", "3", "Fondamenti di cromatografia", "II. Separare"],
-  ["capitoli/04-lc.html", "4", "Cromatografia liquida (HPLC)", "II. Separare"],
-  ["capitoli/05-gc.html", "5", "Gascromatografia (GC)", "II. Separare"],
-  ["capitoli/06-esi.html", "6", "Elettrospray (ESI) e sorgenti a pressione atmosferica", "III. Ionizzare"],
-  ["capitoli/07-ei-ci.html", "7", "Ionizzazione elettronica (EI) e chimica (CI)", "III. Ionizzare"],
-  ["capitoli/08-vuoto.html", "8", "Dalla sorgente al vuoto", "III. Ionizzare"],
-  ["capitoli/09-quadrupolo.html", "9", "Il quadrupolo: teoria", "IV. Analizzare gli ioni"],
-  ["capitoli/10-qqq.html", "10", "Il triplo quadrupolo e la CID", "IV. Analizzare gli ioni"],
-  ["capitoli/11-risoluzione.html", "11", "Risoluzione e alta risoluzione: TOF, Orbitrap", "IV. Analizzare gli ioni"],
-  ["capitoli/12-dati.html", "12", "I dati: file, scansioni e modi di acquisizione", "V. Leggere gli spettri"],
-  ["capitoli/13-formula.html", "13", "Dalla massa alla formula", "V. Leggere gli spettri"],
-  ["capitoli/14-frammentazione-esi.html", "14", "Frammentazione in CID (ioni a elettroni pari)", "V. Leggere gli spettri"],
-  ["capitoli/15-ei-metodo.html", "15", "Risolvere uno spettro EI: il metodo", "V. Leggere gli spettri"],
-  ["capitoli/16-ei-famiglie.html", "16", "Le famiglie di composti in EI", "V. Leggere gli spettri"],
-  ["capitoli/17-origine.html", "17", "Da dove viene questo ione?", "V. Leggere gli spettri"],
-  ["capitoli/18-strategia.html", "18", "Strategia per trovare i TP", "VI. Dal dato al risultato"],
-  ["capitoli/19-hr-dda.html", "19", "Alta risoluzione e DDA nel programma", "VI. Dal dato al risultato"],
-  ["capitoli/20-disegno.html", "20", "Disegno sperimentale e strutture", "VI. Dal dato al risultato"],
-  ["capitoli/21-glossario.html", "21", "Glossario e bibliografia", "Appendice"],
-  ["capitoli/22-formulario.html", "22", "Formulario", "Appendice"],
-  ["capitoli/23-tempi.html", "23", "Tempi degli analizzatori: dwell time, sweep e duty cycle", "Appendice"],
+  ["capitoli/01-cromatografia.html", "1", "Fondamenti di cromatografia", "II. Separare"],
+  ["capitoli/02-lc.html", "2", "Cromatografia liquida (HPLC)", "II. Separare"],
+  ["capitoli/03-gc.html", "3", "Gascromatografia (GC)", "II. Separare"],
+  ["capitoli/04-esi.html", "4", "Elettrospray (ESI) e sorgenti a pressione atmosferica", "III. Ionizzare"],
+  ["capitoli/05-ei-ci.html", "5", "Ionizzazione elettronica (EI) e chimica (CI)", "III. Ionizzare"],
+  ["capitoli/06-vuoto.html", "6", "Dalla sorgente al vuoto", "III. Ionizzare"],
+  ["capitoli/07-quadrupolo.html", "7", "Il quadrupolo: teoria", "IV. Analizzare gli ioni"],
+  ["capitoli/08-qqq.html", "8", "Il triplo quadrupolo e la CID", "IV. Analizzare gli ioni"],
+  ["capitoli/09-risoluzione.html", "9", "Risoluzione e alta risoluzione: TOF, Orbitrap", "IV. Analizzare gli ioni"],
+  ["capitoli/10-dati.html", "10", "I dati: file, scansioni e modi di acquisizione", "V. Leggere gli spettri"],
+  ["capitoli/11-formula.html", "11", "Dalla massa alla formula", "V. Leggere gli spettri"],
+  ["capitoli/12-frammentazione-esi.html", "12", "Frammentazione in CID (ioni a elettroni pari)", "V. Leggere gli spettri"],
+  ["capitoli/13-ei-metodo.html", "13", "Risolvere uno spettro EI: il metodo", "V. Leggere gli spettri"],
+  ["capitoli/14-ei-famiglie.html", "14", "Le famiglie di composti in EI", "V. Leggere gli spettri"],
+  ["capitoli/15-origine.html", "15", "Da dove viene questo ione?", "V. Leggere gli spettri"],
+  ["capitoli/16-strategia.html", "16", "Strategia per trovare i TP", "VI. Dal dato al risultato"],
+  ["capitoli/17-hr-dda.html", "17", "Alta risoluzione e DDA nel programma", "VI. Dal dato al risultato"],
+  ["capitoli/18-disegno.html", "18", "Disegno sperimentale e strutture", "VI. Dal dato al risultato"],
+  ["capitoli/19-glossario.html", "19", "Glossario e bibliografia", "Appendice"],
+  ["capitoli/20-formulario.html", "20", "Formulario", "Appendice"],
+  ["capitoli/21-tempi.html", "21", "Tempi degli analizzatori: dwell time, sweep e duty cycle", "Appendice"],
   ["pratica/index.html", "P", "Esercizi e autoverifica", "Pratica"],
   ["pratica/ei.html", "P1", "Dallo spettro alla struttura", "Pratica"],
   ["pratica/orale.html", "P2", "Domande di ripasso", "Pratica"],
@@ -77,7 +77,7 @@ const TP = (() => {
   const $ = (q, el = document) => el.querySelector(q);
   const here = SITE.here;
   const idx = Math.max(0, CHAPTERS.findIndex(c => c[0] === here));
-  // theory/#5, theory/#cap-5, theory/#A, theory/#09-quadrupolo: the index page forwards to that chapter (one address per chapter without rewriting URLs)
+  // theory/#5, theory/#cap-5, theory/#A, theory/#07-quadrupolo: the index page forwards to that chapter (one address per chapter without rewriting URLs)
   if (here === "index.html") {
     const k = location.hash.slice(1).toLowerCase().replace(/^cap-?/, "");
     const hit = k && CHAPTERS.find(c => c[0] !== "index.html" && (c[1].toLowerCase() === k || c[0].replace(/^.*\//, "").replace(".html", "") === k));
@@ -184,7 +184,7 @@ const TP = (() => {
       // header: logo, Teoria, info; it goes away scrolling down and comes back scrolling up (more room for the text, above all in landscape)
       top.insertAdjacentHTML("beforeend", `<button id="info" type="button" aria-label="Informazioni" title="Informazioni">i</button>`);
       const note = document.createElement("div"); note.id = "phnote"; note.className = "box warn"; note.hidden = true;
-      note.innerHTML = `<p>${PHONE_NOTE}</p><p><a href="${SITE.up}index.html">Indice della Teoria</a> · <a href="${SITE.up}capitoli/22-formulario.html">Formulario</a> · <a href="${SITE.up}pratica/orale.html">Domande di ripasso</a></p>`;
+      note.innerHTML = `<p>${PHONE_NOTE}</p><p><a href="${SITE.up}index.html">Indice della Teoria</a> · <a href="${SITE.up}capitoli/20-formulario.html">Formulario</a> · <a href="${SITE.up}pratica/orale.html">Domande di ripasso</a></p>`;
       $("main").prepend(note);
       $("#info").onclick = () => { note.hidden = !note.hidden; if (!note.hidden) scrollTo({ top: 0, behavior: "smooth" }); };
       let y0 = scrollY;
@@ -192,7 +192,7 @@ const TP = (() => {
     }
     if (NOEX) {
       document.body.classList.add("noex");
-      $("h1").insertAdjacentHTML("afterend", `<div class="box warn phex"><b>Gli esercizi si fanno da computer o da tablet</b><p>Questo gioco ha bisogno di uno schermo più grande (grafici da cliccare, editor delle strutture). Dal telefono potete ripassare con la Teoria, il formulario e le domande di ripasso.</p><p><a href="${SITE.up}index.html">Indice della Teoria</a> · <a href="${SITE.up}capitoli/22-formulario.html">Formulario</a> · <a href="${SITE.up}pratica/orale.html">Domande di ripasso</a></p></div>`);
+      $("h1").insertAdjacentHTML("afterend", `<div class="box warn phex"><b>Gli esercizi si fanno da computer o da tablet</b><p>Questo gioco ha bisogno di uno schermo più grande (grafici da cliccare, editor delle strutture). Dal telefono potete ripassare con la Teoria, il formulario e le domande di ripasso.</p><p><a href="${SITE.up}index.html">Indice della Teoria</a> · <a href="${SITE.up}capitoli/20-formulario.html">Formulario</a> · <a href="${SITE.up}pratica/orale.html">Domande di ripasso</a></p></div>`);
     } else if (here === "pratica/index.html") {
       $("h1").insertAdjacentHTML("afterend", `<div class="box warn phex"><b>Dal telefono</b><p>I giochi si fanno da computer o da tablet; dal telefono funzionano le <a href="${SITE.up}pratica/orale.html">domande di ripasso</a>.</p></div>`);
     }
@@ -334,10 +334,10 @@ const TP = (() => {
 
 
   // ---------------------------------------------------------------- glossary hints
-  // Every glossary term (glossario-dati.js, generated from 21-glossario.html by tools/genera_glossario.py) found in the text gets a dotted
+  // Every glossary term (glossario-dati.js, generated from 19-glossario.html by tools/genera_glossario.py) found in the text gets a dotted
   // underline; the mouse over it (or focus / tap) shows the short definition and a link to its chapter.
   function glossary() {
-    if (here === "capitoli/21-glossario.html") return;
+    if (here === "capitoli/19-glossario.html") return;
     const s = document.createElement("script"); s.src = SITE.assets + "glossario-dati.js"; s.onload = () => { try { markTerms(GLOSSARIO); } catch (_) { /* hints are optional */ } };
     document.head.appendChild(s);
   }

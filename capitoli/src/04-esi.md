@@ -1,6 +1,6 @@
 <!-- script: sim-esi.js -->
 <!-- title: Elettrospray -->
-# Elettrospray (ESI) e sorgenti a pressione atmosferica {kicker: Capitolo 6}
+# Elettrospray (ESI) e sorgenti a pressione atmosferica {kicker: Capitolo 4}
 
 {.lead} Come una soluzione che esce da una colonna a pressione atmosferica diventa un fascio di ioni isolati in fase gas, e perché questo passaggio decide che cosa vedrete (e che cosa non vedrete) nei dati.
 
@@ -8,13 +8,13 @@
 
 Un flusso HPLC di 0,3 mL/min di acqua corrisponde, vaporizzato, a circa 0,4 L/min di vapore: troppo per il sistema da vuoto di uno spettrometro. Inoltre le molecole che separiamo in LC sono spesso polari, poco volatili e termolabili: non si possono semplicemente evaporare e ionizzare per impatto elettronico come in GC-MS. Le sorgenti a **pressione atmosferica** (API: ESI, APCI, APPI) risolvono entrambi i problemi: formano gli ioni fuori dal vuoto e lasciano entrare solo una piccola frazione del gas, ricca di ioni.
 
-L'ESI, sviluppata per l'analisi di macromolecole da John Fenn (premio Nobel per la chimica 2002), è oggi la sorgente di gran lunga più usata in LC-MS. È una ionizzazione **soft**: produce quasi solo lo ione molecolare (protonato o cationizzato), con poca o nessuna frammentazione. Per avere informazioni strutturali bisogna frammentare dopo, nella cella di collisione (capitolo 10).
+L'ESI, sviluppata per l'analisi di macromolecole da John Fenn (premio Nobel per la chimica 2002), è oggi la sorgente di gran lunga più usata in LC-MS. È una ionizzazione **soft**: produce quasi solo lo ione molecolare (protonato o cationizzato), con poca o nessuna frammentazione. Per avere informazioni strutturali bisogna frammentare dopo, nella cella di collisione (capitolo 8).
 
 ## La sorgente
 
 ```html
 <figure>
-<svg viewBox="0 0 880 380" role="img" aria-label="Schema della sorgente elettrospray: capillare, gocce che evaporano, piastra di tenda, orifizio e guida di ioni Q0" aria-describedby="fd-06-0">
+<svg viewBox="0 0 880 380" role="img" aria-label="Schema della sorgente elettrospray: capillare, gocce che evaporano, piastra di tenda, orifizio e guida di ioni Q0" aria-describedby="fd-04-0">
 <defs><marker id="m4o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#b45309"/></marker><marker id="m4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#2b5c8a"/></marker>
 <marker id="m4g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#047857"/></marker>
 <radialGradient id="pl" cx="0" cy="0.5" r="1"><stop offset="0" stop-color="#c2410c" stop-opacity=".35"/><stop offset="1" stop-color="#c2410c" stop-opacity="0"/></radialGradient></defs>
@@ -47,8 +47,8 @@ L'ESI, sviluppata per l'analisi di macromolecole da John Fenn (premio Nobel per 
 <path d="M440 300 H860" stroke="#c2410c" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/>
 <text class="s" x="610" y="352">EP: entrance potential → verso Q1</text>
 <text class="s" x="560" y="120">pressione:</text><text class="l" x="560" y="138">760 Torr → ~1 Torr → mTorr</text>
-</svg><details class="figdesc" id="fd-06-0"><summary>Descrizione della figura</summary><p>A sinistra il capillare (IS = +5500 V) con l'eluente e il gas di nebulizzazione GS1; sotto, le gocce cariche che evaporano, subiscono fissioni e diventano ioni. Frecce di GS2 (gas riscaldato, TEM) puntano verso le gocce. A destra: piastra di tenda con CUR (N₂ verso la sorgente), orifizio (DP), poi la guida di ioni RF Q0 (EP, verso Q1). Pressione: 760 Torr → ~1 Torr → mTorr.</p></details>
-<figcaption><b>Figura 6.1</b> Sorgente elettrospray con geometria ortogonale, come quella SCIEX del laboratorio (schema non in scala). L'eluente esce da un capillare ad alta tensione; il gas di nebulizzazione e quello riscaldato aiutano a formare ed evaporare le gocce; il gas di tenda, che esce dall'apertura verso la sorgente, lascia passare gli ioni (spinti dal campo elettrico) ma respinge solvente, gocce non evaporate e neutri.</figcaption>
+</svg><details class="figdesc" id="fd-04-0"><summary>Descrizione della figura</summary><p>A sinistra il capillare (IS = +5500 V) con l'eluente e il gas di nebulizzazione GS1; sotto, le gocce cariche che evaporano, subiscono fissioni e diventano ioni. Frecce di GS2 (gas riscaldato, TEM) puntano verso le gocce. A destra: piastra di tenda con CUR (N₂ verso la sorgente), orifizio (DP), poi la guida di ioni RF Q0 (EP, verso Q1). Pressione: 760 Torr → ~1 Torr → mTorr.</p></details>
+<figcaption><b>Figura 4.1</b> Sorgente elettrospray con geometria ortogonale, come quella SCIEX del laboratorio (schema non in scala). L'eluente esce da un capillare ad alta tensione; il gas di nebulizzazione e quello riscaldato aiutano a formare ed evaporare le gocce; il gas di tenda, che esce dall'apertura verso la sorgente, lascia passare gli ioni (spinti dal campo elettrico) ma respinge solvente, gocce non evaporate e neutri.</figcaption>
 </figure>
 ```
 
@@ -80,7 +80,7 @@ Il capillare ad alcuni kV, a pochi millimetri dal controelettrodo, genera un cam
 Una goccia carica evapora a carica (quasi) costante: la densità di carica superficiale cresce finché la repulsione coulombiana eguaglia la tensione superficiale. È il **limite di Rayleigh**:
 
 ```html
-<span class="eq"><i>q</i><sub>R</sub> = 8π (ε<sub>0</sub> γ <i>R</i><sup>3</sup>)<sup>1/2</sup><span class="no">(6.1)</span></span>
+<span class="eq"><i>q</i><sub>R</sub> = 8π (ε<sub>0</sub> γ <i>R</i><sup>3</sup>)<sup>1/2</sup><span class="no">(4.1)</span></span>
 ```
 
 con γ tensione superficiale, *R* raggio, ε~0~ permittività del vuoto. Poco prima di raggiungerlo (circa al 70–90%) la goccia diventa instabile ed espelle una scia di goccioline figlie molto più piccole, che portano via circa il **2% della massa ma il 15% della carica** (Kebarle & Verkerk, 2009). Le figlie hanno quindi un rapporto carica/massa molto più alto della madre e ripetono rapidamente il ciclo.
@@ -90,7 +90,7 @@ con γ tensione superficiale, *R* raggio, ε~0~ permittività del vuoto. Poco pr
 <p class="note">Evaporazione a carica costante, fissione al raggiungimento della soglia, perdita del 2% della massa e del 15% della carica a ogni fissione. Tensione superficiale e velocità di evaporazione della miscela sono interpolate linearmente (approssimazione). Il tempo è in unità arbitrarie.</p></div>
 ```
 
-Due conseguenze pratiche, entrambe nell'equazione 6.1:
+Due conseguenze pratiche, entrambe nell'equazione 4.1:
 
 ```html
 <ul>
@@ -101,7 +101,7 @@ Due conseguenze pratiche, entrambe nell'equazione 6.1:
 
 ```html
 <div class="sim" id="sim-rayleigh"><h4>Limite di Rayleigh e dimensione della goccia</h4>
-<p class="note">Numero di cariche elementari al limite di Rayleigh, eq. 6.1, per tre solventi puri a 25 °C.</p></div>
+<p class="note">Numero di cariche elementari al limite di Rayleigh, eq. 4.1, per tre solventi puri a 25 °C.</p></div>
 ```
 
 ## Dalle ultime gocce agli ioni in fase gas
@@ -186,7 +186,7 @@ Fonte: Huang N. et al., *J. Am. Soc. Mass Spectrom.* **10** (1999) 1166–1173. 
 Poiché la carica disponibile è limitata dalla corrente ESI, le specie presenti nella goccia se la dividono. Un modello semplice e istruttivo (Enke; Tang & Kebarle) scrive il segnale dell'analita A in presenza di un elettrolita E come
 
 ```html
-<span class="eq"><i>I</i><sub>A</sub> = <i>p f</i> · <i>I</i> · <span class="frac"><span><i>k</i><sub>A</sub>[A]</span><span><i>k</i><sub>A</sub>[A] + <i>k</i><sub>E</sub>[E]</span></span><span class="no">(6.2)</span></span>
+<span class="eq"><i>I</i><sub>A</sub> = <i>p f</i> · <i>I</i> · <span class="frac"><span><i>k</i><sub>A</sub>[A]</span><span><i>k</i><sub>A</sub>[A] + <i>k</i><sub>E</sub>[E]</span></span><span class="no">(4.2)</span></span>
 ```
 
 dove *I* è la corrente ESI, *p* l'efficienza di trasferimento nello spettrometro, *f* la frazione di carica che diventa ioni in fase gas e *k* coefficienti che misurano l'affinità di ciascuna specie per la superficie. Due casi limite:
@@ -200,12 +200,12 @@ dove *I* è la corrente ESI, *p* l'efficienza di trasferimento nello spettrometr
 
 ```html
 <div class="sim" id="sim-comp"><h4>Competizione per la carica</h4>
-<p class="note">Equazione 4.2 con k<sub>E</sub>/k<sub>A</sub> = 0,1 e una specie di matrice coeluente aggiuntiva. Il tratteggio è l'estrapolazione lineare del primo tratto.</p></div>
+<p class="note">Equazione 2.2 con k<sub>E</sub>/k<sub>A</sub> = 0,1 e una specie di matrice coeluente aggiuntiva. Il tratteggio è l'estrapolazione lineare del primo tratto.</p></div>
 ```
 
 ```html
 <div class="box key"><b>Linearità e saturazione nelle curve di calibrazione</b>
-<p>Un composto organico a 7,5 mg/L con massa molare intorno a 300 g/mol corrisponde a circa 2,5·10<sup>−5</sup> M: proprio nella zona in cui la risposta ESI può iniziare a deviare dalla linearità (a cui può sommarsi la saturazione del rivelatore). Per questo le rette di taratura vanno verificate ispezionando i grafici dei residui, non solo il coefficiente R<sup>2</sup>, e i campioni sovra-concentrati vanno opportunamente diluiti (capitolo 12).</p></div>
+<p>Un composto organico a 7,5 mg/L con massa molare intorno a 300 g/mol corrisponde a circa 2,5·10<sup>−5</sup> M: proprio nella zona in cui la risposta ESI può iniziare a deviare dalla linearità (a cui può sommarsi la saturazione del rivelatore). Per questo le rette di taratura vanno verificate ispezionando i grafici dei residui, non solo il coefficiente R<sup>2</sup>, e i campioni sovra-concentrati vanno opportunamente diluiti (capitolo 10).</p></div>
 ```
 
 ## Soppressione ionica ed effetto matrice
@@ -213,7 +213,7 @@ dove *I* è la corrente ESI, *p* l'efficienza di trasferimento nello spettrometr
 Qualsiasi specie che coeluisce con l'analita (sali, sostanza organica naturale, altri TP, tensioattivi) può sottrargli carica o superficie, o aumentare viscosità e tensione superficiale delle gocce: il segnale cala senza che la concentrazione sia cambiata. Si quantifica confrontando la pendenza (o l'area) in matrice e in solvente puro (Matuszewski et al., 2003):
 
 ```html
-<span class="eq">ME (%) = <span class="frac"><span>area in matrice (dopo l'estrazione)</span><span>area in solvente</span></span> × 100 − 100<span class="no">(6.3)</span></span>
+<span class="eq">ME (%) = <span class="frac"><span>area in matrice (dopo l'estrazione)</span><span>area in solvente</span></span> × 100 − 100<span class="no">(4.3)</span></span>
 ```
 
 ```html
@@ -227,7 +227,7 @@ Qualsiasi specie che coeluisce con l'analita (sali, sostanza organica naturale, 
 ```
 
 ```html
-<span class="eq"><i>z</i> = <span class="frac"><span><i>p</i><sub>2</sub> − 1,007</span><span><i>p</i><sub>1</sub> − <i>p</i><sub>2</sub></span></span>, &nbsp;&nbsp; <i>M</i> = <i>z</i> (<i>p</i><sub>1</sub> − 1,007)<span class="no">(6.4)</span></span>
+<span class="eq"><i>z</i> = <span class="frac"><span><i>p</i><sub>2</sub> − 1,007</span><span><i>p</i><sub>1</sub> − <i>p</i><sub>2</sub></span></span>, &nbsp;&nbsp; <i>M</i> = <i>z</i> (<i>p</i><sub>1</sub> − 1,007)<span class="no">(4.4)</span></span>
 ```
 
 ```html
@@ -246,7 +246,7 @@ Qualsiasi specie che coeluisce con l'analita (sali, sostanza organica naturale, 
 ```
 
 ```html
-<p>Il confronto con le sorgenti della GC-MS (impatto elettronico e ionizzazione chimica in vuoto) e con il MALDI è nel capitolo 7. La differenza da ricordare: l'ESI produce ioni <b>a elettroni pari</b> ([M+H]<sup>+</sup>) con poca energia interna, l'EI <b>radicali cationi</b> M<sup>+•</sup> con molta energia; per questo le regole di frammentazione dei capitoli 14 (CID) e 15 (EI) sono diverse.</p>
+<p>Il confronto con le sorgenti della GC-MS (impatto elettronico e ionizzazione chimica in vuoto) e con il MALDI è nel capitolo 5. La differenza da ricordare: l'ESI produce ioni <b>a elettroni pari</b> ([M+H]<sup>+</sup>) con poca energia interna, l'EI <b>radicali cationi</b> M<sup>+•</sup> con molta energia; per questo le regole di frammentazione dei capitoli 12 (CID) e 15 (EI) sono diverse.</p>
 ```
 
 ## Verifica
@@ -260,7 +260,7 @@ Qualsiasi specie che coeluisce con l'analita (sali, sostanza organica naturale, 
 Un frammento formato in sorgente (in-source CID): gli ioni accelerati dal DP urtano il gas residuo prima di Q1. Se lo stesso m/z compare nell'MS2 del parent, la conferma è quasi certa.
 
 ??? Perché lo stesso analita dà un segnale più alto se eluisce al 70% di acetonitrile rispetto al 20%?
-Tensione superficiale più bassa e maggiore volatilità: gocce più piccole, fissioni più precoci, desolvatazione più efficiente (eq. 6.1).
+Tensione superficiale più bassa e maggiore volatilità: gocce più piccole, fissioni più precoci, desolvatazione più efficiente (eq. 4.1).
 
 ??? Un TP acido carbossilico non compare in ESI positivo. È stato mineralizzato?
 Non necessariamente: può semplicemente ionizzarsi male in positivo (nessun sito basico). Servirebbe un'analisi in ESI negativo o il controllo del TOC.

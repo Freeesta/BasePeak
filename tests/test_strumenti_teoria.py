@@ -26,7 +26,7 @@ console.log(JSON.stringify({nom:r.Mnom,M:r.M,mh:r.ioni[0].mz,na:r.ioni[1].mz,mhn
     o = json.loads(r.stdout)
     assert o["nom"] == 215 and o["nomi"] == [216, 238, 214]
     assert abs(o["M"] - 215.09378) < 2e-5
-    assert abs(o["mh"] - 216.10105) < 2e-5               # chapter 11: 216,1010
+    assert abs(o["mh"] - 216.10105) < 2e-5               # chapter 9: 216,1010
     assert abs(o["na"] - (o["M"] + 22.989770 - 0.000549)) < 2e-5
     assert abs(o["mhn"] - (o["M"] - 1.007825 + 0.000549)) < 2e-5
     assert o["righe"] == ["C8", "H14", "Cl1", "N5"]

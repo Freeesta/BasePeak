@@ -20,7 +20,7 @@ import urllib.parse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TEORIA_DIR = ROOT                       # the site root: the file names are relative to it (capitoli/04-lc.html)
+TEORIA_DIR = ROOT                       # the site root: the file names are relative to it (capitoli/02-lc.html)
 PUBLISHED = ("index.html", "capitoli", "pratica", "assets")      # the only top-level entries served
 EDITABLE = ("capitoli", "pratica")
 APPNAME_FILE = ROOT / "assets" / "appname.js"

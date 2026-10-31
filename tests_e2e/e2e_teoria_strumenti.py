@@ -19,7 +19,7 @@ try:
         q = r.b.new_page(viewport={"width": 1200, "height": 900}, reduced_motion="reduce")
         q.on("request", lambda x: reqs.append(x.url))
         q.on("pageerror", lambda e: r.errs.append(("pageerror", str(e))))
-        q.goto(T + "capitoli/13-formula.html"); q.wait_for_function("typeof TEORIA!=='undefined' && !!TEORIA.strumenti")
+        q.goto(T + "capitoli/11-formula.html"); q.wait_for_function("typeof TEORIA!=='undefined' && !!TEORIA.strumenti")
         def lazy():
             assert not any("strumenti/massa.js" in u or "tavola-periodica" in u for u in reqs), reqs
             assert q.evaluate("TEORIA.strumenti.aperto()") == ""
@@ -29,7 +29,7 @@ try:
             q.evaluate("TEORIA.strumenti.massa()"); q.wait_for_selector("#ms-out table")
             assert q.evaluate("document.activeElement.id") == "ms-f"
             t = q.inner_text("#ms-out")
-            assert "215" in t and "215,0938" in t and "216,1010" in t and "238" in t and "214" in t, t[:400]   # M, [M+H]+ (ch. 11: 216,1010), nominals
+            assert "215" in t and "215,0938" in t and "216,1010" in t and "238" in t and "214" in t, t[:400]   # M, [M+H]+ (ch. 9: 216,1010), nominals
             rows = q.eval_on_selector_all("#ms-out table:first-of-type tr", "e=>e.map(x=>x.innerText.replace(/\\s+/g,' '))")
             assert any(x.startswith("C 8") for x in rows) and any(x.startswith("Cl 1") for x in rows), rows
             q.fill("#ms-f", "C6H5Cl"); q.wait_for_timeout(150)
@@ -60,7 +60,7 @@ try:
         step("Tavola periodica: 118 buttons, isotopes and abundances, hover/click/Tab", tavola)
         def tdark():
             c = r.b.new_context(viewport={"width": 1200, "height": 900}, color_scheme="dark"); d = c.new_page()
-            d.goto(T + "capitoli/11-risoluzione.html"); d.wait_for_function("!!(window.TEORIA&&TEORIA.strumenti)")
+            d.goto(T + "capitoli/09-risoluzione.html"); d.wait_for_function("!!(window.TEORIA&&TEORIA.strumenti)")
             d.evaluate("TEORIA.strumenti.tavola()"); d.wait_for_selector("#strum .pt-c")
             assert d.evaluate("document.documentElement.dataset.theme") == "dark"
             g = d.evaluate("(()=>{const L=" + LUM + ";let min=99;document.querySelectorAll('#strum .pt-c').forEach(c=>{const cv=document.createElement('canvas').getContext('2d',{willReadFrequently:true}),px=x=>{cv.clearRect(0,0,1,1);cv.fillStyle='#000';cv.fillStyle=x;cv.fillRect(0,0,1,1);return 'rgb('+[...cv.getImageData(0,0,1,1).data.slice(0,3)]+')'};const bg=px(getComputedStyle(c).backgroundColor);c.querySelectorAll('b,span,small').forEach(e=>{if(!e.textContent.trim())return;const a=L(px(getComputedStyle(e).color)),b=L(bg),k=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);if(k<min)min=k})});return min})()")
@@ -71,7 +71,7 @@ try:
             c.close()
         step("Tavola periodica in dark theme: contrast >= 4.5, focus ring inside the cell", tdark)
         def frammenta():
-            q.goto(T + "capitoli/14-frammentazione-esi.html"); q.wait_for_function("!!(window.TEORIA&&TEORIA.strumenti)")
+            q.goto(T + "capitoli/12-frammentazione-esi.html"); q.wait_for_function("!!(window.TEORIA&&TEORIA.strumenti)")
             n0 = len(reqs)
             q.evaluate("TEORIA.strumenti.frammenta()"); q.wait_for_selector("#fr-loss table")
             vals = q.eval_on_selector_all("#fr-loss input[type=text]", "e=>e.map(x=>x.value)")
@@ -88,14 +88,14 @@ try:
             assert q.locator("#fr-loss table, #fr-loss .readout").count() >= 1
         step("Frammenta: example preloaded from data-esempio, losses and parity computed, other example by argument", frammenta)
         def other_chapter():
-            q.keyboard.press("Escape"); q.goto(T + "capitoli/06-esi.html"); q.wait_for_function("!!(window.TEORIA&&TEORIA.strumenti)")
+            q.keyboard.press("Escape"); q.goto(T + "capitoli/04-esi.html"); q.wait_for_function("!!(window.TEORIA&&TEORIA.strumenti)")
             q.evaluate("TEORIA.strumenti.frammenta()"); q.wait_for_selector("#fr-loss table")
             assert q.locator("#fr-rrk canvas").count() == 1
             assert q.evaluate("document.querySelectorAll('canvas').length") >= 1
         step("Frammenta works on a chapter that does not load sim-frag.js", other_chapter)
         def phone():
             c = r.b.new_context(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True, reduced_motion="reduce"); d = c.new_page()
-            d.goto(T + "capitoli/13-formula.html"); d.wait_for_function("!!(window.TEORIA&&TEORIA.strumenti)")
+            d.goto(T + "capitoli/11-formula.html"); d.wait_for_function("!!(window.TEORIA&&TEORIA.strumenti)")
             d.evaluate("TEORIA.strumenti.massa()"); d.wait_for_selector("#ms-out table")
             b = d.locator("#strum").bounding_box(); assert b["width"] >= 388, b
             assert d.locator("#strum .sx").bounding_box()["height"] >= 44 and d.locator("#ms-f").bounding_box()["height"] >= 44
@@ -109,7 +109,7 @@ try:
         def axe():
             if not AXE: print("SKIP axe (pip install axe-playwright-python)"); return
             for fn in ("massa", "frammenta", "tavola"):
-                q.goto(T + "capitoli/13-formula.html"); q.wait_for_function("!!(window.TEORIA&&TEORIA.strumenti)")
+                q.goto(T + "capitoli/11-formula.html"); q.wait_for_function("!!(window.TEORIA&&TEORIA.strumenti)")
                 q.evaluate(f"TEORIA.strumenti.{fn}()"); q.wait_for_selector("#strum .sb > *:not(p.note:only-child)"); q.wait_for_timeout(500)
                 q.add_script_tag(path=AXE)
                 v = q.evaluate("axe.run('#strum',{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}}).then(r=>r.violations.filter(v=>['serious','critical'].includes(v.impact)).map(v=>[v.id,v.nodes[0].html.slice(0,90)]))")

@@ -16,7 +16,7 @@ ROWS = """() => [...document.querySelectorAll('.exp-tab tbody tr')].map(tr => {
 try:
     with sync_playwright() as p:
         r.page(p)
-        T = f"http://127.0.0.1:{r.port}/static/capitoli/03-cromatografia.html"
+        T = f"http://127.0.0.1:{r.port}/static/capitoli/01-cromatografia.html"
         def check(w, theme):
             c = r.b.new_context(viewport={"width": w, "height": 900}, color_scheme=theme); q = c.new_page()
             q.on("pageerror", lambda e: r.errs.append(("pageerror", str(e))))

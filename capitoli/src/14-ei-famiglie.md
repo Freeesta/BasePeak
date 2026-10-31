@@ -1,8 +1,8 @@
 <!-- script: pratica/ei-dati.js -->
 <!-- script: ei-spettri.js -->
-# Le famiglie di composti in EI {kicker: Capitolo 16}
+# Le famiglie di composti in EI {kicker: Capitolo 14}
 
-{.lead} Ogni classe di composti ha una «firma» nello spettro EI: l'abbondanza dello ione molecolare, uno o due ioni diagnostici, le perdite tipiche. Riconoscerla in pochi secondi orienta tutto il resto del procedimento (passi 3.2 e 3.3 del capitolo 15). Gli spettri sono veri, da MassBank; le frasi colorate sotto ogni spettro spiegano gli ioni chiave.
+{.lead} Ogni classe di composti ha una «firma» nello spettro EI: l'abbondanza dello ione molecolare, uno o due ioni diagnostici, le perdite tipiche. Riconoscerla in pochi secondi orienta tutto il resto del procedimento (passi 3.2 e 3.3 del capitolo 13). Gli spettri sono veri, da MassBank; le frasi colorate sotto ogni spettro spiegano gli ioni chiave.
 
 ```html
 <div class="box key"><b>Come usare questo capitolo</b>
@@ -214,7 +214,7 @@ La scissione α dice quali gruppi sono attaccati al carbonio legato all'azoto: 3
 ## Composti alogenati
 
 ```html
-<p><b>Firma</b>: i <b>gruppi isotopici</b> di Cl e Br (capitolo 13) su M e sui frammenti che contengono ancora l'alogeno, e la loro scomparsa nei frammenti che l'hanno perso; perdita di X (scissione induttiva) e di HX; F e I non hanno isotopi ma si riconoscono da differenze insolite (19, 20 / 127, 128). Gli alogenuri alchilici danno M debole e ioni ciclici [C<sub>4</sub>H<sub>8</sub>X]<sup>+</sup>; gli aromatici M forte.</p>
+<p><b>Firma</b>: i <b>gruppi isotopici</b> di Cl e Br (capitolo 11) su M e sui frammenti che contengono ancora l'alogeno, e la loro scomparsa nei frammenti che l'hanno perso; perdita di X (scissione induttiva) e di HX; F e I non hanno isotopi ma si riconoscono da differenze insolite (19, 20 / 127, 128). Gli alogenuri alchilici danno M debole e ioni ciclici [C<sub>4</sub>H<sub>8</sub>X]<sup>+</sup>; gli aromatici M forte.</p>
 ```
 
 ```html
@@ -254,7 +254,7 @@ Praticamente lo stesso spettro: l'EI dice «diclorobenzene», non quale isomero 
 ## Contaminanti ambientali
 
 ```html
-<p>Molte classi di contaminanti organici si analizzano storicamente in GC-EI-MS: IPA (M forte, pochi frammenti, M/2), PCB e pesticidi organoclorurati (gruppi del cloro, perdite di Cl e HCl, M spesso debole), ftalati (149), triazine (M dispari per i cinque azoti, perdita di metile dai gruppi alchilamminici). L'atrazina offre un confronto esemplare tra tecniche: in LC-ESI (capitolo 14) dà prevalentemente [M+H]<sup>+</sup> a 216 e pochissimi frammenti in sorgente, mentre in EI produce lo ione radicale M<sup>+•</sup> a 215 e il ricco spettro riportato sotto.</p>
+<p>Molte classi di contaminanti organici si analizzano storicamente in GC-EI-MS: IPA (M forte, pochi frammenti, M/2), PCB e pesticidi organoclorurati (gruppi del cloro, perdite di Cl e HCl, M spesso debole), ftalati (149), triazine (M dispari per i cinque azoti, perdita di metile dai gruppi alchilamminici). L'atrazina offre un confronto esemplare tra tecniche: in LC-ESI (capitolo 12) dà prevalentemente [M+H]<sup>+</sup> a 216 e pochissimi frammenti in sorgente, mentre in EI produce lo ione radicale M<sup>+•</sup> a 215 e il ricco spettro riportato sotto.</p>
 ```
 
 ```html

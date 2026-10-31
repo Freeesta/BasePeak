@@ -1,4 +1,4 @@
-/* QqQ lab - Teoria: chromatography figures (chapters 3, 4, 5).
+/* QqQ lab - Teoria: chromatography figures (chapters 1, 2, 3).
    1) van Deemter (packed LC column) and Golay (open-tubular GC column) curves;
    2) resolution: two Gaussian peaks and the Purnell equation;
    3) reversed-phase LC: isocratic or gradient elution with the linear solvent strength model;
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ------------------------------------------------------------ 1) van Deemter / Golay
   const vd = document.getElementById("sim-vandeemter");
   if (vd) {
-    const mode = vd.dataset.mode || "lc";     // "lc" (chapters 3, 4) or "gc" (chapter 5)
+    const mode = vd.dataset.mode || "lc";     // "lc" (chapters 1, 2) or "gc" (chapter 3)
     const LC = [["5", "5 µm porose (HPLC classica)"], ["3", "3 µm porose"], ["1.7", "1,7 µm porose (UHPLC)"], ["2.7", "2,7 µm core-shell"]];
     const GC = [["n2", "azoto (N₂)"], ["he", "elio (He)"], ["h2", "idrogeno (H₂)"]];
     const v = TP.controls(vd, mode === "lc" ? [

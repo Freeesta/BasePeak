@@ -1,6 +1,6 @@
 <!-- script: sim-misc.js -->
 <!-- title: I dati: file, scansioni e modi di acquisizione -->
-# I dati: file, scansioni e modi di acquisizione {kicker: Capitolo 12}
+# I dati: file, scansioni e modi di acquisizione {kicker: Capitolo 10}
 
 {.lead} Che cosa contiene un file di spettrometria di massa, come si controlla quando lo si apre e come il modo di acquisizione ne cambia la forma.
 
@@ -67,7 +67,7 @@ Lo spettro "di un composto" si ottiene mediando gli spettri lungo il picco croma
 <div class="box warn"><b>Errori frequenti nel full scan</b>
 <ul>
 <li>Considerare TP un m/z presente anche nel bianco o a t0 con intensità simile: è fondo o un'impurezza dello standard.</li>
-<li>Considerare TP isotopi, addotti o frammenti in sorgente del parent: hanno lo stesso RT e la stessa forma di picco del parent (capitoli 4 e 6).</li>
+<li>Considerare TP isotopi, addotti o frammenti in sorgente del parent: hanno lo stesso RT e la stessa forma di picco del parent (capitoli 2 e 4).</li>
 <li>Confrontare le altezze di TP diversi come se fossero concentrazioni: la risposta ESI cambia da molecola a molecola.</li>
 <li>Integrare XIC con picchi saturi (appiattiti in cima): l'area è sottostimata.</li>
 </ul></div>
@@ -140,7 +140,7 @@ Prima di interpretare, si guarda il file. Pochi controlli evitano errori lunghi 
 <li><b>Saturazione.</b> Picchi appiattiti in cima segnalano un rivelatore saturo.</li>
 <li><b>Scansioni vuote.</b> Nei file MS2 sono normali prima e dopo il picco.</li>
 <li><b>Bianco e standard nello stesso lotto.</b> Senza il bianco non si distingue il fondo dal segnale.</li>
-<li><b>Nome e ordine delle corse.</b> Il nome deve dire campione, replica e ordine di iniezione (capitolo 20).</li>
+<li><b>Nome e ordine delle corse.</b> Il nome deve dire campione, replica e ordine di iniezione (capitolo 18).</li>
 </ul>
 ```
 
@@ -183,7 +183,7 @@ Un product ion scan registra i frammenti di un precursore isolato con risoluzion
 <li><b>Precursore residuo</b>: all'energia di collisione scelta parte del precursore sopravvive e compare nello spettro; serve a confermare che si sta guardando lo ione giusto.</li>
 <li><b>Coeluenti isobari</b>: se allo stesso RT ci sono due molecole con la stessa massa nominale, lo spettro MS2 è la somma dei loro frammenti. Guardate gli XIC dei singoli frammenti: frammenti dello stesso precursore hanno profili cromatografici identici.</li>
 <li><b>Spettri vuoti</b>: nei file MS2 molti scan sono vuoti (prima e dopo il picco). È normale; ciò che conta è lo spettro mediato sul picco.</li>
-<li><b>Confronto con il parent</b>: si registrano frammento per frammento le differenze. Frammenti uguali = porzione intatta; frammenti spostati di Δ = porzione modificata (capitolo 18).</li>
+<li><b>Confronto con il parent</b>: si registrano frammento per frammento le differenze. Frammenti uguali = porzione intatta; frammenti spostati di Δ = porzione modificata (capitolo 16).</li>
 </ul>
 ```
 
@@ -191,7 +191,7 @@ Un product ion scan registra i frammenti di un precursore isolato con risoluzion
 
 Nel _multiple reaction monitoring_ si scelgono transizioni: coppie precursore → frammento. Per ogni transizione lo strumento misura per un tempo breve (_dwell time_) e passa alla successiva. Il risultato è un cromatogramma per transizione.
 
-Il metodo è molto sensibile e selettivo. È il modo della quantificazione. Non dà spettri e non scopre ciò che non è stato scelto. Per ogni analita si usano di solito due transizioni, una per quantificare e una per confermare (capitolo 10).
+Il metodo è molto sensibile e selettivo. È il modo della quantificazione. Non dà spettri e non scopre ciò che non è stato scelto. Per ogni analita si usano di solito due transizioni, una per quantificare e una per confermare (capitolo 8).
 
 Il numero di transizioni e il dwell time fissano il tempo di ciclo. Un ciclo troppo lungo lascia pochi punti su un picco stretto.
 
@@ -210,7 +210,7 @@ Alcune regole servono a non ripetersi:
 </ul>
 ```
 
-Gli spettri MS2 sono puliti perché il precursore è isolato in una finestra stretta. Il limite è che la scelta dipende dall'intensità: ioni deboli o coeluenti possono non essere frammentati, e due corse della stessa miscela non scelgono sempre gli stessi ioni. Un esempio di uso è nel capitolo 19.
+Gli spettri MS2 sono puliti perché il precursore è isolato in una finestra stretta. Il limite è che la scelta dipende dall'intensità: ioni deboli o coeluenti possono non essere frammentati, e due corse della stessa miscela non scelgono sempre gli stessi ioni. Un esempio di uso è nel capitolo 17.
 
 ### DIA
 
@@ -227,7 +227,7 @@ I costruttori hanno nomi commerciali diversi per le varianti della DIA. Il princ
 
 ## Spettri a risoluzione unitaria: che cosa si può dedurre
 
-Qui un riassunto pratico per i vostri dati; la teoria completa (masse, isotopi, regola dell'azoto, RDB, regola del 13 e il confronto con l'alta risoluzione) è nel capitolo 13.
+Qui un riassunto pratico per i vostri dati; la teoria completa (masse, isotopi, regola dell'azoto, RDB, regola del 13 e il confronto con l'alta risoluzione) è nel capitolo 11.
 
 ### Pattern isotopici
 
@@ -249,7 +249,7 @@ Per i TP è un controllo potentissimo: se il parent contiene un cloro e il candi
 
 ```html
 <div class="sim" id="sim-iso"><h4>Cluster isotopico a risoluzione unitaria</h4>
-<p class="note">Scrivete una formula bruta (elementi C, H, N, O, S, P, F, Cl, Br, I, Si, Na, K). Il calcolo convolve le distribuzioni isotopiche per massa nominale. L'esempio è l'atrazina, un erbicida usato come esempio svolto nel capitolo 18.</p></div>
+<p class="note">Scrivete una formula bruta (elementi C, H, N, O, S, P, F, Cl, Br, I, Si, Na, K). Il calcolo convolve le distribuzioni isotopiche per massa nominale. L'esempio è l'atrazina, un erbicida usato come esempio svolto nel capitolo 16.</p></div>
 ```
 
 ### Regola dell'azoto e insaturazioni
@@ -311,16 +311,16 @@ Si iniettano standard a concentrazione nota (ad esempio, una serie scalare dal d
 - il campione che cade sopra l'ultimo standard va diluito e reiniettato.
 
 ```html
-<span class="eq">LOD ≈ <span class="frac"><span>3,3 <i>s</i></span><span><i>b</i></span></span>, &nbsp;&nbsp; LOQ ≈ <span class="frac"><span>10 <i>s</i></span><span><i>b</i></span></span><span class="no">(12.1)</span></span>
+<span class="eq">LOD ≈ <span class="frac"><span>3,3 <i>s</i></span><span><i>b</i></span></span>, &nbsp;&nbsp; LOQ ≈ <span class="frac"><span>10 <i>s</i></span><span><i>b</i></span></span><span class="no">(10.1)</span></span>
 ```
 
 con *b* pendenza della retta e *s* deviazione standard della risposta (del bianco o dell'intercetta). In alternativa si usa il rapporto segnale/rumore (3 e 10) su standard di bassa concentrazione.
 
-Come pianificare i livelli, i bianchi e la sequenza è nel capitolo 20.
+Come pianificare i livelli, i bianchi e la sequenza è nel capitolo 18.
 
 ### Conferma dell'identità
 
-L'identità dell'analita è confermata se: RT coincide con quello dello standard (entro pochi secondi), entrambe le transizioni sono presenti, rapporto qual/quant entro la tolleranza (capitolo 10).
+L'identità dell'analita è confermata se: RT coincide con quello dello standard (entro pochi secondi), entrambe le transizioni sono presenti, rapporto qual/quant entro la tolleranza (capitolo 8).
 
 ### Dalla quantificazione alla cinetica
 

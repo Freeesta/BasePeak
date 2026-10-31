@@ -1,5 +1,5 @@
 // QqQ lab - Pratica: «Dallo spettro alla struttura». A real EI spectrum (pratica/ei-dati.js) and the steps of the McLafferty procedure
-// (chapter 15): molecular ion, formula and RDB, key ions and their mechanisms, structure drawn in Ketcher and compared with
+// (chapter 13): molecular ion, formula and RDB, key ions and their mechanisms, structure drawn in Ketcher and compared with
 // OpenChemLib (same molecule, isomer or wrong formula). Levels 1-4 give feedback at every step; "Modalità orale" asks for the written
 // reasoning and corrects only at the end. Globals from classic scripts: TP (teoria.js), EI_DATA, EISPEC, PAL.
 // These exercises use library compounds with a known answer: they never look at the student's own data files.
@@ -173,7 +173,7 @@ function stepM(el) {
   const top = Math.max(...it.peaks.filter(p => p[1] >= 10).map(p => p[0]));
   hintBtn(el, "M", [
     "Guarda il gruppo di picchi più a destra e le differenze fra il picco più alto e i suoi vicini.",
-    `I tre test (capitolo 15): massa più alta (a parte gli isotopi), elettroni dispari (regola dell'azoto), perdite logiche verso gli ioni importanti. Perdite di 4-14 o 21-25 unità sono impossibili.`,
+    `I tre test (capitolo 13): massa più alta (a parte gli isotopi), elettroni dispari (regola dell'azoto), perdite logiche verso gli ioni importanti. Perdite di 4-14 o 21-25 unità sono impossibili.`,
     vis ? `M = ${it.M}.` : `Lo ione molecolare (M = ${it.M}) non compare: il picco più alto è un frammento.`]);
   const ok = msg => { fb($("#m-fb"), "ok", msg + (S.level <= 2 ? ` ${it.M % 2 ? "M dispari: un numero dispari di azoti." : "M pari: nessun azoto o un numero pari."}` : "")); done(el, true, "M", wrong ? 0.5 : 1); };
   const ko = msg => {
@@ -209,7 +209,7 @@ function stepFormula(el) {
   if ($("#f-exact")) $("#f-exact").onclick = () => {
     pay(20, "massa esatta"); const r = PAL.rng(it.id.length * 7919 + it.M), err = (r() - 0.5) * 4;
     const m = PAL.exact(f) - 0.000548579909, meas = m * (1 + err * 1e-6);
-    fb($("#f-ratios"), "hi", `Massa esatta di M<sup>+•</sup> misurata ad alta risoluzione: <b>${meas.toFixed(4).replace(".", ",")}</b> (errore dello strumento entro ±2 ppm). Confronta con la massa della tua formula (capitolo 13).`);
+    fb($("#f-ratios"), "hi", `Massa esatta di M<sup>+•</sup> misurata ad alta risoluzione: <b>${meas.toFixed(4).replace(".", ",")}</b> (errore dello strumento entro ±2 ppm). Confronta con la massa della tua formula (capitolo 11).`);
     $("#f-exact").disabled = true;
   };
   hintBtn(el, "formula", [
@@ -349,7 +349,7 @@ function finish() {
     <p>${Object.entries(STEPNAME).map(([k, n]) => `${n}: ${R[k] == null ? "–" : R[k] >= 0.99 ? "✓" : R[k] > 0 ? "in parte" : "✗"}`).join(" · ")}</p></div></div>
     ${EISPEC.keysHtml(it)}
     ${it.skills ? `<p>Abilità esercitate: ${it.skills.map(k => SKILLNAME[k] || k).join(", ")}.</p>` : ""}
-    <p>Rileggi: <a href="../capitoli/15-ei-metodo.html">capitolo 15</a>, <a href="../capitoli/16-ei-famiglie.html">capitolo 16 (${FAMNAME[it.family] || it.family})</a>.</p>
+    <p>Rileggi: <a href="../capitoli/13-ei-metodo.html">capitolo 13</a>, <a href="../capitoli/14-ei-famiglie.html">capitolo 14 (${FAMNAME[it.family] || it.family})</a>.</p>
     <div class="row"><button class="pri keep" id="e-next">${S.chall ? "Prossimo della sfida" : "Problema nuovo"}</button><button class="keep" id="e-fam">Un altro della stessa famiglia</button><button class="keep" id="e-print">Stampa</button></div></div>`;
   if (S.chall) { S.chall.total += total; S.chall.k++; }
   $("#e-next").onclick = () => { if (S.chall && S.chall.k >= S.chall.list.length) return challengeEnd(); next(); };
@@ -365,7 +365,7 @@ function oral(g, it) {
   const wk = document.createElement("div"); wk.className = "wk"; g.appendChild(wk);
   const sec = [["o1", "1. Composizione elementare (passi 1.x): isotopi, carboni, eteroatomi"], ["o2", "2. Ione molecolare (passi 2.x): M, regola dell'azoto, ioni a elettroni dispari, perdite"],
     ["o3", "3. Aspetto generale e famiglia (passi 3.x): serie di ioni, ioni caratteristici"], ["o4", "4. Meccanismi: spiega due o tre ioni importanti"], ["o5", "5. Struttura proposta e verifica (passi 4.x): che cosa la conferma, che cosa resta incerto"]];
-  wk.innerHTML = `<h3>Modalità autonoma</h3><p>Scrivi il ragionamento completo e metodico, seguendo la sequenza dei passi (capitolo 15). Nessun aiuto: la soluzione di confronto arriva quando consegni. <span id="o-clock" class="pill"></span></p>
+  wk.innerHTML = `<h3>Modalità autonoma</h3><p>Scrivi il ragionamento completo e metodico, seguendo la sequenza dei passi (capitolo 13). Nessun aiuto: la soluzione di confronto arriva quando consegni. <span id="o-clock" class="pill"></span></p>
     ${sec.map(([id, t]) => `<div class="st"><h4>${t}</h4><textarea id="${id}"></textarea></div>`).join("")}
     <div class="st"><h4>Formula molecolare e struttura</h4><p>La struttura si può prima tracciare a mano (ad esempio sul foglio stampato) e poi, per la verifica automatica, ridisegnarla nell'editor o inserirne lo SMILES.</p>
     <div class="row"><label>Formula <input id="o-f" class="mono" size="14" spellcheck="false"></label><button id="o-ked" class="noprint">Apri l'editor di strutture</button><label>oppure SMILES <input id="k-smi" class="mono" size="22" spellcheck="false"></label></div>

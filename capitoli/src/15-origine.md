@@ -1,4 +1,4 @@
-# Da dove viene questo ione? {kicker: Capitolo 17}
+# Da dove viene questo ione? {kicker: Capitolo 15}
 
 {.lead} Nel full scan uno ione che compare con il trattamento sembra un prodotto di trasformazione. Ma può essere un frammento del composto di partenza, rotto nella sorgente prima dell'analisi. Questo capitolo spiega come si ragiona e quali misure aiutano; la finestra «Da dove viene questo ione?» del programma le calcola, la conclusione la scrivi tu.
 

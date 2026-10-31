@@ -18,7 +18,7 @@ try:
         q = r.b.new_page(viewport={"width": 1200, "height": 900}, reduced_motion="reduce")
         q.on("request", lambda x: reqs.append(x.url))
         q.on("pageerror", lambda e: r.errs.append(("pageerror", str(e))))
-        q.goto(T + "capitoli/13-formula.html"); q.wait_for_selector("#side a")
+        q.goto(T + "capitoli/11-formula.html"); q.wait_for_selector("#side a")
         q.wait_for_function("typeof TEORIA!=='undefined' && typeof TEORIA.cerca==='function'")
         def lazy():
             assert not any("indice-ricerca" in u for u in reqs), "index read before the first opening"
@@ -38,7 +38,7 @@ try:
             txt = q.eval_on_selector_all("#cerca-list [role=option]", "e=>e.map(x=>x.innerText)")
             assert any("Frammentazione in CID" in t for t in txt), txt[:5]
             groups = q.eval_on_selector_all("#cerca-list .gh", "e=>e.map(x=>x.textContent)")
-            assert "Cap. 14" in groups and len(groups) == len(set(groups)), groups
+            assert "Cap. 12" in groups and len(groups) == len(set(groups)), groups
             assert q.evaluate("document.querySelectorAll('#cerca-list mark').length") >= 1
             assert q.evaluate("document.querySelector('#cerca-in').getAttribute('aria-expanded')") == "true"
             assert "risultat" in q.inner_text("#cerca-st")
@@ -83,18 +83,18 @@ try:
             assert q.url.startswith(T), q.url
         step("a click on a result in another chapter navigates", other)
         def gl():
-            q.goto(T + "capitoli/13-formula.html"); q.wait_for_function("typeof TEORIA!=='undefined'")
+            q.goto(T + "capitoli/11-formula.html"); q.wait_for_function("typeof TEORIA!=='undefined'")
             q.evaluate("TEORIA.cerca('addotto')"); q.wait_for_selector("#cerca-list [role=option]")
             idx = q.eval_on_selector_all("#cerca-list [role=option]", "e=>e.map(x=>x.innerText)")
             i = next(k for k, t in enumerate(idx) if t.endswith("Glossario")); 
             for _ in range(i): q.keyboard.press("ArrowDown")
             q.keyboard.press("Enter"); q.wait_for_load_state(); q.wait_for_timeout(600)
-            assert "capitoli/21-glossario.html#g-" in q.url, q.url
+            assert "capitoli/19-glossario.html#g-" in q.url, q.url
             assert q.evaluate("document.getElementById(location.hash.slice(1)).tagName") == "DT"
         step("a glossary entry lands on its term", gl)
         def dark():
             c = r.b.new_context(viewport={"width": 1200, "height": 900}, color_scheme="dark"); d = c.new_page()
-            d.goto(T + "capitoli/04-lc.html"); d.wait_for_function("typeof TEORIA!=='undefined'")
+            d.goto(T + "capitoli/02-lc.html"); d.wait_for_function("typeof TEORIA!=='undefined'")
             d.evaluate("TEORIA.cerca('gradiente')"); d.wait_for_selector("#cerca-list [role=option]")
             L = "(c=>{const m=c.match(/[0-9.]+/g).map(Number),f=v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)};return .2126*f(m[0])+.7152*f(m[1])+.0722*f(m[2])})"
             ratio = d.evaluate(f"(()=>{{const L={L};const a=L(getComputedStyle(document.querySelector('#cerca')).color),b=L(getComputedStyle(document.querySelector('#cerca')).backgroundColor);return (Math.max(a,b)+.05)/(Math.min(a,b)+.05)}})()")
@@ -106,7 +106,7 @@ try:
         step("dark theme: readable dialog and highlight", dark)
         def phone():
             c = r.b.new_context(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True, reduced_motion="reduce"); d = c.new_page()
-            d.goto(T + "capitoli/06-esi.html"); d.wait_for_function("typeof TEORIA!=='undefined'")
+            d.goto(T + "capitoli/04-esi.html"); d.wait_for_function("typeof TEORIA!=='undefined'")
             d.evaluate("TEORIA.cerca('esi')"); d.wait_for_selector("#cerca-list [role=option]")
             hs = d.eval_on_selector_all("#cerca-list [role=option]", "e=>e.map(x=>x.getBoundingClientRect().height)")
             assert min(hs) >= 44, min(hs)
@@ -119,7 +119,7 @@ try:
         step("phone: 390 px, targets >= 44 px, a tap on a result navigates", phone)
         def axe():
             if not AXE: print("SKIP axe (pip install axe-playwright-python)"); return
-            q.goto(T + "capitoli/13-formula.html"); q.wait_for_function("typeof TEORIA!=='undefined'")
+            q.goto(T + "capitoli/11-formula.html"); q.wait_for_function("typeof TEORIA!=='undefined'")
             q.evaluate("TEORIA.cerca('frammenta')"); q.wait_for_selector("#cerca-list [role=option]")
             q.add_script_tag(path=AXE)
             v = q.evaluate("axe.run('#cerca-bg',{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}}).then(r=>r.violations.filter(v=>['serious','critical'].includes(v.impact)).map(v=>[v.id,v.nodes[0].html.slice(0,80)]))")

@@ -11,7 +11,7 @@ export const SKILLNAME = { M: "ione molecolare", isotopi: "isotopi", azoto: "reg
 const ODD_MECH = ["mclafferty", "rda", "orto"], EVEN_MECH = ["alpha", "i", "sigma", "tropilio", "serie"];
 const MECHS = ["alpha", "i", "sigma", "mclafferty", "rda", "tropilio", "orto", "perdita", "riarr", "serie"];
 const HINT_COST = [5, 10, 20];
-const imposs = d => (d >= 4 && d <= 14) || (d >= 21 && d <= 25);           // losses that cannot come from a molecular ion (chapter 15)
+const imposs = d => (d >= 4 && d <= 14) || (d >= 21 && d <= 25);           // losses that cannot come from a molecular ion (chapter 13)
 const fmt = v => String(v).replace(".", ",");
 
 /** An ion typed by the student: "C3H7O+", "C4H8+." or "C4H8+•" (the charge is optional). */
@@ -214,7 +214,7 @@ function sectionDelivery(c) {
       <p>Punti di partenza ${S.pts} (cento meno gli aiuti usati).</p></div></div>
       ${EISPEC.keysHtml(it)}
       ${it.skills ? `<p>Abilità esercitate: ${it.skills.map(k => SKILLNAME[k] || k).join(", ")}.</p>` : ""}
-      <p>Rileggi: <a href="../capitoli/15-ei-metodo.html">capitolo 15</a>, <a href="../capitoli/16-ei-famiglie.html">capitolo 16</a>.</p>
+      <p>Rileggi: <a href="../capitoli/13-ei-metodo.html">capitolo 13</a>, <a href="../capitoli/14-ei-famiglie.html">capitolo 14</a>.</p>
       <div class="row"><button class="pri keep" id="h-next">Problema nuovo</button><button class="keep" id="h-print">Stampa</button></div></div>`;
     $("#h-next").onclick = () => env.again();
     $("#h-print").onclick = () => print();

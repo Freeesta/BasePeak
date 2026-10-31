@@ -37,7 +37,7 @@ def test_every_anchor_exists_in_its_page():
 
 
 def test_glossary_ids_are_unique():
-    ids = re.findall(r'<dt id="([^"]+)"', (G.D / "capitoli" / "21-glossario.html").read_text(encoding="utf-8"))
+    ids = re.findall(r'<dt id="([^"]+)"', (G.D / "capitoli" / "19-glossario.html").read_text(encoding="utf-8"))
     assert len(ids) == len(set(ids)) > 80
 
 

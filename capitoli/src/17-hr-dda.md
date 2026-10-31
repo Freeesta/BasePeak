@@ -1,6 +1,6 @@
 <!-- no-appname -->
 <!-- title: Alta risoluzione e DDA -->
-# Alta risoluzione e acquisizione dipendente dai dati {kicker: Capitolo 19}
+# Alta risoluzione e acquisizione dipendente dai dati {kicker: Capitolo 17}
 
 {.lead} Il triplo quadrupolo del laboratorio lavora a risoluzione unitaria: un *m/z* è un numero intero con qualche decimale che dipende dalla taratura. Uno spettrometro Orbitrap o Q-TOF distingue masse che differiscono di pochi millesimi, e di solito sceglie da solo gli ioni da frammentare. Questo capitolo spiega le parole che servono per leggere quei dati; il programma li riconosce da solo e cambia di conseguenza decimali e tolleranze.
 
@@ -52,7 +52,7 @@ Prima della frammentazione un quadrupolo lascia passare una finestra di *m/z* at
 
 ## L'energia di collisione: eV oppure NCE
 
-Nel 3200 QTRAP l'energia di collisione è in **eV**. Negli strumenti Thermo (Orbitrap) si usa l'energia di collisione **normalizzata** (**NCE**, in %): un numero relativo alla massa e alla carica del precursore, senza unità. NCE 30 non è 30 eV e due strumenti con lo stesso NCE non sono confrontabili punto per punto. Il programma scrive «NCE 30» per i file Thermo e «CE 25 eV» per gli altri. L'**attivazione** può essere HCD (collisione in una cella, tipica degli Orbitrap) o CID (in trappola): gli spettri sono diversi, come nel capitolo 14.
+Nel 3200 QTRAP l'energia di collisione è in **eV**. Negli strumenti Thermo (Orbitrap) si usa l'energia di collisione **normalizzata** (**NCE**, in %): un numero relativo alla massa e alla carica del precursore, senza unità. NCE 30 non è 30 eV e due strumenti con lo stesso NCE non sono confrontabili punto per punto. Il programma scrive «NCE 30» per i file Thermo e «CE 25 eV» per gli altri. L'**attivazione** può essere HCD (collisione in una cella, tipica degli Orbitrap) o CID (in trappola): gli spettri sono diversi, come nel capitolo 12.
 
 ## Preparare i file
 

@@ -1,8 +1,8 @@
 <!-- script: pratica/ei-dati.js -->
 <!-- script: ei-spettri.js -->
-# Risolvere uno spettro EI: il metodo {kicker: Capitolo 15}
+# Risolvere uno spettro EI: il metodo {kicker: Capitolo 13}
 
-{.lead} Di fronte a uno spettro EI incognito, l'obiettivo è risalire alla struttura molecolare spiegando razionalmente ogni passaggio. Non serve intuito: serve un metodo sistematico, quello di McLafferty, applicato con ordine e rigore. Questo capitolo lo presenta passo per passo, con spettri sperimentali reali; il capitolo 16 raccoglie le «firme» delle famiglie di composti e la Pratica consente di cimentarsi su decine di problemi strutturali.
+{.lead} Di fronte a uno spettro EI incognito, l'obiettivo è risalire alla struttura molecolare spiegando razionalmente ogni passaggio. Non serve intuito: serve un metodo sistematico, quello di McLafferty, applicato con ordine e rigore. Questo capitolo lo presenta passo per passo, con spettri sperimentali reali; il capitolo 14 raccoglie le «firme» delle famiglie di composti e la Pratica consente di cimentarsi su decine di problemi strutturali.
 
 ## Il procedimento in una pagina
 
@@ -43,7 +43,7 @@ Un esempio di lettura: lo spettro del 2-esanone ha il picco base a m/z 43, un gr
 
 ## Fase 1: la composizione elementare
 
-Si applicano gli strumenti del capitolo 13 al gruppo più alto (e poi agli altri gruppi importanti):
+Si applicano gli strumenti del capitolo 11 al gruppo più alto (e poi agli altri gruppi importanti):
 
 ```html
 <ol>
@@ -70,7 +70,7 @@ Un picco è un candidato ione molecolare (2.1) solo se:
 1. è un ione **a elettroni dispari** (2.2): RDB intero; per la regola dell'azoto (2.3) massa pari con 0 o 2 azoti, dispari con un numero dispari di azoti;
 1. da lui si arriva agli ioni importanti della zona alta con **perdite neutre logiche** (2.8).
 
-Se un candidato fallisce il primo o il secondo test non è M; se li passa tutti _può_ essere M. La conferma migliore viene da una ionizzazione soffice (CI, capitolo 7).
+Se un candidato fallisce il primo o il secondo test non è M; se li passa tutti _può_ essere M. La conferma migliore viene da una ionizzazione soffice (CI, capitolo 5).
 
 ```html
 <table>
@@ -139,11 +139,11 @@ Negli alcani non ci sono doppietti né legami π: si ionizza un legame σ C–C,
 L'elettrone spaiato sull'eteroatomo tende ad accoppiarsi: forma un nuovo legame con il carbonio adiacente (il carbonio α) e rompe il legame successivo; si stacca un radicale e resta uno ione EE stabilizzato dall'eteroatomo (iminio, ossonio, acilio). Tendenza: **N > S, O, legami π, radicali alchilici > Cl, Br > H** (le ammine danno la scissione α più forte).
 
 ```html
-<span class="eq">(C<sub>2</sub>H<sub>5</sub>)<sub>2</sub>N<sup>+•</sup>–CH<sub>2</sub>–CH<sub>3</sub> &nbsp;→&nbsp; (C<sub>2</sub>H<sub>5</sub>)<sub>2</sub>N<sup>+</sup>=CH<sub>2</sub> (m/z 86) + CH<sub>3</sub><sup>•</sup><span class="no">(15.1)</span></span>
+<span class="eq">(C<sub>2</sub>H<sub>5</sub>)<sub>2</sub>N<sup>+•</sup>–CH<sub>2</sub>–CH<sub>3</sub> &nbsp;→&nbsp; (C<sub>2</sub>H<sub>5</sub>)<sub>2</sub>N<sup>+</sup>=CH<sub>2</sub> (m/z 86) + CH<sub>3</sub><sup>•</sup><span class="no">(13.1)</span></span>
 ```
 
 ```html
-<span class="eq">CH<sub>3</sub>–C(=O<sup>+•</sup>)–C<sub>4</sub>H<sub>9</sub> &nbsp;→&nbsp; CH<sub>3</sub>–C≡O<sup>+</sup> (m/z 43) + C<sub>4</sub>H<sub>9</sub><sup>•</sup><span class="no">(15.2)</span></span>
+<span class="eq">CH<sub>3</sub>–C(=O<sup>+•</sup>)–C<sub>4</sub>H<sub>9</sub> &nbsp;→&nbsp; CH<sub>3</sub>–C≡O<sup>+</sup> (m/z 43) + C<sub>4</sub>H<sub>9</sub><sup>•</sup><span class="no">(13.2)</span></span>
 ```
 
 ```html
@@ -155,14 +155,14 @@ L'elettrone spaiato sull'eteroatomo tende ad accoppiarsi: forma un nuovo legame 
 La carica positiva attira la coppia di elettroni del legame adiacente: il legame si rompe in modo eterolitico e la carica si sposta sull'altro frammento. È tipica degli alogenuri e degli eteri e compete con la scissione α; la tendenza segue l'elettronegatività (alogeni > O, S >> N, C).
 
 ```html
-<span class="eq">C<sub>4</sub>H<sub>9</sub>–Br<sup>+•</sup> &nbsp;→&nbsp; C<sub>4</sub>H<sub>9</sub><sup>+</sup> (m/z 57) + Br<sup>•</sup><span class="no">(15.3)</span></span>
+<span class="eq">C<sub>4</sub>H<sub>9</sub>–Br<sup>+•</sup> &nbsp;→&nbsp; C<sub>4</sub>H<sub>9</sub><sup>+</sup> (m/z 57) + Br<sup>•</sup><span class="no">(13.3)</span></span>
 ```
 
 ### Riarrangiamento di McLafferty
 
 ```html
 <figure>
-<svg viewBox="0 0 860 250" role="img" aria-label="Riarrangiamento di McLafferty del 2-esanone: trasferimento di H in un anello a sei atomi e formazione di m/z 58" aria-describedby="fd-15-0">
+<svg viewBox="0 0 860 250" role="img" aria-label="Riarrangiamento di McLafferty del 2-esanone: trasferimento di H in un anello a sei atomi e formazione di m/z 58" aria-describedby="fd-13-0">
 <style>.a{font:600 17px Georgia,serif;fill:#24231f}.s{font:12.5px system-ui,sans-serif;fill:#6b675c}.r{font:600 14px system-ui,sans-serif;fill:#7c3aed}</style>
 <defs><marker id="hh" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 4 z" fill="#c2410c"/></marker></defs>
 <text class="a" x="150" y="52">O</text><text class="r" x="166" y="40">+•</text>
@@ -184,8 +184,8 @@ La carica positiva attira la coppia di elettroni del legame adiacente: il legame
 <text class="s" x="505" y="126">m/z 58, ione enolico a elettroni dispari</text>
 <text class="a" x="505" y="180">+ CH₂=CH–CH₃</text>
 <text class="s" x="505" y="204">propene, neutro (42), non si vede</text>
-</svg><details class="figdesc" id="fd-15-0"><summary>Descrizione della figura</summary><p>Il 2-esanone ionizzato (+•) con O, C, Cα, Cβ, Cγ e H; tre frecce curve: una dal legame Cγ–H all'ossigeno (trasferimento dell'idrogeno), due dal legame Cα–Cβ, verso il legame Cβ–Cγ e verso Cα; una linea tratteggiata unisce O e H. Anello a sei atomi (stato di transizione). Prodotti: H₂C=C(OH)–CH₃ (+•), m/z 58, ione enolico a elettroni dispari, e CH₂=CH–CH₃, propene, neutro (42), che non si vede.</p></details>
-<figcaption><b>Figura 15.1</b> McLafferty del 2-esanone. L'ossigeno radicale strappa un idrogeno dal carbonio γ attraverso uno stato di transizione a sei atomi; il legame Cα–Cβ si rompe e si forma il doppio legame Cβ=Cγ dell'alchene che se ne va. Le frecce a mezza punta muovono un elettrone ciascuna. Due legami rotti: lo ione prodotto è a elettroni dispari e a massa pari.</figcaption>
+</svg><details class="figdesc" id="fd-13-0"><summary>Descrizione della figura</summary><p>Il 2-esanone ionizzato (+•) con O, C, Cα, Cβ, Cγ e H; tre frecce curve: una dal legame Cγ–H all'ossigeno (trasferimento dell'idrogeno), due dal legame Cα–Cβ, verso il legame Cβ–Cγ e verso Cα; una linea tratteggiata unisce O e H. Anello a sei atomi (stato di transizione). Prodotti: H₂C=C(OH)–CH₃ (+•), m/z 58, ione enolico a elettroni dispari, e CH₂=CH–CH₃, propene, neutro (42), che non si vede.</p></details>
+<figcaption><b>Figura 13.1</b> McLafferty del 2-esanone. L'ossigeno radicale strappa un idrogeno dal carbonio γ attraverso uno stato di transizione a sei atomi; il legame Cα–Cβ si rompe e si forma il doppio legame Cβ=Cγ dell'alchene che se ne va. Le frecce a mezza punta muovono un elettrone ciascuna. Due legami rotti: lo ione prodotto è a elettroni dispari e a massa pari.</figcaption>
 </figure>
 ```
 
@@ -200,7 +200,7 @@ Condizioni: un gruppo insaturo (C=O, C=C, C≡N, anello aromatico) e un **idroge
 Un cicloesene ionizzato si apre come la reazione di Diels-Alder al contrario: un diene e un alchene (dienofilo). Si rompono due legami, quindi lo ione è OE; la carica va (Stevenson) al frammento con energia di ionizzazione più bassa, di solito il diene. Localizza il doppio legame nell'anello: limonene → isoprene (m/z 68).
 
 ```html
-<span class="eq">C<sub>6</sub>H<sub>10</sub><sup>+•</sup> (cicloesene, 82) &nbsp;→&nbsp; C<sub>4</sub>H<sub>6</sub><sup>+•</sup> (butadiene, 54) + C<sub>2</sub>H<sub>4</sub><span class="no">(15.4)</span></span>
+<span class="eq">C<sub>6</sub>H<sub>10</sub><sup>+•</sup> (cicloesene, 82) &nbsp;→&nbsp; C<sub>4</sub>H<sub>6</sub><sup>+•</sup> (butadiene, 54) + C<sub>2</sub>H<sub>4</sub><span class="no">(13.4)</span></span>
 ```
 
 ### Benzile e tropilio, fenile, benzoile
@@ -238,7 +238,7 @@ Un anello con una catena laterale si rompe al legame benzilico: il catione benzi
 <ul>
 <li><b>Il righello</b>: usa la serie alchilica come scala di riferimento (15, 29, 43, 57… e, sopra 100, 113, 127, 141…). Un picco intenso 2 unità sotto la serie indica un'insaturazione o un anello; 1 unità sopra spesso un azoto (iminio) o un ossigeno (ossonio, +2).</li>
 <li><b>Ioni caratteristici</b> (3.3): 30 ammine primarie, 31 alcoli primari ed eteri metilici, 43 acetile o propile, 45 alcoli secondari ed eteri, 60 acidi, 74 esteri metilici, 77 fenile, 91 benzile/tropilio, 105 benzoile, 149 ftalati.</li>
-<li>Per distinguere 43 acetile (C<sub>2</sub>H<sub>3</sub>O<sup>+</sup>) da propile (C<sub>3</sub>H<sub>7</sub><sup>+</sup>) a risoluzione unitaria guardate il 44 (13C): circa 2,2% del 43 per C<sub>2</sub>, 3,3% per C<sub>3</sub>; e guardate il resto dello spettro (un carbonile?). Ad alta risoluzione la domanda non si pone (capitolo 11).</li>
+<li>Per distinguere 43 acetile (C<sub>2</sub>H<sub>3</sub>O<sup>+</sup>) da propile (C<sub>3</sub>H<sub>7</sub><sup>+</sup>) a risoluzione unitaria guardate il 44 (13C): circa 2,2% del 43 per C<sub>2</sub>, 3,3% per C<sub>3</sub>; e guardate il resto dello spettro (un carbonile?). Ad alta risoluzione la domanda non si pone (capitolo 9).</li>
 </ul>
 ```
 
@@ -246,7 +246,7 @@ Un anello con una catena laterale si rompe al legame benzilico: il catione benzi
 
 1. Metti insieme i pezzi: formula di M (fase 1), gruppi funzionali dalle perdite e dagli ioni caratteristici, scheletro dalle serie e dai frammenti α (i radicali persi dicono quanto sono lunghe le catene ai due lati del gruppo).
 1. Scrivi le strutture compatibili (di solito poche) e per ognuna prevedi i frammenti principali con i meccanismi; scegli quella che spiega gli ioni più importanti, in particolare quelli a elettroni dispari.
-1. Controlla (4.1-4.2): uno spettro di riferimento della struttura proposta o di un isomero. Ricorda i limiti: isomeri di posizione sugli anelli (orto, meta, para), stereoisomeri e talvolta isomeri di catena danno spettri quasi uguali; la cromatografia (indice di ritenzione, capitolo 5) li distingue.
+1. Controlla (4.1-4.2): uno spettro di riferimento della struttura proposta o di un isomero. Ricorda i limiti: isomeri di posizione sugli anelli (orto, meta, para), stereoisomeri e talvolta isomeri di catena danno spettri quasi uguali; la cromatografia (indice di ritenzione, capitolo 3) li distingue.
 
 ## Esempio svolto: 2-esanone
 

@@ -1,6 +1,6 @@
 <!-- script: sim-qqq.js -->
 <!-- title: Triplo quadrupolo e CID -->
-# Il triplo quadrupolo e la dissociazione per collisione {kicker: Capitolo 10}
+# Il triplo quadrupolo e la dissociazione per collisione {kicker: Capitolo 8}
 
 {.lead} Due filtri di massa con una cella di collisione in mezzo: come si rompe uno ione in modo controllato e come cinque combinazioni di "fisso" e "scansione" rispondono a domande diverse.
 
@@ -14,7 +14,7 @@ Nel triplo quadrupolo i tre stadi sono separati **nello spazio** (Q1, cella, Q3)
 
 ```html
 <figure>
-<svg viewBox="0 0 880 250" role="img" aria-label="Schema del triplo quadrupolo: ESI, orifizio, Q0, Q1, cella di collisione q2, Q3 e rivelatore, con i potenziali" aria-describedby="fd-10-0">
+<svg viewBox="0 0 880 250" role="img" aria-label="Schema del triplo quadrupolo: ESI, orifizio, Q0, Q1, cella di collisione q2, Q3 e rivelatore, con i potenziali" aria-describedby="fd-08-0">
 <style>.l{font:600 13px system-ui,sans-serif;fill:#24231f}.s{font:11.5px system-ui,sans-serif;fill:#6b675c}.r{fill:#c9d6e3;stroke:#2b5c8a}.g{fill:#e7e2d6;stroke:#9b978c}</style>
 <path d="M20 125 l30 -18 v36z" fill="#c9c5bb"/><text class="s" x="14" y="165">ESI</text>
 <rect x="66" y="80" width="6" height="36" fill="#9b978c"/><rect x="66" y="134" width="6" height="36" fill="#9b978c"/><text class="s" x="50" y="70">orifizio</text>
@@ -29,8 +29,8 @@ Nel triplo quadrupolo i tre stadi sono separati **nello spazio** (Q1, cella, Q3)
 <g class="s"><text x="62" y="205">DP</text><text x="150" y="205">EP</text><text x="384" y="205">CEP</text><text x="470" y="205">CE</text><text x="560" y="205">CXP</text></g>
 <path d="M60 212 H805" stroke="#c9c5bb"/>
 <text class="s" x="60" y="236">I potenziali sono riferiti a terra; CE è la differenza tra il potenziale di Q0 e quello della cella: lo ione entra in q2 con energia z·CE (eV).</text>
-</svg><details class="figdesc" id="fd-10-0"><summary>Descrizione della figura</summary><p>Da sinistra: sorgente ESI, orifizio, Q0 (guida RF), Q1 (filtro di massa DC+RF), q2 (cella di collisione, solo RF, N₂ a mTorr), Q3 (filtro di massa DC+RF), rivelatore. Sono indicati i potenziali DP, EP, CEP, CE e CXP. Nota: i potenziali sono riferiti a terra; CE è la differenza fra il potenziale di Q0 e quello della cella.</p></details>
-<figcaption><b>Figura 10.1</b> Schema di un triplo quadrupolo SCIEX (non in scala). DP: declustering potential; EP: entrance potential; CEP: collision cell entrance potential; CE: energia di collisione; CXP: collision cell exit potential. La "q" minuscola indica un quadrupolo solo RF, che non seleziona le masse.</figcaption>
+</svg><details class="figdesc" id="fd-08-0"><summary>Descrizione della figura</summary><p>Da sinistra: sorgente ESI, orifizio, Q0 (guida RF), Q1 (filtro di massa DC+RF), q2 (cella di collisione, solo RF, N₂ a mTorr), Q3 (filtro di massa DC+RF), rivelatore. Sono indicati i potenziali DP, EP, CEP, CE e CXP. Nota: i potenziali sono riferiti a terra; CE è la differenza fra il potenziale di Q0 e quello della cella.</p></details>
+<figcaption><b>Figura 8.1</b> Schema di un triplo quadrupolo SCIEX (non in scala). DP: declustering potential; EP: entrance potential; CEP: collision cell entrance potential; CE: energia di collisione; CXP: collision cell exit potential. La "q" minuscola indica un quadrupolo solo RF, che non seleziona le masse.</figcaption>
 </figure>
 ```
 
@@ -41,7 +41,7 @@ Nel triplo quadrupolo i tre stadi sono separati **nello spazio** (Q1, cella, Q3)
 Lo ione entra nella cella con energia cinetica *E*~lab~ = *z*·CE. In un urto con una molecola di gas ferma solo una parte di questa energia può trasformarsi in energia interna: al massimo l'energia nel sistema del centro di massa,
 
 ```html
-<span class="eq"><i>E</i><sub>cm</sub> = <i>E</i><sub>lab</sub> <span class="frac"><span><i>m</i><sub>gas</sub></span><span><i>m</i><sub>gas</sub> + <i>m</i><sub>ione</sub></span></span><span class="no">(10.1)</span></span>
+<span class="eq"><i>E</i><sub>cm</sub> = <i>E</i><sub>lab</sub> <span class="frac"><span><i>m</i><sub>gas</sub></span><span><i>m</i><sub>gas</sub> + <i>m</i><sub>ione</sub></span></span><span class="no">(8.1)</span></span>
 ```
 
 Per uno ione di m/z 300 con CE = 30 eV in N~2~: *E*~cm~ = 30 · 28/328 ≈ 2,6 eV per urto. Conseguenze: un gas più pesante (Ar) trasferisce più energia; ioni più pesanti richiedono CE più alte per frammentare allo stesso modo (per questo le CE ottimali crescono circa linearmente con m/z).
@@ -57,14 +57,14 @@ Il grafico dell'abbondanza di precursore e frammenti contro CE è la **curva di 
 
 ```html
 <div class="sim" id="sim-ce"><h4>Energia di collisione e curva di breakdown</h4>
-<p class="note">E<sub>cm</sub> è calcolata con l'eq. 10.1. La curva di breakdown è illustrativa: tre frammentazioni consecutive con soglie definite in energia nel centro di massa.</p></div>
+<p class="note">E<sub>cm</sub> è calcolata con l'eq. 8.1. La curva di breakdown è illustrativa: tre frammentazioni consecutive con soglie definite in energia nel centro di massa.</p></div>
 ```
 
 ```html
 <h3>Come si rompono gli ioni [M+H]<sup>+</sup></h3>
 ```
 
-Gli ioni prodotti dall'ESI sono **a elettroni pari** e in CID tendono a perdere **molecole neutre stabili** (H~2~O, NH~3~, CO, alcheni, CO~2~…), con rotture guidate dal sito in cui si trova il protone. La chimica di queste reazioni (energia interna e velocità di reazione, affinità protonica, regola degli elettroni pari, reazioni tipiche per classe di composti, perdite neutre e come usarle per i TP) ha un capitolo dedicato: [capitolo 14, Come si frammentano gli ioni](14-frammentazione-esi.md).
+Gli ioni prodotti dall'ESI sono **a elettroni pari** e in CID tendono a perdere **molecole neutre stabili** (H~2~O, NH~3~, CO, alcheni, CO~2~…), con rotture guidate dal sito in cui si trova il protone. La chimica di queste reazioni (energia interna e velocità di reazione, affinità protonica, regola degli elettroni pari, reazioni tipiche per classe di composti, perdite neutre e come usarle per i TP) ha un capitolo dedicato: [capitolo 12, Come si frammentano gli ioni](12-frammentazione-esi.md).
 
 ## Le modalità di scansione
 
@@ -86,7 +86,7 @@ Gli ioni prodotti dall'ESI sono **a elettroni pari** e in CID tendono a perdere 
 
 ```html
 <div class="box key"><b>Concetto chiave</b>
-<p>Precursor ion e neutral loss scan sono potenti strumenti di <em>suspect screening</em>: se la molecola madre perde un frammento o una molecola neutra caratteristica, tutti i derivati che conservano quella porzione mostrano lo stesso comportamento, consentendo un confronto sistematico con gli spettri MS2 (capitolo 18).</p></div>
+<p>Precursor ion e neutral loss scan sono potenti strumenti di <em>suspect screening</em>: se la molecola madre perde un frammento o una molecola neutra caratteristica, tutti i derivati che conservano quella porzione mostrano lo stesso comportamento, consentendo un confronto sistematico con gli spettri MS2 (capitolo 16).</p></div>
 ```
 
 ## MRM in dettaglio
@@ -134,7 +134,7 @@ Gli ioni che escono da Q3 colpiscono un **dinodo di conversione** ad alta tensio
 ## Verifica
 
 ??? Perché per uno ione a m/z 600 servono CE più alte che per uno a m/z 200?
-A parità di CE, l'energia trasferibile per urto (E~cm~) è minore per lo ione più pesante (eq. 10.1), e lo ione più grande ha più gradi di libertà su cui distribuire l'energia interna.
+A parità di CE, l'energia trasferibile per urto (E~cm~) è minore per lo ione più pesante (eq. 8.1), e lo ione più grande ha più gradi di libertà su cui distribuire l'energia interna.
 
 ??? Avete 40 transizioni MRM tutte attive per tutta la corsa, dwell 50 ms, picchi larghi 12 s. Funziona?
 Il ciclo è circa 40 × 55 ms = 2,2 s: circa 5 punti per picco, troppo pochi per un'integrazione affidabile. Serve l'MRM programmato o meno transizioni per periodo.

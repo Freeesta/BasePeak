@@ -1,5 +1,5 @@
 /* QqQ lab - Teoria: real 70 eV EI spectra (data: pratica/ei-dati.js, from MassBank, CC BY-NC-SA) drawn as bar spectra.
-   Used by chapters 15-16 and by the Pratica. A chapter only writes
+   Used by chapters 13-14 and by the Pratica. A chapter only writes
      <div class="eispec" data-ei="2-esanone" data-keys="1"></div>
    (data-keys: list the teaching notes under the spectrum; data-hide: hide the name, for "which compound is it?";
     data-h: height in px; data-table: add the table of the ten most intense peaks). */
@@ -70,7 +70,7 @@ const EISPEC = (() => {
     return `<ul class="eikeys">${it.keys.map(k => `<li><b style="color:${col(TCOL[k.type] || 1)}">m/z ${k.mz}</b> ${ionHtml(k.ion)} <span class="pill">${TYPE[k.type] || k.type}</span> ${EH(k.text)}</li>`).join("")}</ul>`;
   }
 
-  // Each spectrum of a chapter is drawn only when it comes near the screen (chapter 16 has ~40: drawing all of them at once on a
+  // Each spectrum of a chapter is drawn only when it comes near the screen (chapter 14 has ~40: drawing all of them at once on a
   // high-density screen would take tens of MB of canvas memory). Before printing, the ones not yet drawn are drawn.
   function render(el) {
     if (el.dataset.done) return;

@@ -67,7 +67,7 @@ def test_cors_options_preflight(local_server):
 
 
 def test_post_salva_token_required(local_server):
-    payload = json.dumps({"file": "capitoli/04-lc.html", "html": "test"}).encode()
+    payload = json.dumps({"file": "capitoli/02-lc.html", "html": "test"}).encode()
 
     # No token -> 403
     req_no_tok = urllib.request.Request(f"{local_server}/salva", data=payload, headers={"Content-Type": "application/json"}, method="POST")

@@ -61,8 +61,8 @@
       { id: "prec", icona: "prec", etichetta: "Precedente", testo: prevC ? prevC[1] : "", titolo: prevC ? "Precedente: " + nm(prevC) : "", gruppo: "nav", href: prevC && SITE.up + prevC[0], nascosto: !prevC, run: () => prevC && go(prevC[0]) },
       { id: "succ", icona: "succ", etichetta: "Successivo", testo: nextC ? nextC[1] : "", dopo: true, titolo: nextC ? "Successivo: " + nm(nextC) : "", gruppo: "nav", href: nextC && SITE.up + nextC[0], nascosto: !nextC, run: () => nextC && go(nextC[0]) },
       { id: "cerca", posto: "side", icona: "cerca", etichetta: "Cerca", titolo: "Cerca nella Teoria (" + (mac ? "⌘K" : "Ctrl+K") + ")", gruppo: "uso", chiave: mac ? "⌘K" : "Ctrl K", run: () => T().cerca && T().cerca() },
-      { id: "glossario", posto: "side", icona: "glossario", etichetta: "Glossario", titolo: "Glossario e bibliografia", gruppo: "uso", href: SITE.up + "capitoli/21-glossario.html", run: () => go("capitoli/21-glossario.html") },
-      { id: "formule", posto: "side", icona: "formule", etichetta: "Formule", titolo: "Formulario per l'orale", gruppo: "uso", href: SITE.up + "capitoli/22-formulario.html", run: () => go("capitoli/22-formulario.html") },
+      { id: "glossario", posto: "side", icona: "glossario", etichetta: "Glossario", titolo: "Glossario e bibliografia", gruppo: "uso", href: SITE.up + "capitoli/19-glossario.html", run: () => go("capitoli/19-glossario.html") },
+      { id: "formule", posto: "side", icona: "formule", etichetta: "Formule", titolo: "Formulario per l'orale", gruppo: "uso", href: SITE.up + "capitoli/20-formulario.html", run: () => go("capitoli/20-formulario.html") },
       { id: "esercizi", posto: "side", icona: "esercizi", etichetta: "Esercizi", titolo: "Esercizi di questo capitolo e Pratica", gruppo: "uso", run: esercizi },
       { id: "esporta", posto: "side", icona: "esporta", etichetta: "Scarica", titolo: "Scarica in PDF, Word, Markdown o HTML", gruppo: "uso", run: () => T().esporta && T().esporta() },
       { id: "strumenti", posto: "side", icona: "strumenti", etichetta: "Strumenti", titolo: "Strumenti didattici", gruppo: "uso", figli: [
