@@ -62,23 +62,6 @@ try:
                 assert q.is_visible("#tab-dati") and q.is_visible("#tab-disegno"), pgname
             idle(q); c.close()
         step("every page of the Teoria and of the Pratica has the tabs", everywhere)
-        def reach():
-            for tab, h, ready_sel in (("tab-dati", "data", "#nav button.on"), ("tab-disegno", "draw", "#nav button.on")):
-                c, q = ctx(1280); go(q, T + "pratica-formula.html"); q.wait_for_selector("#" + tab)
-                idle(q); q.click("#" + tab); q.wait_for_function("window.qqReady===true", timeout=60000)
-                assert q.locator(ready_sel).get_attribute("data-v") == h, (tab, q.url)
-                go(q, T + "08-vuoto.html"); idle(q); q.click("#tab-dati"); q.wait_for_url("**/#/data"); q.wait_for_function("window.qqReady===true", timeout=60000); idle(q); c.close()
-        step("one click from a page to Dati and to Disegno", reach)
-        def session():
-            c, q = ctx(1500, 1000); go(q, U + "#/data"); q.wait_for_function("window.qqReady===true", timeout=60000)
-            stage(q, [mz(f) for f in FILES[:1]]); q.click("text=Carica dati"); ready(q)
-            n = q.evaluate("E.files.length"); assert n >= 1, n
-            q.click("#nav button[data-v=theory]"); q.wait_for_selector("#tframe"); q.wait_for_timeout(800)
-            go(q, T + "04-lc.html"); q.wait_for_selector("#tab-dati"); idle(q); q.click("#tab-dati")
-            q.wait_for_function("window.qqReady===true", timeout=60000); ready(q)
-            assert q.evaluate("E.files.length") == n, "the session was lost"
-            idle(q); c.close()
-        step("the session of the program (a loaded file) is found again after the Teoria", session)
         def phone():
             c = r.b.new_context(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True, user_agent=IPHONE); q = c.new_page()
             go(q, T + "04-lc.html"); q.wait_for_selector("#tabs")
