@@ -26,6 +26,7 @@ Sul sito (https://freeesta.github.io/BasePeak/) arrivano solo `index.html`, `cap
 | Spettri EI dei capitoli 13-14 e del gioco | `pratica/ei-dati.js` e `pratica/ei-dati-l1.js`…`l5.js` (da MassBank Europe; struttura e come aggiungerne uno a mano: `docs/DATI-EI.md`) |
 | Glossario (parole sottolineate nel testo) | `capitoli/19-glossario.html`, poi `python3 tools/genera_glossario.py` (crea `assets/glossario-dati.js`) e `python3 tools/genera_indice_teoria.py` (ricerca: `assets/indice-ricerca.js`) |
 | Elenco dei capitoli nel menu laterale | `assets/teoria.js`, in alto: lista `CHAPTERS` (i file sono scritti a partire dalla cartella principale: `capitoli/02-lc.html`, `pratica/ei.html`) |
+| Menu laterale in tre parti (Teoria, Pratica, Reference) | l'ordine di `CHAPTERS` è l'ordine del menu e dei link Precedente/Successivo: prima la Teoria, poi le pagine di `pratica/`, poi i capitoli con parte `"Reference"` (glossario, formulario, tempi). Le sezioni (h2 e h3) del capitolo aperto, le ancore `#` sui titoli e le briciole di pane sono generate da `assets/teoria.js` dai titoli della pagina: nei capitoli non c'è niente da scrivere |
 | Colori, caratteri, aspetto dei riquadri | `assets/teoria.css` |
 | Figure interattive (calcoli e grafici) | in `assets/`: `sim-quad.js`, `sim-esi.js`, `sim-qqq.js`, `sim-frag.js`, `sim-misc.js`, `sim-chrom.js` (cromatografia), `sim-ei.js` (EI), `sim-hr.js` (risoluzione e formule) |
 
