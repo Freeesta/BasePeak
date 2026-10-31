@@ -56,23 +56,9 @@ def test_engine_elo_spacing_and_codes():
 
 
 def run_games(js: str):
-    """Like run(), with the short games (pratica/giochi.js) and the question bank (pratica/domande.js) loaded."""
-    pre = (f"global.PAL=PAL;const GIOCHI=require({json.dumps(str(WEB / 'pratica' / 'giochi.js'))});"
-           f"const DOMANDE=require({json.dumps(str(WEB / 'pratica' / 'domande.js'))});")
+    """Like run(), with the short games (pratica/giochi.js) loaded."""
+    pre = (f"global.PAL=PAL;const GIOCHI=require({json.dumps(str(WEB / 'pratica' / 'giochi.js'))});")
     return run(pre + js)
-
-
-def test_question_bank_of_the_oral():
-    r = run_games("return {d: DOMANDE.map(d=>({id:d.id,area:d.area,skill:d.skill,cap:d.cap,n:d.p.length})), skills: Object.keys(PAL.SKILLS)}")
-    ids = [d["id"] for d in r["d"]]
-    assert len(ids) == len(set(ids)) and len(ids) >= 35
-    for d in r["d"]:
-        assert d["area"] in {"sep", "ion", "anal", "hr", "dati", "ei"}, d
-        assert d["skill"] in r["skills"], d
-        assert (WEB / d["cap"]).is_file(), d
-        assert 3 <= d["n"] <= 7, d
-    for area in ("sep", "ion", "anal", "hr", "dati", "ei"):     # the oral simulation draws one question from each group
-        assert sum(d["area"] == area for d in r["d"]) >= 4, area
 
 
 def test_neutral_losses_and_formula_enumeration():

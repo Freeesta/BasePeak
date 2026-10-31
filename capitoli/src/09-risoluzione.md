@@ -121,25 +121,6 @@ Le oscillazioni inducono negli elettrodi esterni una debole **corrente immagine*
 
 Quadrupoli, trappole e TOF contano gli ioni con un **moltiplicatore di elettroni** (dinodi discreti o canale continuo) o con **piastre a microcanali** (TOF): ogni ione che colpisce la superficie libera elettroni, moltiplicati a cascata fino a 10^6^-10^8^ volte. Orbitrap e FT-ICR non «distruggono» gli ioni: misurano la corrente immagine che inducono. Dettagli sul rivelatore del QqQ nel capitolo 8.
 
-```html
-<div class="box oral"><b>Concetti chiave e domande di ripasso</b>
-<p>Definire potere risolutivo (FWHM, valle al 10%), risoluzione, accuratezza in ppm (con un calcolo); spiegare perché serve l'alta risoluzione per gli isobari e per la formula; principio del TOF (equazione 9.3, reflectron), dell'Orbitrap (frequenza assiale, transiente, trasformata di Fourier, compromesso risoluzione-velocità), della trappola ionica e dell'FT-ICR; tabella di confronto; scegliere lo strumento per una domanda analitica.</p></div>
-```
-
-## Verifica
-
-??? Un Orbitrap misura 304,1532 per uno ione la cui massa teorica è 304,1543. Errore in ppm e in mDa?
-−1,1 mDa; (304,1532 − 304,1543)/304,1543 × 10^6^ = −3,6 ppm.
-
-??? Con quale potere risolutivo separi due ioni a m/z 400,1000 e 400,1100?
-Δm = 0,0100: R ≈ 400/0,01 = 40 000 per vederli appena separati, ~80 000 per una separazione netta. Un TOF di fascia alta ci arriva appena; un Orbitrap sì.
-
-??? Perché nell'Orbitrap più risoluzione significa meno punti per picco cromatografico?
-La risoluzione è proporzionale alla durata del transiente: se raddoppio la risoluzione, ogni scansione dura il doppio e in un picco largo 6 s entrano metà degli spettri. Con picchi stretti (UHPLC, GC) bisogna trovare un compromesso.
-
-??? Uno spettrometro a risoluzione unitaria rileva un picco a m/z 216. Basta per dire che è atrazina protonata?
-No: a risoluzione unitaria centinaia di formule hanno massa nominale 216 (capitolo 11). Servono tempo di ritenzione, isotopi (qui il cloro: M+2 al 32%), MS2 e, per una conferma vera, lo standard. Con l'alta risoluzione la massa entro 3 ppm restringe moltissimo le formule, ma non distingue gli isomeri.
-
 ## Per approfondire
 
 ```html

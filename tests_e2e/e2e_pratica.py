@@ -46,17 +46,6 @@ try:
             assert pg.locator("#o1").count() == 1, "oral answer fields"
             assert pg.evaluate("!document.querySelector('iframe')"), "the structure editor must not load before it is asked for"
         step("EI oral mode: graph only, editor not loaded", ei_oral)
-        def orale():
-            pg.goto(base + "pratica/orale.html"); pg.wait_for_timeout(1000)
-            assert pg.locator("#all details").count() >= 35
-            pg.click("#exam")
-            areas = []
-            for k in range(4):
-                areas.append(pg.inner_text(".wk h3"))
-                pg.click("#show"); pg.check("#model input >> nth=0"); pg.click("#rec"); pg.wait_for_timeout(100)
-            assert "Fine della parte teorica" in pg.inner_text(".wk"), "end of the simulation"
-            assert len(set(areas)) == 4, areas
-        step("oral questions: a 4-question simulation", orale)
         def games():
             pg.goto(base + "pratica/perdite.html"); pg.wait_for_timeout(800)
             pg.click(".wk .st:nth-of-type(1) .opts button >> nth=0"); pg.click(".wk .st:nth-of-type(2) .opts button >> nth=0")
