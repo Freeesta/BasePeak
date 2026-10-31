@@ -167,28 +167,6 @@ Con una coda o con *R*~s~ bassa più soluzioni descrivono bene i dati: le aree d
 
 In GC-EI ogni composto dà molti ioni frammento. Il metodo AMDIS (Stein, 1999) cerca i cromatogrammi degli ioni che hanno lo stesso massimo e la stessa forma e li raggruppa: le loro intensità a quel tempo formano lo spettro «puro» del componente, anche se un altro composto eluisce quasi insieme. Il raggruppamento delle tracce di uno stesso composto è il tema del [capitolo 26](26-gruppi.html).
 
-## Verifica
-
-```html
-<details class="q"><summary>Applica i pesi (−3, 12, 17, 12, −3)/35 ai punti 10, 14, 13, 15, 11. Che cosa dà la media mobile?</summary><p>(−30 + 168 + 221 + 180 − 33)/35 = 506/35 = 14,46. La media mobile dà (10 + 14 + 13 + 15 + 11)/5 = 12,6.</p></details>
-```
-
-```html
-<details class="q"><summary>Un picco gaussiano ha <i>h</i> = 1000 e σ = 4 s. Quanto valgono <i>w</i><sub>½</sub> e area?</summary><p><i>w</i><sub>½</sub> = 2,355 · 4 = 9,42 s; <i>A</i> = 1000 · 4 · √(2π) ≈ 10 027.</p></details>
-```
-
-```html
-<details class="q"><summary>Al 10 % dell'altezza <i>a</i> = 3,0 s e <i>b</i> = 5,4 s. Quanto vale <i>A</i><sub>s</sub> e che picco è?</summary><p><i>A</i><sub>s</sub> = 5,4/3,0 = 1,8: un picco con coda.</p></details>
-```
-
-```html
-<details class="q"><summary>Due programmi danno S/N = 12 e S/N = 5 per lo stesso picco. Uno dei due sbaglia?</summary><p>Non necessariamente: usano definizioni diverse del rumore (deviazione standard, ampiezza picco-picco, MAD). I valori non sono confrontabili fra programmi.</p></details>
-```
-
-```html
-<details class="q"><summary>Due massimi alti 1000 e 800 hanno una valle a 700. La regola (25.7) con soglia 0,5 li divide?</summary><p><i>v</i> = 700/800 = 0,875 &gt; 0,5: no, resta un solo picco con una spalla. Con la valle a 300 sarebbe <i>v</i> = 0,375 e si dividerebbe.</p></details>
-```
-
 ## Per approfondire
 
 ```html

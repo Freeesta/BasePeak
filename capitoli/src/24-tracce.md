@@ -130,24 +130,6 @@ Con spettri a risoluzione unitaria questo basta. Ad alta risoluzione 0,1 Da a m/
 </ul></div>
 ```
 
-## Verifica
-
-```html
-<details class="q"><summary>Quanto vale la semi-ampiezza di una finestra di ±25 ppm a m/z 500?</summary><p>Δ = 500 · 25 · 10<sup>−6</sup> = 0,0125 Da, cioè 12,5 mDa.</p></details>
-```
-
-```html
-<details class="q"><summary>Due ioni a m/z 300,000 e 300,004: la finestra di ±5 ppm li separa? Che <i>R</i> serve?</summary><p>±5 ppm a m/z 300 sono ±1,5 mDa e la distanza è 4 mDa, quindi la finestra li separa. Per risolverli serve <i>R</i> ≈ 300,002/0,004 ≈ 75 000.</p></details>
-```
-
-```html
-<details class="q"><summary>Una traccia debole è spezzata in due ROI di 4 e 3 scansioni, con lunghezza minima 5. Che cosa succede e che cosa si controlla?</summary><p>Tutte e due sono scartate e il segnale si perde. Si controlla se la tolleranza è più stretta della dispersione dell'm/z e se il vuoto massimo (qui 0) è troppo corto per un segnale che cade sotto il rumore.</p></details>
-```
-
-```html
-<details class="q"><summary>Perché un intervallo fisso di 0,1 Da è poco adatto all'alta risoluzione?</summary><p>A m/z 300 vale oltre 330 ppm, molto più della dispersione dello strumento: unisce ioni diversi nello stesso cromatogramma e spezza le tracce che cadono a cavallo di due intervalli.</p></details>
-```
-
 ## Per approfondire
 
 ```html
