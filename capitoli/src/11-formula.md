@@ -120,7 +120,7 @@ Poi si aggiungono gli eteroatomi sostituendo gruppi di pari massa: **O** al post
 
 ## Ad alta risoluzione
 
-Con una massa esatta misurata entro pochi ppm il numero di formule compatibili crolla, ma non si azzera: cresce rapidamente con la massa e con gli elementi ammessi. <span class="solo-esteso" hidden>Approfondimento: <a href="30-candidati.html">capitolo 30 (Formule e candidati in silico)</a>.</span>
+Con una massa esatta misurata entro pochi ppm il numero di formule compatibili crolla, ma non si azzera: cresce rapidamente con la massa e con gli elementi ammessi. Approfondimento: <a href="30-candidati.html">capitolo 30 (Formule e candidati in silico)</a>.
 
 ```html
 <details class="poe"><summary>Prima di provare: quante formule CHNOSCl plausibili ha una molecola di massa 300,10 entro 5 ppm? E entro ±0,5 Da?</summary>

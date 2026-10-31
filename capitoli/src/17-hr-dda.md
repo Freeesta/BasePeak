@@ -30,7 +30,7 @@ Le masse esatte non sono numeri interi: il **difetto di massa** (la parte decima
 <tr><td>CO<sub>2</sub></td><td>43.9898</td><td rowspan="2">0.0728</td></tr><tr><td>C<sub>3</sub>H<sub>8</sub></td><td>44.0626</td></tr></tbody></table>
 ```
 
-Per vedere due picchi separati servono righe più strette della loro distanza: a *m/z* 400 la differenza di 0.0364 richiede *R* > 11 000, che Orbitrap e Q-TOF hanno, un quadrupolo no. Due ioni **isobari** (stessa massa nominale, formule diverse) che a risoluzione unitaria sono un unico picco diventano due: puoi estrarre l'XIC dell'uno senza l'altro. Resta il limite opposto: stesse masse esatte (isomeri) non si separano con nessuna risoluzione. <span class="solo-esteso" hidden>Approfondimento: <a href="24-tracce.html">capitolo 24 (Tracce di massa e ROI)</a>.</span>
+Per vedere due picchi separati servono righe più strette della loro distanza: a *m/z* 400 la differenza di 0.0364 richiede *R* > 11 000, che Orbitrap e Q-TOF hanno, un quadrupolo no. Due ioni **isobari** (stessa massa nominale, formule diverse) che a risoluzione unitaria sono un unico picco diventano due: puoi estrarre l'XIC dell'uno senza l'altro. Resta il limite opposto: stesse masse esatte (isomeri) non si separano con nessuna risoluzione. Approfondimento: <a href="24-tracce.html">capitolo 24 (Tracce di massa e ROI)</a>.
 
 ## DDA: lo strumento sceglie cosa frammentare
 
@@ -48,7 +48,7 @@ Per questo ogni MS2 ricorda da quale Full Scan è partita (**scansione madre**) 
 
 ## Finestra di isolamento e spettri misti
 
-Prima della frammentazione un quadrupolo lascia passare una finestra di *m/z* attorno al precursore (±0.5, ±0.75, ±1.5…). Tutto ciò che sta dentro la finestra viene frammentato insieme: se due ioni sono più vicini della larghezza della finestra, la MS2 è uno **spettro misto** con i frammenti di entrambi. In pratica: uno ione debole accanto a uno forte non avrà una MS2 sua (lo strumento sceglie il forte), ma i suoi frammenti possono comparire nella MS2 del forte. Per questo conviene guardare nella Full Scan la banda di isolamento (rettangolo colorato) prima di attribuire i frammenti a un precursore. <span class="solo-esteso" hidden>Approfondimento: <a href="28-somiglianza.html">capitolo 28 (Somiglianza spettrale)</a>.</span>
+Prima della frammentazione un quadrupolo lascia passare una finestra di *m/z* attorno al precursore (±0.5, ±0.75, ±1.5…). Tutto ciò che sta dentro la finestra viene frammentato insieme: se due ioni sono più vicini della larghezza della finestra, la MS2 è uno **spettro misto** con i frammenti di entrambi. In pratica: uno ione debole accanto a uno forte non avrà una MS2 sua (lo strumento sceglie il forte), ma i suoi frammenti possono comparire nella MS2 del forte. Per questo conviene guardare nella Full Scan la banda di isolamento (rettangolo colorato) prima di attribuire i frammenti a un precursore. Approfondimento: <a href="28-somiglianza.html">capitolo 28 (Somiglianza spettrale)</a>.
 
 ## L'energia di collisione: eV oppure NCE
 

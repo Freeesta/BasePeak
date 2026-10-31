@@ -39,7 +39,7 @@ One `send_later` (30 min, Federico's rule; name "GIRO COO BasePeak"), re-armed a
 - Copilot policy above (yes/no). Allow CC BY-SA images in Storia? (default no)
 - Download button: which browser/format/symptom did he see? (could not reproduce)
 ### Queue
-1. Chemioinformatica: apply fixes from the Opus review (small DEV PRs), then UN-HIDE part VII (delete the 5th field `true` of rows 22-32 in CHAPTERS + check home cards/search) only after the fixes merge.
+1. Chemioinformatica: review fixes merged (#33-#37); part VII (22-32) un-hidden for readers in DEV-PUBLISH-CHEMI (PR open, `dev/publish-chemi`); delete this row when it merges. Storia 33-42 stays hidden.
 2. Storia: DEV-02 SVG merged; DEV-01 photos running; then chapters DEV-03..12 (prompts docs/piani/prompt-storia-ms/), DEV-13 glossary/search/links, ARCH-14 review, DEV-15 publish. No Verifica sections, no placeholder text.
 3. Size-budget tests + service worker (one chat alone on assets/teoria.js).
 4. Dyslexia audit. 5. Rename "QqQ lab" in titles/appname. 6. Delete capitoli/src md twins after chapters 22-42 are done (2nd PR of the easy-edit work). 7. Proposal for the old chapter editor (Rust/wasm) to Federico: now superseded by the in-page editor, propose deleting `editor/`.

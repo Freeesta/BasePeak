@@ -49,7 +49,7 @@ L'**accuratezza** dice quanto il valore misurato si discosta da quello vero; la 
 - Per calcolare la massa teorica di uno ione si sottrae (cationi) o si aggiunge (anioni) la massa dell'elettrone, 0,00055 Da: trascurarla vale 2,5 ppm a m/z 216, non poco a questo livello.
 - Un errore **sistematico** (tutti gli ioni spostati dello stesso numero di ppm) è un problema di taratura: si corregge con una massa di riferimento sempre presente (lock mass, ioni del fondo noti) o tarando più spesso. Un errore **casuale** dipende dalla statistica degli ioni: picchi deboli hanno masse meno precise.
 - Valori tipici: Orbitrap e Q-TOF moderni 1-3 ppm; FT-ICR sotto 1 ppm; quadrupolo ±0,1-0,2 unità (e il vostro strumento ha uno scostamento di circa +0,3: capitolo 10).
-- Accuratezza e risoluzione sono legate: un picco non risolto ha un centroide sbagliato (figura sopra), quindi senza risoluzione non c'è accuratezza. <span class="solo-esteso" hidden>Approfondimento: <a href="22-segnale.html">capitolo 22 (Segnale, profilo e centroide)</a>.</span>
+- Accuratezza e risoluzione sono legate: un picco non risolto ha un centroide sbagliato (figura sopra), quindi senza risoluzione non c'è accuratezza. Approfondimento: <a href="22-segnale.html">capitolo 22 (Segnale, profilo e centroide)</a>.
 
 ## Gli analizzatori
 
