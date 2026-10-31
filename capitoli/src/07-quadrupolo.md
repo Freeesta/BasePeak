@@ -209,22 +209,6 @@ Ioni molto pesanti (*q* piccolo) sono confinati debolmente. Questo è il princip
 </ul></div>
 ```
 
-## Verifica
-
-??? Raddoppiate V e U mantenendo il rapporto. Che cosa succede alla massa trasmessa?
-Raddoppia (eq. 7.9): la finestra si sposta a m/z doppio. La larghezza relativa (R) non cambia perché la retta di lavoro è la stessa.
-
-```html
-<details class="q"><summary>Perché un quadrupolo "solo RF" non separa le masse ma è indispensabile nella cella di collisione?</summary>
-<p>Con a = 0 tutti gli ioni con q &lt; 0,908 sono stabili: nessuna selezione. Proprio per questo raccoglie e rifocalizza sull'asse precursori e frammenti diffusi in tutte le direzioni dagli urti.</p></details>
-```
-
-??? Nel simulatore, con U/V al 97% del vertice, la finestra a m/z 300 è larga una decina di Da. Che cosa dovete fare per ottenere 0,7 Da? E che cosa perdete?
-Avvicinare molto la retta al vertice (U/V intorno al 99,8% del valore al vertice). La finestra si stringe ma la trasmissione cala: più risoluzione, meno sensibilità.
-
-??? Uno ione con (a, q) = (0,10; 0,95) è stabile?
-No: per a ≥ 0 la prima regione di stabilità non va oltre q ≈ 0,908 (raggiunto per a = 0). Con a = 0,10 il limite destro è ancora più basso.
-
 ## Per approfondire
 
 ```html

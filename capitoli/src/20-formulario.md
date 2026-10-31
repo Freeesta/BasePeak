@@ -287,19 +287,3 @@ Pseudo-primo ordine (Langmuir–Hinshelwood a bassa concentrazione, equazione 2.
 <p><i>s</i> deviazione standard del segnale del bianco (o dei residui della retta), <i>b</i> pendenza della retta di taratura. In pratica: segnale/rumore 3 per rivelare, 10 per quantificare.</p>
 ```
 
-## Verifica
-
-??? Un quadrupolo trasmette m/z 300 con V = 350 V. Che V serve per m/z 450, a parità di U/V?
-La massa trasmessa è proporzionale a V (equazione 7.9): V = 350 × 450/300 = 525 V. U cresce nella stessa proporzione, così il rapporto U/V (e quindi la risoluzione relativa al vertice) resta lo stesso.
-
-??? Raddoppio la lunghezza della colonna. Di quanto migliora la risoluzione? E il tempo di analisi?
-N raddoppia, R~s~ ∝ √N cresce di √2 ≈ 1,4 volte; il tempo di analisi raddoppia (e in HPLC anche la pressione). Cambiare la selettività (fase stazionaria, solvente, temperatura) è quasi sempre più efficace.
-
-??? Perché lo stesso ione si frammenta meno in una cella con N₂ che con Ar alla stessa energia di collisione?
-Per l'equazione 8.1 l'energia nel centro di massa è proporzionale a m~gas~/(m~gas~ + m~ione~): N~2~ (28) trasferisce meno energia per urto di Ar (40).
-
-??? Un TOF misura uno ione a 20,0 µs. A che tempo arriva uno ione di m/z quattro volte più grande?
-t ∝ √(m/z): √4 = 2, quindi a 40,0 µs.
-
-??? Uno spettro EI ha M^+•^ a m/z 136, M+1 al 9,9% di M e nessun M+2 significativo. Quanti carboni? Che formule sono possibili?
-Massa pari: nessun N o un numero pari. n~C~ ≈ 9,9/1,1 = 9. Regola del 13: 136/13 = 10 resto 6 → C~10~H~16~ (RDB 3, per esempio un monoterpene); con un O al posto di CH~4~: C~9~H~12~O (RDB 4, compatibile con 9 carboni). L'M+1 favorisce 9 carboni; il resto lo dicono i frammenti.

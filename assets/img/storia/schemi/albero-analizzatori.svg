@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" role="img" aria-labelledby="ti de"><title id="ti">Albero degli analizzatori di massa dal 1910 al 2020</title><desc id="de">Una linea del tempo dal 1910 al 2020. Dalle parabole di Thomson (1913) partono quattro rami: settori magnetici ed elettrici, tempo di volo, radiofrequenza, trasformata di Fourier. Un quinto ramo tratteggiato, dagli ibridi, nasce dal quadrupolo. Ogni nodo riporta il nome e l'anno.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<path class="d" d="M176.5 30L176.5 372"/>
+<text class="t m" x="176.5" y="392">1920</text>
+<path class="d" d="M279.5 30L279.5 372"/>
+<text class="t m" x="279.5" y="392">1940</text>
+<path class="d" d="M382.5 30L382.5 372"/>
+<text class="t m" x="382.5" y="392">1960</text>
+<path class="d" d="M485.5 30L485.5 372"/>
+<text class="t m" x="485.5" y="392">1980</text>
+<path class="d" d="M588.5 30L588.5 372"/>
+<text class="t m" x="588.5" y="392">2000</text>
+<path class="d" d="M691.5 30L691.5 372"/>
+<text class="t m" x="691.5" y="392">2020</text>
+<path class="ra" d="M140.4 200C165.4 200 136.2 70 166.2 70"/>
+<path class="l" d="M166.2 70L687.5 70"/>
+<text class="h" x="6" y="75">settori</text>
+<circle class="sa" cx="166.2" cy="70" r="6"/>
+<text class="t e" x="160.2" y="44">Dempster</text>
+<text class="t e" x="160.2" y="57">1918</text>
+<circle class="sa" cx="171.3" cy="70" r="6"/>
+<text class="t" x="179.3" y="91">Aston</text>
+<text class="t" x="179.3" y="104">1919</text>
+<circle class="sa" cx="248.6" cy="70" r="6"/>
+<text class="t m" x="248.6" y="44">Mattauch-Herzog</text>
+<text class="t m" x="248.6" y="57">1934</text>
+<circle class="sa" cx="279.5" cy="70" r="6"/>
+<text class="t m" x="279.5" y="91">Nier</text>
+<text class="t m" x="279.5" y="104">1940</text>
+<circle class="sa" cx="346.5" cy="70" r="6"/>
+<text class="t m" x="346.5" y="44">Johnson-Nier</text>
+<text class="t m" x="346.5" y="57">1953</text>
+<path class="ra" d="M140.4 200C165.4 200 326.8 135 356.8 135"/>
+<path class="l" d="M356.8 135L687.5 135"/>
+<text class="h" x="6" y="140">TOF</text>
+<circle class="sa" cx="356.8" cy="135" r="6"/>
+<text class="t m" x="356.8" y="109">TOF a due campi</text>
+<text class="t m" x="356.8" y="122">1955</text>
+<circle class="sa" cx="449.5" cy="135" r="6"/>
+<text class="t m" x="449.5" y="156">Reflectron</text>
+<text class="t m" x="449.5" y="169">1973</text>
+<path class="ra" d="M140.4 200C165.4 200 316.5 200 346.5 200"/>
+<path class="l" d="M346.5 200L687.5 200"/>
+<text class="h" x="6" y="205">RF</text>
+<circle class="sa" cx="346.5" cy="200" r="6"/>
+<text class="t m" x="346.5" y="174">Quadrupolo</text>
+<text class="t m" x="346.5" y="187">1953</text>
+<circle class="sa" cx="506.1" cy="200" r="6"/>
+<text class="t m" x="506.1" y="221">Trappola ionica</text>
+<text class="t m" x="506.1" y="234">1984</text>
+<path class="ra" d="M140.4 200C165.4 200 208.3 265 238.3 265"/>
+<path class="l" d="M238.3 265L687.5 265"/>
+<text class="h" x="6" y="270">FT</text>
+<circle class="sa" cx="238.3" cy="265" r="6"/>
+<text class="t m" x="238.3" y="239">Ciclotrone</text>
+<text class="t m" x="238.3" y="252">1932</text>
+<circle class="sa" cx="454.6" cy="265" r="6"/>
+<text class="t m" x="454.6" y="286">FT-ICR</text>
+<text class="t m" x="454.6" y="299">1974</text>
+<circle class="sa" cx="588.5" cy="265" r="6"/>
+<text class="t m" x="588.5" y="239">Orbitrap</text>
+<text class="t m" x="588.5" y="252">2000</text>
+<path class="d" d="M346.5 200C376.5 260 415.2 330 475.2 330"/>
+<path class="l" d="M475.2 330L687.5 330"/>
+<text class="h" x="6" y="335">ibridi</text>
+<circle class="sa" cx="475.2" cy="330" r="6"/>
+<text class="t m" x="475.2" y="351">QqQ</text>
+<text class="t m" x="475.2" y="364">1978</text>
+<circle class="sa" cx="567.9" cy="330" r="6"/>
+<text class="t m" x="567.9" y="304">Q-TOF</text>
+<text class="t m" x="567.9" y="317">1996</text>
+<circle class="sa" cx="645.2" cy="330" r="6"/>
+<text class="t m" x="645.2" y="351">Q-Orbitrap</text>
+<text class="t m" x="645.2" y="364">2011</text>
+<circle class="sb" cx="140.4" cy="200" r="7"/>
+<text class="t e" x="126.4" y="192">Parabole di</text>
+<text class="t e" x="126.4" y="206">Thomson</text>
+<text class="t e" x="126.4" y="220">1913</text>
+</svg>

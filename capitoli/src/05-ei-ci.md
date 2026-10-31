@@ -145,29 +145,6 @@ Nella sorgente si introduce un **gas reagente** a pressione relativamente alta (
 <p>Ogni frammento EI ha la sua massa esatta: 43,0542 (C<sub>3</sub>H<sub>7</sub><sup>+</sup>) e 43,0178 (C<sub>2</sub>H<sub>3</sub>O<sup>+</sup>) sono picchi diversi. Le formule dei frammenti si verificano in ppm (capitolo 9), il che rende molto più sicura l'interpretazione.</p></div></div>
 ```
 
-```html
-<div class="box oral"><b>Concetti chiave e domande di ripasso</b>
-<p>Descrivere la geometria di una sorgente EI e il processo di ionizzazione; comprendere perché si usano 70 eV e perché gli spettri EI sono storicamente riproducibili e confrontabili in libreria; definire lo ione radicale molecolare (elettroni dispari); spiegare perché lo ione molecolare può essere debole o assente e quali strategie permettono di osservarlo (CI, EI a bassa energia); principi di funzionamento della CI e criteri di scelta del gas reagente; ionizzazione chimica negativa (NCI) per analiti alogenati ed elettrofili; confronto tra le diverse sorgenti di ionizzazione in funzione della natura chimica dell'analita.</p></div>
-```
-
-## Verifica
-
-??? Perché in EI conta solo la frammentazione unimolecolare, mentre in CI ci sono reazioni ione-molecola?
-In EI la pressione è ~10^−5^ Torr: il cammino libero medio è molto più lungo della sorgente e lo ione non incontra altre molecole. In CI il gas reagente è a ~1 Torr: cammino libero medio di decine di micrometri, migliaia di urti, e la ionizzazione stessa è una reazione ione-molecola.
-
-```html
-<details class="q"><summary>Nello spettro CI (metano) di un composto vedi m/z 151, 179 e 191. Qual è la massa molecolare?</summary>
-<p>150: [M+H]<sup>+</sup> = 151, [M+C<sub>2</sub>H<sub>5</sub>]<sup>+</sup> = 179 (M+29), [M+C<sub>3</sub>H<sub>5</sub>]<sup>+</sup> = 191 (M+41).</p></details>
-```
-
-```html
-<details class="q"><summary>L'analita ha PA = 800 kJ/mol. Con quale gas reagente ottieni lo spettro più semplice?</summary>
-<p>Con l'isobutano: PA(isobutene) = 802 kJ/mol, la protonazione è appena endotermica o quasi termoneutra, quindi dà [M+H]<sup>+</sup> con poca energia (o l'addotto); con il metano (543) sarebbe esotermica di ~260 kJ/mol (~2,7 eV) e darebbe frammenti; con l'ammoniaca (854) non si protona e si vedrebbe al più [M+NH<sub>4</sub>]<sup>+</sup>.</p></details>
-```
-
-??? Si propone di analizzare in GC-EI un prodotto di trasformazione polare senza derivatizzazione né preparazione. Quali sono le criticità?
-I prodotti polari e idrofili sono tipicamente poco volatili e termolabili (presenza di gruppi –OH, –NH, carbossilici): possono non attraversare la colonna GC, produrre forte asimmetria (code) o decomporsi termicamente nell'iniettore. Senza derivatizzazione (capitolo 3), la tecnica d'elezione per queste specie è la LC-ESI.
-
 ## Per approfondire
 
 ```html

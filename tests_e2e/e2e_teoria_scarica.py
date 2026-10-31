@@ -120,7 +120,7 @@ try:
             step(f"{pg}: single chapter and whole handbook in Markdown / Word / HTML download valid files (published layout, 1280 px)", lambda pg=pg: all_formats(pg))
         step("phone 390 px (drawer): single chapter and whole handbook in Markdown / Word / HTML download valid files", lambda: all_formats("capitoli/11-formula.html", True))
         def pratica_page():
-            c, q = newpage(); opened(q, "pratica/orale.html"); name, txt = grab(q, "#exp-cur-md"); assert txt.startswith("# ") and len(txt) > 500; c.close()
+            c, q = newpage(); opened(q, "pratica/formula.html"); name, txt = grab(q, "#exp-cur-md"); assert txt.startswith("# ") and len(txt) > 500; c.close()
         step("a Pratica page exports its own text (Markdown)", pratica_page)
 
         # ---- PDF: the print dialog of the page, with a print stylesheet that leaves only the text

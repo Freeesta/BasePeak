@@ -10,7 +10,7 @@ def step(name, fn):
         import traceback; ln = [f.lineno for f in traceback.extract_tb(e.__traceback__) if f.filename.endswith("e2e_teoria_nav.py")][-1]
         steps.append((name, f"FAIL (line {ln}) " + str(e).split("\n")[0][:240]))
 IPHONE = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
-PAGES = ["index.html", "capitoli/01-cromatografia.html", "capitoli/04-esi.html", "capitoli/12-frammentazione-esi.html", "capitoli/20-formulario.html", "pratica/index.html", "pratica/ei.html", "pratica/orale.html", "pratica/formula.html"]
+PAGES = ["index.html", "capitoli/01-cromatografia.html", "capitoli/04-esi.html", "capitoli/12-frammentazione-esi.html", "capitoli/20-formulario.html", "pratica/index.html", "pratica/ei.html", "pratica/formula.html"]
 THREE = ["index.html", "capitoli/07-quadrupolo.html", "pratica/ei.html"]
 r = Run(port=8972, wd="/tmp/wd_tnav")
 # what is searched in the built DOM: the old tabs, their links to the app, the names of the app

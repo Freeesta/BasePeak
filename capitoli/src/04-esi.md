@@ -249,22 +249,6 @@ Qualsiasi specie che coeluisce con l'analita (sali, sostanza organica naturale, 
 <p>Il confronto con le sorgenti della GC-MS (impatto elettronico e ionizzazione chimica in vuoto) e con il MALDI è nel capitolo 5. La differenza da ricordare: l'ESI produce ioni <b>a elettroni pari</b> ([M+H]<sup>+</sup>) con poca energia interna, l'EI <b>radicali cationi</b> M<sup>+•</sup> con molta energia; per questo le regole di frammentazione dei capitoli 12 (CID) e 15 (EI) sono diverse.</p>
 ```
 
-## Verifica
-
-```html
-<details class="q"><summary>Nello spettro dello standard vedete m/z X e X+22 allo stesso RT. Che cosa sono?</summary>
-<p>[M+H]<sup>+</sup> e [M+Na]<sup>+</sup> dello stesso composto (differenza 21,98). Non sono due molecole diverse.</p></details>
-```
-
-??? Aumentate il DP da 50 a 150 V e nel full scan dello standard compare un nuovo picco allo stesso RT del parent. Che cos'è?
-Un frammento formato in sorgente (in-source CID): gli ioni accelerati dal DP urtano il gas residuo prima di Q1. Se lo stesso m/z compare nell'MS2 del parent, la conferma è quasi certa.
-
-??? Perché lo stesso analita dà un segnale più alto se eluisce al 70% di acetonitrile rispetto al 20%?
-Tensione superficiale più bassa e maggiore volatilità: gocce più piccole, fissioni più precoci, desolvatazione più efficiente (eq. 4.1).
-
-??? Un TP acido carbossilico non compare in ESI positivo. È stato mineralizzato?
-Non necessariamente: può semplicemente ionizzarsi male in positivo (nessun sito basico). Servirebbe un'analisi in ESI negativo o il controllo del TOC.
-
 ## Per approfondire
 
 ```html

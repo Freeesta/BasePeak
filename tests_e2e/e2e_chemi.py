@@ -71,6 +71,7 @@ try:
         for scheme in ("light", "dark"):
             q = r.b.new_page(viewport={"width": 1280, "height": 900}, color_scheme=scheme, reduced_motion="reduce")
             q.add_init_script("(" + RAF + ")()")
+            q.add_init_script("try{localStorage.setItem('mzlab.admin','1')}catch(_){}")      # part VII is an administrator-only draft: without the mode a reader sees only a notice
             reqs = []
             q.on("request", lambda rq: reqs.append(rq.url))
             q.on("pageerror", lambda e: r.errs.append(("pageerror", str(e))))

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 426" role="img" aria-labelledby="ti de"><title id="ti">Sorgente a elettrospray: capillare, cono di Taylor, getto e gocce</title><desc id="de">Dall'estremità di un capillare, sotto alta tensione, il liquido forma un cono, il cono di Taylor, da cui parte un getto sottile. Il getto si rompe in gocce cariche che, evaporando, si dividono in gocce sempre più piccole fino a rilasciare ioni in fase gas, che entrano nello spettrometro attraverso un foro dell'elettrodo di fronte.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<path class="th" d="M234 20L234 90"/>
+<path class="th" d="M286 20L286 90"/>
+<path class="sa" d="M234 90Q256 125 260 160Q264 125 286 90Z"/>
+<path class="ra" d="M260 160L260 215"/>
+<circle class="sa" cx="260" cy="235" r="9"/>
+<circle class="sa" cx="230" cy="285" r="6"/>
+<circle class="sa" cx="290" cy="285" r="6"/>
+<circle class="sa" cx="182" cy="335" r="4"/>
+<circle class="sa" cx="234" cy="335" r="4"/>
+<circle class="sa" cx="286" cy="335" r="4"/>
+<circle class="sa" cx="338" cy="335" r="4"/>
+<path class="d" d="M260 243L230 277"/>
+<path class="d" d="M260 243L290 277"/>
+<path class="d" d="M230 293L182 327"/>
+<path class="d" d="M230 293L234 327"/>
+<path class="d" d="M290 293L286 327"/>
+<path class="d" d="M290 293L338 327"/>
+<path class="th" d="M110 392L238 392"/>
+<path class="th" d="M282 392L420 392"/>
+<path class="ra" d="M260 355L260 380" marker-end="url(#pa)"/>
+<text class="t m" x="260" y="414">ingresso dello spettrometro</text>
+<path class="l" d="M234 40H60V190M60 214V392H110"/>
+<path class="th" d="M40 190L80 190"/>
+<path class="th" d="M50 200L70 200"/>
+<path class="th" d="M46 190L74 190"/>
+<path class="th" d="M54 202L66 202"/>
+<path class="l" d="M60 202V214"/>
+<text class="t" x="70" y="240">alta tensione</text>
+<path class="l" d="M286 55L380 55"/>
+<text class="t" x="388" y="59">capillare</text>
+<path class="l" d="M274 112L380 112"/>
+<text class="t" x="388" y="116">cono di Taylor</text>
+<path class="l" d="M262 190L380 190"/>
+<text class="t" x="388" y="194">getto sottile</text>
+<path class="l" d="M300 262L380 262"/>
+<text class="t" x="388" y="266">gocce che si dividono</text>
+<path class="l" d="M344 335L380 335"/>
+<text class="t" x="388" y="339">gocce sempre più piccole</text>
+<text class="t" x="388" y="359">e ioni in fase gas</text>
+</svg>

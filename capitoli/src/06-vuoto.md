@@ -53,14 +53,6 @@ Nella geometria SCIEX una corrente di N~2~ puro (curtain gas, CUR) esce dallo sp
 
 Tra gli stadi gli ioni sono guidati da multipoli alimentati solo in radiofrequenza (quadrupoli, esapoli, ottapoli "RF-only"). Senza componente continua, un multipolo non separa le masse ma crea un pozzo di potenziale efficace che confina sull'asse tutti gli ioni sopra una certa massa (capitolo 7, regione *a* = 0). In presenza di gas, gli urti dissipano l'energia degli ioni, che si concentrano sull'asse del pozzo: la trasmissione verso Q1 aumenta molto. Lo stesso principio, con energia più alta, tiene insieme i frammenti nella cella di collisione.
 
-## Verifica
-
-??? Perché un quadrupolo non funzionerebbe a 1 mTorr?
-A 1 mTorr il libero cammino medio è di qualche centimetro: in 20 cm lo ione subirebbe molti urti e la sua traiettoria non dipenderebbe più solo da m/z e dai campi applicati; risoluzione e trasmissione crollerebbero.
-
-??? Aumentando il CUR il segnale cala leggermente ma il fondo cala molto. Perché?
-Più gas di tenda respinge meglio neutri, cluster e goccioline (fonte di rumore chimico), ma rallenta anche parte degli ioni. Il rapporto segnale/rumore spesso migliora.
-
 ## Per approfondire
 
 ```html
