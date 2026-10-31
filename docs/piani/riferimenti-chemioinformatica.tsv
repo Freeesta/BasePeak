@@ -89,6 +89,9 @@ xcms-src		verified	19,24	xcms R package source, `R/functions-Params.R` (CentWave
 NIST-MSSearch		verified		NIST Mass Spectral Search Program, manual v2.2, p. 39 (match factor, reverse match factor; composite formula not verified)
 GNPS-docs		verified		GNPS documentation, molecular networking parameters, ccms-ucsd.github.io/GNPSDocumentation/networking/ (read 2026-10-31)
 MassBank-licences		verified		MassBank record format, §2.1.5 LICENSE (github.com/MassBank/MassBank-web, Documentation/MassBankRecordFormat.md)
+Thomson1897	10.1080/14786449708621070	verified	34	Thomson J.J. (1897) Cathode Rays. Phil. Mag. (5th ser.) 44, 293-316
+Wien1898	10.1002/andp.18983010618	verified	34	Wien W. (1898) Untersuchungen über die electrische Entladung in verdünnten Gasen. Ann. Phys. 301, 440-452
+Thomson1913Bakerian	10.1098/rspa.1913.0057	verified	34	Thomson J.J. (1913) Bakerian Lecture: Rays of positive electricity. Proc. R. Soc. Lond. A 89, 1-20
 preexisting-01	10.1002/0471479357	preexisting		
 preexisting-02	10.1002/hlca.19580410703	preexisting		
 preexisting-03	10.1002/jms.1190301102	preexisting		
