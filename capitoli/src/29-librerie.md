@@ -76,7 +76,7 @@ Di solito si tengono i risultati con q ≤ 0,01 o 0,05.
 
 ## Le reti molecolari
 
-Nel modello di Watrous et al. (2012) ogni **nodo** è uno spettro MS2 di consenso; due nodi si collegano se il coseno modificato supera una soglia e hanno abbastanza picchi in comune. Ogni nodo tiene al più i K legami migliori (nella figura il legame resta se è fra i K migliori di entrambi). Le componenti connesse sono **famiglie** di molecole imparentate, e l'annotazione di un nodo trovato in libreria si propaga ai vicini.
+Nel modello di Watrous et al. (2012) ogni **nodo** è uno spettro MS2 di consenso; due nodi si collegano se il coseno modificato supera una soglia e hanno abbastanza picchi in comune. Ogni nodo tiene al più i K legami migliori (nella figura il legame resta se è fra i K migliori di entrambi). Watrous et al. (2012) usavano un coseno di almeno 0,7, almeno 6 picchi in comune e al più 10 legami per spettro. Le componenti connesse sono **famiglie** di molecole imparentate, e l'annotazione di un nodo trovato in libreria si propaga ai vicini.
 
 GNPS e il suo protocollo (Wang et al., 2016; Aron et al., 2020) rendono la procedura riproducibile. Le soglie decidono tutto: permissive, collegano ogni cosa; strette, spezzano le famiglie. I valori predefiniti dei programmi vanno letti nella loro documentazione.
 
