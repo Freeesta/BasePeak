@@ -1,5 +1,5 @@
 /* mzLab - Teoria: «Tavola periodica con isotopi» (chapters 11, 13, 22). The table is the one of the program (tavola-periodica.js,
-   data in elements.js); here it only gets the Italian texts. Hover or focus an element to read masses and abundances, click or Enter pins it. */
+   data in masse.js); here it only gets the Italian texts. Hover or focus an element to read masses and abundances, click or Enter pins it. */
 "use strict";
 (function () {
   if (typeof TEORIA === "undefined" || !TEORIA.strumenti) return;
@@ -15,7 +15,7 @@
   const t = (k, p) => (T[k] || k).replace(/\{(\w+)\}/g, (_, n) => (p && p[n] != null ? p[n] : ""));
   TEORIA.strumenti.registra("tavola", {
     titolo: "Tavola periodica con isotopi",
-    needs: [[() => typeof ELEMENTS !== "undefined", "../../elements.js"], [() => typeof TAVOLA !== "undefined", "../../tavola-periodica.js"]],
+    needs: [[() => typeof ELEMENTS !== "undefined", "../masse.js"], [() => typeof TAVOLA !== "undefined", "../../tavola-periodica.js"]],
     monta(body, arg) {
       body.innerHTML = '<p class="note">Passate sopra un elemento (o spostatevi con Tab) per leggere massa esatta e abbondanze dei suoi isotopi; Invio o clic lo blocca. Gli elementi evidenziati sono i più comuni nelle molecole organiche.</p><div class="ptw"></div>';
       const host = body.querySelector(".ptw");

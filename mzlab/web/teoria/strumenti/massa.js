@@ -1,5 +1,5 @@
 /* mzLab - Teoria: «Massa e addotti» (chapters 6 and 13). From a formula: nominal and monoisotopic mass atom by atom, then [M+H]+, [M+Na]+, [M−H]−.
-   Only the arithmetic, shown step by step: no identification. Formula parser and masses are PAL.parse / PAL.exact (pratica/motore.js, elements.js). */
+   Only the arithmetic, shown step by step: no identification. Formula parser and masses are PAL.parse / PAL.exact (pratica/motore.js, masse.js). */
 "use strict";
 (function () {
   const ELECTRON = 0.00054858;                       // mass of the electron (u): an ion is the atom mass minus (or plus) the electrons
@@ -30,7 +30,7 @@
 
   TEORIA.strumenti.registra("massa", {
     titolo: "Massa e addotti",
-    needs: [[() => typeof ELEMENTS !== "undefined", "../../elements.js"], [() => typeof PAL !== "undefined", "../pratica/motore.js"]],
+    needs: [[() => typeof ELEMENTS !== "undefined", "../masse.js"], [() => typeof PAL !== "undefined", "../pratica/motore.js"]],
     monta(body, arg) {
       body.innerHTML = `<p class="note">Scrivete una formula (C, H, N, O, F, Si, P, S, Cl, Br, I). Lo strumento somma le masse atomo per atomo: non dice quale composto sia.</p>
 <label for="ms-f"><b>Formula</b></label><br><input id="ms-f" type="text" value="${arg ? String(arg).replace(/"/g, "") : "C8H14ClN5"}" spellcheck="false" autocomplete="off" aria-describedby="ms-st" style="width:100%">

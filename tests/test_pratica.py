@@ -15,7 +15,7 @@ pytestmark = pytest.mark.skipif(shutil.which("node") is None, reason="node non i
 
 def run(js: str):
     prog = ("const fs=require('fs');global.localStorage={_d:{},getItem(k){return this._d[k]||null},setItem(k,v){this._d[k]=v}};"
-            f"eval(fs.readFileSync({json.dumps(str(WEB / 'elements.js'))},'utf8').replace('const ELEMENTS','global.ELEMENTS'));"
+            f"eval(fs.readFileSync({json.dumps(str(WEB / 'teoria' / 'masse.js'))},'utf8').replace('const ELEMENTS','global.ELEMENTS'));"
             f"const PAL=require({json.dumps(str(WEB / 'teoria' / 'pratica' / 'motore.js'))});"
             f"console.log(JSON.stringify((()=>{{{js}}})()));")
     out = subprocess.run(["node", "-e", prog], capture_output=True, encoding="utf-8", timeout=60)

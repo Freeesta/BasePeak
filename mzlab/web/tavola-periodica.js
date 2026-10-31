@@ -1,5 +1,5 @@
 /* Periodic table with isotopes (used by teoria/strumenti/tavola.js). Classic script: TAVOLA.create({elements, t, nome}) -> {periodic(), bindPeriodic(host)}.
-   elements = ELEMENTS (elements.js); t(key, params) gives the texts; nome(el) the name of an element with data. The 118 symbols and the layout are fixed here;
+   elements = ELEMENTS (teoria/masse.js); t(key, params) gives the texts; nome(el) the name of an element with data. The 118 symbols and the layout are fixed here;
    an element without isotope data in ELEMENTS is drawn too and says it is rare. Hover or focus shows the isotopes, click or Enter pins them, a second click unpins. */
 "use strict";
 const TAVOLA = (function () {

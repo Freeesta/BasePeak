@@ -103,7 +103,7 @@ const PAL = (() => {
   }
   const fstr = f => ["C", "H", ...Object.keys(f).filter(e => e !== "C" && e !== "H").sort()].filter(e => f[e]).map(e => e + (f[e] > 1 ? f[e] : "")).join("");
   const fhtml = f => fstr(f).replace(/(\d+)/g, "<sub>$1</sub>");
-  /** Exact monoisotopic mass from ELEMENTS (elements.js, the data of the program). */
+  /** Exact monoisotopic mass from ELEMENTS (masse.js, IUPAC/NIST data). */
   function exact(f, EL) {
     EL = EL || (typeof ELEMENTS !== "undefined" ? ELEMENTS : []);
     return Object.entries(f).reduce((a, [e, n]) => { const el = EL.find(x => x.s === e); const top = el.iso.slice().sort((p, q) => q[2] - p[2])[0]; return a + top[1] * n; }, 0);
