@@ -1,20 +1,33 @@
-"""Builds mzlab/web/teoria/pratica/ei-dati.js: real 70 eV EI spectra for the Teoria (chapters 15-16) and the Pratica game
-«Dallo spettro alla struttura». Run by the developer (needs internet), the result is committed; the site never calls MassBank.
+"""PROVENANCE ONLY - NOT RUNNABLE IN THIS REPOSITORY.
 
-    python3 tools/genera_ei.py            # downloads into .verifica/cache_massbank/ (kept between runs), writes ei-dati.js
+This is the script that generated mzlab/web/teoria/pratica/ei-dati.js and ei-dati-l1..l5.js. It is kept as documentation of how the
+public data files were produced (see docs/DATI-EI.md). It cannot be run here: it imports tools/ei_lista_extra.py and
+tools/ei_percorso.py (the extra compound list and the learning path) and mzlab.chem.elements, none of which are published, and it
+caches MassBank downloads in a private working folder. Only the generated files are published; edit them as described in
+docs/DATI-EI.md. Running this file exits with an error on purpose.
 
-Source: MassBank Europe (https://massbank.eu), REST API. The EI-B records are almost all CC BY-NC-SA (Univ. Tokyo, Koga M. /
-UOEH and others): fine for this non-commercial teaching site, with attribution (accession, authors, licence) kept in every item
-and shown by the game; the data file is therefore under CC BY-NC-SA 4.0, not MIT (see LICENZE-TERZI.md). No NIST spectra.
-
-For every compound of LIST: search the EI-B records by each synonym (the API search is a substring search; a record is kept only
-if one of its names is exactly a synonym AND its formula is the expected one), download them, merge peaks to integer m/z, keep
-only the records that contain every key ion, and take the most representative one = highest mean cosine (square-root
-intensities) to the other records of the same compound. The number of records and the cosine are stored: EI spectra are
-reproducible, not identical. The "keys" (teaching notes: which ion, which formula, which mechanism) are written here by hand and
-checked by tests/test_ei_dati.py with mzlab.chem.elements (nominal mass, odd/even electrons, sub-formula of the compound).
 """
+# Original header of the script:
+# Builds mzlab/web/teoria/pratica/ei-dati.js: real 70 eV EI spectra for the Teoria (chapters 15-16) and the Pratica game
+# «Dallo spettro alla struttura». Run by the developer (needs internet), the result is committed; the site never calls MassBank.
+#
+#     python3 tools/genera_ei.py            # downloads into .verifica/cache_massbank/ (kept between runs), writes ei-dati.js
+#
+# Source: MassBank Europe (https://massbank.eu), REST API. The EI-B records are almost all CC BY-NC-SA (Univ. Tokyo, Koga M. /
+# UOEH and others): fine for this non-commercial teaching site, with attribution (accession, authors, licence) kept in every item
+# and shown by the game; the data file is therefore under CC BY-NC-SA 4.0, not MIT (see LICENZE-TERZI.md). No NIST spectra.
+#
+# For every compound of LIST: search the EI-B records by each synonym (the API search is a substring search; a record is kept only
+# if one of its names is exactly a synonym AND its formula is the expected one), download them, merge peaks to integer m/z, keep
+# only the records that contain every key ion, and take the most representative one = highest mean cosine (square-root
+# intensities) to the other records of the same compound. The number of records and the cosine are stored: EI spectra are
+# reproducible, not identical. The "keys" (teaching notes: which ion, which formula, which mechanism) are written here by hand and
+# checked by tests/test_ei_dati.py with mzlab.chem.elements (nominal mass, odd/even electrons, sub-formula of the compound).
+
 from __future__ import annotations
+
+if __name__ == "__main__":      # fail early and clearly, before the unpublished imports below
+    raise SystemExit("genera_ei.py is provenance documentation only: its private inputs are not published (see docs/DATI-EI.md)")
 
 import json
 import math
@@ -742,9 +755,3 @@ def main() -> None:
     items = base + [i for g in levels.values() for i in g]
     report(items)
     print(f"{len(items)} composti ({sum(i['play'] for i in items)} giocabili) -> {OUT.relative_to(ROOT)} ({OUT.stat().st_size // 1024} kB)")
-
-
-if __name__ == "__main__":
-    import sys
-    sys.path.insert(0, str(ROOT))
-    main()
