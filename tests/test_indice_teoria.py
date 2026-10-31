@@ -14,7 +14,7 @@ import genera_indice_teoria as G  # noqa: E402
 
 
 def test_index_is_fresh():
-    assert G.OUT.read_text(encoding="utf-8") == G.render(G.build()), "run: python3 tools/genera_indice_teoria.py"
+    assert G.OUT.read_text(encoding="utf-8") == G.render(G.build()), "Hai cambiato un titolo: l'indice di ricerca va aggiornato (è normale). Scrivi a Claude: «rigenera gli indici della mia modifica (PR n)». Chi ha un terminale: python3 tools/genera_indice_teoria.py"
 
 
 def test_index_is_deterministic_and_complete():

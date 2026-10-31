@@ -62,7 +62,30 @@ def test_generated_files_follow_the_pages(monkeypatch):
     import genera_glossario
     monkeypatch.setattr(genera_glossario, "render", lambda: "x")
     out = cm.errori_globali()
-    assert len(out) == 1 and "glossario-dati.js" in out[0] and "COO" in out[0]
+    assert len(out) == 1 and "glossario-dati.js" in out[0] and "È normale" in out[0] and "rigenera gli indici della mia modifica (PR n)" in out[0]
+
+
+def test_body_text_edits_do_not_demand_regeneration_but_titles_and_glossary_do(tmp_path, monkeypatch):
+    """Only a changed title or glossary word makes the generated files stale: a paragraph edit leaves the check green."""
+    import shutil
+    import genera_glossario as GL
+    import genera_indice_teoria as G
+    shutil.copytree(ROOT / "capitoli", tmp_path / "capitoli", ignore=shutil.ignore_patterns("src"))
+    shutil.copytree(ROOT / "assets", tmp_path / "assets", ignore=shutil.ignore_patterns("fonts", "vendor", "img", "icone"))
+    shutil.copytree(ROOT / "pratica", tmp_path / "pratica", ignore=shutil.ignore_patterns("*.js"))
+    shutil.copy(ROOT / "index.html", tmp_path / "index.html")
+    for mod, attrs in ((G, ("D",)), (GL, ("D", "CAPITOLI"))):
+        for a in attrs:
+            monkeypatch.setattr(mod, a, tmp_path / "capitoli" if a == "CAPITOLI" else tmp_path)
+    monkeypatch.setattr(G, "OUT", tmp_path / "assets" / "indice-ricerca.js")
+    monkeypatch.setattr(cm, "ROOT", tmp_path)
+    assert cm.errori_globali() == []
+    page = tmp_path / "capitoli" / "05-ei-ci.html"
+    page.write_text(page.read_text(encoding="utf-8").replace("Tutto avviene nel <b>vuoto</b>", "Tutto avviene proprio nel <b>vuoto</b>"), encoding="utf-8")
+    assert cm.errori_globali() == []
+    page.write_text(page.read_text(encoding="utf-8").replace("<h2>La sorgente EI</h2>", "<h2>La sorgente EI, rivista</h2>"), encoding="utf-8")
+    out = cm.errori_globali()
+    assert len(out) == 1 and "indice-ricerca.js" in out[0] and "rigenera gli indici della mia modifica (PR n)" in out[0]
 
 
 def test_no_tool_or_script_reads_the_markdown_twins():

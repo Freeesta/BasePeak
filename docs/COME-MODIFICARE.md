@@ -20,7 +20,9 @@ Non serve installare niente. Non serve il terminale. Non serve nessuna password 
    3. scrivi in alto che cosa hai cambiato;
    4. premi «Commit changes…», poi «Propose changes», poi «Create pull request».
 
-Fatto. Il controllo automatico guarda la pagina. Se è tutto a posto, il COO la pubblica. Se compare una X rossa, scrivi al COO: ti dice che cosa correggere.
+Fatto. Il controllo automatico guarda la pagina. Se è tutto a posto, il COO la pubblica. Se compare una X rossa, leggi il messaggio: dice che cosa correggere.
+
+**Caso normale:** se hai cambiato un **titolo** o una **parola del glossario**, la X rossa dice che l'indice di ricerca o il glossario non sono aggiornati. Non hai sbagliato niente. Scrivi a Claude: «rigenera gli indici della mia modifica (PR n)» (al posto di n il numero della tua pull request). Il COO li aggiorna. Se cambi solo il testo dei paragrafi, questo non succede.
 
 ## Se preferisci scrivere a Claude
 
@@ -38,7 +40,7 @@ Claude fa la modifica, il controllo automatico la guarda, il COO la pubblica.
 - **Non hai cambiato niente?** Il pulsante lo dice: non c'è niente da proporre.
 - **Le figure interattive non si cambiano qui.** Sono segnate «Figura interattiva: qui non si modifica». Il resto della pagina sì.
 - **Ho lasciato «Scrivi qui il testo.» in un riquadro.** Il controllo se ne accorge: sostituisci la frase o togli il riquadro.
-- **Il controllo automatico dice che l'indice di ricerca o il glossario non sono aggiornati.** Succede se cambi un titolo o il glossario. Scrivi al COO: li rigenera lui.
+- **Il controllo automatico dice che l'indice di ricerca o il glossario non sono aggiornati.** È normale dopo aver cambiato un titolo o una parola del glossario. Scrivi a Claude: «rigenera gli indici della mia modifica (PR n)».
 - **Opzionale, per chi ha il server locale.** Con `python3 tools/server_teoria.py` compare anche **«Salva su questo computer»**: scrive il file nella cartella, senza pubblicare niente. Senza server non serve.
 
 ---

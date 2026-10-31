@@ -325,6 +325,7 @@
         <li>Premi <b>«Commit changes…»</b>, scegli di creare un nuovo ramo e premi <b>«Propose changes»</b>, poi <b>«Create pull request»</b>.</li>
       </ol>
       <p>Poi aspetta: il controllo automatico guarda la pagina e il COO la pubblica.</p>
+      <p>Se compare una X rossa e il messaggio parla di «indice di ricerca» o di «glossario»: è normale quando cambi un titolo o una parola del glossario. Scrivi a Claude: «rigenera gli indici della mia modifica (PR n)».</p>
       <div class="ed-az"><a class="ed-b" href="${url}" target="_blank" rel="noopener">Apri GitHub di nuovo</a><button type="button" class="ed-b" data-p="copia">Copia di nuovo il testo</button><button type="button" class="ed-b" data-p="chiudi">Chiudi</button></div>
       <p id="ed-pst" role="status"></p>`);
     p.addEventListener("click", async e => { if (e.target.closest("[data-p=copia]")) { let ok = false; try { await navigator.clipboard.writeText(nuova); ok = true; } catch (_) { /* no clipboard */ } $("#ed-pst", p).textContent = ok ? "Testo copiato." : "Non riesco a copiare: apri il file scaricato e copialo da lì."; } });

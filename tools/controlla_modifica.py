@@ -134,15 +134,19 @@ def errori_pagina(p):
     return [m for _, _, m in controlla(src) + collegamenti(p, src)]
 
 
+SPIEGA = ("Hai cambiato {cosa}: dopo questa modifica va aggiornato il file «{file}» (serve a {dove}). È normale e non hai sbagliato niente. "
+          "Che cosa fare: scrivi a Claude: «rigenera gli indici della mia modifica (PR n)» (al posto di n metti il numero della tua pull request). Il COO lo aggiorna e la X rossa sparisce.")
+
+
 def errori_globali():
     """Generated files that must follow the pages: the glossary data and the search index."""
     import genera_glossario
     import genera_indice_teoria as G
     E = []
     if (ROOT / "assets" / "glossario-dati.js").read_text(encoding="utf-8") != genera_glossario.render():
-        E.append("Il glossario è cambiato ma «assets/glossario-dati.js» non è aggiornato: i termini sottolineati nel testo non seguono il glossario. Chiedi al COO di lanciare «python3 tools/genera_glossario.py».")
+        E.append(SPIEGA.format(cosa="una parola del glossario", file="assets/glossario-dati.js", dove="i termini sottolineati nel testo"))
     if G.OUT.read_text(encoding="utf-8") != G.render(G.build()):
-        E.append("I titoli o le pagine sono cambiati ma l'indice di ricerca «assets/indice-ricerca.js» non è aggiornato. Chiedi al COO di lanciare «python3 tools/genera_indice_teoria.py».")
+        E.append(SPIEGA.format(cosa="un titolo", file="assets/indice-ricerca.js", dove="la ricerca"))
     return E
 
 
