@@ -94,4 +94,4 @@ def test_no_tool_or_script_reads_the_markdown_twins():
     for d in ("tools", "assets"):
         for f in (ROOT / d).glob("*.*"):
             if f.suffix in (".py", ".js", ".mjs"):
-                assert not re.search(r"capitoli/src|\"capitoli\" / \"src\"", f.read_text(encoding="utf-8")), f.name
+                assert not re.search(r"[\"'`]capitoli/src|\"capitoli\" / \"src\"", f.read_text(encoding="utf-8")), f.name      # a path in code, not a word in a comment
