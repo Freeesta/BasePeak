@@ -38,10 +38,10 @@ Il file contiene, per ogni scansione, un profilo: una successione di punti m/z-i
 2. Per ogni massimo si adatta una parabola ai tre punti più vicini.
 3. Il vertice della parabola è il m/z del centroide; l'altezza del vertice è la sua intensità.
 
-Per il composto A il profilo ha 810 punti e dà due centroidi: m/z 237,1025 e 238,1060. Il valore calcolato con masse.js per [M+H]<sup>+</sup> è 237,1022, l'errore è quindi di 1,2 ppm.
+Per il composto A il profilo ha 810 punti e dà due centroidi: m/z 237,1025 e 238,1060. Il valore teorico calcolato con masse.js per [M+H]<sup>+</sup> è 237,1022, l'errore è quindi di 1,2 ppm.
 
 ```html
-<span class="eq">errore (ppm) = <span class="frac"><span><i>m</i><sub>mis</sub> − <i>m</i><sub>calc</sub></span><span><i>m</i><sub>calc</sub></span></span> × 10<sup>6</sup><span class="no">(32.1)</span></span>
+<span class="eq">errore (ppm) = <span class="frac"><span><i>m</i><sub>mis</sub> − <i>m</i><sub>teo</sub></span><span><i>m</i><sub>teo</sub></span></span> × 10<sup>6</sup><span class="no">(32.1)</span></span>
 ```
 
 Il secondo centroide è il primo isotopo (M+1), a 1,7 ppm dal valore atteso. I due centroidi sono la lista di partenza del passo successivo.
@@ -94,13 +94,15 @@ Per A e B si cerca nella libreria sintetica (capitolo [29](29-librerie.html)).
 2. Si accoppia ogni picco dello spettro misurato al più vicino della voce, entro 0,01 Da, senza usare due volte lo stesso.
 3. Si calcola il coseno (capitolo [28](28-somiglianza.html)).
 
+È il coseno della (28.3) calcolato sulle radici delle intensità (*p* = 0,5):
+
 ```html
 <span class="eq">coseno = <span class="frac"><span>Σ √(<i>I</i><sub>mis</sub> · <i>I</i><sub>lib</sub>)</span><span>√(Σ <i>I</i><sub>mis</sub>) · √(Σ <i>I</i><sub>lib</sub>)</span></span><span class="no">(32.3)</span></span>
 ```
 
 Per A ci sono due voci con lo stesso precursore: lo spettro di A, con coseno 0,999 e 4 picchi in comune, e un isomero sintetico con coseno 0,15 e 1 picco in comune. Per B la sola voce compatibile dà 0,998. Il coseno distingue gli isomeri; il solo precursore non può.
 
-Sulla massa si controlla anche la formula (capitolo [30](30-candidati.html)): per C, entro 3 ppm e con C, H, N, O e fino a due Cl, l'unica formula è C<sub>13</sub>H<sub>18</sub>N<sub>4</sub>O<sub>3</sub>. Per B il rapporto M+2/M di circa 33 % indica un atomo di cloro.
+Sulla massa si controlla anche la formula (capitolo [30](30-candidati.html)): per C, entro 3 ppm e con C, H, N, O e fino a due Cl, l'unica formula è C<sub>13</sub>H<sub>18</sub>N<sub>4</sub>O<sub>3</sub> e il suo profilo isotopico (M+1 circa 16 %, nessun M+2 da cloro) concorda con quello misurato. Per B il rapporto M+2/M di circa 33 % indica un atomo di cloro.
 
 ## 5. Il livello di confidenza
 
@@ -116,7 +118,7 @@ Alla fine si assegna a ogni composto un livello, secondo la scala di Schymanski 
 </table>
 ```
 
-A ha il livello 1 perché lo standard, misurato con lo stesso metodo, coincide per tempo di ritenzione, massa e MS2. B ha un coseno alto come A ma il livello 2a, perché manca lo standard. C ha il livello 4: la formula è univoca, ma senza MS2 non c'è nessun candidato.
+A ha il livello 1 perché lo standard, misurato con lo stesso metodo, coincide per tempo di ritenzione, massa e MS2. B ha un coseno alto come A ma il livello 2a, perché manca lo standard. C ha il livello 4: massa e profilo isotopico fissano la formula, ma senza MS2 non c'è nessun candidato.
 
 ```html
 <div class="box warn"><b>Errori frequenti</b><p>Scrivere «livello 1» per B perché il coseno è alto. Dimenticare che le soglie di questo esempio (S/N 10, rapporto 3, coseno 0,7) sono scelte didattiche e vanno fissate e dichiarate in ogni studio.</p></div>

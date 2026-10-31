@@ -29,7 +29,7 @@
           const h = Math.round((rest - c * mC) / mH);
           if (h < 0 || h > 4 * c + 4) continue;
           const calc = c * mC + h * mH + (M - rest) + sh;     // ion mass of this formula
-          const e = ppmOf(calc, mz);
+          const e = ppmOf(mz, calc);
           if (Math.abs(e) <= tol) { const f = Object.assign({ C: c, H: h }, cnt); out.push({ f, ppm: e }); }
         }
         return;
