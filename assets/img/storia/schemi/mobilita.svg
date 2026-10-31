@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 324" role="img" aria-labelledby="ti de"><title id="ti">Tubo di deriva per la mobilità ionica</title><desc id="de">Un tubo pieno di gas, con un campo elettrico E diretto verso il rivelatore a destra. Due ioni con lo stesso rapporto m/z hanno forme diverse: lo ione compatto, un solo cerchio blu, urta meno spesso le molecole del gas e arriva prima; lo ione esteso, una catena di cerchi arancioni, urta di più e arriva dopo.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<rect class="s" x="90" y="100" width="540" height="100" rx="6"/>
+<text class="t m" x="360" y="90">tubo di deriva pieno di gas</text>
+<path class="th" d="M90 100L90 200"/>
+<path class="th" d="M630 100L630 200"/>
+<rect class="s" x="636" y="130" width="40" height="40"/>
+<text class="t m" x="666" y="190">rivelatore</text>
+<path class="l" d="M110 60L600 60" marker-end="url(#p)"/>
+<text class="t" x="110" y="52">campo elettrico E</text>
+<circle class="l" cx="335.7" cy="155" r="2.2" stroke-width="1"/>
+<circle class="l" cx="576.3" cy="147.1" r="2.2" stroke-width="1"/>
+<circle class="l" cx="364" cy="157.3" r="2.2" stroke-width="1"/>
+<circle class="l" cx="199.2" cy="151" r="2.2" stroke-width="1"/>
+<circle class="l" cx="426.2" cy="174.6" r="2.2" stroke-width="1"/>
+<circle class="l" cx="153" cy="133.5" r="2.2" stroke-width="1"/>
+<circle class="l" cx="151.2" cy="176" r="2.2" stroke-width="1"/>
+<circle class="l" cx="458.7" cy="111.5" r="2.2" stroke-width="1"/>
+<circle class="l" cx="605.9" cy="189" r="2.2" stroke-width="1"/>
+<circle class="l" cx="438.5" cy="159.7" r="2.2" stroke-width="1"/>
+<circle class="l" cx="185.3" cy="109.3" r="2.2" stroke-width="1"/>
+<circle class="l" cx="374.5" cy="113" r="2.2" stroke-width="1"/>
+<circle class="l" cx="202" cy="128.3" r="2.2" stroke-width="1"/>
+<circle class="l" cx="120.3" cy="147" r="2.2" stroke-width="1"/>
+<circle class="l" cx="329.7" cy="178.8" r="2.2" stroke-width="1"/>
+<circle class="l" cx="369.8" cy="161.8" r="2.2" stroke-width="1"/>
+<circle class="l" cx="359.9" cy="163.6" r="2.2" stroke-width="1"/>
+<circle class="l" cx="338.2" cy="131.4" r="2.2" stroke-width="1"/>
+<circle class="l" cx="613.8" cy="191.6" r="2.2" stroke-width="1"/>
+<circle class="l" cx="533.5" cy="167.5" r="2.2" stroke-width="1"/>
+<circle class="l" cx="265.8" cy="127.3" r="2.2" stroke-width="1"/>
+<circle class="l" cx="252.4" cy="113.9" r="2.2" stroke-width="1"/>
+<circle class="l" cx="495.8" cy="141.6" r="2.2" stroke-width="1"/>
+<circle class="l" cx="536.8" cy="140.5" r="2.2" stroke-width="1"/>
+<circle class="l" cx="593.6" cy="179.2" r="2.2" stroke-width="1"/>
+<circle class="l" cx="105.3" cy="125.6" r="2.2" stroke-width="1"/>
+<circle class="l" cx="569.2" cy="147.5" r="2.2" stroke-width="1"/>
+<circle class="l" cx="605" cy="141.4" r="2.2" stroke-width="1"/>
+<circle class="l" cx="142.2" cy="160.9" r="2.2" stroke-width="1"/>
+<circle class="l" cx="502" cy="130.7" r="2.2" stroke-width="1"/>
+<circle class="l" cx="149.4" cy="135.9" r="2.2" stroke-width="1"/>
+<circle class="l" cx="596.7" cy="171.7" r="2.2" stroke-width="1"/>
+<circle class="l" cx="165.2" cy="128.7" r="2.2" stroke-width="1"/>
+<circle class="l" cx="156.5" cy="113" r="2.2" stroke-width="1"/>
+<circle class="l" cx="511.5" cy="122.9" r="2.2" stroke-width="1"/>
+<circle class="l" cx="390.2" cy="145.6" r="2.2" stroke-width="1"/>
+<circle class="l" cx="202.2" cy="169.5" r="2.2" stroke-width="1"/>
+<circle class="l" cx="171.8" cy="162.1" r="2.2" stroke-width="1"/>
+<circle class="l" cx="164.4" cy="143.3" r="2.2" stroke-width="1"/>
+<circle class="l" cx="213.6" cy="130.7" r="2.2" stroke-width="1"/>
+<circle class="l" cx="600.2" cy="175.5" r="2.2" stroke-width="1"/>
+<circle class="l" cx="260.1" cy="182.3" r="2.2" stroke-width="1"/>
+<circle class="l" cx="212.5" cy="141.1" r="2.2" stroke-width="1"/>
+<circle class="l" cx="540.7" cy="161.9" r="2.2" stroke-width="1"/>
+<circle class="l" cx="156.2" cy="191.1" r="2.2" stroke-width="1"/>
+<circle class="l" cx="213.8" cy="129.7" r="2.2" stroke-width="1"/>
+<circle class="l" cx="499.1" cy="135.6" r="2.2" stroke-width="1"/>
+<circle class="l" cx="256.1" cy="114.2" r="2.2" stroke-width="1"/>
+<circle class="l" cx="151" cy="156.9" r="2.2" stroke-width="1"/>
+<circle class="l" cx="228.9" cy="158.5" r="2.2" stroke-width="1"/>
+<circle class="l" cx="294.6" cy="146.1" r="2.2" stroke-width="1"/>
+<circle class="l" cx="594.2" cy="148.6" r="2.2" stroke-width="1"/>
+<circle class="l" cx="398" cy="180.8" r="2.2" stroke-width="1"/>
+<circle class="l" cx="198.2" cy="120.9" r="2.2" stroke-width="1"/>
+<circle class="l" cx="568.3" cy="176.7" r="2.2" stroke-width="1"/>
+<circle class="l" cx="232.2" cy="123.9" r="2.2" stroke-width="1"/>
+<circle class="l" cx="482.1" cy="187" r="2.2" stroke-width="1"/>
+<circle class="l" cx="205.3" cy="187.8" r="2.2" stroke-width="1"/>
+<circle class="l" cx="554.9" cy="158.7" r="2.2" stroke-width="1"/>
+<circle class="l" cx="319.9" cy="116.7" r="2.2" stroke-width="1"/>
+<circle class="l" cx="124.7" cy="188.9" r="2.2" stroke-width="1"/>
+<circle class="l" cx="226.6" cy="167.2" r="2.2" stroke-width="1"/>
+<circle class="l" cx="236.1" cy="177.2" r="2.2" stroke-width="1"/>
+<circle class="l" cx="409.2" cy="132.6" r="2.2" stroke-width="1"/>
+<circle class="l" cx="194.5" cy="168.5" r="2.2" stroke-width="1"/>
+<circle class="l" cx="140.1" cy="127.2" r="2.2" stroke-width="1"/>
+<circle class="l" cx="390.3" cy="179.6" r="2.2" stroke-width="1"/>
+<circle class="l" cx="418.3" cy="131.5" r="2.2" stroke-width="1"/>
+<circle class="l" cx="572.9" cy="125.1" r="2.2" stroke-width="1"/>
+<circle class="l" cx="113.5" cy="130.6" r="2.2" stroke-width="1"/>
+<circle class="fa" cx="470" cy="150" r="9"/>
+<path class="ra" d="M486 150L530 150" marker-end="url(#pa)"/>
+<circle class="fb" cx="248" cy="144" r="9"/>
+<circle class="fb" cx="263" cy="156" r="9"/>
+<circle class="fb" cx="278" cy="144" r="9"/>
+<circle class="fb" cx="293" cy="156" r="9"/>
+<path class="rb" d="M300 150L340 150" marker-end="url(#pb)"/>
+<path class="l" d="M470 164V234"/>
+<text class="t m" x="470" y="254">ione compatto: arriva prima</text>
+<path class="l" d="M270 164V234"/>
+<text class="t m" x="270" y="254">ione esteso: arriva dopo</text>
+<circle class="l" cx="590" cy="180" r="2.6"/>
+<path class="l" d="M590 186V258"/>
+<text class="t m" x="590" y="274">molecola di gas</text>
+<text class="t" x="110" y="312">I due ioni hanno lo stesso m/z: cambiano solo forma e dimensioni.</text>
+</svg>
