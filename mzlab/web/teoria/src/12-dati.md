@@ -128,7 +128,7 @@ L'identità dell'analita è confermata se: RT coincide con quello dello standard
 
 ### Dalla quantificazione alla cinetica
 
-Con le concentrazioni del parent si traccia *C*/*C*~0~ e ln(*C*~0~/*C*) in funzione del tempo (capitolo 2). Per i TP, senza standard, si tracciano le aree degli XIC (dal full scan) o delle transizioni MRM, eventualmente normalizzate al loro massimo: si confronta la forma della curva, non l'altezza tra TP diversi.
+Con le concentrazioni del parent si traccia *C*/*C*~0~ e ln(*C*~0~/*C*) in funzione del tempo. Per i TP, senza standard, si tracciano le aree degli XIC (dal full scan) o delle transizioni MRM, eventualmente normalizzate al loro massimo: si confronta la forma della curva, non l'altezza tra TP diversi.
 
 ```html
 <div class="box lab"><b>In QqQ lab</b>

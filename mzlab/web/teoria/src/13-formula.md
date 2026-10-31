@@ -1,4 +1,4 @@
-<!-- script-before: ../elements.js -->
+<!-- script-before: masse.js -->
 <!-- script: sim-hr.js -->
 <!-- title: Dalla massa alla formula -->
 # Dalla massa alla formula: isotopi, regole e massa esatta {kicker: Capitolo 13}

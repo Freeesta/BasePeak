@@ -48,7 +48,7 @@ Due approcci complementari:
 
 ```html
 <ul>
-<li><b>Guidato da ipotesi (suspect)</b>: calcolate gli m/z attesi per le trasformazioni tipiche (tabella del capitolo 2, calcolatrice qui sotto) ed estraete gli XIC in tutti i tempi.</li>
+<li><b>Guidato da ipotesi (suspect)</b>: calcolate gli m/z attesi per le trasformazioni tipiche (ossidrilazione +16, perdita di gruppi, ecc.; calcolatrice qui sotto) ed estraete gli XIC in tutti i tempi.</li>
 <li><b>Guidato dai dati (non-target)</b>: confrontate t0 e i tempi intermedi cercando segnali nuovi: BPC sovrapposti, spettri sottratti tra un tempo e t0 alla stessa finestra di RT, mappa RT–m/z con differenza tra file. Questo cattura anche TP che non avevate previsto.</li>
 </ul>
 ```

@@ -18,12 +18,12 @@ try:
             q.on("pageerror", lambda e: r.errs.append(("pageerror", str(e)))); return c, q
         ls = lambda q: q.evaluate("localStorage.getItem('mzlab.admin')")
         def single():
-            c, q = ctx(); q.goto(T + "01-tp.html"); q.wait_for_selector("#logo")
+            c, q = ctx(); q.goto(T + "03-cromatografia.html"); q.wait_for_selector("#logo")
             assert q.get_attribute("#logo", "href") == "../../#/data" and q.locator("#sblocco[role=status]").count() == 1
             q.click("#logo"); q.wait_for_url("**/#/data", timeout=10000); assert ls(q) is None; c.close()
         step("one click still follows the logo link (after 600 ms) and unlocks nothing", single)
         def five():
-            c, q = ctx(); q.goto(T + "01-tp.html"); q.wait_for_selector("#logo")
+            c, q = ctx(); q.goto(T + "03-cromatografia.html"); q.wait_for_selector("#logo")
             assert not q.evaluate("document.documentElement.classList.contains('esteso')")
             for _ in range(5): q.click("#logo", delay=20, no_wait_after=True)
             q.wait_for_function("document.getElementById('sblocco').className==='on'", timeout=3000)
@@ -34,19 +34,19 @@ try:
             c.close()
         step("five quick clicks: flag, status message, reload with html.esteso; a single click still follows the link", five)
         def calm():
-            c, q = ctx(reduced_motion="reduce"); q.goto(T + "01-tp.html"); q.wait_for_selector("#logo")
+            c, q = ctx(reduced_motion="reduce"); q.goto(T + "03-cromatografia.html"); q.wait_for_selector("#logo")
             for i in range(5):
                 q.click("#logo", delay=20, no_wait_after=True)
                 if i < 4: assert q.evaluate("document.querySelector('#logo img').getAnimations().length") == 0
             q.wait_for_function("localStorage.getItem('mzlab.admin')==='1'", timeout=3000); c.close()
         step("reduced motion: no animation, same unlock", calm)
         def anim():
-            c, q = ctx(); q.goto(T + "01-tp.html"); q.wait_for_selector("#logo")
+            c, q = ctx(); q.goto(T + "03-cromatografia.html"); q.wait_for_selector("#logo")
             q.click("#logo", no_wait_after=True); assert q.evaluate("document.querySelector('#logo img').getAnimations().length") >= 1
             assert q.evaluate("getComputedStyle(document.querySelector('#logo')).display") != "none"; c.close()
         step("a click animates the logo image", anim)
         def editor():
-            c, q = ctx(); q.goto(T + "01-tp.html"); q.wait_for_selector("#logo"); q.wait_for_selector("#a11y-btn", state="attached")
+            c, q = ctx(); q.goto(T + "03-cromatografia.html"); q.wait_for_selector("#logo"); q.wait_for_selector("#a11y-btn", state="attached")
             q.wait_for_function("!!window.TEORIA_EDITOR", timeout=8000)          # editor.js has run: it only left the button out
             assert q.locator("#tc-editor").count() == 0
             q.keyboard.press("Alt+E")
@@ -62,7 +62,7 @@ try:
             q.wait_for_function("!!window.TEORIA_EDITOR", timeout=8000); assert q.locator("#tc-editor").count() == 0; c.close()
         step("editor button and Alt+E only in administrator mode: off, 5 clicks, reload, 5 clicks again to leave", editor)
         def legacy():
-            c, q = ctx(); q.add_init_script("try{localStorage.setItem('mzlab.teoria.esteso','1')}catch(_){}"); q.goto(T + "01-tp.html")
+            c, q = ctx(); q.add_init_script("try{localStorage.setItem('mzlab.teoria.esteso','1')}catch(_){}"); q.goto(T + "03-cromatografia.html")
             q.wait_for_selector("#tc-editor", timeout=8000); c.close()
         step("the older flag mzlab.teoria.esteso still counts as administrator", legacy)
 finally:

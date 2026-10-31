@@ -5,8 +5,6 @@
 // The "Pratica" pages (pratica*.html) are the exercises and games; they use the same layout.
 const CHAPTERS = [
   ["index.html", "0", "Introduzione e mappa del percorso", "Guida"],
-  ["01-tp.html", "1", "Prodotti di trasformazione", "I. Il problema"],
-  ["02-fotocatalisi.html", "2", "Fotocatalisi con TiO₂", "I. Il problema"],
   ["03-cromatografia.html", "3", "Fondamenti di cromatografia", "II. Separare"],
   ["04-lc.html", "4", "Cromatografia liquida (HPLC)", "II. Separare"],
   ["05-gc.html", "5", "Gascromatografia (GC)", "II. Separare"],
