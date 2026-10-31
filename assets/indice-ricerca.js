@@ -503,7 +503,7 @@ const INDICE_RICERCA = [
 ["4. Dallo spettro MS2 al candidato", "sezione", "capitoli/32-esempio.html#4-dallo-spettro-ms2-al-candidato", "Cap. 32", "4. dallo spettro ms2 al candidato frammentazione ms/ms msms tandem"],
 ["5. Il livello di confidenza", "sezione", "capitoli/32-esempio.html#5-il-livello-di-confidenza", "Cap. 32", "5. il livello di confidenza"],
 ["Che cosa scrivere nel rapporto", "sezione", "capitoli/32-esempio.html#che-cosa-scrivere-nel-rapporto", "Cap. 32", "che cosa scrivere nel rapporto"],
-["Verifica", "sezione", "capitoli/32-esempio.html#verifica", "Cap. 32", "verifica"],
+["Per approfondire", "sezione", "capitoli/32-esempio.html#per-approfondire", "Cap. 32", "per approfondire"],
 ["33. La storia in una pagina", "capitolo", "capitoli/33-storia-mappa.html", "Cap. 33", "33. la storia in una pagina"],
 ["Come leggere questa parte", "sezione", "capitoli/33-storia-mappa.html#come-leggere-questa-parte", "Cap. 33", "come leggere questa parte"],
 ["La linea del tempo", "sezione", "capitoli/33-storia-mappa.html#la-linea-del-tempo", "Cap. 33", "la linea del tempo"],
