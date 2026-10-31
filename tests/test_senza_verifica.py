@@ -20,16 +20,13 @@ def test_no_review_boxes_or_pages():
 
 
 # Files that still carry the skeleton `<h2>Verifica</h2>` because other chats have them open (chemi 22-32, Storia 33-42).
-# Their owners drop the section and delete the line here; no new file may be added to this set.
+# Their owners drop the section and may delete the line here; a listed file that is already clean is fine (merge order of the
+# other PRs does not matter), but no file outside this set may contain the section, and no new file may be added to it.
 VERIFICA_PENDING = {
     "22-segnale.html",
     "23-formati.html",
-    "24-tracce.html",
-    "25-picchi.html",
     "26-gruppi.html",
     "27-tabella.html",
-    "28-somiglianza.html",
-    "29-librerie.html",
     "32-esempio.html",
     "33-storia-mappa.html",
     "34-storia-origini.html",
@@ -47,7 +44,6 @@ VERIFICA_PENDING = {
 def test_no_verifica_section_outside_the_pending_files():
     tripped = {p.name for p in (ROOT / "capitoli").glob("*.html") if "<h2>Verifica</h2>" in p.read_text(encoding="utf-8")}
     assert tripped <= VERIFICA_PENDING, sorted(tripped - VERIFICA_PENDING)
-    assert not (VERIFICA_PENDING - tripped), f"already clean, remove from VERIFICA_PENDING: {sorted(VERIFICA_PENDING - tripped)}"
     twins = {p.stem for p in (ROOT / "capitoli" / "src").glob("*.md") if re.search(r"^## Verifica$", p.read_text(encoding="utf-8"), re.M)}
     assert twins <= {Path(f).stem for f in VERIFICA_PENDING}, sorted(twins)
 
