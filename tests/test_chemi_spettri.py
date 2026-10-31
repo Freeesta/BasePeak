@@ -76,7 +76,7 @@ def test_entropy_similarity_matches_the_reference_formula():
 
 
 def test_entropy_worked_example_quoted_in_the_chapter():
-    # chapter 28, Verifica: A = (50, 30, 20) at 100, 150, 200 and B = (50, 30, 20) at 100, 150, 250 -> S = 1.03, w = 0.51, weighted 0.42 0.32 0.26 (S' = 1.08), similarity 0.74
+    # chapter 28, entropy example: A = (50, 30, 20) at 100, 150, 200 and B = (50, 30, 20) at 100, 150, 250 -> S = 1.03, w = 0.51, weighted 0.42 0.32 0.26 (S' = 1.08), similarity 0.74
     r = js("""const a=[[100,50],[150,30],[200,20]], b=[[100,50],[150,30],[250,20]]; return [F.entropy([50,30,20]), F.entWeight([50,30,20]), F.entSim(a,b,{tol:.02})];""")
     assert r[0] == pytest.approx(1.03, abs=0.005) and 0.25 + 0.25 * r[0] == pytest.approx(0.51, abs=0.005)
     assert [round(x, 2) for x in r[1]] == [0.42, 0.32, 0.26] and entropy(r[1]) == pytest.approx(1.08, abs=0.005)

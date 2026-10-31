@@ -101,24 +101,6 @@ GNPS e il suo protocollo (Wang et al., 2016; Aron et al., 2020) rendono la proce
 </ul></div>
 ```
 
-## Verifica
-
-```html
-<details class="q"><summary>Perché il miglior risultato di una ricerca non è un'identificazione?</summary><p>Perché esiste sempre un miglior risultato, anche per un composto assente: è il meno diverso. Serve una soglia e una stima della quota di errori.</p></details>
-```
-
-```html
-<details class="q"><summary>Una soglia dà 200 bersagli e 8 esche. Quanto vale la FDR stimata?</summary><p>8 / 200 = 0,04, cioè il 4 %. Se le esche fossero più facili dei falsi bersagli, la FDR vera sarebbe più alta.</p></details>
-```
-
-```html
-<details class="q"><summary>Perché un filtro sull'indice di ritenzione riduce i falsi positivi in EI?</summary><p>Scarta i candidati con RI troppo diverso: restano meno voci di libreria che possono somigliare per caso, quindi i migliori risultati sbagliati hanno punteggi più bassi.</p></details>
-```
-
-```html
-<details class="q"><summary>Con soglie permissive una rete molecolare collega famiglie diverse. Che cosa ne deduci?</summary><p>Che i legami fra famiglie sono sospetti: si alza la soglia del coseno o il numero minimo di picchi, o si riduce K, e si controllano i legami che restano.</p></details>
-```
-
 ## Per approfondire
 
 ```html

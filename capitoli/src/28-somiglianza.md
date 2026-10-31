@@ -63,52 +63,50 @@ Un picco può avere più candidati ma si accoppia una volta sola. Si ordinano tu
 
 ### Prodotto scalare e coseno
 
-Il coseno è il prodotto scalare dei vettori di intensità diviso per le loro lunghezze. Si somma sulle coppie; i picchi senza partner restano nelle lunghezze:
+Il coseno è il prodotto scalare dei vettori di intensità diviso per le loro lunghezze; i picchi senza partner restano nelle lunghezze:
 
 ```html
 <span class="eq">cos = <span class="frac"><span>Σ <i>a</i><sub><i>i</i></sub> <i>b</i><sub><i>i</i></sub></span><span>√(Σ <i>a</i><sup>2</sup>) · √(Σ <i>b</i><sup>2</sup>)</span></span><span class="no">(28.3)</span></span>
 ```
 
-Esempio: A = 100 (1,0), 150 (0,5), 200 (0,2); B = 100 (0,8), 150 (0,4), 250 (0,6). Coppie: 1,0 × 0,8 + 0,5 × 0,4 = 1,0. Lunghezze: 1,136 e 1,077. Coseno = 1,0 / (1,136 × 1,077) = 0,82.
+Esempio: A = 100 (1,0), 150 (0,5), 200 (0,2); B = 100 (0,8), 150 (0,4), 250 (0,6). Numeratore 1,0 × 0,8 + 0,5 × 0,4 = 1,0; lunghezze 1,136 e 1,077; coseno 0,82.
 
 ### Coseno pesato
 
-Stein e Scott (1994) hanno provato diversi algoritmi di ricerca, fra cui il prodotto scalare pesato: prima del coseno le intensità ricevono un peso che premia le masse alte.
+Stein e Scott (1994) hanno provato diversi algoritmi di ricerca, fra cui il prodotto scalare pesato: le intensità ricevono un peso che premia le masse alte.
 
 ```html
 <span class="eq"><i>w</i> = (m/z)<sup><i>n</i></sup> · <i>I</i><sup><i>m</i></sup><span class="no">(28.4)</span></span>
 ```
 
-Gli esponenti dipendono da libreria e programma; nella figura *n* = 1, *m* = 0,5.
+Gli esponenti dipendono dal programma (figura: *n* = 1, *m* = 0,5).
 
 ### Coseno modificato
 
-Se la query è un analogo (per esempio con un CH~2~ in più, 14,0157), i frammenti che portano la modifica sono spostati di Δ = M~query~ − M~libreria~. Nel coseno modificato (Watrous et al., 2012) un picco si accoppia direttamente o spostato di Δ.
-
-Le coppie dei due tipi vanno nello stesso elenco (regola greedy).
+Per un analogo (per esempio con un CH~2~ in più, 14,0157) i frammenti che portano la modifica sono spostati di Δ = M~query~ − M~libreria~. Nel coseno modificato (Watrous et al., 2012) un picco si accoppia anche spostato di Δ.
 
 ### Entropia spettrale
 
-Li et al. (2021) propongono un punteggio basato sull'informazione (versione pesata):
+Li et al. (2021) propongono un punteggio basato sull'informazione:
 
 1. intensità a somma 1 (*p*~*i*~); entropia *S* = −Σ *p*~*i*~ ln *p*~*i*~;
 2. se *S* &lt; 3: *p*~*i*~ → *p*~*i*~^*w*^, con *w* = 0,25 + 0,25 *S*, e di nuovo somma 1;
-3. dopo l'accoppiamento, spettro medio M = (A + B)/2 (coppie sommate);
-4. similarità:
+3. spettro medio M = (A + B)/2 dopo l'accoppiamento;
+4. similarità (versione pesata):
 
 ```html
 <span class="eq">similarità = 1 − <span class="frac"><span>2 <i>S</i><sub>M</sub> − <i>S</i><sub>A</sub> − <i>S</i><sub>B</sub></span><span>ln 4</span></span><span class="no">(28.5)</span></span>
 ```
 
-Vale 1 per spettri uguali e 0 senza picchi in comune.
+Vale 1 per spettri uguali, 0 senza picchi in comune. Esempio: A e B con intensità (50, 30, 20), ma l'ultimo picco in posti diversi. *S* = 1,03, *w* = 0,51, entropia pesata 1,08, entropia dello spettro medio 1,26: similarità = 1 − (2 × 1,26 − 2 × 1,08)/1,386 = 0,74.
 
 ```html
-<details class="poe"><summary>Prima di provare: nella coppia «analogo +CH₂», quali punteggi salgono con il coseno modificato?</summary><p>Solo il coseno modificato, che accoppia i picchi spostati di Δ: gli altri tre restano bassi.</p></details>
+<details class="poe"><summary>Prima di provare: con «analogo +CH₂», quali punteggi salgono con il coseno modificato?</summary><p>Solo il coseno modificato: accoppia i picchi spostati. Gli altri restano bassi.</p></details>
 ```
 
 ```html
 <div class="sim" id="sim-chemi-specchio" data-sim="../assets/sim-chemi-somiglianza.js"><h4>Figura 28.2 Specchio: due spettri, quattro punteggi</h4>
-<p class="note nota">Confronta due spettri sintetici e calcola quattro punteggi. Dati sintetici, a scopo didattico.</p></div>
+<p class="note nota">Quattro punteggi su due spettri sintetici. Dati sintetici, a scopo didattico.</p></div>
 ```
 
 ## Ricerca diretta e inversa
@@ -127,28 +125,6 @@ Nella ricerca **diretta** contano tutti i picchi della query. Nella **inversa** 
 <li>usare una tolleranza in dalton alle masse alte invece che in ppm;</li>
 <li>confrontare punteggi con trasformazioni diverse (radice o lineare).</li>
 </ul></div>
-```
-
-## Verifica
-
-```html
-<details class="q"><summary>Perché si toglie il picco del precursore prima di calcolare il coseno?</summary><p>Perché spesso è il picco più alto e, restando nelle lunghezze dei vettori, domina il punteggio: due spettri diversi che condividono solo il precursore sembrerebbero simili.</p></details>
-```
-
-```html
-<details class="q"><summary>Due spettri hanno un coseno di 0,95 ma solo tre picchi accoppiati. Ti fidi?</summary><p>No. Con pochi picchi un coseno alto può essere casuale: si impone un numero minimo di picchi accoppiati e si guarda anche il resto dello spettro.</p></details>
-```
-
-```html
-<details class="q"><summary>Quando il coseno modificato è più utile del coseno semplice, e di che cosa ha bisogno?</summary><p>Con analoghi che differiscono per una modifica nota: i frammenti che la contengono si spostano di Δ. Serve la differenza fra le masse dei precursori; se i precursori sono uguali, lo spostamento è nullo e il punteggio coincide con il coseno.</p></details>
-```
-
-```html
-<details class="q"><summary>A = (50, 30, 20) a 100, 150, 200 e B = (50, 30, 20) a 100, 150, 250. Quanto vale la similarità entropica?</summary><p>Per A e B, <i>S</i> = 1,03, quindi <i>w</i> = 0,51 e le intensità pesate sono 0,42, 0,32, 0,26 (entropia 1,08). Lo spettro medio ha picchi 0,42, 0,32, 0,13, 0,13 e entropia 1,26. Similarità = 1 − (2 × 1,26 − 2 × 1,08)/1,386 = 0,74.</p></details>
-```
-
-```html
-<details class="q"><summary>La query è chimerica: scegli la ricerca diretta o l'inversa? Quale rischio corri?</summary><p>L'inversa, perché ignora i picchi dell'altro composto. Il rischio è un falso positivo quando lo spettro di libreria ha pochi picchi e tutti compaiono per caso nella query.</p></details>
 ```
 
 ## Per approfondire
