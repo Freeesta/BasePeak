@@ -226,3 +226,10 @@ def test_external_src_and_missing_caption_fail(site):
 def test_photo_not_named_in_third_party_licences_fails(site):
     put(site, "assets/img/storia/foto/altra.webp")
     assert any("LICENZE-TERZI" in b for b in check_listing(site, rows(HEAD + row("assets/img/storia/foto/altra.webp"))))
+
+
+def test_storia_skeleton_has_no_placeholder_text():
+    """Federico's rule: no «in costruzione» / «in preparazione» box or sentence in any chapter, drafts included."""
+    for p in sorted((ROOT / "capitoli").glob("*-storia-*.html")) + sorted((ROOT / "capitoli" / "src").glob("*-storia-*.md")):
+        t = p.read_text(encoding="utf-8").lower()
+        assert "in costruzione" not in t and "in preparazione" not in t and "todo" not in t, p.name
