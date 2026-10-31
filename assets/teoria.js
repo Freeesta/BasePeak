@@ -59,6 +59,16 @@ const CHAPTERS = [
   ["capitoli/30-candidati.html", "30", "Formule e candidati in silico", "VII. Chemioinformatica", true],
   ["capitoli/31-confidenza.html", "31", "Livelli di confidenza", "VII. Chemioinformatica", true],
   ["capitoli/32-esempio.html", "32", "Esempio completo", "VII. Chemioinformatica", true],
+  ["capitoli/33-storia-mappa.html", "33", "La storia in una pagina", "VII. Storia", true],
+  ["capitoli/34-storia-origini.html", "34", "Le origini: raggi catodici, raggi canale, raggi positivi", "VII. Storia", true],
+  ["capitoli/35-storia-aston-dempster.html", "35", "Aston e Dempster: isotopi e numeri interi", "VII. Storia", true],
+  ["capitoli/36-storia-settori.html", "36", "Settori magnetici e doppia focalizzazione", "VII. Storia", true],
+  ["capitoli/37-storia-tof.html", "37", "Il tempo di volo", "VII. Storia", true],
+  ["capitoli/38-storia-rf.html", "38", "Campi a radiofrequenza: quadrupolo e trappola ionica", "VII. Storia", true],
+  ["capitoli/39-storia-ft.html", "39", "Ioni che girano: ICR, FT-ICR, Orbitrap", "VII. Storia", true],
+  ["capitoli/40-storia-sorgenti.html", "40", "Le sorgenti: dall'impatto elettronico alla ionizzazione morbida", "VII. Storia", true],
+  ["capitoli/41-storia-accoppiamenti.html", "41", "Accoppiamenti, MS/MS e ibridi", "VII. Storia", true],
+  ["capitoli/42-storia-rivelatori-dati.html", "42", "Rivelatori, dati, applicazioni", "VII. Storia", true],
 ];
 const APP = typeof APP_NAME === "string" ? APP_NAME : "mzLab";        // appname.js is loaded first by every page
 CHAPTERS.forEach(c => { c[2] = c[2].split("{APP}").join(APP); });
@@ -445,7 +455,7 @@ const TP = (() => {
     if (here !== "index.html") return;
     document.querySelectorAll("main .cards a[href]").forEach(a => { if (hiddenFile(rootPath(a.getAttribute("href")))) a.remove(); });
     document.querySelectorAll("main h3").forEach(h => { const d = h.nextElementSibling; if (d && d.classList.contains("cards") && !d.children.length) { d.remove(); h.remove(); } });
-    const n = [...document.querySelectorAll("main h3")].filter(h => /^[IVX]+\. /.test(h.textContent.trim())).length;
+    const n = new Set([...document.querySelectorAll("main h3:not([hidden])")].map(h => (h.textContent.trim().match(/^([IVX]+)\. /) || [])[1]).filter(Boolean)).size;   // distinct numerals of the parts on show
     const W = ["", "Una", "Due", "Tre", "Quattro", "Cinque", "Sei", "Sette", "Otto", "Nove", "Dieci", "Undici", "Dodici"];
     document.querySelectorAll("main p").forEach(p => { if (/^[A-Z][a-z]+ parti di teoria/.test(p.textContent) && W[n]) p.firstChild.nodeValue = p.firstChild.nodeValue.replace(/^[A-Z][a-z]+/, W[n]); });
   }
