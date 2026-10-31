@@ -1,12 +1,17 @@
 """Pratica (pratica/*.html): a whole EI problem played to the end (molecular ion, formula, key ions, structure by SMILES),
 the oral mode (exam format: graph only), the oral simulation (4 questions), one round of each short game, the formula sheet
 with hidden formulas, and the skills page showing what was recorded. No JS errors anywhere."""
-import sys, os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import sys, os, traceback; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import *
 steps = []
 def step(name, fn):
     try: fn(); steps.append((name, "ok"))
-    except Exception as e: steps.append((name, "FAIL " + str(e).split("\n")[0][:200]))
+    except Exception as e:      # a bare assert has no message: say where it failed and print the page state
+        tb = traceback.extract_tb(e.__traceback__)[-1]
+        try: state = pg.evaluate("({url: location.pathname, wk: (document.querySelector('.wk')||document.body).innerText.slice(0, 400)})")
+        except Exception: state = "page unavailable"
+        steps.append((name, f"FAIL line {tb.lineno}: {tb.line} | {str(e).split(chr(10))[0][:200]} | {state}"))
+pg = None
 r = Run(port=8902, wd="/tmp/wdpr")
 try:
     with sync_playwright() as p:
@@ -50,20 +55,19 @@ try:
             pg.goto(base + "pratica/perdite.html"); pg.wait_for_timeout(800)
             pg.click(".wk .st:nth-of-type(1) .opts button >> nth=0"); pg.click(".wk .st:nth-of-type(2) .opts button >> nth=0")
             pg.goto(base + "pratica/isotopi.html"); pg.wait_for_timeout(800); pg.fill(".a-c", "8"); pg.click(".ck")
-            assert "La formula era" in pg.inner_text(".wk .fb")
+            fb = pg.inner_text(".wk .fb"); assert "La formula era" in fb, fb
             pg.goto(base + "pratica/formula.html"); pg.wait_for_timeout(800)
             assert pg.locator("input[name=fc]").count() >= 1
-            pg.check("input[name=fc] >> nth=0"); pg.click(".ck"); assert "verdetto" in pg.inner_text(".wk .fb")
+            pg.check("input[name=fc] >> nth=0"); pg.click(".ck"); fb = pg.inner_text(".wk .fb"); assert "verdetto" in fb, fb
             pg.goto(base + "pratica/strumento.html"); pg.wait_for_timeout(800)
             for g in ["sep", "src", "an", "acq"]: pg.click(f".cards2[data-k={g}] button >> nth=0")
-            pg.click(".ck"); assert "su 4" in pg.inner_text(".wk .fb")
+            pg.click(".ck"); fb = pg.inner_text(".wk .fb"); assert "su 4" in fb, fb
             pg.goto(base + "pratica/quadrupolo.html"); pg.wait_for_timeout(800)
-            sol = pg.evaluate("""()=>{const t=+document.querySelector('.wk h3').textContent.match(/m\\/z (\\d+)/)[1], sp=+document.querySelector('.lv').value, K=GIOCHI.KQ;
-              for(let lam=0.15;lam<0.1684;lam+=0.00005){const w=GIOCHI.windowQ(lam); if(!w) continue; const V=(w[0]+w[1])/2*t/K;
-                const ok=[t-sp,t,t+sp].map(m=>GIOCHI.stable(2*lam*K*V/m,K*V/m)); if(ok[1]&&!ok[0]&&!ok[2]) return [V,lam];} return null;}""")
-            assert sol, "no solution found"
+            tgt = pg.evaluate("[+document.querySelector('.wk h3').textContent.match(/m\\/z (\\d+)/)[1], +document.querySelector('.lv').value]")
+            sol = pg.evaluate(QUAD_SOLVE_JS, tgt)
+            assert sol, f"no solution found for target/spacing {tgt}"
             pg.fill(".nV", f"{sol[0]:.3f}"); pg.dispatch_event(".nV", "input"); pg.fill(".nL", f"{sol[1]:.5f}"); pg.dispatch_event(".nL", "input")
-            pg.click(".ck"); assert "Riuscito" in pg.inner_text(".wk .res")
+            pg.click(".ck"); res = pg.inner_text(".wk .res"); assert "Riuscito" in res, f"target/spacing {tgt}, V/lam {sol}: {res}"
         step("short games: one round each", games)
         def hr_levels():
             pg.goto(base + "pratica/formula.html"); pg.wait_for_timeout(800)

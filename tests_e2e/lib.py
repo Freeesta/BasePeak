@@ -89,3 +89,14 @@ class Run:
         print("JS errors:", self.errs if self.errs else "none")
         if self.errs:
             atexit.register(lambda: (sys.stdout.flush(), os._exit(1)))
+
+
+# Solver of the quadrupole game (pratica/quadrupolo.html) for a target m/z t and neighbour spacing sp. The old test took the FIRST U/V whose window excludes the
+# neighbours, i.e. the narrowest one, and typed V and U/V rounded to 3 and 5 decimals: for some targets (level 3, m/z 89) the rounding let a neighbour in, and the page
+# rightly answered "Passa anche un vicino". Now: take the middle of the feasible U/V range, centre V in the window, and verify the ROUNDED values with the page's own check.
+QUAD_SOLVE_JS = """([t, sp]) => {
+  const K = GIOCHI.KQ, okAt = (V, lam) => [t - sp, t, t + sp].map(m => GIOCHI.stable(2 * lam * K * V / m, K * V / m)), good = o => o[1] && !o[0] && !o[2], feas = [];
+  for (let lam = 0.1; lam < 0.1684; lam += 0.0002) { const w = GIOCHI.windowQ(lam); if (!w) continue;
+    const V = +((w[0] + w[1]) / 2 * t / K).toFixed(3), l = +lam.toFixed(5); if (good(okAt(V, l))) feas.push([V, l]); }
+  return feas.length ? feas[feas.length >> 1] : null;
+}"""
