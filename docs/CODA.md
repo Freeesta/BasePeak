@@ -28,3 +28,9 @@ Never edit past entries; add new ones at the bottom.
 - Decisions: GIRO every 30 min (Federico). Skeleton chapters of new parts are public with a visible "Capitolo in costruzione" box (COO call). CC BY-SA images excluded for now.
 - Started DEV-CHEMI-00 (skeleton of part VII). Storia skeleton waits for it.
 - Follow-ups noted by DEVs: stale refs to old ch.1-2 (formulario, strategia); `editor/` still writes old mzlab paths; `docs/COORDINATORE.md` mentions old paths.
+
+## 2026-10-31 (5)
+- Merged since (4): #13 queue/log, #15 Storia skeleton (hidden), #16/#18/#19/#21/#22 chapters 22-31, #17 and #23 shared CSS/tool fixes, #20 hide drafts for readers, #25 21 original SVG drawings, #26 no "verifica" sections, #27 new nav (no app tabs, full-height sidebar, collapsible index, slow theme fade, download fixes), #28 chapter 32, #29 part VII glossary/formulary/links, #24 easy page editing (no token).
+- Chemioinformatica 22-32 complete but hidden from readers until the Opus review fixes land. Opus review running (ARCH-CHEMI-REVIEW).
+- Rules from Federico this session: no "in costruzione" text; no verification sections; GIRO every 30 min; slow theme transition; easy editing for the author.
+- Open doubts for the review: Schymanski/MSI wording, modified cosine, entropy weighting, ppm sign convention, 1,0034/z, DTW cost.
