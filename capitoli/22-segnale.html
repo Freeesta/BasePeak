@@ -61,7 +61,7 @@
 <h3>Saturazione e tempo morto</h3>
 <p>Nel TDC un bin non registra due ioni della stessa spinta. Nel modello didattico, semplificato, con <i>k</i> ioni in media per bin e per spinta (Poisson) se ne vedono</p>
 <span class="eq"><i>k</i><sub>oss</sub> = 1 − e<sup>−<i>k</i></sup><span class="no">(22.8)</span></span>
-<p>Con <i>k</i> = 0,1 se ne vedono 0,095 (perso il 4,8%); con <i>k</i> = 1, 0,632 (perso il 37%). I bin più alti si saturano per primi: l'intensità è sottostimata e il centroide si sposta verso il lato che arriva prima. Un ADC invece si ferma al valore massimo del convertitore.</p>
+<p>Con <i>k</i> = 0,1 se ne vedono 0,095 (perso il 4,8%); con <i>k</i> = 1, 0,632 (perso il 37%). I bin più alti si saturano per primi e l'intensità è sottostimata. Se il tempo morto dura più di un bin, uno ione arrivato prima blocca anche quelli che lo seguono: il picco si deforma e il centroide si sposta verso i tempi più brevi, cioè verso m/z più bassi. Un ADC invece si ferma al valore massimo del convertitore.</p>
 <h2>Accuratezza, precisione e taratura</h2>
 <h3>Errore in ppm e in mDa</h3>
 <span class="eq">ppm = <span class="frac"><span>m<sub>mis</sub> − m<sub>teo</sub></span><span>m<sub>teo</sub></span></span> × 10<sup>6</sup><span class="no">(22.9)</span></span>
