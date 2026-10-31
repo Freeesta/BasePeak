@@ -1,4 +1,4 @@
-<!-- script-before: ../elements.js -->
+<!-- script-before: masse.js -->
 <!-- script: sim-hr.js -->
 <!-- title: Risoluzione e alta risoluzione -->
 # Risoluzione, accuratezza e analizzatori ad alta risoluzione {kicker: Capitolo 11}

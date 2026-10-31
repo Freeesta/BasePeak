@@ -3,7 +3,7 @@
    2) Orbitrap: image-current envelope and Fourier spectrum of two ions, resolving power against transient length;
    3) TOF: arrival-time spread from the initial energy spread, linear against reflectron;
    4) how many molecular formulas fit a mass within a tolerance (only the COUNT: this is not a formula generator).
-   Exact masses come from ../elements.js (the same data as the program). */
+   Exact masses come from masse.js (AME2020/NIST). */
 "use strict";
 document.addEventListener("DOMContentLoaded", () => {
   const css = getComputedStyle(document.documentElement), col = n => css.getPropertyValue("--c" + n).trim();
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       out.innerHTML = `Differenza di massa minima Δm = <b>${TP.fmt(dm * 1000, 2)} mDa</b>; per vederli separati serve R ≳ m/Δm = <b>${Math.round(mid / dm).toLocaleString("it-IT")}</b> (il doppio per una valle netta). ` +
         (maxima >= ions.length ? `<span class="ok">Picchi risolti</span>: ogni massa si misura da sola.` :
           `<span class="bad">Picco unico</span>: il centroide misurato è ${TP.fmt(cen, 4)}, cioè ${TP.fmt(ppm(cen, ions[0][1]), 1)} ppm da ${ions[0][0]} e ${TP.fmt(ppm(cen, ions[1][1]), 1)} ppm da ${ions[1][0]}: un errore di massa «finto», dovuto alla risoluzione e non alla taratura.`) +
-        ` Masse da elements.js; per gli ioni è tolta la massa dell'elettrone.`;
+        ` Masse AME2020/NIST (masse.js); per gli ioni è tolta la massa dell'elettrone.`;
     }
     draw();
   }
