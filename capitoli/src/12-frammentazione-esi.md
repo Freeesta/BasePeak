@@ -261,20 +261,6 @@ A CE bassa vedete le prime perdite (le più vicine alla struttura intatta: grupp
 </ul></div>
 ```
 
-## Verifica
-
-??? Un TP con Δ = +16 rispetto al parent perde 18 in modo dominante a CE bassa, il parent no. Dove mettete l'ossigeno?
-Più probabilmente su una porzione alifatica (OH alcolico), perché la perdita facile di H~2~O è tipica degli alcoli e poco tipica dei fenoli e degli N-ossidi. Resta un'ipotesi di livello 3.
-
-??? Perché a CE bassa vedete soprattutto perdite di piccole molecole e a CE alta frammenti del nucleo?
-A bassa energia interna prevalgono i canali con barriera bassa (riarrangiamenti che eliminano molecole stabili); ad alta energia diventano competitive le scissioni dirette e le frammentazioni consecutive dei primi frammenti (eq. 12.1).
-
-??? Un frammento ha m/z dispari mentre il precursore, pari, contiene 3 atomi di N. Che cosa può essere successo?
-Il frammento ha perso un numero dispari di azoti (es. NH~3~ o HCN; non NH~2~CN, che ne contiene due) oppure è uno ione radicale (perdita di un radicale). La seconda ipotesi va giustificata con un gruppo che la favorisca.
-
-??? Una porzione della molecola, un anello fenolico con un metossile, non compare mai come ione nell'MS2. Perché?
-Ha affinità protonica più bassa della porzione azotata: nella rottura il protone resta sull'altro frammento e l'anello se ne va come molecola neutra. Lo vedete solo come perdita (differenza tra precursore e frammento).
-
 ## Per approfondire
 
 ```html

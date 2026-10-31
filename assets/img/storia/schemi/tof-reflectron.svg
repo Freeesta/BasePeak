@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 372" role="img" aria-labelledby="ti de"><title id="ti">Spettrometro a tempo di volo con reflectron</title><desc id="de">Come nel tempo di volo lineare, ma sul fondo del tubo c'è uno specchio di ioni, il reflectron, fatto di anelli con potenziale crescente. Lo ione veloce (linea blu continua) penetra più a fondo nello specchio dello ione lento (linea arancione tratteggiata), percorre un tratto più lungo e così i due arrivano insieme al rivelatore, in alto a sinistra.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<rect class="s" x="150" y="150" width="420" height="100" rx="8"/>
+<text class="t m" x="360" y="142">tubo di volo, senza campo</text>
+<rect class="s" x="20" y="205" width="80" height="45"/>
+<path class="th" d="M100 205L100 250"/>
+<text class="t m" x="60" y="270">sorgente e</text>
+<text class="t m" x="60" y="286">accelerazione</text>
+<rect class="s" x="50" y="152" width="50" height="30"/>
+<path class="th" d="M100 152L100 182"/>
+<text class="t m" x="75" y="142">rivelatore</text>
+<path class="th" d="M586 128L586 168"/>
+<path class="th" d="M586 232L586 272"/>
+<path class="th" d="M597 128L597 168"/>
+<path class="th" d="M597 232L597 272"/>
+<path class="th" d="M608 128L608 168"/>
+<path class="th" d="M608 232L608 272"/>
+<path class="th" d="M619 128L619 168"/>
+<path class="th" d="M619 232L619 272"/>
+<path class="th" d="M630 128L630 168"/>
+<path class="th" d="M630 232L630 272"/>
+<path class="th" d="M641 128L641 168"/>
+<path class="th" d="M641 232L641 272"/>
+<path class="th" d="M652 128L652 168"/>
+<path class="th" d="M652 232L652 272"/>
+<path class="th" d="M663 128L663 168"/>
+<path class="th" d="M663 232L663 272"/>
+<path class="th" d="M674 128L674 168"/>
+<path class="th" d="M674 232L674 272"/>
+<path class="th" d="M685 128L685 168"/>
+<path class="th" d="M685 232L685 272"/>
+<path class="th" d="M696 128L696 168"/>
+<path class="th" d="M696 232L696 272"/>
+<text class="t m" x="646" y="118">reflectron</text>
+<path class="l" d="M586 296L696 296" marker-end="url(#p)"/>
+<text class="t m" x="641" y="316">potenziale crescente</text>
+<path class="l" d="M100 228L570 200"/>
+<path class="rb" d="M570 200Q630 197 570 188L100 166"/>
+<path class="ra" d="M570 200Q694 188 570 175L100 166"/>
+<path class="ra" d="M230 330L270 330"/>
+<text class="t" x="278" y="334">ione veloce: penetra più a fondo</text>
+<path class="rb" d="M230 352L270 352"/>
+<text class="t" x="278" y="356">ione lento: penetra meno</text>
+</svg>

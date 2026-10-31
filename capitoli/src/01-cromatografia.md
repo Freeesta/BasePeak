@@ -188,25 +188,6 @@ Limiti di rivelabilità e di quantificazione (LOD ≈ 3,3 σ/pendenza, LOQ ≈ 1
 <p>Quando le molecole d'interesse e i rispettivi prodotti di degradazione sono specie polari o termolabili, la scelta d'elezione è la LC-ESI-MS. I prodotti di trasformazione sono in genere <em>più</em> polari del composto di partenza (capitolo 2), rendendo l'analisi in GC complessa o impraticabile senza preventiva derivatizzazione chimica.</p></div>
 ```
 
-```html
-<div class="box oral"><b>Concetti chiave e domande di ripasso</b>
-<p>Punti essenziali da dominare: definire k, α, N, H, R<sub>s</sub> e saperle ricavare da un cromatogramma; comprendere l'origine fisica dei tre termini della curva di van Deemter (e perché in GC capillare manca il termine di impaccamento A); applicare l'equazione di Purnell per individuare il parametro più efficace da ottimizzare; distinguere tra eluizione isocratica e a gradiente (o isoterma e programmata in GC); argomentare la scelta motivata tra GC e LC; comprendere vantaggi e limiti della taratura con standard interno rispetto allo standard esterno.</p></div>
-```
-
-## Verifica
-
-??? Un picco esce a 7,5 min, il tempo morto è 1,5 min e w½ = 6 s. Calcola k e N.
-k = (7,5 − 1,5)/1,5 = 4. N = 5,54 (450 s / 6 s)^2^ = 5,54 · 5625 ≈ 31 000 piatti.
-
-??? Due picchi con k = 4,0 e 4,4 su una colonna da 20 000 piatti: sono separati? Che cosa cambieresti?
-α = 1,10; R~s~ = (141/4)·(0,10/1,10)·(4,4/5,4) ≈ 35,4 · 0,091 · 0,815 ≈ 2,6: separati. Se α fosse 1,03, R~s~ ≈ 0,83: conviene cambiare α (fase stazionaria, solvente, pH, temperatura), perché per arrivare a 1,5 con N servirebbe una colonna 3,3 volte più lunga.
-
-??? Perché in GC capillare la curva H-u non ha il termine A?
-Perché la colonna è un tubo aperto con la fase stazionaria come film sulla parete: non ci sono particelle e quindi non ci sono cammini di lunghezza diversa. Restano diffusione longitudinale e trasferimento di massa (equazione di Golay).
-
-??? Perché lo standard interno ideale in LC-MS è l'analita marcato isotopicamente?
-Ha le stesse proprietà chimiche: stesso recupero nell'estrazione, stessa ritenzione (coeluisce) e quindi lo stesso effetto matrice in sorgente; lo spettrometro lo distingue per la massa diversa. Il rapporto delle aree corregge tutte le variazioni che colpiscono allo stesso modo analita e standard.
-
 ## Per approfondire
 
 ```html

@@ -80,14 +80,6 @@ Per raddoppiare la risoluzione bisogna raddoppiare il tempo di ascolto del trans
 
 Termini nel [glossario](19-glossario.md); formule nel [formulario](20-formulario.md).
 
-## Verifica
-
-??? Perché il quadrupolo è il re della quantificazione mirata (MRM) ma è inadeguato per lo screening non target?
-In MRM il quadrupolo ferma la scansione e dedica quasi tutto il tempo solo agli analiti target (duty cycle fino a 50–100% per transizione), massimizzando la sensibilità. In full scan (necessario per scoprire composti sconosciuti), invece, il duty cycle crolla allo 0,1%, perdendo il 99,9% degli ioni prodotti dalla sorgente.
-
-??? In un metodo UHPLC con picchi larghi 4 s, quale analizzatore ad alta risoluzione permette di mantenere oltre 15 punti per picco senza perdere potere risolutivo?
-L'oa-TOF: con frequenze di 20–50 Hz garantisce 80–200 punti sul picco mantenendo inalterata la sua risoluzione. Un Orbitrap a 120 000 di risoluzione richiederebbe transienti lunghi (~256 ms), producendo meno di 4 spettri al secondo, cioè meno di 16 punti su un picco da 4 s.
-
 ## Per approfondire
 
 ```html

@@ -29,10 +29,10 @@
 
   // ---------------------------------------------------------------- the commands
   const go = file => { location.href = new URL(file, SITE.root).href; };      // file is relative to the site root; made absolute here
-  /** Where the exercises of this chapter are: the first «Allenati» box, else the «Verifica» section; else the Pratica index. */
+  /** Where the exercises of this chapter are: the first «Allenati» box; else the Pratica index. */
   function esercizi() {
     if (/^pratica/.test(here)) { const h = $("main h2, main h1"); if (h) { h.tabIndex = -1; h.scrollIntoView({ block: "start" }); h.focus({ preventScroll: true }); } return; }
-    const t = $("main .box.gym") || [...document.querySelectorAll("main h2")].find(h => /^Verifica/i.test(h.textContent.trim()));
+    const t = $("main .box.gym");
     if (!t) return go("pratica/index.html");
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.hasAttribute("data-a11y-reduce");
     t.scrollIntoView({ block: "start", behavior: reduced ? "auto" : "smooth" });
@@ -100,7 +100,7 @@
     det.innerHTML = `<summary class="sc" title="${st.titolo}">${svg(st.icona)}<span>${st.etichetta}</span></summary><div class="sc-sub"></div>`;
     st.figli.forEach(f => { const b = document.createElement("button"); b.type = "button"; b.dataset.cmd = f.id; b.textContent = f.etichetta; b.onclick = () => f.run(); $(".sc-sub", det).appendChild(b); });
     nav.appendChild(det);
-    lat.prepend(nav);
+    const br = $(".brand", lat); if (br) br.after(nav); else lat.prepend(nav);   // the logo block stays the first thing of the index
   }
   if (embedded) { document.dispatchEvent(new Event("tcmd-pronto")); return; }   // in the program the bar of the app draws them
 

@@ -49,9 +49,10 @@ try:
         step("slow script: no transition over a page that has no index yet, no errors", slow)
         def scroll():
             ctx, pg, errs = ctxpage(b); pg.goto(T + "capitoli/04-esi.html"); real_wait(pg, 400)
+            pg.click("#navall")   # every part open (kept for the next page): a long list to scroll
             pg.evaluate("document.querySelector('#side').scrollTop=150"); pg.evaluate("scrollTo(0,900)"); real_wait(pg, 200)
             before = pg.evaluate("document.querySelector('#side').scrollTop"); assert before > 100, before
-            href = pg.evaluate("(()=>{const s=document.querySelector('#side').getBoundingClientRect();return [...document.querySelectorAll('#side ol a')].find(a=>{const r=a.getBoundingClientRect();return r.top>s.top+80&&r.bottom<s.bottom-80&&!a.classList.contains('on')}).getAttribute('href')})()")
+            href = pg.evaluate("(()=>{const s=document.querySelector('#side').getBoundingClientRect();return [...document.querySelectorAll('#side ol a[href$=html]')].find(a=>{const r=a.getBoundingClientRect();return r.top>s.top+80&&r.bottom<s.bottom-80&&!a.classList.contains('on')}).getAttribute('href')})()")
             click_chapter(pg, href)
             y = pg.evaluate("scrollY"); st = pg.evaluate("document.querySelector('#side').scrollTop")
             assert y == 0, y; assert abs(st - before) <= 2, (st, before); assert not errs, errs; ctx.close()
@@ -109,6 +110,64 @@ try:
             pg.goto(T + "capitoli/06-vuoto.html"); real_wait(pg, 400)
             assert pg.evaluate("document.querySelectorAll('script[type=speculationrules]').length") == 0; ctx.close()
         step("prefetch of the previous and next chapter; none with Save-Data or a slow connection", prefetch)
+        # ---- light <-> dark: one slow, gentle cross-fade (--theme-fade, 1.2-1.6 s, ease-in-out) of the whole page; instant with reduced motion
+        THEME_SPY = """(()=>{window.__vt=[];const o=document.startViewTransition&&document.startViewTransition.bind(document);if(o)document.startViewTransition=cb=>{const t=o(cb);window.__vt.push(t);
+          t.ready.then(()=>{t.__anims=document.documentElement.getAnimations({subtree:true}).filter(a=>/view-transition-(old|new)\\(root\\)/.test(a.effect.pseudoElement||'')).map(a=>[a.effect.pseudoElement,a.effect.getTiming().duration,a.effect.getTiming().easing]);window.__anims=t.__anims}).catch(()=>{});return t}})()"""
+        LUM = "(c=>{const m=c.match(/[0-9.]+/g).map(Number),f=v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)};return .2126*f(m[0])+.7152*f(m[1])+.0722*f(m[2])})"
+        def ratio(pg): return pg.evaluate("(()=>{const L=" + LUM + ";const a=L(getComputedStyle(document.body).color),b=L(getComputedStyle(document.body).backgroundColor);return (Math.max(a,b)+.05)/(Math.min(a,b)+.05)})()")
+        def settled(pg): pg.wait_for_function("!document.documentElement.classList.contains('theme-x')", timeout=6000)
+        def theme_fade():
+            ctx, pg, errs = ctxpage(b, init=THEME_SPY, color_scheme="light"); pg.goto(T + "capitoli/04-esi.html"); real_wait(pg, 600)
+            var = pg.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--theme-fade').trim()"); assert var.endswith("ms") and 1200 <= float(var[:-2]) <= 1600, var   # ONE named variable
+            assert pg.evaluate("document.documentElement.dataset.theme") == "light"
+            pg.evaluate("QTEMA.set('dark')"); pg.wait_for_function("window.__anims", timeout=5000)
+            an = pg.evaluate("window.__anims"); names = {a[0] for a in an}; assert names == {"::view-transition-old(root)", "::view-transition-new(root)"}, an
+            for nm, dur, ease in an: assert 1200 <= dur <= 1600, an
+            for ps in ("::view-transition-old(root)", "::view-transition-new(root)"): assert pg.evaluate("p=>getComputedStyle(document.documentElement,p).animationTimingFunction", ps) == "ease-in-out", ps
+            assert pg.evaluate("document.documentElement.dataset.theme") == "dark" and pg.evaluate("location.href.indexOf('04-esi')>0"), "no reload: the page is the same"
+            assert pg.evaluate("document.documentElement.classList.contains('theme-vt')")
+            settled(pg); assert not pg.evaluate("document.documentElement.classList.contains('theme-vt')") and ratio(pg) >= 7, ratio(pg)
+            assert pg.evaluate("document.querySelectorAll('#side li').length") > 20 and not errs, errs; ctx.close()
+        step("light -> dark is ONE cross-fade of 1.2-1.6 s with ease-in-out on the whole page (--theme-fade), no reload, contrast >= 7:1 at the end", theme_fade)
+        def theme_back_and_canvas():
+            ctx, pg, errs = ctxpage(b, init=THEME_SPY, color_scheme="light"); pg.goto(T + "capitoli/04-esi.html"); real_wait(pg, 1200)
+            mid = "(()=>{const c=document.querySelector('.sim canvas');const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let s=0,n=0;for(let i=0;i<d.length;i+=4)if(d[i+3]>128){s+=(d[i]+d[i+1]+d[i+2])/3;n++}return n?s/n:-1})()"
+            light = pg.evaluate(mid); assert light > 140, light            # light theme: mostly light pixels (white panel)
+            pg.evaluate("QTEMA.set('dark')"); settled(pg); real_wait(pg, 500)
+            assert pg.evaluate(mid) < light - 40, ("the drawing on canvas keeps the colours of the light theme after the fade", light, pg.evaluate(mid))
+            sty = pg.evaluate("[...document.querySelectorAll('body style')].map(s=>s.textContent).join('').toLowerCase()")
+            pg.evaluate("QTEMA.set('light')"); settled(pg); real_wait(pg, 500)
+            assert pg.evaluate("document.documentElement.dataset.theme") == "light" and abs(pg.evaluate(mid) - light) < 20, "back to light: the drawing is drawn with the light ink again"
+            assert ratio(pg) >= 7 and pg.evaluate("[...document.querySelectorAll('body style')].map(s=>s.textContent).join('').toLowerCase()") != sty or "#fff" not in sty
+            assert not errs, errs; ctx.close()
+        step("dark and back to light in place: canvas drawings and figure styles follow both ways", theme_back_and_canvas)
+        def theme_double():
+            ctx, pg, errs = ctxpage(b, init=THEME_SPY, color_scheme="light"); pg.goto(T + "capitoli/04-esi.html"); real_wait(pg, 600)
+            pg.evaluate("QTEMA.set('dark'); setTimeout(()=>QTEMA.set('light'), 150); setTimeout(()=>QTEMA.set('dark'), 300)"); real_wait(pg, 500)
+            settled(pg)
+            assert pg.evaluate("document.documentElement.dataset.theme") == "dark" and ratio(pg) >= 7, "the last choice wins"
+            assert pg.evaluate("!document.documentElement.classList.contains('theme-vt') && !document.documentElement.classList.contains('theme-x')"), "an intermediate state is stuck"
+            pg.evaluate("QTEMA.set('light'); QTEMA.set('dark'); QTEMA.set('light')"); settled(pg)
+            assert pg.evaluate("document.documentElement.dataset.theme") == "light" and ratio(pg) >= 7 and not errs, errs; ctx.close()
+        step("toggling twice (or three times) quickly: the last choice wins, no state is left stuck, contrast >= 7:1", theme_double)
+        def theme_reduced():
+            for how in ("system", "page"):
+                ctx, pg, errs = ctxpage(b, init=THEME_SPY, color_scheme="light", **({"reduced_motion": "reduce"} if how == "system" else {})); pg.goto(T + "capitoli/04-esi.html"); real_wait(pg, 600)
+                if how == "page": pg.evaluate("QA11Y.write(Object.assign(QA11Y.read(),{motion:'always'}))")
+                assert pg.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--theme-fade').trim()") == "0ms", how
+                pg.evaluate("QTEMA.set('dark')")
+                assert pg.evaluate("document.documentElement.dataset.theme") == "dark", "the theme did not change at once"          # synchronous: no animation at all
+                assert pg.evaluate("window.__vt.length") == 0 and not pg.evaluate("document.documentElement.classList.contains('theme-x')"), how
+                assert pg.evaluate("document.documentElement.getAnimations({subtree:true}).filter(a=>(a.effect.pseudoElement||'').includes('view-transition')).length") == 0
+                assert ratio(pg) >= 7 and not errs, (how, errs); ctx.close()
+        step("reduced motion (system setting and the page's own): the theme switches at once, no view transition, no CSS fade", theme_reduced)
+        def theme_fallback():
+            ctx, pg, errs = ctxpage(b, init="document.startViewTransition=undefined;", color_scheme="light"); pg.goto(T + "capitoli/04-esi.html"); real_wait(pg, 600)
+            pg.evaluate("QTEMA.set('dark')"); assert pg.evaluate("document.documentElement.classList.contains('theme-x')")
+            assert pg.evaluate("parseFloat(getComputedStyle(document.body).transitionDuration)*1000") >= 1200, "no CSS fade without view transitions"
+            settled(pg); pg.wait_for_function("getComputedStyle(document.body).color === 'rgb(228, 231, 235)'", timeout=10000)      # the transition has run to its end state
+            assert pg.evaluate("document.documentElement.dataset.theme") == "dark" and ratio(pg) >= 7 and not errs, errs; ctx.close()
+        step("without view transitions: the same duration as a CSS transition on every element, cleaned afterwards", theme_fallback)
     r.close()
 except Exception as e:
     steps.append(("run", "FAIL " + str(e)[:300]))

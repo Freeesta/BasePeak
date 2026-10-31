@@ -28,16 +28,18 @@ sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}su
 code,kbd{font:13.5px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--code);border-radius:4px;padding:1px 5px}
 
 /* header */
-#top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:8px 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+#top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:8px 16px;margin-left:var(--sidew);background:var(--panel);border-bottom:1px solid var(--line)}
 #top img{height:28px;width:auto}#top .t{font-weight:700}#top .t small{font-weight:500;color:var(--muted)}
 #top .sp{flex:1}#top button,#top a.btn{font:inherit;font-size:14px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:3px 10px;color:var(--ink);cursor:pointer;text-decoration:none}
 #top button:hover,#top a.btn:hover{border-color:var(--accent)}
 #menu{display:none}
-body.emb #top{display:none}body.emb #side{top:16px;max-height:calc(100vh - 32px)}
+body.emb #top,body.emb #side .brand{display:none}
 
 /* layout */
-.wrap{display:grid;grid-template-columns:300px minmax(0,1fr);gap:28px;max-width:1240px;margin:0 auto;padding:18px 16px 60px}
-#side{overflow-anchor:none;position:sticky;top:64px;align-self:start;max-height:calc(100vh - 80px);overflow:auto;font-size:14px;padding-right:4px}
+/* the index is a full-height column fixed at the left (like the patRoon handbook); the page, its header included, starts at its right edge */
+:root{--sidew:300px}
+.wrap{display:block;margin-left:var(--sidew);padding:18px 32px 60px}
+#side{overflow-anchor:none;position:fixed;top:0;left:0;bottom:0;width:var(--sidew);z-index:25;overflow:auto;font-size:14px;padding:0 8px 24px 12px;background:var(--panel);border-right:1px solid var(--line)}
 #sidecmd{display:flex;flex-direction:column;gap:2px;margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 #sidecmd .sc{display:flex;align-items:center;gap:8px;min-height:32px;padding:4px 8px;font:inherit;font-size:14px;color:var(--ink);background:transparent;border:0;border-radius:6px;text-decoration:none;cursor:pointer;text-align:left;list-style:none}
 #sidecmd .sc::-webkit-details-marker{display:none}
@@ -49,8 +51,7 @@ body.emb #top{display:none}body.emb #side{top:16px;max-height:calc(100vh - 32px)
 @media (pointer:coarse),(max-width:899.98px){#sidecmd .sc,#sidecmd .sc-sub button{min-height:44px}}
 /* menu: Teoria / Pratica / Reference, then the h2 > h3 of the current chapter. Text is --ink on --panel/--sel everywhere (>= 7:1 in every theme), never --muted; it wraps instead of being cut */
 #side{overflow-wrap:anywhere;scrollbar-gutter:stable}
-#side .grp{margin:0 0 14px}
-#side h4{margin:4px 0 6px;padding:0 8px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);border-bottom:2px solid var(--line)}
+#side .grp{margin:0 0 6px}
 #side ol{list-style:none;margin:0;padding:0}
 #side li a{display:flex;gap:8px;padding:4px 8px;border-radius:6px;color:var(--ink);text-decoration:none;border-left:3px solid transparent}
 #side li a:hover{background:var(--sel);text-decoration:underline}
@@ -74,7 +75,7 @@ body.emb #top{display:none}body.emb #side{top:16px;max-height:calc(100vh - 32px)
 .ha:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
 @media (hover:none){.ha{opacity:1}}
 main{min-width:0;max-width:880px}
-@media (max-width:899.98px){.wrap{grid-template-columns:1fr}#side{display:none;position:static;max-height:none}#side.open{display:block}#menu{display:inline-block}body.emb #top{display:flex;position:static}}
+@media (max-width:899.98px){:root{--sidew:0px}.wrap{padding:18px 16px 60px}#side{display:none;position:static;width:auto;border-right:0}#side.open{display:block}#menu{display:inline-block}body.emb #top{display:flex;position:static}}
 
 /* text */
 main h1{font-size:30px;line-height:1.2;margin:6px 0 4px;letter-spacing:-.01em}
@@ -151,9 +152,23 @@ main{overflow-wrap:break-word}
 #gtip[hidden]{display:none}#gtip b{display:block;margin-bottom:2px}#gtip p{margin:0 0 4px}#gtip a{font-size:13px;font-weight:600;text-decoration:none}
 @media print{.g{border-bottom:0}#gtip{display:none}}
 
-/* parts of the path in the side menu */
-#side li.part{margin:12px 0 2px;padding:0 8px;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink)}
-#side li.part:first-child{margin-top:0}
+/* logo and name of the site: the top of the index, pinned while the list scrolls (a phone sheet scrolls it away) */
+#side .brand{position:sticky;top:0;z-index:3;display:flex;align-items:center;min-height:var(--toph);margin:0 -8px 8px -12px;padding:0 12px;background:var(--panel);border-bottom:1px solid var(--line)}
+#logo{display:inline-flex;align-items:center;gap:10px;min-height:44px;color:var(--ink);font-size:17px;font-weight:700;text-decoration:none}
+#logo img{display:block;height:28px;width:auto}
+#logo:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+/* collapsible parts and chapter: the button is the heading of the part (h4 > button) */
+#side .navtools{display:flex;justify-content:flex-end;margin:0 0 4px}
+#side .navall{min-height:32px;padding:2px 8px;font:inherit;font-size:13px;color:var(--ink);background:transparent;border:0;border-radius:6px;text-decoration:underline;cursor:pointer}
+#side .navall:hover{background:var(--sel)}
+#side h4{margin:4px 0 2px;padding:0}
+#side .ptog{display:flex;align-items:center;gap:6px;width:100%;min-height:32px;padding:4px 8px;font:inherit;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;text-align:left;color:var(--ink);background:transparent;border:0;border-bottom:2px solid var(--line);border-radius:6px 6px 0 0;cursor:pointer}
+#side .ptog:hover,#side .ctog:hover{background:var(--sel)}
+#side .chev{flex:none;color:var(--accent)}
+#side [aria-expanded=true]>.chev{transform:rotate(90deg)}
+#side .ptog:focus-visible,#side .ctog:focus-visible,#side .navall:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+#side .chrow{display:flex;align-items:flex-start;gap:2px}#side .chrow a{flex:1;min-width:0}
+#side .ctog{flex:none;display:inline-flex;align-items:center;justify-content:center;min-width:32px;min-height:32px;padding:0;color:var(--ink);background:transparent;border:0;border-radius:6px;cursor:pointer}
 
 /* learning blocks (see LEGGIMI.md): objectives, low/high resolution side by side, predict-observe-explain, practice and program links */
 .obj{border:1px solid var(--line);background:var(--sel);border-radius:8px;padding:8px 14px;margin:10px 0 18px;font-size:15px}
@@ -198,6 +213,8 @@ body.noex main>:not(.navtop):not(.kicker):not(h1):not(.phex):not(.pn){display:no
 :root[data-theme=dark] .box.hr{background:#241d33;border-left-color:#a78bfa}:root[data-theme=dark] .box.hr>b:first-child{color:#c4b5fd}
 :root[data-theme=dark] .box.gym{background:#12272b;border-left-color:#22d3ee}:root[data-theme=dark] .box.gym>b:first-child{color:#67e8f9}
 :root[data-theme=dark] .box.oral{background:#2a2216;border-left-color:#fbbf24}:root[data-theme=dark] .box.oral>b:first-child{color:#fcd34d}
+/* pressed figure toggle in dark: dark ink on the light accent (white on --accent #7db4e6 failed axe color-contrast) */
+:root[data-theme=dark] .btns button.on{background:#7db4e6;border-color:#7db4e6;color:#0b1620}
 :root[data-theme=dark] details.poe{background:#12272b;border-color:#22d3ee}:root[data-theme=dark] details.poe summary{color:#67e8f9}
 
 /* ---- Lettura facilitata (impostazioni.js; the choices live in localStorage «qqq.a11y», tema.js puts them on <html> as data-a11y-*) ---- */
@@ -230,8 +247,9 @@ body.noex main>:not(.navtop):not(.kicker):not(h1):not(.phex):not(.pn){display:no
 :root[data-a11y-reduce]{scroll-behavior:auto}
 :root[data-a11y-reduce] *,:root[data-a11y-reduce] *::before,:root[data-a11y-reduce] *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
 /* concentration mode: no index and no menu, a progress bar */
+:root[data-a11y-noside]{--sidew:0px}
 :root[data-a11y-noside] #side{display:none}
-:root[data-a11y-noside] .wrap{grid-template-columns:minmax(0,1fr);max-width:860px}
+:root[data-a11y-noside] .wrap{max-width:924px}
 @media (max-width:899.98px){:root[data-a11y-noside] #side{display:none}:root[data-a11y-noside] #side.open{display:block}}
 /* reading ruler: a band follows the pointer/focus, the rest is dimmed (the overlay never takes clicks) */
 #a11y-ruler{position:fixed;inset:0;z-index:50;pointer-events:none;display:none;
@@ -300,13 +318,13 @@ main:focus{outline:none}
   #side ol.toc a{display:flex;align-items:center;min-height:44px}
   .pnt{display:none}
   .navtop{font-size:16px}
-  #side ol.toc a,#side ol.toc ol a,#side li.part,#side h4{font-size:16px}
+  #side ol.toc a,#side ol.toc ol a,#side .ptog,#side .navall{font-size:16px}#side .ptog,#side .ctog,#side .navall{min-height:44px}#side .ctog{min-width:44px}#side .brand{position:static;margin:0 0 8px}
   #cbar #menu .ml{font-weight:700}
   main table,main figcaption,.box,.obj,.cards a span,.sim .note,.ctl label{font-size:16px}
   .eq{overflow-x:auto;max-width:100%}
   main{max-width:100%}
 }
-@media print{#top,#side,.skip,.pn,.navtop,.ha,#cbar,#sheetbg,.fzoom,#lb,#tbar,#export-modal,.ctl,.btns{display:none!important}body{padding-top:0!important;background:#fff!important;color:#000!important;font-size:11pt;line-height:1.5}.wrap{display:block!important;max-width:100%!important;padding:0!important;margin:0!important}main{max-width:100%!important}.box{break-inside:avoid;border:1pt solid #ccc;border-left:4pt solid #2b5c8a;margin:10pt 0}table{break-inside:avoid}h1,h2,h3{break-after:avoid}details.q{display:block!important;break-inside:avoid;border:1pt solid #ccc;padding:8pt;margin:8pt 0}details.q summary{font-weight:700}details.q summary ~ *{display:block!important}}
+@media print{#top,#side,.skip,.pn,.navtop,.ha,#cbar,#sheetbg,.fzoom,#lb,#tbar,#export-modal,.ctl,.btns,#sblocco,#gtip,#a11y-panel,#a11y-ruler{display:none!important}body{padding-top:0!important;background:#fff!important;color:#000!important;font-size:11pt;line-height:1.5}.wrap{display:block!important;max-width:100%!important;padding:0!important;margin:0!important}main{max-width:100%!important}.box{break-inside:avoid;border:1pt solid #ccc;border-left:4pt solid #2b5c8a;margin:10pt 0}table{break-inside:avoid}h1,h2,h3{break-after:avoid}details.q{display:block!important;break-inside:avoid;border:1pt solid #ccc;padding:8pt;margin:8pt 0}details.q summary{font-weight:700}details.q summary ~ *{display:block!important}}
 /* line length around 65 characters */
 main p,main li,.gl dd{max-width:65ch}
 .tw,main pre,.eitab{max-width:100%;overflow-x:auto}
@@ -345,14 +363,6 @@ html.vt-no main{animation:vt-fade 120ms ease-out}
 @media (prefers-reduced-motion:reduce){@view-transition{navigation:none}html.vt-no main{animation:none}}
 :root[data-a11y-reduce]::view-transition-group(*),:root[data-a11y-reduce]::view-transition-old(*),:root[data-a11y-reduce]::view-transition-new(*){animation:none!important}
 :root[data-a11y-reduce].vt-no main{animation:none!important}
-/* standalone Teoria: the tabs of the program (Dati · Disegno · Teoria), same look as #nav of the program, never hidden; the title gives way first */
-#tabs{display:flex;gap:2px}
-#tabs a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;font-weight:600;color:var(--muted);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap}
-#tabs a:hover{color:var(--ink)}#tabs a.on{color:var(--ink);border-bottom-color:var(--accent)}
-#tabs a:focus-visible,#top #logo:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
-#top #logo{display:inline-flex;align-items:center;min-height:44px;min-width:44px;justify-content:center}
-@media (max-width:640px){#top .t{display:none}#top{gap:6px;padding:4px 10px}#tabs a{padding:0 9px}}
-
 /* ---- commands of the header (comandi.js: TCMD) ---- */
 #tbar{display:flex;align-items:center;gap:4px;flex:none;position:relative}
 #tbar .tgrp,#tbar .hasmenu{display:inline-flex;gap:4px;position:relative}
@@ -375,9 +385,9 @@ html.phone #tbar .tb{min-width:44px}
 html.phone #top #a11y-btn{margin-left:0}
 @media (min-width:981px){#cbar #cb-nav{display:none}}
 @media (max-width:899.98px){#tbar .tsep,#tbar #tnav{display:none}}
-@media (max-width:640px){#top #tabs a{padding:0 6px;min-width:44px;justify-content:center}#tbar{gap:2px}#tbar .l{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
+@media (max-width:640px){#top{gap:6px;padding:4px 10px}#tbar{gap:2px}#tbar .l{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
 /* same compact bar as the header of the program with a mouse; touch keeps the 44 px targets */
-@media (pointer:fine){#top{padding:4px 12px;gap:10px}#tabs a{min-height:33px;font-size:14px}#top #logo{min-height:33px;min-width:33px}#top #logo img{height:22px;width:auto}#top .tb{min-height:32px;min-width:32px;font-size:13px;padding:0 10px}}
+@media (pointer:fine){#top{padding:4px 12px;gap:10px}#top .tb{min-height:32px;min-width:32px;font-size:13px;padding:0 10px}}
 @media (prefers-reduced-motion:reduce){#top,#top *{transition:none!important}}
 @media print{#tbar{display:none}}
 
@@ -426,3 +436,14 @@ html:not(.tp-emb) body:not(.hdr)::before{content:"";display:block;height:var(--t
 .storia-chip[aria-pressed=true]{border:2px solid var(--accent);background:var(--sel);font-weight:700}
 .storia-chip[aria-pressed=true]::before{content:"\2713\00a0"}
 .storia-comandi button:focus-visible,.storia-chip:focus-visible,.storia-link a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* ---- light <-> dark: one slow, gentle cross-fade of the whole page (tema.js adds html.theme-x, and html.theme-vt when the browser has view transitions).
+   --theme-fade is THE duration (tema.js reads it); 0 with reduced motion: the theme then changes at once. ---- */
+:root{--theme-fade:1400ms}
+:root[data-a11y-reduce]{--theme-fade:0ms}
+@media (prefers-reduced-motion:reduce){:root{--theme-fade:0ms}}
+html.theme-vt #top,html.theme-vt #side{view-transition-name:none}
+html.theme-vt::view-transition-group(root){animation-duration:var(--theme-fade);animation-timing-function:ease-in-out}
+html.theme-vt::view-transition-old(root){animation:-ua-view-transition-fade-out var(--theme-fade) ease-in-out both}
+html.theme-vt::view-transition-new(root){animation:-ua-view-transition-fade-in var(--theme-fade) ease-in-out both}
+html.theme-x:not(.theme-vt),html.theme-x:not(.theme-vt) *,html.theme-x:not(.theme-vt) *::before,html.theme-x:not(.theme-vt) *::after{transition:background-color var(--theme-fade) ease-in-out,color var(--theme-fade) ease-in-out,border-color var(--theme-fade) ease-in-out,fill var(--theme-fade) ease-in-out,stroke var(--theme-fade) ease-in-out,box-shadow var(--theme-fade) ease-in-out!important}

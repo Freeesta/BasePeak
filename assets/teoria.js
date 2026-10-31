@@ -4,6 +4,7 @@
 // [file, number shown in the menu, title, part]. The order is the study path: each chapter uses only what comes before it.
 // The "Pratica" pages (pratica/*.html) are the exercises and games; they use the same layout.
 // The menu has three parts, in this order: Teoria (chapters 1-18 and the introduction), Pratica, Reference (part "Reference": glossary, formulary, timings), see groupOf().
+// A 5th field `true` marks an administrator-only draft: it is removed from CHAPTERS for readers (menu, breadcrumb, prev/next, home cards, search, glossary links) and its URL shows a notice; to publish a chapter delete that field from its row.
 // Files are written relative to the site root (the folder above assets/); SITE.up is the way from the current page back to that root.
 const SITE = (() => {
   const src = document.currentScript && document.currentScript.src;
@@ -35,29 +36,28 @@ const CHAPTERS = [
   ["capitoli/16-strategia.html", "16", "Strategia per trovare i TP", "VI. Dal dato al risultato"],
   ["capitoli/17-hr-dda.html", "17", "Alta risoluzione e DDA nel programma", "VI. Dal dato al risultato"],
   ["capitoli/18-disegno.html", "18", "Disegno sperimentale e strutture", "VI. Dal dato al risultato"],
-  ["pratica/index.html", "P", "Esercizi e autoverifica", "Pratica"],
+  ["pratica/index.html", "P", "Esercizi", "Pratica"],
   ["pratica/ei.html", "P1", "Dallo spettro alla struttura", "Pratica"],
-  ["pratica/orale.html", "P2", "Domande di ripasso", "Pratica"],
-  ["pratica/perdite.html", "P3", "Che cosa ha perso?", "Pratica"],
-  ["pratica/isotopi.html", "P4", "Indovina gli elementi", "Pratica"],
-  ["pratica/formula.html", "P5", "Formula esatta", "Pratica"],
-  ["pratica/strumento.html", "P6", "Carte dello strumento", "Pratica"],
-  ["pratica/quadrupolo.html", "P7", "Pilota il quadrupolo", "Pratica"],
-  ["pratica/tp.html", "P8", "Δm ed ESI± dei prodotti di trasformazione", "Pratica"],
+  ["pratica/perdite.html", "P2", "Che cosa ha perso?", "Pratica"],
+  ["pratica/isotopi.html", "P3", "Indovina gli elementi", "Pratica"],
+  ["pratica/formula.html", "P4", "Formula esatta", "Pratica"],
+  ["pratica/strumento.html", "P5", "Carte dello strumento", "Pratica"],
+  ["pratica/quadrupolo.html", "P6", "Pilota il quadrupolo", "Pratica"],
+  ["pratica/tp.html", "P7", "Δm ed ESI± dei prodotti di trasformazione", "Pratica"],
   ["capitoli/19-glossario.html", "19", "Glossario e bibliografia", "Reference"],
   ["capitoli/20-formulario.html", "20", "Formulario", "Reference"],
   ["capitoli/21-tempi.html", "21", "Tempi degli analizzatori: dwell time, sweep e duty cycle", "Reference"],
-  ["capitoli/22-segnale.html", "22", "Segnale, profilo e centroide", "VII. Chemioinformatica"],
-  ["capitoli/23-formati.html", "23", "File e formati aperti", "VII. Chemioinformatica"],
-  ["capitoli/24-tracce.html", "24", "Tracce di massa e ROI", "VII. Chemioinformatica"],
-  ["capitoli/25-picchi.html", "25", "Trovare i picchi", "VII. Chemioinformatica"],
-  ["capitoli/26-gruppi.html", "26", "Isotopi, addotti, frammenti", "VII. Chemioinformatica"],
-  ["capitoli/27-tabella.html", "27", "La tabella delle feature", "VII. Chemioinformatica"],
-  ["capitoli/28-somiglianza.html", "28", "Somiglianza spettrale", "VII. Chemioinformatica"],
-  ["capitoli/29-librerie.html", "29", "Librerie e falsi positivi", "VII. Chemioinformatica"],
-  ["capitoli/30-candidati.html", "30", "Formule e candidati in silico", "VII. Chemioinformatica"],
-  ["capitoli/31-confidenza.html", "31", "Livelli di confidenza", "VII. Chemioinformatica"],
-  ["capitoli/32-esempio.html", "32", "Esempio completo", "VII. Chemioinformatica"],
+  ["capitoli/22-segnale.html", "22", "Segnale, profilo e centroide", "VII. Chemioinformatica", true],
+  ["capitoli/23-formati.html", "23", "File e formati aperti", "VII. Chemioinformatica", true],
+  ["capitoli/24-tracce.html", "24", "Tracce di massa e ROI", "VII. Chemioinformatica", true],
+  ["capitoli/25-picchi.html", "25", "Trovare i picchi", "VII. Chemioinformatica", true],
+  ["capitoli/26-gruppi.html", "26", "Isotopi, addotti, frammenti", "VII. Chemioinformatica", true],
+  ["capitoli/27-tabella.html", "27", "La tabella delle feature", "VII. Chemioinformatica", true],
+  ["capitoli/28-somiglianza.html", "28", "Somiglianza spettrale", "VII. Chemioinformatica", true],
+  ["capitoli/29-librerie.html", "29", "Librerie e falsi positivi", "VII. Chemioinformatica", true],
+  ["capitoli/30-candidati.html", "30", "Formule e candidati in silico", "VII. Chemioinformatica", true],
+  ["capitoli/31-confidenza.html", "31", "Livelli di confidenza", "VII. Chemioinformatica", true],
+  ["capitoli/32-esempio.html", "32", "Esempio completo", "VII. Chemioinformatica", true],
   ["capitoli/33-storia-mappa.html", "33", "La storia in una pagina", "VII. Storia", true],
   ["capitoli/34-storia-origini.html", "34", "Le origini: raggi catodici, raggi canale, raggi positivi", "VII. Storia", true],
   ["capitoli/35-storia-aston-dempster.html", "35", "Aston e Dempster: isotopi e numeri interi", "VII. Storia", true],
@@ -85,7 +85,13 @@ const ESTESO = QADMIN.on();
 (window.TEORIA = window.TEORIA || {}).esteso = () => ESTESO;
 // the text of the Teoria is Italian only, but the bar shared with the program (tabs, full screen) speaks the language chosen there
 window.TEORIA.lang = (() => { try { return localStorage.getItem("mzlab.lang") === "en" ? "en" : "it"; } catch (_) { return "it"; } })();
+const DRAFTS = CHAPTERS.filter(c => c[4]).map(c => c[0]);   // the files of the drafts, kept after they are taken out of CHAPTERS
 if (ESTESO) document.documentElement.classList.add("esteso"); else for (let i = CHAPTERS.length; i--;) if (CHAPTERS[i][4]) CHAPTERS.splice(i, 1);
+/** True for a draft file (path from the site root, no # or ?) that the reader must not see: administrator mode off. */
+const hiddenFile = f => !ESTESO && DRAFTS.includes(f);
+window.TEORIA.nascosto = hiddenFile;
+/** Path from the site root of a link's target, or "" when it points outside the site. */
+const rootPath = href => { try { const u = new URL(href, location.href).href.replace(/[?#].*$/, ""); return u.startsWith(SITE.root) ? decodeURIComponent(u.slice(SITE.root.length)) : ""; } catch (_) { return ""; } };
 // the chapters were written before the name changed: the old name in the text of the page is shown as the current one
 function renameApp(root = document.body) {
   const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => /^(SCRIPT|STYLE|TEXTAREA)$/.test(n.parentNode.nodeName) || !n.nodeValue.includes("QqQ lab") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT }), l = [];
@@ -114,8 +120,7 @@ const TP = (() => {
     return /iPhone|iPod|Android.+Mobile|Windows Phone|Mobile.+Firefox|Opera Mini/i.test(navigator.userAgent || "") || (coarse && Math.min(screen.width, screen.height) < 500);
   })();
   // on a phone the exercises are not offered (they need a large screen): the page says so and sends back to the Teoria.
-  // The oral questions are only text: they stay.
-  const NOEX = PHONE && /^pratica\/./.test(here) && here !== "pratica/index.html" && here !== "pratica/orale.html";
+  const NOEX = PHONE && /^pratica\/./.test(here) && here !== "pratica/index.html";
 
   function slug(s) {
     return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 48);
@@ -145,28 +150,72 @@ const TP = (() => {
     const a = document.createElement("a"); a.className = "ha"; a.href = "#" + h.id; a.setAttribute("aria-label", "Link a questa sezione"); a.textContent = "#";
     h.appendChild(a);
   }
-  /** The menu: Teoria / Pratica / Reference, every chapter with its title; the current one also lists the h2 and h3 of the page. Returns the page sections [{h, a}] for the scroll-spy. */
+  // ---- collapsible index: every part (Guida, II..VII, Pratica, Reference) and the sections of the current chapter open and close with a real button
+  // (aria-expanded + aria-controls). The parts the reader opened or closed are kept in sessionStorage; the part and the sections of the current chapter are always open on arrival.
+  const NAVKEY = "qqq.teoria.nav";
+  const navStore = {
+    get() { try { const o = JSON.parse(sessionStorage.getItem(NAVKEY)); return o && typeof o === "object" ? o : {}; } catch (_) { return {}; } },
+    set(o) { try { sessionStorage.setItem(NAVKEY, JSON.stringify(o)); } catch (_) { /* no storage: the state lasts for this page only */ } },
+  };
+  const CHEV = '<svg class="chev" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2.5 9.5 7 5 11.5"/></svg>';
+  /** Opens or closes the region a toggle button controls (and says so with aria-expanded). */
+  function setOpen(btn, open) {
+    const box = document.getElementById(btn.getAttribute("aria-controls"));
+    btn.setAttribute("aria-expanded", String(open)); if (box) box.hidden = !open;
+  }
+  /** «Apri tutto» / «Chiudi tutto»: the label says what a press does. */
+  function syncAll(side) {
+    const all = side.querySelector("#navall"); if (!all) return;
+    const some = [...side.querySelectorAll("button[aria-controls][aria-expanded]")].some(b => b.id !== "menu" && b.getAttribute("aria-expanded") === "false");
+    all.textContent = some ? "Apri tutto" : "Chiudi tutto"; all.dataset.act = some ? "open" : "close";
+  }
+  function wireToggles(side) {
+    const st = navStore.get(); st.p = st.p || {};
+    side.addEventListener("click", e => {
+      const b = e.target.closest("button.ptog, button.ctog"); if (b) {
+        const open = b.getAttribute("aria-expanded") !== "true"; setOpen(b, open);
+        if (b.classList.contains("ptog")) st.p[b.dataset.k] = open ? 1 : 0;   // the sections of the current chapter are always open on arrival: nothing to keep
+        navStore.set(st); syncAll(side); return;
+      }
+      if (e.target.closest("#navall")) {
+        const open = side.querySelector("#navall").dataset.act === "open";
+        side.querySelectorAll("button.ptog, button.ctog").forEach(x => { setOpen(x, open); if (x.classList.contains("ptog")) st.p[x.dataset.k] = open ? 1 : 0; });
+        navStore.set(st); syncAll(side);
+      }
+    });
+  }
+  /** The top of the index: the logo (the way to the home page) and the name of the site. */
+  const brandHtml = () => `<div class="brand"><a id="logo" href="${SITE.up}index.html"><img src="${SITE.assets}icone/icon.svg" alt="" width="28" height="28"><span>BasePeak</span></a></div>`;
+  /** The menu: the parts (Guida, II...VII, Pratica, Reference), every chapter with its title; the current one also lists the h2 and h3 of the page. Returns the page sections [{h, a}] for the scroll-spy. */
   function buildSide(side) {
-    const here0 = CHAPTERS[idx];
     const sections = [...document.querySelectorAll("main h2, main h3")].filter(h => h.id && htext(h) && !h.closest(".box,figure,.sim,details,.phex,#phnote"));
     const items = [];
     const tree = [];
     sections.forEach(h => { const it = { h, kids: [] }; items.push(it); if (h.tagName === "H3" && tree.length) tree[tree.length - 1].kids.push(it); else tree.push(it); });
     const node = it => { const li = document.createElement("li"), a = document.createElement("a"); a.className = "sl"; a.href = "#" + it.h.id; a.textContent = htext(it.h); it.a = a; li.appendChild(a);
       if (it.kids.length) { const ol = document.createElement("ol"); it.kids.forEach(k => ol.appendChild(node(k))); li.appendChild(ol); } return li; };
-    let html = "";
-    ["Teoria", "Pratica", "Reference"].forEach(g => {
-      let lis = "", part = "";
-      CHAPTERS.forEach((c, i) => {
-        if (groupOf(c) !== g) return;
-        if (g === "Teoria" && c[3] && c[3] !== part) { part = c[3]; lis += `<li class="part">${esc(part)}</li>`; }
-        const on = i === idx;
-        lis += `<li${on ? ' class="cur-ch"' : ""}><a href="${SITE.up + c[0]}" class="${on ? "on" : ""}"${on ? ' aria-current="page"' : ""}><b>${esc(c[1])}</b><span>${esc(c[2])}</span></a>${on && tree.length ? '<ol class="toc"></ol>' : ""}</li>`;
-      });
-      html += `<section class="grp"><h4 id="grp-${g.toLowerCase()}">${g}</h4><ol aria-labelledby="grp-${g.toLowerCase()}">${lis}</ol></section>`;
+    // parts in menu order: those of the Teoria (one per value of the 4th field), then Pratica, then Reference
+    const parts = [];
+    ["Teoria", "Pratica", "Reference"].forEach(g => CHAPTERS.forEach((c, i) => {
+      if (groupOf(c) !== g) return;
+      const label = g === "Teoria" ? c[3] || "Teoria" : g, last = parts[parts.length - 1];
+      if (last && last.g === g && last.label === label) last.ix.push(i); else parts.push({ g, label, ix: [i] });
+    }));
+    const st = navStore.get(), sp = st.p || {};
+    let html = `<div class="navtools"><button type="button" id="navall" class="navall" data-act="open">Apri tutto</button></div><div class="navparts" role="group" aria-label="Capitoli">`;
+    parts.forEach((pt, n) => {
+      const key = String(n), here0 = pt.ix.includes(idx), open = here0 || sp[key] === 1;   // a part with the current chapter is open whatever was kept
+      const lis = pt.ix.map(i => {
+        const c = CHAPTERS[i], on = i === idx, cur = on && tree.length;
+        const link = `<a href="${SITE.up + c[0]}" class="${on ? "on" : ""}"${on ? ' aria-current="page"' : ""}><b>${esc(c[1])}</b><span>${esc(c[2])}</span></a>`;
+        if (!cur) return `<li${on ? ' class="cur-ch"' : ""}>${link}</li>`;
+        return `<li class="cur-ch"><div class="chrow">${link}<button type="button" class="ctog" aria-expanded="true" aria-controls="toc-cur" aria-label="Sezioni del capitolo">${CHEV}</button></div><ol class="toc" id="toc-cur"></ol></li>`;
+      }).join("");
+      html += `<section class="grp"><h4 id="h-part-${key}"><button type="button" class="ptog" data-k="${key}" aria-expanded="${open}" aria-controls="part-${key}">${CHEV}<span>${esc(pt.label)}</span></button></h4><ol id="part-${key}" aria-labelledby="h-part-${key}"${open ? "" : " hidden"}>${lis}</ol></section>`;
     });
-    side.innerHTML = html;
+    side.innerHTML = brandHtml() + html + "</div>";
     const toc = side.querySelector("ol.toc"); if (toc) tree.forEach(it => toc.appendChild(node(it)));
+    wireToggles(side); syncAll(side);
     return items;
   }
   /** Scroll-spy: the last section whose heading is above 30% of the window is the current one (aria-current="location"). IntersectionObserver only wakes the check up. */
@@ -179,8 +228,9 @@ const TP = (() => {
       if (cur) { cur.removeAttribute("aria-current"); cur.classList.remove("cur"); }
       cur = a; if (!a) return;
       a.setAttribute("aria-current", "location"); a.classList.add("cur");
-      const sr = side.getBoundingClientRect(), ar = a.getBoundingClientRect();   // keep it in view inside the menu only (the page never moves)
-      if (sr.height && (ar.top < sr.top + 8 || ar.bottom > sr.bottom - 8)) side.scrollTop += ar.top - sr.top - sr.height / 3;
+      if (!a.offsetParent) return;   // inside a closed chapter: nothing to show
+      const sr = side.getBoundingClientRect(), ar = a.getBoundingClientRect(), hd = side.querySelector(".brand"), pin = hd && getComputedStyle(hd).position === "sticky" ? hd.offsetHeight : 0;   // keep it in view inside the menu only (the page never moves)
+      if (sr.height && (ar.top < sr.top + pin + 8 || ar.bottom > sr.bottom - 8)) side.scrollTop += ar.top - sr.top - sr.height / 3;
     };
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver(update, { rootMargin: "0px 0px -70% 0px" });
@@ -204,17 +254,10 @@ const TP = (() => {
     // wide tables scroll horizontally on phones instead of widening the page
     document.querySelectorAll("main table").forEach(t => { const w = document.createElement("div"); w.className = "tw"; t.parentNode.insertBefore(w, t); w.appendChild(t); });
     const top = document.createElement("header"); top.id = "top";
-    // inside the program the main bar already has the logo and the tabs: no second header there (only the index button on narrow screens)
+    // embedded in another page (iframe): no second header there (only the index button on narrow screens)
     if (embedded) document.body.classList.add("emb");
-    // standalone header: logo (to the program), title and the same three tabs as the program (Dati · Disegno · Teoria); always visible.
-    // From file:// the relative links to the program do not exist (as before: logo to the index, no tabs); on a phone only the logo (to the notice) and Teoria.
-    const prog = location.protocol !== "file:";
-    const TAB = window.TEORIA.lang === "en" ? { dati: "Data", disegno: "Drawing", teoria: "Theory", sez: "Sections of" } : { dati: "Dati", disegno: "Disegno", teoria: "Teoria", sez: "Sezioni di" };
-    const tabs = `<nav id="tabs" aria-label="${TAB.sez} ${APP}">` +
-      (!prog || PHONE ? "" : `<a id="tab-dati" href="../../#/data">${TAB.dati}</a><a id="tab-disegno" href="../../#/draw">${TAB.disegno}</a>`) +
-      `<a id="tab-teoria" href="${SITE.up}index.html" class="on" aria-current="page">${TAB.teoria}</a></nav>`;
-    top.innerHTML = `<button id="menu" type="button" aria-label="Indice" aria-expanded="false" aria-controls="side">&#9776;</button>` + (embedded ? "" :
-      `<a id="logo" href="${!prog ? SITE.up + "index.html" : PHONE ? "../../" : "../../#/data"}" aria-label="${!prog ? "Teoria: introduzione" : PHONE ? APP : APP + ": Dati"}"><img src="${SITE.assets}icone/icon.svg" alt="m/z" width="28" height="28"></a>` + tabs + `<span class="sp"></span>`);
+    // standalone header: only the tools of the page (comandi.js fills the bar). The logo and the name of the site stand at the top of the side index (brand()).
+    top.innerHTML = `<button id="menu" type="button" aria-label="Indice" aria-expanded="false" aria-controls="side">&#9776;</button>` + (embedded ? "" : `<span class="sp"></span>`);
     document.body.prepend(top); document.body.classList.add("hdr");   // the blank box that stood in for the header (teoria.css) is gone
     const side = $("#side"); side.setAttribute("aria-label", "Indice dei capitoli e della pagina");
     // «Salta al contenuto»: first thing reached with Tab, visible only on focus
@@ -285,7 +328,7 @@ const TP = (() => {
       // header: logo, Teoria, info; it goes away scrolling down and comes back scrolling up (more room for the text, above all in landscape)
       top.insertAdjacentHTML("beforeend", `<button id="info" type="button" aria-label="Informazioni" title="Informazioni">i</button>`);
       const note = document.createElement("div"); note.id = "phnote"; note.className = "box warn"; note.hidden = true;
-      note.innerHTML = `<p>${PHONE_NOTE}</p><p><a href="${SITE.up}index.html">Indice della Teoria</a> · <a href="${SITE.up}capitoli/20-formulario.html">Formulario</a> · <a href="${SITE.up}pratica/orale.html">Domande di ripasso</a></p>`;
+      note.innerHTML = `<p>${PHONE_NOTE}</p><p><a href="${SITE.up}index.html">Indice della Teoria</a> · <a href="${SITE.up}capitoli/20-formulario.html">Formulario</a></p>`;
       $("main").prepend(note);
       $("#info").onclick = () => { note.hidden = !note.hidden; if (!note.hidden) scrollTo({ top: 0, behavior: "smooth" }); };
       let y0 = scrollY;
@@ -293,9 +336,9 @@ const TP = (() => {
     }
     if (NOEX) {
       document.body.classList.add("noex");
-      $("h1").insertAdjacentHTML("afterend", `<div class="box warn phex"><b>Gli esercizi si fanno da computer o da tablet</b><p>Questo gioco ha bisogno di uno schermo più grande (grafici da cliccare, editor delle strutture). Dal telefono potete ripassare con la Teoria, il formulario e le domande di ripasso.</p><p><a href="${SITE.up}index.html">Indice della Teoria</a> · <a href="${SITE.up}capitoli/20-formulario.html">Formulario</a> · <a href="${SITE.up}pratica/orale.html">Domande di ripasso</a></p></div>`);
+      $("h1").insertAdjacentHTML("afterend", `<div class="box warn phex"><b>Gli esercizi si fanno da computer o da tablet</b><p>Questo gioco ha bisogno di uno schermo più grande (grafici da cliccare, editor delle strutture). Dal telefono potete leggere la Teoria e consultare il formulario.</p><p><a href="${SITE.up}index.html">Indice della Teoria</a> · <a href="${SITE.up}capitoli/20-formulario.html">Formulario</a></p></div>`);
     } else if (here === "pratica/index.html") {
-      $("h1").insertAdjacentHTML("afterend", `<div class="box warn phex"><b>Dal telefono</b><p>I giochi si fanno da computer o da tablet; dal telefono funzionano le <a href="${SITE.up}pratica/orale.html">domande di ripasso</a>.</p></div>`);
+      $("h1").insertAdjacentHTML("afterend", `<div class="box warn phex"><b>Dal telefono</b><p>I giochi si fanno da computer o da tablet; dal telefono si legge la Teoria.</p></div>`);
     }
   }
 
@@ -434,6 +477,32 @@ const TP = (() => {
   const sci = (v, d = 2) => { if (v === 0) return "0"; const e = Math.floor(Math.log10(Math.abs(v))); const mnt = v / Math.pow(10, e); return fmt(mnt, d) + "·10" + sup(e); };
 
 
+  // ---------------------------------------------------------------- drafts (administrator-only chapters)
+  /** A reader who opens the address of a draft by hand gets this notice instead of the chapter (the notice is not in the chapter file). */
+  function draftNotice() {
+    document.title = "Pagina non ancora pubblicata · " + APP;
+    const robots = document.createElement("meta"); robots.name = "robots"; robots.content = "noindex"; document.head.appendChild(robots);
+    const m = document.createElement("main"); m.id = "bozza-avviso"; m.style.cssText = "max-width:40rem;margin:12vh auto;padding:0 16px";
+    m.innerHTML = `<h1>Questa pagina non è ancora pubblicata</h1><p><a href="${SITE.up}index.html">Vai alla home</a></p>`;
+    document.body.className = ""; document.body.replaceChildren(m);
+  }
+  /** Home page: the cards of the drafts and the part headings left without cards go away; «Sei parti di teoria» follows the parts that remain. */
+  function homeDrafts() {
+    if (here !== "index.html") return;
+    document.querySelectorAll("main .cards a[href]").forEach(a => { if (hiddenFile(rootPath(a.getAttribute("href")))) a.remove(); });
+    document.querySelectorAll("main h3").forEach(h => { const d = h.nextElementSibling; if (d && d.classList.contains("cards") && !d.children.length) { d.remove(); h.remove(); } });
+    const n = new Set([...document.querySelectorAll("main h3:not([hidden])")].map(h => (h.textContent.trim().match(/^([IVX]+)\. /) || [])[1]).filter(Boolean)).size;   // distinct numerals of the parts on show
+    const W = ["", "Una", "Due", "Tre", "Quattro", "Cinque", "Sei", "Sette", "Otto", "Nove", "Dieci", "Undici", "Dodici"];
+    document.querySelectorAll("main p").forEach(p => { if (/^[A-Z][a-z]+ parti di teoria/.test(p.textContent) && W[n]) p.firstChild.nodeValue = p.firstChild.nodeValue.replace(/^[A-Z][a-z]+/, W[n]); });
+  }
+  /** Links inside the text that point to a draft: in the glossary the «Cap. N» link is dropped, elsewhere only the link goes and the text stays. */
+  function unlinkDrafts() {
+    document.querySelectorAll("main a[href]").forEach(a => {
+      if (!hiddenFile(rootPath(a.getAttribute("href")))) return;
+      if (a.closest("dd")) { const p = a.previousSibling; if (p && p.nodeType === 3) p.nodeValue = p.nodeValue.replace(/\s+$/, ""); a.remove(); } else a.replaceWith(...a.childNodes);
+    });
+  }
+
   // ---------------------------------------------------------------- glossary hints
   // Every glossary term (glossario-dati.js, generated from 19-glossario.html by tools/genera_glossario.py) found in the text gets a dotted
   // underline; the mouse over it (or focus / tap) shows the short definition and a link to its chapter.
@@ -472,7 +541,7 @@ const TP = (() => {
     const show = el => {
       clearTimeout(timer); if (cur === el) return; cur = el;
       const e = G[+el.dataset.g];
-      tip.innerHTML = `<b>${e.t}</b><p>${e.d}</p>` + (e.h ? `<a href="${SITE.up + e.h}">${e.n} &rarr;</a>` : "");
+      tip.innerHTML = `<b>${e.t}</b><p>${e.d}</p>` + (e.h && !hiddenFile(e.h) ? `<a href="${SITE.up + e.h}">${e.n} &rarr;</a>` : "");
       tip.hidden = false;
       const r = el.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
       const x = Math.max(8, Math.min(r.left, innerWidth - w - 8)), below = r.bottom + 6 + h < innerHeight || r.top - 6 - h < 0;
@@ -497,6 +566,6 @@ const TP = (() => {
   // esporta.js: export modal (PDF, Word, Markdown, HTML) for single chapters and complete course
   // the panel styles (settings button and sheet): a <link>, because an @import in teoria.css would be resolved against the page by some tools (axe)
   const cssPanel = document.createElement("link"); cssPanel.rel = "stylesheet"; cssPanel.href = SITE.assets + "impostazioni-comp.css"; document.head.appendChild(cssPanel);
-  document.addEventListener("DOMContentLoaded", () => { layout(); glossary(); ["comandi.js", "impostazioni-comp.js", "impostazioni.js", "lettura.js", "cerca.js", "sblocco.js", "strumenti/pannello.js", "editor.js", "esporta.js"].forEach(load); });
+  document.addEventListener("DOMContentLoaded", () => { if (hiddenFile(here)) return draftNotice(); homeDrafts(); unlinkDrafts(); layout(); glossary(); ["comandi.js", "impostazioni-comp.js", "impostazioni.js", "lettura.js", "cerca.js", "sblocco.js", "strumenti/pannello.js", "editor.js", "esporta.js"].forEach(load); });
   return { reduced: () => document.documentElement.hasAttribute("data-a11y-reduce"), $, controls, buttons, canvas, axes, line, sticks, label, legend, nice, DASH, fmt, sci, sup };
 })();
