@@ -18,38 +18,30 @@ Il livello non dipende da quanto un programma si dichiara sicuro, ma da quali da
 
 ## La scala di Schymanski (2014)
 
-```html
-<!-- to verify against source: Schymanski 2014 level names, translation and minimum data per level (abstract has no level text; full text not reachable) -->
-```
-
 I nomi sono tradotti dall'inglese; l'originale è tra parentesi. La traduzione è nostra.
 
 ```html
 <table>
 <caption>Livelli di Schymanski et al. (2014) e prove minime</caption>
 <tr><th scope="col">Livello</th><th scope="col">Nome</th><th scope="col">Prove minime</th></tr>
-<tr><td>1</td><td>Struttura confermata da standard di riferimento (<i>Confirmed structure by reference standard</i>)</td><td>MS, MS2 e tempo di ritenzione coincidono con lo standard</td></tr>
-<tr><td>2a</td><td>Struttura probabile per corrispondenza con lo spettro di libreria (<i>Probable structure by library spectrum match</i>)</td><td>MS e MS2 confrontati con lo spettro di libreria</td></tr>
+<tr><td>1</td><td>Struttura confermata da standard di riferimento (<i>Confirmed structure by reference standard</i>)</td><td>MS, MS2 e tempo di ritenzione coincidono con lo standard; se possibile, anche un metodo ortogonale</td></tr>
+<tr><td>2a</td><td>Struttura probabile per corrispondenza con lo spettro di libreria (<i>Probable structure by library spectrum match</i>)</td><td>MS e MS2 coincidono senza ambiguità con uno spettro di libreria o di letteratura</td></tr>
 <tr><td>2b</td><td>Struttura probabile per evidenza diagnostica (<i>Probable structure by diagnostic evidence</i>)</td><td>MS, MS2 ed evidenza diagnostica (frammenti, contesto)</td></tr>
-<tr><td>3</td><td>Candidato o candidati provvisori (<i>Tentative candidate(s)</i>)</td><td>MS, MS2 o altri dati compatibili con uno o più candidati</td></tr>
+<tr><td>3</td><td>Candidato o candidati provvisori (<i>Tentative candidate(s)</i>)</td><td>MS, MS2 e dati sperimentali compatibili con uno o più candidati, ma non bastano per una sola struttura (per esempio isomeri di posizione)</td></tr>
 <tr><td>4</td><td>Formula molecolare univoca (<i>Unequivocal molecular formula</i>)</td><td>MS con isotopi o addotti che fissano la formula</td></tr>
 <tr><td>5</td><td>Massa esatta di interesse (<i>Exact mass of interest</i>)</td><td>MS: il solo valore di massa</td></tr>
 </table>
 ```
 
-Dal livello 2 in giù non basta un nome: il livello 2 ha due sottolivelli, uno per ciascun tipo di prova. Solo il livello 1 richiede uno standard di riferimento.
+Il livello 2 ha due sottolivelli: 2a se lo spettro coincide senza ambiguità con uno di libreria o di letteratura, 2b se nessun'altra struttura spiega i dati ma mancano standard e letteratura. Solo il livello 1 richiede uno standard di riferimento.
 
 ## La scala MSI (2007)
 
-```html
-<!-- to verify against source: Sumner 2007 MSI level names and level-1 wording (abstract has no level text; full text not reachable) -->
-```
-
-Sumner et al. (2007) distinguono quattro livelli. Il livello 1 richiede che almeno due proprietà ortogonali, per esempio tempo di ritenzione e spettro, coincidano con quelle di uno standard autentico misurato nelle stesse condizioni.
+Sumner et al. (2007) distinguono quattro livelli. Il livello 1 richiede almeno due dati indipendenti e ortogonali, per esempio tempo di ritenzione e spettro, confrontati con quelli di un composto autentico misurato nelle stesse condizioni. Dati di letteratura o di un altro laboratorio portano al livello 2.
 
 1. Composti identificati (*Identified compounds*);
 2. Composti annotati in via provvisoria (*Putatively annotated compounds*);
-3. Classi di composti caratterizzate in via provvisoria (*Putatively characterised compound classes*);
+3. Classi di composti caratterizzate in via provvisoria (*Putatively characterized compound classes*);
 4. Composti sconosciuti (*Unknown compounds*).
 
 ```html
