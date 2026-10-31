@@ -18,7 +18,7 @@
 
   function cleanMainElement(mainNode) {
     const cl = mainNode.cloneNode(true);
-    cl.querySelectorAll(".pn, .navtop, .ha, .skip, #top, #side, script, style, #tedit-bar, #export-modal, .fzoom, #lb, .ctl, .btns, canvas").forEach(e => e.remove());
+    cl.querySelectorAll(".pn, .navtop, .ha, .skip, #top, #side, script, style, #ed-bar, #export-modal, .fzoom, #lb, .ctl, .btns, canvas").forEach(e => e.remove());
     cl.querySelectorAll(".tw").forEach(tw => { const t = tw.querySelector("table"); if (t) tw.replaceWith(t); else tw.remove(); });
     cl.querySelectorAll(".g").forEach(sp => sp.replaceWith(document.createTextNode(sp.textContent)));
     cl.querySelectorAll("[contenteditable], [aria-level]").forEach(e => { e.removeAttribute("contenteditable"); e.removeAttribute("aria-level"); });

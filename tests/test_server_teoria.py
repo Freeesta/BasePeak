@@ -114,3 +114,27 @@ def test_path_traversal_blocked(local_server):
         pytest.fail("Non deve servire file fuori dal sito")
     except urllib.error.HTTPError as e:
         assert e.code in (400, 404)
+
+
+def test_salva_senza_push_scrive_il_file_e_non_tocca_git(local_server, monkeypatch, tmp_path):
+    """«Salva su questo computer» of the editor sends push=false: the page is written and checked, git is never called."""
+    site = tmp_path / "sito"
+    (site / "capitoli").mkdir(parents=True)
+    page = site / "capitoli" / "prova.html"
+    page.write_text("<!doctype html><html lang=it><title>x</title><body><main><h1>Uno</h1></main></body></html>", encoding="utf-8")
+    monkeypatch.setattr(st, "TEORIA_DIR", site)
+    calls = []
+    real = st.subprocess.run
+
+    def spy(cmd, *a, **k):
+        calls.append(cmd[0:3])
+        return real(cmd, *a, **k)
+
+    monkeypatch.setattr(st.subprocess, "run", spy)
+    new = "<!doctype html><html lang=it><title>x</title><body><main><h1>Due</h1></main></body></html>"
+    req = urllib.request.Request(f"{local_server}/salva", data=json.dumps({"file": "capitoli/prova.html", "html": new, "push": False}).encode(),
+                                 headers={"Content-Type": "application/json", "X-Teoria-Token": st.TOKEN}, method="POST")
+    data = json.loads(urllib.request.urlopen(req).read())
+    assert page.read_text(encoding="utf-8") == new
+    assert not [c for c in calls if "git" in c[0:1]], calls
+    assert data.get("ok") is True and data.get("commit") == "Non inviato", data

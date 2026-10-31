@@ -33,8 +33,9 @@ def test_kicker_and_figures_follow_the_number():
         text = (ROOT / f).read_text(encoding="utf-8")
         assert f'<div class="kicker">Capitolo {n}</div>' in text, f
         assert not re.findall(rf"Figura (?!{n}\.)\d+\.\d+", text) or "McLafferty" in text, f
-        src = (ROOT / "capitoli" / "src" / (Path(f).stem + ".md")).read_text(encoding="utf-8")
-        assert f"{{kicker: Capitolo {n}}}" in src, f
+        twin = ROOT / "capitoli" / "src" / (Path(f).stem + ".md")      # the .md twin is optional (the html is the only source): when it exists its kicker must agree
+        if twin.is_file():
+            assert f"{{kicker: Capitolo {n}}}" in twin.read_text(encoding="utf-8"), f
 
 
 def test_old_names_redirect_to_the_same_chapter():
