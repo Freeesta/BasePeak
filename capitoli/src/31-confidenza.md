@@ -98,24 +98,6 @@ Perché un risultato si possa verificare, accanto al nome vanno scritte le prove
 </table>
 ```
 
-## Verifica
-
-```html
-<details class="q"><summary>Hai massa esatta, formula univoca e uno spettro MS2 che coincide con la libreria (coseno 0,95, 6 picchi). Quale livello di Schymanski?</summary><p>Livello 2a. Per il livello 1 manca lo standard di riferimento misurato con lo stesso metodo.</p></details>
-```
-
-```html
-<details class="q"><summary>Hai solo la massa esatta e la formula ricavata dal pattern isotopico. Quale livello?</summary><p>Livello 4 (formula molecolare univoca), che corrisponde in modo approssimato al livello 4 della scala MSI.</p></details>
-```
-
-```html
-<details class="q"><summary>Perché il livello 1 richiede lo standard e non basta un punteggio molto alto?</summary><p>Perché il punteggio misura la somiglianza fra spettri, mentre lo standard misurato con lo stesso metodo confronta anche il tempo di ritenzione e controlla le condizioni.</p></details>
-```
-
-```html
-<details class="q"><summary>Che cosa manca a un candidato di livello 3 per salire al livello 2?</summary><p>Una corrispondenza con lo spettro di libreria (2a) oppure un'evidenza diagnostica, per esempio frammenti caratteristici (2b).</p></details>
-```
-
 ## Per approfondire
 
 ```html

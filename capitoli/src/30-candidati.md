@@ -110,28 +110,6 @@ CSI:FingerID (Dührkop et al., 2015) prevede dallo spettro, con l'apprendimento 
 <p class="note nota">Confronta tre isomeri sintetici con uno stesso spettro e mostra che i punteggi possono pareggiare. Dati sintetici, a scopo didattico.</p></div>
 ```
 
-## Verifica
-
-```html
-<details class="q"><summary>Un ione [M+H]<sup>+</sup> è misurato a m/z 216,1011. Quale massa neutra cerchi?</summary><p>216,1011 − 1,00728 = 215,0938. Se lo ione fosse [M+Na]<sup>+</sup> bisognerebbe togliere 22,98922 e tutte le formule risulterebbero diverse.</p></details>
-```
-
-```html
-<details class="q"><summary>Il pattern teorico è 100 : 10,64 : 32,51 : 3,42 e quello misurato 100 : 10,0 : 30,0 : 3,0. Quanto vale il punteggio (30.2)?</summary><p>Scarti: 0,64 + 2,51 + 0,42 = 3,57. Somma teorica: 10,64 + 32,51 + 3,42 = 46,57. <i>S</i> = 1 − 3,57/46,57 = 0,923.</p></details>
-```
-
-```html
-<details class="q"><summary>Perché con ppm molto stretti la formula vera può sparire dalla lista?</summary><p>Perché l'errore di massa reale può superare la finestra. La tolleranza va scelta sull'errore osservato dello strumento, non sul valore più basso possibile.</p></details>
-```
-
-```html
-<details class="q"><summary>Tre isomeri spiegano lo stesso 90 % del segnale. Che cosa si può concludere?</summary><p>Che lo spettro non li distingue. Servono altre prove: il tempo di ritenzione, uno standard, un altro tipo di dato. Senza di esse il livello resta 3.</p></details>
-```
-
-```html
-<details class="q"><summary>Il primo candidato di CSI:FingerID è identificato?</summary><p>No: è un candidato provvisorio, al più livello 3. Per salire serve almeno un confronto con uno standard misurato con lo stesso metodo (capitolo 31).</p></details>
-```
-
 ## Per approfondire
 
 ```html
