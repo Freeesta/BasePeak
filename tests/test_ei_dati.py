@@ -1,4 +1,6 @@
-"""The EI spectra of the Teoria and of the Pratica (mzlab/web/teoria/pratica/ei-dati.js, built by tools/genera_ei.py).
+"""The EI spectra of the Teoria and of the Pratica (mzlab/web/teoria/pratica/ei-dati.js and ei-dati-l1..l5.js).
+
+These tests read only the committed public data files (the generator is documented in docs/provenance/, see docs/DATI-EI.md).
 
 The teaching notes ("keys") are written by hand: these checks are the guard against chemistry mistakes. For every key ion:
 nominal mass of its formula (+ delta for an isotope peak) = its m/z; odd/even electrons from the rings-plus-double-bonds value
@@ -7,16 +9,11 @@ compound (one extra H allowed for hydrogen-transfer rearrangements); the peak is
 """
 import json
 import re
-import sys
 from pathlib import Path
 
-import pytest
-
-from chem_ref import parse_formula, mass  # noqa: E402
+from chem_ref import parse_formula, mass  # noqa: E402  (reference chemistry shared by the tests)
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "tools"))
-from dati_percorsi import percorso  # noqa: E402
 DATA = ROOT / "mzlab" / "web" / "teoria" / "pratica" / "ei-dati.js"
 NOMINAL = {"H": 1, "C": 12, "N": 14, "O": 16, "F": 19, "Si": 28, "P": 31, "S": 32, "Cl": 35, "Br": 79, "I": 127}
 AIUTI = ROOT / "mzlab" / "web" / "teoria" / "pratica" / "ei-aiuti.js"
@@ -101,21 +98,6 @@ def test_keys_are_chemically_consistent():
             assert k["text"] and len(k["text"]) < 260
 
 
-def test_no_compound_of_the_lab_methods():
-    """The pollutants of the lab methods must not appear (their names are read from the private data repository, if present)."""
-    dam = percorso("dati/3200 qtrap/dam")
-    legacy = ROOT.parent / "Data" / "dam - Metodi"          # outside the data repository: not in the layout table
-    if legacy.is_dir():
-        dam = legacy
-    if dam is None:
-        pytest.skip("repository privato dei dati non presente")
-    names = {m.group(1).lower() for p in dam.glob("*.dam") if (m := re.match(r"Lab_inq_MS2_([A-Za-z]+)\.dam$", p.name))}
-    assert names
-    text = json.dumps(load(), ensure_ascii=False).lower()
-    for n in names:
-        assert n[:7] not in text, n[:3] + "…"
-
-
 def test_every_spectrum_cited_in_the_theory_exists():
     import re as _re
     ids = {i["id"] for i in load()["items"]}
@@ -186,3 +168,33 @@ def test_hints_of_the_hard_mode_do_not_reveal_the_structure():
         assert not re.search(r"\d{2,}", t), (it["id"], "a number in the hint")
         assert it["name"].lower() not in t.lower() and it["formula"] not in t, it["id"]
         assert not forbidden.search(t), (it["id"], forbidden.search(t).group(0))
+
+
+def test_every_spectrum_has_source_and_licence():
+    """Each spectrum carries its MassBank accession, authors, instrument, licence and the number of records it was chosen from."""
+    for it in load()["items"]:
+        src = it["src"]
+        assert re.fullmatch(r"MSBNK-[A-Za-z0-9_]+-[A-Za-z0-9]+", src["accession"]), (it["id"], src["accession"])
+        assert src["license"] in LICENSES, (it["id"], src["license"])
+        assert src["authors"].strip() and src["instrument"].strip(), it["id"]
+        assert src["n_spectra"] >= 1 and 0 < src["cos_mean"] <= 1, it["id"]
+        assert it["name"] and it["name_en"] and it["smiles"] and it["inchikey"], it["id"]
+
+
+def test_data_files_declare_their_licence_and_source():
+    """Every data file starts with the licence header and the loaded structure is the documented one."""
+    for f in [DATA, *sorted(DATA.parent.glob("ei-dati-l*.js"))]:
+        head = f.read_text(encoding="utf-8")[:1200]
+        assert "MassBank Europe" in head and "CC BY-NC-SA" in head, f.name
+    d = load()
+    assert d["version"] == 3 and d["source"] == "MassBank Europe"
+    assert set(d) == {"version", "source", "items", "extra"}
+    assert {f.stem for f in DATA.parent.glob("ei-dati-l*.js")} == {"ei-dati-l%d" % n for n in sorted(set(d["extra"].values()))}
+
+
+def test_provenance_script_is_documentation_only():
+    """The generator needs unpublished inputs: it lives in docs/provenance/ and refuses to run, and tools/ no longer has it."""
+    assert not (ROOT / "tools" / "genera_ei.py").exists()
+    script = ROOT / "docs" / "provenance" / "genera_ei.py"
+    assert "NOT RUNNABLE" in script.read_text(encoding="utf-8")[:200]
+    assert (ROOT / "docs" / "DATI-EI.md").is_file()
