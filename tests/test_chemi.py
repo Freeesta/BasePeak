@@ -82,7 +82,10 @@ def test_rows_22_to_32():
     assert [int(n) for _, n, _, _ in rs] == list(NUMS)
     assert all(part == PART for _, _, _, part in rs)
     assert sum(1 for r in rows() if r[3] == PART) == 11
-    assert [r[0] for r in rows()][-11:] == [r[0] for r in rs], "part VII rows come after row 21, in order"
+    names = [r[0] for r in rows()]
+    first = names.index(rs[0][0])
+    assert names[first:first + 11] == [r[0] for r in rs], "part VII rows come right after row 21, in order"
+    assert rows()[first - 1][1] == "21", "row 21 comes just before part VII"
     for f, n, _, _ in rs:
         assert (ROOT / f).is_file(), f
         assert Path(f).name.startswith(f"{int(n):02d}-"), f
