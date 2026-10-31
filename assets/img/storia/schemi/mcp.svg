@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 350" role="img" aria-labelledby="ti de"><title id="ti">Piastra a microcanali: sezione e cascata di elettroni in un canale</title><desc id="de">Sezione di una piastra attraversata da canali sottili e inclinati, con un elettrodo sulla faccia di ingresso e uno su quella di uscita. Uno ione o un elettrone entra in un canale evidenziato e urta la parete; gli elettroni emessi, in arancione, rimbalzano di parete in parete e si moltiplicano. All'uscita il canale rilascia una nuvola di elettroni.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<rect class="s" x="40" y="130" width="460" height="120"/>
+<path class="l" d="M54 130L70 130L95.5 250L79.5 250Z"/>
+<path class="l" d="M94 130L110 130L135.5 250L119.5 250Z"/>
+<path class="l" d="M134 130L150 130L175.5 250L159.5 250Z"/>
+<path class="l" d="M174 130L190 130L215.5 250L199.5 250Z"/>
+<path class="l" d="M214 130L230 130L255.5 250L239.5 250Z"/>
+<path class="sa" d="M254 130L270 130L295.5 250L279.5 250Z"/>
+<path class="l" d="M294 130L310 130L335.5 250L319.5 250Z"/>
+<path class="l" d="M334 130L350 130L375.5 250L359.5 250Z"/>
+<path class="l" d="M374 130L390 130L415.5 250L399.5 250Z"/>
+<path class="l" d="M414 130L430 130L455.5 250L439.5 250Z"/>
+<path class="l" d="M454 130L470 130L495.5 250L479.5 250Z"/>
+<path class="th" d="M40 124L500 124"/>
+<path class="th" d="M40 256L500 256"/>
+<path class="rb" d="M262 130L262.1 154L277.2 182L272.3 212L287.4 236L287.5 250"/>
+<circle class="fb" cx="262.1" cy="154" r="2.2"/>
+<circle class="fb" cx="275.2" cy="182" r="2.2"/>
+<circle class="fb" cx="279.2" cy="182" r="2.2"/>
+<circle class="fb" cx="268.3" cy="212" r="2.2"/>
+<circle class="fb" cx="272.3" cy="212" r="2.2"/>
+<circle class="fb" cx="276.3" cy="212" r="2.2"/>
+<circle class="fb" cx="281.4" cy="236" r="2.2"/>
+<circle class="fb" cx="285.4" cy="236" r="2.2"/>
+<circle class="fb" cx="289.4" cy="236" r="2.2"/>
+<circle class="fb" cx="293.4" cy="236" r="2.2"/>
+<path class="ra" d="M184 40L260 122" marker-end="url(#pa)"/>
+<text class="t" x="104" y="36">ione o elettrone</text>
+<circle class="fb" cx="242.5" cy="288" r="2.4"/>
+<circle class="fb" cx="251.5" cy="300" r="2.4"/>
+<circle class="fb" cx="260.5" cy="312" r="2.4"/>
+<circle class="fb" cx="269.5" cy="288" r="2.4"/>
+<circle class="fb" cx="278.5" cy="300" r="2.4"/>
+<circle class="fb" cx="287.5" cy="312" r="2.4"/>
+<circle class="fb" cx="296.5" cy="288" r="2.4"/>
+<circle class="fb" cx="305.5" cy="300" r="2.4"/>
+<circle class="fb" cx="314.5" cy="312" r="2.4"/>
+<circle class="fb" cx="323.5" cy="288" r="2.4"/>
+<circle class="fb" cx="332.5" cy="300" r="2.4"/>
+<path class="rb" d="M287.50678740040263 258L287.50678740040263 278" marker-end="url(#pb)"/>
+<path class="l" d="M496 124L530 124"/>
+<text class="t" x="536" y="128">elettrodo di ingresso</text>
+<path class="l" d="M480 190L530 190"/>
+<text class="t" x="536" y="190">piastra con</text>
+<text class="t" x="536" y="206">molti canali</text>
+<path class="l" d="M496 256L530 256"/>
+<text class="t" x="536" y="260">elettrodo di uscita</text>
+<text class="t m" x="287.5" y="325">elettroni in uscita</text>
+<path class="l" d="M268 160L360 60"/>
+<text class="t" x="366" y="56">canale (inclinato)</text>
+</svg>
