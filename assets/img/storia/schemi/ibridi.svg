@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 350" role="img" aria-labelledby="ti de"><title id="ti">Schemi a blocchi degli spettrometri ibridi: QqQ, Q-TOF e Q-Orbitrap</title><desc id="de">Tre schemi a blocchi in cui il fascio di ioni attraversa in sequenza i componenti. Nel triplo quadrupolo: sorgente, Q1 che seleziona, q2 che frammenta, Q3 che analizza, rivelatore. Nel Q-TOF Q3 è sostituito da un analizzatore a tempo di volo. Nel Q-Orbitrap gli ioni selezionati si accumulano in una trappola C e passano nell'Orbitrap.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<text class="h" x="20" y="40">Triplo quadrupolo (QqQ)</text>
+<rect class="s" x="20" y="54" width="108" height="56" rx="6"/>
+<text class="t m" x="74" y="80">Sorgente</text>
+<path class="ra" d="M128 82L156 82" marker-end="url(#pa)"/>
+<rect class="s" x="156" y="54" width="108" height="56" rx="6"/>
+<text class="t m" x="210" y="78">Q1</text>
+<text class="t m" x="210" y="96">seleziona</text>
+<path class="ra" d="M264 82L292 82" marker-end="url(#pa)"/>
+<rect class="sa" x="292" y="54" width="108" height="56" rx="6"/>
+<text class="t m" x="346" y="78">q2</text>
+<text class="t m" x="346" y="96">frammenta</text>
+<path class="ra" d="M400 82L428 82" marker-end="url(#pa)"/>
+<rect class="s" x="428" y="54" width="108" height="56" rx="6"/>
+<text class="t m" x="482" y="78">Q3</text>
+<text class="t m" x="482" y="96">analizza</text>
+<path class="ra" d="M536 82L564 82" marker-end="url(#pa)"/>
+<rect class="s" x="564" y="54" width="108" height="56" rx="6"/>
+<text class="t m" x="618" y="80">Rivelatore</text>
+<text class="h" x="20" y="152">Quadrupolo e tempo di volo (Q-TOF)</text>
+<rect class="s" x="20" y="166" width="108" height="56" rx="6"/>
+<text class="t m" x="74" y="192">Sorgente</text>
+<path class="ra" d="M128 194L156 194" marker-end="url(#pa)"/>
+<rect class="s" x="156" y="166" width="108" height="56" rx="6"/>
+<text class="t m" x="210" y="190">Q1</text>
+<text class="t m" x="210" y="208">seleziona</text>
+<path class="ra" d="M264 194L292 194" marker-end="url(#pa)"/>
+<rect class="sa" x="292" y="166" width="108" height="56" rx="6"/>
+<text class="t m" x="346" y="190">q2</text>
+<text class="t m" x="346" y="208">frammenta</text>
+<path class="ra" d="M400 194L428 194" marker-end="url(#pa)"/>
+<rect class="s" x="428" y="166" width="108" height="56" rx="6"/>
+<text class="t m" x="482" y="190">TOF</text>
+<text class="t m" x="482" y="208">analizza</text>
+<path class="ra" d="M536 194L564 194" marker-end="url(#pa)"/>
+<rect class="s" x="564" y="166" width="108" height="56" rx="6"/>
+<text class="t m" x="618" y="192">Rivelatore</text>
+<text class="h" x="20" y="264">Quadrupolo e Orbitrap (Q-Orbitrap)</text>
+<rect class="s" x="20" y="278" width="108" height="56" rx="6"/>
+<text class="t m" x="74" y="304">Sorgente</text>
+<path class="ra" d="M128 306L156 306" marker-end="url(#pa)"/>
+<rect class="s" x="156" y="278" width="108" height="56" rx="6"/>
+<text class="t m" x="210" y="302">Q</text>
+<text class="t m" x="210" y="320">seleziona</text>
+<path class="ra" d="M264 306L292 306" marker-end="url(#pa)"/>
+<rect class="s" x="292" y="278" width="108" height="56" rx="6"/>
+<text class="t m" x="346" y="302">Trappola C</text>
+<text class="t m" x="346" y="320">accumula</text>
+<path class="ra" d="M400 306L428 306" marker-end="url(#pa)"/>
+<rect class="s" x="428" y="278" width="108" height="56" rx="6"/>
+<text class="t m" x="482" y="302">Orbitrap</text>
+<text class="t m" x="482" y="320">analizza</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 336" role="img" aria-labelledby="ti de"><title id="ti">Sorgente a ionizzazione elettronica</title><desc id="de">Un filamento caldo emette elettroni che attraversano la camera di ionizzazione, con energia di 70 elettronvolt, fino a una trappola. Le molecole del campione, in forma di vapore, entrano nella camera e alcune perdono un elettrone urtando quelli del fascio. Un elettrodo repulsore spinge gli ioni verso l'alto, dove le fenditure di accelerazione li formano in un fascio diretto all'analizzatore.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<rect class="s" x="170" y="120" width="300" height="140"/>
+<path class="th" d="M70 190l8 -14l8 28l8 -28l8 28l8 -28l8 14"/>
+<text class="t m" x="100" y="232">filamento</text>
+<path class="rb" d="M130 190H490" marker-end="url(#pb)"/>
+<path class="th" d="M500 170L500 210"/>
+<text class="t m" x="500" y="160">trappola</text>
+<text class="t" x="190" y="176">elettroni 70 eV</text>
+<path class="th" d="M190 244L450 244"/>
+<text class="t" x="200" y="282">repulsore (+)</text>
+<path class="l" d="M600 226H452" marker-end="url(#p)"/>
+<text class="t m" x="560" y="248">campione (vapore)</text>
+<circle class="l" cx="250" cy="215" r="5"/>
+<circle class="l" cx="300" cy="222" r="5"/>
+<circle class="l" cx="360" cy="212" r="5"/>
+<circle class="l" cx="410" cy="222" r="5"/>
+<circle class="l" cx="440" cy="200" r="5"/>
+<circle class="fa" cx="330" cy="188" r="5"/>
+<circle class="fa" cx="338" cy="196" r="5"/>
+<circle class="fa" cx="326" cy="200" r="5"/>
+<path class="th" d="M270 120L300 120"/>
+<path class="th" d="M340 120L372 120"/>
+<path class="th" d="M240 90L310 90"/>
+<path class="th" d="M350 90L420 90"/>
+<path class="th" d="M240 60L318 60"/>
+<path class="th" d="M342 60L420 60"/>
+<path class="ra" d="M330 182L330 30" marker-end="url(#pa)"/>
+<text class="t" x="436" y="75">fenditure di</text>
+<text class="t" x="436" y="91">accelerazione</text>
+<text class="t" x="344" y="26">fascio di ioni verso l'analizzatore</text>
+<path class="l" d="M333 193L400 150"/>
+<text class="t" x="404" y="150">ioni</text>
+<path class="l" d="M250 220L170 300"/>
+<text class="t" x="120" y="316">molecole neutre</text>
+</svg>
