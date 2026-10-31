@@ -116,16 +116,6 @@
 <p class="note nota">Uno studio sintetico con 3 bianchi, 6 campioni, 4 QC e 60 feature, cinque delle quali sono artefatti. Dati sintetici, a scopo didattico.</p></div>
 ```
 
-## Verifica
-
-```html
-<details class="q"><summary>Un gradino di 20 s a metà corsa: quale ampiezza LOWESS scegli, 0,3 o 1, e perché?</summary><p>0,3. Una curva locale segue il gradino. Con ampiezza 1 la curva lo smussa e restano errori di molti secondi (sotto-adattamento).</p></details>
-<details class="q"><summary>Con costi <i>c</i> = [[1, 2], [3, 1]], quanto vale <i>D</i>(2, 2) con la (27.2)?</summary><p><i>D</i>(1,1) = 1, <i>D</i>(1,2) = 3, <i>D</i>(2,1) = 4. Quindi <i>D</i>(2,2) = 1 + min(3, 4, 1) = 2: il cammino è la diagonale.</p></details>
-<details class="q"><summary>Un composto compare in due righe con rt di 300 e 318 s. Su quale parametro intervieni?</summary><p>Su bw: deve essere più grande della deriva residua dopo l'allineamento, ma più piccolo della distanza fra composti diversi. Poi controlla che l'allineamento sia buono.</p></details>
-<details class="q"><summary>Una feature ha RSD dei QC del 45 %, mentre le altre stanno sotto il 10 %. La normalizzazione totale la sistema?</summary><p>No. La normalizzazione totale corregge la deriva comune a tutte le feature; qui la deriva è solo di questa feature, che va scartata o corretta con la curva LOESS sui QC.</p></details>
-<details class="q"><summary>Perché un valore riempito non va letto come una rivelazione?</summary><p>Perché è l'integrale del segnale grezzo in una finestra, anche dove non c'è un picco: può essere solo rumore.</p></details>
-```
-
 ## Per approfondire
 
 ```html

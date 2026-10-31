@@ -100,15 +100,6 @@
 <p class="note nota">Raggruppa i segnali di alcuni composti sintetici secondo tempo, forma e differenze di massa. Dati sintetici, a scopo didattico.</p></div>
 ```
 
-## Verifica
-
-```html
-<details class="q"><summary>Due feature con lo stesso tempo di ritenzione differiscono di 21,9819 u. Che ipotesi fai e come ricavi M?</summary><p>La più pesante è [M+Na]<sup>+</sup> e la più leggera [M+H]<sup>+</sup> dello stesso composto. M si ricava dalla più leggera: M = <i>m/z</i> − 1,0073.</p></details>
-<details class="q"><summary>Due picchi a 216,1010 e 218,0981, con rapporto 32 %: che cosa contiene la molecola?</summary><p>La differenza è 1,9971 u e il rapporto è quello di un atomo di Cl (<sup>37</sup>Cl/<sup>35</sup>Cl ≈ 32 %). Un atomo di Br darebbe circa 97 %.</p></details>
-<details class="q"><summary>Perché una correlazione di 0,95 calcolata su quattro punti non basta a unire due feature?</summary><p>Con pochi punti la correlazione ha una grande incertezza: due segnali senza relazione possono dare <i>r</i> alto per caso. Servono più punti sul picco, e conviene controllare anche massa e intensità.</p></details>
-<details class="q"><summary>Aggiungi alla lista la regola del potassio. Che cosa ti aspetti, se nei dati non ci sono addotti di potassio?</summary><p>Nessun legame vero in più, ma una nuova possibilità di legami casuali. Una regola va aggiunta solo se l'addotto è plausibile per la fase mobile usata.</p></details>
-```
-
 ## Per approfondire
 
 ```html
