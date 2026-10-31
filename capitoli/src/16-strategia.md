@@ -137,17 +137,6 @@ L'atrazina (C~8~H~14~ClN~5~, erbicida triazinico, vietato nell'UE dal 2004 ma an
 </ul>
 ```
 
-## Verifica
-
-??? Un candidato ha Δ = +16, RT maggiore del parent e lo stesso andamento nel tempo del parent. Che ne pensate?
-È sospetto: un'idrossilazione di solito riduce la ritenzione e un TP non segue il parent ma cresce mentre il parent cala. Verificate che non sia un'impurezza dello standard o un addotto/cluster; se sopravvive ai controlli, va discusso esplicitamente.
-
-??? Due picchi a RT diversi nell'XIC di (parent + 16), entrambi in crescita. Come li riportate?
-Come due candidati distinti (isomeri), ciascuno con RT, andamento e MS2. Se gli MS2 differiscono, i frammenti indicano in quale porzione si trova l'ossigeno; la posizione esatta resta di solito indeterminata (livello 3).
-
-??? Perché è utile ripetere la ricerca nel full scan dopo aver visto gli MS2?
-Perché gli MS2 suggeriscono nuove ipotesi (per esempio una seconda generazione di prodotti che combina due trasformazioni già osservate) e permettono di riconoscere i frammenti in sorgente da non confondere con TP.
-
 ## Per approfondire
 
 ```html

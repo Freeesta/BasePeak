@@ -33,8 +33,9 @@ def test_kicker_and_figures_follow_the_number():
         text = (ROOT / f).read_text(encoding="utf-8")
         assert f'<div class="kicker">Capitolo {n}</div>' in text, f
         assert not re.findall(rf"Figura (?!{n}\.)\d+\.\d+", text) or "McLafferty" in text, f
-        src = (ROOT / "capitoli" / "src" / (Path(f).stem + ".md")).read_text(encoding="utf-8")
-        assert f"{{kicker: Capitolo {n}}}" in src, f
+        twin = ROOT / "capitoli" / "src" / (Path(f).stem + ".md")      # the .md twin is optional (the html is the only source): when it exists its kicker must agree
+        if twin.is_file():
+            assert f"{{kicker: Capitolo {n}}}" in twin.read_text(encoding="utf-8"), f
 
 
 def test_old_names_redirect_to_the_same_chapter():
@@ -53,3 +54,18 @@ def test_old_names_redirect_to_the_same_chapter():
         slug = Path(f).name.split("-", 1)[1]
         old = CAP / f"{int(n) + 2:02d}-{slug}"
         assert stub_target(old) == Path(f).name, (old.name, Path(f).name)
+
+
+def draft_stems():
+    """File stems of the rows still flagged as administrator-only drafts (5th field `true`) in CHAPTERS."""
+    js = (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8")
+    block = js[js.index("const CHAPTERS = ["):]
+    return {Path(f).stem for f in re.findall(r'\["(capitoli/[^"]+)", "[^"]*", "[^"]*", "[^"]*", true\]', block[:block.index("\n];")])}
+
+
+def test_no_chapter_contains_a_construction_placeholder():
+    """No chapter file may carry a «in costruzione» box. The only files not scanned are the drafts still hidden from readers (5th field `true`), which
+    are being written: they cannot be published (flag removed) while the words are in them, because from then on this test covers them too."""
+    drafts = draft_stems()
+    bad = [str(p.relative_to(ROOT)) for p in sorted(CAP.rglob("*")) if p.is_file() and p.stem not in drafts and "in costruzione" in p.read_text(encoding="utf-8", errors="replace").lower()]
+    assert not bad, bad

@@ -32,13 +32,14 @@ One `send_later` (30 min, Federico's rule; name "GIRO COO BasePeak"), re-armed a
 ### Running chats
 | Chat | Session | What / PR |
 |---|---|---|
-| DEV-CHEMI-00 | session_01Ly8Apnp6YNiXasgQwS2kQC | skeleton of part VII Chemioinformatica (prompt: docs/piani/prompt-chemioinformatica/DEV-00-scheletro.md) |
+| ARCH-CHEMI-REVIEW (Opus) | session_01Ly8ApkajpadQWP5Y68aiJz | cold scientific review of part VII -> docs/piani/revisione-chemioinformatica.md + fix prompts |
+| DEV-STORIA-01 | session_01Ly8ApjMjSg9dsVj7KGpjYj | photos with verified licences (no BY-SA) |
 ### Waiting for Federico
-- Strip the photocatalysis/TP story also from ch.18 strategia, pratica/tp (P8), glossary bibliography, pratica/giochi.js, cinetica-lcms.js, and stale refs to old chapters 1-2 (formulario, strategia)? (1 yes/no)
-- Copilot policy above (yes/no).
-- Allow CC BY-SA images in the history section? (default: no)
+- Strip the photocatalysis/TP story from ch.17 strategia, pratica/tp (P7), glossary bibliography, pratica/giochi.js, cinetica-lcms.js, stale refs to old ch.1-2 (formulario, strategia)? (1 yes/no)
+- Copilot policy above (yes/no). Allow CC BY-SA images in Storia? (default no)
+- Download button: which browser/format/symptom did he see? (could not reproduce)
 ### Queue
-1. Chemioinformatica: DEV-01..05 in parallel after DEV-00 merges, then DEV-06, DEV-07, DEV-08 (ARCH review). Prompts in docs/piani/prompt-chemioinformatica/.
-2. Storia: DEV-00 skeleton after Chemioinformatica DEV-00 merges (shared files), then images, chapters, ARCH-14 review, DEV-15 publish. Prompts in docs/piani/prompt-storia-ms/.
-3. Size-budget tests + service worker (after the skeletons merge, one chat alone on assets/teoria.js).
-4. Dyslexia audit. 5. Rename "QqQ lab" in titles/appname. 6. Proposal for the chapter editor (Rust/wasm) to Federico.
+1. Chemioinformatica: review fixes merged (#33-#37); part VII (22-32) un-hidden for readers in DEV-PUBLISH-CHEMI (PR open, `dev/publish-chemi`); delete this row when it merges. Storia 33-42 stays hidden.
+2. Storia: DEV-02 SVG merged; DEV-01 photos running; then chapters DEV-03..12 (prompts docs/piani/prompt-storia-ms/), DEV-13 glossary/search/links, ARCH-14 review, DEV-15 publish. No Verifica sections, no placeholder text.
+3. Size-budget tests + service worker (one chat alone on assets/teoria.js).
+4. Dyslexia audit. 5. Rename "QqQ lab" in titles/appname. 6. Delete capitoli/src md twins after chapters 22-42 are done (2nd PR of the easy-edit work). 7. Proposal for the old chapter editor (Rust/wasm) to Federico: now superseded by the in-page editor, propose deleting `editor/`.

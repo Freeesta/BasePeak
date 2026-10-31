@@ -27,7 +27,7 @@
 <li>Per calcolare la massa teorica di uno ione si sottrae (cationi) o si aggiunge (anioni) la massa dell'elettrone, 0,00055 Da: trascurarla vale 2,5 ppm a m/z 216, non poco a questo livello.</li>
 <li>Un errore <b>sistematico</b> (tutti gli ioni spostati dello stesso numero di ppm) è un problema di taratura: si corregge con una massa di riferimento sempre presente (lock mass, ioni del fondo noti) o tarando più spesso. Un errore <b>casuale</b> dipende dalla statistica degli ioni: picchi deboli hanno masse meno precise.</li>
 <li>Valori tipici: Orbitrap e Q-TOF moderni 1-3 ppm; FT-ICR sotto 1 ppm; quadrupolo ±0,1-0,2 unità (e il vostro strumento ha uno scostamento di circa +0,3: capitolo 10).</li>
-<li>Accuratezza e risoluzione sono legate: un picco non risolto ha un centroide sbagliato (figura sopra), quindi senza risoluzione non c'è accuratezza.</li>
+<li>Accuratezza e risoluzione sono legate: un picco non risolto ha un centroide sbagliato (figura sopra), quindi senza risoluzione non c'è accuratezza. Approfondimento: <a href="22-segnale.html">capitolo 22 (Segnale, profilo e centroide)</a>.</li>
 </ul>
 <h2>Gli analizzatori</h2>
 <h3>Tempo di volo (TOF)</h3>
@@ -64,13 +64,6 @@
 <p><b>Quanto c'è</b> di un composto noto, in tracce, in tanti campioni: triplo quadrupolo in MRM. <b>Che cos'è</b> un composto sconosciuto (un TP, un metabolita o contaminante emergente): alta risoluzione, full scan + MS2 (DDA o DIA, capitolo 17), formula dalla massa esatta e dagli isotopi (capitolo 11). Nella ricerca dei prodotti di degradazione si usano spesso entrambi: HRMS per scoprirli e identificarli, QqQ per quantificarli e seguirli nel tempo.</p></div>
 <h2>Il rivelatore</h2>
 <p>Quadrupoli, trappole e TOF contano gli ioni con un <b>moltiplicatore di elettroni</b> (dinodi discreti o canale continuo) o con <b>piastre a microcanali</b> (TOF): ogni ione che colpisce la superficie libera elettroni, moltiplicati a cascata fino a 10<sup>6</sup>-10<sup>8</sup> volte. Orbitrap e FT-ICR non «distruggono» gli ioni: misurano la corrente immagine che inducono. Dettagli sul rivelatore del QqQ nel capitolo 8.</p>
-<div class="box oral"><b>Concetti chiave e domande di ripasso</b>
-<p>Definire potere risolutivo (FWHM, valle al 10%), risoluzione, accuratezza in ppm (con un calcolo); spiegare perché serve l'alta risoluzione per gli isobari e per la formula; principio del TOF (equazione 9.3, reflectron), dell'Orbitrap (frequenza assiale, transiente, trasformata di Fourier, compromesso risoluzione-velocità), della trappola ionica e dell'FT-ICR; tabella di confronto; scegliere lo strumento per una domanda analitica.</p></div>
-<h2>Verifica</h2>
-<details class="q"><summary>Un Orbitrap misura 304,1532 per uno ione la cui massa teorica è 304,1543. Errore in ppm e in mDa?</summary><p>−1,1 mDa; (304,1532 − 304,1543)/304,1543 × 10<sup>6</sup> = −3,6 ppm.</p></details>
-<details class="q"><summary>Con quale potere risolutivo separi due ioni a m/z 400,1000 e 400,1100?</summary><p>Δm = 0,0100: R ≈ 400/0,01 = 40 000 per vederli appena separati, ~80 000 per una separazione netta. Un TOF di fascia alta ci arriva appena; un Orbitrap sì.</p></details>
-<details class="q"><summary>Perché nell'Orbitrap più risoluzione significa meno punti per picco cromatografico?</summary><p>La risoluzione è proporzionale alla durata del transiente: se raddoppio la risoluzione, ogni scansione dura il doppio e in un picco largo 6 s entrano metà degli spettri. Con picchi stretti (UHPLC, GC) bisogna trovare un compromesso.</p></details>
-<details class="q"><summary>Uno spettrometro a risoluzione unitaria rileva un picco a m/z 216. Basta per dire che è atrazina protonata?</summary><p>No: a risoluzione unitaria centinaia di formule hanno massa nominale 216 (capitolo 11). Servono tempo di ritenzione, isotopi (qui il cloro: M+2 al 32%), MS2 e, per una conferma vera, lo standard. Con l'alta risoluzione la massa entro 3 ppm restringe moltissimo le formule, ma non distingue gli isomeri.</p></details>
 <h2>Per approfondire</h2>
 <ul class="refs">
 <li><span class="tag">articolo</span>Murray K.K. et al. (2013) Definitions of terms relating to mass spectrometry (IUPAC Recommendations 2013). <i>Pure Appl. Chem.</i> 85, 1515-1609. <a href="https://doi.org/10.1351/PAC-REC-06-04-06" target="_blank" rel="noopener">doi:10.1351/PAC-REC-06-04-06</a></li>

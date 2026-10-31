@@ -3,6 +3,8 @@
 Teoria della spettrometria di massa: capitoli, figure interattive e Pratica (giochi ed esercizi).
 Sito online: https://freeesta.github.io/BasePeak/
 
+Contenuti: introduzione e parti II-VI (cromatografia, ionizzazione, analizzatori, lettura degli spettri, dal dato al risultato), la parte VII «Chemioinformatica» (capitoli 22-32, pubblicata), Pratica e Reference. La Storia (capitoli 33-42) è ancora in bozza, visibile solo in modalità amministratore.
+
 Pagine statiche, nessuna compilazione, nessuna rete: si apre anche da file (doppio clic su `index.html`).
 Accessibile: font Atkinson Hyperlegible e OpenDyslexic, spaziatura WCAG, sfondi crema/azzurro/alto contrasto.
 
@@ -12,8 +14,8 @@ Accessibile: font Atkinson Hyperlegible e OpenDyslexic, spaziatura WCAG, sfondi 
 index.html        introduzione e mappa del percorso (pagina iniziale del sito)
 capitoli/         un file per capitolo (NN-nome.html) e i vecchi nomi come rimandi automatici;
                   capitoli/src/ = i sorgenti Markdown (non pubblicati)
-pratica/          index.html (pagina iniziale della Pratica), una pagina per gioco (ei.html, orale.html, ...)
-                  e il codice e i dati dei giochi (motore.js, domande.js, ei-dati*.js, ...)
+pratica/          index.html (pagina iniziale della Pratica), una pagina per gioco (ei.html, perdite.html, ...)
+                  e il codice e i dati dei giochi (motore.js, ei-dati*.js, ...)
 assets/           stile (teoria.css), motore JavaScript (teoria.js, cerca.js, sim-*.js, ...), caratteri,
                   icone, indice di ricerca e glossario generati, librerie di terzi in vendor/
 tools/            script di servizio (indice di ricerca, glossario, controllo dei capitoli, nuovo capitolo, server locale)

@@ -287,19 +287,49 @@ Pseudo-primo ordine (Langmuir–Hinshelwood a bassa concentrazione, equazione 2.
 <p><i>s</i> deviazione standard del segnale del bianco (o dei residui della retta), <i>b</i> pendenza della retta di taratura. In pratica: segnale/rumore 3 per rivelare, 10 per quantificare.</p>
 ```
 
-## Verifica
-
-??? Un quadrupolo trasmette m/z 300 con V = 350 V. Che V serve per m/z 450, a parità di U/V?
-La massa trasmessa è proporzionale a V (equazione 7.9): V = 350 × 450/300 = 525 V. U cresce nella stessa proporzione, così il rapporto U/V (e quindi la risoluzione relativa al vertice) resta lo stesso.
-
-??? Raddoppio la lunghezza della colonna. Di quanto migliora la risoluzione? E il tempo di analisi?
-N raddoppia, R~s~ ∝ √N cresce di √2 ≈ 1,4 volte; il tempo di analisi raddoppia (e in HPLC anche la pressione). Cambiare la selettività (fase stazionaria, solvente, temperatura) è quasi sempre più efficace.
-
-??? Perché lo stesso ione si frammenta meno in una cella con N₂ che con Ar alla stessa energia di collisione?
-Per l'equazione 8.1 l'energia nel centro di massa è proporzionale a m~gas~/(m~gas~ + m~ione~): N~2~ (28) trasferisce meno energia per urto di Ar (40).
-
-??? Un TOF misura uno ione a 20,0 µs. A che tempo arriva uno ione di m/z quattro volte più grande?
-t ∝ √(m/z): √4 = 2, quindi a 40,0 µs.
-
-??? Uno spettro EI ha M^+•^ a m/z 136, M+1 al 9,9% di M e nessun M+2 significativo. Quanti carboni? Che formule sono possibili?
-Massa pari: nessun N o un numero pari. n~C~ ≈ 9,9/1,1 = 9. Regola del 13: 136/13 = 10 resto 6 → C~10~H~16~ (RDB 3, per esempio un monoterpene); con un O al posto di CH~4~: C~9~H~12~O (RDB 4, compatibile con 9 carboni). L'M+1 favorisce 9 carboni; il resto lo dicono i frammenti.
+```html
+<details open>
+<summary>6. Chemioinformatica (capitoli 22-32)</summary>
+<span class="eq">ppm = <span class="frac"><span>m<sub>mis</sub> − m<sub>teo</sub></span><span>m<sub>teo</sub></span></span> × 10<sup>6</sup></span>
+<p><b>Errore in ppm.</b> <i>m</i><sub>mis</sub> massa misurata, <i>m</i><sub>teo</sub> massa teorica (per uno ione, senza dimenticare la massa dell'elettrone). Positivo se la misura è troppo alta. <span data-eq="22.9">Capitolo <a href="22-segnale.html">22</a>, equazione 22.9.</span></p>
+<span class="eq">FWHM = (m/z) / <i>R</i></span>
+<p><b>Larghezza a metà altezza.</b> FWHM larghezza del picco a metà altezza, <i>R</i> potere risolutivo, m/z il valore a cui lo si misura. A m/z 300 con <i>R</i> = 50 000 la FWHM è 6 mDa. <span data-eq="22.2">Capitolo <a href="22-segnale.html">22</a>, equazione 22.2.</span></p>
+<span class="eq"><i>I</i>(<i>s</i>) = Σ <i>I</i><sub><i>k</i>,<i>s</i></sub> &nbsp; per &nbsp; |<i>m</i><sub><i>k</i></sub> − <i>m</i>| ≤ Δ, &nbsp; Δ = <i>m</i> · tol · 10<sup>−6</sup></span>
+<p><b>Finestra di estrazione (XIC).</b> <i>I</i>(<i>s</i>) intensità della traccia nella scansione <i>s</i>, <i>I</i><sub><i>k</i>,<i>s</i></sub> intensità del centroide <i>k</i> di quella scansione, <i>m</i> il valore cercato, Δ la semiampiezza della finestra, tol la tolleranza in ppm. <span data-eq="24.1">Capitolo <a href="24-tracce.html">24</a>, equazione 24.1.</span></p>
+<span class="eq">δ = <span class="frac"><span><i>a</i> − <i>c</i></span><span>2 (<i>a</i> − 2<i>b</i> + <i>c</i>)</span></span>, &nbsp; m/z* = m/z<sub><i>i</i></sub> + δ · <i>d</i></span>
+<p><b>Vertice della parabola su tre punti.</b> <i>a</i>, <i>b</i>, <i>c</i> intensità del massimo e dei due vicini (<i>b</i> è il massimo), <i>d</i> passo uniforme in m/z, δ spostamento in unità di passo dal massimo, m/z* centro stimato. <span data-eq="22.4">Capitolo <a href="22-segnale.html">22</a>, equazione 22.4.</span></p>
+<span class="eq">m/z* = <span class="frac"><span>Σ m/z<sub><i>j</i></sub> · <i>y</i><sub><i>j</i></sub></span><span>Σ <i>y</i><sub><i>j</i></sub></span></span></span>
+<p><b>Baricentro dell'area.</b> m/z<sub><i>j</i></sub> e <i>y</i><sub><i>j</i></sub> m/z e intensità dei punti contigui attorno al vertice con intensità almeno <i>f</i> volte quella del vertice (di solito <i>f</i> = 0,5). <span data-eq="22.5">Capitolo <a href="22-segnale.html">22</a>, equazione 22.5.</span></p>
+<span class="eq">σ<sub><i>N</i></sub> = √(N)</span>
+<p><b>Statistica degli ioni.</b> <i>N</i> numero di ioni contati; σ<sub><i>N</i></sub> la fluttuazione di Poisson. L'incertezza relativa è 1/√<i>N</i>: 10 % con 100 ioni, 1 % con 10 000. <span data-eq="22.6">Capitolo <a href="22-segnale.html">22</a>, equazione 22.6.</span></p>
+<span class="eq">σ<sub>c</sub> ≈ <span class="frac"><span>FWHM</span><span>2,355 √(N)</span></span></span>
+<p><b>Dispersione del centroide.</b> σ<sub>c</sub> dispersione del centro di un picco gaussiano di <i>N</i> ioni; stima statistica approssimata. <span data-eq="22.7">Capitolo <a href="22-segnale.html">22</a>, equazione 22.7.</span></p>
+<span class="eq">Δ(m/z) ≈ 1,0034 / <i>z</i></span>
+<p><b>Distanza fra picchi isotopici del <sup>13</sup>C.</b> Il picco successivo sta a circa +1,0034 u dal precedente; in m/z la distanza è 1,0034 diviso la carica <i>z</i> dello ione (0,50 per <i>z</i> = 2). <span data-k="1,0034">Capitolo <a href="26-gruppi.html">26</a>.</span></p>
+<span class="eq"><i>w</i><sub>½</sub> = 2,355 σ &nbsp;&nbsp; e &nbsp;&nbsp; <i>A</i> = <i>h</i> σ √(2π)</span>
+<p><b>Picco gaussiano.</b> <i>w</i><sub>½</sub> larghezza a metà altezza, σ deviazione standard del picco, <i>h</i> altezza, <i>A</i> area. Con <i>h</i> = 1000 e σ = 4 s: <i>w</i><sub>½</sub> = 9,4 s, <i>A</i> = 10 027. <span data-eq="25.1">Capitolo <a href="25-picchi.html">25</a>, equazione 25.1.</span></p>
+<span class="eq"><i>A</i><sub>s</sub> = <i>b</i>/<i>a</i> (al 10 % dell'altezza) &nbsp;&nbsp; <i>T</i><sub>f</sub> = (<i>a</i> + <i>b</i>)/(2<i>a</i>) (al 5 %)</span>
+<p><b>Asimmetria e fattore di coda.</b> <i>a</i> semilarghezza anteriore, <i>b</i> posteriore; <i>A</i><sub>s</sub> al 10 % dell'altezza, <i>T</i><sub>f</sub> al 5 %. Valgono 1 per un picco simmetrico. <span data-eq="25.6">Capitolo <a href="25-picchi.html">25</a>, equazione 25.6.</span></p>
+<span class="eq"><i>w</i>(<i>u</i>) = (1 − |<i>u</i>|<sup>3</sup>)<sup>3</sup> &nbsp;per |<i>u</i>| &lt; 1 &nbsp;&nbsp; rt<sub>corr</sub> = rt − <i>d</i>(rt)</span>
+<p><b>Peso tricubico (LOWESS).</b> <i>u</i> distanza del punto divisa per quella dell'ultimo vicino incluso, <i>w</i> peso, <i>d</i>(rt) scarto del tempo di ritenzione, rt<sub>corr</sub> tempo corretto. <span data-eq="27.1">Capitolo <a href="27-tabella.html">27</a>, equazione 27.1.</span></p>
+<span class="eq"><i>D</i>(<i>i</i>, <i>j</i>) = <i>c</i>(<i>i</i>, <i>j</i>) + min[ <i>D</i>(<i>i</i>−1, <i>j</i>), <i>D</i>(<i>i</i>, <i>j</i>−1), <i>D</i>(<i>i</i>−1, <i>j</i>−1) ]</span>
+<p><b>Deformazione temporale dinamica.</b> <i>D</i>(<i>i</i>, <i>j</i>) costo accumulato minimo fino ai punti <i>i</i> e <i>j</i> dei due profili, <i>c</i>(<i>i</i>, <i>j</i>) costo del singolo accoppiamento. <span data-eq="27.2">Capitolo <a href="27-tabella.html">27</a>, equazione 27.2.</span></p>
+<span class="eq">RSD = 100 · <i>s</i> / <i>x̄</i></span>
+<p><b>Deviazione standard relativa.</b> <i>s</i> deviazione standard e <i>x̄</i> media di una feature nei QC, in percentuale. <span data-eq="27.4">Capitolo <a href="27-tabella.html">27</a>, equazione 27.4.</span></p>
+<span class="eq"><i>q</i><sub>i</sub> = <i>x</i><sub>i</sub> / <i>x</i><sub>rif,i</sub> &nbsp;&nbsp; fattore = mediana(<i>q</i><sub>i</sub>) &nbsp;&nbsp; <i>x</i><sub>norm</sub> = <i>x</i> / fattore</span>
+<p><b>Normalizzazione PQN.</b> <i>x</i><sub><i>i</i></sub> intensità della feature <i>i</i> nel campione, <i>x</i><sub>rif,<i>i</i></sub> nel campione di riferimento, <i>q</i><sub><i>i</i></sub> il rapporto; il fattore è la loro mediana. <span data-eq="27.5">Capitolo <a href="27-tabella.html">27</a>, equazione 27.5.</span></p>
+<span class="eq">cos = <span class="frac"><span>Σ <i>a</i><sub><i>i</i></sub> <i>b</i><sub><i>i</i></sub></span><span>√(Σ <i>a</i><sup>2</sup>) · √(Σ <i>b</i><sup>2</sup>)</span></span></span>
+<p><b>Coseno.</b> <i>a</i><sub><i>i</i></sub> e <i>b</i><sub><i>i</i></sub> intensità dei picchi accoppiati dei due spettri; i picchi senza partner restano nelle lunghezze al denominatore. <span data-eq="28.3">Capitolo <a href="28-somiglianza.html">28</a>, equazione 28.3.</span></p>
+<span class="eq"><i>w</i> = (m/z)<sup><i>n</i></sup> · <i>I</i><sup><i>m</i></sup></span>
+<p><b>Peso del coseno pesato.</b> <i>w</i> peso di un picco di massa m/z e intensità <i>I</i>; gli esponenti <i>n</i> e <i>m</i> dipendono dal programma (per esempio <i>n</i> = 1, <i>m</i> = 0,5). <span data-eq="28.4">Capitolo <a href="28-somiglianza.html">28</a>, equazione 28.4.</span></p>
+<span class="eq">similarità = 1 − <span class="frac"><span>2 <i>S</i><sub>M</sub> − <i>S</i><sub>A</sub> − <i>S</i><sub>B</sub></span><span>ln 4</span></span></span>
+<p><b>Entropia spettrale e somiglianza.</b> Con le intensità a somma 1 (<i>p</i><sub><i>i</i></sub>), l'entropia è <i>S</i> = −Σ <i>p</i><sub><i>i</i></sub> ln <i>p</i><sub><i>i</i></sub>; <i>S</i><sub>A</sub> e <i>S</i><sub>B</sub> sono quelle dei due spettri, <i>S</i><sub>M</sub> quella dello spettro medio. Vale 1 per spettri uguali, 0 senza picchi in comune. <span data-eq="28.5">Capitolo <a href="28-somiglianza.html">28</a>, equazione 28.5.</span></p>
+<span class="eq">FDR(<i>t</i>) ≈ <span class="frac"><span><i>D</i>(<i>t</i>)</span><span><i>T</i>(<i>t</i>)</span></span></span>
+<p><b>Tasso di falsa scoperta.</b> <i>D</i>(<i>t</i>) esche e <i>T</i>(<i>t</i>) bersagli con il miglior risultato di punteggio ≥ <i>t</i>. <span data-eq="29.1">Capitolo <a href="29-librerie.html">29</a>, equazione 29.1.</span></p>
+<span class="eq"><i>q</i>(<i>s</i>) = min<sub><i>t</i> ≤ <i>s</i></sub> FDR(<i>t</i>)</span>
+<p><b>q-value.</b> <i>q</i>(<i>s</i>) è la FDR minima a cui un risultato di punteggio <i>s</i> verrebbe accettato. <span data-eq="29.2">Capitolo <a href="29-librerie.html">29</a>, equazione 29.2.</span></p>
+<span class="eq">rapporto = <span class="frac"><span>area media dei campioni</span><span>area nel bianco</span></span> ≥ 3</span>
+<p><b>Rapporto con il bianco.</b> Si tiene la feature se l'area media dei campioni è almeno 3 volte quella del bianco. <span data-eq="32.2">Capitolo <a href="32-esempio.html">32</a>, equazione 32.2.</span></p>
+<p><b>RDB.</b> Anelli più doppi legami: equazione (11.1) della sezione 4; nel capitolo 30 serve a scartare le formule candidate. <span data-k="RDB">Capitolo <a href="30-candidati.html">30</a>.</span></p>
+</details>
+```

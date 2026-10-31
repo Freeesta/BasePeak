@@ -71,6 +71,7 @@ try:
         for scheme in ("light", "dark"):
             q = r.b.new_page(viewport={"width": 1280, "height": 900}, color_scheme=scheme, reduced_motion="reduce")
             q.add_init_script("(" + RAF + ")()")
+            # reader mode on purpose (no administrator flag): part VII is published, so axe runs on what readers get
             reqs = []
             q.on("request", lambda rq: reqs.append(rq.url))
             q.on("pageerror", lambda e: r.errs.append(("pageerror", str(e))))

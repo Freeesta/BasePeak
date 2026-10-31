@@ -89,14 +89,24 @@ def test_rows_22_to_32():
     for f, n, _, _ in rs:
         assert (ROOT / f).is_file(), f
         assert Path(f).name.startswith(f"{int(n):02d}-"), f
-        assert (CAP / "src" / (Path(f).stem + ".md")).is_file(), f
+        # the .md twin is optional: the html is the only source (docs/COME-MODIFICARE.md); a twin that exists is not required to follow it
 
 
 def test_public_pages_not_hidden():
+    """The chapter files themselves carry no draft marker; whether part VII is visible is decided only by the 5th field of its CHAPTERS rows."""
     for p in pages():
         t = text(p)
         assert "data-esteso" not in t and "noindex" not in t, p.name
-    assert not re.search(r'\["capitoli/(2[2-9]|3[0-2])-[^"]*", "\d+", "[^"]*", "[^"]*", true', text(ASSETS / "teoria.js"))
+
+
+def test_part_vii_is_published_and_storia_is_still_a_draft():
+    """Part VII is published: no row 22-32 carries the 5th field `true` (readers see it). The Storia rows 33-42 stay administrator-only drafts."""
+    js = text(ASSETS / "teoria.js")
+    assert not re.findall(r'\["capitoli/(?:2[2-9]|3[0-2])-[^"]*", "\d+", "[^"]*", "[^"]*", true\]', js)
+    published = re.findall(r'\["capitoli/((?:2[2-9]|3[0-2])-[^"]*)", "\d+", "[^"]*", "VII\. Chemioinformatica"\]', js)
+    assert len(published) == 11, published
+    storia = re.findall(r'\["capitoli/(3[3-9]|4[0-2])-[^"]*", "\d+", "[^"]*", "VII\. Storia", true\]', js)
+    assert len(storia) == 10, storia
 
 
 def test_one_storia_per_chapter():
@@ -260,3 +270,78 @@ def test_doi_tsv_is_well_formed():
             assert r["doi"].startswith("10."), r
     dd = [r["doi"].lower() for r in rs if r["doi"]]
     assert len(dd) == len(set(dd)), "a DOI appears twice in the TSV"
+
+
+# ---------------------------------------------------------------- glossary, formulary, back-links (DEV-CHEMI-07)
+
+def part_files():
+    return {Path(f).name: int(n) for f, n, _, _ in part_rows()}
+
+
+def test_glossary_links_to_part_vii_point_to_the_right_chapter():
+    files = part_files()
+    g = text(CAP / "19-glossario.html")
+    found = re.findall(r'<a href="((?:2[2-9]|3[0-2])-[^"#]*)">Cap\. (\d+)</a>', g)
+    assert len(found) >= 50, len(found)
+    for href, n in found:
+        assert href in files and files[href] == int(n), (href, n)
+        assert (CAP / href).is_file(), href
+    # every part VII link sits inside a definition (teoria.js drops it for readers while the chapter is a draft)
+    for dt, dd in re.findall(r"<dt[^>]*>(.*?)</dt><dd>(.*?)</dd>", g, re.S):
+        assert dd.count("<a ") == dd.count("</a>"), dt
+
+
+def test_formulary_section_6_names_chapters_that_contain_the_formula():
+    files = part_files()
+    f = text(CAP / "20-formulario.html")
+    m = re.search(r'<details open>(\s*<summary>6\. Chemioinformatica.*?)</details>', f, re.S)
+    assert m and "6. Chemioinformatica" in m.group(1)
+    refs = re.findall(r'<span( data-(?:eq|k)="[^"]*")>Capitolo <a href="([^"#]+)">(\d+)</a>', m.group(1))
+    assert len(refs) >= 19, len(refs)
+    for attr, href, n in refs:
+        assert files.get(href) == int(n), (href, n)
+        body = text(CAP / href)
+        flat = re.sub(r"<[^>]+>", "", body)
+        kind, _, val = attr.strip().partition("=")
+        val = val.strip('"')
+        if kind == "data-eq":
+            assert val.startswith(n + "."), (n, val)
+            assert f'<span class="no">({val})</span>' in body, (href, val)
+        elif kind == "data-k":
+            assert val in flat or val in body, (href, val)
+        else:
+            raise AssertionError(("formula without a key", href))
+    assert m.group(1).count('class="eq"') >= 18
+    assert 'class="no"' not in m.group(1), "numbers of the chapters would trip the equation numbering check of chapter 20"
+
+
+def test_back_links_to_part_vii_are_plain_visible_text():
+    """Part VII is published: the pointers from the older chapters are no longer gated (no .solo-esteso, no hidden) and each names an existing chapter."""
+    for p in sorted(CAP.glob("*.html")) + sorted((CAP / "src").glob("*.md")):
+        assert "solo-esteso" not in text(p), p.name
+    # the six chapters of the plan carry the back-links, in the html and in the md twin
+    for name in ("03-gc", "09-risoluzione", "10-dati", "11-formula", "17-hr-dda", "18-disegno"):
+        h = text(CAP / f"{name}.html")
+        m = text(CAP / "src" / f"{name}.md")
+        n = h.count("Approfondimento: <a")
+        assert n >= 1 and n == m.count("Approfondimento: <a"), name
+        for t in (h, m):
+            found = re.findall(r'Approfondimento: <a href="(\d\d-[a-z-]+\.html)">capitolo (\d+) \([^)]+\)</a>\.', t)
+            assert len(found) == n, name
+            for href, num in found:
+                assert part_files().get(href) == int(num), (name, href)
+
+
+def test_part_vii_bibliography_block_has_every_cited_doi_once():
+    g = text(CAP / "19-glossario.html")
+    m = re.search(r"<h3>Chemioinformatica e trattamento dei dati</h3>(.*?)(?=<h3>)", g, re.S)
+    assert m
+    block = {d.lower() for d in re.findall(r'doi\.org/(10\.[^"\s<>]+)', m.group(1))}
+    rest = {d.lower() for d in re.findall(r'doi\.org/(10\.[^"\s<>]+)', g.replace(m.group(1), ""))}
+    assert not (block & rest), block & rest
+    assert all(re.search(r'<li><span class="tag">(articolo|libro|software|norma)</span>', li) for li in re.findall(r"<li>.*?</li>", m.group(1)))
+    cited = set()
+    for p in pages():
+        mm = re.search(r"<h2>Per approfondire</h2>(.*?)</main>", text(p), re.S)
+        cited |= {d.lower() for d in re.findall(r'doi\.org/(10\.[^"\s<>]+)', mm.group(1))} if mm else set()
+    assert cited <= block | rest, sorted(cited - block - rest)

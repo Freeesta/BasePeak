@@ -10,6 +10,7 @@ copied from Sbobine_elaborate/testo/*.txt; without it these two are skipped with
 import argparse
 import json
 import re
+import unicodedata
 import sys
 from collections import Counter
 from html.parser import HTMLParser
@@ -38,6 +39,8 @@ class Page(HTMLParser):
         self.figures, self.tables, self.styles, self.text, self.nos, self.caps, self.figdescs = [], [], [], [], [], [], []
         self.classes = Counter()
         self.stack = []
+        self.gen = []        # [id, text] of every main h2/h3/h4, in document order (ids from assets/teoria.js ensureIds)
+        self._cur = None
 
     def handle_comment(self, data):
         self.comments.append(data)
@@ -52,6 +55,9 @@ class Page(HTMLParser):
             self.classes[c] += 1
         if a.get("href"):
             self.hrefs.append(a["href"])
+        if tag in ("h2", "h3", "h4") and any(t == "main" for t, _ in self.stack):
+            self._cur = [a.get("id") or "", ""]
+            self.gen.append(self._cur)
         if tag in ("h1", "h2", "h3", "h4", "h5", "h6"):
             self.heads.append([int(tag[1]), ""])
             self.h1 += tag == "h1"
@@ -82,6 +88,8 @@ class Page(HTMLParser):
         return any("sim" in (s[1].get("class") or "").split() for s in self.stack)
 
     def handle_endtag(self, tag):
+        if tag in ("h2", "h3", "h4"):
+            self._cur = None
         for i in range(len(self.stack) - 1, -1, -1):
             if self.stack[i][0] == tag:
                 del self.stack[i:]
@@ -95,6 +103,8 @@ class Page(HTMLParser):
         if "script" in tags:
             return
         self.text.append(data)
+        if self._cur is not None:
+            self._cur[1] += data
         if "title" in tags:
             self.title += data
         if self.heads and tags and tags[-1] in ("h1", "h2", "h3", "h4", "h5", "h6") or (self.heads and any(t[0] == "h" and len(t) == 2 for t in tags)):
@@ -106,6 +116,30 @@ class Page(HTMLParser):
             self.caps.append(data)
         if any("figdesc" in c for c in cls) and "p" in tags:
             self.figdescs.append(data)
+
+
+def slug(s):
+    """Port of slug() in assets/teoria.js (tests/test_slug_js.py checks that both give the same ids)."""
+    s = unicodedata.normalize("NFD", s.lower())
+    s = re.sub("[\u0300-\u036f]", "", s)
+    s = re.sub("[^a-z0-9]+", "-", s)
+    return re.sub(r"^-|-$", "", s)[:48]
+
+
+def generated_ids(page):
+    """Ids that assets/teoria.js ensureIds() gives at runtime to the main h2/h3/h4 without id: slug of the text, -2, -3... when taken."""
+    used, out = set(page.ids), set()
+    for hid, text in page.gen:
+        if hid:
+            continue
+        base = slug(text.strip()) or "sezione"
+        i, n = base, 2
+        while i in used:
+            i = f"{base}-{n}"
+            n += 1
+        used.add(i)
+        out.add(i)
+    return out
 
 
 def parse(text):
@@ -156,8 +190,6 @@ def public_errors(path, folder, text):
         prev = lv
     chapter = chapter_number(path.name)
     if chapter is not None:
-        if not p.classes["q"]:
-            E.append(("A", "missing end-of-chapter questions (details.q)"))
         eqs, bad = [], []
         for n in filter(None, p.nos):
             m = re.fullmatch(r"\((\d+)\.(\d+)(?:\s*[–-]\s*(?:(\d+)\.)?(\d+))?\)", n)     # «(9.1)» or a range «(9.4–9.5)»
@@ -253,7 +285,7 @@ def link_error(h, path, folder, page):
     f, _, frag = h.partition("#")
     f = f.split("?")[0]
     if not f:
-        if frag and frag not in page.ids:
+        if frag and frag not in page.ids and frag not in generated_ids(page):
             return f"anchor #{frag} not found in the page"
         return None
     target = (path.parent / f)
@@ -263,8 +295,8 @@ def link_error(h, path, folder, page):
         if not target.exists():
             return f"link to missing file {f}"
     if frag and target.suffix == ".html":
-        ids = set(re.findall(r'\bid="([^"]+)"', target.read_text(encoding="utf-8", errors="replace")))
-        if frag not in ids:
+        tp = parse(target.read_text(encoding="utf-8", errors="replace"))
+        if frag not in tp.ids and frag not in generated_ids(tp):
             return f"anchor {f}#{frag} not found"
     return None
 

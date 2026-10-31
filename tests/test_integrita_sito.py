@@ -17,11 +17,9 @@ JS_IMPORT = re.compile(r"""\bimport\s*(?:[\w{}*,\s]+from\s*)?\(?\s*["']([^"']+)[
 
 
 # Known gaps inherited from the mzLab import, kept visible here instead of hidden (each one is a follow-up for the COO; remove the entry when fixed):
-# - the structure editor of the EI game loads Ketcher, which is not shipped in this repository (the e2e tests stub it);
-# - on http(s) the header offers tabs to the mzLab program (../../#/data, ../../#/draw), which does not exist next to this site.
+# - the structure editor of the EI game loads Ketcher, which is not shipped in this repository (the e2e tests stub it).
 KNOWN_MISSING = {
     ("pratica/gioco-ei.js", "../assets/vendor/ketcher/index.html"),
-    ("assets/teoria.js", "../../#/data"), ("assets/teoria.js", "../../#/draw"), ("assets/lettura.js", "../../#/data"),
 }
 
 
@@ -92,7 +90,7 @@ def test_nothing_is_absolute_and_no_base_tag():
 
 
 def test_site_files_listed_in_the_data_exist():
-    """The chapter list, the search index, the glossary and the review questions name pages relative to the site root."""
+    """The chapter list, the search index, the glossary name pages relative to the site root."""
     js = (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8")
     block = js[js.index("const CHAPTERS = ["):]
     block = block[:block.index("\n];")]
@@ -100,8 +98,7 @@ def test_site_files_listed_in_the_data_exist():
     assert len(listed) > 25
     index = [e[2] for e in json.loads("[" + (ROOT / "assets" / "indice-ricerca.js").read_text(encoding="utf-8").split("const INDICE_RICERCA = [")[1].rsplit("];", 1)[0] + "]")]
     gloss = re.findall(r'"h": "([^"]+)"', (ROOT / "assets" / "glossario-dati.js").read_text(encoding="utf-8"))
-    domande = re.findall(r'cap: "([^"]+)"', (ROOT / "pratica" / "domande.js").read_text(encoding="utf-8"))
-    bad = [r for r in listed + index + gloss + domande if r and not (ROOT / r.split("#")[0]).is_file()]
+    bad = [r for r in listed + index + gloss if r and not (ROOT / r.split("#")[0]).is_file()]
     assert not bad, bad
 
 

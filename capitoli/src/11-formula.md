@@ -120,7 +120,7 @@ Poi si aggiungono gli eteroatomi sostituendo gruppi di pari massa: **O** al post
 
 ## Ad alta risoluzione
 
-Con una massa esatta misurata entro pochi ppm il numero di formule compatibili crolla, ma non si azzera: cresce rapidamente con la massa e con gli elementi ammessi.
+Con una massa esatta misurata entro pochi ppm il numero di formule compatibili crolla, ma non si azzera: cresce rapidamente con la massa e con gli elementi ammessi. Approfondimento: <a href="30-candidati.html">capitolo 30 (Formule e candidati in silico)</a>.
 
 ```html
 <details class="poe"><summary>Prima di provare: quante formule CHNOSCl plausibili ha una molecola di massa 300,10 entro 5 ppm? E entro ±0,5 Da?</summary>
@@ -149,27 +149,6 @@ Gli strumenti per restringere ancora:
 <div class="box hr"><b>Alta risoluzione</b>
 <p>Massa entro 1-5 ppm, struttura isotopica fine, formule molecolari dei frammenti. Si raggiunge un'elevata confidenza analitica (formula univoca) e, mediante MS2 e banche dati, si perviene a strutture altamente probabili. Gli isomeri strutturali richiedono comunque conferme cromatografiche o standard.</p></div></div>
 ```
-
-```html
-<div class="box oral"><b>Concetti chiave e domande di ripasso</b>
-<p>Calcolare la massa nominale e monoisotopica di una formula; riconoscere gli alogeni da un cluster isotopico e stimare il numero di atomi di carbonio dal picco M+1; enunciare e applicare la regola dell'azoto (anche per [M+H]<sup>+</sup> e per i frammenti); calcolare il grado di insaturazione (RDB) e distinguere ioni a elettroni pari o dispari; applicare la regola del 13; spiegare il contributo della massa esatta e i limiti intrinseci nell'assegnazione degli isomeri.</p></div>
-```
-
-## Verifica
-
-??? Uno spettro EI mostra M^+•^ a m/z 156 con un picco a 158 di intensità quasi uguale. Che cosa contiene la molecola?
-Un atomo di bromo (100 : 97). M pari → nessun azoto o un numero pari. 156 − 79 = 77: C~6~H~5~Br, il bromobenzene (RDB = 6 − 3 + 1 = 4).
-
-??? M^+•^ = 100 (intensità 100), M+1 = 6,7. Quanti carboni? Proponi formule.
-n~C~ ≈ 6,7/1,1 ≈ 6. M pari: zero o due azoti. Con 6 C restano 100 − 72 = 28 unità: C~6~H~12~O (RDB 1: un chetone come il 2-esanone, un'aldeide, un alcol ciclico…). Se i carboni fossero 7 (M+1 ≈ 7,7%) sarebbe C~7~H~16~ (RDB 0, un eptano): la differenza fra 6,7 e 7,7% è piccola, quindi conviene guardare anche i frammenti (un 43 e un 58 indicano il chetone, capitolo 13).
-
-```html
-<details class="q"><summary>In ESI+ un ione [M+H]<sup>+</sup> è a m/z 230. Quanti azoti può avere la molecola?</summary>
-<p>[M+H]<sup>+</sup> è a elettroni pari: m/z pari → numero dispari di azoti (1, 3, 5…). La molecola neutra ha massa 229, dispari, coerente.</p></details>
-```
-
-??? Calcola l'RDB di C~8~H~14~ClN~5~ e commenta.
-8 − (14 + 1)/2 + 5/2 + 1 = 8 − 7,5 + 2,5 + 1 = 4: l'anello triazinico dell'atrazina (un anello + tre doppi legami C=N).
 
 ## Per approfondire
 

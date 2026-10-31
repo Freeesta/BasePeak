@@ -42,12 +42,6 @@
 <h2>Come i numeri sono calcolati</h2>
 <p>I cromatogrammi estratti sono ripuliti dalla linea di base e levigati con un filtro di Savitzky-Golay; i picchi sono riconosciuti per trasformata wavelet (come nell'algoritmo <i>centWave</i>, Tautenhahn et al., <i>BMC Bioinformatics</i> 2008, 9, 504). La somiglianza dei profili è la correlazione di Pearson sulla finestra del picco, con un intervallo di confidenza ottenuto per ricampionamento a blocchi (le scansioni vicine non sono indipendenti). Il rapporto F/P è ricavato con una regressione che tiene conto dell'errore su entrambi gli assi. Tutte le soglie che si possono usare per decidere sono state tarate su dati sintetici e su pochi dati reali: sono un aiuto per la lettura, non un verdetto.</p>
 <div class="box"><b>Limiti</b><p>A risoluzione unitaria un <i>m/z</i> &egrave; un candidato, non un'identificazione. Due componenti isobare con lo stesso tempo di ritenzione danno un picco unico che nessuna di queste misure separa. I tre strumenti pi&ugrave; forti (variare il DP, l'MS<sup>2</sup> del progenitore, lo standard del solo composto di partenza) richiedono acquisizioni in pi&ugrave; rispetto al full scan di routine.</p></div>
-<h2>Domande per riflettere</h2>
-<ul>
-<li>Il tuo ione ha l'apice <i>esattamente</i> sullo stesso scan del progenitore. Basta per dire che è un frammento? Quale prodotto di trasformazione potrebbe comportarsi così?</li>
-<li>Il rapporto F/P è costante nei campioni ma il segnale del progenitore è saturato. Come cambia il peso di questa evidenza?</li>
-<li>Che cosa ti aspetteresti di vedere nell'MS<sup>2</sup> del progenitore se il tuo ione fosse un suo frammento?</li>
-</ul>
 </main></div>
 <script src="../assets/appname.js"></script><script src="../assets/teoria.js"></script>
 </body></html>

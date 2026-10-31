@@ -1,90 +1,90 @@
 key	doi	status	chapters	citation
-Schymanski2014	10.1021/es5002105	verified	31	Schymanski E.L. et al. (2014) Identifying small molecules via high resolution mass spectrometry: communicating confidence. Environ. Sci. Technol. 48, 2097-2098
-Sumner2007	10.1007/s11306-007-0082-2	verified	31	Sumner L.W. et al. (2007) Proposed minimum reporting standards for chemical analysis. Metabolomics 3, 211-221
-Charbonnet2022	10.1021/acs.estlett.2c00206	verified	31	Charbonnet J.A. et al. (2022) Communicating confidence of per- and polyfluoroalkyl substance identification via HRMS. Environ. Sci. Technol. Lett. 9, 473-481
-Smith2006	10.1021/ac051437y	verified	24,25,27	Smith C.A. et al. (2006) XCMS: processing mass spectrometry data for metabolite profiling using nonlinear peak alignment, matching, and identification. Anal. Chem. 78, 779-787
-Tautenhahn2008	10.1186/1471-2105-9-504	verified	24,25	Tautenhahn R. et al. (2008) Highly sensitive feature detection for high resolution LC/MS. BMC Bioinformatics 9, 504
-Du2006	10.1093/bioinformatics/btl355	verified	25	Du P. et al. (2006) Improved peak detection in mass spectrum by incorporating continuous wavelet transform-based pattern matching. Bioinformatics 22, 2059-2065
-Myers2017	10.1021/acs.analchem.7b01069	verified	24,25	Myers O.D. et al. (2017) Detailed investigation and comparison of the XCMS and MZmine 2 chromatogram construction and chromatographic peak detection methods. Anal. Chem. 89, 8689-8695
-Zhang2014	10.1186/1471-2105-15-S11-S5	verified	25	Zhang W., Zhao P.X. (2014) Quality evaluation of extracted ion chromatograms and chromatographic peaks in LC/MS-based metabolomics data. BMC Bioinformatics 15 (Suppl 11), S5
-SavitzkyGolay1964	10.1021/ac60214a047	verified	25	Savitzky A., Golay M.J.E. (1964) Smoothing and differentiation of data by simplified least squares procedures. Anal. Chem. 36, 1627-1639
-Stein1999	10.1016/S1044-0305(99)00047-1	verified	25	Stein S.E. (1999) An integrated method for spectrum extraction and compound identification from GC/MS data. J. Am. Soc. Mass Spectrom. 10, 770-781
-Kuhl2012	10.1021/ac202450g	verified	26	Kuhl C. et al. (2012; online 2011) CAMERA: an integrated strategy for compound spectra extraction and annotation of LC/MS data sets. Anal. Chem. 84, 283-289
-Broeckling2014	10.1021/ac501530d	verified	26	Broeckling C.D. et al. (2014) RAMClust: a novel feature clustering method. Anal. Chem. 86, 6812-6817
-Prince2006	10.1021/ac0605344	verified	27	Prince J.T., Marcotte E.M. (2006) Chromatographic alignment of ESI-LC-MS proteomics data sets by ordered bijective interpolated warping. Anal. Chem. 78, 6140-6152
-Cleveland1979	10.1080/01621459.1979.10481038	verified	27	Cleveland W.S. (1979) Robust locally weighted regression and smoothing scatterplots. J. Am. Stat. Assoc. 74, 829-836
-SakoeChiba1978	10.1109/TASSP.1978.1163055	verified	27	Sakoe H., Chiba S. (1978) Dynamic programming algorithm optimization for spoken word recognition. IEEE Trans. ASSP 26, 43-49
-Lange2008	10.1186/1471-2105-9-375	verified	27	Lange E. et al. (2008) Critical assessment of alignment procedures for LC-MS proteomics and metabolomics measurements. BMC Bioinformatics 9, 375
-Broadhurst2018	10.1007/s11306-018-1367-3	verified	27	Broadhurst D. et al. (2018) Guidelines and considerations for the use of system suitability and quality control samples in mass spectrometry assays applied in untargeted clinical metabolomic studies. Metabolomics 14, 72
-Dieterle2006	10.1021/ac051632c	verified	27	Dieterle F. et al. (2006) Probabilistic quotient normalization as robust method to account for dilution of complex biological mixtures. Anal. Chem. 78, 4281-4290
-Dunn2011	10.1038/nprot.2011.335	verified	27	Dunn W.B. et al. (2011) Procedures for large-scale metabolic profiling of serum and plasma using GC and LC coupled to MS. Nat. Protoc. 6, 1060-1083
-Pluskal2010	10.1186/1471-2105-11-395	verified	25,32	Pluskal T. et al. (2010) MZmine 2. BMC Bioinformatics 11, 395
-Schmid2023	10.1038/s41587-023-01690-2	verified	25,32	Schmid R. et al. (2023) Integrative analysis of multimodal mass spectrometry data in MZmine 3. Nat. Biotechnol. 41, 447-449
-Tsugawa2015	10.1038/nmeth.3393	verified	25,29,32	Tsugawa H. et al. (2015) MS-DIAL: data-independent MS/MS deconvolution for comprehensive metabolome analysis. Nat. Methods 12, 523-526
-Rost2016	10.1038/nmeth.3959	verified	25,32	Röst H.L. et al. (2016) OpenMS. Nat. Methods 13, 741-748
-Helmus2021	10.1186/s13321-020-00477-w	verified	32	Helmus R. et al. (2021) patRoon: open source software platform for environmental mass spectrometry based non-target screening. J. Cheminform. 13, 1
-Hollender2017	10.1021/acs.est.7b02184	verified	31,32	Hollender J. et al. (2017) Nontarget screening with high resolution mass spectrometry in the environment: ready to go? Environ. Sci. Technol. 51, 11505-11512
-Martens2011	10.1074/mcp.R110.000133	verified	23	Martens L. et al. (2011) mzML - a community standard for mass spectrometry data. Mol. Cell. Proteomics 10, R110.000133
-Pedrioli2004	10.1038/nbt1031	verified	23	Pedrioli P.G.A. et al. (2004) A common open representation of mass spectrometry data and its application to proteomics research (mzXML). Nat. Biotechnol. 22, 1459-1466
-Teleman2014	10.1074/mcp.O114.037879	verified	23	Teleman J. et al. (2014) Numerical compression schemes for proteomics mass spectrometry data (MS-Numpress). Mol. Cell. Proteomics 13, 1537-1542
-Griss2014	10.1074/mcp.O113.036681	verified	23	Griss J. et al. (2014) The mzTab data exchange format. Mol. Cell. Proteomics 13, 2765-2775
-Hoffmann2019	10.1021/acs.analchem.8b04310	verified	23	Hoffmann N. et al. (2019) mzTab-M: a data standard for sharing quantitative results in mass spectrometry metabolomics. Anal. Chem. 91, 3302-3310
-Lampen1994	10.1366/0003702944027840	verified	23	Lampen P. et al. (1994) JCAMP-DX for mass spectrometry. Appl. Spectrosc. 48, 1545-1552
-McDonald1988	10.1366/0003702884428734	verified	23	McDonald R.S., Wilks P.A. (1988) JCAMP-DX: a standard form for exchange of infrared spectra in computer readable form. Appl. Spectrosc. 42, 151-162
-ASTM-E2077		to verify		ASTM E2077, Standard specification for analytical data interchange protocol for mass spectrometric data (ANDI-MS / netCDF)
-Chambers2012	10.1038/nbt.2377	verified	23	Chambers M.C. et al. (2012) A cross-platform toolkit for mass spectrometry and proteomics (ProteoWizard). Nat. Biotechnol. 30, 918-920
-Kessner2008	10.1093/bioinformatics/btn323	verified	23	Kessner D. et al. (2008) ProteoWizard: open source software for rapid proteomics tools development. Bioinformatics 24, 2534-2536
-Hulstaert2020	10.1021/acs.jproteome.9b00328	verified	23	Hulstaert N. et al. (2020; online 2019) ThermoRawFileParser: modular, scalable, and cross-platform RAW file conversion. J. Proteome Res. 19, 537-542
-PSI-MS-CV		verified	23	HUPO-PSI, psi-ms.obo controlled vocabulary, github.com/HUPO-PSI/psi-ms-CV
-SteinScott1994	10.1016/1044-0305(94)87009-8	verified	28	Stein S.E., Scott D.R. (1994) Optimization and testing of mass spectral library search algorithms for compound identification. J. Am. Soc. Mass Spectrom. 5, 859-866
-Stein1995	10.1016/1044-0305(95)00291-K	verified	29	Stein S.E. (1995) Chemical substructure identification by mass spectral library searching. J. Am. Soc. Mass Spectrom. 6, 644-655
-Watrous2012	10.1073/pnas.1203689109	verified	28	Watrous J. et al. (2012) Mass spectral molecular networking of living microbial colonies. PNAS 109, E1743-E1752
-Bittremieux2022	10.1021/jasms.2c00153	verified	28	Bittremieux W. et al. (2022) Comparison of cosine, modified cosine, and neutral loss based spectrum alignment for discovery of structurally related molecules. J. Am. Soc. Mass Spectrom. 33, 1733-1744
-Li2021	10.1038/s41592-021-01331-z	verified	28	Li Y. et al. (2021) Spectral entropy outperforms MS/MS dot product similarity for small-molecule compound identification. Nat. Methods 18, 1524-1531
+Schymanski2014	10.1021/es5002105	verified	19,31	Schymanski E.L. et al. (2014) Identifying small molecules via high resolution mass spectrometry: communicating confidence. Environ. Sci. Technol. 48, 2097-2098
+Sumner2007	10.1007/s11306-007-0082-2	verified	19,31	Sumner L.W. et al. (2007) Proposed minimum reporting standards for chemical analysis. Metabolomics 3, 211-221
+Charbonnet2022	10.1021/acs.estlett.2c00206	verified	19,31	Charbonnet J.A. et al. (2022) Communicating confidence of per- and polyfluoroalkyl substance identification via HRMS. Environ. Sci. Technol. Lett. 9, 473-481
+Smith2006	10.1021/ac051437y	verified	19,24,25,27	Smith C.A. et al. (2006) XCMS: processing mass spectrometry data for metabolite profiling using nonlinear peak alignment, matching, and identification. Anal. Chem. 78, 779-787
+Tautenhahn2008	10.1186/1471-2105-9-504	verified	19,24,25	Tautenhahn R. et al. (2008) Highly sensitive feature detection for high resolution LC/MS. BMC Bioinformatics 9, 504
+Du2006	10.1093/bioinformatics/btl355	verified	19,25	Du P. et al. (2006) Improved peak detection in mass spectrum by incorporating continuous wavelet transform-based pattern matching. Bioinformatics 22, 2059-2065
+Myers2017	10.1021/acs.analchem.7b01069	verified	19,24,25	Myers O.D. et al. (2017) Detailed investigation and comparison of the XCMS and MZmine 2 chromatogram construction and chromatographic peak detection methods. Anal. Chem. 89, 8689-8695
+Zhang2014	10.1186/1471-2105-15-S11-S5	verified	19,25	Zhang W., Zhao P.X. (2014) Quality evaluation of extracted ion chromatograms and chromatographic peaks in LC/MS-based metabolomics data. BMC Bioinformatics 15 (Suppl 11), S5
+SavitzkyGolay1964	10.1021/ac60214a047	verified	19,25	Savitzky A., Golay M.J.E. (1964) Smoothing and differentiation of data by simplified least squares procedures. Anal. Chem. 36, 1627-1639
+Stein1999	10.1016/S1044-0305(99)00047-1	verified	19,25	Stein S.E. (1999) An integrated method for spectrum extraction and compound identification from GC/MS data. J. Am. Soc. Mass Spectrom. 10, 770-781
+Kuhl2012	10.1021/ac202450g	verified	19,26	Kuhl C. et al. (2012; online 2011) CAMERA: an integrated strategy for compound spectra extraction and annotation of LC/MS data sets. Anal. Chem. 84, 283-289
+Broeckling2014	10.1021/ac501530d	verified	19,26	Broeckling C.D. et al. (2014) RAMClust: a novel feature clustering method. Anal. Chem. 86, 6812-6817
+Prince2006	10.1021/ac0605344	verified	19,27	Prince J.T., Marcotte E.M. (2006) Chromatographic alignment of ESI-LC-MS proteomics data sets by ordered bijective interpolated warping. Anal. Chem. 78, 6140-6152
+Cleveland1979	10.1080/01621459.1979.10481038	verified	19,27	Cleveland W.S. (1979) Robust locally weighted regression and smoothing scatterplots. J. Am. Stat. Assoc. 74, 829-836
+SakoeChiba1978	10.1109/TASSP.1978.1163055	verified	19,27	Sakoe H., Chiba S. (1978) Dynamic programming algorithm optimization for spoken word recognition. IEEE Trans. ASSP 26, 43-49
+Lange2008	10.1186/1471-2105-9-375	verified	19,27	Lange E. et al. (2008) Critical assessment of alignment procedures for LC-MS proteomics and metabolomics measurements. BMC Bioinformatics 9, 375
+Broadhurst2018	10.1007/s11306-018-1367-3	verified	19,27	Broadhurst D. et al. (2018) Guidelines and considerations for the use of system suitability and quality control samples in mass spectrometry assays applied in untargeted clinical metabolomic studies. Metabolomics 14, 72
+Dieterle2006	10.1021/ac051632c	verified	19,27	Dieterle F. et al. (2006) Probabilistic quotient normalization as robust method to account for dilution of complex biological mixtures. Anal. Chem. 78, 4281-4290
+Dunn2011	10.1038/nprot.2011.335	verified	19,27	Dunn W.B. et al. (2011) Procedures for large-scale metabolic profiling of serum and plasma using GC and LC coupled to MS. Nat. Protoc. 6, 1060-1083
+Pluskal2010	10.1186/1471-2105-11-395	verified	19,25,32	Pluskal T. et al. (2010) MZmine 2. BMC Bioinformatics 11, 395
+Schmid2023	10.1038/s41587-023-01690-2	verified	19,25,32	Schmid R. et al. (2023) Integrative analysis of multimodal mass spectrometry data in MZmine 3. Nat. Biotechnol. 41, 447-449
+Tsugawa2015	10.1038/nmeth.3393	verified	19,25,29,32	Tsugawa H. et al. (2015) MS-DIAL: data-independent MS/MS deconvolution for comprehensive metabolome analysis. Nat. Methods 12, 523-526
+Rost2016	10.1038/nmeth.3959	verified	19,25,32	Röst H.L. et al. (2016) OpenMS. Nat. Methods 13, 741-748
+Helmus2021	10.1186/s13321-020-00477-w	verified	19,32	Helmus R. et al. (2021) patRoon: open source software platform for environmental mass spectrometry based non-target screening. J. Cheminform. 13, 1
+Hollender2017	10.1021/acs.est.7b02184	verified	19,31,32	Hollender J. et al. (2017) Nontarget screening with high resolution mass spectrometry in the environment: ready to go? Environ. Sci. Technol. 51, 11505-11512
+Martens2011	10.1074/mcp.R110.000133	verified	19,23	Martens L. et al. (2011) mzML - a community standard for mass spectrometry data. Mol. Cell. Proteomics 10, R110.000133
+Pedrioli2004	10.1038/nbt1031	verified	19,23	Pedrioli P.G.A. et al. (2004) A common open representation of mass spectrometry data and its application to proteomics research (mzXML). Nat. Biotechnol. 22, 1459-1466
+Teleman2014	10.1074/mcp.O114.037879	verified	19,23	Teleman J. et al. (2014) Numerical compression schemes for proteomics mass spectrometry data (MS-Numpress). Mol. Cell. Proteomics 13, 1537-1542
+Griss2014	10.1074/mcp.O113.036681	verified	19,23	Griss J. et al. (2014) The mzTab data exchange format. Mol. Cell. Proteomics 13, 2765-2775
+Hoffmann2019	10.1021/acs.analchem.8b04310	verified	19,23	Hoffmann N. et al. (2019) mzTab-M: a data standard for sharing quantitative results in mass spectrometry metabolomics. Anal. Chem. 91, 3302-3310
+Lampen1994	10.1366/0003702944027840	verified	19,23	Lampen P. et al. (1994) JCAMP-DX for mass spectrometry. Appl. Spectrosc. 48, 1545-1552
+McDonald1988	10.1366/0003702884428734	verified	19,23	McDonald R.S., Wilks P.A. (1988) JCAMP-DX: a standard form for exchange of infrared spectra in computer readable form. Appl. Spectrosc. 42, 151-162
+ASTM-E2077	10.1520/E2077-00R24	verified		ASTM E2077-00(2024) Standard Specification for Analytical Data Interchange Protocol for Mass Spectrometric Data. ASTM International
+Chambers2012	10.1038/nbt.2377	verified	19,23	Chambers M.C. et al. (2012) A cross-platform toolkit for mass spectrometry and proteomics (ProteoWizard). Nat. Biotechnol. 30, 918-920
+Kessner2008	10.1093/bioinformatics/btn323	verified	19,23	Kessner D. et al. (2008) ProteoWizard: open source software for rapid proteomics tools development. Bioinformatics 24, 2534-2536
+Hulstaert2020	10.1021/acs.jproteome.9b00328	verified	19,23	Hulstaert N. et al. (2020; online 2019) ThermoRawFileParser: modular, scalable, and cross-platform RAW file conversion. J. Proteome Res. 19, 537-542
+PSI-MS-CV		verified	19,23	HUPO-PSI, psi-ms.obo controlled vocabulary, github.com/HUPO-PSI/psi-ms-CV
+SteinScott1994	10.1016/1044-0305(94)87009-8	verified	19,28	Stein S.E., Scott D.R. (1994) Optimization and testing of mass spectral library search algorithms for compound identification. J. Am. Soc. Mass Spectrom. 5, 859-866
+Stein1995	10.1016/1044-0305(95)00291-K	verified	19,29	Stein S.E. (1995) Chemical substructure identification by mass spectral library searching. J. Am. Soc. Mass Spectrom. 6, 644-655
+Watrous2012	10.1073/pnas.1203689109	verified	19,28	Watrous J. et al. (2012) Mass spectral molecular networking of living microbial colonies. PNAS 109, E1743-E1752
+Bittremieux2022	10.1021/jasms.2c00153	verified	19,28	Bittremieux W. et al. (2022) Comparison of cosine, modified cosine, and neutral loss based spectrum alignment for discovery of structurally related molecules. J. Am. Soc. Mass Spectrom. 33, 1733-1744
+Li2021	10.1038/s41592-021-01331-z	verified	19,28	Li Y. et al. (2021) Spectral entropy outperforms MS/MS dot product similarity for small-molecule compound identification. Nat. Methods 18, 1524-1531
 SpectralEntropyCode		verified		Li Y., SpectralEntropy reference code, github.com/YuanyueLi/SpectralEntropy, `spectral_entropy/math_distance.py`
-Horai2010	10.1002/jms.1777	verified	29	Horai H. et al. (2010) MassBank: a public repository for sharing mass spectral data for life sciences. J. Mass Spectrom. 45, 703-714
-Wang2016	10.1038/nbt.3597	verified	29	Wang M. et al. (2016) Sharing and community curation of mass spectrometry data with GNPS. Nat. Biotechnol. 34, 828-837
-Vinaixa2016	10.1016/j.trac.2015.09.005	verified	29	Vinaixa M. et al. (2016) Mass spectral databases for LC/MS- and GC/MS-based metabolomics: state of the field and future prospects. TrAC 78, 23-35
-Kind2018	10.1002/mas.21535	verified	22,29	Kind T. et al. (2018; online 2017) Identification of small molecules using accurate mass MS/MS search. Mass Spectrom. Rev. 37, 513-532
-EliasGygi2007	10.1038/nmeth1019	verified	29	Elias J.E., Gygi S.P. (2007) Target-decoy search strategy for increased confidence in large-scale protein identifications by mass spectrometry. Nat. Methods 4, 207-214
-Scheubert2017	10.1038/s41467-017-01318-5	verified	29	Scheubert K. et al. (2017) Significance estimation for large scale metabolomics annotations by spectral matching. Nat. Commun. 8, 1494
-BenjaminiHochberg1995	10.1111/j.2517-6161.1995.tb02031.x	verified	29	Benjamini Y., Hochberg Y. (1995) Controlling the false discovery rate. J. R. Stat. Soc. B 57, 289-300
-KindFiehn2007	10.1186/1471-2105-8-105	verified	30	Kind T., Fiehn O. (2007) Seven Golden Rules for heuristic filtering of molecular formulas obtained by accurate mass spectrometry. BMC Bioinformatics 8, 105
-Wolf2010	10.1186/1471-2105-11-148	verified	30	Wolf S. et al. (2010) In silico fragmentation for computer assisted identification of metabolite mass spectra (MetFrag). BMC Bioinformatics 11, 148
-Ruttkies2016	10.1186/s13321-016-0115-9	verified	30	Ruttkies C. et al. (2016) MetFrag relaunched. J. Cheminform. 8, 3
-Allen2014	10.1093/nar/gku436	verified	30	Allen F. et al. (2014) CFM-ID: a web server for annotation, spectrum prediction and metabolite identification from tandem mass spectra. Nucleic Acids Res. 42, W94-W99
-Allen2015	10.1007/s11306-014-0676-4	verified	30	Allen F. et al. (2015; online 2014) Competitive fragmentation modeling of ESI-MS/MS spectra for putative metabolite identification. Metabolomics 11, 98-110
-Duhrkop2015	10.1073/pnas.1509788112	verified	30	Dührkop K. et al. (2015) Searching molecular structure databases with tandem mass spectra using CSI:FingerID. PNAS 112, 12580-12585
-Duhrkop2019	10.1038/s41592-019-0344-8	verified	30	Dührkop K. et al. (2019) SIRIUS 4: a rapid tool for turning tandem mass spectra into metabolite structure information. Nat. Methods 16, 299-302
-Duhrkop2021	10.1038/s41587-020-0740-8	verified	30	Dührkop K. et al. (2021; online 2020) Systematic classification of unknown metabolites using high-resolution fragmentation mass spectra (CANOPUS). Nat. Biotechnol. 39, 462-471
-Brenton2010	10.1016/j.jasms.2010.06.006	verified	22	Brenton A.G., Godfrey A.R. (2010) Accurate mass measurement: terminology and treatment of data. J. Am. Soc. Mass Spectrom. 21, 1821-1835
-Murray2013	10.1351/PAC-REC-06-04-06	verified	22	Murray K.K. et al. (2013) Definitions of terms relating to mass spectrometry (IUPAC Recommendations 2013). Pure Appl. Chem. 85, 1515-1609
-WileyMcLaren1955	10.1063/1.1715212	verified	22	Wiley W.C., McLaren I.H. (1955) Time-of-flight mass spectrometer with improved resolution. Rev. Sci. Instrum. 26, 1150-1157
-ComisarowMarshall1974	10.1016/0009-2614(74)89137-2	verified	22	Comisarow M.B., Marshall A.G. (1974) Fourier transform ion cyclotron resonance spectroscopy. Chem. Phys. Lett. 25, 282-283
-Makarov2000	10.1021/ac991131p	verified	22	Makarov A. (2000) Electrostatic axially harmonic orbital trapping: a high-performance technique of mass analysis. Anal. Chem. 72, 1156-1162
-HitesBiemann1970	10.1021/ac60290a009	verified	24	Hites R.A., Biemann K. (1970) Computer evaluation of continuously scanned mass spectra of gas chromatographic effluents. Anal. Chem. 42, 855-860
-Hertz1971	10.1021/ac60301a009	verified	28,29	Hertz H.S., Hites R.A., Biemann K. (1971) Identification of mass spectra by computer-searching a file of known spectra. Anal. Chem. 43, 681-691
-McLafferty1974	10.1002/oms.1210090710	verified	28,29	McLafferty F.W. et al. (1974) Probability based matching of mass spectra. Rapid identification of specific compounds in mixtures. Org. Mass Spectrom. 9, 690-702
-Stein2012	10.1021/ac301205z	verified	29	Stein S. (2012) Mass spectral reference libraries: an ever-expanding resource for chemical identification. Anal. Chem. 84, 7274-7282
-Deutsch2008	10.1002/pmic.200890049	verified	23	Deutsch E. (2008) mzML: a single, unifying data format for mass spectrometer output. Proteomics 8, 2776-2777
-Tsugawa2020	10.1038/s41587-020-0531-2	verified	29	Tsugawa H. et al. (2020) A lipidome atlas in MS-DIAL 4. Nat. Biotechnol. 38, 1159-1163
-Aron2020	10.1038/s41596-020-0317-5	verified	29	Aron A.T. et al. (2020) Reproducible molecular networking of untargeted mass spectrometry data using GNPS. Nat. Protoc. 15, 1954-1991
-Wang2021	10.1021/acs.analchem.1c01465	verified	30	Wang F. et al. (2021) CFM-ID 4.0: more accurate ESI-MS/MS spectral prediction and compound identification. Anal. Chem. 93, 11692-11700
-Ludwig2020	10.1038/s42256-020-00234-6	verified	30	Ludwig M. et al. (2020) Database-independent molecular formula annotation using Gibbs sampling through ZODIAC. Nat. Mach. Intell. 2, 629-641
-Creek2014	10.1007/s11306-014-0656-8	verified	31	Creek D.J. et al. (2014) Metabolite identification: are you sure? And how do your peers gauge your confidence? Metabolomics 10, 350-353
-Sumner2014	10.1007/s11306-014-0739-6	verified	31	Sumner L.W. et al. (2014) Proposed quantitative and alphanumeric metabolite identification metrics. Metabolomics 10, 1047-1049
-Schymanski2015	10.1007/s00216-015-8681-7	verified	31,32	Schymanski E.L. et al. (2015) Non-target screening with high-resolution mass spectrometry: critical review using a collaborative trial on water analysis. Anal. Bioanal. Chem. 407, 6237-6255
-Alseekh2021	10.1038/s41592-021-01197-1	verified	31	Alseekh S. et al. (2021) Mass spectrometry-based metabolomics: a guide for annotation, quantification and best reporting practices. Nat. Methods 18, 747-756
-Hollender2023	10.1186/s12302-023-00779-4	verified	31,32	Hollender J. et al. (2023) NORMAN guidance on suspect and non-target screening in environmental monitoring. Environ. Sci. Eur. 35, 75
-Blazenovic2018	10.3390/metabo8020031	verified	30	Blaženović I. et al. (2018) Software tools and approaches for compound identification of LC-MS/MS data in metabolomics. Metabolites 8, 31
-Gross2017	10.1007/978-3-319-54398-7	verified	22	Gross J.H. (2017) Mass Spectrometry: A Textbook, 3rd ed., Springer
-Winkler2020	10.1039/9781788019880	verified	32	Winkler R. (ed.) (2020) Processing Metabolomics and Proteomics Data with Open Software. Royal Society of Chemistry (New Developments in Mass Spectrometry)
+Horai2010	10.1002/jms.1777	verified	19,29	Horai H. et al. (2010) MassBank: a public repository for sharing mass spectral data for life sciences. J. Mass Spectrom. 45, 703-714
+Wang2016	10.1038/nbt.3597	verified	19,29	Wang M. et al. (2016) Sharing and community curation of mass spectrometry data with GNPS. Nat. Biotechnol. 34, 828-837
+Vinaixa2016	10.1016/j.trac.2015.09.005	verified	19,29	Vinaixa M. et al. (2016) Mass spectral databases for LC/MS- and GC/MS-based metabolomics: state of the field and future prospects. TrAC 78, 23-35
+Kind2018	10.1002/mas.21535	verified	19,22,29	Kind T. et al. (2018; online 2017) Identification of small molecules using accurate mass MS/MS search. Mass Spectrom. Rev. 37, 513-532
+EliasGygi2007	10.1038/nmeth1019	verified	19,29	Elias J.E., Gygi S.P. (2007) Target-decoy search strategy for increased confidence in large-scale protein identifications by mass spectrometry. Nat. Methods 4, 207-214
+Scheubert2017	10.1038/s41467-017-01318-5	verified	19,29	Scheubert K. et al. (2017) Significance estimation for large scale metabolomics annotations by spectral matching. Nat. Commun. 8, 1494
+BenjaminiHochberg1995	10.1111/j.2517-6161.1995.tb02031.x	verified	19,29	Benjamini Y., Hochberg Y. (1995) Controlling the false discovery rate. J. R. Stat. Soc. B 57, 289-300
+KindFiehn2007	10.1186/1471-2105-8-105	verified	19,30	Kind T., Fiehn O. (2007) Seven Golden Rules for heuristic filtering of molecular formulas obtained by accurate mass spectrometry. BMC Bioinformatics 8, 105
+Wolf2010	10.1186/1471-2105-11-148	verified	19,30	Wolf S. et al. (2010) In silico fragmentation for computer assisted identification of metabolite mass spectra (MetFrag). BMC Bioinformatics 11, 148
+Ruttkies2016	10.1186/s13321-016-0115-9	verified	19,30	Ruttkies C. et al. (2016) MetFrag relaunched. J. Cheminform. 8, 3
+Allen2014	10.1093/nar/gku436	verified	19,30	Allen F. et al. (2014) CFM-ID: a web server for annotation, spectrum prediction and metabolite identification from tandem mass spectra. Nucleic Acids Res. 42, W94-W99
+Allen2015	10.1007/s11306-014-0676-4	verified	19,30	Allen F. et al. (2015; online 2014) Competitive fragmentation modeling of ESI-MS/MS spectra for putative metabolite identification. Metabolomics 11, 98-110
+Duhrkop2015	10.1073/pnas.1509788112	verified	19,30	Dührkop K. et al. (2015) Searching molecular structure databases with tandem mass spectra using CSI:FingerID. PNAS 112, 12580-12585
+Duhrkop2019	10.1038/s41592-019-0344-8	verified	19,30	Dührkop K. et al. (2019) SIRIUS 4: a rapid tool for turning tandem mass spectra into metabolite structure information. Nat. Methods 16, 299-302
+Duhrkop2021	10.1038/s41587-020-0740-8	verified	19,30	Dührkop K. et al. (2021; online 2020) Systematic classification of unknown metabolites using high-resolution fragmentation mass spectra (CANOPUS). Nat. Biotechnol. 39, 462-471
+Brenton2010	10.1016/j.jasms.2010.06.006	verified	19,22	Brenton A.G., Godfrey A.R. (2010) Accurate mass measurement: terminology and treatment of data. J. Am. Soc. Mass Spectrom. 21, 1821-1835
+Murray2013	10.1351/PAC-REC-06-04-06	verified	19,22	Murray K.K. et al. (2013) Definitions of terms relating to mass spectrometry (IUPAC Recommendations 2013). Pure Appl. Chem. 85, 1515-1609
+WileyMcLaren1955	10.1063/1.1715212	verified	19,22	Wiley W.C., McLaren I.H. (1955) Time-of-flight mass spectrometer with improved resolution. Rev. Sci. Instrum. 26, 1150-1157
+ComisarowMarshall1974	10.1016/0009-2614(74)89137-2	verified	19,22	Comisarow M.B., Marshall A.G. (1974) Fourier transform ion cyclotron resonance spectroscopy. Chem. Phys. Lett. 25, 282-283
+Makarov2000	10.1021/ac991131p	verified	19,22	Makarov A. (2000) Electrostatic axially harmonic orbital trapping: a high-performance technique of mass analysis. Anal. Chem. 72, 1156-1162
+HitesBiemann1970	10.1021/ac60290a009	verified	19,24	Hites R.A., Biemann K. (1970) Computer evaluation of continuously scanned mass spectra of gas chromatographic effluents. Anal. Chem. 42, 855-860
+Hertz1971	10.1021/ac60301a009	verified	19,28,29	Hertz H.S., Hites R.A., Biemann K. (1971) Identification of mass spectra by computer-searching a file of known spectra. Anal. Chem. 43, 681-691
+McLafferty1974	10.1002/oms.1210090710	verified	19,28,29	McLafferty F.W. et al. (1974) Probability based matching of mass spectra. Rapid identification of specific compounds in mixtures. Org. Mass Spectrom. 9, 690-702
+Stein2012	10.1021/ac301205z	verified	19,29	Stein S. (2012) Mass spectral reference libraries: an ever-expanding resource for chemical identification. Anal. Chem. 84, 7274-7282
+Deutsch2008	10.1002/pmic.200890049	verified	19,23	Deutsch E. (2008) mzML: a single, unifying data format for mass spectrometer output. Proteomics 8, 2776-2777
+Tsugawa2020	10.1038/s41587-020-0531-2	verified	19,29	Tsugawa H. et al. (2020) A lipidome atlas in MS-DIAL 4. Nat. Biotechnol. 38, 1159-1163
+Aron2020	10.1038/s41596-020-0317-5	verified	19,29	Aron A.T. et al. (2020) Reproducible molecular networking of untargeted mass spectrometry data using GNPS. Nat. Protoc. 15, 1954-1991
+Wang2021	10.1021/acs.analchem.1c01465	verified	19,30	Wang F. et al. (2021) CFM-ID 4.0: more accurate ESI-MS/MS spectral prediction and compound identification. Anal. Chem. 93, 11692-11700
+Ludwig2020	10.1038/s42256-020-00234-6	verified	19,30	Ludwig M. et al. (2020) Database-independent molecular formula annotation using Gibbs sampling through ZODIAC. Nat. Mach. Intell. 2, 629-641
+Creek2014	10.1007/s11306-014-0656-8	verified	19,31	Creek D.J. et al. (2014) Metabolite identification: are you sure? And how do your peers gauge your confidence? Metabolomics 10, 350-353
+Sumner2014	10.1007/s11306-014-0739-6	verified	19,31	Sumner L.W. et al. (2014) Proposed quantitative and alphanumeric metabolite identification metrics. Metabolomics 10, 1047-1049
+Schymanski2015	10.1007/s00216-015-8681-7	verified	19,31,32	Schymanski E.L. et al. (2015) Non-target screening with high-resolution mass spectrometry: critical review using a collaborative trial on water analysis. Anal. Bioanal. Chem. 407, 6237-6255
+Alseekh2021	10.1038/s41592-021-01197-1	verified	19,31	Alseekh S. et al. (2021) Mass spectrometry-based metabolomics: a guide for annotation, quantification and best reporting practices. Nat. Methods 18, 747-756
+Hollender2023	10.1186/s12302-023-00779-4	verified	19,31,32	Hollender J. et al. (2023) NORMAN guidance on suspect and non-target screening in environmental monitoring. Environ. Sci. Eur. 35, 75
+Blazenovic2018	10.3390/metabo8020031	verified	19,30	Blaženović I. et al. (2018) Software tools and approaches for compound identification of LC-MS/MS data in metabolomics. Metabolites 8, 31
+Gross2017	10.1007/978-3-319-54398-7	verified	19,22	Gross J.H. (2017) Mass Spectrometry: A Textbook, 3rd ed., Springer
+Winkler2020	10.1039/9781788019880	verified	19,32	Winkler R. (ed.) (2020) Processing Metabolomics and Proteomics Data with Open Software. Royal Society of Chemistry (New Developments in Mass Spectrometry)
 deHoffmann2007		to verify		de Hoffmann E., Stroobant V. (2007) Mass Spectrometry: Principles and Applications, 3rd ed., Wiley (ISBN 978-0-470-03310-4)
 McLaffertyTurecek1993		to verify		McLafferty F.W., Tureček F. (1993) Interpretation of Mass Spectra, 4th ed., University Science Books
-xcms-src		verified		xcms R package source, `R/functions-Params.R` (CentWaveParam, MatchedFilterParam, PeakDensityParam defaults), github.com/sneumann/xcms, devel
-NIST-MSSearch		to verify		NIST Mass Spectral Search Program manual (match factor, reverse match factor, probability)
-GNPS-docs		to verify		GNPS documentation, molecular networking parameters
-MassBank-licences		to verify		massbank.eu record licences
+xcms-src		verified	19,24	xcms R package source, `R/functions-Params.R` (CentWaveParam, MatchedFilterParam, PeakDensityParam defaults), github.com/sneumann/xcms, devel
+NIST-MSSearch		verified		NIST Mass Spectral Search Program, manual v2.2, p. 39 (match factor, reverse match factor; composite formula not verified)
+GNPS-docs		verified		GNPS documentation, molecular networking parameters, ccms-ucsd.github.io/GNPSDocumentation/networking/ (read 2026-10-31)
+MassBank-licences		verified		MassBank record format, §2.1.5 LICENSE (github.com/MassBank/MassBank-web, Documentation/MassBankRecordFormat.md)
 preexisting-01	10.1002/0471479357	preexisting		
 preexisting-02	10.1002/hlca.19580410703	preexisting		
 preexisting-03	10.1002/jms.1190301102	preexisting		

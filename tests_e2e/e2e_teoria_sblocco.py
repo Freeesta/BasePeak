@@ -1,4 +1,4 @@
-"""Administrator mode of the Teoria (sblocco.js): a single click on the logo still goes to the program; five quick clicks set mzlab.admin, say it in a
+"""Administrator mode of the Teoria (sblocco.js): a single click on the logo still goes to the home page; five quick clicks set mzlab.admin, say it in a
 role=status message and reload with html.esteso; with reduced motion nothing is animated; five more clicks leave the mode; a single click still follows the link."""
 import sys, os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import *
@@ -19,8 +19,8 @@ try:
         ls = lambda q: q.evaluate("localStorage.getItem('mzlab.admin')")
         def single():
             c, q = ctx(); q.goto(T + "capitoli/01-cromatografia.html"); q.wait_for_selector("#logo")
-            assert q.get_attribute("#logo", "href") == "../../#/data" and q.locator("#sblocco[role=status]").count() == 1
-            q.click("#logo"); q.wait_for_url("**/#/data", timeout=10000); assert ls(q) is None; c.close()
+            assert q.get_attribute("#logo", "href") == "../index.html" and q.locator("#sblocco[role=status]").count() == 1
+            q.click("#logo"); q.wait_for_url("**/static/index.html", timeout=10000); assert ls(q) is None; c.close()
         step("one click still follows the logo link (after 600 ms) and unlocks nothing", single)
         def five():
             c, q = ctx(); q.goto(T + "capitoli/01-cromatografia.html"); q.wait_for_selector("#logo")
@@ -30,7 +30,7 @@ try:
             assert q.inner_text("#sblocco").strip() == "Sbloccato" and ls(q) == "1"
             q.wait_for_function("document.documentElement.classList.contains('esteso')", timeout=8000)
             assert q.locator("#sblocco.on").count() == 0 and q.evaluate("TEORIA.esteso()") is True
-            q.click("#logo"); q.wait_for_url("**/#/data", timeout=15000)   # unlocked: a single click still follows the link (after 600 ms)
+            q.click("#logo"); q.wait_for_url("**/static/index.html", timeout=15000)   # unlocked: a single click still follows the link (after 600 ms)
             c.close()
         step("five quick clicks: flag, status message, reload with html.esteso; a single click still follows the link", five)
         def calm():

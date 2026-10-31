@@ -1,0 +1,30 @@
+/* BasePeak - Teoria: styles of the page editor (editor.js reads them only when the editor opens). Text is --ink on --panel / --sel / --code (>= 7:1 in every theme),
+   never --muted or a colour; the state is also written (border, bold). No animation. */
+#ed-bar{position:sticky;top:48px;z-index:55;display:flex;flex-direction:column;gap:4px;padding:5px 14px;background:var(--panel);color:var(--ink);border-bottom:3px solid var(--ink)}
+#ed-bar .ed-riga{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+#ed-bar .ed-g{display:inline-flex;gap:4px;padding:3px;background:var(--code);border:1px solid var(--ink);border-radius:8px}
+.ed-b{font:inherit;font-size:13.5px;font-weight:600;min-height:32px;min-width:32px;padding:1px 8px;color:var(--ink);background:var(--panel);border:2px solid var(--ink);border-radius:6px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.ed-b:hover{background:var(--sel)}
+.ed-b.ed-on,.ed-pri{color:var(--panel);background:var(--ink)}
+.ed-b.ed-on:hover,.ed-pri:hover{background:var(--ink);opacity:.88}
+.ed-b:disabled{border-style:dashed;cursor:default;background:var(--code)}
+.ed-b[hidden]{display:none}
+.ed-b:focus-visible,#ed-ta:focus-visible,#ed-pannello:focus-visible,#ed-pannello input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+#ed-msg{flex:1 1 240px;font-size:14px}
+body.ed-on main[contenteditable]{outline:2px dashed var(--ink);outline-offset:6px}
+body.ed-on main[contenteditable]:focus{outline-style:solid}
+body.ed-on .sim,body.ed-on .ctl{position:relative}
+body.ed-on .sim::before{content:"Figura interattiva: qui non si modifica";position:absolute;top:6px;right:8px;font-size:12px;font-weight:700;color:var(--ink);background:var(--code);padding:2px 6px;border:1px solid var(--ink);border-radius:4px;pointer-events:none}
+#ed-code{display:flex;flex-direction:column;gap:8px;margin:16px 0}
+#ed-code label{font-size:14px}
+#ed-ta{width:100%;box-sizing:border-box;height:60vh;min-height:300px;font:13.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);background:var(--code);border:2px solid var(--ink);border-radius:6px;padding:10px;resize:vertical;tab-size:2}
+#ed-esito{padding:8px 12px;border:2px solid var(--ink);border-left-width:10px;border-radius:6px;background:var(--panel);color:var(--ink);font-size:14px}
+#ed-esito.ko{border-left-style:double}
+#ed-esito ul{margin:6px 0 0;padding-left:20px}
+#ed-pannello{margin:12px 14px;padding:14px 18px;background:var(--panel);color:var(--ink);border:3px solid var(--ink);border-radius:10px;max-width:760px}
+#ed-pannello h2{margin:0 0 8px;font-size:19px;border:0;padding:0}
+#ed-pannello .ed-passi{margin:8px 0;padding-left:22px;line-height:1.7}
+#ed-pannello .ed-az{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+#ed-pannello input[type=file]{font:inherit;color:var(--ink)}
+@media (max-width:700px){#ed-bar{position:static}}
+@media print{#ed-bar,#ed-pannello,#ed-code{display:none!important}}

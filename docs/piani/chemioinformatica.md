@@ -1022,6 +1022,7 @@ Prerequisite: PR #10 (DEV8, navigation) merged. Nothing of part VII starts befor
 ---------------------------------------------------------------------------------------------------------------------
 
 ## 10. Open scientific doubts (resolve before or during DEV-08; never written into pages as doubts)
+Closed or answered in `docs/piani/revisione-chemioinformatica.md` section 4 (ARCH review, 2026-10-31).
 1. centWave details: exact noise estimate, ridge-line rules, how `snthresh` is computed (Tautenhahn 2008 + xcms code).
 2. Modified cosine: exact pair-selection rule and intensity/m/z powers used by GNPS vs matchms (Watrous 2012,
    Bittremieux 2022).

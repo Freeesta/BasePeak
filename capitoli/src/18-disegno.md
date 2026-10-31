@@ -36,7 +36,7 @@ Un bianco è un campione senza l'analita. Dice da dove viene il segnale che non 
 </table>
 ```
 
-L'ultima riga è la più importante quando si cerca un effetto. Senza questo controllo, una perdita per adsorbimento sulle pareti della vial si scambia per un effetto del trattamento.
+L'ultima riga è la più importante quando si cerca un effetto. Senza questo controllo, una perdita per adsorbimento sulle pareti della vial si scambia per un effetto del trattamento. Approfondimento: <a href="27-tabella.html">capitolo 27 (La tabella delle feature)</a>.
 
 ```html
 <div class="box warn"><b>Errore frequente</b><p>Un segnale presente nel bianco, o a t0 con la stessa intensità, non è un effetto del trattamento. Va tolto dalla lista dei candidati (capitolo 10).</p></div>
@@ -194,21 +194,7 @@ Alcune regole:
 
 ### Quanto è sicura la struttura?
 
-Una struttura proposta non è tutta uguale. Conviene scrivere il livello di confidenza dell'identificazione: confermata con standard, probabile da spettro, solo candidata per formula. Una scala condivisa (Schymanski e collaboratori) è indicata sotto.
-
-## Verifica
-
-??? Perché, in una serie nel tempo, i campioni non si iniettano nell'ordine dei tempi di prelievo?
-Perché la deriva dello strumento (sorgente che si sporca, risposta che cala) si confonderebbe con l'effetto del tempo. Si randomizza l'ordine, con i QC a intervalli regolari per vedere la deriva.
-
-??? Hai tre iniezioni dello stesso vial. Sono tre repliche?
-Sono repliche strumentali, non indipendenti. Misurano la ripetibilità dello strumento, non la variabilità dell'esperimento. Servono repliche dell'esperimento intero.
-
-??? Un segnale a m/z 168 compare a t0, nel controllo senza trattamento e nel bianco di processo. È un prodotto del trattamento?
-No. È fondo, contaminazione o impurezza. Un prodotto del trattamento deve comparire con il trattamento e mancare, o essere molto più basso, nei controlli.
-
-??? Che differenza c'è tra uno schema di trasformazione e uno di frammentazione?
-Nel primo i prodotti sono molecole neutre che si formano in soluzione; nel secondo precursore e frammenti sono ioni in fase gassosa e le frecce portano le perdite neutre.
+Una struttura proposta non è tutta uguale. Conviene scrivere il livello di confidenza dell'identificazione: confermata con standard, probabile da spettro, solo candidata per formula. Una scala condivisa (Schymanski e collaboratori) è indicata sotto. Approfondimento: <a href="31-confidenza.html">capitolo 31 (Livelli di confidenza)</a>.
 
 ## Per approfondire
 

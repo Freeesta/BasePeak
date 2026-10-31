@@ -36,7 +36,9 @@ try:
         def theme():
             q.check("input[name=a11y-tema][value=dark]"); q.wait_for_function("document.documentElement.dataset.theme==='dark'", timeout=8000)
             assert json.loads(ls("mzlab.prefs"))["theme"] == "dark"
-            q.wait_for_selector("#a11y-btn"); q.click("#a11y-btn"); assert q.is_checked("input[name=a11y-tema][value=dark]")
+            assert q.is_visible("#a11y-panel"), "the theme changes in place: the panel stays open"
+            q.reload(); q.wait_for_selector("#a11y-btn"); assert q.evaluate("document.documentElement.dataset.theme") == "dark", "not kept after a reload"
+            q.click("#a11y-btn"); assert q.is_checked("input[name=a11y-tema][value=dark]")
             q.check("input[name=a11y-tema][value=auto]"); q.wait_for_timeout(500)
         step("Tema is the mzlab.prefs of the program and survives a reload", theme)
         def motion():
