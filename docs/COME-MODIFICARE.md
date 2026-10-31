@@ -20,13 +20,15 @@ Sul sito (https://freeesta.github.io/BasePeak/) arrivano solo `index.html`, `cap
 | Che cosa | File |
 |---|---|
 | Introduzione e mappa | `index.html` |
-| Capitoli 1–21 | `capitoli/01-cromatografia.html` … `capitoli/21-tempi.html` (il numero del capitolo è nel nome del file e va da 1 a 21 senza buchi; i vecchi nomi, come `capitoli/04-lc.html` o `capitoli/06-quadrupolo.html`, sono rimandi automatici al nuovo capitolo) |
+| Capitoli 1–21 | `capitoli/01-cromatografia.html` … `capitoli/21-tempi.html` (il numero del capitolo è nel nome del file e va da 1 a 32 senza buchi, contando anche la parte VII; i vecchi nomi, come `capitoli/04-lc.html` o `capitoli/06-quadrupolo.html`, sono rimandi automatici al nuovo capitolo) |
 | Pratica (giochi ed esercizi) | `pratica/index.html` (pagina iniziale), `pratica/ei.html`, `pratica/orale.html`, `pratica/perdite.html`, `pratica/isotopi.html`, `pratica/formula.html`, `pratica/strumento.html`, `pratica/quadrupolo.html`, `pratica/tp.html`; codice e dati negli stessi file `.js` di `pratica/` |
 | Domande di ripasso (testo e punti della risposta) | `pratica/domande.js` |
 | Spettri EI dei capitoli 13-14 e del gioco | `pratica/ei-dati.js` e `pratica/ei-dati-l1.js`…`l5.js` (da MassBank Europe; struttura e come aggiungerne uno a mano: `docs/DATI-EI.md`) |
 | Glossario (parole sottolineate nel testo) | `capitoli/19-glossario.html`, poi `python3 tools/genera_glossario.py` (crea `assets/glossario-dati.js`) e `python3 tools/genera_indice_teoria.py` (ricerca: `assets/indice-ricerca.js`) |
 | Elenco dei capitoli nel menu laterale | `assets/teoria.js`, in alto: lista `CHAPTERS` (i file sono scritti a partire dalla cartella principale: `capitoli/02-lc.html`, `pratica/ei.html`) |
 | Menu laterale in tre parti (Teoria, Pratica, Reference) | l'ordine di `CHAPTERS` è l'ordine del menu e dei link Precedente/Successivo: prima la Teoria, poi le pagine di `pratica/`, poi i capitoli con parte `"Reference"` (glossario, formulario, tempi). Le sezioni (h2 e h3) del capitolo aperto, le ancore `#` sui titoli e le briciole di pane sono generate da `assets/teoria.js` dai titoli della pagina: nei capitoli non c'è niente da scrivere |
+| Parte VII, Chemioinformatica (capitoli 22–32) | `capitoli/22-segnale.html`, `23-formati`, `24-tracce`, `25-picchi`, `26-gruppi`, `27-tabella`, `28-somiglianza`, `29-librerie`, `30-candidati`, `31-confidenza`, `32-esempio` (sorgenti Markdown in `capitoli/src/`). Il disegno è in `docs/piani/chemioinformatica.md`; le letture verificate in `docs/piani/riferimenti-chemioinformatica.tsv` |
+| Figure della parte VII | `assets/chemi-common.js` (funzioni comuni e caricamento al bisogno) e un file per capitolo: `sim-chemi-segnale.js` e `sim-chemi-formati.js` (cap. 22-23), `sim-chemi-tracce.js` e `sim-chemi-picchi.js` (24-25), `sim-chemi-gruppi.js`, `sim-chemi-tabella.js` e `sim-chemi-esplora.js` (26-27), `sim-chemi-somiglianza.js` e `sim-chemi-librerie.js` (28-29), `sim-chemi-candidati.js` e `sim-chemi-confidenza.js` (30-31), `sim-chemi-esempio.js` (32) |
 | Colori, caratteri, aspetto dei riquadri | `assets/teoria.css` |
 | Figure interattive (calcoli e grafici) | in `assets/`: `sim-quad.js`, `sim-esi.js`, `sim-qqq.js`, `sim-frag.js`, `sim-misc.js`, `sim-chrom.js` (cromatografia), `sim-ei.js` (EI), `sim-hr.js` (risoluzione e formule) |
 
@@ -103,6 +105,21 @@ Sta in `assets/icone/` (`icon.svg` scritta a mano, più i PNG), con `assets/favi
 
 - Le prime righe (`<!doctype …>` … `<main>`) e le ultime (`</main>` … `</html>`) di ogni capitolo, e i percorsi `../assets/...` e `../pratica/...` che contengono.
 - Gli `id="sim-..."` delle figure interattive: li usano i file `.js`.
+
+## Figure caricate al bisogno (parte VII)
+
+Nei capitoli 22–32 il file di una figura non si collega in fondo alla pagina: il riquadro dichiara dove sta il suo codice e `assets/chemi-common.js` lo carica solo quando il lettore scorre vicino alla figura (circa 600 px prima).
+
+```html
+<div class="sim" id="sim-chemi-xic" data-sim="../assets/sim-chemi-tracce.js" data-preset="esempio"><h4>Figura 24.1 La finestra in ppm</h4>
+<p class="note nota">Che cosa mostra la figura. Dati sintetici, a scopo didattico.</p></div>
+```
+
+- `data-sim` è il percorso del file `.js` (mai un `<script src="../assets/sim-chemi-...">` nel capitolo: un test lo rifiuta); più figure possono usare lo stesso file, che viene caricato una volta sola.
+- `data-preset` è facoltativo: il nome di un gruppo di valori iniziali, registrato con `CHEMI.preset("nome", {...})` e passato alla figura come secondo argomento.
+- Il file della figura registra ogni suo riquadro con `CHEMI.register("sim-chemi-xic", (el, preset) => { ... })`. Quando il file è caricato il riquadro riceve `data-ready="1"` (anche se il file non ha registrato nulla ancora).
+- I dati sono sempre sintetici e generati con `CHEMI.rng(seme)`: stesso seme, stessi numeri. Ogni grafico ha un'alternativa testuale (`CHEMI.table`) e una riga di sintesi in `div.readout`.
+- Limiti controllati dai test (`tests/test_chemi.py`): `chemi-common.js` al massimo 4 KB compresso, ogni file `sim-chemi-*.js` al massimo 15 KB compresso, ogni capitolo al massimo 40 KB, niente indirizzi `http://` o `https://` nei file `.js`.
 
 ## Se qualcosa si rompe
 

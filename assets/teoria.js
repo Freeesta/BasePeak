@@ -47,6 +47,17 @@ const CHAPTERS = [
   ["capitoli/19-glossario.html", "19", "Glossario e bibliografia", "Reference"],
   ["capitoli/20-formulario.html", "20", "Formulario", "Reference"],
   ["capitoli/21-tempi.html", "21", "Tempi degli analizzatori: dwell time, sweep e duty cycle", "Reference"],
+  ["capitoli/22-segnale.html", "22", "Segnale, profilo e centroide", "VII. Chemioinformatica"],
+  ["capitoli/23-formati.html", "23", "File e formati aperti", "VII. Chemioinformatica"],
+  ["capitoli/24-tracce.html", "24", "Tracce di massa e ROI", "VII. Chemioinformatica"],
+  ["capitoli/25-picchi.html", "25", "Trovare i picchi", "VII. Chemioinformatica"],
+  ["capitoli/26-gruppi.html", "26", "Isotopi, addotti, frammenti", "VII. Chemioinformatica"],
+  ["capitoli/27-tabella.html", "27", "La tabella delle feature", "VII. Chemioinformatica"],
+  ["capitoli/28-somiglianza.html", "28", "Somiglianza spettrale", "VII. Chemioinformatica"],
+  ["capitoli/29-librerie.html", "29", "Librerie e falsi positivi", "VII. Chemioinformatica"],
+  ["capitoli/30-candidati.html", "30", "Formule e candidati in silico", "VII. Chemioinformatica"],
+  ["capitoli/31-confidenza.html", "31", "Livelli di confidenza", "VII. Chemioinformatica"],
+  ["capitoli/32-esempio.html", "32", "Esempio completo", "VII. Chemioinformatica"],
 ];
 const APP = typeof APP_NAME === "string" ? APP_NAME : "mzLab";        // appname.js is loaded first by every page
 CHAPTERS.forEach(c => { c[2] = c[2].split("{APP}").join(APP); });

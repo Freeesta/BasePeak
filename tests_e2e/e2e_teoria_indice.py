@@ -100,8 +100,11 @@ try:
         step("breadcrumb BasePeak > part > chapter", breadcrumb)
         def prevnext():
             c, q = ctx(); q.goto(T + "index.html"); q.wait_for_selector("#side")
-            order = q.evaluate("CHAPTERS.map(c=>c[0])"); assert order[0] == "index.html" and order[-1] == "capitoli/21-tempi.html", (order[0], order[-1])
+            order = q.evaluate("CHAPTERS.map(c=>c[0])"); assert order[0] == "index.html" and order[-1] == "capitoli/32-esempio.html", (order[0], order[-1])
             groups = [("Teoria" if not f.startswith("pratica") and not re.search(r"/(19|20|21)-", f) else "Pratica" if f.startswith("pratica") else "Reference") for f in order]
+            part7 = [f for f in order if re.search(r"capitoli/(2[2-9]|3[0-2])-", f)]      # part VII (22-32) is in the Teoria group but must follow row 21 (numbers run 1..32 in array order)
+            assert order[-len(part7):] == part7 and len(part7) == 11, "part VII is not the last block"
+            groups = groups[:-len(part7)]
             assert groups == sorted(groups, key={"Teoria": 0, "Pratica": 1, "Reference": 2}.get), "order is not Teoria > Pratica > Reference"
             for i, f in enumerate(order):
                 q.goto(T + f); q.wait_for_selector("main .pn")

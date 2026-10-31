@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><!--tema--><meta name="color-scheme" content="light dark"><style>html{background:#fbfbf9}@media(prefers-color-scheme:dark){html:not([data-theme=light]){background:#14171b}}html[data-theme=dark]{background:#14171b}html[data-theme=light]{background:#fbfbf9}html.no-tr *,html.no-tr *::before,html.no-tr *::after{transition:none!important}</style><script>(function(){var R=document.documentElement,t=null;try{if(parent!==window)t=parent.document.documentElement.getAttribute("data-theme")}catch(e){}if(!t)try{t=JSON.parse(localStorage.getItem("mzlab.prefs")||localStorage.getItem("qqq.prefs")||"{}").theme}catch(e){}if(t==="dark"||t==="light"){R.setAttribute("data-theme",t);R.style.colorScheme=t}R.classList.add("no-tr");addEventListener("load",function(){requestAnimationFrame(function(){requestAnimationFrame(function(){R.classList.remove("no-tr")})})})})()</script><!--/tema-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trovare i picchi · Teoria QqQ lab</title><link rel="icon" href="../assets/favicon.ico" sizes="48x48"><link rel="icon" href="../assets/icone/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../assets/icone/apple-touch-icon.png"><link rel="manifest" href="../assets/site.webmanifest"><meta name="theme-color" content="#2f6aa3"><link rel="stylesheet" href="../assets/teoria.css"><script src="../assets/tema.js"></script></head>
+<body>
+<div class="wrap"><nav id="side"></nav><main>
+<div class="kicker">Capitolo 25</div>
+<h1>Trovare i picchi cromatografici</h1>
+<p class="lead">Un cromatogramma rumoroso va trasformato in una lista di picchi con tempo, altezza e area. Qui si confrontano le famiglie di algoritmi e si vede che cosa succede con picchi sovrapposti.</p>
+<div class="box key"><b>Capitolo in costruzione</b><p>Questo capitolo è ancora in scrittura: per ora trovi la scaletta, con una riga per ogni sezione, e il posto delle figure interattive.</p></div>
+<details class="q storia"><summary>Un po' di storia</summary><p>La levigatura per minimi quadrati e i filtri adattati hanno una storia lunga; il capitolo racconterà come sono arrivati ai programmi attuali.</p></details>
+<h2>Che cosa cerca un algoritmo di picchi</h2>
+<p>Che cosa deve riconoscere un programma per dire che qui c'è un picco.</p>
+<h2>Lisciare il segnale</h2>
+<p>Una media sui punti vicini riduce il rumore ma allarga il picco.</p>
+<h2>Tre famiglie di algoritmi</h2>
+<p>Tre modi diversi di decidere dove sta un picco.</p>
+<h3>Massimi e minimi locali</h3>
+<p>Il picco è un massimo sopra una soglia, delimitato dai minimi vicini.</p>
+<h3>Il filtro adattato</h3>
+<p>Il segnale è confrontato con la forma attesa di un picco.</p>
+<h3>La trasformata wavelet continua (centWave)</h3>
+<p>Il segnale è esaminato a più larghezze insieme.</p>
+<div class="sim" id="sim-chemi-picchi" data-sim="../assets/sim-chemi-picchi.js"><h4>Figura 25.1 Cercare i picchi in un cromatogramma rumoroso</h4>
+<p class="note nota">Applica tre algoritmi a un cromatogramma con picchi noti e conta quelli trovati, mancati e falsi. Dati sintetici, a scopo didattico.</p></div>
+<h2>Segnale, rumore e linea di base</h2>
+<p>Il rapporto segnale/rumore ha più definizioni, e non sono confrontabili.</p>
+<h2>La qualità di un picco</h2>
+<p>Larghezza, simmetria e numero di punti dicono se il picco è affidabile.</p>
+<div class="sim" id="sim-chemi-qualita" data-sim="../assets/sim-chemi-picchi.js"><h3>Figura 25.2 Quanto è buono questo picco?</h3>
+<p class="note nota">Mostra come i punti per picco e la coda cambiano larghezza, asimmetria e area. Dati sintetici, a scopo didattico.</p></div>
+<h2>Picchi sovrapposti</h2>
+<p>Quando due picchi si toccano, l'area di ognuno è incerta.</p>
+<h3>Valle e minimo locale</h3>
+<p>Si divide il segnale nel punto più basso fra i due massimi.</p>
+<h3>Somma di curve</h3>
+<p>Si adattano due curve insieme per separare le aree.</p>
+<h3>Deconvoluzione degli spettri in GC-EI</h3>
+<p>In GC-EI i frammenti con lo stesso andamento sono attribuiti allo stesso composto.</p>
+<h2>Verifica</h2>
+<p>Qualche domanda per controllare di avere capito i punti principali.</p>
+<h2>Per approfondire</h2>
+<p>Le letture consigliate su levigatura, rilevamento dei picchi e software aperti.</p>
+</main></div>
+<script src="../assets/appname.js"></script><script src="../assets/teoria.js"></script><script src="../assets/chemi-common.js"></script>
+</body></html>
