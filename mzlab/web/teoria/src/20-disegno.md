@@ -5,14 +5,14 @@
 
 ## Dalla domanda al disegno
 
-Un buon disegno parte da una domanda. Esempio: "il parent sparisce con la cinetica attesa, e quali prodotti compaiono?". Ogni campione serve a rispondere, oppure a escludere una spiegazione alternativa.
+Un buon disegno parte da una domanda. Esempio: "la concentrazione dell'analita cambia con il trattamento, e di quanto?". Ogni campione serve a rispondere, oppure a escludere una spiegazione alternativa.
 
 Prima di iniettare, si scrive:
 
 ```html
 <ul>
-<li>che cosa si vuole misurare (parent, TP, entrambi);</li>
-<li>quali fattori cambiano (tempo, dose, catalizzatore, matrice);</li>
+<li>che cosa si vuole misurare (un analita, più analiti, composti sconosciuti);</li>
+<li>quali fattori cambiano (tempo, dose, trattamento, matrice);</li>
 <li>quali controlli dicono che l'effetto è reale;</li>
 <li>quanti campioni, in quale ordine, con quale metodo.</li>
 </ul>
@@ -31,15 +31,15 @@ Un bianco è un campione senza l'analita. Dice da dove viene il segnale che non 
 <tr><td><b>Bianco di solvente</b></td><td>Solo il solvente di iniezione</td><td>Fondo dello strumento, trasporto da una corsa all'altra (carry-over)</td></tr>
 <tr><td><b>Bianco di processo</b></td><td>Tutti i reagenti, senza analita</td><td>Contaminazioni da vetreria, reagenti, filtri, plastiche</td></tr>
 <tr><td><b>Bianco di matrice</b></td><td>La matrice reale, senza analita</td><td>Interferenze della matrice e soppressione ionica</td></tr>
-<tr><td><b>Controllo a t0</b></td><td>Il campione prima della trasformazione</td><td>Impurezze già presenti: non sono prodotti</td></tr>
-<tr><td><b>Controllo senza trattamento</b></td><td>Il campione trattato allo stesso modo, ma senza il fattore (buio, senza catalizzatore, senza ossidante)</td><td>Perdite che non dipendono dal trattamento: adsorbimento, volatilità, idrolisi</td></tr>
+<tr><td><b>Controllo a t0</b></td><td>Il campione prima del trattamento</td><td>Segnali già presenti: non sono effetto del trattamento</td></tr>
+<tr><td><b>Controllo senza trattamento</b></td><td>Il campione trattato allo stesso modo, ma senza il fattore studiato (per esempio senza reagente o senza la fase di prova)</td><td>Perdite che non dipendono dal trattamento: adsorbimento, volatilità, idrolisi</td></tr>
 </table>
 ```
 
-L'ultima riga è la più importante in uno studio di degradazione. Senza il controllo al buio, una perdita per adsorbimento sul catalizzatore si scambia per fotodegradazione.
+L'ultima riga è la più importante quando si cerca un effetto. Senza questo controllo, una perdita per adsorbimento sulle pareti della vial si scambia per un effetto del trattamento.
 
 ```html
-<div class="box warn"><b>Errore frequente</b><p>Un segnale presente nel bianco, o a t0 con la stessa intensità, non è un prodotto di trasformazione. Va tolto dalla lista dei candidati (capitolo 12).</p></div>
+<div class="box warn"><b>Errore frequente</b><p>Un segnale presente nel bianco, o a t0 con la stessa intensità, non è un effetto del trattamento. Va tolto dalla lista dei candidati (capitolo 12).</p></div>
 ```
 
 ## Repliche
@@ -87,7 +87,7 @@ La retta di taratura mette in relazione area e concentrazione (capitolo 12). Al 
 
 ## Randomizzazione e blocchi
 
-Se i campioni sono iniettati nell'ordine del tempo di reazione (t0, poi t1, poi t2...), la deriva dello strumento si confonde con la cinetica. Una sorgente che si sporca lentamente sembra una degradazione.
+Se i campioni sono iniettati nell'ordine del tempo di prelievo (t0, poi t1, poi t2...), la deriva dello strumento si confonde con l'effetto del tempo. Una sorgente che si sporca lentamente sembra una perdita di analita.
 
 La soluzione è la randomizzazione.
 
@@ -101,7 +101,7 @@ La soluzione è la randomizzazione.
 
 Un'eccezione sensata: standard di taratura in ordine di concentrazione crescente, per ridurre il carry-over.
 
-Il campione di una cinetica va fermato (_quenched_) al momento del prelievo, se la reazione continua nella vial. Altrimenti il tempo di attesa nell'autocampionatore diventa un fattore nascosto.
+Un campione prelevato da un processo in corso va fermato (_quenched_) al momento del prelievo, se il processo continua nella vial. Altrimenti il tempo di attesa nell'autocampionatore diventa un fattore nascosto.
 
 ## La sequenza di iniezione
 
@@ -150,10 +150,10 @@ Il rapporto deve dire in modo chiaro e verificabile quale struttura si propone. 
 Due schemi diversi hanno significati diversi.
 
 ```html
-<div class="box"><b>Due schemi, due significati</b><p>Nello schema di <b>trasformazione</b> i prodotti sono <i>molecole</i> (neutre: quelle che si formano nel reattore) e la freccia è una reazione chimica. L'<i>m/z</i> scritto sopra un TP è quello dell'ione che si sceglie di osservare, di solito [M+H]<sup>+</sup>. Nello schema di <b>frammentazione</b> tutto avviene in fase gassosa dentro lo strumento: il precursore e ogni frammento sono <i>ioni</i> (a numero pari di elettroni), tutti con la carica, e la freccia è una dissociazione. Sopra la freccia va la <b>perdita neutra</b> (−NH<sub>3</sub>, −H<sub>2</sub>O, −CO ...), che nello spettro non si vede.</p></div>
+<div class="box"><b>Due schemi, due significati</b><p>Nello schema di <b>trasformazione</b> i prodotti sono <i>molecole</i> (neutre: quelle che si formano in soluzione) e la freccia è una reazione chimica. L'<i>m/z</i> scritto sopra un prodotto è quello dell'ione che si sceglie di osservare, di solito [M+H]<sup>+</sup>. Nello schema di <b>frammentazione</b> tutto avviene in fase gassosa dentro lo strumento: il precursore e ogni frammento sono <i>ioni</i> (a numero pari di elettroni), tutti con la carica, e la freccia è una dissociazione. Sopra la freccia va la <b>perdita neutra</b> (−NH<sub>3</sub>, −H<sub>2</sub>O, −CO ...), che nello spettro non si vede.</p></div>
 ```
 
-La posizione dei gruppi nuovi (per esempio gli OH nei TP) è un'ipotesi plausibile, non l'unica possibile. A risoluzione unitaria l'*m/z* non la decide. Nel rapporto si scrive "ipotesi" e si dice su che cosa si basa.
+La posizione dei gruppi nuovi (per esempio gli OH in un prodotto ossidato) è un'ipotesi plausibile, non l'unica possibile. A risoluzione unitaria l'*m/z* non la decide. Nel rapporto si scrive "ipotesi" e si dice su che cosa si basa.
 
 ### SMILES
 
@@ -185,7 +185,7 @@ Alcune regole:
 ```html
 <ul>
 <li><b>Un solo stile</b>: stessa lunghezza dei legami, stesso carattere, stesso orientamento della parte comune a tutte le molecole.</li>
-<li><b>Etichette</b>: nome o codice del composto (parent, TP1, TP2), formula, <i>m/z</i> osservato dell'ione e, se si vuole, errore in ppm.</li>
+<li><b>Etichette</b>: nome o codice del composto (composto di partenza, prodotto 1, prodotto 2), formula, <i>m/z</i> osservato dell'ione e, se si vuole, errore in ppm.</li>
 <li><b>Frammenti</b>: per ogni frammento, la carica e gli H spostati; la perdita neutra sopra la freccia.</li>
 <li><b>Formato</b>: grafica vettoriale (SVG o PDF) quando possibile; altrimenti PNG ad almeno 300 dpi. Sfondo bianco, o trasparente se la figura va su un fondo colorato.</li>
 <li><b>Accessibilità</b>: contrasto alto, testo non troppo piccolo, descrizione della figura nella didascalia.</li>
@@ -198,14 +198,14 @@ Una struttura proposta non è tutta uguale. Conviene scrivere il livello di conf
 
 ## Verifica
 
-??? Perché, in una cinetica, i campioni non si iniettano nell'ordine dei tempi di reazione?
-Perché la deriva dello strumento (sorgente che si sporca, risposta che cala) si confonderebbe con la cinetica. Si randomizza l'ordine, con i QC a intervalli regolari per vedere la deriva.
+??? Perché, in una serie nel tempo, i campioni non si iniettano nell'ordine dei tempi di prelievo?
+Perché la deriva dello strumento (sorgente che si sporca, risposta che cala) si confonderebbe con l'effetto del tempo. Si randomizza l'ordine, con i QC a intervalli regolari per vedere la deriva.
 
 ??? Hai tre iniezioni dello stesso vial. Sono tre repliche?
 Sono repliche strumentali, non indipendenti. Misurano la ripetibilità dello strumento, non la variabilità dell'esperimento. Servono repliche dell'esperimento intero.
 
-??? Un segnale a m/z 168 compare a t0, nel controllo al buio e nel bianco di processo. È un TP?
-No. È fondo, contaminazione o impurezza. Un TP deve comparire con il trattamento e mancare, o essere molto più basso, nei controlli.
+??? Un segnale a m/z 168 compare a t0, nel controllo senza trattamento e nel bianco di processo. È un prodotto del trattamento?
+No. È fondo, contaminazione o impurezza. Un prodotto del trattamento deve comparire con il trattamento e mancare, o essere molto più basso, nei controlli.
 
 ??? Che differenza c'è tra uno schema di trasformazione e uno di frammentazione?
 Nel primo i prodotti sono molecole neutre che si formano in soluzione; nel secondo precursore e frammenti sono ioni in fase gassosa e le frecce portano le perdite neutre.

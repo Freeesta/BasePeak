@@ -14,7 +14,7 @@ def test_massa_values():
     js = r"""
 const fs=require('fs'),vm=require('vm'),w=process.argv[1];
 const ctx={module:{exports:{}},console};vm.createContext(ctx);
-vm.runInContext(fs.readFileSync(w+'/elements.js','utf8')+'\nthis.ELEMENTS=ELEMENTS;',ctx);
+vm.runInContext(fs.readFileSync(w+'/teoria/masse.js','utf8')+'\nthis.ELEMENTS=ELEMENTS;',ctx);
 vm.runInContext(fs.readFileSync(w+'/teoria/pratica/motore.js','utf8')+'\nthis.PAL=PAL;',ctx);
 vm.runInContext(fs.readFileSync(w+'/teoria/strumenti/massa.js','utf8'),ctx);
 const m=ctx.module.exports, r=m.calcola('C8H14ClN5',ctx.PAL,ctx.ELEMENTS);
