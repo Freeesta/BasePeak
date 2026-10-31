@@ -26,7 +26,6 @@ VERIFICA_PENDING = {
     "26-gruppi.html",
     "27-tabella.html",
     "36-storia-settori.html",
-    "39-storia-ft.html",
     "40-storia-sorgenti.html",
     "42-storia-rivelatori-dati.html",
 }
