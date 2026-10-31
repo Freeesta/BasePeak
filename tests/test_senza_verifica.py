@@ -27,7 +27,6 @@ VERIFICA_PENDING = {
     "27-tabella.html",
     "33-storia-mappa.html",
     "34-storia-origini.html",
-    "35-storia-aston-dempster.html",
     "36-storia-settori.html",
     "37-storia-tof.html",
     "38-storia-rf.html",

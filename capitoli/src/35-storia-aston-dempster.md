@@ -1,19 +1,134 @@
 # Aston e Dempster: isotopi e numeri interi {kicker: Capitolo 35}
 
+{.lead} Nel 1919 due strumenti diversi trasformano le parabole di Thomson in spettri veri: uno fotografa le masse, l'altro le conta.
+
 ## Aston: lo spettrografo di massa (1919)
+
+Il metodo delle parabole aveva un limite: le tracce erano larghe e le masse erano attendibili solo a circa l'1%. Per distinguere gli isotopi servivano righe nette e misure molto più precise.
+
+Francis Aston, a Cambridge, sostituì il sottile tubo circolare con due fenditure parallele. Il fascio diventa un nastro, e la sua intensità cala col quadrato dell'apertura invece che con la quarta potenza: arriva molto più segnale sulla lastra.
+
+### Focalizzare per velocità: un campo elettrico e un magnete in serie
+
+Il nastro attraversa prima un campo elettrico, che lo apre in uno spettro di velocità: gli ioni più veloci deviano di meno. Un diaframma ne sceglie un gruppo, che entra nel campo di un magnete orientato in modo da piegarlo in senso opposto.
+
+Le due deviazioni si compensano: ioni con lo stesso rapporto massa/carica ma velocità diverse convergono sullo stesso punto della lastra. È una focalizzazione per velocità, e la figura 35.1 la mostra.
+
+```html
+<figure><img src="../assets/img/storia/schemi/spettrografo-aston.svg" loading="lazy" decoding="async" style="max-width:100%;height:auto" width="720" height="376" alt="Schema dello spettrografo di Aston: fenditure, campo elettrico, magnete e lastra fotografica con gli ioni di una massa a fuoco"><figcaption><b>Figura 35.1</b> Lo spettrografo di massa di Aston: il campo elettrico disperde gli ioni per velocità, il magnete li piega in senso opposto e li riunisce sulla lastra. Disegno originale, CC BY 4.0.</figcaption></figure>
+```
+
+Per analogia con lo spettrografo ottico, Aston chiamò «spettrografo di massa» lo strumento e «spettro di massa» l'immagine che produce.
+
+### La lastra: righe al posto delle parabole
+
+Gli ioni anneriscono una lastra fotografica: ogni massa lascia una riga, e la posizione cresce quasi linearmente con la massa. Le righe si misurano per confronto con masse note, come quelle di idrogeno, carbonio, ossigeno e dei loro composti, presenti come impurezze o aggiunte apposta.
+
+```html
+<figure><img src="../assets/img/storia/foto/aston-spettri.webp" loading="lazy" decoding="async" style="max-width:100%;height:auto" width="480" height="678" alt="Lastra con gli spettri di massa di Aston: neon, cloro, argon e kripton, con le righe numerate"><figcaption><b>Figura 35.2</b> Spettri di massa su lastra: neon, cloro, argon e kripton. F.W. Aston, Isotopes, 1922; Science History Institute; pubblico dominio.</figcaption></figure>
+```
 
 ## La regola dei numeri interi
 
+Con le prime lastre Aston misurò le masse degli isotopi di molti elementi. Il risultato fu netto: entro circa una parte su mille, le masse sono numeri interi, e l'unica eccezione è l'idrogeno.
+
+La regola riprende un'idea di Prout, che nel 1815 aveva immaginato tutti gli atomi costruiti con idrogeno. Per questa scoperta e per l'enunciato della regola Aston ricevette nel 1922 il premio Nobel per la Chimica.
+
+### Cloro 35 e 37: la massa atomica 35,5 è una media
+
+La massa atomica del cloro è 35,46, ma sulla lastra non compare nessuna riga a 35,46. Le righe forti sono a 35 e a 37; quelle a 36 e 38 sono dovute all'acido cloridrico, e lo conferma lo spettro degli ioni negativi, dove restano solo 35 e 37.
+
+Il numero della tavola periodica è dunque una media pesata. Un calcolo semplice lo mostra: per ottenere 35,46 servono circa tre atomi di massa 35 ogni quattro, e uno di massa 37. Lo stesso vale per il neon: con un 10% di atomi di massa 22 la media dei due isotopi, 20 e 22, sale a 20,2.
+
+La media è quello che pesa la bilancia; lo spettrometro vede gli atomi uno per uno. La differenza fra massa media e massa esatta di un solo isotopo è spiegata nel capitolo <a href="11-formula.html">Dalla massa alla formula</a>.
+
+### Il difetto di massa e l'effetto di impaccamento
+
+Aston stesso precisò che la regola non è matematicamente esatta. Gli atomi sono costruiti con le stesse unità, ma il modo in cui sono «impacchettate» cambia un poco la massa: per stagno e xeno la differenza può arrivare a due o tre parti su mille.
+
+L'esempio più importante è l'idrogeno. Quattro nuclei di idrogeno pesano più di un nucleo di elio, quindi trasformare idrogeno in elio fa sparire una quantità di massa. Quello scarto, oggi chiamato difetto di massa, è la misura dell'energia di legame del nucleo.
+
 ## Dempster: lo spettrometro a 180° (1918)
+
+Nel 1918, prima dello spettrografo di Aston, Arthur Dempster pubblicò sulla Physical Review un metodo diverso: invece di una lastra, una misura elettrica. Aston stesso ricorda che con il metodo di Dempster furono analizzati magnesio, calcio e zinco.
+
+### Focalizzare per direzione
+
+Gli ioni sono accelerati da una tensione <i>U</i> ed entrano in un campo magnetico uniforme <i>B</i>. Descrivono una semicirconferenza di raggio <i>r</i> = √(2<i>mU</i>/<i>q</i>)/<i>B</i>: gli ioni pesanti curvano meno, quelli leggeri di più.
+
+Dalla fenditura gli ioni escono con angoli leggermente diversi, ma dopo 180° ricadono quasi tutti nello stesso punto, a distanza 2<i>r</i> dalla fenditura. È una focalizzazione per direzione: l'energia è fissata dalla tensione, quindi qui non serve un campo elettrico.
+
+```html
+<div class="sim storia-fig" id="sf-settore"><h4>Il settore a 180°</h4>
+<figure><img src="../assets/img/storia/schemi/settore-180.svg" loading="lazy" decoding="async" style="max-width:100%;height:auto" width="720" height="400" alt="Settore magnetico a 180 gradi: tre raggi divergenti dalla fenditura si ritrovano sulla fenditura del rivelatore"><figcaption><b>Figura 35.3</b> Il settore magnetico a 180° di Dempster: tre raggi divergenti si rifocalizzano dopo mezzo giro. Con i comandi si cambia il campo B e si passa dal neon al cloro. Disegno originale, CC BY 4.0.</figcaption></figure></div>
+```
+
+### Contare gli ioni con un elettrometro
+
+All'uscita gli ioni arrivano su un collettore, e un elettrometro misura la corrente che portano. Si varia il campo (o la tensione) e le masse cadono una dopo l'altra sulla fenditura. <!-- to verify against source: Dempster 1918, detection of the ion current with an electrometer -->
+
+Il risultato è un grafico di corrente contro campo: l'altezza dei picchi dà direttamente le abbondanze relative, senza passare dall'annerimento di una lastra.
+
+### Ionizzare con elettroni: l'idea della sorgente EI
+
+Per produrre gli ioni Dempster usò un fascio di elettroni che colpisce il gas: è l'idea della ionizzazione per impatto elettronico. <!-- to verify against source: Dempster 1918, ion source by electron impact; whether it was the first --> Quel principio è rimasto la sorgente standard della spettrometria di massa di molecole piccole, descritta nel capitolo <a href="05-ei-ci.html">Ionizzazione EI e CI</a>.
 
 ## Due strade: spettrografo (lastra) e spettrometro (corrente)
 
+```html
+<ul>
+<li><b>Spettrografo di Aston</b>: registra tutte le masse insieme su una lastra, con una sola esposizione; focalizza per velocità.</li>
+<li><b>Spettrometro di Dempster</b>: conta una massa alla volta come corrente; focalizza per direzione.</li>
+</ul>
+```
+
+Le due idee tornano negli strumenti successivi: la focalizzazione per direzione nei settori magnetici, la registrazione simultanea di tutte le masse nei sistemi a piano focale.
+
 ## Chi era
+
+```html
+<details class="storia-chi"><summary>Francis William Aston (1877-1945)</summary>
+```
+
+Nato a Harborne, nel Regno Unito, il 1° settembre 1877, morto a Cambridge il 20 novembre 1945. Lavorò all'Università di Cambridge. Costruì lo spettrografo di massa nel 1919 e con esso mostrò che molti elementi stabili sono miscele di isotopi. Nel 1922 vinse il premio Nobel per la Chimica.
+
+```html
+<figure><img src="../assets/img/storia/foto/aston-ritratto.webp" loading="lazy" decoding="async" style="max-width:100%;height:auto" width="240" height="300" alt="Ritratto fotografico di Francis William Aston"><figcaption>Bain News Service, Library of Congress; pubblico dominio.</figcaption></figure></details>
+<details class="storia-chi"><summary>Arthur Jeffrey Dempster (1886-1950)</summary>
+<p>Nato a Toronto nel 1886, morto nel 1950. Insegnò fisica all'Università di Chicago dal 1916. Costruì lo spettrometro a 180° nel 1918. Nel 1935 pubblicò su Nature una nota sull'uranio: con una sorgente a scintilla trovò, accanto alla riga a 238, una debole componente a 235, con meno dell'1% dell'intensità.</p></details>
+```
 
 ## Perché contava
 
+```html
+<div class="box key"><b>In tre punti</b>
+<ul>
+<li>Le masse intere chiusero la questione degli isotopi per la maggior parte degli elementi.</li>
+<li>Gli scarti dai numeri interi diventarono la misura dell'energia di legame nucleare.</li>
+<li>La rivelazione elettrica e la ionizzazione con elettroni sono gli antenati della spettrometria di massa quantitativa e della sorgente EI.</li>
+</ul></div>
+```
+
 ## Per capire meglio
 
-## Verifica
+```html
+<p class="storia-link">Per capire meglio: <a href="09-risoluzione.html">Risoluzione e analizzatori</a> (potere risolutivo)</p>
+<p class="storia-link">Per capire meglio: <a href="11-formula.html">Dalla massa alla formula</a> (massa esatta e difetto di massa)</p>
+<p class="storia-link">Per capire meglio: <a href="05-ei-ci.html">Ionizzazione EI e CI</a> (la sorgente a impatto elettronico)</p>
+```
 
 ## Fonti
+
+```html
+<ul class="refs">
+<li><span class="tag">articolo</span>Aston F.W. (1919) A positive ray spectrograph. <i>Philos. Mag.</i> 38, 707-714. <a href="https://doi.org/10.1080/14786441208636004" target="_blank" rel="noopener">doi:10.1080/14786441208636004</a></li>
+<li><span class="tag">articolo</span>Aston F.W. (1919) The constitution of the elements. <i>Nature</i> 104, 393. <a href="https://doi.org/10.1038/104393b0" target="_blank" rel="noopener">doi:10.1038/104393b0</a></li>
+<li><span class="tag">storico</span>Aston F.W. (1922) Mass spectra and isotopes, conferenza per il premio Nobel per la Chimica 1922. <a href="https://www.nobelprize.org/prizes/chemistry/1922/aston/lecture/" target="_blank" rel="noopener">nobelprize.org</a>; scheda del premio: <a href="https://www.nobelprize.org/prizes/chemistry/1922/aston/facts/" target="_blank" rel="noopener">nobelprize.org</a></li>
+<li><span class="tag">articolo</span>Dempster A.J. (1918) A new method of positive ray analysis. <i>Phys. Rev.</i> 11, 316-325. <a href="https://doi.org/10.1103/PhysRev.11.316" target="_blank" rel="noopener">doi:10.1103/PhysRev.11.316</a></li>
+<li><span class="tag">articolo</span>Dempster A.J. (1935) Isotopic constitution of uranium. <i>Nature</i> 136, 180. <a href="https://doi.org/10.1038/136180a0" target="_blank" rel="noopener">doi:10.1038/136180a0</a></li>
+<li><span class="tag">storico</span>Downard K.M. (2007) Francis William Aston: the man behind the mass spectrograph. <i>Eur. J. Mass Spectrom.</i> 13, 177-190. <a href="https://doi.org/10.1255/ejms.878" target="_blank" rel="noopener">doi:10.1255/ejms.878</a></li>
+<li><span class="tag">storico</span>Griffiths J. (2008) A brief history of mass spectrometry. <i>Anal. Chem.</i> 80, 5678-5683. <a href="https://doi.org/10.1021/ac8013065" target="_blank" rel="noopener">doi:10.1021/ac8013065</a></li>
+<li><span class="tag">storico</span>Budzikiewicz H., Grigsby R.D. (2006) Mass spectrometry and isotopes: a century of research and discussion. <i>Mass Spectrom. Rev.</i> 25, 146-157. <a href="https://doi.org/10.1002/mas.20061" target="_blank" rel="noopener">doi:10.1002/mas.20061</a></li>
+<li><span class="tag">web</span><a href="https://en.wikipedia.org/wiki/Arthur_Jeffrey_Dempster" target="_blank" rel="noopener">Arthur Jeffrey Dempster</a> (Wikipedia), per le date e la carriera.</li>
+</ul>
+```
