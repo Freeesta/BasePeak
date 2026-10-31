@@ -1,4 +1,4 @@
-"""Checker for the Teoria chapters (mzlab/web/teoria/*.html or --path FILE|FOLDER). Exit 1 if a page has an error NOT listed in tools/teoria_base.json.
+"""Checker for the Teoria chapters (index.html, capitoli/*.html, pratica/*.html, or --path FILE|FOLDER). Exit 1 if a page has an error NOT listed in tools/teoria_base.json.
 
     python3 tools/controlla_teoria.py                  # all pages against the base
     python3 tools/controlla_teoria.py --path bozze/    # private drafts (needs no data repository)
@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from dati_percorsi import radice  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-TEORIA = ROOT / "mzlab" / "web" / "teoria"
+TEORIA = ROOT / "capitoli"      # where the chapters live (a draft outside the site may link to them)
 BASE = Path(__file__).resolve().parent / "teoria_base.json"
 RUN = 10            # consecutive identical words that count as copying
 LABEL_MAX, DESC_MAX = 125, 80
@@ -314,8 +314,21 @@ def private_errors(text, terms, grams):
 
 
 def pages(path):
+    """A file, a folder of pages, or the site root (index.html + capitoli/ + pratica/)."""
     path = Path(path)
-    return [path] if path.is_file() else sorted(path.glob("*.html"))
+    if path.is_file():
+        return [path]
+    if path.resolve() == ROOT:
+        return [ROOT / "index.html", *sorted((ROOT / "capitoli").glob("*.html")), *sorted((ROOT / "pratica").glob("*.html"))]
+    return sorted(path.glob("*.html"))
+
+
+def key(p):
+    """Name of a page in the base file: its path from the site root, or just the file name for a page outside the site."""
+    try:
+        return Path(p).resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        return Path(p).name
 
 
 def run(path, base, use_private=True):
@@ -330,7 +343,7 @@ def run(path, base, use_private=True):
         e = public_errors(p, p.parent, text)
         if terms or grams:
             e += private_errors(text, terms, grams)
-        allerr[p.name] = e
+        allerr[key(p)] = e
     new = {}
     for name, errs in allerr.items():
         known = Counter(base.get(name, []))
@@ -344,7 +357,7 @@ def run(path, base, use_private=True):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--path", default=str(TEORIA), help="page or folder (default: mzlab/web/teoria)")
+    ap.add_argument("--path", default=str(ROOT), help="page or folder (default: the whole site: index.html, capitoli/, pratica/)")
     ap.add_argument("--base", action="store_true", help="rewrite tools/teoria_base.json with the current errors (public checks only)")
     ap.add_argument("--base-file", default=str(BASE))
     ap.add_argument("--senza-base", action="store_true", help="ignore the base: every error counts")

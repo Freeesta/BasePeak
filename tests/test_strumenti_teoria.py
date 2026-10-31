@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-W = Path(__file__).resolve().parent.parent / "mzlab" / "web"
+W = Path(__file__).resolve().parent.parent
 
 
 @pytest.mark.skipif(not shutil.which("node"), reason="node missing")
@@ -14,9 +14,9 @@ def test_massa_values():
     js = r"""
 const fs=require('fs'),vm=require('vm'),w=process.argv[1];
 const ctx={module:{exports:{}},console};vm.createContext(ctx);
-vm.runInContext(fs.readFileSync(w+'/teoria/masse.js','utf8')+'\nthis.ELEMENTS=ELEMENTS;',ctx);
-vm.runInContext(fs.readFileSync(w+'/teoria/pratica/motore.js','utf8')+'\nthis.PAL=PAL;',ctx);
-vm.runInContext(fs.readFileSync(w+'/teoria/strumenti/massa.js','utf8'),ctx);
+vm.runInContext(fs.readFileSync(w+'/assets/masse.js','utf8')+'\nthis.ELEMENTS=ELEMENTS;',ctx);
+vm.runInContext(fs.readFileSync(w+'/pratica/motore.js','utf8')+'\nthis.PAL=PAL;',ctx);
+vm.runInContext(fs.readFileSync(w+'/assets/strumenti/massa.js','utf8'),ctx);
 const m=ctx.module.exports, r=m.calcola('C8H14ClN5',ctx.PAL,ctx.ELEMENTS);
 console.log(JSON.stringify({nom:r.Mnom,M:r.M,mh:r.ioni[0].mz,na:r.ioni[1].mz,mhn:r.ioni[2].mz,nomi:r.ioni.map(x=>x.nom),
  righe:r.righe.map(x=>x.e+x.n),bad:m.calcola('Xx2',ctx.PAL,ctx.ELEMENTS),r1:m.fmt(0.12345,4),r2:m.fmt(2.00005,4),r3:m.fmt(1.5,0),r4:m.fmt(215.09378,4)}));

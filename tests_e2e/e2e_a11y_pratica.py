@@ -1,4 +1,4 @@
-"""Accessibility of Pratica (teoria/pratica*.html, WCAG 2.2 AA): on every page, in the light and the dark scheme, axe-core (serious/critical), accessible names on every
+"""Accessibility of Pratica (pratica/*.html, WCAG 2.2 AA): on every page, in the light and the dark scheme, axe-core (serious/critical), accessible names on every
 visible control, Tab reaching the controls with a visible focus indicator and without a trap, and button / select targets of at least 24 x 24 px (2.5.8).
 Known gaps live in docs/agenti/a11y-da-sistemare.md. Fails (does not skip) when axe is missing: in CI that is a failure."""
 import sys, os, glob; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -7,7 +7,7 @@ from lib import *
 AXE = axe_path()
 if not AXE:
     print("FAIL axe-core not available (pip install axe-playwright-python)"); sys.exit(1)
-PAGES = sorted(os.path.basename(f)[:-5] for f in glob.glob(str(ROOT / "mzlab" / "web" / "teoria" / "pratica*.html")))
+PAGES = sorted(os.path.basename(f)[:-5] for f in glob.glob(str(ROOT / "pratica" / "*.html")))
 assert PAGES, "no Pratica page found"
 steps = []
 def step(name, fn):
@@ -51,12 +51,12 @@ r = Run(port=8871, wd="/tmp/wd_a11y_pra")
 try:
     with sync_playwright() as p:
         r.page(p).close()   # starts the browser (r.b) and the server
-        base = f"http://127.0.0.1:{r.port}/static/teoria/"
+        base = f"http://127.0.0.1:{r.port}/static/"
         for scheme in ("light", "dark"):
             q = r.b.new_page(viewport={"width": 1280, "height": 900}, color_scheme=scheme, reduced_motion="reduce")
             try:
                 for pr in PAGES:
-                    q.goto(base + pr + ".html"); attendi(q, "document.readyState === 'complete' && document.body.innerText.length > 100")
+                    q.goto(base + "pratica/" + pr + ".html"); attendi(q, "document.readyState === 'complete' && document.body.innerText.length > 100")
                     attendi(q, "document.documentElement.dataset.theme === %r" % scheme)
                     for what, fn in (("axe", axe_ok), ("accessible names", names), ("Tab and focus indicator", tabs), ("24 px targets", targets)):
                         step(f"{pr} ({scheme}): {what}", lambda fn=fn: fn(q))

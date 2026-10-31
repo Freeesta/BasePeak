@@ -4,8 +4,8 @@ numbered sections, a numbered equation and figure, boxes, end-of-chapter questio
     python3 tools/nuovo_capitolo.py 25 spe "Estrazione in fase solida (SPE)" --parte "I bis. Preparare il campione"
     python3 tools/nuovo_capitolo.py 25 spe "Estrazione in fase solida (SPE)" --out ../mzlab-dati/corso/bozze_teoria --source-card "scheda-25"
 
-Writes mzlab/web/teoria/NN-slug.html (or <out>/NN-slug.html: private drafts are born in the private repository) and prints the lines to add by hand
-to CHAPTERS in teoria.js (registering the chapter is not done here). Checked afterwards by tools/controlla_teoria.py."""
+Writes capitoli/NN-slug.html (or <out>/NN-slug.html: private drafts are born in the private repository) and prints the lines to add by hand
+to CHAPTERS in assets/teoria.js (registering the chapter is not done here). Checked afterwards by tools/controlla_teoria.py."""
 import argparse
 import re
 import sys
@@ -14,7 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import tema_testa  # noqa: E402
 
-TEORIA = Path(__file__).resolve().parent.parent / "mzlab" / "web" / "teoria"
+TEORIA = Path(__file__).resolve().parent.parent / "capitoli"
 
 TEMPLATE = """<!doctype html>
 <html lang="it" data-esteso><head><meta charset="utf-8">
@@ -27,7 +27,7 @@ Skeleton from tools/nuovo_capitolo.py: no course text here. Write by hand from t
 Do not copy sentences from the sources (tools/controlla_teoria.py rejects runs of 10 identical words).
 -->
 <meta name="robots" content="noindex">
-<title>@TITLE@ · Teoria QqQ lab</title><link rel="icon" href="favicon.ico" sizes="48x48"><link rel="icon" href="icone/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icone/apple-touch-icon.png"><link rel="manifest" href="site.webmanifest"><meta name="theme-color" content="#2f6aa3"><link rel="stylesheet" href="teoria.css"><script src="tema.js"></script></head>
+<title>@TITLE@ · Teoria QqQ lab</title><link rel="icon" href="../assets/favicon.ico" sizes="48x48"><link rel="icon" href="../assets/icone/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../assets/icone/apple-touch-icon.png"><link rel="manifest" href="../assets/site.webmanifest"><meta name="theme-color" content="#2f6aa3"><link rel="stylesheet" href="../assets/teoria.css"><script src="../assets/tema.js"></script></head>
 <body>
 <div class="wrap"><nav id="side"></nav><main>
 <div class="kicker">Capitolo @N@</div>
@@ -67,7 +67,7 @@ Do not copy sentences from the sources (tools/controlla_teoria.py rejects runs o
 <li><span class="tag">libro</span>TODO.</li>
 </ul>
 </main></div>
-<script src="../appname.js"></script><script src="teoria.js"></script>
+<script src="../assets/appname.js"></script><script src="../assets/teoria.js"></script>
 </body></html>
 """
 
@@ -85,7 +85,7 @@ def main(argv=None) -> int:
     ap.add_argument("slug")
     ap.add_argument("titolo")
     ap.add_argument("--parte", default="TODO: parte")
-    ap.add_argument("--out", type=Path, default=TEORIA, help="output folder (default: mzlab/web/teoria)")
+    ap.add_argument("--out", type=Path, default=TEORIA, help="output folder (default: capitoli)")
     ap.add_argument("--source-card", default="TODO: nome della scheda sorgente privata")
     ap.add_argument("--force", action="store_true", help="overwrite an existing file")
     a = ap.parse_args(argv)
@@ -101,8 +101,8 @@ def main(argv=None) -> int:
     a.out.mkdir(parents=True, exist_ok=True)
     dest.write_text(build(a.numero, a.titolo, a.source_card), encoding="utf-8")
     print(f"written {dest}")
-    print("add to CHAPTERS in teoria.js:")
-    print(f'  ["{name}", "{a.numero}", "{a.titolo}", "{a.parte}"],')
+    print("add to CHAPTERS in assets/teoria.js:")
+    print(f'  ["capitoli/{name}", "{a.numero}", "{a.titolo}", "{a.parte}"],')
     return 0
 
 

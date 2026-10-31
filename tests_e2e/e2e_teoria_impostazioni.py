@@ -12,10 +12,10 @@ r = Run(port=8974, wd="/tmp/wd_teoria_impostazioni")
 try:
     with sync_playwright() as p:
         r.page(p)
-        T = f"http://127.0.0.1:{r.port}/static/teoria/"
+        T = f"http://127.0.0.1:{r.port}/static/"
         c = r.b.new_context(viewport={"width": 1280, "height": 900}); q = c.new_page()
         q.on("pageerror", lambda e: r.errs.append(("pageerror", str(e))))
-        q.goto(T + "13-formula.html"); q.wait_for_selector("#a11y-btn")
+        q.goto(T + "capitoli/13-formula.html"); q.wait_for_selector("#a11y-btn")
         ls = lambda k: q.evaluate(f"localStorage.getItem('{k}')")
         def content():
             q.click("#a11y-btn"); q.wait_for_selector("#a11y-panel:not([hidden])")

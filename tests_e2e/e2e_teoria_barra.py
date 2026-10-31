@@ -21,14 +21,14 @@ r = Run(port=8971, wd="/tmp/wd_teoria_barra")
 try:
     with sync_playwright() as p:
         r.page(p)
-        T = f"http://127.0.0.1:{r.port}/static/teoria/"
+        T = f"http://127.0.0.1:{r.port}/static/"
         def new(w=1280, h=900, ctx=False, **kw):
             c = r.b.new_context(viewport={"width": w, "height": h}, reduced_motion="reduce", **kw); q = c.new_page()
             q.on("pageerror", lambda e: r.errs.append(("pageerror", str(e))))
             return q
         def page(q, f):
             q.goto(T + f); q.wait_for_selector("#tbar"); q.wait_for_selector("#a11y-btn"); q.wait_for_function("typeof TEORIA!=='undefined' && typeof TEORIA.cerca==='function' && typeof TEORIA.strumenti==='object'")
-        q = new(); page(q, "13-formula.html")
+        q = new(); page(q, "capitoli/13-formula.html")
         def order():
             ids = q.eval_on_selector_all("#tbar > *, #tbar .tgrp > *", "e=>e.filter(x=>x.matches('a,button')).map(x=>x.id)")
             assert ids == ["tc-indice", "tc-prec", "tc-succ", "tc-schermo", "a11y-btn"], ids
@@ -49,20 +49,20 @@ try:
                 b = q.locator(s).bounding_box(); assert b["height"] >= 24 and b["width"] >= 24, (s, b)
         step("targets: header at least 32x32 px with a mouse (44 on touch), side commands at least 24 px", targets)
         def prevnext():
-            n = q.get_attribute("#tc-succ", "href"); assert n == "14-frammentazione-esi.html", n
+            n = q.get_attribute("#tc-succ", "href"); assert n == "../capitoli/14-frammentazione-esi.html", n
             q.click("#tc-succ"); q.wait_for_url("**/14-frammentazione-esi.html")
-            q.wait_for_selector("#tbar"); assert q.get_attribute("#tc-prec", "href") == "13-formula.html"
+            q.wait_for_selector("#tbar"); assert q.get_attribute("#tc-prec", "href") == "../capitoli/13-formula.html"
             q.click("#tc-prec"); q.wait_for_url("**/13-formula.html"); q.wait_for_selector("#tbar")
             assert q.inner_text("#tc-succ").strip() == "14" and q.inner_text("#tc-prec").strip() == "12", (q.inner_text("#tc-succ"), q.inner_text("#tc-prec"))
             pb, sb = q.locator("#tc-prec svg").bounding_box(), q.locator("#tc-prec .l").bounding_box(); assert pb["x"] < sb["x"], "arrow left of the number (previous)"
             pb, sb = q.locator("#tc-succ svg").bounding_box(), q.locator("#tc-succ .l").bounding_box(); assert pb["x"] > sb["x"], "arrow right of the number (next)"
             assert q.get_attribute("#tc-prec", "title").startswith("Precedente: 12.") and q.get_attribute("#tc-succ", "title").startswith("Successivo: 14."), (q.get_attribute("#tc-prec", "title"), q.get_attribute("#tc-succ", "title"))
-            for f, gone, kept in (("index.html", "#tc-prec", "#tc-succ"), ("pratica-tp.html", "#tc-succ", "#tc-prec")):
+            for f, gone, kept in (("index.html", "#tc-prec", "#tc-succ"), ("pratica/tp.html", "#tc-succ", "#tc-prec")):
                 q.goto(T + f); q.wait_for_selector("#tbar"); assert not q.query_selector(gone) and q.query_selector(kept), (f, gone)
             for w in (1280, 1000):
-                q.set_viewport_size({"width": w, "height": 900}); q.goto(T + "13-formula.html"); q.wait_for_selector("#tbar")
+                q.set_viewport_size({"width": w, "height": 900}); q.goto(T + "capitoli/13-formula.html"); q.wait_for_selector("#tbar")
                 assert q.evaluate("document.querySelector('#top').getBoundingClientRect().height") < 80, "header on one row"
-            q.set_viewport_size({"width": 1280, "height": 900}); q.goto(T + "13-formula.html"); q.wait_for_selector("#tbar")
+            q.set_viewport_size({"width": 1280, "height": 900}); q.goto(T + "capitoli/13-formula.html"); q.wait_for_selector("#tbar")
         step("previous / next show the chapter number (arrow outside), change the chapter, are absent at the ends, one header row", prevnext)
         def cerca():
             q.click("#sc-cerca"); q.wait_for_selector("#cerca-in", state="visible"); assert q.evaluate("TEORIA.cerca.aperta()")
@@ -72,17 +72,17 @@ try:
         step("Cerca opens the dialog (button and Ctrl+K), Esc gives the focus back", cerca)
         def links():
             q.click("#sc-glossario"); q.wait_for_url("**/21-glossario.html"); q.wait_for_selector("#tbar")
-            q.click("#sc-formule"); q.wait_for_url("**/22-formulario.html"); q.wait_for_selector("#tbar"); q.goto(T + "13-formula.html"); q.wait_for_selector("#tbar")
+            q.click("#sc-formule"); q.wait_for_url("**/22-formulario.html"); q.wait_for_selector("#tbar"); q.goto(T + "capitoli/13-formula.html"); q.wait_for_selector("#tbar")
         step("Glossario and Formule go to the chapters 21 and 22", links)
         def esercizi():
-            q.goto(T + "16-ei-famiglie.html"); q.wait_for_selector("#tbar"); q.click("#sc-esercizi"); q.wait_for_timeout(300)
+            q.goto(T + "capitoli/16-ei-famiglie.html"); q.wait_for_selector("#tbar"); q.click("#sc-esercizi"); q.wait_for_timeout(300)
             assert q.evaluate("document.activeElement.classList.contains('gym')"), q.evaluate("document.activeElement.outerHTML.slice(0,80)")
-            q.goto(T + "04-lc.html"); q.wait_for_selector("#tbar"); q.click("#sc-esercizi"); q.wait_for_timeout(300)
+            q.goto(T + "capitoli/04-lc.html"); q.wait_for_selector("#tbar"); q.click("#sc-esercizi"); q.wait_for_timeout(300)
             assert q.evaluate("/^Verifica/.test(document.activeElement.textContent.trim())")
-            q.goto(T + "pratica-ei.html"); q.wait_for_selector("#tbar"); q.click("#sc-esercizi")
+            q.goto(T + "pratica/ei.html"); q.wait_for_selector("#tbar"); q.click("#sc-esercizi")
         step("Esercizi goes to the «Allenati» box, else «Verifica»", esercizi)
         def strum():
-            q.goto(T + "14-frammentazione-esi.html"); q.wait_for_selector("#sidecmd"); q.wait_for_function("typeof TEORIA.strumenti==='object'")
+            q.goto(T + "capitoli/14-frammentazione-esi.html"); q.wait_for_selector("#sidecmd"); q.wait_for_function("typeof TEORIA.strumenti==='object'")
             assert q.eval_on_selector("#sc-strumenti", "e=>e.open") is False
             q.focus("#sc-strumenti summary"); q.keyboard.press("Enter"); assert q.eval_on_selector("#sc-strumenti", "e=>e.open")
             items = q.eval_on_selector_all("#sc-strumenti .sc-sub button", "e=>e.map(x=>x.textContent)"); assert items == ["Frammenta", "Massa e addotti", "Tavola periodica", "Perdite"], items
@@ -116,7 +116,7 @@ try:
         step("labels give way when the row is narrow, no overflow", fit)
         q.close()
         def narrow():
-            d = new(820, 900); page(d, "13-formula.html")
+            d = new(820, 900); page(d, "capitoli/13-formula.html")
             assert d.is_visible("#cb-succ") and d.is_visible("#cb-prec") and d.is_visible("#menu") and d.is_visible("#a11y-btn")
             assert not d.is_visible("#tc-prec") and not d.is_visible("#tc-indice") and not d.is_visible("#sc-cerca")
             for s in ("#cb-prec", "#cb-succ", "#menu", "#a11y-btn"):
@@ -130,7 +130,7 @@ try:
         def phone():
             c = r.b.new_context(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True, reduced_motion="reduce"); d = c.new_page()
             d.on("pageerror", lambda e: r.errs.append(("pageerror", str(e))))
-            page(d, "06-esi.html")
+            page(d, "capitoli/06-esi.html")
             assert d.is_visible("#a11y-btn") and d.is_visible("#info") and d.is_visible("#menu") and d.locator("#tc-altro").count() == 0
             for s in ("#a11y-btn", "#info", "#menu"):
                 b = d.locator(s).bounding_box(); assert b["height"] >= 40 and b["width"] >= 40, (s, b)
@@ -139,7 +139,7 @@ try:
             d.tap("#sc-strumenti summary"); d.tap("#sc-strumenti [data-cmd=tavola]"); d.wait_for_function("TEORIA.strumenti.aperto()==='tavola'")
             c.close()
         step("phone: gear and info at the top, search and tools in the index sheet, targets >= 40 px", phone)
-        d = new(); d.goto(T + "13-formula.html"); d.wait_for_selector("#tbar")
+        d = new(); d.goto(T + "capitoli/13-formula.html"); d.wait_for_selector("#tbar")
         def axe():
             if not AXE: print("SKIP axe (pip install axe-playwright-python)"); return
             d.add_script_tag(path=AXE)

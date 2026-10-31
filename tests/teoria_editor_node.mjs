@@ -1,6 +1,6 @@
-// Fake GitHub for the pull-request flow of the Teoria editor (mzlab/web/libro/pr.js); prints one JSON object with what each scenario saw. See tests/test_teoria_editor.py.
-import { makePrClient, headings } from "../mzlab/web/libro/pr.js";
-import { b64enc, b64dec } from "../mzlab/web/libro/gh.js";
+// Fake GitHub for the pull-request flow of the Teoria editor (editor/pr.js); prints one JSON object with what each scenario saw. See tests/test_teoria_editor.py.
+import { makePrClient, headings } from "../editor/pr.js";
+import { b64enc, b64dec } from "../editor/gh.js";
 
 const SRC = "mzlab/web/teoria/src/12-dati.md";
 const PAGE = "mzlab/web/teoria/12-dati.html";

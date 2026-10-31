@@ -1,10 +1,10 @@
 """Reference chemistry for the tests, independent of the JavaScript code under test: a formula parser and the monoisotopic mass summed in Python from the isotope table of
-mzlab/web/teoria/masse.js (the data of the Teoria; it is plain JSON after `const ELEMENTS =`)."""
+assets/masse.js (the data of the Teoria; it is plain JSON after `const ELEMENTS =`)."""
 import json
 import re
 from pathlib import Path
 
-_SRC = (Path(__file__).resolve().parent.parent / "mzlab" / "web" / "teoria" / "masse.js").read_text(encoding="utf-8")
+_SRC = (Path(__file__).resolve().parent.parent / "assets" / "masse.js").read_text(encoding="utf-8")
 _START = _SRC.index("\nconst ELEMENTS = ") + len("\nconst ELEMENTS = ")
 ELEMENTS = {e["s"]: e for e in json.loads(_SRC[_START:_SRC.index("\n];", _START) + 2])}
 

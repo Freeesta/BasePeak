@@ -9,12 +9,12 @@ def step(name, fn):
         import traceback; ln = [f.lineno for f in traceback.extract_tb(e.__traceback__) if f.filename.endswith("e2e_teoria_nav.py")][-1]
         steps.append((name, f"FAIL (line {ln}) " + str(e).split("\n")[0][:220]))
 IPHONE = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
-PAGES = ["index.html", "03-cromatografia.html", "06-esi.html", "14-frammentazione-esi.html", "22-formulario.html", "pratica.html", "pratica-ei.html", "pratica-orale.html", "pratica-formula.html"]
+PAGES = ["index.html", "capitoli/03-cromatografia.html", "capitoli/06-esi.html", "capitoli/14-frammentazione-esi.html", "capitoli/22-formulario.html", "pratica/index.html", "pratica/ei.html", "pratica/orale.html", "pratica/formula.html"]
 r = Run(port=8972, wd="/tmp/wd_tnav")
 try:
     with sync_playwright() as p:
         r.page(p)
-        U = f"http://127.0.0.1:{r.port}/"; T = U + "static/teoria/"
+        U = f"http://127.0.0.1:{r.port}/"; T = U + "static/"
         def ctx(w, h=800, **k):
             c = r.b.new_context(viewport={"width": w, "height": h}, **k); q = c.new_page()
             q.on("pageerror", lambda e: r.errs.append(("pageerror", str(e)))); return c, q
@@ -35,17 +35,17 @@ try:
             assert q.get_attribute("#tab-dati", "href") == "../../#/data" and q.get_attribute("#tab-disegno", "href") == "../../#/draw"
         def widths():
             for w in (360, 768, 1280):
-                c, q = ctx(w); go(q, T + "06-esi.html"); tabs_ok(q, w)
-                go(q, T + "pratica-ei.html"); tabs_ok(q, w); idle(q); c.close()
+                c, q = ctx(w); go(q, T + "capitoli/06-esi.html"); tabs_ok(q, w)
+                go(q, T + "pratica/ei.html"); tabs_ok(q, w); idle(q); c.close()
         step("tabs Dati · Disegno · Teoria visible and ≥ 32 px with a mouse at 360, 768, 1280 px (Teoria and Pratica)", widths)
         def dark():
-            c, q = ctx(360, color_scheme="dark"); go(q, T + "12-dati.html"); tabs_ok(q, 360)
+            c, q = ctx(360, color_scheme="dark"); go(q, T + "capitoli/12-dati.html"); tabs_ok(q, 360)
             L = "(c=>{const m=c.match(/[0-9.]+/g).map(Number),f=v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)};return .2126*f(m[0])+.7152*f(m[1])+.0722*f(m[2])})"
             k = q.evaluate("(()=>{const L=" + L + ";const bg=getComputedStyle(document.querySelector('#top')).backgroundColor;return ['#tab-dati','#tab-teoria'].map(s=>{const a=L(getComputedStyle(document.querySelector(s)).color),b=L(bg);return (Math.max(a,b)+.05)/(Math.min(a,b)+.05)})})()")
             assert min(k) >= 4.5, k; idle(q); c.close()
         step("dark theme: tab text readable (≥ 4.5)", dark)
         def keyboard():
-            c, q = ctx(1280); go(q, T + "13-formula.html"); q.wait_for_selector("#tabs")
+            c, q = ctx(1280); go(q, T + "capitoli/13-formula.html"); q.wait_for_selector("#tabs")
             q.evaluate("document.querySelector('#tab-dati').focus()")
             ids = [q.evaluate("document.activeElement.id")]
             for _ in range(2):
@@ -64,7 +64,7 @@ try:
         step("every page of the Teoria and of the Pratica has the tabs", everywhere)
         def phone():
             c = r.b.new_context(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True, user_agent=IPHONE); q = c.new_page()
-            go(q, T + "04-lc.html"); q.wait_for_selector("#tabs")
+            go(q, T + "capitoli/04-lc.html"); q.wait_for_selector("#tabs")
             names = q.eval_on_selector_all("#tabs a", "e=>e.map(x=>x.textContent)"); assert names == ["Teoria"], names
             assert q.locator("#tab-teoria").bounding_box()["height"] >= 44
             assert q.evaluate("document.documentElement.scrollWidth") <= 390
@@ -72,7 +72,7 @@ try:
         step("phone: only Teoria in the header", phone)
         def filep():
             import pathlib
-            c, q = ctx(1280); go(q, (pathlib.Path(__file__).resolve().parent.parent / "mzlab/web/teoria/04-lc.html").as_uri()); q.wait_for_selector("#top")
+            c, q = ctx(1280); go(q, (pathlib.Path(__file__).resolve().parent.parent / "capitoli/04-lc.html").as_uri()); q.wait_for_selector("#top")
             assert q.locator("#tab-teoria").count() == 1; idle(q); c.close()
         step("from file:// tab Teoria is present", filep)
 finally:

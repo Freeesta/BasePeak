@@ -1,24 +1,24 @@
 {
- "03-cromatografia.html": [
+ "capitoli/03-cromatografia.html": [
   "A: heading level jumps h2 -> h4: Risoluzione di due picchi",
   "B: table without caption",
   "B: table without caption",
   "B: table without caption"
  ],
- "04-lc.html": [
+ "capitoli/04-lc.html": [
   "A: heading level jumps h2 -> h4: Isocratica o gradiente in fase inversa",
   "B: table without caption",
   "B: table without caption",
   "B: table without caption"
  ],
- "05-gc.html": [
+ "capitoli/05-gc.html": [
   "B: table without caption",
   "B: table without caption",
   "B: table without caption",
   "B: table without caption",
   "B: table without caption"
  ],
- "06-esi.html": [
+ "capitoli/06-esi.html": [
   "A: heading level jumps h2 -> h4: Competizione per la carica",
   "A: heading level jumps h2 -> h4: La vita di una goccia",
   "B: table without caption",
@@ -27,38 +27,38 @@
   "B: table without caption",
   "E: marker 'da verificare' in a published chapter"
  ],
- "07-ei-ci.html": [
+ "capitoli/07-ei-ci.html": [
   "A: heading level jumps h2 -> h4: Quanto è soffice la CI?",
   "B: table without caption",
   "B: table without caption"
  ],
- "08-vuoto.html": [
+ "capitoli/08-vuoto.html": [
   "A: heading level jumps h2 -> h4: Libero cammino medio e pressione",
   "B: table without caption"
  ],
- "09-quadrupolo.html": [
+ "capitoli/09-quadrupolo.html": [
   "A: heading level jumps h2 -> h4: Il campo che oscilla e la traiettoria di"
  ],
- "10-qqq.html": [
+ "capitoli/10-qqq.html": [
   "A: heading level jumps h2 -> h4: Le cinque modalità del triplo quadrupolo",
   "B: table without caption"
  ],
- "11-risoluzione.html": [
+ "capitoli/11-risoluzione.html": [
   "A: heading level jumps h2 -> h4: Due ioni vicini e il potere risolutivo",
   "B: table without caption"
  ],
- "12-dati.html": [
+ "capitoli/12-dati.html": [
   "B: table without caption",
   "B: table without caption"
  ],
- "13-formula.html": [
+ "capitoli/13-formula.html": [
   "A: heading level jumps h2 -> h4: Quante formule per una massa?",
   "B: table without caption",
   "B: table without caption",
   "B: table without caption",
   "B: table without caption"
  ],
- "14-frammentazione-esi.html": [
+ "capitoli/14-frammentazione-esi.html": [
   "A: heading level jumps h2 -> h4: Calcolatrice delle perdite neutre",
   "B: table without caption",
   "B: table without caption",
@@ -66,36 +66,36 @@
   "B: table without caption",
   "B: table without caption"
  ],
- "15-ei-metodo.html": [
+ "capitoli/15-ei-metodo.html": [
   "B: table without caption",
   "B: table without caption",
   "B: table without caption",
   "B: table without caption"
  ],
- "16-ei-famiglie.html": [
+ "capitoli/16-ei-famiglie.html": [
   "B: table without caption"
  ],
- "17-origine.html": [
+ "capitoli/17-origine.html": [
   "A: missing end-of-chapter questions (details.q)",
   "B: table without caption"
  ],
- "18-strategia.html": [
+ "capitoli/18-strategia.html": [
   "A: heading level jumps h2 -> h4: Calcolatrice di differenze di massa",
   "B: table without caption",
   "B: table without caption",
   "E: marker 'da verificare' in a published chapter"
  ],
- "19-hr-dda.html": [
+ "capitoli/19-hr-dda.html": [
   "A: missing end-of-chapter questions (details.q)",
   "B: table without caption"
  ],
- "20-disegno.html": [
+ "capitoli/20-disegno.html": [
   "A: missing end-of-chapter questions (details.q)"
  ],
- "21-glossario.html": [
+ "capitoli/21-glossario.html": [
   "A: missing end-of-chapter questions (details.q)"
  ],
- "22-formulario.html": [
+ "capitoli/22-formulario.html": [
   "A: equation 10.1 does not belong to chapter 22",
   "A: equation 11.1 does not belong to chapter 22",
   "A: equation 11.2 does not belong to chapter 22",

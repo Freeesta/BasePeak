@@ -1,4 +1,4 @@
-"""Teoria editor page (mzlab/web/libro/teoria.html): its page CSP, and the pull-request flow of pr.js against a fake GitHub (tests/teoria_editor_node.mjs):
+"""Teoria editor page (editor/teoria.html): its page CSP, and the pull-request flow of pr.js against a fake GitHub (tests/teoria_editor_node.mjs):
 one branch, the source and its page, one pull request with auto-merge; nothing written when an editor pull request is open or main moved on the chapter."""
 import json
 import re
@@ -9,12 +9,12 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-WEB = ROOT / "mzlab" / "web"
+EDITOR = ROOT / "editor"
 NODE = shutil.which("node")
 
 
 def test_page_csp_is_strict_and_allows_only_the_converter_wasm():
-    html = (WEB / "libro" / "teoria.html").read_text(encoding="utf-8")
+    html = (EDITOR / "teoria.html").read_text(encoding="utf-8")
     csp = re.search(r'Content-Security-Policy" content="([^"]+)"', html).group(1)
     d = dict(x.strip().split(" ", 1) for x in csp.split(";") if x.strip())
     assert d["default-src"] == "'none'"

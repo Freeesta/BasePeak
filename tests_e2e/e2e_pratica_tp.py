@@ -1,4 +1,4 @@
-"""Pratica «Δm ed ESI±» (pratica-tp.html, games lc-dm and lc-esi): one exercise per level played to the end, the three aids (no answer in them),
+"""Pratica «Δm ed ESI±» (pratica/tp.html, games lc-dm and lc-esi): one exercise per level played to the end, the three aids (no answer in them),
 keyboard only, dark theme (readable feedback, no fixed white background), phone note, axe-core (skipped when not available)."""
 import sys, os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import *
@@ -12,7 +12,7 @@ r = Run(port=8969, wd="/tmp/wdprtp")
 try:
     with sync_playwright() as p:
         pg = r.page(p)
-        url = f"http://127.0.0.1:{r.port}/static/teoria/pratica-tp.html"
+        url = f"http://127.0.0.1:{r.port}/static/pratica/tp.html"
         pg.goto(url); pg.wait_for_selector("#g1 .opts button"); pg.wait_for_selector("#g2 .st"); pg.wait_for_selector("#g3 .cin-svg"); pg.wait_for_selector("#g4 .st")
         def dm_level(lv):
             def f():

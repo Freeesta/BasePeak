@@ -1,4 +1,4 @@
-"""Shared helpers of the Playwright e2e tests: a static server for mzlab/web (served under /static/, the URL the tests use), one Chromium, the JS errors seen
+"""Shared helpers of the Playwright e2e tests: a static server for the published site (index.html, capitoli/, pratica/, assets/ of the repository, served under /static/, the URL the tests use), one Chromium, the JS errors seen
 by the first page, and a report. Run one test with `python3 tests_e2e/e2e_teoria_nav.py`; no test needs anything but this repository."""
 import atexit
 import functools
@@ -14,7 +14,8 @@ from playwright.sync_api import Page, sync_playwright  # noqa: F401
 
 sha256 = hashlib.sha256
 ROOT = Path(__file__).resolve().parent.parent
-WEB = ROOT / "mzlab" / "web"
+WEB = ROOT                                                    # the site root
+PUBLISHED = ("index.html", "capitoli", "pratica", "assets")  # what GitHub Pages serves: nothing else is reachable in the tests
 SH = os.environ.get("E2E_SHOTS", "/tmp/e2e_shots/")
 os.makedirs(SH, exist_ok=True)
 _real_wft = Page.wait_for_timeout
@@ -49,7 +50,8 @@ class _Handler(http.server.SimpleHTTPRequestHandler):
 
     def translate_path(self, path):
         path = urlparse(path).path
-        return super().translate_path(path[len("/static"):] if path.startswith("/static/") else "/__none__")
+        rel = path[len("/static"):] if path.startswith("/static/") else "/__none__"
+        return super().translate_path(rel if rel.lstrip("/").split("/")[0] in PUBLISHED else "/__none__")
 
     def log_message(self, *a):
         pass
