@@ -6,9 +6,9 @@ how they are structured, how to add a spectrum by hand and how they were generat
 
 ## Origin and licence
 
-- **Source: MassBank Europe** (<https://massbank.eu>, REST API). Every one of the 120 spectra is a MassBank EI record
-  (mostly from the Faculty of Engineering, University of Tokyo, and the University of Occupational and Environmental Health).
-- **Licence of the records: CC BY-NC-SA** (Creative Commons Attribution-NonCommercial-ShareAlike). All 120 records in the
+- **Source: MassBank Europe** (<https://massbank.eu>, REST API). Every one of the 177 spectra (120 in `ei-dati.js`, 57 in the level files) is a MassBank EI record
+  (all with the MassBank prefix `MSBNK-Fac_Eng_Univ_Tokyo`; authors and institutions are in each `src`).
+- **Licence of the records: CC BY-NC-SA** (Creative Commons Attribution-NonCommercial-ShareAlike). All 177 records in the
   files carry this licence. The data files are therefore distributed under **CC BY-NC-SA 4.0** (non-commercial teaching
   use, attribution, same licence for adaptations), not under the MIT licence of the code and not under the CC BY 4.0 of the texts.
 - **Attribution is part of the data.** Every spectrum has a `src` object with the MassBank accession, authors, instrument and
