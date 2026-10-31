@@ -10,3 +10,7 @@ Never edit past entries; add new ones at the bottom.
   - DEV3 `dev/ei-public-data`: keep only public generated EI data, document provenance.
 - Waiting for Federico: enable GitHub Pages (Settings → Pages → Source: GitHub Actions). The Pages workflow is added only after that.
 - Next, after the three PRs: reorganise layout (`index.html`, `capitoli/`, `pratica/`, `assets/`, `tools/`, `tests/`), then patRoon-style navigation, speed budget tests, dyslexia audit. Chapter editor (`web/libro`, Rust crates): propose to Federico first.
+
+## 2026-10-31 (2)
+- Federico enabled GitHub Pages (Source: GitHub Actions).
+- Added `.github/workflows/pages.yml` (publishes `mzlab/web/teoria` as the site root for now; `SITE_DIR` to be changed by the layout PR). Rides on PR #1.
