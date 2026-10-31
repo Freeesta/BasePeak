@@ -57,7 +57,9 @@ Un picco della query e uno della libreria sono **candidati** all'accoppiamento s
 
 Dieci ppm valgono 0,002 Da a m/z 200 e 0,008 Da a m/z 800.
 
-Un picco può avere più candidati ma si accoppia una volta sola. Si ordinano tutte le coppie per prodotto decrescente delle due intensità e si prende ciascuna se nessuno dei due picchi è già stato usato (regola *greedy*). L'alternativa esatta è l'algoritmo ungherese. Come accoppiare cambia il punteggio: Bittremieux et al. (2022) confrontano coseno, coseno modificato e perdite neutre.
+Un picco può avere più candidati ma si accoppia una volta sola. Watrous et al. (2012) scelgono l'insieme di coppie che rende massimo il coseno: è un problema di assegnazione, che si risolve in modo esatto, per esempio con l'algoritmo ungherese.
+
+Molti programmi, e la figura, usano una regola più rapida: si ordinano tutte le coppie per prodotto decrescente delle due intensità e si prende ciascuna se nessuno dei due picchi è già stato usato (regola *greedy*). Quasi sempre il risultato è lo stesso; quando cambia, il coseno greedy è un po' più basso. Bittremieux et al. (2022) confrontano coseno, coseno modificato e perdite neutre con l'accoppiamento esatto.
 
 ## I punteggi di somiglianza
 
@@ -73,17 +75,17 @@ Esempio: A = 100 (1,0), 150 (0,5), 200 (0,2); B = 100 (0,8), 150 (0,4), 250 (0,6
 
 ### Coseno pesato
 
-Stein e Scott (1994) hanno provato diversi algoritmi di ricerca, fra cui il prodotto scalare pesato: le intensità ricevono un peso che premia le masse alte.
+Nel prodotto scalare pesato le intensità ricevono un peso che premia le masse alte.
 
 ```html
 <span class="eq"><i>w</i> = (m/z)<sup><i>n</i></sup> · <i>I</i><sup><i>m</i></sup><span class="no">(28.4)</span></span>
 ```
 
-Gli esponenti dipendono dal programma (figura: *n* = 1, *m* = 0,5).
+Gli esponenti dipendono dal programma: Stein e Scott (1994), su spettri EI, trovarono ottimali *n* = 3 e *m* = 0,6; la figura usa *n* = 1 e *m* = 0,5.
 
 ### Coseno modificato
 
-Per un analogo (per esempio con un CH~2~ in più, 14,0157) i frammenti che portano la modifica sono spostati di Δ = M~query~ − M~libreria~. Nel coseno modificato (Watrous et al., 2012) un picco si accoppia anche spostato di Δ.
+Per un analogo (per esempio con un CH~2~ in più, 14,0157) i frammenti modificati sono spostati di Δ = M~query~ − M~libreria~. Nel coseno modificato (Watrous et al., 2012) un picco si accoppia anche spostato di Δ.
 
 ### Entropia spettrale
 
@@ -91,7 +93,7 @@ Li et al. (2021) propongono un punteggio basato sull'informazione:
 
 1. intensità a somma 1 (*p*~*i*~); entropia *S* = −Σ *p*~*i*~ ln *p*~*i*~;
 2. se *S* &lt; 3: *p*~*i*~ → *p*~*i*~^*w*^, con *w* = 0,25 + 0,25 *S*, e di nuovo somma 1;
-3. spettro medio M = (A + B)/2 dopo l'accoppiamento;
+3. spettro medio M = (A + B)/2;
 4. similarità (versione pesata):
 
 ```html
@@ -101,7 +103,7 @@ Li et al. (2021) propongono un punteggio basato sull'informazione:
 Vale 1 per spettri uguali, 0 senza picchi in comune. Esempio: A e B con intensità (50, 30, 20), ma l'ultimo picco in posti diversi. *S* = 1,03, *w* = 0,51, entropia pesata 1,08, entropia dello spettro medio 1,26: similarità = 1 − (2 × 1,26 − 2 × 1,08)/1,386 = 0,74.
 
 ```html
-<details class="poe"><summary>Prima di provare: con «analogo +CH₂», quali punteggi salgono con il coseno modificato?</summary><p>Solo il coseno modificato: accoppia i picchi spostati. Gli altri restano bassi.</p></details>
+<details class="poe"><summary>Con «analogo +CH₂», quali punteggi salgono con il coseno modificato?</summary><p>Solo il coseno modificato: accoppia i picchi spostati. Gli altri restano bassi.</p></details>
 ```
 
 ```html
