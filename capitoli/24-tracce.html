@@ -22,7 +22,7 @@
 <p>Due ioni di masse <i>m</i><sub>1</sub> e <i>m</i><sub>2</sub> sono separati dalla finestra se distano più della semi-ampiezza; lo strumento però deve anche risolverli:</p>
 <span class="eq">|<i>m</i><sub>1</sub> − <i>m</i><sub>2</sub>| &gt; Δ &nbsp;&nbsp; e &nbsp;&nbsp; <i>R</i> ≥ <span class="frac"><span><i>m</i></span><span>Δ<i>m</i></span></span><span class="no">(24.2)</span></span>
 <p>Due ioni a m/z 300 distanti 12 ppm differiscono di 3,6 mDa e servono <i>R</i> ≳ 83 000. Con <i>R</i> minore lo strumento dà un solo centroide intermedio; con <i>R</i> sufficiente ma una finestra più larga di 12 ppm, l'isobaro entra nell'XIC e l'area è sbagliata (<a href="17-hr-dda.html">Difetto di massa e masse quasi uguali</a>).</p>
-<details class="poe"><summary style="color:var(--accent)">Prima di provare: con dispersione di 2 ppm e un isobaro a 12 ppm, quale finestra prende tutta l'area senza l'isobaro?</summary>
+<details class="poe"><summary>Prima di provare: con dispersione di 2 ppm e un isobaro a 12 ppm, quale finestra prende tutta l'area senza l'isobaro?</summary>
 <p>Da circa ±3 a ±8 ppm: a ±3 si recupera l'88 % dell'area, da ±5 il 100 %. Sotto ±2 si perde quasi metà del segnale; da ±11 entra l'isobaro (12 % dell'area, 40 % oltre ±20).</p></details>
 <div class="sim" id="sim-chemi-xic" data-sim="../assets/sim-chemi-tracce.js"><h4>Figura 24.1 La finestra in ppm</h4>
 <p class="note nota">Una finestra troppo stretta perde segnale, una troppo larga include un isobaro. Dati sintetici, a scopo didattico.</p></div>
@@ -52,7 +52,7 @@
 <p>Per le ROI contano <code>ppm</code>, <code>prefilter</code> (<i>k</i>, <i>I</i><sub>min</sub>) e <code>mzCenterFun</code>. <code>ppm</code> segue la dispersione dello strumento, spesso molto sotto 25 ppm in un Orbitrap o un TOF moderno: si ricava dai dati.</p>
 <h3>Quando sbaglia: tracce spezzate o fuse</h3>
 <p>Una traccia si <b>spezza</b> se la tolleranza è più stretta della dispersione o il vuoto è troppo corto per un segnale che sparisce nel rumore: due ROI corte, scartate. Si <b>fonde</b> se la tolleranza supera la distanza fra due ioni vicini, o se il rumore sostituisce un centroide mancante.</p>
-<details class="poe"><summary style="color:var(--accent)">Prima di provare: con le impostazioni iniziali, quante tracce restano? E con vuoto 0?</summary>
+<details class="poe"><summary>Prima di provare: con le impostazioni iniziali, quante tracce restano? E con vuoto 0?</summary>
 <p>Quattro: la forte, le due della coppia e la debole. Una quinta è scartata («4 scansioni &lt; 5»): un pezzo della debole. Con vuoto 0 la debole si spezza in pezzi troppo corti e sparisce.</p></details>
 <div class="sim" id="sim-chemi-roi" data-sim="../assets/sim-chemi-tracce.js"><h4>Figura 24.2 Costruire una traccia, scansione per scansione</h4>
 <p class="note nota">Costruisce le tracce una scansione alla volta e dice perché ognuna è tenuta o scartata. Dati sintetici, a scopo didattico.</p></div>

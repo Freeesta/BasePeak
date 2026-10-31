@@ -86,7 +86,7 @@ Du et al. (2006) usano il «cappello messicano» ψ(*x*) = (1 − *x*^2^) e^−*
 Questa è l'idea, non l'implementazione di xcms: stima del rumore e regole sulle creste cambiano da programma a programma.
 
 ```html
-<details class="poe"><summary style="color:var(--accent)">Prima di provare: quali dei cinque picchi trovano i massimi locali senza lisciatura?</summary>
+<details class="poe"><summary>Prima di provare: quali dei cinque picchi trovano i massimi locali senza lisciatura?</summary>
 <p>Con i valori iniziali: 6 picchi, i quattro grandi e due falsi sulla coda del secondo; manca il piccolo e lo spike è scartato perché stretto. Con Savitzky-Golay a 7 punti i falsi spariscono; filtro adattato e CWT trovano anche il piccolo.</p></details>
 ```
 
@@ -118,7 +118,7 @@ Dicono se un picco è affidabile la larghezza a metà altezza, il numero di punt
 Una misura della somiglianza a una gaussiana è il R² dell'adattamento. Zhang e Zhao (2014) propongono altri indici per valutare la qualità degli XIC e dei picchi.
 
 ```html
-<details class="poe"><summary style="color:var(--accent)">Prima di provare: quanto cambiano i numeri se la scansione è lenta?</summary>
+<details class="poe"><summary>Prima di provare: quanto cambiano i numeri se la scansione è lenta?</summary>
 <p>Con una coda moderata e 0,05 s per scansione il picco ha 91 punti sopra metà altezza; con 1 s ne ha 5 e l'asimmetria passa da 1,52 a 1,31, come se il picco fosse un altro. L'S/N cambia anche con la definizione usata.</p></details>
 ```
 

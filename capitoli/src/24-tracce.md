@@ -41,7 +41,7 @@ Due ioni di masse *m*~1~ e *m*~2~ sono separati dalla finestra se distano più d
 Due ioni a m/z 300 distanti 12 ppm differiscono di 3,6 mDa e servono *R* ≳ 83 000. Con *R* minore lo strumento dà un solo centroide intermedio; con *R* sufficiente ma una finestra più larga di 12 ppm, l'isobaro entra nell'XIC e l'area è sbagliata ([Difetto di massa e masse quasi uguali](17-hr-dda.html)).
 
 ```html
-<details class="poe"><summary style="color:var(--accent)">Prima di provare: con dispersione di 2 ppm e un isobaro a 12 ppm, quale finestra prende tutta l'area senza l'isobaro?</summary>
+<details class="poe"><summary>Prima di provare: con dispersione di 2 ppm e un isobaro a 12 ppm, quale finestra prende tutta l'area senza l'isobaro?</summary>
 <p>Da circa ±3 a ±8 ppm: a ±3 si recupera l'88 % dell'area, da ±5 il 100 %. Sotto ±2 si perde quasi metà del segnale; da ±11 entra l'isobaro (12 % dell'area, 40 % oltre ±20).</p></details>
 ```
 
@@ -98,7 +98,7 @@ Per ioni sconosciuti un algoritmo costruisce le tracce dai dati. Questa versione
 Una traccia si **spezza** se la tolleranza è più stretta della dispersione o il vuoto è troppo corto per un segnale che sparisce nel rumore: due ROI corte, scartate. Si **fonde** se la tolleranza supera la distanza fra due ioni vicini, o se il rumore sostituisce un centroide mancante.
 
 ```html
-<details class="poe"><summary style="color:var(--accent)">Prima di provare: con le impostazioni iniziali, quante tracce restano? E con vuoto 0?</summary>
+<details class="poe"><summary>Prima di provare: con le impostazioni iniziali, quante tracce restano? E con vuoto 0?</summary>
 <p>Quattro: la forte, le due della coppia e la debole. Una quinta è scartata («4 scansioni &lt; 5»): un pezzo della debole. Con vuoto 0 la debole si spezza in pezzi troppo corti e sparisce.</p></details>
 ```
 

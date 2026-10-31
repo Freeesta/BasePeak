@@ -44,7 +44,7 @@
 <li>Un test di S/N usa il rumore stimato attorno; l'area si integra sul grezzo o sul filtrato.</li>
 </ol>
 <p>Questa è l'idea, non l'implementazione di xcms: stima del rumore e regole sulle creste cambiano da programma a programma.</p>
-<details class="poe"><summary style="color:var(--accent)">Prima di provare: quali dei cinque picchi trovano i massimi locali senza lisciatura?</summary>
+<details class="poe"><summary>Prima di provare: quali dei cinque picchi trovano i massimi locali senza lisciatura?</summary>
 <p>Con i valori iniziali: 6 picchi, i quattro grandi e due falsi sulla coda del secondo; manca il piccolo e lo spike è scartato perché stretto. Con Savitzky-Golay a 7 punti i falsi spariscono; filtro adattato e CWT trovano anche il piccolo.</p></details>
 <div class="sim" id="sim-chemi-picchi" data-sim="../assets/sim-chemi-picchi.js"><h4>Figura 25.1 Cercare i picchi in un cromatogramma rumoroso</h4>
 <p class="note nota">Tre algoritmi su picchi noti: trovati, mancati, falsi. Dati sintetici, a scopo didattico.</p></div>
@@ -57,7 +57,7 @@
 <p>Dicono se un picco è affidabile la larghezza a metà altezza, il numero di punti che lo descrivono (legato al tempo di scansione), la forma e l'S/N. Asimmetria e fattore di coda si misurano sul lato anteriore <i>a</i> e posteriore <i>b</i> del picco (<a href="01-cromatografia.html">Forma del picco</a>):</p>
 <span class="eq"><i>A</i><sub>s</sub> = <i>b</i>/<i>a</i> (al 10 % dell'altezza) &nbsp;&nbsp; <i>T</i><sub>f</sub> = (<i>a</i> + <i>b</i>)/(2<i>a</i>) (al 5 %)<span class="no">(25.6)</span></span>
 <p>Una misura della somiglianza a una gaussiana è il R² dell'adattamento. Zhang e Zhao (2014) propongono altri indici per valutare la qualità degli XIC e dei picchi.</p>
-<details class="poe"><summary style="color:var(--accent)">Prima di provare: quanto cambiano i numeri se la scansione è lenta?</summary>
+<details class="poe"><summary>Prima di provare: quanto cambiano i numeri se la scansione è lenta?</summary>
 <p>Con una coda moderata e 0,05 s per scansione il picco ha 91 punti sopra metà altezza; con 1 s ne ha 5 e l'asimmetria passa da 1,52 a 1,31, come se il picco fosse un altro. L'S/N cambia anche con la definizione usata.</p></details>
 <div class="sim" id="sim-chemi-qualita" data-sim="../assets/sim-chemi-picchi.js"><h3>Figura 25.2 Quanto è buono questo picco?</h3>
 <p class="note nota">Mostra come i punti per picco e la coda cambiano larghezza, asimmetria, S/N e area. Dati sintetici, a scopo didattico.</p></div>
