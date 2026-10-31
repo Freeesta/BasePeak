@@ -1,0 +1,15 @@
+{
+  "name": "BasePeak",
+  "short_name": "BasePeak",
+  "lang": "it",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#2f6aa3",
+  "background_color": "#fbfbf9",
+  "icons": [
+    {"src": "icone/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icone/icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icone/icon.svg", "sizes": "any", "type": "image/svg+xml"}
+  ]
+}

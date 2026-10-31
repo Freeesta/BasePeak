@@ -359,7 +359,6 @@ La risposta è curva (probabilmente saturazione ai livelli alti). Restringete l'
 <li><span class="tag">terminologia</span>Murray K.K. et al. (2013) Definitions of terms relating to mass spectrometry (IUPAC Recommendations 2013). <i>Pure Appl. Chem.</i> 85, 1515–1609. <a href="https://doi.org/10.1351/PAC-REC-06-04-06" target="_blank" rel="noopener">doi:10.1351/PAC-REC-06-04-06</a></li>
 <li><span class="tag">libro</span>McLafferty F.W., Tureček F. <i>Interpretation of Mass Spectra</i>, 4ª ed., University Science Books, 1993.</li>
 <li><span class="tag">validazione</span>Eurachem, guida <i>The Fitness for Purpose of Analytical Methods</i> (validazione, LOD, LOQ, linearità): <a href="https://www.eurachem.org" target="_blank" rel="noopener">eurachem.org</a></li>
-<li><span class="tag">conversione</span><a href="https://proteowizard.sourceforge.io" target="_blank" rel="noopener">ProteoWizard</a> (<i>msconvert</i>, conversione dei formati dei costruttori in mzML).</li>
 <li><span class="tag">banche dati</span><a href="https://massbank.eu/MassBank/" target="_blank" rel="noopener">MassBank Europe</a> (spettri MS/MS liberi, molti di contaminanti ambientali); <a href="https://pubchem.ncbi.nlm.nih.gov" target="_blank" rel="noopener">PubChem</a> (formule, masse, proprietà).</li>
 </ul>
 ```
