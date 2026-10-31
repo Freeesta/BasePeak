@@ -131,20 +131,6 @@ Gli ioni che escono da Q3 colpiscono un **dinodo di conversione** ad alta tensio
 <p>In strumenti triplo quadrupolo avanzati o ibridi (come i QTRAP), Q3 può funzionare sia da quadrupolo standard sia da trappola ionica lineare per generare spettri ad alta sensibilità (Enhanced Product Ion, EPI). Nei workflow analitici tipici le acquisizioni si organizzano combinando metodi complementari: <code>Full scan</code> per lo screening generale degli ioni, <code>Product ion scan (MS2)</code> mirato per la delucidazione strutturale dei precursori d'interesse, e <code>MRM</code> per la quantificazione sensibile e selettiva.</p></div>
 ```
 
-## Verifica
-
-??? Perché per uno ione a m/z 600 servono CE più alte che per uno a m/z 200?
-A parità di CE, l'energia trasferibile per urto (E~cm~) è minore per lo ione più pesante (eq. 8.1), e lo ione più grande ha più gradi di libertà su cui distribuire l'energia interna.
-
-??? Avete 40 transizioni MRM tutte attive per tutta la corsa, dwell 50 ms, picchi larghi 12 s. Funziona?
-Il ciclo è circa 40 × 55 ms = 2,2 s: circa 5 punti per picco, troppo pochi per un'integrazione affidabile. Serve l'MRM programmato o meno transizioni per periodo.
-
-??? Quale modalità usereste per trovare tutti i TP che conservano un gruppo isopropile del parent?
-Una neutral loss scan di 42 Da (se il parent perde propene in CID). I TP che hanno perso o modificato l'isopropile non compariranno.
-
-??? Nel product ion scan di un TP compare un frammento a m/z (frammento del parent + 16). Che cosa suggerisce?
-Che l'atomo di ossigeno aggiunto si trova nella porzione della molecola che genera quel frammento. Se invece un frammento compare identico a quello del parent, quella porzione non è stata modificata.
-
 ## Per approfondire
 
 ```html

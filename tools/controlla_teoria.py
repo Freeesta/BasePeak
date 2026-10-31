@@ -156,8 +156,6 @@ def public_errors(path, folder, text):
         prev = lv
     chapter = chapter_number(path.name)
     if chapter is not None:
-        if not p.classes["q"]:
-            E.append(("A", "missing end-of-chapter questions (details.q)"))
         eqs, bad = [], []
         for n in filter(None, p.nos):
             m = re.fullmatch(r"\((\d+)\.(\d+)(?:\s*[–-]\s*(?:(\d+)\.)?(\d+))?\)", n)     # «(9.1)» or a range «(9.4–9.5)»

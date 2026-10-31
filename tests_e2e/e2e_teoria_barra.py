@@ -78,9 +78,9 @@ try:
             q.goto(T + "capitoli/14-ei-famiglie.html"); q.wait_for_selector("#tbar"); q.click("#sc-esercizi"); q.wait_for_timeout(300)
             assert q.evaluate("document.activeElement.classList.contains('gym')"), q.evaluate("document.activeElement.outerHTML.slice(0,80)")
             q.goto(T + "capitoli/02-lc.html"); q.wait_for_selector("#tbar"); q.click("#sc-esercizi"); q.wait_for_timeout(300)
-            assert q.evaluate("/^Verifica/.test(document.activeElement.textContent.trim())")
+            q.wait_for_url("**/pratica/index.html")      # no «Allenati» box in this chapter: the Pratica index
             q.goto(T + "pratica/ei.html"); q.wait_for_selector("#tbar"); q.click("#sc-esercizi")
-        step("Esercizi goes to the «Allenati» box, else «Verifica»", esercizi)
+        step("Esercizi goes to the «Allenati» box, else the Pratica index", esercizi)
         def strum():
             q.goto(T + "capitoli/12-frammentazione-esi.html"); q.wait_for_selector("#sidecmd"); q.wait_for_function("typeof TEORIA.strumenti==='object'")
             assert q.eval_on_selector("#sc-strumenti", "e=>e.open") is False

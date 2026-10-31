@@ -196,20 +196,6 @@ Alcune regole:
 
 Una struttura proposta non è tutta uguale. Conviene scrivere il livello di confidenza dell'identificazione: confermata con standard, probabile da spettro, solo candidata per formula. Una scala condivisa (Schymanski e collaboratori) è indicata sotto.
 
-## Verifica
-
-??? Perché, in una serie nel tempo, i campioni non si iniettano nell'ordine dei tempi di prelievo?
-Perché la deriva dello strumento (sorgente che si sporca, risposta che cala) si confonderebbe con l'effetto del tempo. Si randomizza l'ordine, con i QC a intervalli regolari per vedere la deriva.
-
-??? Hai tre iniezioni dello stesso vial. Sono tre repliche?
-Sono repliche strumentali, non indipendenti. Misurano la ripetibilità dello strumento, non la variabilità dell'esperimento. Servono repliche dell'esperimento intero.
-
-??? Un segnale a m/z 168 compare a t0, nel controllo senza trattamento e nel bianco di processo. È un prodotto del trattamento?
-No. È fondo, contaminazione o impurezza. Un prodotto del trattamento deve comparire con il trattamento e mancare, o essere molto più basso, nei controlli.
-
-??? Che differenza c'è tra uno schema di trasformazione e uno di frammentazione?
-Nel primo i prodotti sono molecole neutre che si formano in soluzione; nel secondo precursore e frammenti sono ioni in fase gassosa e le frecce portano le perdite neutre.
-
 ## Per approfondire
 
 ```html

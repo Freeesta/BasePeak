@@ -65,8 +65,3 @@ I cromatogrammi estratti sono ripuliti dalla linea di base e levigati con un fil
 <div class="box"><b>Limiti</b><p>A risoluzione unitaria un <i>m/z</i> &egrave; un candidato, non un'identificazione. Due componenti isobare con lo stesso tempo di ritenzione danno un picco unico che nessuna di queste misure separa. I tre strumenti pi&ugrave; forti (variare il DP, l'MS<sup>2</sup> del progenitore, lo standard del solo composto di partenza) richiedono acquisizioni in pi&ugrave; rispetto al full scan di routine.</p></div>
 ```
 
-## Domande per riflettere
-
-- Il tuo ione ha l'apice *esattamente* sullo stesso scan del progenitore. Basta per dire che è un frammento? Quale prodotto di trasformazione potrebbe comportarsi così?
-- Il rapporto F/P è costante nei campioni ma il segnale del progenitore è saturato. Come cambia il peso di questa evidenza?
-- Che cosa ti aspetteresti di vedere nell'MS^2^ del progenitore se il tuo ione fosse un suo frammento?

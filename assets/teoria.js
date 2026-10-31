@@ -35,15 +35,14 @@ const CHAPTERS = [
   ["capitoli/16-strategia.html", "16", "Strategia per trovare i TP", "VI. Dal dato al risultato"],
   ["capitoli/17-hr-dda.html", "17", "Alta risoluzione e DDA nel programma", "VI. Dal dato al risultato"],
   ["capitoli/18-disegno.html", "18", "Disegno sperimentale e strutture", "VI. Dal dato al risultato"],
-  ["pratica/index.html", "P", "Esercizi e autoverifica", "Pratica"],
+  ["pratica/index.html", "P", "Esercizi", "Pratica"],
   ["pratica/ei.html", "P1", "Dallo spettro alla struttura", "Pratica"],
-  ["pratica/orale.html", "P2", "Domande di ripasso", "Pratica"],
-  ["pratica/perdite.html", "P3", "Che cosa ha perso?", "Pratica"],
-  ["pratica/isotopi.html", "P4", "Indovina gli elementi", "Pratica"],
-  ["pratica/formula.html", "P5", "Formula esatta", "Pratica"],
-  ["pratica/strumento.html", "P6", "Carte dello strumento", "Pratica"],
-  ["pratica/quadrupolo.html", "P7", "Pilota il quadrupolo", "Pratica"],
-  ["pratica/tp.html", "P8", "Δm ed ESI± dei prodotti di trasformazione", "Pratica"],
+  ["pratica/perdite.html", "P2", "Che cosa ha perso?", "Pratica"],
+  ["pratica/isotopi.html", "P3", "Indovina gli elementi", "Pratica"],
+  ["pratica/formula.html", "P4", "Formula esatta", "Pratica"],
+  ["pratica/strumento.html", "P5", "Carte dello strumento", "Pratica"],
+  ["pratica/quadrupolo.html", "P6", "Pilota il quadrupolo", "Pratica"],
+  ["pratica/tp.html", "P7", "Δm ed ESI± dei prodotti di trasformazione", "Pratica"],
   ["capitoli/19-glossario.html", "19", "Glossario e bibliografia", "Reference"],
   ["capitoli/20-formulario.html", "20", "Formulario", "Reference"],
   ["capitoli/21-tempi.html", "21", "Tempi degli analizzatori: dwell time, sweep e duty cycle", "Reference"],
@@ -114,8 +113,7 @@ const TP = (() => {
     return /iPhone|iPod|Android.+Mobile|Windows Phone|Mobile.+Firefox|Opera Mini/i.test(navigator.userAgent || "") || (coarse && Math.min(screen.width, screen.height) < 500);
   })();
   // on a phone the exercises are not offered (they need a large screen): the page says so and sends back to the Teoria.
-  // The oral questions are only text: they stay.
-  const NOEX = PHONE && /^pratica\/./.test(here) && here !== "pratica/index.html" && here !== "pratica/orale.html";
+  const NOEX = PHONE && /^pratica\/./.test(here) && here !== "pratica/index.html";
 
   function slug(s) {
     return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 48);
@@ -285,7 +283,7 @@ const TP = (() => {
       // header: logo, Teoria, info; it goes away scrolling down and comes back scrolling up (more room for the text, above all in landscape)
       top.insertAdjacentHTML("beforeend", `<button id="info" type="button" aria-label="Informazioni" title="Informazioni">i</button>`);
       const note = document.createElement("div"); note.id = "phnote"; note.className = "box warn"; note.hidden = true;
-      note.innerHTML = `<p>${PHONE_NOTE}</p><p><a href="${SITE.up}index.html">Indice della Teoria</a> · <a href="${SITE.up}capitoli/20-formulario.html">Formulario</a> · <a href="${SITE.up}pratica/orale.html">Domande di ripasso</a></p>`;
+      note.innerHTML = `<p>${PHONE_NOTE}</p><p><a href="${SITE.up}index.html">Indice della Teoria</a> · <a href="${SITE.up}capitoli/20-formulario.html">Formulario</a></p>`;
       $("main").prepend(note);
       $("#info").onclick = () => { note.hidden = !note.hidden; if (!note.hidden) scrollTo({ top: 0, behavior: "smooth" }); };
       let y0 = scrollY;
@@ -293,9 +291,9 @@ const TP = (() => {
     }
     if (NOEX) {
       document.body.classList.add("noex");
-      $("h1").insertAdjacentHTML("afterend", `<div class="box warn phex"><b>Gli esercizi si fanno da computer o da tablet</b><p>Questo gioco ha bisogno di uno schermo più grande (grafici da cliccare, editor delle strutture). Dal telefono potete ripassare con la Teoria, il formulario e le domande di ripasso.</p><p><a href="${SITE.up}index.html">Indice della Teoria</a> · <a href="${SITE.up}capitoli/20-formulario.html">Formulario</a> · <a href="${SITE.up}pratica/orale.html">Domande di ripasso</a></p></div>`);
+      $("h1").insertAdjacentHTML("afterend", `<div class="box warn phex"><b>Gli esercizi si fanno da computer o da tablet</b><p>Questo gioco ha bisogno di uno schermo più grande (grafici da cliccare, editor delle strutture). Dal telefono potete leggere la Teoria e consultare il formulario.</p><p><a href="${SITE.up}index.html">Indice della Teoria</a> · <a href="${SITE.up}capitoli/20-formulario.html">Formulario</a></p></div>`);
     } else if (here === "pratica/index.html") {
-      $("h1").insertAdjacentHTML("afterend", `<div class="box warn phex"><b>Dal telefono</b><p>I giochi si fanno da computer o da tablet; dal telefono funzionano le <a href="${SITE.up}pratica/orale.html">domande di ripasso</a>.</p></div>`);
+      $("h1").insertAdjacentHTML("afterend", `<div class="box warn phex"><b>Dal telefono</b><p>I giochi si fanno da computer o da tablet; dal telefono si legge la Teoria.</p></div>`);
     }
   }
 
