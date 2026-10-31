@@ -27,23 +27,24 @@
 <h3>Massimi e minimi locali</h3>
 <ol>
 <li>Si liscia il segnale.</li>
-<li>Si cercano i massimi sopra la soglia (S/N × rumore).</li>
+<li>Si cercano i massimi sopra la soglia.</li>
 <li>Da ogni massimo si scende ai due lati fino a un minimo o alla base.</li>
 <li>L'area è la somma dei trapezi fra i limiti.</li>
 </ol>
-<p>Senza lisciatura il rumore crea falsi massimi sulle code; due picchi diventano uno se manca il minimo fra loro.</p>
+<p>Senza lisciatura il rumore crea falsi massimi; due picchi diventano uno se manca il minimo fra loro.</p>
 <h3>Il filtro adattato</h3>
 <p>Il segnale si convolve con la derivata seconda, cambiata di segno, di una gaussiana con σ = FWHM / 2,3548 (Smith et al., 2006): risponde alla forma del picco e annulla una base dritta. I picchi sono i massimi del filtrato sopra S/N × rumore, con limiti dove passa per zero. In xcms <code>MatchedFilterParam</code>: <code>fwhm</code> = 30 s, <code>snthresh</code> = 10.</p>
 <h3>La trasformata wavelet continua (centWave)</h3>
 <p>Du et al. (2006) usano il «cappello messicano» ψ(<i>x</i>) = (1 − <i>x</i><sup>2</sup>) e<sup>−<i>x</i><sup>2</sup>/2</sup> a molte larghezze <i>a</i>; Tautenhahn et al. (2008) la adattano a LC-MS:</p>
-<span class="eq"><i>C</i>(<i>a</i>, <i>t</i>) = <span class="frac"><span>1</span><span><i>a</i></span></span> ∫ <i>y</i>(<i>u</i>) ψ((<i>u</i> − <i>t</i>)/<i>a</i>) d<i>u</i><span class="no">(25.4)</span></span>
+<span class="eq"><i>C</i>(<i>a</i>, <i>t</i>) = <span class="frac"><span>1</span><span>√<i>a</i></span></span> ∫ <i>y</i>(<i>u</i>) ψ((<i>u</i> − <i>t</i>)/<i>a</i>) d<i>u</i><span class="no">(25.4)</span></span>
+<p>Du et al. (2006) normalizzano con 1/√<i>a</i>; la figura usa 1/<i>a</i>, che favorisce le scale piccole.</p>
 <ol>
 <li>Per ogni ROI si calcola <i>C</i> sulle larghezze attese e se ne cercano i massimi.</li>
 <li>I massimi di larghezze vicine formano creste.</li>
 <li>Un picco è una cresta che dura abbastanza larghezze; dove <i>C</i> è massima sta la sua larghezza.</li>
 <li>Un test di S/N usa il rumore stimato attorno; l'area si integra sul grezzo o sul filtrato.</li>
 </ol>
-<p>Questa è l'idea, non l'implementazione di xcms: stima del rumore e regole sulle creste cambiano da programma a programma.</p>
+<p>Questa è l'idea, non l'implementazione di xcms.</p>
 <details class="poe"><summary>Prima di provare: quali dei cinque picchi trovano i massimi locali senza lisciatura?</summary>
 <p>Con i valori iniziali: 6 picchi, i quattro grandi e due falsi sulla coda del secondo; manca il piccolo e lo spike è scartato perché stretto. Con Savitzky-Golay a 7 punti i falsi spariscono; filtro adattato e CWT trovano anche il piccolo.</p></details>
 <div class="sim" id="sim-chemi-picchi" data-sim="../assets/sim-chemi-picchi.js"><h4>Figura 25.1 Cercare i picchi in un cromatogramma rumoroso</h4>

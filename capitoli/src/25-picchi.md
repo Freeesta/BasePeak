@@ -52,13 +52,13 @@ La finestra deve restare più stretta del picco. Con la figura 25.1 si vede che 
 ```html
 <ol>
 <li>Si liscia il segnale.</li>
-<li>Si cercano i massimi sopra la soglia (S/N × rumore).</li>
+<li>Si cercano i massimi sopra la soglia.</li>
 <li>Da ogni massimo si scende ai due lati fino a un minimo o alla base.</li>
 <li>L'area è la somma dei trapezi fra i limiti.</li>
 </ol>
 ```
 
-Senza lisciatura il rumore crea falsi massimi sulle code; due picchi diventano uno se manca il minimo fra loro.
+Senza lisciatura il rumore crea falsi massimi; due picchi diventano uno se manca il minimo fra loro.
 
 ### Il filtro adattato
 
@@ -71,7 +71,8 @@ Senza lisciatura il rumore crea falsi massimi sulle code; due picchi diventano u
 Du et al. (2006) usano il «cappello messicano» ψ(*x*) = (1 − *x*^2^) e^−*x*<sup>2^/2</sup> a molte larghezze *a*; Tautenhahn et al. (2008) la adattano a LC-MS:
 
 ```html
-<span class="eq"><i>C</i>(<i>a</i>, <i>t</i>) = <span class="frac"><span>1</span><span><i>a</i></span></span> ∫ <i>y</i>(<i>u</i>) ψ((<i>u</i> − <i>t</i>)/<i>a</i>) d<i>u</i><span class="no">(25.4)</span></span>
+<span class="eq"><i>C</i>(<i>a</i>, <i>t</i>) = <span class="frac"><span>1</span><span>√<i>a</i></span></span> ∫ <i>y</i>(<i>u</i>) ψ((<i>u</i> − <i>t</i>)/<i>a</i>) d<i>u</i><span class="no">(25.4)</span></span>
+<p>Du et al. (2006) normalizzano con 1/√<i>a</i>; la figura usa 1/<i>a</i>, che favorisce le scale piccole.</p>
 ```
 
 ```html
@@ -83,7 +84,7 @@ Du et al. (2006) usano il «cappello messicano» ψ(*x*) = (1 − *x*^2^) e^−*
 </ol>
 ```
 
-Questa è l'idea, non l'implementazione di xcms: stima del rumore e regole sulle creste cambiano da programma a programma.
+Questa è l'idea, non l'implementazione di xcms.
 
 ```html
 <details class="poe"><summary>Prima di provare: quali dei cinque picchi trovano i massimi locali senza lisciatura?</summary>

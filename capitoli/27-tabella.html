@@ -19,7 +19,8 @@
 <h3>Deformare l'asse dei tempi (DTW, OBI-Warp)</h3>
 <p>Il DTW (Sakoe e Chiba, 1978) non ha bisogno di picchi di riferimento. Si costruisce una matrice di costo <i>c</i>(<i>i</i>, <i>j</i>) fra i punti di due profili e si accumula il costo minimo; poi si risale il cammino ottimo.</p>
 <span class="eq"><i>D</i>(<i>i</i>, <i>j</i>) = <i>c</i>(<i>i</i>, <i>j</i>) + min[ <i>D</i>(<i>i</i>−1, <i>j</i>), <i>D</i>(<i>i</i>, <i>j</i>−1), <i>D</i>(<i>i</i>−1, <i>j</i>−1) ]<span class="no">(27.2)</span></span>
-<p>Una banda limita le deformazioni. OBI-Warp (Prince e Marcotte, 2006) applica la programmazione dinamica alla somiglianza fra scansioni intere e interpola poi in modo monotono.</p>
+<p>Nella figura il costo <i>c</i>(<i>i</i>, <i>j</i>) è la differenza assoluta fra le intensità dei due profili; OBI-Warp (Prince e Marcotte, 2006) applica la programmazione dinamica a una somiglianza fra scansioni intere, per esempio la correlazione, e interpola poi in modo monotono.</p>
+<p>Una banda limita le deformazioni.</p>
 <h3>Come controllare l'allineamento</h3>
 <p>Lo scarto stimato deve essere una curva liscia. Sovrapponi i QC prima e dopo e controlla un composto noto in tutti i campioni. Metodi diversi danno risultati diversi (Lange et al., 2008).</p>
 <details class="poe"><summary>Prima di provare: con un gradino a metà corsa, quale ampiezza LOWESS segue meglio la deriva, 0,3 o 1?</summary>
@@ -34,7 +35,7 @@
 <li>ogni massimo di densità definisce un gruppo, con i picchi sotto di esso;</li>
 <li>il gruppo si tiene se compare in una frazione minima di campioni (minFraction, di default 0,5).</li>
 </ol>
-<p>Un altro approccio, tipico di MZmine, dà un punteggio a ogni coppia di picchi e assegna in ordine di punteggio, un picco per campione.</p>
+<p>Un altro approccio, tipico di MZmine (Pluskal et al., 2010), dà un punteggio a ogni coppia di picchi e assegna in ordine di punteggio, un picco per campione.</p>
 <span class="eq">punteggio = <i>w</i><sub>mz</sub> (1 − Δ<i>m</i>/tol<sub>mz</sub>) + <i>w</i><sub>rt</sub> (1 − Δrt/tol<sub>rt</sub>)<span class="no">(27.3)</span></span>
 <div class="box warn"><b>Errore frequente</b>
 <p>Un bw più piccolo della deriva residua <b>divide</b> un composto in due righe. Un bw o una fetta troppo larghi <b>fondono</b> due composti vicini (quasi-isobari).</p></div>
@@ -59,7 +60,7 @@
 <p>La normalizzazione corregge le differenze di quantità fra campioni, come una diluizione o la deriva dello strumento. Ci sono diversi modi:</p>
 <ul>
 <li><b>intensità totale</b> o <b>mediana</b>: si divide ogni campione per un fattore calcolato su tutte le feature;</li>
-<li><b>PQN</b> (Dieterle et al., 2006): si divide per la mediana dei quozienti fra il campione e uno spettro di riferimento;</li>
+<li><b>PQN</b> (Dieterle et al., 2006): dopo una normalizzazione sull'area totale, si divide ogni campione per la mediana dei quozienti fra il campione e uno spettro di riferimento, di solito lo spettro mediano;</li>
 <li><b>standard interni</b>: si divide per un composto aggiunto in quantità nota;</li>
 <li><b>correzione con i QC</b>: una curva LOESS sull'ordine di iniezione dei QC corregge la deriva (Dunn et al., 2011).</li>
 </ul>
@@ -86,6 +87,7 @@
 <li><span class="tag">articolo</span>Prince J.T., Marcotte E.M. (2006) Chromatographic alignment of ESI-LC-MS proteomics data sets by ordered bijective interpolated warping. <i>Anal. Chem.</i> 78, 6140-6152. <a href="https://doi.org/10.1021/ac0605344" target="_blank" rel="noopener">doi:10.1021/ac0605344</a></li>
 <li><span class="tag">articolo</span>Smith C.A. et al. (2006) XCMS: processing mass spectrometry data for metabolite profiling using nonlinear peak alignment, matching, and identification. <i>Anal. Chem.</i> 78, 779-787. <a href="https://doi.org/10.1021/ac051437y" target="_blank" rel="noopener">doi:10.1021/ac051437y</a></li>
 <li><span class="tag">articolo</span>Lange E. et al. (2008) Critical assessment of alignment procedures for LC-MS proteomics and metabolomics measurements. <i>BMC Bioinformatics</i> 9, 375. <a href="https://doi.org/10.1186/1471-2105-9-375" target="_blank" rel="noopener">doi:10.1186/1471-2105-9-375</a></li>
+<li><span class="tag">articolo</span>Pluskal T. et al. (2010) MZmine 2. <i>BMC Bioinformatics</i> 11, 395. <a href="https://doi.org/10.1186/1471-2105-11-395" target="_blank" rel="noopener">doi:10.1186/1471-2105-11-395</a></li>
 <li><span class="tag">articolo</span>Dieterle F. et al. (2006) Probabilistic quotient normalization as robust method to account for dilution of complex biological mixtures. <i>Anal. Chem.</i> 78, 4281-4290. <a href="https://doi.org/10.1021/ac051632c" target="_blank" rel="noopener">doi:10.1021/ac051632c</a></li>
 <li><span class="tag">articolo</span>Dunn W.B. et al. (2011) Procedures for large-scale metabolic profiling of serum and plasma using GC and LC coupled to MS. <i>Nat. Protoc.</i> 6, 1060-1083. <a href="https://doi.org/10.1038/nprot.2011.335" target="_blank" rel="noopener">doi:10.1038/nprot.2011.335</a></li>
 <li><span class="tag">articolo</span>Broadhurst D. et al. (2018) Guidelines and considerations for the use of system suitability and quality control samples in mass spectrometry assays applied in untargeted clinical metabolomic studies. <i>Metabolomics</i> 14, 72. <a href="https://doi.org/10.1007/s11306-018-1367-3" target="_blank" rel="noopener">doi:10.1007/s11306-018-1367-3</a></li>

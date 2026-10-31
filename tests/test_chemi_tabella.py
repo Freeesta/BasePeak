@@ -136,8 +136,8 @@ def test_each_chapter_cites_its_literature():
     t26, t27 = (CAP / "26-gruppi.html").read_text(encoding="utf-8"), (CAP / "27-tabella.html").read_text(encoding="utf-8")
     for key in ("Kuhl et al., 2012", "Broeckling et al., 2014"):
         assert key in t26, key
-    for key in ("Sakoe e Chiba, 1978", "Cleveland, 1979", "Prince e Marcotte, 2006", "Smith et al., 2006", "Lange et al., 2008", "Dieterle et al., 2006", "Dunn et al., 2011", "Broadhurst e colleghi (2018)"):
+    for key in ("Sakoe e Chiba, 1978", "Cleveland, 1979", "Prince e Marcotte, 2006", "Smith et al., 2006", "Lange et al., 2008", "Pluskal et al., 2010", "Dieterle et al., 2006", "Dunn et al., 2011", "Broadhurst e colleghi (2018)"):
         assert key in t27, key
-    assert len(re.findall(r'<li><span class="tag">articolo</span>', t26)) == 2 and len(re.findall(r'<li><span class="tag">articolo</span>', t27)) == 8
+    assert len(re.findall(r'<li><span class="tag">articolo</span>', t26)) == 2 and len(re.findall(r'<li><span class="tag">articolo</span>', t27)) == 9
     for t in (t26, t27):
         assert not re.search(r"TODO|\?\?\?|da verificare|fotocatal|TiO", t)
