@@ -25,10 +25,6 @@ def test_no_review_boxes_or_pages():
 VERIFICA_PENDING = {
     "26-gruppi.html",
     "27-tabella.html",
-    "34-storia-origini.html",
-    "39-storia-ft.html",
-    "40-storia-sorgenti.html",
-    "42-storia-rivelatori-dati.html",
 }
 
 
