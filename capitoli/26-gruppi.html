@@ -7,26 +7,85 @@
 <div class="kicker">Capitolo 26</div>
 <h1>Dai picchi ai composti: isotopi, addotti, frammenti in sorgente</h1>
 <p class="lead">Una sola molecola produce più segnali: isotopi, addotti e frammenti. Qui si impara a raggrupparli e a capire quando il raggruppamento sbaglia.</p>
-<div class="box key"><b>Capitolo in costruzione</b><p>Questo capitolo è ancora in scrittura: per ora trovi la scaletta, con una riga per ogni sezione, e il posto delle figure interattive.</p></div>
-<details class="q storia"><summary>Un po' di storia</summary><p>Annotare a mano i gruppi di isotopi e gli addotti è stato per anni un lavoro manuale; il capitolo racconterà come lo si è automatizzato.</p></details>
+<details class="q storia"><summary>Un po' di storia</summary><p>Riconoscere a occhio i picchi di isotopo e gli addotti in uno spettro è il lavoro di sempre dell'interpretazione (capitoli <a href="11-formula.html">11</a> e <a href="13-ei-metodo.html">13</a>). Con i dati LC-MS di molti campioni non è più praticabile a mano. Kuhl e colleghi (2012) hanno proposto CAMERA, una strategia integrata che estrae gli «spettri di composto» e annota isotopi e addotti in modo automatico. Broeckling e colleghi (2014) hanno introdotto RAMClust, un metodo di raggruppamento (clustering) delle feature.</p></details>
 <h2>Una molecola, molte feature</h2>
-<p>Ogni composto compare nei dati con più segnali distinti.</p>
+<p>I capitoli 24 e 25 producono <b>feature</b>: coppie (m/z, tempo di ritenzione) con un'intensità. Una feature non è un composto. Una sola molecola ne genera di solito parecchie, tutte con lo stesso andamento nel tempo ma con masse diverse:</p>
+<ul>
+<li>gli <b>isotopologhi</b>: stessa formula con uno o più isotopi pesanti (<sup>13</sup>C, <sup>37</sup>Cl);</li>
+<li>gli <b>addotti</b>: [M+H]<sup>+</sup>, [M+Na]<sup>+</sup>, [M+NH<sub>4</sub>]<sup>+</sup> (<a href="04-esi.html#addotti-differenze">capitolo 4</a>);</li>
+<li>i <b>frammenti in sorgente</b>: perdite neutre che avvengono prima dell'analizzatore (<a href="15-origine.html">capitolo 15</a>);</li>
+<li>i <b>dimeri</b> e gli ioni a più cariche.</li>
+</ul>
+<p>Se non si raggruppa, lo stesso composto compare più volte nella tabella e conta più volte nelle statistiche. Raggruppare dà anche una <b>ipotesi sulla massa neutra</b> M, da cui partono formule e librerie (capitoli 29 e 30).</p>
 <h2>Raggruppare per tempo e per forma</h2>
-<p>I segnali dello stesso composto escono insieme e hanno lo stesso andamento.</p>
+<p>Il procedimento è quello dei programmi di annotazione come CAMERA (Kuhl et al., 2012). Si lavora su un composto alla volta, in sei passi:</p>
+<div class="box math"><b>L'algoritmo in sei passi</b>
+<ol>
+<li>Si mettono insieme le feature con apice a meno di una tolleranza di tempo (qualche frazione della larghezza del picco, oppure un valore fisso in minuti).</li>
+<li>Si calcola la correlazione delle forme: per ogni coppia, la correlazione di Pearson dei due cromatogrammi estratti sull'intervallo comune. Si tiene la coppia se supera una soglia (per esempio 0,8).</li>
+<li>Dentro il gruppo si cercano gli isotopi: differenze di massa multiple di 1,0034 u divise per la carica, con un rapporto fra le intensità plausibile.</li>
+<li>Si cercano gli addotti: differenze di massa che corrispondono a una regola della lista.</li>
+<li>Si cercano i frammenti in sorgente: perdite neutre comuni, con lo stesso tempo e la stessa forma.</li>
+<li>Un <b>composto</b> è una componente connessa del grafo dei legami spiegati.</li>
+</ol></div>
+<span class="eq"><i>r</i> = <span class="frac"><span>Σ (<i>x</i><sub>i</sub> − <i>x̄</i>)(<i>y</i><sub>i</sub> − <i>ȳ</i>)</span><span>√[ Σ (<i>x</i><sub>i</sub> − <i>x̄</i>)<sup>2</sup> · Σ (<i>y</i><sub>i</sub> − <i>ȳ</i>)<sup>2</sup> ]</span></span><span class="no">(26.1)</span></span>
+<p>La correlazione conta solo se i punti sono abbastanza: su quattro punti anche due segnali senza relazione possono avere <i>r</i> alto per caso. Per questo un picco con pochi punti (capitolo 25) si raggruppa male. Con molti campioni si può correlare anche l'intensità da un campione all'altro. RAMClust (Broeckling et al., 2014) è un altro metodo che raggruppa le feature dello stesso composto.</p>
 <h2>Gli isotopologhi</h2>
-<p>Gli isotopi pesanti danno picchi regolari a distanze note.</p>
+<p>Un isotopo pesante sposta la massa di una quantità fissa e riduce l'intensità in modo prevedibile (<a href="10-dati.html">capitolo 10</a> e <a href="11-formula.html">capitolo 11</a>). Per uno ione con carica <i>z</i> la distanza fra i picchi è Δm/<i>z</i>.</p>
+<table id="tab-isotopi">
+<caption>Isotopi: differenza di massa e rapporto di intensità</caption>
+<tr><th>Coppia</th><th>Differenza di massa (u)</th><th>Rapporto atteso</th></tr>
+<tr data-f="13C"><td><sup>13</sup>C − <sup>12</sup>C</td><td class="n">1,0034</td><td>circa 1,07 % per ogni C</td></tr>
+<tr data-f="37Cl"><td><sup>37</sup>Cl − <sup>35</sup>Cl</td><td class="n">1,9970</td><td>circa 32 % per ogni Cl</td></tr>
+<tr data-f="81Br"><td><sup>81</sup>Br − <sup>79</sup>Br</td><td class="n">1,9980</td><td>circa 97 % per ogni Br</td></tr>
+</table>
+<span class="eq"><i>I</i>(M+1) / <i>I</i>(M) ≈ <i>n</i><sub>C</sub> · 1,07 % + <i>n</i><sub>N</sub> · 0,37 %<span class="no">(26.2)</span></span>
+<p>Esempio: per C<sub>15</sub>H<sub>12</sub>N<sub>2</sub>O la formula dà 15 · 1,07 + 2 · 0,37 ≈ 16,8 %; un picco a +1,0034 u con quel rapporto è il suo isotopo <sup>13</sup>C. Un picco a +1,0034 u più intenso del picco di partenza non può esserlo.</p>
+<p>Cl e Br differiscono di appena 1 mDa: a 5 ppm sono indistinguibili, e decide il rapporto (32 % contro 97 %).</p>
 <h2>Addotti e perdite neutre</h2>
-<p>Le differenze di massa fra segnali rivelano addotti e perdite.</p>
+<p>In ESI la stessa molecola dà ioni diversi a seconda di che cosa si lega. La differenza fra due ioni dello stesso composto è costante, e la tabella permette di riconoscerla. I valori sono calcolati con le masse esatte del capitolo 11.</p>
+<table id="tab-delta-m">
+<caption>Differenze di massa fra ioni dello stesso composto</caption>
+<tr><th>Differenza</th><th>Δm (u)</th></tr>
+<tr data-f="Na-H"><td>[M+Na]<sup>+</sup> − [M+H]<sup>+</sup></td><td class="n">21,9819</td></tr>
+<tr data-f="NH4-H"><td>[M+NH<sub>4</sub>]<sup>+</sup> − [M+H]<sup>+</sup></td><td class="n">17,0265</td></tr>
+<tr data-f="K-H"><td>[M+K]<sup>+</sup> − [M+H]<sup>+</sup></td><td class="n">37,9559</td></tr>
+<tr data-f="Cl+H"><td>[M+Cl]<sup>−</sup> − [M−H]<sup>−</sup></td><td class="n">35,9767</td></tr>
+<tr data-f="HCOO+H"><td>[M+HCOO]<sup>−</sup> − [M−H]<sup>−</sup></td><td class="n">46,0055</td></tr>
+<tr data-f="H2O"><td>perdita di H<sub>2</sub>O</td><td class="n">18,0106</td></tr>
+<tr data-f="NH3"><td>perdita di NH<sub>3</sub></td><td class="n">17,0265</td></tr>
+<tr data-f="CO2"><td>perdita di CO<sub>2</sub></td><td class="n">43,9898</td></tr>
+</table>
+<p>Per [2M+H]<sup>+</sup> la differenza non è fissa: dipende da M, e il dimero si cerca con 2 · <i>m</i>([M+H]<sup>+</sup>) − 1,0073.</p>
+<span class="eq">M = <i>m/z</i> − 1,0073 &nbsp;(da [M+H]<sup>+</sup>) &nbsp;&nbsp; M = <i>m/z</i> − 22,9892 &nbsp;(da [M+Na]<sup>+</sup>)<span class="no">(26.3)</span></span>
+<p>Esempio: due feature con lo stesso tempo e Δm = 21,9819 sono [M+H]<sup>+</sup> e [M+Na]<sup>+</sup> dello stesso composto; la massa neutra si ricava dalla più leggera con la (26.3). Attenzione: 17,0265 vale sia per l'addotto di ammonio sia per la perdita di NH<sub>3</sub>, due ipotesi diverse con lo stesso numero.</p>
 <h2>I frammenti in sorgente</h2>
-<p>Un frammento formato in sorgente ha lo stesso andamento del suo precursore.</p>
+<p>Un frammento formato in sorgente nasce dalla stessa molecola nello stesso istante: ha lo stesso tempo e la stessa forma del suo precursore, e il rapporto fra le intensità resta circa costante da un campione all'altro. La differenza di massa è una perdita neutra comune (H<sub>2</sub>O, NH<sub>3</sub>, CO<sub>2</sub>; tabella sopra).</p>
+<p>Il criterio che li distingue da un composto vero è il tempo: un composto con un'acqua in meno, che si forma davvero, di solito eluisce in un punto diverso. Come riconoscere i frammenti cambiando le condizioni della sorgente è spiegato nel <a href="15-origine.html">capitolo 15</a>.</p>
 <h2>Quando il raggruppamento sbaglia</h2>
-<p>Due composti vicini possono essere uniti, o uno solo diviso in due.</p>
+<p>Ogni passo ha un modo di fallire. Ne segue che il risultato è un'ipotesi da controllare, non un fatto.</p>
+<ul>
+<li>Due composti che eluiscono insieme finiscono nello stesso gruppo, soprattutto con una soglia di correlazione bassa.</li>
+<li>L'isotopo di un composto viene scambiato per un altro composto, se l'intensità è troppo bassa per superare la soglia.</li>
+<li>Più regole ci sono nella lista, più coincidenze casuali di Δm si trovano: ogni regola in più è un'altra occasione di legare due segnali che non c'entrano.</li>
+<li>Dimeri e ioni a più cariche hanno differenze di massa che dipendono da M o da <i>z</i>, e sfuggono alle regole fisse.</li>
+</ul>
+<div class="box warn"><b>Errore frequente</b>
+<p>Fidarsi del gruppo perché «la massa torna». Con una tolleranza larga e molte regole, quasi ogni coppia di feature vicine trova una spiegazione: controlla sempre anche la forma e il rapporto fra le intensità.</p></div>
+<details class="poe"><summary>Prima di provare: aggiungendo il secondo composto che eluisce quasi insieme al primo, che cosa succede ai legami se abbassi la soglia di correlazione?</summary>
+<p>A soglia alta restano due gruppi separati. Abbassandola compaiono legami casuali, per esempio un «addotto di ammonio» che in realtà è un altro composto. Con la soglia ancora più bassa i due gruppi si fondono. Poi alza la soglia: i segnali deboli del primo composto, più rumorosi, si staccano.</p></details>
 <div class="sim" id="sim-chemi-gruppi" data-sim="../assets/sim-chemi-gruppi.js"><h3>Figura 26.1 Chi appartiene a chi?</h3>
 <p class="note nota">Raggruppa i segnali di alcuni composti sintetici secondo tempo, forma e differenze di massa. Dati sintetici, a scopo didattico.</p></div>
 <h2>Verifica</h2>
-<p>Qualche domanda per controllare di avere capito i punti principali.</p>
+<details class="q"><summary>Due feature con lo stesso tempo di ritenzione differiscono di 21,9819 u. Che ipotesi fai e come ricavi M?</summary><p>La più pesante è [M+Na]<sup>+</sup> e la più leggera [M+H]<sup>+</sup> dello stesso composto. M si ricava dalla più leggera: M = <i>m/z</i> − 1,0073.</p></details>
+<details class="q"><summary>Due picchi a 216,1010 e 218,0981, con rapporto 32 %: che cosa contiene la molecola?</summary><p>La differenza è 1,9971 u e il rapporto è quello di un atomo di Cl (<sup>37</sup>Cl/<sup>35</sup>Cl ≈ 32 %). Un atomo di Br darebbe circa 97 %.</p></details>
+<details class="q"><summary>Perché una correlazione di 0,95 calcolata su quattro punti non basta a unire due feature?</summary><p>Con pochi punti la correlazione ha una grande incertezza: due segnali senza relazione possono dare <i>r</i> alto per caso. Servono più punti sul picco, e conviene controllare anche massa e intensità.</p></details>
+<details class="q"><summary>Aggiungi alla lista la regola del potassio. Che cosa ti aspetti, se nei dati non ci sono addotti di potassio?</summary><p>Nessun legame vero in più, ma una nuova possibilità di legami casuali. Una regola va aggiunta solo se l'addotto è plausibile per la fase mobile usata.</p></details>
 <h2>Per approfondire</h2>
-<p>Le letture consigliate sull'annotazione di isotopi e addotti.</p>
+<ul class="refs">
+<li><span class="tag">articolo</span>Kuhl C. et al. (2012) CAMERA: an integrated strategy for compound spectra extraction and annotation of LC/MS data sets. <i>Anal. Chem.</i> 84, 283-289. <a href="https://doi.org/10.1021/ac202450g" target="_blank" rel="noopener">doi:10.1021/ac202450g</a></li>
+<li><span class="tag">articolo</span>Broeckling C.D. et al. (2014) RAMClust: a novel feature clustering method. <i>Anal. Chem.</i> 86, 6812-6817. <a href="https://doi.org/10.1021/ac501530d" target="_blank" rel="noopener">doi:10.1021/ac501530d</a></li>
+</ul>
 </main></div>
 <script src="../assets/appname.js"></script><script src="../assets/teoria.js"></script><script src="../assets/chemi-common.js"></script>
 </body></html>
