@@ -90,10 +90,17 @@ def test_rows_22_to_32():
 
 
 def test_public_pages_not_hidden():
+    """The chapter files themselves carry no draft marker; whether part VII is visible is decided only by the 5th field of its CHAPTERS rows."""
     for p in pages():
         t = text(p)
         assert "data-esteso" not in t and "noindex" not in t, p.name
-    assert not re.search(r'\["capitoli/(2[2-9]|3[0-2])-[^"]*", "\d+", "[^"]*", "[^"]*", true', text(ASSETS / "teoria.js"))
+
+
+def test_part_vii_is_an_administrator_only_draft_until_published():
+    """Drafts for readers (DEV-HIDE): every part VII row carries the 5th field `true`. Publishing a chapter = deleting that field from its row."""
+    js = text(ASSETS / "teoria.js")
+    found = re.findall(r'\["capitoli/((?:2[2-9]|3[0-2])-[^"]*)", "\d+", "[^"]*", "[^"]*", true\]', js)
+    assert len(found) == 11, found
 
 
 def test_one_storia_per_chapter():

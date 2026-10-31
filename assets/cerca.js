@@ -133,7 +133,7 @@
     const q = input.value, mine = ++seq;
     loadIndex().then(idx => {
       if (mine !== seq) return;
-      const toks = tokens(q), groups = search(idx, q);
+      const toks = tokens(q), groups = search(idx.filter(e => !(TEORIA.nascosto && TEORIA.nascosto(e[2].replace(/#.*$/, "")))), q);   // drafts are searched only in administrator mode
       flat = []; let h = "";
       groups.forEach((g, gi) => {
         h += `<li role="presentation"><div role="group" aria-labelledby="cg${gi}"><div class="gh" id="cg${gi}">${g.cap.replace(/&/g, "&amp;")}</div>`;
