@@ -4,7 +4,7 @@
 // [file, number shown in the menu, title, part]. The order is the study path: each chapter uses only what comes before it.
 // The "Pratica" pages (pratica/*.html) are the exercises and games; they use the same layout.
 // The menu has three parts, in this order: Teoria (chapters 1-18 and the introduction), Pratica, Reference (part "Reference": glossary, formulary, timings), see groupOf().
-// A 5th field `true` marks an administrator-only draft: it is removed from CHAPTERS for readers (menu, breadcrumb, prev/next, home cards, search, glossary links) and its URL shows a notice; to publish a chapter delete that field from its row.
+// A 5th field `true` marks an administrator-only draft (today only the Storia rows 33-42; part VII Chemioinformatica was published by deleting it): it is removed from CHAPTERS for readers (menu, breadcrumb, prev/next, home cards, search, glossary links) and its URL shows a notice; to publish a chapter delete that field from its row.
 // Files are written relative to the site root (the folder above assets/); SITE.up is the way from the current page back to that root.
 const SITE = (() => {
   const src = document.currentScript && document.currentScript.src;
@@ -47,17 +47,17 @@ const CHAPTERS = [
   ["capitoli/19-glossario.html", "19", "Glossario e bibliografia", "Reference"],
   ["capitoli/20-formulario.html", "20", "Formulario", "Reference"],
   ["capitoli/21-tempi.html", "21", "Tempi degli analizzatori: dwell time, sweep e duty cycle", "Reference"],
-  ["capitoli/22-segnale.html", "22", "Segnale, profilo e centroide", "VII. Chemioinformatica", true],
-  ["capitoli/23-formati.html", "23", "File e formati aperti", "VII. Chemioinformatica", true],
-  ["capitoli/24-tracce.html", "24", "Tracce di massa e ROI", "VII. Chemioinformatica", true],
-  ["capitoli/25-picchi.html", "25", "Trovare i picchi", "VII. Chemioinformatica", true],
-  ["capitoli/26-gruppi.html", "26", "Isotopi, addotti, frammenti", "VII. Chemioinformatica", true],
-  ["capitoli/27-tabella.html", "27", "La tabella delle feature", "VII. Chemioinformatica", true],
-  ["capitoli/28-somiglianza.html", "28", "Somiglianza spettrale", "VII. Chemioinformatica", true],
-  ["capitoli/29-librerie.html", "29", "Librerie e falsi positivi", "VII. Chemioinformatica", true],
-  ["capitoli/30-candidati.html", "30", "Formule e candidati in silico", "VII. Chemioinformatica", true],
-  ["capitoli/31-confidenza.html", "31", "Livelli di confidenza", "VII. Chemioinformatica", true],
-  ["capitoli/32-esempio.html", "32", "Esempio completo", "VII. Chemioinformatica", true],
+  ["capitoli/22-segnale.html", "22", "Segnale, profilo e centroide", "VII. Chemioinformatica"],
+  ["capitoli/23-formati.html", "23", "File e formati aperti", "VII. Chemioinformatica"],
+  ["capitoli/24-tracce.html", "24", "Tracce di massa e ROI", "VII. Chemioinformatica"],
+  ["capitoli/25-picchi.html", "25", "Trovare i picchi", "VII. Chemioinformatica"],
+  ["capitoli/26-gruppi.html", "26", "Isotopi, addotti, frammenti", "VII. Chemioinformatica"],
+  ["capitoli/27-tabella.html", "27", "La tabella delle feature", "VII. Chemioinformatica"],
+  ["capitoli/28-somiglianza.html", "28", "Somiglianza spettrale", "VII. Chemioinformatica"],
+  ["capitoli/29-librerie.html", "29", "Librerie e falsi positivi", "VII. Chemioinformatica"],
+  ["capitoli/30-candidati.html", "30", "Formule e candidati in silico", "VII. Chemioinformatica"],
+  ["capitoli/31-confidenza.html", "31", "Livelli di confidenza", "VII. Chemioinformatica"],
+  ["capitoli/32-esempio.html", "32", "Esempio completo", "VII. Chemioinformatica"],
   ["capitoli/33-storia-mappa.html", "33", "La storia in una pagina", "VII. Storia", true],
   ["capitoli/34-storia-origini.html", "34", "Le origini: raggi catodici, raggi canale, raggi positivi", "VII. Storia", true],
   ["capitoli/35-storia-aston-dempster.html", "35", "Aston e Dempster: isotopi e numeri interi", "VII. Storia", true],

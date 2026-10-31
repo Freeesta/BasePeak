@@ -37,7 +37,7 @@ Lo stesso spettro può essere salvato in due forme.
 </table>
 ```
 
-Il passaggio da profilo a centroide si chiama _peak picking_. Non si può invertire. Dal centroide non si recupera la forma del picco. Per questo si conserva sempre il file originale. <span class="solo-esteso" hidden>Approfondimento: <a href="22-segnale.html">capitolo 22 (Segnale, profilo e centroide)</a>.</span>
+Il passaggio da profilo a centroide si chiama _peak picking_. Non si può invertire. Dal centroide non si recupera la forma del picco. Per questo si conserva sempre il file originale. Approfondimento: <a href="22-segnale.html">capitolo 22 (Segnale, profilo e centroide)</a>.
 
 ### Cromatogrammi: TIC, BPC, XIC
 
@@ -57,7 +57,7 @@ Con risoluzione unitaria il profilo di uno ione è largo ~0,7 Da a metà altezza
 
 Se l'asse di massa è spostato, la finestra va allargata. Esempio: con uno spostamento di +0,3 Da, centrare la finestra sul valore teorico taglia il picco. Si usa ±1 Da sul valore teorico, oppure ±0,5 Da sul valore osservato nello spettro dello standard.
 
-Con l'alta risoluzione la finestra si esprime in ppm (di solito 5–10 ppm). <span class="solo-esteso" hidden>Approfondimento: <a href="24-tracce.html">capitolo 24 (Tracce di massa e ROI)</a>.</span>
+Con l'alta risoluzione la finestra si esprime in ppm (di solito 5–10 ppm). Approfondimento: <a href="24-tracce.html">capitolo 24 (Tracce di massa e ROI)</a>.
 
 ### Spettro di un picco e sottrazione del fondo
 
@@ -90,7 +90,7 @@ Negli stessi file gli array di *m/z* e di intensità sono codificati in binario 
 
 In mzML, full scan e MS2 sono serie di spettri. I dati di MRM sono salvati come cromatogrammi (SRM), uno per transizione.
 
-Per la GC-MS esiste anche il vecchio formato CDF (ANDI-MS), ancora letto da molti programmi di deconvoluzione. <span class="solo-esteso" hidden>Approfondimento: <a href="23-formati.html">capitolo 23 (File e formati aperti)</a>.</span>
+Per la GC-MS esiste anche il vecchio formato CDF (ANDI-MS), ancora letto da molti programmi di deconvoluzione. Approfondimento: <a href="23-formati.html">capitolo 23 (File e formati aperti)</a>.
 
 ### Formati dei costruttori e conversione
 
@@ -210,7 +210,7 @@ Alcune regole servono a non ripetersi:
 </ul>
 ```
 
-Gli spettri MS2 sono puliti perché il precursore è isolato in una finestra stretta. Il limite è che la scelta dipende dall'intensità: ioni deboli o coeluenti possono non essere frammentati, e due corse della stessa miscela non scelgono sempre gli stessi ioni. Un esempio di uso è nel capitolo 17. <span class="solo-esteso" hidden>Approfondimento: <a href="28-somiglianza.html">capitolo 28 (Somiglianza spettrale)</a>.</span>
+Gli spettri MS2 sono puliti perché il precursore è isolato in una finestra stretta. Il limite è che la scelta dipende dall'intensità: ioni deboli o coeluenti possono non essere frammentati, e due corse della stessa miscela non scelgono sempre gli stessi ioni. Un esempio di uso è nel capitolo 17. Approfondimento: <a href="28-somiglianza.html">capitolo 28 (Somiglianza spettrale)</a>.
 
 ### DIA
 
@@ -245,7 +245,7 @@ Anche senza massa accurata, il **cluster isotopico** porta informazione sulla co
 </table>
 ```
 
-Per i TP è un controllo potentissimo: se il parent contiene un cloro e il candidato mostra ancora M+2 al ~32%, il cloro è rimasto; se il pattern scompare e la massa è calata di 18 (−Cl +OH), la declorurazione idrossilativa è un'ipotesi coerente. <span class="solo-esteso" hidden>Approfondimento: <a href="26-gruppi.html">capitolo 26 (Isotopi, addotti, frammenti)</a>.</span>
+Per i TP è un controllo potentissimo: se il parent contiene un cloro e il candidato mostra ancora M+2 al ~32%, il cloro è rimasto; se il pattern scompare e la massa è calata di 18 (−Cl +OH), la declorurazione idrossilativa è un'ipotesi coerente. Approfondimento: <a href="26-gruppi.html">capitolo 26 (Isotopi, addotti, frammenti)</a>.
 
 ```html
 <div class="sim" id="sim-iso"><h4>Cluster isotopico a risoluzione unitaria</h4>

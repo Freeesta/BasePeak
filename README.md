@@ -3,6 +3,8 @@
 Teoria della spettrometria di massa: capitoli, figure interattive e Pratica (giochi ed esercizi).
 Sito online: https://freeesta.github.io/BasePeak/
 
+Contenuti: introduzione e parti II-VI (cromatografia, ionizzazione, analizzatori, lettura degli spettri, dal dato al risultato), la parte VII «Chemioinformatica» (capitoli 22-32, pubblicata), Pratica e Reference. La Storia (capitoli 33-42) è ancora in bozza, visibile solo in modalità amministratore.
+
 Pagine statiche, nessuna compilazione, nessuna rete: si apre anche da file (doppio clic su `index.html`).
 Accessibile: font Atkinson Hyperlegible e OpenDyslexic, spaziatura WCAG, sfondi crema/azzurro/alto contrasto.
 
