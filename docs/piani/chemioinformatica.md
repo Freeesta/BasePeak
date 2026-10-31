@@ -59,6 +59,18 @@ Glossary and formulary are not new chapters: they extend `capitoli/19-glossario.
   `details.q` questions, numbered `span.eq`, `Figura N.x`). Every chapter ends with "Verifica" (3-5 `details.q`) and
   "Per approfondire" (references with DOI, only from section 7 below, `verified` ones; `to verify` ones are not cited
   until checked).
+- Literature in the text: author-year citations ("(Tautenhahn et al., 2008)") where an idea is introduced, each one
+  matching an entry of the chapter's "Per approfondire" list (section 7.1) and of the merged bibliography in
+  `capitoli/19-glossario.html`. Cite and paraphrase only; never copy sentences, tables or figures from a source.
+  One short clause per source saying what it contributes ("ha introdotto ...", "confronta ...").
+- History: each chapter has one collapsible box placed after the lead or at the end of the first h2:
+  `<details class="q storia"><summary>Un po' di storia</summary><p>5-8 righe</p></details>` (the class `q` reuses
+  the existing `details.q` style of `teoria.css`, so no CSS change is needed; `storia` only marks it for the tests). Content per chapter in section 12; every name and date comes from a
+  `verified` source of section 7 and is cited author-year; a claim that cannot be verified is left out.
+- DOI integrity (test, DEV-00): every `doi.org/10.` link in chapters 22-32 and in the new bibliography section of
+  chapter 19 must be listed in `docs/piani/riferimenti-chemioinformatica.tsv` with status `verified`; DOIs found in
+  the other published pages are recorded there by DEV-00 with status `preexisting` (not re-checked here, flagged for
+  the ARCH review), so that no DOI anywhere in the site is missing from the committed list.
 - Never write `TODO`, `???` or "da verificare" in a chapter: `tools/controlla_teoria.py` (check e) rejects them.
   Scientific doubts live in this file (section 10), not in the pages.
 - Reuse, do not duplicate: where an existing chapter already explains something, one sentence + link (section 2).
@@ -913,19 +925,60 @@ chemi-common (4) + its file(s) (<= 15) only when scrolled near.
 | Duhrkop2015 | Dührkop K. et al. (2015) Searching molecular structure databases with tandem mass spectra using CSI:FingerID. PNAS 112, 12580-12585 | 10.1073/pnas.1509788112 | verified |
 | Duhrkop2019 | Dührkop K. et al. (2019) SIRIUS 4: a rapid tool for turning tandem mass spectra into metabolite structure information. Nat. Methods 16, 299-302 | 10.1038/s41592-019-0344-8 | verified |
 | Duhrkop2021 | Dührkop K. et al. (2021; online 2020) Systematic classification of unknown metabolites using high-resolution fragmentation mass spectra (CANOPUS). Nat. Biotechnol. 39, 462-471 | 10.1038/s41587-020-0740-8 | verified (optional) |
+| Brenton2010 | Brenton A.G., Godfrey A.R. (2010) Accurate mass measurement: terminology and treatment of data. J. Am. Soc. Mass Spectrom. 21, 1821-1835 | 10.1016/j.jasms.2010.06.006 | verified |
+| Murray2013 | Murray K.K. et al. (2013) Definitions of terms relating to mass spectrometry (IUPAC Recommendations 2013). Pure Appl. Chem. 85, 1515-1609 | 10.1351/PAC-REC-06-04-06 | verified |
+| WileyMcLaren1955 | Wiley W.C., McLaren I.H. (1955) Time-of-flight mass spectrometer with improved resolution. Rev. Sci. Instrum. 26, 1150-1157 | 10.1063/1.1715212 | verified |
+| ComisarowMarshall1974 | Comisarow M.B., Marshall A.G. (1974) Fourier transform ion cyclotron resonance spectroscopy. Chem. Phys. Lett. 25, 282-283 | 10.1016/0009-2614(74)89137-2 | verified |
+| Makarov2000 | Makarov A. (2000) Electrostatic axially harmonic orbital trapping: a high-performance technique of mass analysis. Anal. Chem. 72, 1156-1162 | 10.1021/ac991131p | verified |
+| HitesBiemann1970 | Hites R.A., Biemann K. (1970) Computer evaluation of continuously scanned mass spectra of gas chromatographic effluents. Anal. Chem. 42, 855-860 | 10.1021/ac60290a009 | verified |
+| Hertz1971 | Hertz H.S., Hites R.A., Biemann K. (1971) Identification of mass spectra by computer-searching a file of known spectra. Anal. Chem. 43, 681-691 | 10.1021/ac60301a009 | verified (co-authors from the title search; check the author list on the publisher page) |
+| McLafferty1974 | McLafferty F.W. et al. (1974) Probability based matching of mass spectra. Rapid identification of specific compounds in mixtures. Org. Mass Spectrom. 9, 690-702 | 10.1002/oms.1210090710 | verified |
+| Stein2012 | Stein S. (2012) Mass spectral reference libraries: an ever-expanding resource for chemical identification. Anal. Chem. 84, 7274-7282 | 10.1021/ac301205z | verified |
+| Deutsch2008 | Deutsch E. (2008) mzML: a single, unifying data format for mass spectrometer output. Proteomics 8, 2776-2777 | 10.1002/pmic.200890049 | verified |
+| Tsugawa2020 | Tsugawa H. et al. (2020) A lipidome atlas in MS-DIAL 4. Nat. Biotechnol. 38, 1159-1163 | 10.1038/s41587-020-0531-2 | verified |
+| Aron2020 | Aron A.T. et al. (2020) Reproducible molecular networking of untargeted mass spectrometry data using GNPS. Nat. Protoc. 15, 1954-1991 | 10.1038/s41596-020-0317-5 | verified |
+| Wang2021 | Wang F. et al. (2021) CFM-ID 4.0: more accurate ESI-MS/MS spectral prediction and compound identification. Anal. Chem. 93, 11692-11700 | 10.1021/acs.analchem.1c01465 | verified |
+| Ludwig2020 | Ludwig M. et al. (2020) Database-independent molecular formula annotation using Gibbs sampling through ZODIAC. Nat. Mach. Intell. 2, 629-641 | 10.1038/s42256-020-00234-6 | verified |
+| Creek2014 | Creek D.J. et al. (2014) Metabolite identification: are you sure? And how do your peers gauge your confidence? Metabolomics 10, 350-353 | 10.1007/s11306-014-0656-8 | verified |
+| Sumner2014 | Sumner L.W. et al. (2014) Proposed quantitative and alphanumeric metabolite identification metrics. Metabolomics 10, 1047-1049 | 10.1007/s11306-014-0739-6 | verified |
+| Schymanski2015 | Schymanski E.L. et al. (2015) Non-target screening with high-resolution mass spectrometry: critical review using a collaborative trial on water analysis. Anal. Bioanal. Chem. 407, 6237-6255 | 10.1007/s00216-015-8681-7 | verified |
+| Alseekh2021 | Alseekh S. et al. (2021) Mass spectrometry-based metabolomics: a guide for annotation, quantification and best reporting practices. Nat. Methods 18, 747-756 | 10.1038/s41592-021-01197-1 | verified |
+| Hollender2023 | Hollender J. et al. (2023) NORMAN guidance on suspect and non-target screening in environmental monitoring. Environ. Sci. Eur. 35, 75 | 10.1186/s12302-023-00779-4 | verified (article number 75 to verify) |
+| Blazenovic2018 | Blaženović I. et al. (2018) Software tools and approaches for compound identification of LC-MS/MS data in metabolomics. Metabolites 8, 31 | 10.3390/metabo8020031 | verified |
+| Gross2017 | Gross J.H. (2017) Mass Spectrometry: A Textbook, 3rd ed., Springer | 10.1007/978-3-319-54398-7 | verified (DOI and year; edition number not in Crossref, already cited as 3rd ed. in ch. 19) |
+| Winkler2020 | Winkler R. (ed.) (2020) Processing Metabolomics and Proteomics Data with Open Software. Royal Society of Chemistry (New Developments in Mass Spectrometry) | 10.1039/9781788019880 | verified (editor from Crossref) |
+| deHoffmann2007 | de Hoffmann E., Stroobant V. (2007) Mass Spectrometry: Principles and Applications, 3rd ed., Wiley (ISBN 978-0-470-03310-4) | none | to verify (ISBN lookup failed; already in ch. 19 bibliography) |
+| McLaffertyTurecek1993 | McLafferty F.W., Tureček F. (1993) Interpretation of Mass Spectra, 4th ed., University Science Books | none | to verify (no DOI; already in ch. 19 bibliography) |
 | xcms-src | xcms R package source, `R/functions-Params.R` (CentWaveParam, MatchedFilterParam, PeakDensityParam defaults), github.com/sneumann/xcms, devel | none | verified (read 2026-10-31; defaults may change between versions: cite "versione corrente al 2026") |
 | NIST-MSSearch | NIST Mass Spectral Search Program manual (match factor, reverse match factor, probability) | none | to verify (official NIST page) |
 | GNPS-docs | GNPS documentation, molecular networking parameters | none | to verify |
 | MassBank-licences | massbank.eu record licences | none | to verify |
 
-Cite, per chapter (only `verified`): 22 Martens2011 (optional), Kind2018; 23 Martens2011, Pedrioli2004, Teleman2014,
-Hoffmann2019, Griss2014, Lampen1994, Chambers2012, Hulstaert2020; 24 Tautenhahn2008, Smith2006,
-Myers2017; 25 Tautenhahn2008, Du2006, Smith2006, SavitzkyGolay1964, Zhang2014, Stein1999; 26 Kuhl2012,
-Broeckling2014; 27 Smith2006, Prince2006, Cleveland1979, SakoeChiba1978, Lange2008, Broadhurst2018, Dieterle2006,
-Dunn2011; 28 SteinScott1994, Watrous2012, Bittremieux2022, Li2021; 29 Horai2010, Wang2016, Vinaixa2016, Stein1995,
-EliasGygi2007, Scheubert2017; 30 KindFiehn2007, Wolf2010, Ruttkies2016, Allen2014, Duhrkop2015, Duhrkop2019;
-31 Schymanski2014, Sumner2007, Charbonnet2022; 32 Hollender2017, Helmus2021, Pluskal2010/Schmid2023, Tsugawa2015,
-Rost2016 (software named as examples of open tools, no tutorial).
+### 7.1 Literature per chapter (author-year in the text, full entry in "Per approfondire", merged in ch. 19)
+
+Only `verified` keys. "Contributes" says what the DEV writes about each source (paraphrase, never copy).
+
+| Ch. | Keys | Contributes |
+|---|---|---|
+| 22 | Gross2017; Murray2013; Brenton2010; WileyMcLaren1955; ComisarowMarshall1974; Makarov2000; Kind2018 | textbook basis; IUPAC terms (resolution, accuracy); ppm/mDa conventions and treatment of mass errors; history of TOF, FT-ICR and Orbitrap detection |
+| 23 | Pedrioli2004; Deutsch2008; Martens2011; Teleman2014; Griss2014; Hoffmann2019; McDonald1988; Lampen1994; Kessner2008; Chambers2012; Hulstaert2020; PSI-MS-CV | open formats and their genealogy (mzXML -> mzML), compression, results formats, JCAMP-DX origin and MS extension, conversion tools |
+| 24 | HitesBiemann1970; Smith2006; Tautenhahn2008; Myers2017 | computer evaluation of continuously scanned GC-MS data (history), binning vs ROI, comparison of chromatogram builders |
+| 25 | SavitzkyGolay1964; Smith2006; Du2006; Tautenhahn2008; Stein1999; Zhang2014; Myers2017; Pluskal2010; Schmid2023; Rost2016; Tsugawa2015 | smoothing, matched filter, CWT, centWave, AMDIS deconvolution, peak quality, the open software families |
+| 26 | Kuhl2012; Broeckling2014 | annotation of isotopes/adducts and feature clustering |
+| 27 | SakoeChiba1978; Cleveland1979; Prince2006; Smith2006; Lange2008; Dieterle2006; Dunn2011; Broadhurst2018 | DTW (from speech recognition), LOWESS, OBI-Warp, peak-group alignment, comparison of aligners, PQN, QC-based correction, QC guidelines |
+| 28 | Hertz1971; McLafferty1974; SteinScott1994; Watrous2012; Bittremieux2022; Li2021 | first computer library search, probability-based matching, optimisation of the dot product, modified cosine, comparison of alignment scores, spectral entropy |
+| 29 | Hertz1971; McLafferty1974; Stein1995; Stein2012; Horai2010; Wang2016; Aron2020; Tsugawa2015; Tsugawa2020; Vinaixa2016; Kind2018; EliasGygi2007; Scheubert2017; BenjaminiHochberg1995 | EI library search history, substructure information, reference libraries today, MassBank, GNPS and molecular networking protocol, MS-DIAL libraries, database review, target-decoy, FDR in metabolomics |
+| 30 | KindFiehn2007; Wolf2010; Ruttkies2016; Allen2014; Allen2015; Wang2021; Duhrkop2015; Duhrkop2019; Ludwig2020; Duhrkop2021; Blazenovic2018 | formula rules, MetFrag, CFM-ID (1 to 4), CSI:FingerID, SIRIUS 4, ZODIAC, CANOPUS, overview of tools |
+| 31 | Sumner2007; Schymanski2014; Creek2014; Sumner2014; Schymanski2015; Charbonnet2022; Alseekh2021; Hollender2017; Hollender2023 | MSI levels, Schymanski levels, debate and later proposals, PFAS extension, reporting practices, NTS guidance |
+| 32 | Hollender2017; Hollender2023; Schymanski2015; Helmus2021; Winkler2020; Pluskal2010; Schmid2023; Tsugawa2015; Rost2016 | the full NTS workflow and open software as examples (no tutorial) |
+
+Textbooks (bibliography "Manuali" already lists Gross, de Hoffmann & Stroobant, McLafferty & Tureček; ch. 22 and 32
+cite Gross2017 and Winkler2020; the two without DOI stay as they are in ch. 19 and are not re-cited in part VII until
+verified).
+
+Committed machine-readable list: `docs/piani/riferimenti-chemioinformatica.tsv` (key, DOI, status, chapters,
+citation). It is the source for the DOI integrity test; a DEV adding a reference adds a row with status
+`verified` only after resolving the DOI on Crossref/doi.org and matching authors, year, title, journal, pages.
 
 ---------------------------------------------------------------------------------------------------------------------
 
@@ -948,14 +1001,14 @@ Prerequisite: PR #10 (DEV8, navigation) merged. Nothing of part VII starts befor
 
 | Prompt | Depends on | Shared files touched | Own files (disjoint) |
 |---|---|---|---|
-| DEV-00 skeleton | #10 merged | `assets/teoria.js` (CHAPTERS rows 22-32 only), `index.html` (part VII cards), `capitoli/19-glossario.html` (stubs), `assets/glossario-dati.js` + `assets/indice-ricerca.js` (regenerated), `docs/COME-MODIFICARE.md`, `tests/test_numerazione.py` (count 21 -> 32), `tests_e2e/` (new file) | `assets/chemi-common.js`, `capitoli/22..32-*.html`, `capitoli/src/22..32-*.md`, `tests/test_chemi.py`, `tests/chemi_common_node.mjs`, `tests_e2e/e2e_chemi.py` |
+| DEV-00 skeleton | #10 merged | `assets/teoria.js` (CHAPTERS rows 22-32 only), `index.html` (part VII cards), `capitoli/19-glossario.html` (stubs), `assets/glossario-dati.js` + `assets/indice-ricerca.js` (regenerated), `docs/COME-MODIFICARE.md`, `tests/test_numerazione.py` (count 21 -> 32), `tests_e2e/` (new file), `docs/piani/riferimenti-chemioinformatica.tsv` (append `preexisting` DOIs) | `assets/chemi-common.js`, `capitoli/22..32-*.html`, `capitoli/src/22..32-*.md`, `tests/test_chemi.py`, `tests/chemi_common_node.mjs`, `tests_e2e/e2e_chemi.py` |
 | DEV-01 ch 22-23 | DEV-00 | `assets/indice-ricerca.js` (regenerate only) | `capitoli/22-segnale.*`, `capitoli/23-formati.*`, `assets/sim-chemi-segnale.js`, `assets/sim-chemi-formati.js` |
 | DEV-02 ch 24-25 | DEV-00 | idem | `capitoli/24-tracce.*`, `capitoli/25-picchi.*`, `assets/sim-chemi-tracce.js`, `assets/sim-chemi-picchi.js` |
 | DEV-03 ch 26-27 | DEV-00 | idem | `capitoli/26-gruppi.*`, `capitoli/27-tabella.*`, `assets/sim-chemi-gruppi.js`, `assets/sim-chemi-tabella.js`, `assets/sim-chemi-esplora.js` |
 | DEV-04 ch 28-29 | DEV-00 | idem | `capitoli/28-somiglianza.*`, `capitoli/29-librerie.*`, `assets/sim-chemi-somiglianza.js`, `assets/sim-chemi-librerie.js` |
 | DEV-05 ch 30-31 | DEV-00 | idem | `capitoli/30-candidati.*`, `capitoli/31-confidenza.*`, `assets/sim-chemi-candidati.js`, `assets/sim-chemi-confidenza.js` |
 | DEV-06 ch 32 | DEV-01..05 | idem (+ `LICENZE-TERZI.md` only if a MassBank record is used) | `capitoli/32-esempio.*`, `assets/sim-chemi-esempio.js`, `docs/provenance/chemi-esempio.md` (optional) |
-| DEV-07 glossary, formulary, search, cross-links | DEV-06 | `capitoli/19-glossario.html`, `capitoli/20-formulario.html`, `assets/glossario-dati.js`, `assets/indice-ricerca.js`, one sentence in chapters 3, 9, 10, 11, 17, 18 (+ their `src/*.md`), `index.html` (card texts), `docs/COME-MODIFICARE.md` | none new |
+| DEV-07 glossary, formulary, bibliography, search, cross-links | DEV-06 | `docs/piani/riferimenti-chemioinformatica.tsv` (chapters column), `capitoli/19-glossario.html` (+ bibliography section), `capitoli/20-formulario.html`, `assets/glossario-dati.js`, `assets/indice-ricerca.js`, one sentence in chapters 3, 9, 10, 11, 17, 18 (+ their `src/*.md`), `index.html` (card texts), `docs/COME-MODIFICARE.md` | none new |
 | DEV-08 ARCH review | DEV-07 | none (docs-only) | `docs/piani/revisione-chemioinformatica.md` |
 
 - DEV-01..05 run in parallel. Their only common file is the generated `assets/indice-ricerca.js`
@@ -1002,3 +1055,25 @@ Formulary, new section "6. Chemioinformatica (capitoli 22-32)": ppm error; XIC w
 vertex; centroid of area; Poisson sigma = sqrt(N); 13C spacing 1.003355/z; Gaussian area h sigma sqrt(2 pi); As and Tf;
 LOWESS tricube weight; DTW recursion; cosine; weighted cosine; spectral entropy and entropy similarity; FDR and q-value;
 RSD; fold change vs blank; PQN; RDB (link ch. 11).
+
+---------------------------------------------------------------------------------------------------------------------
+
+## 12. "Un po' di storia" boxes (outline + sources; 5-8 Italian lines each, author-year citations)
+
+Rule: only what the cited source itself establishes (its year, its title, what it introduced as stated in its
+abstract). Items marked `to verify against source` may be written only after the DEV has read the paper and agrees;
+otherwise they are left out. No anecdotes, no "first ever" claims without a source.
+
+| Ch. | Outline | Sources |
+|---|---|---|
+| 22 | From scanning instruments to digital transients: the improved-resolution TOF of 1955; Fourier-transform detection in ion cyclotron resonance in 1974; the Orbitrap in 2000; terminology fixed by IUPAC in 2013 | WileyMcLaren1955, ComisarowMarshall1974, Makarov2000, Murray2013 |
+| 23 | From proprietary files to open formats: mzXML (2004), the merge into mzML announced 2008 and published 2011, numerical compression (2014), results formats mzTab (2014) and mzTab-M (2019); JCAMP-DX born for IR (1988) and extended to MS (1994) | Pedrioli2004, Deutsch2008, Martens2011, Teleman2014, Griss2014, Hoffmann2019, McDonald1988, Lampen1994 |
+| 24 | Computers reading continuously scanned GC-MS spectra in 1970 (reconstructed ion chromatograms: `to verify against source`), up to fixed bins (XCMS 2006) and ROIs for high resolution (2008) | HitesBiemann1970, Smith2006, Tautenhahn2008 |
+| 25 | Least-squares smoothing (1964), matched filtration in XCMS (2006), wavelets for MS peaks (2006) and for LC-MS (2008), deconvolution of GC-MS data (AMDIS, 1999), the open platforms MZmine 2 (2010), OpenMS (2016), MS-DIAL (2015), MZmine 3 (2023) | SavitzkyGolay1964, Smith2006, Du2006, Tautenhahn2008, Stein1999, Pluskal2010, Rost2016, Tsugawa2015, Schmid2023 |
+| 26 | From manual inspection of isotope clusters to automatic annotation (CAMERA, 2012) and clustering of features (RAMClust, 2014) | Kuhl2012, Broeckling2014 |
+| 27 | Dynamic time warping comes from speech recognition (1978); robust local regression (1979); applied to LC-MS alignment by OBI-Warp and XCMS (2006); comparison of aligners (2008); QC-based correction in large studies (2011) | SakoeChiba1978, Cleveland1979, Prince2006, Smith2006, Lange2008, Dunn2011 |
+| 28 | Computer search of a file of known spectra (1971), probability-based matching (1974), optimisation of the dot product (1994), modified cosine with molecular networking (2012), spectral entropy (2021) | Hertz1971, McLafferty1974, SteinScott1994, Watrous2012, Li2021 |
+| 29 | Reference libraries from EI collections to MS/MS (review 2012), the public MassBank (2010) and GNPS (2016), protocols for reproducible networking (2020), decoys borrowed from proteomics (2007) and adapted to small molecules (2017) | Stein2012, Horai2010, Wang2016, Aron2020, EliasGygi2007, Scheubert2017 |
+| 30 | Heuristic formula rules (2007), MetFrag (2010, relaunched 2016), CFM-ID (2014 -> 4.0 in 2021), CSI:FingerID (2015), SIRIUS 4 (2019), ZODIAC (2020), CANOPUS (2021) | KindFiehn2007, Wolf2010, Ruttkies2016, Allen2014, Wang2021, Duhrkop2015, Duhrkop2019, Ludwig2020, Duhrkop2021 |
+| 31 | MSI minimum reporting levels (2007), the debate of 2014 (Creek; Sumner's metrics proposal), Schymanski levels (2014) tested in a collaborative trial (2015), extensions for PFAS (2022) and reporting guides (2021, NORMAN 2023) | Sumner2007, Creek2014, Sumner2014, Schymanski2014, Schymanski2015, Charbonnet2022, Alseekh2021, Hollender2023 |
+| 32 | The idea of "non-target screening" as a workflow: readiness review (2017) and guidance (2023); open platforms as examples | Hollender2017, Hollender2023, Helmus2021 |

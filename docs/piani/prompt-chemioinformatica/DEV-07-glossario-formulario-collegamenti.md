@@ -12,7 +12,7 @@ wrong or impossible, stop and report to the COO with the reason), do NOT touch f
 to Federico.
 
 ## 2. Scope
-- Touches: `capitoli/19-glossario.html`, `capitoli/20-formulario.html` (+ `capitoli/src/19-glossario.md`, `capitoli/src/20-formulario.md`), regenerated `assets/glossario-dati.js` and `assets/indice-ricerca.js`, ONE sentence each at the end of the paragraphs listed in design section 2 ("Back-links") in `capitoli/03-gc.html`, `09-risoluzione.html`, `10-dati.html`, `11-formula.html`, `17-hr-dda.html`, `18-disegno.html` and their `.md` twins, the 11 card texts of part VII in `index.html`, `docs/COME-MODIFICARE.md` (final owners column removed).
+- Touches: `docs/piani/riferimenti-chemioinformatica.tsv` (chapters column only), `capitoli/19-glossario.html`, `capitoli/20-formulario.html` (+ `capitoli/src/19-glossario.md`, `capitoli/src/20-formulario.md`), regenerated `assets/glossario-dati.js` and `assets/indice-ricerca.js`, ONE sentence each at the end of the paragraphs listed in design section 2 ("Back-links") in `capitoli/03-gc.html`, `09-risoluzione.html`, `10-dati.html`, `11-formula.html`, `17-hr-dda.html`, `18-disegno.html` and their `.md` twins, the 11 card texts of part VII in `index.html`, `docs/COME-MODIFICARE.md` (final owners column removed).
 - Does not touch: chapters 22-32 (report errors you find to the COO instead), any `sim-*.js`, `assets/teoria.js`, `assets/chemi-common.js`, tests (except adding cases to `tests/test_chemi.py` for the formulary/glossary links), `.github/`.
 - Neighbouring chats: Runs alone, after DEV-CHEMI-06 is merged; DEV-CHEMI-08 (ARCH review) starts after you.
 - Branch: `dev/chemi-riferimenti` from the latest `origin/main`.
@@ -34,6 +34,12 @@ to Federico.
    order as in the file; every term of design section 11.
 3. Formulary: section 6 with every formula of design section 11, each with symbols explained and the chapter link,
    numbers in the same form as in the chapters.
+3b. Bibliography: in `capitoli/19-glossario.html` under `<h2>Bibliografia</h2>` add
+   `<h3>Chemioinformatica e trattamento dei dati</h3>` with one `<li><span class="tag">articolo|libro|software|norma</span>...`
+   per key cited in chapters 22-32 (same format as the existing entries, alphabetical by first author), skipping
+   those already present elsewhere in the bibliography (Schymanski 2014, MassBank, Makarov 2000, Kind & Fiehn 2007,
+   Murray 2013, Gross 2017 are already there: keep one entry, no duplicate DOI). Mark the TSV rows of these keys with
+   chapter 19 (only the `chapters` column; never change a status without checking the DOI).
 4. Back-links: one sentence "Approfondimento: capitolo NN (titolo)." at the end of each paragraph listed in design
    section 2, in HTML and `.md` twin. Nothing else changes in those chapters.
 5. Index cards: final one-line Italian descriptions for 22-32.

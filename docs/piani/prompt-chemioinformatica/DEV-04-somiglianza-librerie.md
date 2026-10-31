@@ -13,7 +13,7 @@ to Federico.
 
 ## 2. Scope
 - Touches: `capitoli/28-somiglianza.html` + `capitoli/src/28-somiglianza.md`, `capitoli/29-librerie.html` + `capitoli/src/29-librerie.md`; `assets/sim-chemi-somiglianza.js`, `assets/sim-chemi-librerie.js` (replace DEV-00's stubs); the generated `assets/indice-ricerca.js` (regenerate only); tests for your figures inside a new `tests/test_chemi_spettri.py` (pure-function checks with node, see below).
-- Does not touch: `assets/teoria.js`, `assets/teoria.css`, `assets/chemi-common.js`, `index.html`, `capitoli/19-glossario.html`, `capitoli/20-formulario.html`, other chapters, other `sim-*.js`, `tests/test_chemi.py`, `tests_e2e/e2e_chemi.py`, `tools/`, `.github/`.
+- Does not touch: `assets/teoria.js`, `assets/teoria.css`, `assets/chemi-common.js`, `index.html`, `capitoli/19-glossario.html`, `capitoli/20-formulario.html`, other chapters, other `sim-*.js`, `tests/test_chemi.py`, `tests_e2e/e2e_chemi.py`, `docs/piani/riferimenti-chemioinformatica.tsv`, `tools/`, `.github/`.
 - Neighbouring chats: DEV-01..05 work in parallel on other chapters of part VII (disjoint files); the only common file is the generated search index.
 - Branch: `dev/chemi-spettri` from the latest `origin/main`.
 
@@ -41,6 +41,15 @@ to Federico.
    `box math` with the pseudocode in Italian words), with the formulas as numbered `span.eq`, a `box warn` with the
    pitfalls, a `details.poe` before each figure, the reuse links of section 2 (one sentence + link, no repetition),
    "Verifica" with 3-5 `details.q`, "Per approfondire" with the `verified` references for your chapters.
+   Literature: author-year citations in the text where each idea is introduced, for every key of your chapters'
+   "Literature" row below, each with one clause on what it contributes; the same entries, complete with DOI link,
+   in "Per approfondire" (format of `capitoli/19-glossario.html` bibliography: `<li><span class="tag">articolo</span>`
+   Author A. et al. (year) Title. `<i>Journal</i>` vol, pages. DOI link`</li>`). Use only keys with status `verified`
+   in `docs/piani/riferimenti-chemioinformatica.tsv`; if you need another reference, do not add it: report it to the
+   COO (the TSV is edited only by DEV-00 and DEV-07). Paraphrase; never copy text, tables or figures from a source.
+   History: one `<details class="q storia"><summary>Un po' di storia</summary><p>...</p></details>` (5-8 lines) per
+   chapter from the "History box" row below; every name/date cited author-year; leave out anything you could not
+   confirm in the source itself (items marked `to verify against source` need you to read the paper first).
    Replace the skeleton's "Capitolo in costruzione" box. Keep the `.md` twin identical in content.
 4. Put each figure in the chapter as
    `<div class="sim" id="sim-chemi-..." data-sim="../assets/<file>"><h4>Figura N.x Titolo</h4><p class="nota">...</p></div>`.
@@ -67,6 +76,8 @@ to Federico.
   every control).
 - `for f in assets/sim-chemi-somiglianza.js assets/sim-chemi-librerie.js; do gzip -9c $f | wc -c; done` -> each <= 15360.
 - `grep -nE "TODO|\?\?\?|da verificare|fotocatal|TiO" capitoli/28-somiglianza.html capitoli/29-librerie.html` -> no output.
+- `python3 -m pytest -q tests/test_chemi.py -k doi` -> passed (every DOI in your chapters is a `verified` row of the TSV).
+- `grep -c 'class="q storia"' capitoli/28-somiglianza.html capitoli/29-librerie.html` -> 1 per file.
 - `git diff --name-only origin/main` -> only the files listed in Scope.
 
 ## Your chapters (design, pasted from `docs/piani/chemioinformatica.md` section 4)
@@ -135,6 +146,12 @@ Visualizers:
     Live: precursor purity = target intensity / total intensity in the window; chimeric spectrum = weighted sum;
     cosine vs the pure library spectrum. Output: MS1 window plot + mirror mini-plot + readout. ~5 KB gzip.
 
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 28 | Hertz1971; McLafferty1974; SteinScott1994; Watrous2012; Bittremieux2022; Li2021 | first computer library search, probability-based matching, optimisation of the dot product, modified cosine, comparison of alignment scores, spectral entropy |
+
+History box (design 12):
+| 28 | Computer search of a file of known spectra (1971), probability-based matching (1974), optimisation of the dot product (1994), modified cosine with molecular networking (2012), spectral entropy (2021) | Hertz1971, McLafferty1974, SteinScott1994, Watrous2012, Li2021 |
+
 ### Chapter 29 - Ricerca in libreria e falsi positivi
 
 Goals: know the libraries (content, scope, licences); EI search with match factor + retention index; MS/MS search
@@ -192,6 +209,12 @@ Visualizers:
     singletons); pairwise scores; edges. Output: fixed-layout node-link drawing (nodes labelled N1..N14, family
     shown by shape and a text list), edge list as text; readout "4 famiglie, 2 isolati, 1 legame fra famiglie
     diverse". ~6 KB gzip.
+
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 29 | Hertz1971; McLafferty1974; Stein1995; Stein2012; Horai2010; Wang2016; Aron2020; Tsugawa2015; Tsugawa2020; Vinaixa2016; Kind2018; EliasGygi2007; Scheubert2017; BenjaminiHochberg1995 | EI library search history, substructure information, reference libraries today, MassBank, GNPS and molecular networking protocol, MS-DIAL libraries, database review, target-decoy, FDR in metabolomics |
+
+History box (design 12):
+| 29 | Reference libraries from EI collections to MS/MS (review 2012), the public MassBank (2010) and GNPS (2016), protocols for reproducible networking (2020), decoys borrowed from proteomics (2007) and adapted to small molecules (2017) | Stein2012, Horai2010, Wang2016, Aron2020, EliasGygi2007, Scheubert2017 |
 
 ## 5. Report (to the COO session only, max 5 lines)
 `PR #n - <40-char head SHA> - ci <status> - what remains`, plus open scientific doubts in one line. Never ask Federico.

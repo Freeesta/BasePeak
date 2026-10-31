@@ -12,7 +12,7 @@ wrong or impossible, stop and report to the COO with the reason), do NOT touch f
 to Federico.
 
 ## 2. Scope
-- Touches: `assets/teoria.js` (only 11 new CHAPTERS rows after row 21), `index.html` (new h3 "VII. Chemioinformatica" with 11 cards; fix the sentence that counts the parts), `capitoli/22..32-*.html` + `capitoli/src/22..32-*.md` (new), `assets/chemi-common.js` (new), `capitoli/19-glossario.html` (stub entries), regenerated `assets/glossario-dati.js` and `assets/indice-ricerca.js`, `docs/COME-MODIFICARE.md` (rows for part VII and a short "Figure caricate al bisogno" section), `tests/test_numerazione.py` (only the literal 21 -> 32), new `tests/test_chemi.py`, new `tests/chemi_common_node.mjs`, new `tests_e2e/e2e_chemi.py`.
+- Touches: `assets/teoria.js` (only 11 new CHAPTERS rows after row 21), `index.html` (new h3 "VII. Chemioinformatica" with 11 cards; fix the sentence that counts the parts), `capitoli/22..32-*.html` + `capitoli/src/22..32-*.md` (new), `assets/chemi-common.js` (new), `capitoli/19-glossario.html` (stub entries), regenerated `assets/glossario-dati.js` and `assets/indice-ricerca.js`, `docs/COME-MODIFICARE.md` (rows for part VII and a short "Figure caricate al bisogno" section), `tests/test_numerazione.py` (only the literal 21 -> 32), new `tests/test_chemi.py`, new `tests/chemi_common_node.mjs`, new `tests_e2e/e2e_chemi.py`, `docs/piani/riferimenti-chemioinformatica.tsv` (append `preexisting` rows only).
 - Does not touch: navigation code in `assets/teoria.js` and `assets/teoria.css` (DEV8's), other chapters, existing `sim-*.js`, `pratica/`, `tools/` (except running them), `tools/teoria_base.json`, `.github/`.
 - Neighbouring chats: DEV8 (PR #10, navigation) must be merged first; after you, DEV-CHEMI-01..05 work in parallel on the chapter files you create.
 - Branch: `dev/chemi-scheletro` from the latest `origin/main`.
@@ -42,7 +42,8 @@ to Federico.
 3. Chapters 22-32: files and titles of design section 1.2, created from the template of `capitoli/11-formula.html`
    (head with theme snippet and icons, `kicker` "Capitolo N", h1, a `p.lead` of 1-2 Italian sentences saying what the
    chapter will teach, a `div.box key` "Capitolo in costruzione" with one sentence, all h2/h3 of the outline with one
-   short Italian sentence each (no placeholders like TODO), the `.sim` divs of design section 5 with `data-sim`,
+   short Italian sentence each (no placeholders like TODO), one `<details class="q storia"><summary>Un po' di
+   storia</summary>` with one sentence, the `.sim` divs of design section 5 with `data-sim`,
    `h4` "Figura N.x Titolo" and a `p.nota` describing the figure; scripts at the end: `tema.js` is in the head as in
    the model, then `appname.js`, (`masse.js` for 30 and 32), `teoria.js`, `chemi-common.js`. The `data-sim` targets do
    not exist yet: create each `assets/sim-chemi-*.js` of design section 5 as a 3-line stub that only registers nothing
@@ -62,6 +63,12 @@ to Federico.
    every `href="...#anchor"` in chapters 22-32 (and links into them) resolves with a Python port of `slug()` or an
    explicit id; node test `tests/chemi_common_node.mjs` (run from pytest if node exists, fail if missing in CI):
    same seed -> same sequence, `gauss` peak = 1, `ppm(100.001, 100)` = 10, `chrom` deterministic.
+   DOI integrity (`-k doi`): collect every `doi.org/10.` link in all published pages (`index.html`, `capitoli/`,
+   `pratica/`); each must be a row of `docs/piani/riferimenti-chemioinformatica.tsv`; in chapters 22-32 and in the
+   chemioinformatics section of the ch. 19 bibliography the row status must be `verified`; append the DOIs already
+   present in other pages as rows with status `preexisting` and an empty citation (no network in tests: the TSV is
+   the committed truth); no DOI may appear twice in the ch. 19 bibliography. Each chapter 22-32 has exactly one
+   `details.q.storia`.
    `tests/test_numerazione.py`: 21 -> 32.
 6. `tests_e2e/e2e_chemi.py` (Playwright, pattern of `e2e_a11y_pratica.py`): for each chapter 22-32, light and dark:
    axe serious/critical = 0, accessible names, Tab reaches controls with visible focus; record requests: no
@@ -149,6 +156,12 @@ Visualizers:
    after one-point recalibration. Output: error-vs-time plot with two series (dash differs), readout with mean |error|
    before/after, table. ~4 KB gzip.
 
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 22 | Gross2017; Murray2013; Brenton2010; WileyMcLaren1955; ComisarowMarshall1974; Makarov2000; Kind2018 | textbook basis; IUPAC terms (resolution, accuracy); ppm/mDa conventions and treatment of mass errors; history of TOF, FT-ICR and Orbitrap detection |
+
+History box (design 12):
+| 22 | From scanning instruments to digital transients: the improved-resolution TOF of 1955; Fourier-transform detection in ion cyclotron resonance in 1974; the Orbitrap in 2000; terminology fixed by IUPAC in 2013 | WileyMcLaren1955, ComisarowMarshall1974, Makarov2000, Murray2013 |
+
 ### Chapter 23 - I file dei dati: mzML e gli altri formati aperti
 
 Goals: open an mzML in a text editor and know what every block is; understand binary arrays, precision, compression
@@ -211,6 +224,12 @@ Visualizers:
    format buttons (mzML, mzXML, MGF, MSP, mzTab-M), "mostra solo i metadati". Live: renders the same synthetic MS2
    spectrum as text in a `<pre>`; a checklist table marks which metadata survive (✓/✗ + word). ~4 KB gzip.
 
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 23 | Pedrioli2004; Deutsch2008; Martens2011; Teleman2014; Griss2014; Hoffmann2019; McDonald1988; Lampen1994; Kessner2008; Chambers2012; Hulstaert2020; PSI-MS-CV | open formats and their genealogy (mzXML -> mzML), compression, results formats, JCAMP-DX origin and MS extension, conversion tools |
+
+History box (design 12):
+| 23 | From proprietary files to open formats: mzXML (2004), the merge into mzML announced 2008 and published 2011, numerical compression (2014), results formats mzTab (2014) and mzTab-M (2019); JCAMP-DX born for IR (1988) and extended to MS (1994) | Pedrioli2004, Deutsch2008, Martens2011, Teleman2014, Griss2014, Hoffmann2019, McDonald1988, Lampen1994 |
+
 ### Chapter 24 - Tracce di massa: XIC e regioni d'interesse
 
 Goals: think of LC-HRMS data as a cloud of (RT, m/z, I) points; pick an XIC window from mass error and resolution;
@@ -272,6 +291,12 @@ Visualizers:
    near-isobar pair) plus random noise centroids; ROI assignment step by step. Output: m/z-vs-scan plot with each
    ROI as a numbered polyline (number labels + dash, not colour only), list of ROIs with kept/discarded and why
    ("scartata: 2 scansioni < 5"). ~6 KB gzip.
+
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 24 | HitesBiemann1970; Smith2006; Tautenhahn2008; Myers2017 | computer evaluation of continuously scanned GC-MS data (history), binning vs ROI, comparison of chromatogram builders |
+
+History box (design 12):
+| 24 | Computers reading continuously scanned GC-MS spectra in 1970 (reconstructed ion chromatograms: `to verify against source`), up to fixed bins (XCMS 2006) and ROIs for high resolution (2008) | HitesBiemann1970, Smith2006, Tautenhahn2008 |
 
 ### Chapter 25 - Trovare i picchi cromatografici
 
@@ -343,6 +368,12 @@ Visualizers:
    slope. Live: metrics FWHM, As(10 %), Tf(5 %), Gaussian R^2, S/N with two definitions side by side, area error vs
    the true area. Output: plot with sampled points, readout, table. ~5 KB gzip.
 
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 25 | SavitzkyGolay1964; Smith2006; Du2006; Tautenhahn2008; Stein1999; Zhang2014; Myers2017; Pluskal2010; Schmid2023; Rost2016; Tsugawa2015 | smoothing, matched filter, CWT, centWave, AMDIS deconvolution, peak quality, the open software families |
+
+History box (design 12):
+| 25 | Least-squares smoothing (1964), matched filtration in XCMS (2006), wavelets for MS peaks (2006) and for LC-MS (2008), deconvolution of GC-MS data (AMDIS, 1999), the open platforms MZmine 2 (2010), OpenMS (2016), MS-DIAL (2015), MZmine 3 (2023) | SavitzkyGolay1964, Smith2006, Du2006, Tautenhahn2008, Stein1999, Pluskal2010, Rost2016, Tsugawa2015, Schmid2023 |
+
 ### Chapter 26 - Dai picchi ai composti: isotopi, addotti, frammenti in sorgente
 
 Goals: one molecule gives many features; group them by RT, shape correlation and mass differences; know the main
@@ -391,6 +422,12 @@ Visualizers:
    Cl isotopes, a metabolite-like C6H12O6 with Na/NH4 adducts) produce ~15 features with seeded EICs; graph of links.
    Output: left the EICs (dash per group, labels), right a node-link list (features as rows, links as text
    "F3 → F1: +21,9819 = Na invece di H"), groups numbered; readout "3 gruppi; 1 legame casuale". ~7 KB gzip.
+
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 26 | Kuhl2012; Broeckling2014 | annotation of isotopes/adducts and feature clustering |
+
+History box (design 12):
+| 26 | From manual inspection of isotope clusters to automatic annotation (CAMERA, 2012) and clustering of features (RAMClust, 2014) | Kuhl2012, Broeckling2014 |
 
 ### Chapter 27 - Dalla serie di campioni alla tabella delle feature
 
@@ -461,6 +498,12 @@ Visualizers:
     sortable table (native `<table>`, `aria-sort`), per-row reason of exclusion in words, readout "Restano 31 feature
     su 60; 4 artefatti su 5 eliminati". ~8 KB gzip.
 
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 27 | SakoeChiba1978; Cleveland1979; Prince2006; Smith2006; Lange2008; Dieterle2006; Dunn2011; Broadhurst2018 | DTW (from speech recognition), LOWESS, OBI-Warp, peak-group alignment, comparison of aligners, PQN, QC-based correction, QC guidelines |
+
+History box (design 12):
+| 27 | Dynamic time warping comes from speech recognition (1978); robust local regression (1979); applied to LC-MS alignment by OBI-Warp and XCMS (2006); comparison of aligners (2008); QC-based correction in large studies (2011) | SakoeChiba1978, Cleveland1979, Prince2006, Smith2006, Lange2008, Dunn2011 |
+
 ### Chapter 28 - Spettri MS2 e somiglianza spettrale
 
 Goals: know where MS2 spectra come from and why they can be impure; preprocess spectra; compute cosine, weighted
@@ -526,6 +569,12 @@ Visualizers:
     Live: precursor purity = target intensity / total intensity in the window; chimeric spectrum = weighted sum;
     cosine vs the pure library spectrum. Output: MS1 window plot + mirror mini-plot + readout. ~5 KB gzip.
 
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 28 | Hertz1971; McLafferty1974; SteinScott1994; Watrous2012; Bittremieux2022; Li2021 | first computer library search, probability-based matching, optimisation of the dot product, modified cosine, comparison of alignment scores, spectral entropy |
+
+History box (design 12):
+| 28 | Computer search of a file of known spectra (1971), probability-based matching (1974), optimisation of the dot product (1994), modified cosine with molecular networking (2012), spectral entropy (2021) | Hertz1971, McLafferty1974, SteinScott1994, Watrous2012, Li2021 |
+
 ### Chapter 29 - Ricerca in libreria e falsi positivi
 
 Goals: know the libraries (content, scope, licences); EI search with match factor + retention index; MS/MS search
@@ -584,6 +633,12 @@ Visualizers:
     shown by shape and a text list), edge list as text; readout "4 famiglie, 2 isolati, 1 legame fra famiglie
     diverse". ~6 KB gzip.
 
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 29 | Hertz1971; McLafferty1974; Stein1995; Stein2012; Horai2010; Wang2016; Aron2020; Tsugawa2015; Tsugawa2020; Vinaixa2016; Kind2018; EliasGygi2007; Scheubert2017; BenjaminiHochberg1995 | EI library search history, substructure information, reference libraries today, MassBank, GNPS and molecular networking protocol, MS-DIAL libraries, database review, target-decoy, FDR in metabolomics |
+
+History box (design 12):
+| 29 | Reference libraries from EI collections to MS/MS (review 2012), the public MassBank (2010) and GNPS (2016), protocols for reproducible networking (2020), decoys borrowed from proteomics (2007) and adapted to small molecules (2017) | Stein2012, Horai2010, Wang2016, Aron2020, EliasGygi2007, Scheubert2017 |
+
 ### Chapter 30 - Formule e strutture candidate
 
 Goals: generate and rank molecular formulas from accurate mass + isotope pattern + rules; know what candidate
@@ -641,6 +696,12 @@ Visualizers:
     Output: measured spectrum with explained peaks marked per candidate (✓ + fragment formula label), ranking table;
     readout "Due candidati spiegano l'80 % del segnale: lo spettro non li distingue". ~5 KB gzip.
 
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 30 | KindFiehn2007; Wolf2010; Ruttkies2016; Allen2014; Allen2015; Wang2021; Duhrkop2015; Duhrkop2019; Ludwig2020; Duhrkop2021; Blazenovic2018 | formula rules, MetFrag, CFM-ID (1 to 4), CSI:FingerID, SIRIUS 4, ZODIAC, CANOPUS, overview of tools |
+
+History box (design 12):
+| 30 | Heuristic formula rules (2007), MetFrag (2010, relaunched 2016), CFM-ID (2014 -> 4.0 in 2021), CSI:FingerID (2015), SIRIUS 4 (2019), ZODIAC (2020), CANOPUS (2021) | KindFiehn2007, Wolf2010, Ruttkies2016, Allen2014, Wang2021, Duhrkop2015, Duhrkop2019, Ludwig2020, Duhrkop2021 |
+
 ### Chapter 31 - Livelli di confidenza dell'identificazione
 
 Goals: assign and report a confidence level from the evidence; distinguish score from level; know Schymanski 2014 and
@@ -683,6 +744,12 @@ Visualizers:
     ✓/✗ words, the levels in large text, readout. The slider demonstrates that raising the score never changes the
     level beyond 2a without a standard. ~4 KB gzip.
 
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 31 | Sumner2007; Schymanski2014; Creek2014; Sumner2014; Schymanski2015; Charbonnet2022; Alseekh2021; Hollender2017; Hollender2023 | MSI levels, Schymanski levels, debate and later proposals, PFAS extension, reporting practices, NTS guidance |
+
+History box (design 12):
+| 31 | MSI minimum reporting levels (2007), the debate of 2014 (Creek; Sumner's metrics proposal), Schymanski levels (2014) tested in a collaborative trial (2015), extensions for PFAS (2022) and reporting guides (2021, NORMAN 2023) | Sumner2007, Creek2014, Sumner2014, Schymanski2014, Schymanski2015, Charbonnet2022, Alseekh2021, Hollender2023 |
+
 ### Chapter 32 - Un esempio dall'inizio alla fine
 
 Goals: see the whole chain once on one generic synthetic dataset: file -> centroids -> ROI -> peaks -> groups ->
@@ -715,6 +782,12 @@ Visualizer:
     present). Output per step: a readout sentence and the intermediate table. ~4 KB gzip for the stepper + presets.
     Requires DEV-01..05 merged; the figure files must expose a preset hook (`init(el, preset)`) from the start
     (DEV-00 contract).
+
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 32 | Hollender2017; Hollender2023; Schymanski2015; Helmus2021; Winkler2020; Pluskal2010; Schmid2023; Tsugawa2015; Rost2016 | the full NTS workflow and open software as examples (no tutorial) |
+
+History box (design 12):
+| 32 | The idea of "non-target screening" as a workflow: readiness review (2017) and guidance (2023); open platforms as examples | Hollender2017, Hollender2023, Helmus2021 |
 
 ## 5. Report (to the COO session only, max 5 lines)
 `PR #n - <40-char head SHA> - ci <status> - what remains`, plus open scientific doubts in one line. Never ask Federico.

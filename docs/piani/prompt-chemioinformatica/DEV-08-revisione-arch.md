@@ -31,7 +31,9 @@ to Federico.
    Savitzky-Golay, LOWESS, DTW/OBI-Warp, peak density, CAMERA-like grouping, cosine, weighted cosine, modified cosine,
    spectral entropy, target-decoy FDR and q-value, MetFrag/CFM-ID/SIRIUS/CSI:FingerID in principle, Seven Golden
    Rules, Schymanski 2014 and MSI levels); every reference (resolve each DOI, check authors/year/title/journal/pages
-   and that the cited claim is in the paper); the open doubts of design section 10: close each one with the source
+   and that the cited claim is in the paper); every row of `docs/piani/riferimenti-chemioinformatica.tsv` (resolve the
+   `verified` and `preexisting` ones, report wrong metadata); every "Un po' di storia" box (each name and date backed by
+   the cited source); the open doubts of design section 10: close each one with the source
    and the exact answer, or say it remains open.
 3. For each figure: read the code of the pure functions; check that what is computed is what the text says; run the
    node tests; spot-check one output by hand.

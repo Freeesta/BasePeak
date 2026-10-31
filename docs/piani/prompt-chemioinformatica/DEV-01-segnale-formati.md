@@ -13,7 +13,7 @@ to Federico.
 
 ## 2. Scope
 - Touches: `capitoli/22-segnale.html` + `capitoli/src/22-segnale.md`, `capitoli/23-formati.html` + `capitoli/src/23-formati.md`; `assets/sim-chemi-segnale.js`, `assets/sim-chemi-formati.js` (replace DEV-00's stubs); the generated `assets/indice-ricerca.js` (regenerate only); tests for your figures inside a new `tests/test_chemi_segnale.py` (pure-function checks with node, see below).
-- Does not touch: `assets/teoria.js`, `assets/teoria.css`, `assets/chemi-common.js`, `index.html`, `capitoli/19-glossario.html`, `capitoli/20-formulario.html`, other chapters, other `sim-*.js`, `tests/test_chemi.py`, `tests_e2e/e2e_chemi.py`, `tools/`, `.github/`.
+- Does not touch: `assets/teoria.js`, `assets/teoria.css`, `assets/chemi-common.js`, `index.html`, `capitoli/19-glossario.html`, `capitoli/20-formulario.html`, other chapters, other `sim-*.js`, `tests/test_chemi.py`, `tests_e2e/e2e_chemi.py`, `docs/piani/riferimenti-chemioinformatica.tsv`, `tools/`, `.github/`.
 - Neighbouring chats: DEV-01..05 work in parallel on other chapters of part VII (disjoint files); the only common file is the generated search index.
 - Branch: `dev/chemi-segnale` from the latest `origin/main`.
 
@@ -41,6 +41,15 @@ to Federico.
    `box math` with the pseudocode in Italian words), with the formulas as numbered `span.eq`, a `box warn` with the
    pitfalls, a `details.poe` before each figure, the reuse links of section 2 (one sentence + link, no repetition),
    "Verifica" with 3-5 `details.q`, "Per approfondire" with the `verified` references for your chapters.
+   Literature: author-year citations in the text where each idea is introduced, for every key of your chapters'
+   "Literature" row below, each with one clause on what it contributes; the same entries, complete with DOI link,
+   in "Per approfondire" (format of `capitoli/19-glossario.html` bibliography: `<li><span class="tag">articolo</span>`
+   Author A. et al. (year) Title. `<i>Journal</i>` vol, pages. DOI link`</li>`). Use only keys with status `verified`
+   in `docs/piani/riferimenti-chemioinformatica.tsv`; if you need another reference, do not add it: report it to the
+   COO (the TSV is edited only by DEV-00 and DEV-07). Paraphrase; never copy text, tables or figures from a source.
+   History: one `<details class="q storia"><summary>Un po' di storia</summary><p>...</p></details>` (5-8 lines) per
+   chapter from the "History box" row below; every name/date cited author-year; leave out anything you could not
+   confirm in the source itself (items marked `to verify against source` need you to read the paper first).
    Replace the skeleton's "Capitolo in costruzione" box. Keep the `.md` twin identical in content.
 4. Put each figure in the chapter as
    `<div class="sim" id="sim-chemi-..." data-sim="../assets/<file>"><h4>Figura N.x Titolo</h4><p class="nota">...</p></div>`.
@@ -64,6 +73,8 @@ to Federico.
   every control).
 - `for f in assets/sim-chemi-segnale.js assets/sim-chemi-formati.js; do gzip -9c $f | wc -c; done` -> each <= 15360.
 - `grep -nE "TODO|\?\?\?|da verificare|fotocatal|TiO" capitoli/22-segnale.html capitoli/23-formati.html` -> no output.
+- `python3 -m pytest -q tests/test_chemi.py -k doi` -> passed (every DOI in your chapters is a `verified` row of the TSV).
+- `grep -c 'class="q storia"' capitoli/22-segnale.html capitoli/23-formati.html` -> 1 per file.
 - `git diff --name-only origin/main` -> only the files listed in Scope.
 
 ## Your chapters (design, pasted from `docs/piani/chemioinformatica.md` section 4)
@@ -133,6 +144,12 @@ Visualizers:
    after one-point recalibration. Output: error-vs-time plot with two series (dash differs), readout with mean |error|
    before/after, table. ~4 KB gzip.
 
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 22 | Gross2017; Murray2013; Brenton2010; WileyMcLaren1955; ComisarowMarshall1974; Makarov2000; Kind2018 | textbook basis; IUPAC terms (resolution, accuracy); ppm/mDa conventions and treatment of mass errors; history of TOF, FT-ICR and Orbitrap detection |
+
+History box (design 12):
+| 22 | From scanning instruments to digital transients: the improved-resolution TOF of 1955; Fourier-transform detection in ion cyclotron resonance in 1974; the Orbitrap in 2000; terminology fixed by IUPAC in 2013 | WileyMcLaren1955, ComisarowMarshall1974, Makarov2000, Murray2013 |
+
 ### Chapter 23 - I file dei dati: mzML e gli altri formati aperti
 
 Goals: open an mzML in a text editor and know what every block is; understand binary arrays, precision, compression
@@ -194,6 +211,12 @@ Visualizers:
 4. `sim-chemi-formati` - "Lo stesso spettro in cinque formati". Teaching point: what each format keeps. Controls:
    format buttons (mzML, mzXML, MGF, MSP, mzTab-M), "mostra solo i metadati". Live: renders the same synthetic MS2
    spectrum as text in a `<pre>`; a checklist table marks which metadata survive (✓/✗ + word). ~4 KB gzip.
+
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 23 | Pedrioli2004; Deutsch2008; Martens2011; Teleman2014; Griss2014; Hoffmann2019; McDonald1988; Lampen1994; Kessner2008; Chambers2012; Hulstaert2020; PSI-MS-CV | open formats and their genealogy (mzXML -> mzML), compression, results formats, JCAMP-DX origin and MS extension, conversion tools |
+
+History box (design 12):
+| 23 | From proprietary files to open formats: mzXML (2004), the merge into mzML announced 2008 and published 2011, numerical compression (2014), results formats mzTab (2014) and mzTab-M (2019); JCAMP-DX born for IR (1988) and extended to MS (1994) | Pedrioli2004, Deutsch2008, Martens2011, Teleman2014, Griss2014, Hoffmann2019, McDonald1988, Lampen1994 |
 
 ## 5. Report (to the COO session only, max 5 lines)
 `PR #n - <40-char head SHA> - ci <status> - what remains`, plus open scientific doubts in one line. Never ask Federico.

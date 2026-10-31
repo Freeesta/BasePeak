@@ -13,7 +13,7 @@ to Federico.
 
 ## 2. Scope
 - Touches: `capitoli/26-gruppi.html` + `capitoli/src/26-gruppi.md`, `capitoli/27-tabella.html` + `capitoli/src/27-tabella.md`; `assets/sim-chemi-gruppi.js`, `assets/sim-chemi-tabella.js`, `assets/sim-chemi-esplora.js` (replace DEV-00's stubs); the generated `assets/indice-ricerca.js` (regenerate only); tests for your figures inside a new `tests/test_chemi_tabella.py` (pure-function checks with node, see below).
-- Does not touch: `assets/teoria.js`, `assets/teoria.css`, `assets/chemi-common.js`, `index.html`, `capitoli/19-glossario.html`, `capitoli/20-formulario.html`, other chapters, other `sim-*.js`, `tests/test_chemi.py`, `tests_e2e/e2e_chemi.py`, `tools/`, `.github/`.
+- Does not touch: `assets/teoria.js`, `assets/teoria.css`, `assets/chemi-common.js`, `index.html`, `capitoli/19-glossario.html`, `capitoli/20-formulario.html`, other chapters, other `sim-*.js`, `tests/test_chemi.py`, `tests_e2e/e2e_chemi.py`, `docs/piani/riferimenti-chemioinformatica.tsv`, `tools/`, `.github/`.
 - Neighbouring chats: DEV-01..05 work in parallel on other chapters of part VII (disjoint files); the only common file is the generated search index.
 - Branch: `dev/chemi-tabella` from the latest `origin/main`.
 
@@ -41,6 +41,15 @@ to Federico.
    `box math` with the pseudocode in Italian words), with the formulas as numbered `span.eq`, a `box warn` with the
    pitfalls, a `details.poe` before each figure, the reuse links of section 2 (one sentence + link, no repetition),
    "Verifica" with 3-5 `details.q`, "Per approfondire" with the `verified` references for your chapters.
+   Literature: author-year citations in the text where each idea is introduced, for every key of your chapters'
+   "Literature" row below, each with one clause on what it contributes; the same entries, complete with DOI link,
+   in "Per approfondire" (format of `capitoli/19-glossario.html` bibliography: `<li><span class="tag">articolo</span>`
+   Author A. et al. (year) Title. `<i>Journal</i>` vol, pages. DOI link`</li>`). Use only keys with status `verified`
+   in `docs/piani/riferimenti-chemioinformatica.tsv`; if you need another reference, do not add it: report it to the
+   COO (the TSV is edited only by DEV-00 and DEV-07). Paraphrase; never copy text, tables or figures from a source.
+   History: one `<details class="q storia"><summary>Un po' di storia</summary><p>...</p></details>` (5-8 lines) per
+   chapter from the "History box" row below; every name/date cited author-year; leave out anything you could not
+   confirm in the source itself (items marked `to verify against source` need you to read the paper first).
    Replace the skeleton's "Capitolo in costruzione" box. Keep the `.md` twin identical in content.
 4. Put each figure in the chapter as
    `<div class="sim" id="sim-chemi-..." data-sim="../assets/<file>"><h4>Figura N.x Titolo</h4><p class="nota">...</p></div>`.
@@ -66,6 +75,8 @@ to Federico.
   every control).
 - `for f in assets/sim-chemi-gruppi.js assets/sim-chemi-tabella.js assets/sim-chemi-esplora.js; do gzip -9c $f | wc -c; done` -> each <= 15360.
 - `grep -nE "TODO|\?\?\?|da verificare|fotocatal|TiO" capitoli/26-gruppi.html capitoli/27-tabella.html` -> no output.
+- `python3 -m pytest -q tests/test_chemi.py -k doi` -> passed (every DOI in your chapters is a `verified` row of the TSV).
+- `grep -c 'class="q storia"' capitoli/26-gruppi.html capitoli/27-tabella.html` -> 1 per file.
 - `git diff --name-only origin/main` -> only the files listed in Scope.
 
 ## Your chapters (design, pasted from `docs/piani/chemioinformatica.md` section 4)
@@ -117,6 +128,12 @@ Visualizers:
    Cl isotopes, a metabolite-like C6H12O6 with Na/NH4 adducts) produce ~15 features with seeded EICs; graph of links.
    Output: left the EICs (dash per group, labels), right a node-link list (features as rows, links as text
    "F3 → F1: +21,9819 = Na invece di H"), groups numbered; readout "3 gruppi; 1 legame casuale". ~7 KB gzip.
+
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 26 | Kuhl2012; Broeckling2014 | annotation of isotopes/adducts and feature clustering |
+
+History box (design 12):
+| 26 | From manual inspection of isotope clusters to automatic annotation (CAMERA, 2012) and clustering of features (RAMClust, 2014) | Kuhl2012, Broeckling2014 |
 
 ### Chapter 27 - Dalla serie di campioni alla tabella delle feature
 
@@ -186,6 +203,12 @@ Visualizers:
     blank contaminant, in-source fragment, isotope duplicate, noise filled feature, drifting QC feature). Output:
     sortable table (native `<table>`, `aria-sort`), per-row reason of exclusion in words, readout "Restano 31 feature
     su 60; 4 artefatti su 5 eliminati". ~8 KB gzip.
+
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 27 | SakoeChiba1978; Cleveland1979; Prince2006; Smith2006; Lange2008; Dieterle2006; Dunn2011; Broadhurst2018 | DTW (from speech recognition), LOWESS, OBI-Warp, peak-group alignment, comparison of aligners, PQN, QC-based correction, QC guidelines |
+
+History box (design 12):
+| 27 | Dynamic time warping comes from speech recognition (1978); robust local regression (1979); applied to LC-MS alignment by OBI-Warp and XCMS (2006); comparison of aligners (2008); QC-based correction in large studies (2011) | SakoeChiba1978, Cleveland1979, Prince2006, Smith2006, Lange2008, Dunn2011 |
 
 ## 5. Report (to the COO session only, max 5 lines)
 `PR #n - <40-char head SHA> - ci <status> - what remains`, plus open scientific doubts in one line. Never ask Federico.

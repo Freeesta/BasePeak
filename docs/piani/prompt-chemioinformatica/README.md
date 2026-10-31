@@ -16,3 +16,7 @@ Design: `docs/piani/chemioinformatica.md`. Each file is a ready-to-paste first m
 
 Order 2 runs in parallel (disjoint chapter and figure files). The COO merges one PR at a time; a conflict on the
 generated `assets/indice-ricerca.js` is solved by merging `main` and re-running `python3 tools/genera_indice_teoria.py`.
+
+References: `docs/piani/riferimenti-chemioinformatica.tsv` is the committed list of verified DOIs (design section 7);
+chapter DEVs cite only its `verified` keys and never edit it (DEV-00 appends pre-existing DOIs, DEV-07 fills the
+chapters column). History boxes: design section 12.

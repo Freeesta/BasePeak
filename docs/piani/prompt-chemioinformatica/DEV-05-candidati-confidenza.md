@@ -13,7 +13,7 @@ to Federico.
 
 ## 2. Scope
 - Touches: `capitoli/30-candidati.html` + `capitoli/src/30-candidati.md`, `capitoli/31-confidenza.html` + `capitoli/src/31-confidenza.md`; `assets/sim-chemi-candidati.js`, `assets/sim-chemi-confidenza.js` (replace DEV-00's stubs); the generated `assets/indice-ricerca.js` (regenerate only); tests for your figures inside a new `tests/test_chemi_livelli.py` (pure-function checks with node, see below).
-- Does not touch: `assets/teoria.js`, `assets/teoria.css`, `assets/chemi-common.js`, `index.html`, `capitoli/19-glossario.html`, `capitoli/20-formulario.html`, other chapters, other `sim-*.js`, `tests/test_chemi.py`, `tests_e2e/e2e_chemi.py`, `tools/`, `.github/`.
+- Does not touch: `assets/teoria.js`, `assets/teoria.css`, `assets/chemi-common.js`, `index.html`, `capitoli/19-glossario.html`, `capitoli/20-formulario.html`, other chapters, other `sim-*.js`, `tests/test_chemi.py`, `tests_e2e/e2e_chemi.py`, `docs/piani/riferimenti-chemioinformatica.tsv`, `tools/`, `.github/`.
 - Neighbouring chats: DEV-01..05 work in parallel on other chapters of part VII (disjoint files); the only common file is the generated search index.
 - Branch: `dev/chemi-livelli` from the latest `origin/main`.
 
@@ -41,6 +41,15 @@ to Federico.
    `box math` with the pseudocode in Italian words), with the formulas as numbered `span.eq`, a `box warn` with the
    pitfalls, a `details.poe` before each figure, the reuse links of section 2 (one sentence + link, no repetition),
    "Verifica" with 3-5 `details.q`, "Per approfondire" with the `verified` references for your chapters.
+   Literature: author-year citations in the text where each idea is introduced, for every key of your chapters'
+   "Literature" row below, each with one clause on what it contributes; the same entries, complete with DOI link,
+   in "Per approfondire" (format of `capitoli/19-glossario.html` bibliography: `<li><span class="tag">articolo</span>`
+   Author A. et al. (year) Title. `<i>Journal</i>` vol, pages. DOI link`</li>`). Use only keys with status `verified`
+   in `docs/piani/riferimenti-chemioinformatica.tsv`; if you need another reference, do not add it: report it to the
+   COO (the TSV is edited only by DEV-00 and DEV-07). Paraphrase; never copy text, tables or figures from a source.
+   History: one `<details class="q storia"><summary>Un po' di storia</summary><p>...</p></details>` (5-8 lines) per
+   chapter from the "History box" row below; every name/date cited author-year; leave out anything you could not
+   confirm in the source itself (items marked `to verify against source` need you to read the paper first).
    Replace the skeleton's "Capitolo in costruzione" box. Keep the `.md` twin identical in content.
 4. Put each figure in the chapter as
    `<div class="sim" id="sim-chemi-..." data-sim="../assets/<file>"><h4>Figura N.x Titolo</h4><p class="nota">...</p></div>`.
@@ -69,6 +78,8 @@ to Federico.
   every control).
 - `for f in assets/sim-chemi-candidati.js assets/sim-chemi-confidenza.js; do gzip -9c $f | wc -c; done` -> each <= 15360.
 - `grep -nE "TODO|\?\?\?|da verificare|fotocatal|TiO" capitoli/30-candidati.html capitoli/31-confidenza.html` -> no output.
+- `python3 -m pytest -q tests/test_chemi.py -k doi` -> passed (every DOI in your chapters is a `verified` row of the TSV).
+- `grep -c 'class="q storia"' capitoli/30-candidati.html capitoli/31-confidenza.html` -> 1 per file.
 - `git diff --name-only origin/main` -> only the files listed in Scope.
 
 ## Your chapters (design, pasted from `docs/piani/chemioinformatica.md` section 4)
@@ -129,6 +140,12 @@ Visualizers:
     Output: measured spectrum with explained peaks marked per candidate (✓ + fragment formula label), ranking table;
     readout "Due candidati spiegano l'80 % del segnale: lo spettro non li distingue". ~5 KB gzip.
 
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 30 | KindFiehn2007; Wolf2010; Ruttkies2016; Allen2014; Allen2015; Wang2021; Duhrkop2015; Duhrkop2019; Ludwig2020; Duhrkop2021; Blazenovic2018 | formula rules, MetFrag, CFM-ID (1 to 4), CSI:FingerID, SIRIUS 4, ZODIAC, CANOPUS, overview of tools |
+
+History box (design 12):
+| 30 | Heuristic formula rules (2007), MetFrag (2010, relaunched 2016), CFM-ID (2014 -> 4.0 in 2021), CSI:FingerID (2015), SIRIUS 4 (2019), ZODIAC (2020), CANOPUS (2021) | KindFiehn2007, Wolf2010, Ruttkies2016, Allen2014, Wang2021, Duhrkop2015, Duhrkop2019, Ludwig2020, Duhrkop2021 |
+
 ### Chapter 31 - Livelli di confidenza dell'identificazione
 
 Goals: assign and report a confidence level from the evidence; distinguish score from level; know Schymanski 2014 and
@@ -170,6 +187,12 @@ Visualizers:
     per salire di livello". Output: HTML (no canvas): the path through the decision tree as an ordered list with
     ✓/✗ words, the levels in large text, readout. The slider demonstrates that raising the score never changes the
     level beyond 2a without a standard. ~4 KB gzip.
+
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 31 | Sumner2007; Schymanski2014; Creek2014; Sumner2014; Schymanski2015; Charbonnet2022; Alseekh2021; Hollender2017; Hollender2023 | MSI levels, Schymanski levels, debate and later proposals, PFAS extension, reporting practices, NTS guidance |
+
+History box (design 12):
+| 31 | MSI minimum reporting levels (2007), the debate of 2014 (Creek; Sumner's metrics proposal), Schymanski levels (2014) tested in a collaborative trial (2015), extensions for PFAS (2022) and reporting guides (2021, NORMAN 2023) | Sumner2007, Creek2014, Sumner2014, Schymanski2014, Schymanski2015, Charbonnet2022, Alseekh2021, Hollender2023 |
 
 ## 5. Report (to the COO session only, max 5 lines)
 `PR #n - <40-char head SHA> - ci <status> - what remains`, plus open scientific doubts in one line. Never ask Federico.

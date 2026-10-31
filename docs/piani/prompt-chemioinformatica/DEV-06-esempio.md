@@ -13,7 +13,7 @@ to Federico.
 
 ## 2. Scope
 - Touches: `capitoli/32-esempio.html` + `capitoli/src/32-esempio.md`; `assets/sim-chemi-esempio.js` (replace DEV-00's stubs); the generated `assets/indice-ricerca.js` (regenerate only); tests for your figures inside a new `tests/test_chemi_esempio.py` (pure-function checks with node, see below).
-- Does not touch: `assets/teoria.js`, `assets/teoria.css`, `assets/chemi-common.js`, `index.html`, `capitoli/19-glossario.html`, `capitoli/20-formulario.html`, other chapters, other `sim-*.js`, `tests/test_chemi.py`, `tests_e2e/e2e_chemi.py`, `tools/`, `.github/`.
+- Does not touch: `assets/teoria.js`, `assets/teoria.css`, `assets/chemi-common.js`, `index.html`, `capitoli/19-glossario.html`, `capitoli/20-formulario.html`, other chapters, other `sim-*.js`, `tests/test_chemi.py`, `tests_e2e/e2e_chemi.py`, `docs/piani/riferimenti-chemioinformatica.tsv`, `tools/`, `.github/`.
 - Neighbouring chats: DEV-01..05 must be merged before you start (you reuse their figure files through presets). DEV-07 (glossary, formulary, cross-links) starts after you.
 - Branch: `dev/chemi-esempio` from the latest `origin/main`.
 
@@ -41,6 +41,15 @@ to Federico.
    `box math` with the pseudocode in Italian words), with the formulas as numbered `span.eq`, a `box warn` with the
    pitfalls, a `details.poe` before each figure, the reuse links of section 2 (one sentence + link, no repetition),
    "Verifica" with 3-5 `details.q`, "Per approfondire" with the `verified` references for your chapters.
+   Literature: author-year citations in the text where each idea is introduced, for every key of your chapters'
+   "Literature" row below, each with one clause on what it contributes; the same entries, complete with DOI link,
+   in "Per approfondire" (format of `capitoli/19-glossario.html` bibliography: `<li><span class="tag">articolo</span>`
+   Author A. et al. (year) Title. `<i>Journal</i>` vol, pages. DOI link`</li>`). Use only keys with status `verified`
+   in `docs/piani/riferimenti-chemioinformatica.tsv`; if you need another reference, do not add it: report it to the
+   COO (the TSV is edited only by DEV-00 and DEV-07). Paraphrase; never copy text, tables or figures from a source.
+   History: one `<details class="q storia"><summary>Un po' di storia</summary><p>...</p></details>` (5-8 lines) per
+   chapter from the "History box" row below; every name/date cited author-year; leave out anything you could not
+   confirm in the source itself (items marked `to verify against source` need you to read the paper first).
    Replace the skeleton's "Capitolo in costruzione" box. Keep the `.md` twin identical in content.
 4. Put each figure in the chapter as
    `<div class="sim" id="sim-chemi-..." data-sim="../assets/<file>"><h4>Figura N.x Titolo</h4><p class="nota">...</p></div>`.
@@ -68,6 +77,8 @@ to Federico.
   every control).
 - `for f in assets/sim-chemi-esempio.js; do gzip -9c $f | wc -c; done` -> each <= 15360.
 - `grep -nE "TODO|\?\?\?|da verificare|fotocatal|TiO" capitoli/32-esempio.html` -> no output.
+- `python3 -m pytest -q tests/test_chemi.py -k doi` -> passed (every DOI in your chapters is a `verified` row of the TSV).
+- `grep -c 'class="q storia"' capitoli/32-esempio.html` -> 1 per file.
 - `git diff --name-only origin/main` -> only the files listed in Scope.
 
 ## Your chapters (design, pasted from `docs/piani/chemioinformatica.md` section 4)
@@ -103,6 +114,12 @@ Visualizer:
     present). Output per step: a readout sentence and the intermediate table. ~4 KB gzip for the stepper + presets.
     Requires DEV-01..05 merged; the figure files must expose a preset hook (`init(el, preset)`) from the start
     (DEV-00 contract).
+
+Literature (design 7.1; keys -> full entries in section 7 and in `docs/piani/riferimenti-chemioinformatica.tsv`):
+| 32 | Hollender2017; Hollender2023; Schymanski2015; Helmus2021; Winkler2020; Pluskal2010; Schmid2023; Tsugawa2015; Rost2016 | the full NTS workflow and open software as examples (no tutorial) |
+
+History box (design 12):
+| 32 | The idea of "non-target screening" as a workflow: readiness review (2017) and guidance (2023); open platforms as examples | Hollender2017, Hollender2023, Helmus2021 |
 
 ## 5. Report (to the COO session only, max 5 lines)
 `PR #n - <40-char head SHA> - ci <status> - what remains`, plus open scientific doubts in one line. Never ask Federico.
