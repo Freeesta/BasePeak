@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 310" role="img" aria-labelledby="ti de"><title id="ti">Spettrometro a tempo di volo lineare</title><desc id="de">Una sorgente a sinistra, un tratto di accelerazione tra due elettrodi, un lungo tubo di volo privo di campo e un rivelatore a destra. Ioni di massa diversa ricevono la stessa energia: quello leggero, più veloce (cerchi piccoli blu), è davanti a quello pesante, più lento (cerchi grandi arancioni), e arriva prima al rivelatore.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<rect class="s" x="40" y="110" width="110" height="100"/>
+<text class="t m" x="95" y="100">sorgente</text>
+<path class="th" d="M70 110L70 210"/>
+<path class="th" d="M150 110L150 135"/>
+<path class="th" d="M150 185L150 210"/>
+<text class="t m" x="110" y="232">accelerazione</text>
+<path class="l" d="M78 160L142 160" marker-end="url(#p)"/>
+<rect class="s" x="150" y="135" width="450" height="50" rx="6"/>
+<text class="t m" x="375" y="124">tubo di volo, senza campo</text>
+<path class="th" d="M606 112L606 208"/>
+<rect class="s" x="612" y="128" width="30" height="64"/>
+<text class="t m" x="627" y="232">rivelatore</text>
+<circle class="fb" cx="250" cy="152" r="8"/>
+<circle class="fa" cx="480" cy="155.2" r="5"/>
+<circle class="fb" cx="260" cy="160" r="8"/>
+<circle class="fa" cx="486" cy="160" r="5"/>
+<circle class="fb" cx="250" cy="168" r="8"/>
+<circle class="fa" cx="480" cy="164.8" r="5"/>
+<circle class="fb" cx="240" cy="160" r="8"/>
+<circle class="fa" cx="474" cy="160" r="5"/>
+<path class="rb" d="M300 160L330 160" marker-end="url(#pb)"/>
+<path class="ra" d="M520 160L550 160" marker-end="url(#pa)"/>
+<path class="l" d="M250 176V214"/>
+<text class="t m" x="250" y="232">ione pesante, più lento</text>
+<path class="l" d="M480 170V214"/>
+<text class="t m" x="480" y="232">ione leggero, più veloce</text>
+<path class="l" d="M150 270L606 270" marker-end="url(#p)"/>
+<path class="l" d="M606 270L150 270" marker-end="url(#p)"/>
+<text class="t m" x="378" y="292">lunghezza di volo L</text>
+</svg>

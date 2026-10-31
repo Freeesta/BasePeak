@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 345" role="img" aria-labelledby="ti de"><title id="ti">Parabole di Thomson per gli ioni del neon con massa 20 e 22</title><desc id="de">A sinistra un fascio di ioni attraversa un campo elettrico E e un campo magnetico B paralleli tra loro. A destra la lastra vista di fronte: gli ioni con lo stesso rapporto m/z cadono su una stessa parabola qualunque sia la velocità. Il neon 20 (linea continua, punti pieni) e il neon 22 (linea tratteggiata) disegnano due parabole distinte. Il disegno non è in scala.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<rect class="s" x="14" y="135" width="46" height="50"/>
+<text class="t m" x="37" y="204">sorgente</text>
+<path class="ra" d="M60 160L100 160"/>
+<path class="th" d="M100 135L100 152"/>
+<path class="th" d="M100 168L100 185"/>
+<text class="t m" x="100" y="204">fenditura</text>
+<rect class="s" x="130" y="60" width="140" height="24"/>
+<text class="t m" x="200" y="77">N</text>
+<rect class="s" x="130" y="236" width="140" height="24"/>
+<text class="t m" x="200" y="253">S</text>
+<rect class="s" x="130" y="100" width="140" height="8"/>
+<rect class="s" x="130" y="212" width="140" height="8"/>
+<path class="l" d="M160 116L160 204" marker-end="url(#p)"/>
+<text class="t m" x="160" y="232">E</text>
+<path class="d" d="M240 92L240 204" marker-end="url(#p)"/>
+<text class="t m" x="240" y="232">B</text>
+<path class="ra" d="M100 160L280 160"/>
+<path class="ra" d="M280 160C320 160 345 170 372 188" marker-end="url(#pa)"/>
+<text class="t m" x="200" y="288">campo E e campo B paralleli</text>
+<text class="t m" x="200" y="306">(B devia anche fuori dal disegno)</text>
+<rect class="s" x="400" y="36" width="300" height="270"/>
+<text class="t m" x="550" y="328">lastra, vista di fronte</text>
+<path class="l" d="M430 276L688 276" marker-end="url(#p)"/>
+<path class="l" d="M430 276L430 46" marker-end="url(#p)"/>
+<text class="t e" x="692" y="298">deviazione per B</text>
+<text class="t" x="438" y="58">deviazione per E</text>
+<path class="ra" d="M430 276L434 275.9L438 275.8L442 275.5L446 275.1L450 274.6L454 274L458 273.3L462 272.5L466 271.6L470 270.6L474 269.4L478 268.2L482 266.8L486 265.3L490 263.8L494 262.1L498 260.3L502 258.4L506 256.4L510 254.2L514 252L518 249.7L522 247.2L526 244.7L530 242L534 239.2L538 236.3L542 233.4L546 230.2L550 227L554 223.7L558 220.3L562 216.8L566 213.1L570 209.4L574 205.5L578 201.5L582 197.4L586 193.3L590 189L594 184.6L598 180L602 175.4L606 170.7L610 165.8L614 160.9L618 155.8L622 150.7L626 145.4L630 140L634 134.5L638 128.9"/>
+<circle class="fa" cx="457" cy="273.5" r="3.4"/>
+<circle class="fa" cx="463" cy="272.3" r="3.4"/>
+<circle class="fa" cx="466" cy="271.6" r="3.4"/>
+<circle class="fa" cx="479" cy="267.8" r="3.4"/>
+<circle class="fa" cx="500" cy="259.3" r="3.4"/>
+<circle class="fa" cx="517" cy="250.3" r="3.4"/>
+<circle class="fa" cx="541" cy="234.1" r="3.4"/>
+<circle class="fa" cx="562" cy="216.8" r="3.4"/>
+<circle class="fa" cx="624" cy="148" r="3.4"/>
+<text class="t" x="646" y="130.1">Ne 20</text>
+<path class="rb" d="M430 276L434 275.9L438 275.7L442 275.3L446 274.7L450 273.9L454 273L458 271.9L462 270.7L466 269.3L470 267.7L474 265.9L478 264L482 261.9L486 259.7L490 257.3L494 254.7L498 252L502 249L506 246L510 242.7L514 239.3L518 235.7L522 232L526 228.1L530 224L534 219.8L538 215.3L542 210.8L546 206L550 201.1L554 196L558 190.8L562 185.4L566 179.8L570 174.1L574 168.2L578 162.1L582 155.9L586 149.5L590 142.9L594 136.1L598 129.2L602 122.2L606 114.9L610 107.5L614 99.9L618 92.2L622 84.3L626 76.2L630 68L634 59.6"/>
+<circle class="fb" cx="445" cy="274.8" r="3.4"/>
+<circle class="fb" cx="455" cy="272.8" r="3.4"/>
+<circle class="fb" cx="496" cy="253.3" r="3.4"/>
+<circle class="fb" cx="514" cy="239.3" r="3.4"/>
+<circle class="fb" cx="542" cy="210.8" r="3.4"/>
+<circle class="fb" cx="573" cy="169.7" r="3.4"/>
+<circle class="fb" cx="577" cy="163.6" r="3.4"/>
+<circle class="fb" cx="580" cy="159" r="3.4"/>
+<circle class="fb" cx="635" cy="57.5" r="3.4"/>
+<text class="t" x="642" y="59.3">Ne 22</text>
+<circle class="s" cx="430" cy="276" r="4"/>
+<text class="t" x="438" y="298">senza campi</text>
+</svg>
