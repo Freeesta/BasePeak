@@ -32,7 +32,7 @@ try:
               return out})()"""
 
         pb = lambda q, t: q.locator("#side button.ptog", has_text=t)
-        PARTS = ["Guida", "II. Separare", "III. Ionizzare", "IV. Analizzare gli ioni", "V. Leggere gli spettri", "VI. Dal dato al risultato", "VII. Chemioinformatica", "Pratica", "Reference"]
+        PARTS = ["Guida", "II. Separare", "III. Ionizzare", "IV. Analizzare gli ioni", "V. Leggere gli spettri", "VI. Dal dato al risultato", "Pratica", "Reference"]
         def sidebar():
             c, q = ctx()
             for f in SAMPLES:
@@ -176,7 +176,7 @@ try:
                 q.keyboard.press("Tab"); assert q.evaluate("document.activeElement.closest('#side')!==null"), "focus left the drawer"
             for _ in range(70):
                 q.keyboard.press("Shift+Tab"); assert q.evaluate("document.activeElement.closest('#side')!==null"), "focus left the drawer (backwards)"
-            assert q.locator("#side ol.toc ol a").count() >= 1 and q.locator("#side h4").count() == 9
+            assert q.locator("#side ol.toc ol a").count() >= 1 and q.locator("#side h4").count() == len(PARTS)
             q.keyboard.press("Escape"); assert q.is_hidden("#side") and q.get_attribute("#menu", "aria-expanded") == "false"
             assert q.evaluate("document.activeElement.id") == "menu", "focus not returned"
             assert q.evaluate("document.documentElement.scrollWidth") <= 390
