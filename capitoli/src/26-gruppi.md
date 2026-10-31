@@ -45,12 +45,12 @@
 <table id="tab-isotopi">
 <caption>Isotopi: differenza di massa e rapporto di intensità</caption>
 <tr><th>Coppia</th><th>Differenza di massa (u)</th><th>Rapporto atteso</th></tr>
-<tr data-f="13C"><td><sup>13</sup>C − <sup>12</sup>C</td><td class="n">1,0034</td><td>circa 1,07 % per ogni C</td></tr>
+<tr data-f="13C"><td><sup>13</sup>C − <sup>12</sup>C</td><td class="n">1,0034</td><td>circa 1,1 % per ogni C</td></tr>
 <tr data-f="37Cl"><td><sup>37</sup>Cl − <sup>35</sup>Cl</td><td class="n">1,9970</td><td>circa 32 % per ogni Cl</td></tr>
 <tr data-f="81Br"><td><sup>81</sup>Br − <sup>79</sup>Br</td><td class="n">1,9980</td><td>circa 97 % per ogni Br</td></tr>
 </table>
-<span class="eq"><i>I</i>(M+1) / <i>I</i>(M) ≈ <i>n</i><sub>C</sub> · 1,07 % + <i>n</i><sub>N</sub> · 0,37 %<span class="no">(26.2)</span></span>
-<p>Esempio: per C<sub>15</sub>H<sub>12</sub>N<sub>2</sub>O la formula dà 15 · 1,07 + 2 · 0,37 ≈ 16,8 %; un picco a +1,0034 u con quel rapporto è il suo isotopo <sup>13</sup>C. Un picco a +1,0034 u più intenso del picco di partenza non può esserlo.</p>
+<span class="eq"><i>I</i>(M+1) / <i>I</i>(M) ≈ <i>n</i><sub>C</sub> · 1,1 % + <i>n</i><sub>N</sub> · 0,37 %<span class="no">(26.2)</span></span>
+<p>Esempio: per C<sub>15</sub>H<sub>12</sub>N<sub>2</sub>O la formula dà 15 · 1,1 + 2 · 0,37 ≈ 17,2 % (il calcolo completo, con H e O, dà 17,1 %). Per uno ione con <i>z</i> = 1, un picco a +1,0034 u con quel rapporto è il suo isotopo <sup>13</sup>C. Per una piccola molecola (meno di circa 90 atomi di C) un picco a +1,0034 u più intenso del picco di partenza non può esserlo.</p>
 <p>Cl e Br differiscono di appena 1 mDa: a 5 ppm sono indistinguibili, e decide il rapporto (32 % contro 97 %).</p>
 ```
 
