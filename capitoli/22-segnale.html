@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><!--tema--><meta name="color-scheme" content="light dark"><style>html{background:#fbfbf9}@media(prefers-color-scheme:dark){html:not([data-theme=light]){background:#14171b}}html[data-theme=dark]{background:#14171b}html[data-theme=light]{background:#fbfbf9}html.no-tr *,html.no-tr *::before,html.no-tr *::after{transition:none!important}</style><script>(function(){var R=document.documentElement,t=null;try{if(parent!==window)t=parent.document.documentElement.getAttribute("data-theme")}catch(e){}if(!t)try{t=JSON.parse(localStorage.getItem("mzlab.prefs")||localStorage.getItem("qqq.prefs")||"{}").theme}catch(e){}if(t==="dark"||t==="light"){R.setAttribute("data-theme",t);R.style.colorScheme=t}R.classList.add("no-tr");addEventListener("load",function(){requestAnimationFrame(function(){requestAnimationFrame(function(){R.classList.remove("no-tr")})})})})()</script><!--/tema-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Segnale, profilo e centroide · Teoria QqQ lab</title><link rel="icon" href="../assets/favicon.ico" sizes="48x48"><link rel="icon" href="../assets/icone/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../assets/icone/apple-touch-icon.png"><link rel="manifest" href="../assets/site.webmanifest"><meta name="theme-color" content="#2f6aa3"><link rel="stylesheet" href="../assets/teoria.css"><script src="../assets/tema.js"></script></head>
+<body>
+<div class="wrap"><nav id="side"></nav><main>
+<div class="kicker">Capitolo 22</div>
+<h1>Dal rivelatore allo spettro: profilo, centroide e accuratezza</h1>
+<p class="lead">Prima di cercare un composto bisogna sapere che numero registra davvero lo strumento. Qui si vede come un picco in profilo diventa un centroide e che cosa separa l'accuratezza dalla precisione.</p>
+<div class="box key"><b>Capitolo in costruzione</b><p>Questo capitolo è ancora in scrittura: per ora trovi la scaletta, con una riga per ogni sezione, e il posto delle figure interattive.</p></div>
+<details class="q storia"><summary>Un po' di storia</summary><p>Il modo di registrare uno spettro è cambiato dagli strumenti a scansione ai transienti digitali; il capitolo racconterà le tappe principali.</p></details>
+<h2>Dal rivelatore al numero</h2>
+<p>Che cosa esce dal rivelatore e come diventa un valore di intensità nel file.</p>
+<h3>Contare gli ioni: il TDC</h3>
+<p>Il convertitore tempo-digitale conta gli arrivi degli ioni uno per uno.</p>
+<h3>Misurare una corrente: l'ADC</h3>
+<p>Il convertitore analogico-digitale campiona una corrente e ne fa un numero.</p>
+<h3>Orbitrap: dalla corrente immagine allo spettro (FFT)</h3>
+<p>Nell'Orbitrap lo spettro nasce dalla trasformata di Fourier di un segnale nel tempo.</p>
+<h2>Profilo e centroide: quanti punti servono</h2>
+<p>Quanti punti per picco bastano a descrivere bene la forma e a trovarne il centro.</p>
+<h2>Tre modi di calcolare un centroide</h2>
+<p>Tre algoritmi danno centri leggermente diversi dallo stesso profilo.</p>
+<h3>Il massimo locale</h3>
+<p>Il centro è il punto più alto: semplice, ma legato al passo di campionamento.</p>
+<h3>L'interpolazione su tre punti</h3>
+<p>Una curva passa per il massimo e i due vicini e ne indica il vertice.</p>
+<h3>Il baricentro dell'area</h3>
+<p>Il centro è la media delle masse pesata per le intensità dei punti del picco.</p>
+<h3>Che cosa fa il software dello strumento</h3>
+<p>Ogni costruttore applica una sua regola e non sempre la dichiara.</p>
+<div class="sim" id="sim-chemi-centroide" data-sim="../assets/sim-chemi-segnale.js"><h4>Figura 22.1 Dal profilo al centroide</h4>
+<p class="note nota">Confronta tre modi di trovare il centro di un picco al variare della risoluzione, dei punti per picco e del rumore. Dati sintetici, a scopo didattico.</p></div>
+<h2>Rumore e soglie</h2>
+<p>Il rumore decide quali picchi entrano nella lista e quali no.</p>
+<h3>La statistica degli ioni</h3>
+<p>Con pochi ioni l'intensità fluttua per semplice statistica di conteggio.</p>
+<h3>Rumore elettronico e linea di base</h3>
+<p>Anche senza ioni il rivelatore dà un segnale di fondo.</p>
+<h3>Saturazione e tempo morto</h3>
+<p>Quando gli ioni sono troppi, l'intensità si comprime e il centro si sposta.</p>
+<h2>Accuratezza, precisione e taratura</h2>
+<p>L'errore sistematico e quello casuale si distinguono e si correggono in modo diverso.</p>
+<h3>Errore in ppm e in mDa</h3>
+<p>Lo stesso scarto si esprime in milionesimi o in millesimi di dalton.</p>
+<h3>Taratura esterna, lock mass e ricalibrazione</h3>
+<p>Una massa nota permette di correggere la scala delle masse durante l'analisi.</p>
+<div class="sim" id="sim-chemi-taratura" data-sim="../assets/sim-chemi-segnale.js"><h4>Figura 22.2 Taratura e lock mass</h4>
+<p class="note nota">Mostra l'errore di massa in 60 minuti, prima e dopo la correzione con una massa di riferimento. Dati sintetici, a scopo didattico.</p></div>
+<h2>Verifica</h2>
+<p>Qualche domanda per controllare di avere capito i punti principali.</p>
+<h2>Per approfondire</h2>
+<p>Le letture consigliate su rivelatori, centroidi e accuratezza di massa.</p>
+</main></div>
+<script src="../assets/appname.js"></script><script src="../assets/teoria.js"></script><script src="../assets/chemi-common.js"></script>
+</body></html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><!--tema--><meta name="color-scheme" content="light dark"><style>html{background:#fbfbf9}@media(prefers-color-scheme:dark){html:not([data-theme=light]){background:#14171b}}html[data-theme=dark]{background:#14171b}html[data-theme=light]{background:#fbfbf9}html.no-tr *,html.no-tr *::before,html.no-tr *::after{transition:none!important}</style><script>(function(){var R=document.documentElement,t=null;try{if(parent!==window)t=parent.document.documentElement.getAttribute("data-theme")}catch(e){}if(!t)try{t=JSON.parse(localStorage.getItem("mzlab.prefs")||localStorage.getItem("qqq.prefs")||"{}").theme}catch(e){}if(t==="dark"||t==="light"){R.setAttribute("data-theme",t);R.style.colorScheme=t}R.classList.add("no-tr");addEventListener("load",function(){requestAnimationFrame(function(){requestAnimationFrame(function(){R.classList.remove("no-tr")})})})})()</script><!--/tema-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tracce di massa e ROI · Teoria QqQ lab</title><link rel="icon" href="../assets/favicon.ico" sizes="48x48"><link rel="icon" href="../assets/icone/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../assets/icone/apple-touch-icon.png"><link rel="manifest" href="../assets/site.webmanifest"><meta name="theme-color" content="#2f6aa3"><link rel="stylesheet" href="../assets/teoria.css"><script src="../assets/tema.js"></script></head>
+<body>
+<div class="wrap"><nav id="side"></nav><main>
+<div class="kicker">Capitolo 24</div>
+<h1>Tracce di massa: XIC e regioni d'interesse</h1>
+<p class="lead">Un'analisi LC-HRMS è una nuvola di punti con tempo, m/z e intensità. Qui si impara a scegliere la finestra di un XIC e a costruire le tracce di massa passo per passo.</p>
+<div class="box key"><b>Capitolo in costruzione</b><p>Questo capitolo è ancora in scrittura: per ora trovi la scaletta, con una riga per ogni sezione, e il posto delle figure interattive.</p></div>
+<details class="q storia"><summary>Un po' di storia</summary><p>Leggere al calcolatore le scansioni continue è un'idea dei primi anni Settanta; il capitolo racconterà come si è passati dalle finestre fisse alle regioni d'interesse.</p></details>
+<h2>I dati come nuvola di punti</h2>
+<p>Ogni punto ha un tempo, un valore di m/z e un'intensità.</p>
+<h2>La finestra di estrazione in ppm</h2>
+<p>Quanto larga va la finestra con cui si estrae una traccia.</p>
+<h3>Quanto larga: errore di massa e risoluzione</h3>
+<p>La larghezza segue l'errore di massa reale dello strumento.</p>
+<h3>Isobari vicini</h3>
+<p>Due ioni con massa quasi uguale possono finire nella stessa finestra.</p>
+<div class="sim" id="sim-chemi-xic" data-sim="../assets/sim-chemi-tracce.js"><h4>Figura 24.1 La finestra in ppm</h4>
+<p class="note nota">Mostra come una finestra troppo stretta perde segnale e una troppo larga include un isobaro. Dati sintetici, a scopo didattico.</p></div>
+<h2>Costruire le tracce di massa</h2>
+<p>Un algoritmo collega i centroidi di scansioni successive in tracce.</p>
+<h3>L'algoritmo passo per passo</h3>
+<p>Ogni centroide si aggiunge a una traccia esistente o ne apre una nuova.</p>
+<h3>I parametri</h3>
+<p>Tolleranza in ppm, lunghezza minima e intensità minima decidono il risultato.</p>
+<h3>Quando sbaglia: tracce spezzate o fuse</h3>
+<p>Parametri poco adatti spezzano una traccia o ne uniscono due.</p>
+<div class="sim" id="sim-chemi-roi" data-sim="../assets/sim-chemi-tracce.js"><h4>Figura 24.2 Costruire una traccia, scansione per scansione</h4>
+<p class="note nota">Costruisce le tracce una scansione alla volta e spiega perché ognuna è tenuta o scartata. Dati sintetici, a scopo didattico.</p></div>
+<h2>L'alternativa a bin fissi</h2>
+<p>Dividere l'asse m/z in intervalli fissi è più semplice ma meno adatto all'alta risoluzione.</p>
+<h2>Verifica</h2>
+<p>Qualche domanda per controllare di avere capito i punti principali.</p>
+<h2>Per approfondire</h2>
+<p>Le letture consigliate sulla costruzione delle tracce di massa.</p>
+</main></div>
+<script src="../assets/appname.js"></script><script src="../assets/teoria.js"></script><script src="../assets/chemi-common.js"></script>
+</body></html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><!--tema--><meta name="color-scheme" content="light dark"><style>html{background:#fbfbf9}@media(prefers-color-scheme:dark){html:not([data-theme=light]){background:#14171b}}html[data-theme=dark]{background:#14171b}html[data-theme=light]{background:#fbfbf9}html.no-tr *,html.no-tr *::before,html.no-tr *::after{transition:none!important}</style><script>(function(){var R=document.documentElement,t=null;try{if(parent!==window)t=parent.document.documentElement.getAttribute("data-theme")}catch(e){}if(!t)try{t=JSON.parse(localStorage.getItem("mzlab.prefs")||localStorage.getItem("qqq.prefs")||"{}").theme}catch(e){}if(t==="dark"||t==="light"){R.setAttribute("data-theme",t);R.style.colorScheme=t}R.classList.add("no-tr");addEventListener("load",function(){requestAnimationFrame(function(){requestAnimationFrame(function(){R.classList.remove("no-tr")})})})})()</script><!--/tema-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La tabella delle feature · Teoria QqQ lab</title><link rel="icon" href="../assets/favicon.ico" sizes="48x48"><link rel="icon" href="../assets/icone/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../assets/icone/apple-touch-icon.png"><link rel="manifest" href="../assets/site.webmanifest"><meta name="theme-color" content="#2f6aa3"><link rel="stylesheet" href="../assets/teoria.css"><script src="../assets/tema.js"></script></head>
+<body>
+<div class="wrap"><nav id="side"></nav><main>
+<div class="kicker">Capitolo 27</div>
+<h1>Dalla serie di campioni alla tabella delle feature</h1>
+<p class="lead">Per confrontare molti campioni bisogna rendere uguali i tempi, trovare gli stessi composti in ogni corsa e riempire i vuoti. Qui si segue questo percorso fino alla tabella finale.</p>
+<div class="box key"><b>Capitolo in costruzione</b><p>Questo capitolo è ancora in scrittura: per ora trovi la scaletta, con una riga per ogni sezione, e il posto delle figure interattive.</p></div>
+<details class="q storia"><summary>Un po' di storia</summary><p>L'allineamento dei tempi viene dal riconoscimento del parlato; il capitolo racconterà come è arrivato alla spettrometria di massa.</p></details>
+<h2>Perché il tempo di ritenzione si sposta</h2>
+<p>Da una corsa all'altra lo stesso composto esce a tempi leggermente diversi.</p>
+<h2>Allineare i campioni</h2>
+<p>Si corregge l'asse dei tempi di ogni corsa rispetto a una di riferimento.</p>
+<h3>Picchi di riferimento e curva LOWESS</h3>
+<p>Alcuni picchi sicuri guidano una curva di correzione.</p>
+<h3>Deformare l'asse dei tempi (DTW, OBI-Warp)</h3>
+<p>Altri metodi stirano l'asse dei tempi confrontando interi profili.</p>
+<h3>Come controllare l'allineamento</h3>
+<p>Lo scarto residuo dopo la correzione dice se l'allineamento è buono.</p>
+<div class="sim" id="sim-chemi-allinea" data-sim="../assets/sim-chemi-tabella.js"><h4>Figura 27.1 Allineare due corse</h4>
+<p class="note nota">Allinea due corse sintetiche con una curva LOWESS e mostra lo scarto residuo. Dati sintetici, a scopo didattico.</p></div>
+<h2>Corrispondenza fra campioni</h2>
+<p>Si decide quali picchi di corse diverse sono lo stesso composto.</p>
+<h2>Riempire i buchi</h2>
+<p>Dove un picco manca si misura comunque il segnale presente.</p>
+<div class="sim" id="sim-chemi-corrispondenza" data-sim="../assets/sim-chemi-tabella.js"><h3>Figura 27.2 Lo stesso composto in sei campioni</h3>
+<p class="note nota">Raggruppa i picchi di sei campioni e mostra come i parametri dividono o fondono i composti. Dati sintetici, a scopo didattico.</p></div>
+<h2>Filtrare: bianchi, repliche, QC</h2>
+<p>I controlli permettono di scartare i segnali poco affidabili.</p>
+<h2>Normalizzare</h2>
+<p>Si rendono confrontabili le intensità di campioni diversi.</p>
+<h2>La tabella delle feature</h2>
+<p>Che cosa significa ogni colonna della tabella finale.</p>
+<div class="sim" id="sim-chemi-tabella" data-sim="../assets/sim-chemi-esplora.js"><h3>Figura 27.3 Esplora la tabella delle feature</h3>
+<p class="note nota">Applica filtri e normalizzazioni a una tabella sintetica e mostra quali artefatti spariscono. Dati sintetici, a scopo didattico.</p></div>
+<h2>Verifica</h2>
+<p>Qualche domanda per controllare di avere capito i punti principali.</p>
+<h2>Per approfondire</h2>
+<p>Le letture consigliate su allineamento, corrispondenza e normalizzazione.</p>
+</main></div>
+<script src="../assets/appname.js"></script><script src="../assets/teoria.js"></script><script src="../assets/chemi-common.js"></script>
+</body></html>

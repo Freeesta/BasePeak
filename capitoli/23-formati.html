@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><!--tema--><meta name="color-scheme" content="light dark"><style>html{background:#fbfbf9}@media(prefers-color-scheme:dark){html:not([data-theme=light]){background:#14171b}}html[data-theme=dark]{background:#14171b}html[data-theme=light]{background:#fbfbf9}html.no-tr *,html.no-tr *::before,html.no-tr *::after{transition:none!important}</style><script>(function(){var R=document.documentElement,t=null;try{if(parent!==window)t=parent.document.documentElement.getAttribute("data-theme")}catch(e){}if(!t)try{t=JSON.parse(localStorage.getItem("mzlab.prefs")||localStorage.getItem("qqq.prefs")||"{}").theme}catch(e){}if(t==="dark"||t==="light"){R.setAttribute("data-theme",t);R.style.colorScheme=t}R.classList.add("no-tr");addEventListener("load",function(){requestAnimationFrame(function(){requestAnimationFrame(function(){R.classList.remove("no-tr")})})})})()</script><!--/tema-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>File e formati aperti · Teoria QqQ lab</title><link rel="icon" href="../assets/favicon.ico" sizes="48x48"><link rel="icon" href="../assets/icone/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../assets/icone/apple-touch-icon.png"><link rel="manifest" href="../assets/site.webmanifest"><meta name="theme-color" content="#2f6aa3"><link rel="stylesheet" href="../assets/teoria.css"><script src="../assets/tema.js"></script></head>
+<body>
+<div class="wrap"><nav id="side"></nav><main>
+<div class="kicker">Capitolo 23</div>
+<h1>I file dei dati: mzML e gli altri formati aperti</h1>
+<p class="lead">Aprire un file mzML con un editor di testo aiuta a capire che cosa contiene davvero. Qui si guarda dentro i formati aperti e si decide quali informazioni devono sopravvivere alla conversione.</p>
+<div class="box key"><b>Capitolo in costruzione</b><p>Questo capitolo è ancora in scrittura: per ora trovi la scaletta, con una riga per ogni sezione, e il posto delle figure interattive.</p></div>
+<details class="q storia"><summary>Un po' di storia</summary><p>I formati aperti sono nati per non dipendere dai file dei costruttori; il capitolo racconterà come si è arrivati a mzML.</p></details>
+<h2>Che cosa c'è in un file di dati</h2>
+<p>Spettri, cromatogrammi e informazioni sullo strumento stanno nello stesso file.</p>
+<h2>mzML dall'interno</h2>
+<p>Come è fatto un file mzML, blocco per blocco.</p>
+<h3>Il vocabolario controllato</h3>
+<p>Ogni informazione ha un nome e un codice fissati, uguali per tutti i programmi.</p>
+<h3>Gli array binari: base64, precisione, compressione</h3>
+<p>I numeri sono scritti come byte, eventualmente compressi, e poi trasformati in testo.</p>
+<h3>L'indice</h3>
+<p>Un elenco di posizioni permette di leggere uno spettro senza scorrere tutto il file.</p>
+<div class="sim" id="sim-chemi-codifica" data-sim="../assets/sim-chemi-formati.js"><h4>Figura 23.1 Come si scrive uno spettro in un file</h4>
+<p class="note nota">Mostra che cosa fanno precisione, compressione e base64 alla dimensione e ai numeri di un array. Dati sintetici, a scopo didattico.</p></div>
+<h2>Gli altri formati</h2>
+<p>Altri formati aperti servono ad altri scopi, dai dati grezzi ai risultati.</p>
+<h3>mzXML</h3>
+<p>Il formato che ha preceduto mzML e che si trova ancora in molti archivi.</p>
+<h3>MGF e MSP: elenchi di spettri</h3>
+<p>File di testo che raccolgono molti spettri MS2 uno dopo l'altro.</p>
+<h3>JCAMP-DX e netCDF (ANDI)</h3>
+<p>Due formati storici, ancora usati soprattutto per la gascromatografia.</p>
+<h3>mzTab-M: i risultati, non i dati</h3>
+<p>Una tabella di composti identificati, non di spettri.</p>
+<div class="sim" id="sim-chemi-formati" data-sim="../assets/sim-chemi-formati.js"><h4>Figura 23.2 Lo stesso spettro in cinque formati</h4>
+<p class="note nota">Mostra lo stesso spettro scritto in cinque formati e quali metadati ciascuno conserva. Spettro sintetico, a scopo didattico.</p></div>
+<h2>Dal formato del costruttore al formato aperto</h2>
+<p>Ogni costruttore ha un suo formato; per usarlo altrove si converte.</p>
+<h3>Conversione</h3>
+<p>Quali programmi convertono e che cosa conviene controllare dopo.</p>
+<h3>Centroidare durante la conversione?</h3>
+<p>Scegliere se ridurre il profilo a centroidi subito o più tardi.</p>
+<h2>I metadati che contano</h2>
+<p>Le informazioni da non perdere: polarità, livello MS, tempi, energie e software.</p>
+<h2>Verifica</h2>
+<p>Qualche domanda per controllare di avere capito i punti principali.</p>
+<h2>Per approfondire</h2>
+<p>Le letture consigliate sui formati aperti e sulla loro storia.</p>
+</main></div>
+<script src="../assets/appname.js"></script><script src="../assets/teoria.js"></script><script src="../assets/chemi-common.js"></script>
+</body></html>

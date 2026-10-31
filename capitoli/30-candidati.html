@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><!--tema--><meta name="color-scheme" content="light dark"><style>html{background:#fbfbf9}@media(prefers-color-scheme:dark){html:not([data-theme=light]){background:#14171b}}html[data-theme=dark]{background:#14171b}html[data-theme=light]{background:#fbfbf9}html.no-tr *,html.no-tr *::before,html.no-tr *::after{transition:none!important}</style><script>(function(){var R=document.documentElement,t=null;try{if(parent!==window)t=parent.document.documentElement.getAttribute("data-theme")}catch(e){}if(!t)try{t=JSON.parse(localStorage.getItem("mzlab.prefs")||localStorage.getItem("qqq.prefs")||"{}").theme}catch(e){}if(t==="dark"||t==="light"){R.setAttribute("data-theme",t);R.style.colorScheme=t}R.classList.add("no-tr");addEventListener("load",function(){requestAnimationFrame(function(){requestAnimationFrame(function(){R.classList.remove("no-tr")})})})})()</script><!--/tema-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Formule e candidati in silico · Teoria QqQ lab</title><link rel="icon" href="../assets/favicon.ico" sizes="48x48"><link rel="icon" href="../assets/icone/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../assets/icone/apple-touch-icon.png"><link rel="manifest" href="../assets/site.webmanifest"><meta name="theme-color" content="#2f6aa3"><link rel="stylesheet" href="../assets/teoria.css"><script src="../assets/tema.js"></script></head>
+<body>
+<div class="wrap"><nav id="side"></nav><main>
+<div class="kicker">Capitolo 30</div>
+<h1>Formule e strutture candidate</h1>
+<p class="lead">Dalla massa esatta e dal profilo isotopico si ricava una lista di formule, poi di strutture candidate. Qui si vede come ogni indizio riduce la lista e dove i metodi in silico si fermano.</p>
+<div class="box key"><b>Capitolo in costruzione</b><p>Questo capitolo è ancora in scrittura: per ora trovi la scaletta, con una riga per ogni sezione, e il posto delle figure interattive.</p></div>
+<details class="q storia"><summary>Un po' di storia</summary><p>Le regole per scegliere le formule e i programmi di frammentazione in silico sono arrivati in tempi diversi; il capitolo racconterà come si sono sviluppati.</p></details>
+<h2>Dalla massa alle formule</h2>
+<p>Una massa misurata è compatibile con molte formule: si elencano entro una tolleranza.</p>
+<h2>Il pattern isotopico come filtro</h2>
+<p>L'aspetto del gruppo di isotopi esclude molte formule.</p>
+<h2>Regole euristiche</h2>
+<p>Poche regole sui rapporti tra gli elementi tolgono le formule improbabili.</p>
+<div class="sim" id="sim-chemi-formula" data-sim="../assets/sim-chemi-candidati.js"><h3>Figura 30.1 Quante formule restano?</h3>
+<p class="note nota">Mostra quante formule restano dopo ogni indizio: tolleranza, elementi, isotopi e regole. Dati sintetici, a scopo didattico.</p></div>
+<h2>Dalla formula ai candidati</h2>
+<p>Da una formula si risale alle strutture note in un archivio.</p>
+<h2>Frammentazione in silico</h2>
+<p>Il calcolatore prevede come ogni candidato si romperebbe.</p>
+<h3>MetFrag: rompere legami</h3>
+<p>Si rompono i legami del candidato e si confrontano i frammenti con i picchi.</p>
+<h3>CFM-ID: prevedere lo spettro</h3>
+<p>Un modello appreso da spettri veri prevede lo spettro di ogni candidato.</p>
+<h3>SIRIUS e CSI:FingerID: alberi di frammentazione e impronte</h3>
+<p>Alberi di frammentazione e impronte molecolari ordinano le strutture.</p>
+<div class="sim" id="sim-chemi-candidati" data-sim="../assets/sim-chemi-candidati.js"><h4>Figura 30.2 Tre isomeri, uno spettro</h4>
+<p class="note nota">Confronta tre isomeri sintetici con uno stesso spettro e mostra che i punteggi possono pareggiare. Dati sintetici, a scopo didattico.</p></div>
+<h2>Verifica</h2>
+<p>Qualche domanda per controllare di avere capito i punti principali.</p>
+<h2>Per approfondire</h2>
+<p>Le letture consigliate su formule, candidati e frammentazione in silico.</p>
+</main></div>
+<script src="../assets/appname.js"></script><script src="../assets/masse.js"></script><script src="../assets/teoria.js"></script><script src="../assets/chemi-common.js"></script>
+</body></html>

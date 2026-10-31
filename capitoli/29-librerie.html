@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><!--tema--><meta name="color-scheme" content="light dark"><style>html{background:#fbfbf9}@media(prefers-color-scheme:dark){html:not([data-theme=light]){background:#14171b}}html[data-theme=dark]{background:#14171b}html[data-theme=light]{background:#fbfbf9}html.no-tr *,html.no-tr *::before,html.no-tr *::after{transition:none!important}</style><script>(function(){var R=document.documentElement,t=null;try{if(parent!==window)t=parent.document.documentElement.getAttribute("data-theme")}catch(e){}if(!t)try{t=JSON.parse(localStorage.getItem("mzlab.prefs")||localStorage.getItem("qqq.prefs")||"{}").theme}catch(e){}if(t==="dark"||t==="light"){R.setAttribute("data-theme",t);R.style.colorScheme=t}R.classList.add("no-tr");addEventListener("load",function(){requestAnimationFrame(function(){requestAnimationFrame(function(){R.classList.remove("no-tr")})})})})()</script><!--/tema-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Librerie e falsi positivi · Teoria QqQ lab</title><link rel="icon" href="../assets/favicon.ico" sizes="48x48"><link rel="icon" href="../assets/icone/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../assets/icone/apple-touch-icon.png"><link rel="manifest" href="../assets/site.webmanifest"><meta name="theme-color" content="#2f6aa3"><link rel="stylesheet" href="../assets/teoria.css"><script src="../assets/tema.js"></script></head>
+<body>
+<div class="wrap"><nav id="side"></nav><main>
+<div class="kicker">Capitolo 29</div>
+<h1>Ricerca in libreria e falsi positivi</h1>
+<p class="lead">Il miglior risultato di una ricerca in libreria non è ancora un'identificazione. Qui si vede come stimare i falsi positivi e come i punteggi costruiscono una rete molecolare.</p>
+<div class="box key"><b>Capitolo in costruzione</b><p>Questo capitolo è ancora in scrittura: per ora trovi la scaletta, con una riga per ogni sezione, e il posto delle figure interattive.</p></div>
+<details class="q storia"><summary>Un po' di storia</summary><p>Le librerie di spettri sono cresciute dalle raccolte EI a quelle MS/MS aperte; il capitolo racconterà le tappe principali.</p></details>
+<h2>Le librerie spettrali</h2>
+<p>Quali raccolte di spettri esistono, che cosa contengono e a quali condizioni si usano.</p>
+<h2>Ricerca EI: match factor e indice di ritenzione</h2>
+<p>In EI si combinano il punteggio dello spettro e l'indice di ritenzione.</p>
+<h2>Ricerca MS/MS: precursore, energia, punteggio</h2>
+<p>In MS/MS contano anche il precursore, la polarità e l'energia di collisione.</p>
+<h2>Quanti risultati sono falsi?</h2>
+<p>Un punteggio alto non basta: bisogna stimare la quota di errori.</p>
+<h3>L'approccio target-decoy</h3>
+<p>Si cerca anche in una libreria di spettri falsi per contare gli errori.</p>
+<h3>FDR e q-value</h3>
+<p>La quota di falsi nella lista e il valore associato a ogni soglia.</p>
+<div class="sim" id="sim-chemi-libreria" data-sim="../assets/sim-chemi-librerie.js"><h4>Figura 29.1 Classifica dei risultati e falsi positivi</h4>
+<p class="note nota">Stima la quota di falsi con una libreria di spettri falsi e la confronta con quella vera. Dati sintetici, a scopo didattico.</p></div>
+<h2>Le reti molecolari</h2>
+<p>Gli spettri simili si collegano in famiglie di molecole imparentate.</p>
+<div class="sim" id="sim-chemi-rete" data-sim="../assets/sim-chemi-librerie.js"><h3>Figura 29.2 Una rete molecolare</h3>
+<p class="note nota">Collega quattordici spettri sintetici in famiglie secondo soglia di coseno e picchi in comune. Spettri sintetici, a scopo didattico.</p></div>
+<h2>Verifica</h2>
+<p>Qualche domanda per controllare di avere capito i punti principali.</p>
+<h2>Per approfondire</h2>
+<p>Le letture consigliate su librerie, falsi positivi e reti molecolari.</p>
+</main></div>
+<script src="../assets/appname.js"></script><script src="../assets/teoria.js"></script><script src="../assets/chemi-common.js"></script>
+</body></html>

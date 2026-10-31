@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><!--tema--><meta name="color-scheme" content="light dark"><style>html{background:#fbfbf9}@media(prefers-color-scheme:dark){html:not([data-theme=light]){background:#14171b}}html[data-theme=dark]{background:#14171b}html[data-theme=light]{background:#fbfbf9}html.no-tr *,html.no-tr *::before,html.no-tr *::after{transition:none!important}</style><script>(function(){var R=document.documentElement,t=null;try{if(parent!==window)t=parent.document.documentElement.getAttribute("data-theme")}catch(e){}if(!t)try{t=JSON.parse(localStorage.getItem("mzlab.prefs")||localStorage.getItem("qqq.prefs")||"{}").theme}catch(e){}if(t==="dark"||t==="light"){R.setAttribute("data-theme",t);R.style.colorScheme=t}R.classList.add("no-tr");addEventListener("load",function(){requestAnimationFrame(function(){requestAnimationFrame(function(){R.classList.remove("no-tr")})})})})()</script><!--/tema-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Somiglianza spettrale · Teoria QqQ lab</title><link rel="icon" href="../assets/favicon.ico" sizes="48x48"><link rel="icon" href="../assets/icone/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../assets/icone/apple-touch-icon.png"><link rel="manifest" href="../assets/site.webmanifest"><meta name="theme-color" content="#2f6aa3"><link rel="stylesheet" href="../assets/teoria.css"><script src="../assets/tema.js"></script></head>
+<body>
+<div class="wrap"><nav id="side"></nav><main>
+<div class="kicker">Capitolo 28</div>
+<h1>Spettri MS2 e somiglianza spettrale</h1>
+<p class="lead">Per dire che due spettri MS2 si somigliano serve un numero. Qui si calcolano a mano il coseno, il coseno pesato, quello modificato e l'entropia spettrale.</p>
+<div class="box key"><b>Capitolo in costruzione</b><p>Questo capitolo è ancora in scrittura: per ora trovi la scaletta, con una riga per ogni sezione, e il posto delle figure interattive.</p></div>
+<details class="q storia"><summary>Un po' di storia</summary><p>Confrontare uno spettro con un archivio di spettri noti è un'idea degli anni Settanta; il capitolo racconterà come sono cambiati i punteggi.</p></details>
+<h2>Da dove vengono gli spettri MS2</h2>
+<p>Come lo strumento sceglie gli ioni da frammentare.</p>
+<h3>DDA e DIA</h3>
+<p>Nella DDA si sceglie lo ione, nella DIA si frammenta tutto un intervallo.</p>
+<h3>Purezza del precursore e spettri chimerici</h3>
+<p>Se la finestra contiene due ioni, lo spettro è una miscela.</p>
+<div class="sim" id="sim-chemi-purezza" data-sim="../assets/sim-chemi-somiglianza.js"><h4>Figura 28.1 Quando la finestra di isolamento prende due ioni</h4>
+<p class="note nota">Mostra come la larghezza di isolamento e uno ione vicino rendono lo spettro una miscela. Dati sintetici, a scopo didattico.</p></div>
+<h2>Preparare uno spettro</h2>
+<p>Prima del confronto si tolgono il precursore e i picchi più piccoli.</p>
+<h2>Accoppiare i picchi</h2>
+<p>Ogni picco di uno spettro è abbinato a quello dell'altro entro una tolleranza.</p>
+<h2>I punteggi di somiglianza</h2>
+<p>Quattro modi di trasformare l'accoppiamento in un numero.</p>
+<h3>Prodotto scalare e coseno</h3>
+<p>Il punteggio base: un coseno tra due vettori di intensità.</p>
+<h3>Coseno pesato</h3>
+<p>Le masse alte e le intensità contano in modo diverso.</p>
+<h3>Coseno modificato</h3>
+<p>Permette di accoppiare anche picchi spostati da una modifica nota.</p>
+<h3>Entropia spettrale</h3>
+<p>Un punteggio che si basa sulla quantità di informazione degli spettri.</p>
+<div class="sim" id="sim-chemi-specchio" data-sim="../assets/sim-chemi-somiglianza.js"><h4>Figura 28.2 Specchio: due spettri, quattro punteggi</h4>
+<p class="note nota">Confronta due spettri sintetici in uno specchio e calcola quattro punteggi di somiglianza. Spettri sintetici, a scopo didattico.</p></div>
+<h2>Ricerca diretta e inversa</h2>
+<p>La ricerca inversa ignora i picchi dello spettro cercato assenti in libreria.</p>
+<h2>Verifica</h2>
+<p>Qualche domanda per controllare di avere capito i punti principali.</p>
+<h2>Per approfondire</h2>
+<p>Le letture consigliate sulla somiglianza fra spettri.</p>
+</main></div>
+<script src="../assets/appname.js"></script><script src="../assets/teoria.js"></script><script src="../assets/chemi-common.js"></script>
+</body></html>

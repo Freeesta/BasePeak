@@ -11,19 +11,31 @@
 <dl class="gl">
 <dt id="g-a-q-parametri-di-mathieu">a, q (parametri di Mathieu)</dt><dd>Numeri adimensionali proporzionali alla tensione continua U e all'ampiezza RF V, divisi per m/z. Decidono da soli se la traiettoria di uno ione nel quadrupolo è stabile. <a href="07-quadrupolo.html">Cap. 7</a></dd>
 <dt id="g-accuratezza-di-massa-errore-in-ppm">Accuratezza di massa / errore in ppm</dt><dd>Scarto fra massa misurata e teorica, in milionesimi: (m<sub>mis</sub> − m<sub>teor</sub>)/m<sub>teor</sub> × 10<sup>6</sup>. TOF e Orbitrap: 1-5 ppm. <a href="09-risoluzione.html">Cap. 9</a></dd>
+<dt id="g-adc">ADC</dt><dd>Convertitore analogico-digitale: trasforma una corrente in una serie di numeri. <a href="22-segnale.html">Cap. 22</a></dd>
 <dt id="g-addotto">Addotto</dt><dd>Ione formato dall'associazione della molecola con un catione o una molecola presente in soluzione: [M+Na]<sup>+</sup>, [M+NH<sub>4</sub>]<sup>+</sup>, [M+H+ACN]<sup>+</sup>. <a href="04-esi.html">Cap. 4</a></dd>
 <dt id="g-affinita-protonica-pa">Affinità protonica (PA)</dt><dd>Basicità in fase gas: entalpia liberata da M + H<sup>+</sup> → [M+H]<sup>+</sup>. Decide il sito di protonazione e quale frammento tiene la carica. <a href="12-frammentazione-esi.html">Cap. 12</a></dd>
+<dt id="g-allineamento-dei-tempi-di-ritenzione">Allineamento dei tempi di ritenzione</dt><dd>Correzione dell'asse dei tempi di ogni corsa, per far coincidere lo stesso composto in campioni diversi. <a href="27-tabella.html">Cap. 27</a></dd>
 <dt id="g-apci">APCI</dt><dd>Ionizzazione chimica a pressione atmosferica: l'eluato è vaporizzato in un nebulizzatore caldo e ionizzato da una scarica a corona attraverso reazioni ione-molecola in fase gas. Adatta a molecole poco polari e termicamente stabili; meno sensibile all'effetto matrice dell'ESI. <a href="04-esi.html">Cap. 4</a></dd>
+<dt id="g-base64">Base64</dt><dd>Modo di scrivere dati binari usando solo caratteri di testo. <a href="23-formati.html">Cap. 23</a></dd>
+<dt id="g-bianco-di-processo">Bianco di processo</dt><dd>Campione senza analita trattato come gli altri: mostra i segnali dovuti a solventi, materiali e strumento. <a href="27-tabella.html">Cap. 27</a></dd>
 <dt id="g-bpc">BPC</dt><dd>Base peak chromatogram: intensità dello ione più intenso di ogni spettro nel tempo. <a href="10-dati.html">Cap. 10</a></dd>
 <dt id="g-cad">CAD</dt><dd>Collisionally activated dissociation: sinonimo di CID; negli strumenti SCIEX è anche il nome del parametro del gas di collisione. <a href="08-qqq.html">Cap. 8</a></dd>
 <dt id="g-capacita-di-picchi">Capacità di picchi</dt><dd>Numero massimo di picchi che entrano, separati, in un cromatogramma (in gradiente ≈ 1 + t<sub>g</sub>/w). <a href="01-cromatografia.html">Cap. 1</a></dd>
 <dt id="g-ce">CE</dt><dd>Collision energy: differenza di potenziale che accelera il precursore nella cella di collisione; energia nel laboratorio z·CE (eV). <a href="08-qqq.html">Cap. 8</a></dd>
+<dt id="g-centroide">Centroide</dt><dd>Segnale ridotto a un solo punto, con la massa al centro del picco e un'intensità, al posto del profilo completo. <a href="22-segnale.html">Cap. 22</a></dd>
+<dt id="g-centwave">centWave</dt><dd>Algoritmo che cerca i picchi cromatografici con una trasformata wavelet continua dentro le regioni d'interesse. <a href="25-picchi.html">Cap. 25</a></dd>
 <dt id="g-cid">CID</dt><dd>Dissociazione indotta da collisione: frammentazione dello ione per urti con un gas inerte. <a href="08-qqq.html">Cap. 8</a>, <a href="12-frammentazione-esi.html">12</a></dd>
 <dt id="g-co-eluizione">Co-eluizione</dt><dd>Uscita di due composti dalla colonna allo stesso tempo di ritenzione: i loro cromatogrammi si sovrappongono. Un frammento in sorgente co-eluisce sempre con il suo progenitore; due molecole diverse possono farlo per caso. <a href="15-origine.html">Cap. 15</a></dd>
+<dt id="g-compressione-zlib">Compressione zlib</dt><dd>Compressione senza perdite, usata per ridurre la dimensione degli array binari di un file mzML. <a href="23-formati.html">Cap. 23</a></dd>
 <dt id="g-cono-di-taylor">Cono di Taylor</dt><dd>Forma conica assunta dal menisco del liquido al capillare ESI sotto un campo elettrico intenso; dalla sua punta esce il getto che forma le gocce. <a href="04-esi.html">Cap. 4</a></dd>
+<dt id="g-corrispondenza-fra-campioni">Corrispondenza fra campioni</dt><dd>Passaggio che decide quali picchi di corse diverse sono lo stesso composto. <a href="27-tabella.html">Cap. 27</a></dd>
+<dt id="g-coseno-modificato">Coseno modificato</dt><dd>Coseno che accoppia anche picchi spostati dalla differenza fra le masse dei due precursori. <a href="28-somiglianza.html">Cap. 28</a></dd>
+<dt id="g-coseno-pesato">Coseno pesato</dt><dd>Coseno in cui le intensità sono pesate con una potenza della massa e dell'intensità. <a href="28-somiglianza.html">Cap. 28</a></dd>
 <dt id="g-cur-curtain-gas">CUR (curtain gas)</dt><dd>Gas di tenda: N<sub>2</sub> che fluisce dall'interfaccia verso la sorgente e respinge neutri e gocce. <a href="06-vuoto.html">Cap. 6</a></dd>
 <dt id="g-dda">DDA</dt><dd>Data-dependent acquisition: lo strumento sceglie da ogni full scan gli ioni più intensi e ne acquisisce automaticamente lo spettro MS2. <a href="17-hr-dda.html">Cap. 17</a></dd>
 <dt id="g-declustering-potential-dp">Declustering potential (DP)</dt><dd>Tensione applicata dopo l'orifizio di ingresso del 3200 QTRAP: stacca i solventi dagli ioni e, se alta, li rompe già in sorgente. Alzarla aumenta i frammenti in sorgente. <a href="15-origine.html">Cap. 15</a></dd>
+<dt id="g-deconvoluzione">Deconvoluzione</dt><dd>Separazione dei segnali di composti che escono insieme, in GC-EI attribuendo a ciascuno i frammenti con lo stesso andamento. <a href="25-picchi.html">Cap. 25</a></dd>
+<dt id="g-deformazione-temporale-dinamica-dtw">Deformazione temporale dinamica (DTW)</dt><dd>Metodo che stira l'asse dei tempi per far coincidere al meglio due profili. <a href="27-tabella.html">Cap. 27</a></dd>
 <dt id="g-derivatizzazione">Derivatizzazione</dt><dd>Trasformazione chimica dei gruppi –OH, –COOH, –NH (sililazione, metilazione, acilazione) per rendere una molecola volatile e stabile in GC. <a href="03-gc.html">Cap. 3</a></dd>
 <dt id="g-difetto-di-massa">Difetto di massa</dt><dd>Differenza fra la massa esatta e la massa nominale (H +0,0078, O −0,0051, Cl −0,0311): a parità di massa nominale distingue formule diverse. <a href="11-formula.html">Cap. 11</a></dd>
 <dt id="g-dp">DP</dt><dd>Declustering potential: tensione dell'orifizio che rompe i cluster; se troppo alta frammenta gli ioni in sorgente. <a href="06-vuoto.html">Cap. 6</a></dd>
@@ -31,15 +43,22 @@
 <dt id="g-dwell-time">Dwell time</dt><dd>Tempo dedicato a ogni transizione MRM in un ciclo. <a href="08-qqq.html">Cap. 8</a></dd>
 <dt id="g-ecm">E<sub>cm</sub></dt><dd>Energia nel sistema del centro di massa: massima energia convertibile in energia interna in un urto. <a href="08-qqq.html">Cap. 8</a></dd>
 <dt id="g-effetto-matrice-soppressione-ionica">Effetto matrice / soppressione ionica</dt><dd>Variazione della risposta ESI dovuta a specie coeluenti che competono per carica e superficie delle gocce. <a href="04-esi.html">Cap. 4</a></dd>
+<dt id="g-entropia-spettrale">Entropia spettrale</dt><dd>Misura dell'informazione di uno spettro, usata anche per un punteggio di somiglianza fra spettri. <a href="28-somiglianza.html">Cap. 28</a></dd>
 <dt id="g-ep-cep-cxp">EP, CEP, CXP</dt><dd>Potenziali delle ottiche ioniche SCIEX: entrance potential (Q0), collision cell entrance e exit potential. <a href="08-qqq.html">Cap. 8</a></dd>
 <dt id="g-esi">ESI</dt><dd>Ionizzazione elettrospray: forma ioni in fase gas da una soluzione nebulizzata in un campo elettrico. Ionizzazione soft. <a href="04-esi.html">Cap. 4</a></dd>
+<dt id="g-fattore-di-asimmetria">Fattore di asimmetria</dt><dd>Rapporto fra le due metà del picco a una data altezza: vale 1 per un picco simmetrico. <a href="25-picchi.html">Cap. 25</a></dd>
 <dt id="g-fattore-di-ritenzione">Fattore di ritenzione</dt><dd>k = (t<sub>R</sub> − t<sub>0</sub>)/t<sub>0</sub>: quanto più a lungo l'analita resta nella fase stazionaria rispetto alla mobile. Valori utili fra 1 e 10. <a href="01-cromatografia.html">Cap. 1</a></dd>
+<dt id="g-fdr">FDR</dt><dd>Tasso di falsa scoperta: quota di risultati sbagliati fra quelli accettati. <a href="29-librerie.html">Cap. 29</a></dd>
+<dt id="g-feature">Feature</dt><dd>Segnale rilevato nei dati LC-MS, con un valore di m/z e un tempo di ritenzione: una molecola può dare più feature. <a href="26-gruppi.html">Cap. 26</a></dd>
+<dt id="g-filtro-adattato">Filtro adattato</dt><dd>Filtro che confronta il segnale con la forma attesa di un picco e ne evidenzia i massimi. <a href="25-picchi.html">Cap. 25</a></dd>
 <dt id="g-fissione-coulombiana">Fissione coulombiana</dt><dd>Divisione di una goccia carica vicino al limite di Rayleigh in goccioline figlie con alto rapporto carica/massa. <a href="04-esi.html">Cap. 4</a></dd>
+<dt id="g-frammentazione-in-silico">Frammentazione in silico</dt><dd>Previsione al calcolatore dei frammenti o dello spettro di una struttura candidata. <a href="30-candidati.html">Cap. 30</a></dd>
 <dt id="g-frammentazione-in-sorgente-isf">Frammentazione in sorgente (ISF)</dt><dd>Rottura di uno ione prima di Q1, nella regione della sorgente, per urti accelerati dal declustering potential. Il frammento è uno ione vero e si vede nel full scan come un prodotto di trasformazione, ma ha il profilo cromatografico del suo progenitore. <a href="15-origine.html">Cap. 15</a></dd>
 <dt id="g-ft-icr">FT-ICR</dt><dd>Risonanza ionica di ciclotrone in trasformata di Fourier: gli ioni ruotano in un campo magnetico con frequenza f = zeB/(2πm). La risoluzione più alta disponibile. <a href="09-risoluzione.html">Cap. 9</a></dd>
 <dt id="g-full-scan-q1-ms">Full scan (Q1 MS)</dt><dd>Acquisizione di spettri completi in un intervallo di m/z. <a href="10-dati.html">Cap. 10</a></dd>
 <dt id="g-fwhm">FWHM</dt><dd>Larghezza di un picco a metà altezza; per un quadrupolo in risoluzione unitaria ≈ 0,7 Da. <a href="07-quadrupolo.html">Cap. 7</a></dd>
 <dt id="g-iem-crm-cem">IEM, CRM, CEM</dt><dd>Meccanismi di formazione degli ioni in ESI: evaporazione ionica (piccoli ioni), residuo carico (macroioni globulari), espulsione di catena (polimeri). <a href="04-esi.html">Cap. 4</a></dd>
+<dt id="g-impronta-molecolare-fingerprint">Impronta molecolare (fingerprint)</dt><dd>Vettore di presenza o assenza di sottostrutture, che descrive una molecola. <a href="30-candidati.html">Cap. 30</a></dd>
 <dt id="g-indice-di-ritenzione-indice-di-kovats">Indice di ritenzione / indice di Kováts</dt><dd>Tempo di ritenzione espresso sulla scala degli n-alcani (C<sub>n</sub> = 100n). Non dipende da lunghezza della colonna e flusso: con lo spettro EI serve a identificare in GC-MS. <a href="03-gc.html">Cap. 3</a></dd>
 <dt id="g-ione-acilio">Ione acilio</dt><dd>Catione R–C≡O<sup>+</sup> formato dalla rottura di acidi, esteri, ammidi; perde spesso CO. <a href="12-frammentazione-esi.html">Cap. 12</a></dd>
 <dt id="g-ione-molecolare">Ione molecolare</dt><dd>Lo ione M<sup>+•</sup> della molecola intatta che ha perso un elettrone: dà la massa molecolare. Debole o assente per alcoli, ramificati, eteri, ammine alifatiche. <a href="13-ei-metodo.html">Cap. 13</a></dd>
@@ -48,17 +67,30 @@
 <dt id="g-ione-tropilio">Ione tropilio</dt><dd>C<sub>7</sub>H<sub>7</sub><sup>+</sup>, m/z 91: catione aromatico a sette termini che si forma dai composti benzilici; perde acetilene e dà m/z 65. <a href="14-ei-famiglie.html">Cap. 14</a></dd>
 <dt id="g-ionizzazione-chimica-ci">Ionizzazione chimica (CI)</dt><dd>Ionizzazione per reazioni ione-molecola con un gas reagente (metano, isobutano, ammoniaca): dà [M+H]<sup>+</sup> e addotti con poca frammentazione, utile per vedere la massa molecolare. <a href="05-ei-ci.html">Cap. 5</a></dd>
 <dt id="g-ionizzazione-elettronica-ei">Ionizzazione elettronica (EI)</dt><dd>Ionizzazione per urto con elettroni da 70 eV in vuoto: dà il radicale catione M<sup>+•</sup> e molti frammenti, con spettri riproducibili confrontabili con le librerie. <a href="05-ei-ci.html">Cap. 5</a></dd>
+<dt id="g-isotopologo">Isotopologo</dt><dd>Molecola con la stessa formula chimica ma una diversa composizione isotopica. <a href="26-gruppi.html">Cap. 26</a></dd>
 <dt id="g-libero-cammino-medio">Libero cammino medio</dt><dd>Distanza media percorsa da una particella tra due urti; decide la pressione necessaria nell'analizzatore. <a href="06-vuoto.html">Cap. 6</a></dd>
+<dt id="g-libreria-spettrale">Libreria spettrale</dt><dd>Raccolta di spettri di riferimento di composti noti, con i dati per confrontarli. <a href="29-librerie.html">Cap. 29</a></dd>
 <dt id="g-limite-di-rayleigh">Limite di Rayleigh</dt><dd>Carica massima che una goccia di raggio R e tensione superficiale γ può sostenere: q<sub>R</sub> = 8π(ε<sub>0</sub>γR<sup>3</sup>)<sup>1/2</sup>. <a href="04-esi.html">Cap. 4</a></dd>
 <dt id="g-livelli-di-confidenza">Livelli di confidenza</dt><dd>Scala di Schymanski (1–5) per comunicare quanto è certa un'identificazione in MS. <a href="16-strategia.html">Cap. 16</a></dd>
+<dt id="g-livelli-msi">Livelli MSI</dt><dd>Quattro livelli di identificazione proposti nel 2007 per la metabolomica. <a href="31-confidenza.html">Cap. 31</a></dd>
+<dt id="g-lock-mass">Lock mass</dt><dd>Massa di riferimento nota, misurata durante l'analisi per correggere la scala delle masse. <a href="22-segnale.html">Cap. 22</a></dd>
 <dt id="g-lod-loq">LOD, LOQ</dt><dd>Limite di rivelabilità e di quantificazione. <a href="10-dati.html">Cap. 10</a></dd>
+<dt id="g-lowess">LOWESS</dt><dd>Regressione locale robusta: curva liscia che segue i dati pesando di più i punti vicini. <a href="27-tabella.html">Cap. 27</a></dd>
 <dt id="g-massa-di-kendrick">Massa di Kendrick</dt><dd>Massa riportata sulla scala in cui CH<sub>2</sub> pesa 14,0000: gli omologhi di una serie hanno lo stesso difetto di massa di Kendrick. <a href="11-formula.html">Cap. 11</a></dd>
 <dt id="g-massa-nominale-monoisotopica">Massa nominale / monoisotopica</dt><dd>Nominale: somma delle masse intere degli isotopi più abbondanti. Monoisotopica: somma delle masse esatte degli stessi isotopi. <a href="10-dati.html">Cap. 10</a></dd>
+<dt id="g-match-factor">Match factor</dt><dd>Punteggio da 0 a 999 che dice quanto uno spettro EI somiglia a quello di libreria. <a href="29-librerie.html">Cap. 29</a></dd>
 <dt id="g-mathieu-equazione-di">Mathieu (equazione di)</dt><dd>Equazione differenziale lineare a coefficiente periodico che descrive il moto di uno ione nel quadrupolo. <a href="07-quadrupolo.html">Cap. 7</a></dd>
 <dt id="g-mclafferty-riarrangiamento-di">McLafferty (riarrangiamento di)</dt><dd>Trasferimento di un H in γ al gruppo insaturo attraverso uno stato di transizione a sei termini, con perdita di un alchene: dà uno ione a elettroni dispari (m/z 58 per i metilchetoni, 74 per gli esteri metilici). <a href="13-ei-metodo.html">Cap. 13</a></dd>
+<dt id="g-mgf">MGF</dt><dd>Formato di testo che elenca spettri MS2 con la massa del precursore e i picchi. <a href="23-formati.html">Cap. 23</a></dd>
 <dt id="g-mrm-srm">MRM / SRM</dt><dd>Monitoraggio di reazioni selezionate: Q1 e Q3 fissi su una coppia precursore → frammento. <a href="08-qqq.html">Cap. 8</a></dd>
+<dt id="g-ms-numpress">MS-Numpress</dt><dd>Famiglia di metodi di compressione numerica pensati per i dati di spettrometria di massa. <a href="23-formati.html">Cap. 23</a></dd>
 <dt id="g-ms2-product-ion-scan">MS2 / product ion scan</dt><dd>Spettro dei frammenti di un precursore selezionato. <a href="08-qqq.html">Cap. 8</a></dd>
+<dt id="g-msp">MSP</dt><dd>Formato di testo di libreria spettrale, con nome, numero di picchi e coppie m/z-intensità. <a href="23-formati.html">Cap. 23</a></dd>
+<dt id="g-mzml">mzML</dt><dd>Formato aperto, in XML, per spettri e cromatogrammi di spettrometria di massa. <a href="23-formati.html">Cap. 23</a></dd>
+<dt id="g-mztab-m">mzTab-M</dt><dd>Formato a tabelle per i risultati di metabolomica, non per i dati grezzi. <a href="23-formati.html">Cap. 23</a></dd>
+<dt id="g-mzxml">mzXML</dt><dd>Formato aperto più vecchio di mzML, ancora presente in molti archivi. <a href="23-formati.html">Cap. 23</a></dd>
 <dt id="g-neutral-loss-scan">Neutral loss scan</dt><dd>Q1 e Q3 in scansione sfalsati di una differenza costante: rivela i precursori che perdono una data molecola neutra. <a href="08-qqq.html">Cap. 8</a></dd>
+<dt id="g-normalizzazione-pqn">Normalizzazione PQN</dt><dd>Normalizzazione per quoziente probabilistico: usa la mediana dei rapporti fra le intensità e un campione di riferimento. <a href="27-tabella.html">Cap. 27</a></dd>
 <dt id="g-orbitrap">Orbitrap</dt><dd>Trappola elettrostatica in cui gli ioni oscillano lungo l'asse con frequenza ∝ 1/√(m/z), misurata dalla corrente immagine con la trasformata di Fourier. Risoluzione fino a centinaia di migliaia. <a href="09-risoluzione.html">Cap. 9</a></dd>
 <dt id="g-perdita-neutra">Perdita neutra</dt><dd>Differenza di massa tra precursore e frammento (o tra due frammenti), corrispondente alla molecola neutra persa. <a href="12-frammentazione-esi.html">Cap. 12</a></dd>
 <dt id="g-piatti-teorici">Piatti teorici</dt><dd>Misura dell'efficienza di una colonna: N = 5,54 (t<sub>R</sub>/w<sub>1/2</sub>)<sup>2</sup>; H = L/N è l'altezza equivalente a un piatto. <a href="01-cromatografia.html">Cap. 1</a></dd>
@@ -67,30 +99,47 @@
 <dt id="g-precursor-ion-scan">Precursor ion scan</dt><dd>Q1 in scansione, Q3 fisso su un frammento: rivela i precursori che producono quel frammento. <a href="08-qqq.html">Cap. 8</a></dd>
 <dt id="g-protone-mobile">Protone mobile</dt><dd>Migrazione del protone verso siti meno basici durante l'attivazione; la rottura avviene vicino al sito protonato (frammentazione diretta dalla carica). <a href="12-frammentazione-esi.html">Cap. 12</a></dd>
 <dt id="g-pseudopotenziale">Pseudopotenziale</dt><dd>Potenziale efficace medio con cui un campo RF confina gli ioni (quadrupolo solo RF). <a href="07-quadrupolo.html">Cap. 7</a></dd>
+<dt id="g-purezza-del-precursore">Purezza del precursore</dt><dd>Frazione di intensità nella finestra di isolamento che appartiene allo ione scelto. <a href="28-somiglianza.html">Cap. 28</a></dd>
+<dt id="g-q-value">q-value</dt><dd>Più piccola FDR con cui un risultato verrebbe accettato. <a href="29-librerie.html">Cap. 29</a></dd>
+<dt id="g-qc-pooled">QC pooled</dt><dd>Campione di controllo ottenuto mescolando parti di tutti i campioni e iniettato più volte durante la sequenza. <a href="27-tabella.html">Cap. 27</a></dd>
 <dt id="g-qet-rrkm">QET / RRKM</dt><dd>Teoria statistica della velocità di frammentazione in funzione dell'energia interna. <a href="12-frammentazione-esi.html">Cap. 12</a></dd>
 <dt id="g-radicale-catione">Radicale catione</dt><dd>Ione a elettroni dispari, come lo ione molecolare M<sup>+•</sup> prodotto in EI. Si frammenta per scissioni semplici (perde un radicale) o riarrangiamenti (perde una molecola). <a href="05-ei-ci.html">Cap. 5</a></dd>
 <dt id="g-rapporto-ionico">Rapporto ionico</dt><dd>Rapporto tra le aree di qualificatore e quantificatore in MRM; criterio di conferma dell'identità. <a href="08-qqq.html">Cap. 8</a></dd>
+<dt id="g-rapporto-segnale-rumore-s-n">Rapporto segnale/rumore (S/N)</dt><dd>Altezza del picco rispetto al rumore; esistono più definizioni, quindi i valori di programmi diversi non si confrontano. <a href="25-picchi.html">Cap. 25</a></dd>
 <dt id="g-rdbe">RDBE</dt><dd>Ring and double bond equivalents: numero di anelli più doppi legami di una formula. <a href="10-dati.html">Cap. 10</a></dd>
 <dt id="g-regola-degli-elettroni-pari">Regola degli elettroni pari</dt><dd>Uno ione a elettroni pari si frammenta preferibilmente in uno ione a elettroni pari più una molecola neutra stabile. <a href="12-frammentazione-esi.html">Cap. 12</a></dd>
 <dt id="g-regola-del-13">Regola del 13</dt><dd>Dalla massa nominale M una formula idrocarburica di partenza: M/13 = n con resto r dà C<sub>n</sub>H<sub>n+r</sub>; poi si sostituiscono gli eteroatomi. <a href="11-formula.html">Cap. 11</a></dd>
 <dt id="g-regola-dell-azoto">Regola dell'azoto</dt><dd>Massa nominale dispari della molecola neutra ⇔ numero dispari di atomi di N. <a href="10-dati.html">Cap. 10</a></dd>
 <dt id="g-regola-di-stevenson">Regola di Stevenson</dt><dd>In una scissione la carica resta di preferenza sul frammento con l'energia di ionizzazione più bassa. <a href="13-ei-metodo.html">Cap. 13</a></dd>
+<dt id="g-rete-molecolare">Rete molecolare</dt><dd>Grafo in cui gli spettri MS2 simili sono collegati: le famiglie indicano molecole imparentate. <a href="29-librerie.html">Cap. 29</a></dd>
 <dt id="g-retta-di-lavoro-scan-line">Retta di lavoro (scan line)</dt><dd>Retta a = (2U/V)q nel diagramma di stabilità su cui giacciono tutti gli ioni a U/V fissato. <a href="07-quadrupolo.html">Cap. 7</a></dd>
+<dt id="g-ricerca-inversa">Ricerca inversa</dt><dd>Confronto che ignora i picchi dello spettro cercato assenti nello spettro di libreria. <a href="28-somiglianza.html">Cap. 28</a></dd>
+<dt id="g-riempimento-dei-buchi-gap-filling">Riempimento dei buchi (gap filling)</dt><dd>Misura del segnale grezzo là dove un picco non è stato rilevato: è una misura, non una rilevazione. <a href="27-tabella.html">Cap. 27</a></dd>
 <dt id="g-risoluzione-cromatografica">Risoluzione cromatografica</dt><dd>R<sub>s</sub> = 2Δt<sub>R</sub>/(w<sub>b1</sub> + w<sub>b2</sub>); 1,5 significa separazione alla linea di base. L'equazione di Purnell la scompone in efficienza, selettività e ritenzione. <a href="01-cromatografia.html">Cap. 1</a></dd>
 <dt id="g-risoluzione-unitaria">Risoluzione unitaria</dt><dd>Risoluzione sufficiente a separare masse nominali adiacenti (FWHM ≈ 0,7 Da) su tutta la scala. <a href="07-quadrupolo.html">Cap. 7</a></dd>
+<dt id="g-rsd">RSD</dt><dd>Deviazione standard relativa: la deviazione standard divisa per la media, in percentuale. <a href="27-tabella.html">Cap. 27</a></dd>
 <dt id="g-rt-tr">RT, t<sub>R</sub></dt><dd>Tempo di ritenzione cromatografico. <a href="02-lc.html">Cap. 2</a></dd>
+<dt id="g-savitzky-golay">Savitzky-Golay</dt><dd>Levigatura che adatta un polinomio ai punti vicini: riduce il rumore e deforma meno il picco di una media mobile. <a href="25-picchi.html">Cap. 25</a></dd>
 <dt id="g-scissione">Scissione α</dt><dd>Rottura del legame adiacente al carbonio che porta l'eteroatomo o il gruppo con il radicale: dà ioni acilio, immonio, ossonio stabilizzati. Si perde di preferenza il radicale più grande. <a href="13-ei-metodo.html">Cap. 13</a></dd>
 <dt id="g-selettivita">Selettività</dt><dd>α = k<sub>2</sub>/k<sub>1</sub>: rapporto dei fattori di ritenzione di due composti vicini. Dipende dalla chimica di fasi, solvente e temperatura; è la leva più efficace sulla risoluzione. <a href="01-cromatografia.html">Cap. 1</a></dd>
 <dt id="g-serie-di-ioni">Serie di ioni</dt><dd>Ioni che differiscono di 14 (CH<sub>2</sub>) e indicano la famiglia: 29, 43, 57, 71 per gli alcani, 41, 55, 69 per alcheni e cicloalcani, 39, 51, 65, 77 per gli aromatici. <a href="14-ei-famiglie.html">Cap. 14</a></dd>
+<dt id="g-similarita-del-coseno">Similarità del coseno</dt><dd>Punteggio fra due spettri: il coseno dell'angolo fra i vettori delle intensità. <a href="28-somiglianza.html">Cap. 28</a></dd>
+<dt id="g-spettro-chimerico">Spettro chimerico</dt><dd>Spettro MS2 che contiene i frammenti di più precursori isolati insieme. <a href="28-somiglianza.html">Cap. 28</a></dd>
+<dt id="g-spettro-decoy">Spettro decoy</dt><dd>Spettro costruito apposta per essere falso, usato per contare le identificazioni errate. <a href="29-librerie.html">Cap. 29</a></dd>
 <dt id="g-split-splitless">Split / splitless</dt><dd>Modi dell'iniettore GC: in split solo una frazione del vapore entra in colonna (campioni concentrati), in splitless tutto per circa un minuto (tracce). <a href="03-gc.html">Cap. 3</a></dd>
 <dt id="g-spostamento-cinetico">Spostamento cinetico</dt><dd>Differenza tra la barriera di una reazione e l'energia necessaria per osservarla nel tempo disponibile nello strumento. <a href="12-frammentazione-esi.html">Cap. 12</a></dd>
+<dt id="g-tabella-delle-feature">Tabella delle feature</dt><dd>Tabella con una riga per feature e una colonna di intensità per campione, più le colonne di annotazione. <a href="27-tabella.html">Cap. 27</a></dd>
 <dt id="g-taglio-di-bassa-massa">Taglio di bassa massa</dt><dd>m/z sotto il quale un quadrupolo solo RF perde gli ioni (q &gt; 0,908). <a href="07-quadrupolo.html">Cap. 7</a></dd>
+<dt id="g-tdc">TDC</dt><dd>Convertitore tempo-digitale: registra l'istante di arrivo di ogni ione. <a href="22-segnale.html">Cap. 22</a></dd>
 <dt id="g-tempo-di-volo-tof">Tempo di volo (TOF)</dt><dd>Analizzatore che misura il tempo che ioni accelerati con la stessa energia impiegano a percorrere un tubo: t ∝ √(m/z). Con il reflectron raggiunge R 20 000-60 000. <a href="09-risoluzione.html">Cap. 9</a></dd>
 <dt id="g-tic">TIC</dt><dd>Total ion current: somma delle intensità di ogni spettro nel tempo. <a href="10-dati.html">Cap. 10</a></dd>
 <dt id="g-tp">TP</dt><dd>Prodotto di trasformazione di un contaminante. <a href="16-strategia.html">Cap. 16</a></dd>
+<dt id="g-traccia-di-massa-roi">Traccia di massa / ROI</dt><dd>Regione d'interesse: serie di centroidi vicini in m/z e consecutivi nel tempo, candidata a diventare un picco. <a href="24-tracce.html">Cap. 24</a></dd>
 <dt id="g-transizione">Transizione</dt><dd>Coppia m/z del precursore → m/z del prodotto (con la sua CE) monitorata in MRM. <a href="08-qqq.html">Cap. 8</a></dd>
 <dt id="g-trappola-ionica">Trappola ionica</dt><dd>Analizzatore che intrappola gli ioni con un campo a radiofrequenza e li espelle in ordine di m/z; permette MS<sup>n</sup>. <a href="09-risoluzione.html">Cap. 9</a></dd>
+<dt id="g-trasformata-wavelet-continua-cwt">Trasformata wavelet continua (CWT)</dt><dd>Confronto del segnale con una forma d'onda a molte larghezze, usato per trovare picchi di larghezza diversa. <a href="25-picchi.html">Cap. 25</a></dd>
 <dt id="g-van-deemter-equazione-di">Van Deemter (equazione di)</dt><dd>H = A + B/u + C·u: allargamento dei picchi per cammini multipli, diffusione longitudinale e trasferimento di massa, in funzione della velocità della fase mobile. Nelle colonne capillari A = 0 (equazione di Golay). <a href="01-cromatografia.html">Cap. 1</a></dd>
+<dt id="g-vocabolario-controllato-cv-cvparam">Vocabolario controllato (CV, cvParam)</dt><dd>Elenco di termini con codice fisso con cui mzML descrive ogni informazione. <a href="23-formati.html">Cap. 23</a></dd>
 <dt id="g-xic-eic">XIC / EIC</dt><dd>Cromatogramma di uno ione estratto entro una finestra di m/z. <a href="10-dati.html">Cap. 10</a></dd>
 </dl>
 <h2>Bibliografia</h2>
