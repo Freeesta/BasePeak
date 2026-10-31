@@ -32,7 +32,7 @@ try:
               return out})()"""
 
         pb = lambda q, t: q.locator("#side button.ptog", has_text=t)
-        PARTS = ["Guida", "II. Separare", "III. Ionizzare", "IV. Analizzare gli ioni", "V. Leggere gli spettri", "VI. Dal dato al risultato", "Pratica", "Reference"]
+        PARTS = ["Guida", "II. Separare", "III. Ionizzare", "IV. Analizzare gli ioni", "V. Leggere gli spettri", "VI. Dal dato al risultato", "VII. Chemioinformatica", "Pratica", "Reference"]
         def sidebar():
             c, q = ctx()
             for f in SAMPLES:
