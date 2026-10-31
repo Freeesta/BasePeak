@@ -1,7 +1,7 @@
-"""Builds mzlab/web/teoria/indice-ricerca.js, the static index behind the search of the Teoria (teoria/cerca.js).
+"""Builds assets/indice-ricerca.js, the static index behind the search of the Teoria (assets/cerca.js). Entry URLs are relative to the site root (capitoli/NN-x.html#id).
 
 Entries: chapter and Pratica page titles, h2/h3 sections (anchor = the id teoria.js gives them at run time), glossary terms
-(anchors added to the <dt> of 21-glossario.html), titles of the boxes (.box.gym and the Verifica sections) and the Pratica games.
+(anchors added to the <dt> of 19-glossario.html), titles of the boxes (.box.gym and the Verifica sections) and the Pratica games.
 Each entry is [text, type, url, chapter label, normalised search string]. Deterministic.
 
   python3 tools/genera_indice_teoria.py             write the file
@@ -14,9 +14,10 @@ import sys
 import unicodedata
 from pathlib import Path
 
-D = Path(__file__).resolve().parents[1] / "mzlab" / "web" / "teoria"
-OUT = D / "indice-ricerca.js"
-APP = re.search(r'APP_NAME = "([^"]+)"', (D.parent / "appname.js").read_text(encoding="utf-8")).group(1)
+D = Path(__file__).resolve().parents[1]        # the site root: the files of CHAPTERS are relative to it
+ASSETS = D / "assets"
+OUT = ASSETS / "indice-ricerca.js"
+APP = re.search(r'APP_NAME = "([^"]+)"', (ASSETS / "appname.js").read_text(encoding="utf-8")).group(1)
 
 # extra search words: if the normalised text of an entry contains the key, the listed words are searchable too
 SINONIMI = {
@@ -65,7 +66,7 @@ def plain(h: str) -> str:
 def chapters(src: str | None = None) -> list[tuple[str, str, str]]:
     """The rows of CHAPTERS in teoria.js; a row may carry a 5th field (`true` = administrator-only chapter), which is indexed too."""
     if src is None:
-        src = (D / "teoria.js").read_text(encoding="utf-8")
+        src = (ASSETS / "teoria.js").read_text(encoding="utf-8")
     block = src[src.index("const CHAPTERS = ["):src.index("];", src.index("const CHAPTERS = ["))]
     out = []
     for f, n, t, _p in re.findall(r'\["([^"]+)", "([^"]+)", "([^"]+)", "([^"]+)"(?:, *\w+)?\]', block):
@@ -104,9 +105,9 @@ def build() -> list[list[str]]:
                 classes, t = m.group(4).split(), plain(m.group(5))
                 if "gym" in classes and t:
                     out.append(entry(t, "esercizio", f"{f}#{last}" if last else f, cap))
-    g = (D / "21-glossario.html").read_text(encoding="utf-8")
+    g = (D / "capitoli" / "19-glossario.html").read_text(encoding="utf-8")
     for i, dt in re.findall(r'<dt id="([^"]+)">(.*?)</dt>', g, re.S):
-        out.append(entry(plain(dt), "glossario", f"21-glossario.html#{i}", "Glossario"))
+        out.append(entry(plain(dt), "glossario", f"capitoli/19-glossario.html#{i}", "Glossario"))
     return out
 
 

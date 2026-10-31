@@ -1,5 +1,5 @@
-// Undo/redo history and local draft of the Teoria editor (mzlab/web/libro/storia.js); prints one JSON object. See tests/test_teoria_editor.py.
-import { makeHistory, saveDraft, loadDraft, clearDraft } from "../mzlab/web/libro/storia.js";
+// Undo/redo history and local draft of the Teoria editor (editor/storia.js); prints one JSON object. See tests/test_teoria_editor.py.
+import { makeHistory, saveDraft, loadDraft, clearDraft } from "../editor/storia.js";
 
 const store = () => {
   const d = new Map();

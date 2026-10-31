@@ -1,4 +1,4 @@
-"""Pratica (mzlab/web/teoria/pratica/motore.js): pure functions run with node, compared with mzlab.chem.elements."""
+"""Pratica (pratica/motore.js): pure functions run with node, compared with mzlab.chem.elements."""
 import json
 import shutil
 import subprocess
@@ -9,14 +9,14 @@ import pytest
 from chem_ref import parse_formula, mass  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
-WEB = ROOT / "mzlab" / "web"
+WEB = ROOT
 pytestmark = pytest.mark.skipif(shutil.which("node") is None, reason="node non installato")
 
 
 def run(js: str):
     prog = ("const fs=require('fs');global.localStorage={_d:{},getItem(k){return this._d[k]||null},setItem(k,v){this._d[k]=v}};"
-            f"eval(fs.readFileSync({json.dumps(str(WEB / 'teoria' / 'masse.js'))},'utf8').replace('const ELEMENTS','global.ELEMENTS'));"
-            f"const PAL=require({json.dumps(str(WEB / 'teoria' / 'pratica' / 'motore.js'))});"
+            f"eval(fs.readFileSync({json.dumps(str(WEB / 'assets' / 'masse.js'))},'utf8').replace('const ELEMENTS','global.ELEMENTS'));"
+            f"const PAL=require({json.dumps(str(WEB / 'pratica' / 'motore.js'))});"
             f"console.log(JSON.stringify((()=>{{{js}}})()));")
     out = subprocess.run(["node", "-e", prog], capture_output=True, encoding="utf-8", timeout=60)
     assert out.returncode == 0, out.stderr
@@ -57,8 +57,8 @@ def test_engine_elo_spacing_and_codes():
 
 def run_games(js: str):
     """Like run(), with the short games (pratica/giochi.js) and the question bank (pratica/domande.js) loaded."""
-    pre = (f"global.PAL=PAL;const GIOCHI=require({json.dumps(str(WEB / 'teoria' / 'pratica' / 'giochi.js'))});"
-           f"const DOMANDE=require({json.dumps(str(WEB / 'teoria' / 'pratica' / 'domande.js'))});")
+    pre = (f"global.PAL=PAL;const GIOCHI=require({json.dumps(str(WEB / 'pratica' / 'giochi.js'))});"
+           f"const DOMANDE=require({json.dumps(str(WEB / 'pratica' / 'domande.js'))});")
     return run(pre + js)
 
 
@@ -69,7 +69,7 @@ def test_question_bank_of_the_oral():
     for d in r["d"]:
         assert d["area"] in {"sep", "ion", "anal", "hr", "dati", "ei"}, d
         assert d["skill"] in r["skills"], d
-        assert (WEB / "teoria" / d["cap"]).is_file(), d
+        assert (WEB / d["cap"]).is_file(), d
         assert 3 <= d["n"] <= 7, d
     for area in ("sep", "ion", "anal", "hr", "dati", "ei"):     # the oral simulation draws one question from each group
         assert sum(d["area"] == area for d in r["d"]) >= 4, area

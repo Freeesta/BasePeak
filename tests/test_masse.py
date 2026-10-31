@@ -1,4 +1,4 @@
-"""Own mass module (mzlab/web/teoria/masse.js) against known values, run with node. No mzLab dependency."""
+"""Own mass module (assets/masse.js) against known values, run with node. No mzLab dependency."""
 import json
 import shutil
 import subprocess
@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-SRC = Path(__file__).resolve().parents[1] / "mzlab" / "web" / "teoria" / "masse.js"
+SRC = Path(__file__).resolve().parents[1] / "assets" / "masse.js"
 pytestmark = pytest.mark.skipif(shutil.which("node") is None, reason="node not installed")
 
 

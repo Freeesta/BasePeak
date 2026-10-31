@@ -24,7 +24,7 @@ try:
         def doc():
             c = r.b.new_context(viewport={"width": 1280, "height": 800}, color_scheme="dark"); q = c.new_page()
             q.on("pageerror", lambda e: r.errs.append(("pageerror", str(e))))
-            q.goto(B + "teoria/03-cromatografia.html"); q.wait_for_function("!!window.TEORIA && !!document.querySelector('#tbar')", timeout=10000)
+            q.goto(B + "capitoli/01-cromatografia.html"); q.wait_for_function("!!window.TEORIA && !!document.querySelector('#tbar')", timeout=10000)
             v = q.evaluate("""() => { const f = e => { const m = getComputedStyle(e).backgroundColor.match(/\\d+/g); return (+m[0] + +m[1] + +m[2]) / 3; };
               return { html: f(document.documentElement), body: f(document.body), ob: getComputedStyle(document.documentElement).overscrollBehaviorY, cs: getComputedStyle(document.documentElement).colorScheme }; }""")
             assert v["html"] < 100 and v["body"] < 100 and v["ob"] == "none" and "dark" in v["cs"], v

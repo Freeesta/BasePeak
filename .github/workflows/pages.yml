@@ -1,7 +1,8 @@
 name: pages
 
 # Publishes the static site (no build step) to GitHub Pages on every push to main.
-# SITE_DIR is the folder served as the site root; update it when the layout is reorganised.
+# The site root is assembled in SITE_DIR from index.html, capitoli/, pratica/ and assets/ only:
+# tests, tools, docs and the (unpublished) chapter editor never leave the repository.
 on:
   push:
     branches: [main]
@@ -17,7 +18,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  SITE_DIR: mzlab/web/teoria
+  SITE_DIR: _site
 
 jobs:
   deploy:
@@ -27,6 +28,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Assemble the site
+        run: |
+          mkdir -p "$SITE_DIR"
+          cp -R index.html capitoli pratica assets "$SITE_DIR"/
+          rm -rf "$SITE_DIR/capitoli/src"   # the Markdown sources of the chapters are not part of the site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

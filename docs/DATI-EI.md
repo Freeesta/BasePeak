@@ -1,6 +1,6 @@
 # EI spectra data
 
-The electron-ionisation (EI, 70 eV) spectra used by chapters 15-16 of the Teoria and by the Pratica game
+The electron-ionisation (EI, 70 eV) spectra used by chapters 13-14 of the Teoria and by the Pratica game
 "Dallo spettro alla struttura" are committed as plain JavaScript data files. This page explains where they come from,
 how they are structured, how to add a spectrum by hand and how they were generated.
 
@@ -46,7 +46,7 @@ Each spectrum (an element of `items`, in the level files too):
 | `name`, `name_en` | Italian and English name |
 | `formula`, `M` | Molecular formula and nominal mass (integer, from the most abundant isotopes) |
 | `smiles`, `inchikey` | Structure identifiers |
-| `family` | Section of chapter 16 (`alcani`, `alcheni`, ...) |
+| `family` | Section of chapter 14 (`alcani`, `alcheni`, ...) |
 | `level` | Difficulty 1-4 |
 | `play` | `true`: used by the game; `false`: reference spectrum only |
 | `keys` | Teaching notes: list of `{mz, ion, type, text, delta?}`. `ion` is a formula with `+.` (radical cation) or `+` (cation); `type` is one of `M`, `alpha`, `i`, `sigma`, `mclafferty`, `rda`, `tropilio`, `orto`, `serie`, `perdita`, `riarr`, `isotopo` (then `delta` = 1, 2 or 4) |
@@ -92,5 +92,5 @@ repository. The hand-written notes were, and remain, checked by `tests/test_ei_d
 
 | File | Generator | Input |
 |---|---|---|
-| `mzlab/web/teoria/glossario-dati.js` | `tools/genera_glossario.py` | `21-glossario.html` |
+| `mzlab/web/teoria/glossario-dati.js` | `tools/genera_glossario.py` | `19-glossario.html` |
 | `mzlab/web/teoria/indice-ricerca.js` | `tools/genera_indice_teoria.py` | the chapter HTML files |

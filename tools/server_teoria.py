@@ -1,9 +1,9 @@
 """Mini-server locale per l'editor visivo della Teoria di mzLab.
-Ascolta su http://127.0.0.1:8765. Serve esclusivamente i file di mzlab/web/teoria/.
+Ascolta su http://127.0.0.1:8765. Serve esclusivamente i file del sito: index.html, capitoli/, pratica/, assets/.
 Sicurezza:
 1. CORS restrittivo: accetta solo Origin da 127.0.0.1 / localhost e https://freeesta.github.io (nessun '*').
 2. Token casuale generato all'avvio: ogni richiesta POST /salva richiede il token per prevenire CSRF.
-3. Path traversal bloccato: serve e modifica solo file all'interno di mzlab/web/teoria/.
+3. Path traversal bloccato: serve e modifica solo pagine .html di capitoli/ e pratica/ e index.html (mai tests/, tools/, docs/, editor/).
 
 Uso da terminale:
     python3 tools/server_teoria.py
@@ -20,8 +20,10 @@ import urllib.parse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TEORIA_DIR = ROOT / "mzlab" / "web" / "teoria"
-APPNAME_FILE = ROOT / "mzlab" / "web" / "appname.js"
+TEORIA_DIR = ROOT                       # the site root: the file names are relative to it (capitoli/02-lc.html)
+PUBLISHED = ("index.html", "capitoli", "pratica", "assets")      # the only top-level entries served
+EDITABLE = ("capitoli", "pratica")
+APPNAME_FILE = ROOT / "assets" / "appname.js"
 PORT = 8765
 
 ALLOWED_ORIGINS = {
@@ -31,6 +33,14 @@ ALLOWED_ORIGINS = {
 }
 
 TOKEN = secrets.token_hex(16)
+
+
+def valid_page(filename: str) -> bool:
+    """A page the editor may read or write: index.html or an .html file directly inside capitoli/ or pratica/."""
+    if not filename.endswith(".html") or "\\" in filename or ".." in filename:
+        return False
+    parts = filename.split("/")
+    return filename == "index.html" or (len(parts) == 2 and parts[0] in EDITABLE and bool(parts[1]))
 
 
 def get_allowed_origin(handler: http.server.BaseHTTPRequestHandler) -> str | None:
@@ -103,7 +113,7 @@ def handle_get_api(handler: http.server.BaseHTTPRequestHandler, parsed: urllib.p
     if parsed.path == "/carica":
         query = urllib.parse.parse_qs(parsed.query)
         filename = query.get("file", [""])[0]
-        if not filename.endswith(".html") or "/" in filename or "\\" in filename or ".." in filename:
+        if not valid_page(filename):
             send_json(handler, 400, {"ok": False, "error": "Nome file non valido"})
             return True
         target_file = (TEORIA_DIR / filename).resolve()
@@ -145,13 +155,13 @@ def handle_salva_api(handler: http.server.BaseHTTPRequestHandler) -> None:
     try:
         filename = data.get("file", "")
         html_content = data.get("html", "")
-        if not filename.endswith(".html") or "/" in filename or "\\" in filename or ".." in filename:
+        if not valid_page(filename):
             raise ValueError("Nome file non valido")
         target_file = (TEORIA_DIR / filename).resolve()
         if not target_file.is_relative_to(TEORIA_DIR.resolve()):
             raise ValueError("Percorso non consentito")
         if not target_file.is_file():
-            raise FileNotFoundError(f"Il capitolo {filename} non esiste nella cartella teoria")
+            raise FileNotFoundError(f"Il capitolo {filename} non esiste nel sito")
 
         target_file.write_text(html_content, encoding="utf-8")
         chk = subprocess.run(
@@ -187,6 +197,10 @@ def handle_salva_api(handler: http.server.BaseHTTPRequestHandler) -> None:
 class EditorHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(TEORIA_DIR), **kwargs)
+
+    def translate_path(self, path):
+        top = urllib.parse.urlparse(path).path.lstrip("/").split("/")[0]
+        return super().translate_path(path if top in PUBLISHED or top == "" else "/__non_pubblicato__")
 
     def end_headers(self):
         allowed = get_allowed_origin(self)
@@ -235,7 +249,7 @@ if __name__ == "__main__":
     print("-" * 66)
     print("Apri nel browser con token preimpostato:")
     print(f"  Locale:    http://127.0.0.1:{PORT}/index.html?token={TOKEN}")
-    print(f"  Ufficiale: https://freeesta.github.io/mzlab/static/teoria/index.html?token={TOKEN}")
+    print(f"  Ufficiale: https://freeesta.github.io/BasePeak/index.html?token={TOKEN}")
     print("Premi Ctrl+C per fermare il server.")
     print("=" * 66)
     try:

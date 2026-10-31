@@ -1,4 +1,4 @@
-"""Pratica EI, path of simple compounds and hard mode (pratica-ei.html): one compound per path level, the hard mode hides formula, class and name,
+"""Pratica EI, path of simple compounds and hard mode (pratica/ei.html): one compound per path level, the hard mode hides formula, class and name,
 the passive coherence checks (mass, nitrogen rule, RDB, isotopes, ions) and the three-level hints never reveal the structure, the answer
 appears only at «Consegna e correggi», progress is recorded apart (mzlab.pratica -> ei-difficile), dark theme, axes of the canvas, phone."""
 import sys, os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -25,10 +25,10 @@ IPHONE = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605
 try:
     with sync_playwright() as p:
         pg = r.page(p)
-        base = f"http://127.0.0.1:{r.port}/static/teoria/"
+        base = f"http://127.0.0.1:{r.port}/static/"
         def item(): return pg.evaluate("PRATICA_EI.state().item")
         def sel(mz): pg.evaluate(f"PRATICA_EI.state().sel=[{mz}]")
-        def open_game(q="pratica-ei.html"):
+        def open_game(q="pratica/ei.html"):
             pg.goto(base + q); pg.wait_for_selector("#game .eispec canvas", timeout=15000); pg.wait_for_timeout(300)
         def path_levels():
             open_game()
@@ -130,7 +130,7 @@ try:
         step("hard mode: the answer appears only at the delivery; the result goes to ei-difficile (the guided progress is untouched)", delivery)
         def dark():
             q = r.b.new_page(viewport={"width": 1300, "height": 1000}, color_scheme="dark")
-            q.goto(base + "pratica-ei.html?id=2-butanone&difficile=1&percorso=2"); q.wait_for_selector("#h-m-set", timeout=15000); q.wait_for_timeout(500)
+            q.goto(base + "pratica/ei.html?id=2-butanone&difficile=1&percorso=2"); q.wait_for_selector("#h-m-set", timeout=15000); q.wait_for_timeout(500)
             bad = q.evaluate("""(()=>{const lum=c=>{const m=c.match(/[\\d.]+/g).map(Number),f=v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)};return .2126*f(m[0])+.7152*f(m[1])+.0722*f(m[2])};
               const bgOf=e=>{for(;e;e=e.parentElement){const c=getComputedStyle(e).backgroundColor;if(!/rgba\\(.*, 0\\)|transparent/.test(c))return c}return 'rgb(255,255,255)'};
               const out=[];document.querySelectorAll('.wk h3,.wk h4,.wk p,.wk label,.wk button,.wk .pill,#bar label').forEach(e=>{if(!e.offsetParent)return;const a=lum(getComputedStyle(e).color),b=lum(bgOf(e)),c=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);if(c<4.5)out.push(e.tagName+'.'+e.className+' '+c.toFixed(1))});return out})()""")
@@ -150,14 +150,14 @@ try:
             if not AXE: print("SKIP axe-core not available (pip install axe-playwright-python)"); return
             for scheme in ("light", "dark"):
                 q = r.b.new_page(viewport={"width": 1300, "height": 1000}, color_scheme=scheme)
-                q.goto(base + "pratica-ei.html?id=2-butanone&difficile=1"); q.wait_for_selector("#h-m-set", timeout=15000); q.wait_for_timeout(500)
+                q.goto(base + "pratica/ei.html?id=2-butanone&difficile=1"); q.wait_for_selector("#h-m-set", timeout=15000); q.wait_for_timeout(500)
                 q.click("#h-hint"); q.add_script_tag(path=AXE)
                 v = q.evaluate(RUN % "'#game'"); assert not v, (scheme, v)
                 q.close()
         step("axe-core: the hard mode worksheet has no serious or critical violation (light and dark)", axe)
         def phone():
             ctx = r.b.new_context(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True, user_agent=IPHONE)
-            q = ctx.new_page(); q.goto(base + "pratica-ei.html"); q.wait_for_timeout(1200)
+            q = ctx.new_page(); q.goto(base + "pratica/ei.html"); q.wait_for_timeout(1200)
             assert q.is_visible(".phex") and q.is_hidden("#game")
             assert q.evaluate("document.documentElement.scrollWidth") <= 391
             ctx.close()

@@ -37,7 +37,7 @@ def test_every_anchor_exists_in_its_page():
 
 
 def test_glossary_ids_are_unique():
-    ids = re.findall(r'<dt id="([^"]+)"', (G.D / "21-glossario.html").read_text(encoding="utf-8"))
+    ids = re.findall(r'<dt id="([^"]+)"', (G.D / "capitoli" / "19-glossario.html").read_text(encoding="utf-8"))
     assert len(ids) == len(set(ids)) > 80
 
 
@@ -56,7 +56,7 @@ out.perd=top('perdita neutra'); out.vuoto=top('a'); out.mark=C.mark('Frammentazi
 out.none=top('zzzzqq'); out.groups=C.search(I,'frammenta').map(g=>g.cap);
 console.log(JSON.stringify(out));
 """
-    r = subprocess.run(["node", "-e", js, str(ROOT / "mzlab/web/teoria/cerca.js"), str(ROOT / "mzlab/web/teoria/indice-ricerca.js")],
+    r = subprocess.run(["node", "-e", js, str(ROOT / "assets/cerca.js"), str(ROOT / "assets/indice-ricerca.js")],
                        capture_output=True, text=True, encoding="utf-8")
     assert r.returncode == 0, r.stderr
     o = json.loads(r.stdout)
@@ -71,7 +71,7 @@ console.log(JSON.stringify(out));
 
 
 def test_administrator_chapters_with_a_fifth_field_are_indexed():
-    src = (G.D / "teoria.js").read_text(encoding="utf-8")
-    row = '  ["99-prova.html", "99", "Capitolo riservato", "Appendice", true],\n'
+    src = (G.D / "assets" / "teoria.js").read_text(encoding="utf-8")
+    row = '  ["capitoli/99-prova.html", "99", "Capitolo riservato", "Appendice", true],\n'
     assert len(G.chapters(src.replace("];", row + "];", 1))) == len(G.chapters(src)) + 1
-    assert ("99-prova.html", "99", "Capitolo riservato") in G.chapters(src.replace("];", row + "];", 1))
+    assert ("capitoli/99-prova.html", "99", "Capitolo riservato") in G.chapters(src.replace("];", row + "];", 1))

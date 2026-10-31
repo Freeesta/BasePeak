@@ -67,7 +67,7 @@ def test_cors_options_preflight(local_server):
 
 
 def test_post_salva_token_required(local_server):
-    payload = json.dumps({"file": "04-lc.html", "html": "test"}).encode()
+    payload = json.dumps({"file": "capitoli/02-lc.html", "html": "test"}).encode()
 
     # No token -> 403
     req_no_tok = urllib.request.Request(f"{local_server}/salva", data=payload, headers={"Content-Type": "application/json"}, method="POST")
@@ -111,6 +111,6 @@ def test_path_traversal_blocked(local_server):
     # Try to read a static file outside teoria
     try:
         urllib.request.urlopen(f"{local_server}/../Cargo.toml")
-        pytest.fail("Non deve servire file fuori da mzlab/web/teoria/")
+        pytest.fail("Non deve servire file fuori dal sito")
     except urllib.error.HTTPError as e:
         assert e.code in (400, 404)

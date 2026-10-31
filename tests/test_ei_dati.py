@@ -1,4 +1,4 @@
-"""The EI spectra of the Teoria and of the Pratica (mzlab/web/teoria/pratica/ei-dati.js and ei-dati-l1..l5.js).
+"""The EI spectra of the Teoria and of the Pratica (pratica/ei-dati.js and ei-dati-l1..l5.js).
 
 These tests read only the committed public data files (the generator is documented in docs/provenance/, see docs/DATI-EI.md).
 
@@ -14,9 +14,9 @@ from pathlib import Path
 from chem_ref import parse_formula, mass  # noqa: E402  (reference chemistry shared by the tests)
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "mzlab" / "web" / "teoria" / "pratica" / "ei-dati.js"
+DATA = ROOT / "pratica" / "ei-dati.js"
 NOMINAL = {"H": 1, "C": 12, "N": 14, "O": 16, "F": 19, "Si": 28, "P": 31, "S": 32, "Cl": 35, "Br": 79, "I": 127}
-AIUTI = ROOT / "mzlab" / "web" / "teoria" / "pratica" / "ei-aiuti.js"
+AIUTI = ROOT / "pratica" / "ei-aiuti.js"
 SKILLS = {"M", "isotopi", "azoto", "rdb", "alpha", "induttiva", "sigma", "mclafferty", "rda", "benzilica", "orto", "serie", "perdita", "riarr", "m-assente"}
 LICENSES = {"CC BY-NC-SA", "CC BY-NC", "CC BY-SA", "CC BY", "CC0"}
 ODD = {"M", "mclafferty", "rda", "orto"}                 # mechanisms that give odd-electron ions
@@ -101,7 +101,7 @@ def test_keys_are_chemically_consistent():
 def test_every_spectrum_cited_in_the_theory_exists():
     import re as _re
     ids = {i["id"] for i in load()["items"]}
-    for page in (ROOT / "mzlab" / "web" / "teoria").glob("*.html"):
+    for page in [*(ROOT / "capitoli").glob("*.html"), *(ROOT / "pratica").glob("*.html")]:
         for ref in _re.findall(r'data-ei="([^"]+)"', page.read_text(encoding="utf-8")):
             assert ref in ids, (page.name, ref)
 

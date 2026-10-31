@@ -12,17 +12,17 @@ r = Run(port=8977, wd="/tmp/wd_teoria_avvio")
 try:
     with sync_playwright() as p:
         r.page(p)
-        T = f"http://127.0.0.1:{r.port}/static/teoria/"
+        T = f"http://127.0.0.1:{r.port}/static/"
         def shell_first():
             c = r.b.new_context(viewport={"width": 1280, "height": 900}); q = c.new_page()
             q.add_init_script("""window.__t={};document.addEventListener('DOMContentLoaded',()=>{__t.h1=!!document.querySelector('h1');setTimeout(()=>{__t.sims=document.querySelectorAll('#sim-field canvas').length},0);},{once:true});""")
-            q.goto(T + "09-quadrupolo.html")
+            q.goto(T + "capitoli/07-quadrupolo.html")
             q.wait_for_selector("#sim-field canvas", timeout=15000)
             t = q.evaluate("window.__t")
             assert t["h1"] and t["sims"] == 0, f"the simulation was built inside DOMContentLoaded: {t}"
             assert q.locator("#side a").count() > 5, "the side index must be there once the page is loaded"
             c.close()
-        step("09-quadrupolo: text and index first, simulations after the first paint", shell_first)
+        step("07-quadrupolo: text and index first, simulations after the first paint", shell_first)
 finally:
     r.close()
 r.report()

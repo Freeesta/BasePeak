@@ -3,7 +3,7 @@
     python3 tools/genera_icone.py          # rewrite the outputs
     python3 tools/genera_icone.py --check  # exit 1 if the committed files differ from a fresh build
 
-Source: mzlab/web/teoria/icone/icon.svg (a rounded square plus plain rects: a stylised mass spectrum whose tallest stick is the base peak).
+Source: assets/icone/icon.svg (a rounded square plus plain rects: a stylised mass spectrum whose tallest stick is the base peak).
 Outputs (committed, so nothing is built at runtime): icone/icon-192.png, icone/icon-512.png, icone/apple-touch-icon.png (180, opaque),
 and favicon.ico (16/32/48, PNG-compressed entries) at the site root.
 Needs Pillow (only used here to anti-alias; not a runtime or CI dependency of the site). Only <rect> elements with x/y/width/height/rx/fill are read."""
@@ -15,7 +15,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw
 
-SITE = Path(__file__).resolve().parent.parent / "mzlab" / "web" / "teoria"
+SITE = Path(__file__).resolve().parent.parent / "assets"
 SVG = SITE / "icone" / "icon.svg"
 SS = 16  # supersampling factor
 
@@ -82,7 +82,7 @@ def main(argv):
         return 1 if bad else 0
     for p, b in out.items():
         p.write_bytes(b)
-        print(f"wrote {p.relative_to(SITE.parent.parent.parent)} ({len(b)} bytes)")
+        print(f"wrote {p.relative_to(SITE.parent)} ({len(b)} bytes)")
     return 0
 
 
