@@ -7,7 +7,7 @@ Tutto il testo sta in questa cartella, un file per capitolo. Non c'è niente da 
 | Che cosa | File |
 |---|---|
 | Introduzione e mappa | `index.html` |
-| Capitoli 1–22 | `01-tp.html` … `22-formulario.html` (il numero è nel nome; i vecchi nomi, come `06-quadrupolo.html`, sono rimandi automatici al nuovo capitolo) |
+| Capitoli 3–23 | `03-cromatografia.html` … `23-tempi.html` (i capitoli 1 e 2, Prodotti di trasformazione e Fotocatalisi, sono stati tolti; il numero è nel nome; i vecchi nomi, come `06-quadrupolo.html`, sono rimandi automatici al nuovo capitolo) |
 | Pratica (giochi ed esercizi) | `pratica.html` (pagina iniziale), `pratica-ei.html`, `pratica-orale.html`, `pratica-perdite.html`, `pratica-isotopi.html`, `pratica-formula.html`, `pratica-strumento.html`, `pratica-quadrupolo.html`, `pratica-tp.html`; codice e dati in `pratica/` |
 | Domande di ripasso (testo e punti della risposta) | `pratica/domande.js` |
 | Spettri EI dei capitoli 15-16 e del gioco | `pratica/ei-dati.js` e `pratica/ei-dati-l1.js`…`l5.js` (da MassBank Europe; struttura e come aggiungerne uno a mano: `docs/DATI-EI.md`) |
