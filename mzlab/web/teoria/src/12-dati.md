@@ -22,10 +22,6 @@ In QqQ lab il programma riconosce da solo il tipo di file (full, ms2, mrm) e pro
 
 Lo stesso testo compare nel punto interrogativo accanto a ciascuna scheda di QqQ lab. Legenda dello schema: scansiona, fisso, collisione, lascia passare.
 
-```html
-<div id="modi-all"></div>
-```
-
 ## Full scan: dal cubo di dati ai cromatogrammi
 
 ### TIC, BPC, XIC

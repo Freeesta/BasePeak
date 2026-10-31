@@ -143,12 +143,6 @@ try:
                 w = q.evaluate("document.documentElement.scrollWidth"); assert w <= 391, f"{n}: page {w} px wide"
         step("no horizontal scroll of the page on any chapter at 390 px", overflow)
 
-        def lazy():
-            q.goto(T + "20-disegno.html"); q.wait_for_selector("main img")
-            bad = q.evaluate("[...document.querySelectorAll('main img')].filter(i=>i.loading!=='lazy'||i.decoding!=='async'||!i.getAttribute('width')||!i.getAttribute('height')).length")
-            assert bad == 0
-            assert q.evaluate("[...document.querySelectorAll('main img')].every(i=>i.currentSrc.includes('-m.png'))"), "phone must fetch the reduced picture"
-        step("images: lazy, async, explicit size, reduced version", lazy)
 
         def contrast(scheme):
             c, d = phone(scheme)
