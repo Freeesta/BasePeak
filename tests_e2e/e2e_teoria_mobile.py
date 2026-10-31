@@ -63,7 +63,8 @@ try:
         step("sheet: swipe down closes", swipe)
 
         def jump():
-            q.click("#menu"); q.click("#side a[href$='capitoli/07-quadrupolo.html']"); q.wait_for_url("**/07-quadrupolo.html")
+            q.click("#menu"); q.click("#side button.ptog:has-text('IV. Analizzare')"); assert q.is_visible("#side"), "opening a part must not close the sheet"   # the part of chapter 7 is closed until the reader opens it
+            q.click("#side a[href$='capitoli/07-quadrupolo.html']"); q.wait_for_url("**/07-quadrupolo.html")
             q.wait_for_selector("#menu"); assert "Il quadrupolo" in q.inner_text("#menu") and "Il quadrupolo" in q.title()
             q.click("#menu"); q.click("#side a[href$='capitoli/08-qqq.html']"); q.wait_for_selector("#side", state="hidden")
             assert q.is_hidden("#side") and q.is_hidden("#sheetbg"), "sheet/backdrop stays after a chapter link"

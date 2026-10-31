@@ -1,5 +1,6 @@
-"""Navigation of the handbook (menu in three parts, 3-level index, scroll-spy, drawer on a phone, anchors on headings, breadcrumb, previous / next, keyboard, axe,
-contrast >= 7:1 in every theme, WCAG 1.4.12 text spacing, reduced motion, file://). Run: python3 tests_e2e/e2e_teoria_indice.py"""
+"""Navigation of the handbook (collapsible parts Guida / II..VII / Pratica / Reference, 3-level index, no «Teoria» label, full-height sidebar with the bar to its right, scroll-spy,
+drawer on a phone, anchors on headings, breadcrumb, previous / next, keyboard, axe, contrast >= 7:1 in every theme, WCAG 1.4.12 text spacing, reduced motion, file://).
+Run: python3 tests_e2e/e2e_teoria_indice.py"""
 import sys, os, re, pathlib; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import *
 steps = []
@@ -24,28 +25,38 @@ try:
         def contrast_js():
             return """(()=>{const L=c=>{const m=c.match(/[0-9.]+/g).map(Number),f=v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)};return .2126*f(m[0])+.7152*f(m[1])+.0722*f(m[2])};
               const bgOf=e=>{for(;e;e=e.parentElement){const b=getComputedStyle(e).backgroundColor;if(b&&!/rgba\\(.*, 0\\)|transparent/.test(b))return b}return getComputedStyle(document.documentElement).backgroundColor};
-              const out=[];document.querySelectorAll('#side a, #side h4, #side li.part, .crumbs a, .crumbs [aria-current], .pnt a').forEach(e=>{if(!e.offsetParent)return;
+              const out=[];document.querySelectorAll('#side a, #side .ptog, #side .navall, #side .ctog, #logo, .crumbs a, .crumbs [aria-current], .pnt a').forEach(e=>{if(!e.offsetParent)return;
                 const a=L(getComputedStyle(e).color),b=L(bgOf(e)),hi=Math.max(a,b),lo=Math.min(a,b);out.push([e.textContent.trim().slice(0,25),Math.round((hi+.05)/(lo+.05)*100)/100])});
               return out})()"""
 
+        pb = lambda q, t: q.locator("#side button.ptog", has_text=t)
+        PARTS = ["Guida", "II. Separare", "III. Ionizzare", "IV. Analizzare gli ioni", "V. Leggere gli spettri", "VI. Dal dato al risultato", "VII. Chemioinformatica", "Pratica", "Reference"]
         def sidebar():
             c, q = ctx()
             for f in SAMPLES:
                 go(q, f)
                 assert q.is_visible("#side"), f
-                parts = q.eval_on_selector_all("#side h4", "e=>e.map(x=>x.textContent)"); assert parts == ["Teoria", "Pratica", "Reference"], parts
+                parts = q.eval_on_selector_all("#side h4", "e=>e.map(x=>x.textContent.trim())"); assert parts == PARTS, parts        # the parts, in order; no «Teoria» heading
                 cur = q.eval_on_selector_all("#side a[aria-current=page]", "e=>e.map(x=>x.getAttribute('href'))"); assert len(cur) == 1 and cur[0].endswith(f), (f, cur)
-                assert q.evaluate("document.querySelector('#side a[aria-current=page]').closest('section.grp').querySelector('h4').textContent") == {"c": "Teoria", "p": "Pratica", "r": "Reference"}[
-                    "c" if f.startswith("capitoli/07") else "p" if f.startswith("pratica") else "r"], f
+                want = "Pratica" if f.startswith("pratica") else "Reference" if re.search(r"/(19|20|21)-", f) else "IV. Analizzare gli ioni" if "07-" in f else "?"
+                assert q.evaluate("document.querySelector('#side a[aria-current=page]').closest('section.grp').querySelector('h4').textContent.trim()") == want, f
                 # the other chapters list only their title (no nested list)
-                assert q.evaluate("[...document.querySelectorAll('#side li')].filter(l=>l.querySelector(':scope>ol.toc')&&!l.querySelector(':scope>a[aria-current=page]')).length") == 0
+                assert q.evaluate("[...document.querySelectorAll('#side li')].filter(l=>l.querySelector(':scope>ol.toc')&&!l.querySelector(':scope a[aria-current=page]')).length") == 0
             c.close()
-        step("sidebar with Teoria / Pratica / Reference and aria-current on the current chapter (3 pages)", sidebar)
+        def no_teoria_label():
+            for f in SAMPLES:
+                c, q = ctx(); go(q, f)
+                assert q.evaluate("[...document.querySelectorAll('#side *')].filter(e=>e.children.length===0&&/^teoria$/i.test(e.textContent.trim())).length") == 0, f
+                assert q.evaluate("document.querySelector('#grp-teoria')") is None and q.evaluate("[...document.querySelectorAll('#side h4,#side [role=heading]')].every(h=>!/^teoria$/i.test(h.textContent.trim()))")
+                t = q.inner_text("#side").lower(); assert "pratica" in t and "reference" in t and "guida" in t, f
+                c.close()
+        step("no big «Teoria» label at the top of the sidebar; the part headings (Guida, II..VII, Pratica, Reference) stay", no_teoria_label)
+        step("sidebar with the parts Guida / II..VII / Pratica / Reference and aria-current on the current chapter (3 pages)", sidebar)
         def nesting():
             c, q = ctx(); go(q, LONG)
             d = q.evaluate("""(()=>{const lv=a=>{let n=0;for(let e=a.parentElement;e&&e.id!=='side';e=e.parentElement)if(e.tagName==='OL')n++;return n};
                 const cur=document.querySelector('#side a[aria-current=page]'),l1=lv(cur),sub=[...document.querySelectorAll('#side ol.toc a')];
-                const h2=sub.filter(a=>lv(a)===l1+1),h3=sub.filter(a=>lv(a)===l1+2);return [h2.length,h3.length,cur.parentElement.querySelector(':scope>ol.toc')!==null]})()""")
+                const h2=sub.filter(a=>lv(a)===l1+1),h3=sub.filter(a=>lv(a)===l1+2);return [h2.length,h3.length,cur.closest('li').querySelector(':scope>ol.toc')!==null]})()""")
             assert d[2] and d[0] >= 3 and d[1] >= 1, d
             # every entry points to an existing heading of the page, in page order
             hrefs = q.eval_on_selector_all("#side ol.toc a", "e=>e.map(a=>a.getAttribute('href'))")
@@ -130,7 +141,7 @@ try:
                 q.keyboard.press("Tab"); assert q.evaluate("document.activeElement.closest('#side')!==null"), "focus left the drawer"
             for _ in range(70):
                 q.keyboard.press("Shift+Tab"); assert q.evaluate("document.activeElement.closest('#side')!==null"), "focus left the drawer (backwards)"
-            assert q.locator("#side ol.toc ol a").count() >= 1 and q.locator("#side h4").count() == 3
+            assert q.locator("#side ol.toc ol a").count() >= 1 and q.locator("#side h4").count() == 9
             q.keyboard.press("Escape"); assert q.is_hidden("#side") and q.get_attribute("#menu", "aria-expanded") == "false"
             assert q.evaluate("document.activeElement.id") == "menu", "focus not returned"
             assert q.evaluate("document.documentElement.scrollWidth") <= 390
@@ -202,12 +213,97 @@ try:
             assert q.evaluate("(()=>{const a=document.querySelector('#side a.on').getBoundingClientRect(),s=document.querySelector('#side').getBoundingClientRect();return a.top>=s.top-2&&a.bottom<=s.bottom+2})()"), "current chapter out of view"
             c.close()
         step("the menu keeps its scroll position between pages", keeps_scroll)
+        def layout_geometry():
+            for w, h in ((1280, 800), (1440, 900)):
+                c, q = ctx(w, h); go(q, LONG)
+                sb = q.locator("#side").bounding_box(); tb = q.locator("#top").bounding_box(); mb = q.locator("main").bounding_box()
+                assert sb["y"] == 0 and abs(sb["height"] - h) <= 0.5, sb                       # sidebar: from the very top to the bottom of the window
+                assert tb["x"] >= sb["x"] + sb["width"] - 0.5 and tb["y"] == 0, (tb, sb)        # the bar starts to the right of the sidebar
+                assert mb["x"] >= sb["x"] + sb["width"], (mb, sb)
+                c.close()
+            c, q = ctx(390, 844, is_mobile=True, has_touch=True); q.goto(T + LONG); q.wait_for_selector("#menu")
+            assert q.evaluate("document.documentElement.scrollWidth") <= 390 and q.locator("#top").bounding_box()["x"] == 0 and abs(q.locator("#top").bounding_box()["width"] - 390) <= 1
+            c.close()
+        step("sidebar bounding box top = 0 and height = window at 1280x800 and 1440x900; bar and text start right of it; phone: bar full width", layout_geometry)
+        EXP = "(b => b.getAttribute('aria-expanded'))"
+        def collapse_default():
+            c, q = ctx(); go(q, LONG)
+            st = q.eval_on_selector_all("#side button.ptog", "e=>e.map(b=>{const r=document.getElementById(b.getAttribute('aria-controls'));return [b.textContent.trim(),b.getAttribute('aria-expanded'),!!r,r&&r.hidden,b.tagName,b.querySelector('svg.chev')&&b.querySelector('svg.chev').getBoundingClientRect().width]})")
+            assert [x[0] for x in st] == PARTS and all(x[2] and x[4] == "BUTTON" and x[5] > 8 for x in st), st      # real buttons with a visible chevron and an existing target
+            assert [x[0] for x in st if x[1] == "true"] == ["IV. Analizzare gli ioni"], st                       # only the part of the current chapter is open
+            assert all(x[3] == (x[1] == "false") for x in st), "aria-expanded and hidden disagree"
+            assert q.is_visible("#side a[aria-current=page]") and q.is_hidden("#side a[href$='capitoli/02-lc.html']") and q.is_hidden("#side a[href$='pratica/ei.html']")
+            ct = q.locator("#side button.ctog"); assert ct.count() == 1 and ct.get_attribute("aria-expanded") == "true" and ct.get_attribute("aria-controls") == "toc-cur" and q.is_visible("#side #toc-cur")
+            assert q.locator("#navall").inner_text() == "Apri tutto"
+            c.close()
+        step("collapsible parts: real <button> with aria-expanded / aria-controls and a chevron; only the part of the current chapter is open, its sections too", collapse_default)
+        def collapse_keyboard():
+            c, q = ctx(); go(q, LONG)
+            b = q.locator("#side button.ptog", has_text="II. Separare"); b.focus()
+            q.keyboard.press("Enter"); assert b.get_attribute("aria-expanded") == "true" and q.is_visible("#side a[href$='capitoli/02-lc.html']")
+            q.keyboard.press("Space"); assert b.get_attribute("aria-expanded") == "false" and q.is_hidden("#side a[href$='capitoli/02-lc.html']")
+            q.keyboard.press("Space"); assert b.get_attribute("aria-expanded") == "true"
+            assert q.evaluate("(()=>{const s=getComputedStyle(document.activeElement);return s.outlineStyle!=='none'&&parseFloat(s.outlineWidth)>=2})()"), "no visible focus on the toggle"
+            # Tab from a closed part goes to the next heading, not into its hidden list
+            q.keyboard.press("Space"); q.keyboard.press("Tab"); assert q.evaluate("document.activeElement.textContent.trim()") == "III. Ionizzare", q.evaluate("document.activeElement.textContent")
+            c.close()
+        step("collapse and expand with the keyboard: Enter and Space on the button, visible focus, a closed part is skipped by Tab", collapse_keyboard)
+        def collapse_current():
+            c, q = ctx(); go(q, LONG)
+            q.click("#side button.ctog"); assert q.get_attribute("#side button.ctog", "aria-expanded") == "false" and q.is_hidden("#side #toc-cur") and q.is_visible("#side a[aria-current=page]"), "the chapter closes; its title stays"
+            assert q.evaluate("document.querySelectorAll('main h2').length") > 3                       # no data lost: the page itself is untouched
+            q.click("#side button.ctog"); assert q.is_visible("#side #toc-cur")
+            pb(q, "IV. Analizzare").click(); assert q.is_hidden("#side a[aria-current=page]"), "the user can close the part of the current chapter"
+            q.reload(); q.wait_for_selector("#side a.on"); assert q.is_visible("#side a[aria-current=page]") and q.is_visible("#side #toc-cur"), "on arrival the current chapter is never hidden"
+            # the scroll-spy still works with a closed chapter: aria-current=location moves to a hidden link, no error, no jump of the menu
+            q.click("#side button.ctog"); top = q.evaluate("document.querySelector('#side').scrollTop")
+            q.evaluate("document.documentElement.style.scrollBehavior='auto';document.querySelectorAll('main h2')[3].scrollIntoView()"); q.wait_for_timeout(300)
+            assert q.evaluate("document.querySelector('#side').scrollTop") == top and q.evaluate("document.querySelectorAll('#side a[aria-current=location]').length") == 1
+            c.close()
+        step("closing the current chapter or its part just closes it (nothing lost); on arrival it is open again; the scroll-spy keeps working", collapse_current)
+        def collapse_persist():
+            c, q = ctx(); go(q, LONG)
+            pb(q, "II. Separare").click(); pb(q, "Pratica").click()
+            assert q.evaluate("JSON.parse(sessionStorage.getItem('qqq.teoria.nav')).p") is not None
+            q.reload(); q.wait_for_selector("#side a.on")
+            assert pb(q, "II. Separare").get_attribute("aria-expanded") == "true" and pb(q, "Pratica").get_attribute("aria-expanded") == "true"
+            assert pb(q, "III. Ionizzare").get_attribute("aria-expanded") == "false"
+            q.click("#side a[href$='pratica/ei.html']"); q.wait_for_url("**/pratica/ei.html"); q.wait_for_selector("#side a.on")        # another page of the same tab: the choices follow
+            assert pb(q, "II. Separare").get_attribute("aria-expanded") == "true"
+            assert pb(q, "Pratica").get_attribute("aria-expanded") == "true" and q.is_visible("#side a[aria-current=page]")
+            assert pb(q, "IV. Analizzare").get_attribute("aria-expanded") == "false"
+            c.close()
+            c, q = ctx(); go(q, LONG); assert pb(q, "II. Separare").get_attribute("aria-expanded") == "false", "a new tab starts from the default"
+            c.close()
+            c, q = ctx()
+            q.add_init_script("Object.defineProperty(window,'sessionStorage',{get(){throw new Error('blocked')}})")
+            go(q, LONG); pb(q, "II. Separare").click(); assert q.is_visible("#side a[href$='capitoli/02-lc.html']"), "toggles must work without sessionStorage"; c.close()
+        step("the open / closed choices are remembered in sessionStorage (and everything works when it is blocked)", collapse_persist)
+        def open_all():
+            c, q = ctx(); go(q, LONG)
+            q.click("#navall"); assert q.inner_text("#navall") == "Chiudi tutto"
+            assert q.eval_on_selector_all("#side button.ptog, #side button.ctog", "e=>e.every(b=>b.getAttribute('aria-expanded')==='true')")
+            assert q.is_visible("#side a[href$='capitoli/02-lc.html']") and q.is_visible("#side a[href$='pratica/ei.html']")
+            q.click("#navall"); assert q.inner_text("#navall") == "Apri tutto"
+            assert q.eval_on_selector_all("#side button.ptog, #side button.ctog", "e=>e.every(b=>b.getAttribute('aria-expanded')==='false')")
+            pb(q, "Reference").click(); pb(q, "Pratica").click()
+            q.focus("#navall"); q.keyboard.press("Enter"); assert q.inner_text("#navall") == "Chiudi tutto"
+            q.reload(); q.wait_for_selector("#side a.on"); assert q.is_visible("#side a[aria-current=page]")
+            c.close()
+        step("«Apri tutto» / «Chiudi tutto» opens or closes every part and chapter (mouse and keyboard); the current page is reachable after a reload", open_all)
+        def drawer_collapse():
+            c, q = ctx(390, 844, is_mobile=True, has_touch=True); q.goto(T + LONG); q.wait_for_selector("#menu"); q.click("#menu"); q.wait_for_selector("#side", state="visible")
+            b = q.locator("#side button.ptog", has_text="II. Separare"); assert b.bounding_box()["height"] >= 44
+            b.tap(); assert b.get_attribute("aria-expanded") == "true" and q.is_visible("#side a[href$='capitoli/02-lc.html']")
+            assert q.is_visible("#side")      # a toggle does not close the drawer
+            q.locator("#side a[href$='capitoli/02-lc.html']").tap(); q.wait_for_url("**/02-lc.html"); c.close()
+        step("phone drawer: toggles are 44 px, work by touch, keep the drawer open; a link still navigates", drawer_collapse)
         def axe():
             if not AXE: print("SKIP axe (pip install axe-playwright-python)"); return
             for scheme in ("light", "dark"):
                 for f in SAMPLES:
                     c, q = ctx(color_scheme=scheme); go(q, f); q.add_script_tag(path=AXE); q.evaluate("document.querySelector('main .ha').focus()")
-                    v = q.evaluate("axe.run('#side, .navtop, main h2, main h3',{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa','best-practice']}}).then(r=>r.violations.filter(v=>['serious','critical','moderate'].includes(v.impact)).map(v=>[v.id,v.nodes[0].html.slice(0,90)]))")
+                    v = q.evaluate("axe.run('#side, #top, .navtop, main h2, main h3',{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa','best-practice']}}).then(r=>r.violations.filter(v=>['serious','critical','moderate'].includes(v.impact)).map(v=>[v.id,v.nodes[0].html.slice(0,90)]))")
                     assert not v, (scheme, f, v); c.close()
             c, q = ctx(390, 844, is_mobile=True, has_touch=True); q.goto(T + LONG); q.wait_for_selector("#menu"); q.add_script_tag(path=AXE); q.click("#menu"); q.wait_for_timeout(250)
             v = q.evaluate("axe.run('#side',{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}).then(r=>r.violations.filter(v=>['serious','critical'].includes(v.impact)).map(v=>[v.id,v.nodes[0].html.slice(0,90)]))")

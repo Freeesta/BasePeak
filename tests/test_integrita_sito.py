@@ -17,11 +17,9 @@ JS_IMPORT = re.compile(r"""\bimport\s*(?:[\w{}*,\s]+from\s*)?\(?\s*["']([^"']+)[
 
 
 # Known gaps inherited from the mzLab import, kept visible here instead of hidden (each one is a follow-up for the COO; remove the entry when fixed):
-# - the structure editor of the EI game loads Ketcher, which is not shipped in this repository (the e2e tests stub it);
-# - on http(s) the header offers tabs to the mzLab program (../../#/data, ../../#/draw), which does not exist next to this site.
+# - the structure editor of the EI game loads Ketcher, which is not shipped in this repository (the e2e tests stub it).
 KNOWN_MISSING = {
     ("pratica/gioco-ei.js", "../assets/vendor/ketcher/index.html"),
-    ("assets/teoria.js", "../../#/data"), ("assets/teoria.js", "../../#/draw"), ("assets/lettura.js", "../../#/data"),
 }
 
 

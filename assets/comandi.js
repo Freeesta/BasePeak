@@ -100,7 +100,7 @@
     det.innerHTML = `<summary class="sc" title="${st.titolo}">${svg(st.icona)}<span>${st.etichetta}</span></summary><div class="sc-sub"></div>`;
     st.figli.forEach(f => { const b = document.createElement("button"); b.type = "button"; b.dataset.cmd = f.id; b.textContent = f.etichetta; b.onclick = () => f.run(); $(".sc-sub", det).appendChild(b); });
     nav.appendChild(det);
-    lat.prepend(nav);
+    const br = $(".brand", lat); if (br) br.after(nav); else lat.prepend(nav);   // the logo block stays the first thing of the index
   }
   if (embedded) { document.dispatchEvent(new Event("tcmd-pronto")); return; }   // in the program the bar of the app draws them
 
