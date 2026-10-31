@@ -17,18 +17,18 @@
     set(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (_) { /* storage blocked: no memory of the position */ } },
   };
   const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.hasAttribute("data-a11y-reduce");
-  const narrow = matchMedia("(max-width:980px)");
+  const narrow = matchMedia("(max-width:899.98px)");
 
   // ------------------------------------------------------------------ chapter menu as a sheet
   const bar = document.createElement("div"); bar.id = "cbar";
   const label = cur ? (/^[0-9]+$/.test(cur[1]) && cur[1] !== "0" ? cur[1] + " · " : "") + cur[2] : "Indice";
-  menu.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span class="mt"></span>`;
+  menu.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span class="ml">Indice</span><span class="mt"></span>`;
   $(".mt", menu).textContent = label;
-  menu.setAttribute("aria-label", "Indice dei capitoli. Capitolo corrente: " + label);
+  menu.setAttribute("aria-label", "Indice: " + label);
   menu.setAttribute("aria-haspopup", "dialog");
   const prog = document.createElement("i"); prog.id = "prog"; prog.setAttribute("aria-hidden", "true");
   bar.append(menu, prog);
-  document.body.prepend(bar);
+  const skip = $(".skip"); if (skip) skip.after(bar); else document.body.prepend(bar);   // «Salta al contenuto» stays the first thing reached with Tab
   if (window.TCMD && TCMD.cbar) TCMD.cbar();   // previous / next next to the index button
 
   const bg = document.createElement("div"); bg.id = "sheetbg"; bg.hidden = true; document.body.appendChild(bg);

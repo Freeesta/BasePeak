@@ -171,7 +171,7 @@
   function enableVisualEditing() {
     const mn = document.querySelector("main"); if (!mn) return;
     mn.setAttribute("contenteditable", "true"); mn.setAttribute("spellcheck", "false");
-    mn.querySelectorAll(".sim, .pn, canvas, svg, .ctl, .btns").forEach(e => e.setAttribute("contenteditable", "false"));
+    mn.querySelectorAll(".sim, .pn, .navtop, .ha, canvas, svg, .ctl, .btns").forEach(e => e.setAttribute("contenteditable", "false"));
     const pn = mn.querySelector(".pn"); if (pn) pn.style.display = "none";
     mn.addEventListener("click", preventLinkNav);
   }
@@ -218,7 +218,7 @@
   function getCleanMainHtml() {
     const mn = document.querySelector("main"); if (!mn) return "";
     const cl = mn.cloneNode(true);
-    cl.querySelectorAll(".pn").forEach(e => e.remove());
+    cl.querySelectorAll(".pn, .navtop, .ha").forEach(e => e.remove());
     cl.querySelectorAll(".tw").forEach(tw => { const t = tw.querySelector("table"); if (t) tw.replaceWith(t); else tw.remove(); });
     cl.querySelectorAll(".g").forEach(sp => sp.replaceWith(document.createTextNode(sp.textContent)));
     cl.querySelectorAll("[aria-level], [contenteditable]").forEach(e => { e.removeAttribute("aria-level"); e.removeAttribute("contenteditable"); });

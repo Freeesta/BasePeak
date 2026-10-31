@@ -3,6 +3,7 @@
 "use strict";
 // [file, number shown in the menu, title, part]. The order is the study path: each chapter uses only what comes before it.
 // The "Pratica" pages (pratica/*.html) are the exercises and games; they use the same layout.
+// The menu has three parts, in this order: Teoria (chapters 1-18 and the introduction), Pratica, Reference (part "Reference": glossary, formulary, timings), see groupOf().
 // Files are written relative to the site root (the folder above assets/); SITE.up is the way from the current page back to that root.
 const SITE = (() => {
   const src = document.currentScript && document.currentScript.src;
@@ -34,9 +35,6 @@ const CHAPTERS = [
   ["capitoli/16-strategia.html", "16", "Strategia per trovare i TP", "VI. Dal dato al risultato"],
   ["capitoli/17-hr-dda.html", "17", "Alta risoluzione e DDA nel programma", "VI. Dal dato al risultato"],
   ["capitoli/18-disegno.html", "18", "Disegno sperimentale e strutture", "VI. Dal dato al risultato"],
-  ["capitoli/19-glossario.html", "19", "Glossario e bibliografia", "Appendice"],
-  ["capitoli/20-formulario.html", "20", "Formulario", "Appendice"],
-  ["capitoli/21-tempi.html", "21", "Tempi degli analizzatori: dwell time, sweep e duty cycle", "Appendice"],
   ["pratica/index.html", "P", "Esercizi e autoverifica", "Pratica"],
   ["pratica/ei.html", "P1", "Dallo spettro alla struttura", "Pratica"],
   ["pratica/orale.html", "P2", "Domande di ripasso", "Pratica"],
@@ -46,6 +44,9 @@ const CHAPTERS = [
   ["pratica/strumento.html", "P6", "Carte dello strumento", "Pratica"],
   ["pratica/quadrupolo.html", "P7", "Pilota il quadrupolo", "Pratica"],
   ["pratica/tp.html", "P8", "Δm ed ESI± dei prodotti di trasformazione", "Pratica"],
+  ["capitoli/19-glossario.html", "19", "Glossario e bibliografia", "Reference"],
+  ["capitoli/20-formulario.html", "20", "Formulario", "Reference"],
+  ["capitoli/21-tempi.html", "21", "Tempi degli analizzatori: dwell time, sweep e duty cycle", "Reference"],
 ];
 const APP = typeof APP_NAME === "string" ? APP_NAME : "mzLab";        // appname.js is loaded first by every page
 CHAPTERS.forEach(c => { c[2] = c[2].split("{APP}").join(APP); });
@@ -99,6 +100,85 @@ const TP = (() => {
     return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 48);
   }
 
+  // ---------------------------------------------------------------- navigation: parts, 3-level index, anchors, breadcrumb
+  const GROUP_HOME = { Teoria: "index.html", Pratica: "pratica/index.html", Reference: "capitoli/19-glossario.html" };
+  const groupOf = c => /^pratica\//.test(c[0]) ? "Pratica" : c[3] === "Reference" ? "Reference" : "Teoria";
+  const esc = t => t.replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]);
+  const numbered = c => /^(?:[1-9][0-9]*|P[0-9]+)$/.test(c[1]);
+  const chTitle = c => (numbered(c) ? c[1] + ". " : "") + c[2];
+  /** Text of a heading without the anchor link added to it. */
+  function htext(h) { const a = h.querySelector(":scope > .ha"); return (a ? h.textContent.slice(0, h.textContent.length - a.textContent.length) : h.textContent).trim(); }
+  /** Headings without an id get one from their text (same text, same id; a repeated text gets -2, -3...). Existing ids are never changed. */
+  function ensureIds(hs) {
+    const used = new Set([...document.querySelectorAll("[id]")].map(e => e.id));
+    hs.forEach(h => {
+      if (h.id) return;
+      const base = slug(htext(h)) || "sezione"; let id = base, n = 2;
+      while (used.has(id)) id = base + "-" + n++;
+      h.id = id; used.add(id);
+    });
+  }
+  /** The link that appears on hover and on keyboard focus at the end of a heading. */
+  function addAnchor(h) {
+    if (!h.id || h.querySelector(":scope > .ha")) return;
+    const a = document.createElement("a"); a.className = "ha"; a.href = "#" + h.id; a.setAttribute("aria-label", "Link a questa sezione"); a.textContent = "#";
+    h.appendChild(a);
+  }
+  /** The menu: Teoria / Pratica / Reference, every chapter with its title; the current one also lists the h2 and h3 of the page. Returns the page sections [{h, a}] for the scroll-spy. */
+  function buildSide(side) {
+    const here0 = CHAPTERS[idx];
+    const sections = [...document.querySelectorAll("main h2, main h3")].filter(h => h.id && htext(h) && !h.closest(".box,figure,.sim,details,.phex,#phnote"));
+    const items = [];
+    const tree = [];
+    sections.forEach(h => { const it = { h, kids: [] }; items.push(it); if (h.tagName === "H3" && tree.length) tree[tree.length - 1].kids.push(it); else tree.push(it); });
+    const node = it => { const li = document.createElement("li"), a = document.createElement("a"); a.className = "sl"; a.href = "#" + it.h.id; a.textContent = htext(it.h); it.a = a; li.appendChild(a);
+      if (it.kids.length) { const ol = document.createElement("ol"); it.kids.forEach(k => ol.appendChild(node(k))); li.appendChild(ol); } return li; };
+    let html = "";
+    ["Teoria", "Pratica", "Reference"].forEach(g => {
+      let lis = "", part = "";
+      CHAPTERS.forEach((c, i) => {
+        if (groupOf(c) !== g) return;
+        if (g === "Teoria" && c[3] && c[3] !== part) { part = c[3]; lis += `<li class="part">${esc(part)}</li>`; }
+        const on = i === idx;
+        lis += `<li${on ? ' class="cur-ch"' : ""}><a href="${SITE.up + c[0]}" class="${on ? "on" : ""}"${on ? ' aria-current="page"' : ""}><b>${esc(c[1])}</b><span>${esc(c[2])}</span></a>${on && tree.length ? '<ol class="toc"></ol>' : ""}</li>`;
+      });
+      html += `<section class="grp"><h4 id="grp-${g.toLowerCase()}">${g}</h4><ol aria-labelledby="grp-${g.toLowerCase()}">${lis}</ol></section>`;
+    });
+    side.innerHTML = html;
+    const toc = side.querySelector("ol.toc"); if (toc) tree.forEach(it => toc.appendChild(node(it)));
+    return items;
+  }
+  /** Scroll-spy: the last section whose heading is above 30% of the window is the current one (aria-current="location"). IntersectionObserver only wakes the check up. */
+  function spy(side, items) {
+    let cur = null;
+    const update = () => {
+      let pick = null;
+      for (const it of items) { if (it.h.getBoundingClientRect().top <= innerHeight * 0.3) pick = it; else break; }
+      const a = pick && pick.a; if (a === cur) return;
+      if (cur) { cur.removeAttribute("aria-current"); cur.classList.remove("cur"); }
+      cur = a; if (!a) return;
+      a.setAttribute("aria-current", "location"); a.classList.add("cur");
+      const sr = side.getBoundingClientRect(), ar = a.getBoundingClientRect();   // keep it in view inside the menu only (the page never moves)
+      if (sr.height && (ar.top < sr.top + 8 || ar.bottom > sr.bottom - 8)) side.scrollTop += ar.top - sr.top - sr.height / 3;
+    };
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(update, { rootMargin: "0px 0px -70% 0px" });
+      items.forEach(it => io.observe(it.h));
+    }
+    addEventListener("scroll", () => { cancelAnimationFrame(spy.t); spy.t = requestAnimationFrame(update); }, { passive: true });
+    addEventListener("load", update); addEventListener("hashchange", () => setTimeout(update, 60));
+    update();
+  }
+  /** Breadcrumb (BasePeak > part > chapter) and the compact previous / next pair at the top of the page. */
+  function crumbs(i) {
+    const c = CHAPTERS[i], g = groupOf(c), p = CHAPTERS[i - 1], n = CHAPTERS[i + 1];
+    const nav = document.createElement("div"); nav.className = "navtop";
+    const pr = (x, rel, txt) => x ? `<a rel="${rel}" href="${SITE.up + x[0]}" aria-label="${txt === "prev" ? "Precedente" : "Successivo"}: ${esc(chTitle(x))}" title="${esc(chTitle(x))}">${rel === "prev" ? "&larr; Precedente" : "Successivo &rarr;"}</a>` : "";
+    nav.innerHTML = `<nav class="crumbs" aria-label="Percorso"><ol><li><a href="${SITE.up}index.html">BasePeak</a></li><li><a href="${SITE.up + GROUP_HOME[g]}">${g}</a></li><li><span aria-current="page">${esc(chTitle(c))}</span></li></ol></nav>` +
+      `<nav class="pnt" aria-label="Capitolo precedente e successivo">${pr(p, "prev", "prev")}${pr(n, "next", "next")}</nav>`;
+    $("main").prepend(nav);
+  }
+
   function layout() {
     // wide tables scroll horizontally on phones instead of widening the page
     document.querySelectorAll("main table").forEach(t => { const w = document.createElement("div"); w.className = "tw"; t.parentNode.insertBefore(w, t); w.appendChild(t); });
@@ -121,20 +201,20 @@ const TP = (() => {
     const sk = document.createElement("a"); sk.className = "skip"; sk.href = "#" + mn.id; sk.textContent = "Salta al contenuto";
     sk.onclick = e => { e.preventDefault(); mn.focus(); mn.scrollIntoView(); };
     document.body.prepend(sk);
-    // chapters grouped by part: a small heading each time the part changes
-    const list = CHAPTERS.map((c, i) => (c[3] && c[3] !== (CHAPTERS[i - 1] || [])[3] ? `<li class="part">${c[3]}</li>` : "") +
-      `<li><a href="${SITE.up + c[0]}" class="${i === idx ? "on" : ""}"${i === idx ? ' aria-current="page"' : ""}><b>${c[1]}</b><span>${c[2]}</span></a></li>`).join("");
-    // headings get IDs for direct URL anchors (#slug)
-    document.querySelectorAll("main h2, main h3").forEach(h => { if (!h.id) h.id = slug(h.textContent); });
-    side.innerHTML = `<h4>Capitoli</h4><ol>${list}</ol>`;
+    // headings: stable ids (existing ones are kept), anchors, then the index of the menu
+    const heads = [...document.querySelectorAll("main h2, main h3, main h4")];
+    ensureIds(heads); heads.forEach(addAnchor);
+    const spyItems = buildSide(side);
+    if (spyItems.length) spy(side, spyItems);
+    crumbs(idx);
     $("#menu").onclick = () => $("#menu").setAttribute("aria-expanded", String(side.classList.toggle("open")));
     side.addEventListener("click", e => { if (e.target.closest("a")) { side.classList.remove("open"); $("#menu").setAttribute("aria-expanded", "false"); } });   // narrow screens: the index is a full-screen panel
     if (PHONE) phone(top);
     // prev / next
     const pn = document.createElement("div"); pn.className = "pn";
     const p = CHAPTERS[idx - 1], n = CHAPTERS[idx + 1];
-    pn.innerHTML = (p ? `<a href="${SITE.up + p[0]}"><small>&larr; Precedente</small>${p[1]}. ${p[2]}</a>` : "<span></span>") +
-                   (n ? `<a href="${SITE.up + n[0]}" style="text-align:right"><small>Successivo &rarr;</small>${n[1]}. ${n[2]}</a>` : "<span></span>");
+    pn.innerHTML = (p ? `<a rel="prev" href="${SITE.up + p[0]}"><small>&larr; Precedente</small>${p[1]}. ${p[2]}</a>` : "<span></span>") +
+                   (n ? `<a rel="next" href="${SITE.up + n[0]}" style="text-align:right"><small>Successivo &rarr;</small>${n[1]}. ${n[2]}</a>` : "<span></span>");
     $("main").appendChild(pn);
     // the index keeps its scroll from one chapter to the next (the active entry is brought into view if it would be hidden)
     const restoreSide = () => {
@@ -173,7 +253,7 @@ const TP = (() => {
     const mark = n => { if (n.nodeType === 1) [n, ...n.querySelectorAll(".fb,.readout")].forEach(e => { if (e.classList && (e.classList.contains("fb") || e.classList.contains("readout")) && !e.hasAttribute("aria-live")) e.setAttribute("aria-live", "polite"); }); };
     mark(document.body);
     let t = 0;
-    new MutationObserver(ms => { ms.forEach(m => m.addedNodes.forEach(mark)); cancelAnimationFrame(t); t = requestAnimationFrame(fixLevels); }).observe(document.body, { childList: true, subtree: true });
+    new MutationObserver(ms => { ms.forEach(m => m.addedNodes.forEach(mark)); cancelAnimationFrame(t); t = requestAnimationFrame(() => { fixLevels(); const hs = [...document.querySelectorAll("main h2, main h3, main h4")].filter(h => !h.querySelector(":scope > .ha")); ensureIds(hs); hs.forEach(addAnchor); }); }).observe(document.body, { childList: true, subtree: true });
   }
 
   // ---------------------------------------------------------------- smartphone

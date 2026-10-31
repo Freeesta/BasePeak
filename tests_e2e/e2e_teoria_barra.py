@@ -57,7 +57,7 @@ try:
             pb, sb = q.locator("#tc-prec svg").bounding_box(), q.locator("#tc-prec .l").bounding_box(); assert pb["x"] < sb["x"], "arrow left of the number (previous)"
             pb, sb = q.locator("#tc-succ svg").bounding_box(), q.locator("#tc-succ .l").bounding_box(); assert pb["x"] > sb["x"], "arrow right of the number (next)"
             assert q.get_attribute("#tc-prec", "title").startswith("Precedente: 10.") and q.get_attribute("#tc-succ", "title").startswith("Successivo: 12."), (q.get_attribute("#tc-prec", "title"), q.get_attribute("#tc-succ", "title"))
-            for f, gone, kept in (("index.html", "#tc-prec", "#tc-succ"), ("pratica/tp.html", "#tc-succ", "#tc-prec")):
+            for f, gone, kept in (("index.html", "#tc-prec", "#tc-succ"), ("capitoli/21-tempi.html", "#tc-succ", "#tc-prec")):
                 q.goto(T + f); q.wait_for_selector("#tbar"); assert not q.query_selector(gone) and q.query_selector(kept), (f, gone)
             for w in (1280, 1000):
                 q.set_viewport_size({"width": w, "height": 900}); q.goto(T + "capitoli/11-formula.html"); q.wait_for_selector("#tbar")

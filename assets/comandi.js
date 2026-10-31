@@ -44,7 +44,7 @@
     await S[nome]();
     if (sel) { const e = document.querySelector("#strum " + sel); if (e) e.scrollIntoView({ block: "start" }); }
   };
-  const narrow = matchMedia("(max-width:980px)");
+  const narrow = matchMedia("(max-width:899.98px)");
   /** The one discreet toggle of the side index: on a wide screen it hides/shows #side (remembered in QA11Y «noside»), on a narrow one it opens the sheet. */
   function indice() {
     if (narrow.matches) { const m = $("#menu"); if (m) m.click(); return; }
