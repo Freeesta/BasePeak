@@ -16,7 +16,7 @@
   F.NOMI_MSI = {
     "1": "Composti identificati (Identified compounds)",
     "2": "Composti annotati in via provvisoria (Putatively annotated compounds)",
-    "3": "Classi di composti caratterizzate in via provvisoria (Putatively characterised compound classes)",
+    "3": "Classi di composti caratterizzate in via provvisoria (Putatively characterized compound classes)",
     "4": "Composti sconosciuti (Unknown compounds)",
   };
   /** Approximate mapping (didactic): Schymanski level -> MSI level. */
