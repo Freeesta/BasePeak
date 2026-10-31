@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 376" role="img" aria-labelledby="ti de"><title id="ti">Spettrografo di massa di Aston</title><desc id="de">Dalla sorgente il fascio passa due fenditure e un campo elettrico, che separa gli ioni di una stessa massa in base alla velocità. Poi un diaframma e un campo magnetico che li piega in senso opposto. Gli ioni veloci (linea blu continua), medi (linea scura) e lenti (linea arancione tratteggiata) di una stessa massa si ritrovano nello stesso punto della lastra. Disegno schematico, non in scala.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<rect class="s" x="8" y="148" width="40" height="44"/>
+<text class="t m" x="28" y="214">sorgente</text>
+<path class="l" d="M48 170L90 170"/>
+<path class="th" d="M90 140L90 164"/>
+<path class="th" d="M90 176L90 200"/>
+<path class="th" d="M140 140L140 164"/>
+<path class="th" d="M140 176L140 200"/>
+<text class="t m" x="115" y="224">fenditure</text>
+<rect class="s" x="180" y="126" width="80" height="8"/>
+<rect class="s" x="180" y="206" width="80" height="8"/>
+<text class="h" x="214" y="118">+</text>
+<text class="h" x="214" y="236">−</text>
+<text class="t m" x="220" y="256">campo elettrico</text>
+<path class="l" d="M214 140L214 200" marker-end="url(#p)"/>
+<path class="th" d="M300 140L300 172"/>
+<path class="th" d="M300 196L300 230"/>
+<text class="t m" x="300" y="274">diaframma</text>
+<circle class="s" cx="450" cy="215" r="105"/>
+<text class="t m" x="394" y="174" fill-opacity=".55">×</text><text class="t m" x="422" y="174" fill-opacity=".55">×</text><text class="t m" x="450" y="174" fill-opacity=".55">×</text><text class="t m" x="478" y="174" fill-opacity=".55">×</text><text class="t m" x="506" y="174" fill-opacity=".55">×</text><text class="t m" x="394" y="202" fill-opacity=".55">×</text><text class="t m" x="422" y="202" fill-opacity=".55">×</text><text class="t m" x="450" y="202" fill-opacity=".55">×</text><text class="t m" x="478" y="202" fill-opacity=".55">×</text><text class="t m" x="506" y="202" fill-opacity=".55">×</text><text class="t m" x="394" y="230" fill-opacity=".55">×</text><text class="t m" x="422" y="230" fill-opacity=".55">×</text><text class="t m" x="450" y="230" fill-opacity=".55">×</text><text class="t m" x="478" y="230" fill-opacity=".55">×</text><text class="t m" x="506" y="230" fill-opacity=".55">×</text><text class="t m" x="394" y="258" fill-opacity=".55">×</text><text class="t m" x="422" y="258" fill-opacity=".55">×</text><text class="t m" x="450" y="258" fill-opacity=".55">×</text><text class="t m" x="478" y="258" fill-opacity=".55">×</text><text class="t m" x="506" y="258" fill-opacity=".55">×</text>
+<text class="t m" x="450" y="340">magnete (B entrante)</text>
+
+<path class="ra" d="M140 170L215 170L352 179.6"/>
+<path class="ra" d="M352 179.6Q471.7 188 612 200"/>
+
+<path class="l" d="M140 170L215 170L352 196.6"/>
+<path class="l" d="M352 196.6Q469.8 219.5 612 200"/>
+
+<path class="rb" d="M140 170L215 170L352 217.2"/>
+<path class="rb" d="M352 217.2Q465.5 256.2 612 200"/>
+<path class="th" d="M596 100L634 300"/>
+<text class="t m" x="622" y="322">lastra</text>
+<circle class="s" cx="612" cy="200" r="4"/>
+<path class="ra" d="M20 316L60 316"/>
+<text class="t" x="66" y="320">ione veloce</text>
+<path class="l" d="M20 336L60 336"/>
+<text class="t" x="66" y="340">ione di velocità media</text>
+<path class="rb" d="M20 356L60 356"/>
+<text class="t" x="66" y="360">ione lento</text>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" role="img" aria-labelledby="ti de"><title id="ti">Tubo a scarica con catodo forato: raggi catodici e raggi canale</title><desc id="de">Un tubo di vetro a bassa pressione con un anodo a sinistra e un catodo forato a destra. I raggi catodici, in blu a tratto continuo, vanno dal catodo verso l'anodo. I raggi canale, in arancione tratteggiati, attraversano i fori del catodo nel verso opposto.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<rect class="s" x="70" y="100" width="580" height="150" rx="40"/>
+<path class="th" d="M190 120L190 230"/>
+<text class="t m" x="190" y="275">anodo</text>
+<text class="h" x="176" y="150">+</text>
+<path class="th" d="M430 120L430 148"/>
+<path class="th" d="M430 162L430 188"/>
+<path class="th" d="M430 202L430 230"/>
+<text class="t m" x="430" y="275">catodo forato</text>
+<text class="h" x="438" y="112">−</text>
+<path class="d" d="M426 155L434 155"/>
+<path class="d" d="M426 195L434 195"/>
+<path class="ra" d="M418 134L215 134" marker-end="url(#pa)"/>
+<path class="ra" d="M418 175L215 175" marker-end="url(#pa)"/>
+<path class="ra" d="M418 216L215 216" marker-end="url(#pa)"/>
+<path class="rb" d="M370 155L625 155" marker-end="url(#pb)"/>
+<path class="rb" d="M370 195L625 195" marker-end="url(#pb)"/>
+<text class="t" x="215" y="90">raggi catodici</text>
+<path class="l" d="M290 94L320 128"/>
+<text class="t" x="500" y="90">raggi canale</text>
+<path class="l" d="M540 94L560 148"/>
+<path class="l" d="M190 250V318H300M360 318H430V250"/>
+<path class="th" d="M300 306L300 330"/>
+<path class="th" d="M318 312L318 324"/>
+<path class="th" d="M340 306L340 330"/>
+<path class="th" d="M358 312L358 324"/>
+<text class="t m" x="329" y="346">alta tensione</text>
+<text class="t" x="240" y="244">tubo a bassa pressione</text>
+</svg>

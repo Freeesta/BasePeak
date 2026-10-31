@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 356" role="img" aria-labelledby="ti de"><title id="ti">Sorgente MALDI: laser, matrice e pennacchio di ioni</title><desc id="de">Un impulso laser colpisce un cristallo di matrice, che contiene le molecole del campione, depositato su una piastra. Il cristallo si vaporizza in un pennacchio di molecole di matrice, cerchi vuoti, e di ioni del campione, cerchi blu pieni. Una griglia di estrazione accelera gli ioni verso il tubo di volo di un analizzatore a tempo di volo.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<rect class="s" x="40" y="290" width="360" height="12"/>
+<text class="t m" x="120" y="326">piastra del campione</text>
+<path class="s" d="M170 290L182 262L212 252L240 262L252 290Z"/>
+<circle class="fb" cx="195" cy="275" r="3"/>
+<circle class="fb" cx="215" cy="270" r="3"/>
+<circle class="fb" cx="230" cy="280" r="3"/>
+<circle class="fb" cx="205" cy="284" r="3"/>
+<path class="rb" d="M70 60L205 245" marker-end="url(#pb)"/>
+<text class="t" x="20" y="50">impulso laser</text>
+<text class="t" x="130" y="340"></text>
+<path class="l" d="M246 280L292 322"/>
+<text class="t" x="268" y="338">cristallo di matrice con il campione</text>
+<circle class="l" cx="195" cy="206.7" r="3" stroke-width="1.2"/>
+<circle class="l" cx="170.3" cy="160.9" r="3" stroke-width="1.2"/>
+<circle class="l" cx="201.2" cy="177" r="3" stroke-width="1.2"/>
+<circle class="l" cx="212.1" cy="243.9" r="3" stroke-width="1.2"/>
+<circle class="l" cx="211.6" cy="246.8" r="3" stroke-width="1.2"/>
+<circle class="l" cx="207.7" cy="242.2" r="3" stroke-width="1.2"/>
+<circle class="l" cx="232.8" cy="192.6" r="3" stroke-width="1.2"/>
+<circle class="l" cx="206.9" cy="234.7" r="3" stroke-width="1.2"/>
+<circle class="l" cx="254.1" cy="164.2" r="3" stroke-width="1.2"/>
+<circle class="l" cx="203.1" cy="171.2" r="3" stroke-width="1.2"/>
+<circle class="l" cx="145.6" cy="115.3" r="3" stroke-width="1.2"/>
+<circle class="l" cx="184.9" cy="131.8" r="3" stroke-width="1.2"/>
+<circle class="l" cx="203.7" cy="231.8" r="3" stroke-width="1.2"/>
+<circle class="l" cx="226.6" cy="208.8" r="3" stroke-width="1.2"/>
+<circle class="l" cx="214.2" cy="226.7" r="3" stroke-width="1.2"/>
+<circle class="l" cx="199.8" cy="162.6" r="3" stroke-width="1.2"/>
+<circle class="l" cx="176.1" cy="175.3" r="3" stroke-width="1.2"/>
+<circle class="l" cx="209.4" cy="243.7" r="3" stroke-width="1.2"/>
+<circle class="l" cx="204.6" cy="156.7" r="3" stroke-width="1.2"/>
+<circle class="l" cx="216" cy="208" r="3" stroke-width="1.2"/>
+<circle class="l" cx="198.4" cy="188.6" r="3" stroke-width="1.2"/>
+<circle class="l" cx="235.7" cy="140.8" r="3" stroke-width="1.2"/>
+<circle class="l" cx="214.7" cy="217.8" r="3" stroke-width="1.2"/>
+<circle class="l" cx="241.6" cy="178.5" r="3" stroke-width="1.2"/>
+<circle class="l" cx="188.8" cy="149.9" r="3" stroke-width="1.2"/>
+<circle class="l" cx="155.8" cy="114.8" r="3" stroke-width="1.2"/>
+<circle class="fa" cx="229.5" cy="181.2" r="4.5"/>
+<circle class="fa" cx="211.6" cy="212.9" r="4.5"/>
+<circle class="fa" cx="216.2" cy="226.3" r="4.5"/>
+<circle class="fa" cx="219.9" cy="140" r="4.5"/>
+<circle class="fa" cx="189.5" cy="126.8" r="4.5"/>
+<circle class="fa" cx="221.4" cy="148.3" r="4.5"/>
+<circle class="fa" cx="208.2" cy="162" r="4.5"/>
+<circle class="fa" cx="263.9" cy="131" r="4.5"/>
+<circle class="fa" cx="224.3" cy="174.6" r="4.5"/>
+<text class="t" x="300" y="120">pennacchio</text>
+<path class="l" d="M296 116L262 150"/>
+<path class="th" d="M330 120L330 252"/>
+<path class="l" d="M330 250L330 250"/>
+<rect class="s" x="420" y="150" width="280" height="60" rx="8"/>
+<text class="t m" x="560" y="140">tubo di volo (TOF)</text>
+<path class="ra" d="M352 180L410 180" marker-end="url(#pa)"/>
+<path class="ra" d="M440 180L600 180" marker-end="url(#pa)"/>
+<path class="l" d="M330 252L330 252"/>
+<path class="th" d="M372 130V170M372 190V232"/>
+<text class="t m" x="372" y="252">griglia di</text>
+<text class="t m" x="372" y="268">estrazione</text>
+<text class="t m" x="560" y="236">ioni verso il rivelatore</text>
+</svg>

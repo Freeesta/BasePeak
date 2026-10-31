@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" role="img" aria-labelledby="ti de"><title id="ti">Sezione di una trappola ionica di Paul</title><desc id="de">Sezione di una trappola tridimensionale: un elettrodo ad anello, visto in due metà ai lati, e due calotte, sopra e sotto, tutti con superfici iperboliche. Al centro una piccola nuvola di ioni, in blu, tenuta dal campo a radiofrequenza.</desc><style>svg{--i:var(--ink,#24231f);--a:var(--c1,#1f4e7e);--b:var(--c2,#9a3412);color:var(--i)}@media (prefers-color-scheme:dark){svg{--i:var(--ink,#e4e7eb);--a:var(--c1,#7db4e6);--b:var(--c2,#fb923c)}}.t{font:13px system-ui,sans-serif;fill:currentColor}.h{font:600 14px system-ui,sans-serif;fill:currentColor}.l{fill:none;stroke:currentColor;stroke-width:1.6}.th{fill:none;stroke:currentColor;stroke-width:3}.d{fill:none;stroke:currentColor;stroke-width:1.2;stroke-dasharray:5 4}.s{fill:currentColor;fill-opacity:.1;stroke:currentColor;stroke-width:1.4}.ra{fill:none;stroke:var(--a);stroke-width:2.2}.rb{fill:none;stroke:var(--b);stroke-width:2.2;stroke-dasharray:7 4}.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{fill:var(--a);fill-opacity:.25;stroke:var(--a);stroke-width:1.6}.sb{fill:var(--b);fill-opacity:.25;stroke:var(--b);stroke-width:1.6}.m{text-anchor:middle}.e{text-anchor:end}</style><defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--a)"/></marker><marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--b)"/></marker></defs>
+<path class="s" d="M363 252L359.3 248L355.8 244L352.5 240L349.3 236L346.3 232L343.5 228L341 224L338.6 220L336.5 216L334.7 212L333.2 208L331.9 204L331 200L330.4 196L330 192L330 188L330.4 184L331 180L331.9 176L333.2 172L334.7 168L336.5 164L338.6 160L341 156L343.5 152L346.3 148L349.3 144L352.5 140L355.8 136L359.3 132L363 128L389 128L385.3 132L381.8 136L378.5 140L375.3 144L372.3 148L369.5 152L367 156L364.6 160L362.5 164L360.7 168L359.2 172L357.9 176L357 180L356.4 184L356 188L356 192L356.4 196L357 200L357.9 204L359.2 208L360.7 212L362.5 216L364.6 220L367 224L369.5 228L372.3 232L375.3 236L378.5 240L381.8 244L385.3 248L389 252Z"/>
+<path class="s" d="M97 252L100.7 248L104.2 244L107.5 240L110.7 236L113.7 232L116.5 228L119 224L121.4 220L123.5 216L125.3 212L126.8 208L128.1 204L129 200L129.6 196L130 192L130 188L129.6 184L129 180L128.1 176L126.8 172L125.3 168L123.5 164L121.4 160L119 156L116.5 152L113.7 148L110.7 144L107.5 140L104.2 136L100.7 132L97 128L71 128L74.7 132L78.2 136L81.5 140L84.7 144L87.7 148L90.5 152L93 156L95.4 160L97.5 164L99.3 168L100.8 172L102.1 176L103 180L103.6 184L104 188L104 192L103.6 196L103 200L102.1 204L100.8 208L99.3 212L97.5 216L95.4 220L93 224L90.5 228L87.7 232L84.7 236L81.5 240L78.2 244L74.7 248L71 252Z"/>
+<path class="s" d="M112 80.6L118 83.8L124 87L130 90L136 93L142 95.8L148 98.6L154 101.2L160 103.7L166 106L172 108.3L178 110.3L184 112.2L190 113.8L196 115.3L202 116.6L208 117.6L214 118.4L220 118.9L226 119.2L232 119.3L238 119.1L244 118.6L250 117.9L256 116.9L262 115.8L268 114.4L274 112.7L280 110.9L286 109L292 106.8L298 104.5L304 102L310 99.4L316 96.7L322 93.9L328 91L334 88L340 84.9L346 81.7L346 55.7L340 58.9L334 62L328 65L322 67.9L316 70.7L310 73.4L304 76L298 78.5L292 80.8L286 83L280 84.9L274 86.7L268 88.4L262 89.8L256 90.9L250 91.9L244 92.6L238 93.1L232 93.3L226 93.2L220 92.9L214 92.4L208 91.6L202 90.6L196 89.3L190 87.8L184 86.2L178 84.3L172 82.3L166 80L160 77.7L154 75.2L148 72.6L142 69.8L136 67L130 64L124 61L118 57.8L112 54.6Z"/>
+<path class="s" d="M112 299.4L118 296.2L124 293L130 290L136 287L142 284.2L148 281.4L154 278.8L160 276.3L166 274L172 271.7L178 269.7L184 267.8L190 266.2L196 264.7L202 263.4L208 262.4L214 261.6L220 261.1L226 260.8L232 260.7L238 260.9L244 261.4L250 262.1L256 263.1L262 264.2L268 265.6L274 267.3L280 269.1L286 271L292 273.2L298 275.5L304 278L310 280.6L316 283.3L322 286.1L328 289L334 292L340 295.1L346 298.3L346 324.3L340 321.1L334 318L328 315L322 312.1L316 309.3L310 306.6L304 304L298 301.5L292 299.2L286 297L280 295.1L274 293.3L268 291.6L262 290.2L256 289.1L250 288.1L244 287.4L238 286.9L232 286.7L226 286.8L220 287.1L214 287.6L208 288.4L202 289.4L196 290.7L190 292.2L184 293.8L178 295.7L172 297.7L166 300L160 302.3L154 304.8L148 307.4L142 310.2L136 313L130 316L124 319L118 322.2L112 325.4Z"/>
+<circle class="fa" cx="231.9" cy="207.7" r="2.6"/>
+<circle class="fa" cx="211.9" cy="203.6" r="2.6"/>
+<circle class="fa" cx="223.9" cy="185.6" r="2.6"/>
+<circle class="fa" cx="261" cy="191.8" r="2.6"/>
+<circle class="fa" cx="229" cy="201.6" r="2.6"/>
+<circle class="fa" cx="253.3" cy="189.5" r="2.6"/>
+<circle class="fa" cx="242.1" cy="175.8" r="2.6"/>
+<circle class="fa" cx="221.5" cy="182.9" r="2.6"/>
+<circle class="fa" cx="209" cy="173.2" r="2.6"/>
+<circle class="fa" cx="201" cy="187" r="2.6"/>
+<circle class="fa" cx="225.9" cy="184.7" r="2.6"/>
+<circle class="fa" cx="231.4" cy="171.6" r="2.6"/>
+<circle class="fa" cx="228.1" cy="194" r="2.6"/>
+<circle class="fa" cx="245.5" cy="177.7" r="2.6"/>
+<circle class="fa" cx="223.8" cy="167.9" r="2.6"/>
+<circle class="fa" cx="222.7" cy="167.5" r="2.6"/>
+<circle class="fa" cx="206" cy="203.2" r="2.6"/>
+<circle class="fa" cx="199.1" cy="197.9" r="2.6"/>
+<circle class="fa" cx="237.7" cy="184.8" r="2.6"/>
+<circle class="fa" cx="240.4" cy="198.4" r="2.6"/>
+<circle class="fa" cx="251.9" cy="186.6" r="2.6"/>
+<circle class="fa" cx="216.9" cy="180.6" r="2.6"/>
+<circle class="fa" cx="208.9" cy="189.3" r="2.6"/>
+<circle class="fa" cx="214.6" cy="204.8" r="2.6"/>
+<circle class="fa" cx="202.1" cy="178.5" r="2.6"/>
+<circle class="fa" cx="216.4" cy="168.9" r="2.6"/>
+<circle class="fa" cx="251" cy="171.3" r="2.6"/>
+<circle class="fa" cx="223.5" cy="181.5" r="2.6"/>
+<circle class="fa" cx="251.4" cy="171.9" r="2.6"/>
+<circle class="fa" cx="251.2" cy="179.8" r="2.6"/>
+<circle class="fa" cx="226.5" cy="179.3" r="2.6"/>
+<circle class="fa" cx="242.6" cy="174.2" r="2.6"/>
+<circle class="fa" cx="228.1" cy="195.9" r="2.6"/>
+<circle class="fa" cx="250.6" cy="171" r="2.6"/>
+<circle class="fa" cx="255.8" cy="201.3" r="2.6"/>
+<circle class="fa" cx="218.8" cy="195" r="2.6"/>
+<circle class="fa" cx="221.9" cy="210.2" r="2.6"/>
+<circle class="fa" cx="235" cy="186.4" r="2.6"/>
+<circle class="fa" cx="224.6" cy="186.6" r="2.6"/>
+<circle class="fa" cx="226.1" cy="176.5" r="2.6"/>
+<circle class="fa" cx="254.7" cy="173.8" r="2.6"/>
+<circle class="fa" cx="196" cy="189.2" r="2.6"/>
+<circle class="fa" cx="226.5" cy="196.2" r="2.6"/>
+<circle class="fa" cx="225.1" cy="187.5" r="2.6"/>
+<circle class="fa" cx="237" cy="204.5" r="2.6"/>
+<circle class="fa" cx="219.7" cy="183.9" r="2.6"/>
+<path class="l" d="M366 174L420 150"/>
+<text class="t" x="428" y="154">elettrodo ad anello</text>
+<path class="l" d="M300 83.28932188134526L420 70"/>
+<text class="t" x="428" y="74">calotte (due)</text>
+<path class="l" d="M264 200L420 230"/>
+<text class="t" x="428" y="234">nuvola di ioni</text>
+<path class="l" d="M45 119.3L45 260.7" marker-end="url(#p)"/>
+<path class="l" d="M45 260.7L45 119.3" marker-end="url(#p)"/>
+<text class="t e" x="38" y="194">2z₀</text>
+<text class="t" x="242" y="246"></text>
+</svg>
