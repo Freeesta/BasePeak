@@ -129,7 +129,7 @@ Nel TDC un bin non registra due ioni della stessa spinta. Nel modello didattico,
 <span class="eq"><i>k</i><sub>oss</sub> = 1 − e<sup>−<i>k</i></sup><span class="no">(22.8)</span></span>
 ```
 
-Con *k* = 0,1 se ne vedono 0,095 (perso il 4,8%); con *k* = 1, 0,632 (perso il 37%). I bin più alti si saturano per primi: l'intensità è sottostimata e il centroide si sposta verso il lato che arriva prima. Un ADC invece si ferma al valore massimo del convertitore.
+Con *k* = 0,1 se ne vedono 0,095 (perso il 4,8%); con *k* = 1, 0,632 (perso il 37%). I bin più alti si saturano per primi e l'intensità è sottostimata. Se il tempo morto dura più di un bin, uno ione arrivato prima blocca anche quelli che lo seguono: il picco si deforma e il centroide si sposta verso i tempi più brevi, cioè verso m/z più bassi. Un ADC invece si ferma al valore massimo del convertitore.
 
 ## Accuratezza, precisione e taratura
 
