@@ -124,14 +124,14 @@ try:
         step("previous / next (top and bottom) resolve on every page; first has no previous, last no next (reader mode: last is 21)", lambda: prevnext(False))
         step("previous / next in administrator mode: 21 -> 22 ... 32 last", lambda: prevnext(True))
         def drafts():
-            F = [f for f in sorted(pathlib.Path(ROOT / "capitoli").glob("*.html")) if re.match(r"(2[2-9]|3[0-2])-", f.name)]; assert len(F) == 11, F
+            F = re.findall(r'"capitoli/((?:2[2-9]|3[0-2])-[^"]+\.html)", "\d+", "[^"]+", "VII\. Chemioinformatica"', (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8")); assert len(F) == 11, F
             for admin in (False, True):
                 c, q = ctx(admin=admin); q.goto(T + "index.html"); q.wait_for_selector("#side"); q.wait_for_selector("main h3")
                 heads = q.eval_on_selector_all("main h3", "e=>e.map(h=>h.textContent.trim())"); cards = q.eval_on_selector_all("main .cards a", "e=>e.map(a=>a.getAttribute('href'))")
                 menu = q.eval_on_selector_all("#side a", "e=>e.map(a=>a.getAttribute('href'))"); intro = q.inner_text("main p:has-text('parti di teoria')")
                 has = lambda L: [h for h in L if re.search(r"(2[2-9]|3[0-2])-", h)]
                 assert ("VII. Chemioinformatica" in heads) == admin and bool(has(cards)) == admin and bool(has(menu)) == admin, (admin, heads, has(cards), has(menu))
-                assert intro.startswith("Sette parti" if admin else "Sei parti"), (admin, intro)
+                assert intro.startswith("Sei parti" if admin else "Cinque parti"), (admin, intro)
                 q.keyboard.press("Control+k"); q.wait_for_selector("#cerca-in", state="visible"); q.fill("#cerca-in", "centroide")
                 q.wait_for_function("document.querySelector('#cerca-st').textContent.trim().length > 0")
                 found = q.inner_text("#cerca-list")

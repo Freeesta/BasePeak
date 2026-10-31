@@ -62,7 +62,7 @@ try:
             qa = new(); qa.add_init_script("try{localStorage.setItem('mzlab.admin','1')}catch(_){}")      # administrator mode: 21 -> 22 ... 32, and 32 is the last page
             for f, gone, kept in (("index.html", "#tc-prec", "#tc-succ"), ("capitoli/32-esempio.html", "#tc-succ", "#tc-prec"), ("capitoli/21-tempi.html", None, "#tc-succ")):
                 qa.goto(T + f); qa.wait_for_selector("#tbar"); assert (gone is None or not qa.query_selector(gone)) and qa.query_selector(kept), (f, gone)
-            qa.goto(T + "capitoli/21-tempi.html"); qa.wait_for_selector("#tbar"); assert qa.get_attribute("#tc-succ", "href") == "22-segnale.html", qa.get_attribute("#tc-succ", "href")
+            qa.goto(T + "capitoli/21-tempi.html"); qa.wait_for_selector("#tbar"); assert qa.get_attribute("#tc-succ", "href") == "../capitoli/22-segnale.html", qa.get_attribute("#tc-succ", "href")
             qa.close()
             for w in (1280, 1000):
                 q.set_viewport_size({"width": w, "height": 900}); q.goto(T + "capitoli/11-formula.html"); q.wait_for_selector("#tbar")
