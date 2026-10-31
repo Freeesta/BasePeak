@@ -27,7 +27,7 @@ Skeleton from tools/nuovo_capitolo.py: no course text here. Write by hand from t
 Do not copy sentences from the sources (tools/controlla_teoria.py rejects runs of 10 identical words).
 -->
 <meta name="robots" content="noindex">
-<title>@TITLE@ · Teoria QqQ lab</title><link rel="icon" href="../favicon-32.png"><link rel="stylesheet" href="teoria.css"><script src="tema.js"></script></head>
+<title>@TITLE@ · Teoria QqQ lab</title><link rel="icon" href="favicon.ico" sizes="48x48"><link rel="icon" href="icone/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icone/apple-touch-icon.png"><link rel="manifest" href="site.webmanifest"><meta name="theme-color" content="#2f6aa3"><link rel="stylesheet" href="teoria.css"><script src="tema.js"></script></head>
 <body>
 <div class="wrap"><nav id="side"></nav><main>
 <div class="kicker">Capitolo @N@</div>
