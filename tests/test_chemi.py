@@ -89,7 +89,7 @@ def test_rows_22_to_32():
     for f, n, _, _ in rs:
         assert (ROOT / f).is_file(), f
         assert Path(f).name.startswith(f"{int(n):02d}-"), f
-        assert (CAP / "src" / (Path(f).stem + ".md")).is_file(), f
+        # the .md twin is optional: the html is the only source (docs/COME-MODIFICARE.md); a twin that exists is not required to follow it
 
 
 def test_public_pages_not_hidden():

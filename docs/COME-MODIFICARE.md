@@ -1,13 +1,60 @@
-# Come modificare la Teoria
+# Il modo più semplice per cambiare una pagina
 
-Non c'è niente da compilare: modifichi, salvi, ricarichi la pagina nel browser.
+Non serve installare niente. Non serve il terminale. Non serve nessuna password o «token».
+
+## I 5 passi
+
+1. **Apri la pagina** sul sito (https://freeesta.github.io/BasePeak/) e vai a quella che vuoi cambiare.
+2. **Sblocca la modifica** (solo la prima volta): premi 5 volte sul logo in alto a sinistra. Compare «Sbloccato». Poi premi **«Modifica questa pagina»** nella barra in alto (oppure Alt+E).
+3. **Cambia il testo** come lo vedi, come in Word. Con i bottoni in alto puoi:
+   - mettere grassetto, corsivo, pedice (H₂O), apice (10⁻⁵) e collegamenti;
+   - fare titoli, sottotitoli ed elenchi;
+   - inserire i riquadri pronti: **Concetto chiave**, **Errore frequente**, **In laboratorio**, **Domande di ripasso**;
+   - annullare e ripetere.
+
+   Il bottone **«Codice»** mostra il testo con i tag. Dice se hai dimenticato di chiudere un tag.
+4. **Premi «Salva e proponi la modifica».** Il file della pagina si scarica da solo e il suo testo viene copiato. Si apre una scheda di GitHub.
+5. **Su GitHub** (serve il tuo account):
+   1. seleziona tutto il testo (Ctrl+A, su Mac Cmd+A);
+   2. incolla (Ctrl+V, su Mac Cmd+V);
+   3. scrivi in alto che cosa hai cambiato;
+   4. premi «Commit changes…», poi «Propose changes», poi «Create pull request».
+
+Fatto. Il controllo automatico guarda la pagina. Se è tutto a posto, il COO la pubblica. Se compare una X rossa, leggi il messaggio: dice che cosa correggere.
+
+**Caso normale:** se hai cambiato un **titolo** o una **parola del glossario**, la X rossa dice che l'indice di ricerca o il glossario non sono aggiornati. Non hai sbagliato niente. Scrivi a Claude: «rigenera gli indici della mia modifica (PR n)» (al posto di n il numero della tua pull request). Il COO li aggiorna. Se cambi solo il testo dei paragrafi, questo non succede.
+
+## Se preferisci scrivere a Claude
+
+Puoi anche **non toccare niente**. Scrivi nella chat del COO che cosa vuoi cambiare. Per esempio:
+
+> Nel capitolo 5, nella sezione «La sorgente EI», cambia «vuoto» in «alto vuoto» e aggiungi un riquadro «Errore frequente» su …
+
+Claude fa la modifica, il controllo automatico la guarda, il COO la pubblica.
+
+## Se qualcosa non va
+
+- **Non vedo «Modifica questa pagina».** Premi 5 volte sul logo. Se hai già sbloccato, premi di nuovo 5 volte: è un interruttore.
+- **Ho aperto la pagina dal disco (doppio clic).** Va bene. Quando salvi, la pagina ti chiede di scegliere una volta il suo file nella cartella BasePeak del tuo computer.
+- **Il pulsante dice «Correggi gli errori».** Il testo ha un errore (per esempio un tag aperto e mai chiuso). Il messaggio dice la riga e che cosa fare.
+- **Non hai cambiato niente?** Il pulsante lo dice: non c'è niente da proporre.
+- **Le figure interattive non si cambiano qui.** Sono segnate «Figura interattiva: qui non si modifica». Il resto della pagina sì.
+- **Ho lasciato «Scrivi qui il testo.» in un riquadro.** Il controllo se ne accorge: sostituisci la frase o togli il riquadro.
+- **Il controllo automatico dice che l'indice di ricerca o il glossario non sono aggiornati.** È normale dopo aver cambiato un titolo o una parola del glossario. Scrivi a Claude: «rigenera gli indici della mia modifica (PR n)».
+- **Opzionale, per chi ha il server locale.** Con `python3 tools/server_teoria.py` compare anche **«Salva su questo computer»**: scrive il file nella cartella, senza pubblicare niente. Senza server non serve.
+
+---
+
+# Per chi modifica i file a mano
+
+Il resto di questa guida serve se preferisci un editor di testo. Non c'è niente da compilare: modifichi, salvi, ricarichi la pagina nel browser.
 
 ## Com'è organizzato il sito
 
 | Cartella | Contenuto |
 |---|---|
 | `index.html` | introduzione e mappa del percorso (pagina iniziale) |
-| `capitoli/` | un file HTML per capitolo; `capitoli/src/` ha i sorgenti Markdown |
+| `capitoli/` | un file HTML per capitolo: **è l'unica fonte del testo**. `capitoli/src/` ha i vecchi gemelli Markdown: non si aggiornano più, non servono a niente e si cancelleranno |
 | `pratica/` | le pagine della Pratica (`index.html`, `ei.html`, ...) e il codice e i dati dei giochi |
 | `assets/` | stile, motore JavaScript, caratteri, icone, librerie di terzi (`vendor/`), indice di ricerca e glossario generati |
 | `tools/`, `tests/`, `tests_e2e/`, `docs/` | script, controlli, guide: non fanno parte del sito |
@@ -33,7 +80,7 @@ Sul sito (https://freeesta.github.io/BasePeak/) arrivano solo `index.html`, `cap
 | Colori, caratteri, aspetto dei riquadri | `assets/teoria.css` |
 | Figure interattive (calcoli e grafici) | in `assets/`: `sim-quad.js`, `sim-esi.js`, `sim-qqq.js`, `sim-frag.js`, `sim-misc.js`, `sim-chrom.js` (cromatografia), `sim-ei.js` (EI), `sim-hr.js` (risoluzione e formule) |
 
-Per il testo servono solo i file `.html` di `capitoli/`. I `.js` vanno toccati solo per cambiare le figure interattive.
+Per il testo servono solo i file `.html` di `capitoli/`. I `.js` vanno toccati solo per cambiare le figure interattive. I file `capitoli/src/*.md` non vanno modificati: nessun controllo li legge più come fonte.
 
 ## Con che cosa
 
@@ -130,7 +177,7 @@ Nei capitoli 22–32 il file di una figura non si collega in fondo alla pagina: 
 - Pagina vuota o figure sparite: di solito un tag non chiuso o un `"` mancante vicino all'ultima modifica.
 - In Visual Studio Code i tag non chiusi sono evidenziati.
 - Prima di modifiche grosse, fai un commit git (o copia il file): così puoi sempre tornare indietro.
-- Controllo automatico (opzionale): `python3 -m pytest -q tests` dalla cartella del programma verifica, tra l'altro, che ogni collegamento (`href`, `src`, `@import`) di ogni pagina, foglio di stile e script del sito punti a un file che esiste (`tests/test_integrita_sito.py`). Per il controllo dei capitoli: `python3 tools/controlla_teoria.py`.
+- Controllo veloce degli errori tipici di chi scrive a mano (tag non chiusi, id doppi, collegamenti rotti, salti di titolo, immagini senza `alt`, «in costruzione»; messaggi in italiano): `python3 tools/controlla_modifica.py`. Controllo completo (opzionale): `python3 -m pytest -q tests` dalla cartella del programma verifica, tra l'altro, che ogni collegamento (`href`, `src`, `@import`) di ogni pagina, foglio di stile e script del sito punti a un file che esiste (`tests/test_integrita_sito.py`). Per il controllo dei capitoli: `python3 tools/controlla_teoria.py`.
 
 ## La Pratica
 
@@ -145,4 +192,4 @@ La cartella `editor/` contiene l'editor dei capitoli (pagina `editor/teoria.html
 
 ## Server locale per modificare nel browser
 
-`python3 tools/server_teoria.py` serve il sito su http://127.0.0.1:8765 (solo `index.html`, `capitoli/`, `pratica/`, `assets/`) e permette di salvare le pagine di `capitoli/` e `pratica/` dal modo modifica (Alt+E).
+`python3 tools/server_teoria.py` serve il sito su http://127.0.0.1:8765 (solo `index.html`, `capitoli/`, `pratica/`, `assets/`). **È facoltativo**: l'editor funziona anche senza. Se c'è, e apri la pagina con l'indirizzo con il token che stampa all'avvio, compare il pulsante «Salva su questo computer» (scrive il file nella cartella, senza `git` e senza pubblicare).

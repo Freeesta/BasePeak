@@ -31,7 +31,7 @@
       `base` is the address of the page the node comes from: relative links become absolute, so the downloaded file still points at the right place. */
   function cleanMainElement(mainNode, base = location.href) {
     const cl = mainNode.cloneNode(true);
-    cl.querySelectorAll(".pn, .navtop, .ha, .skip, #top, #side, script, style, #tedit-bar, #export-modal, .fzoom, #lb, .ctl, .btns, canvas, #phnote, .phex, .readout, .fb, .resume, [hidden]").forEach(e => e.remove());
+    cl.querySelectorAll(".pn, .navtop, .ha, .skip, #top, #side, script, style, #ed-bar, #export-modal, .fzoom, #lb, .ctl, .btns, canvas, #phnote, .phex, .readout, .fb, .resume, [hidden]").forEach(e => e.remove());
     cl.querySelectorAll(".tw").forEach(tw => { const t = tw.querySelector("table"); if (t) tw.replaceWith(t); else tw.remove(); });
     cl.querySelectorAll(".g").forEach(sp => sp.replaceWith(document.createTextNode(sp.textContent)));
     // an interactive figure keeps its title and its note; the page says where to find it

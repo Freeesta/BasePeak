@@ -175,6 +175,10 @@ def handle_salva_api(handler: http.server.BaseHTTPRequestHandler) -> None:
             })
             return
 
+        if data.get("push") is False:                      # «Salva su questo computer»: the file is written and checked, nothing goes to git
+            send_json(handler, 200, {"ok": True, "msg": "Capitolo salvato su questo computer.", "commit": "Non inviato"})
+            return
+
         st = subprocess.run(["git", "-C", str(ROOT), "status", "--porcelain", str(target_file)], capture_output=True, text=True)
         if not st.stdout.strip():
             send_json(handler, 200, {"ok": True, "msg": "Nessuna nuova modifica.", "commit": "Invariato"})
