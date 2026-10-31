@@ -19,7 +19,7 @@ Una massa esatta non indica una formula sola, ma tutte quelle la cui massa calco
 4. si tengono le formule con errore, in valore assoluto, non oltre la tolleranza.
 
 ```html
-<span class="eq">errore (ppm) = <span class="frac"><span><i>m</i><sub>calc</sub> − <i>m</i><sub>mis</sub></span><span><i>m</i><sub>mis</sub></span></span> × 10<sup>6</sup><span class="no">(30.1)</span></span>
+<span class="eq">errore (ppm) = <span class="frac"><span><i>m</i><sub>mis</sub> − <i>m</i><sub>teo</sub></span><span><i>m</i><sub>teo</sub></span></span> × 10<sup>6</sup><span class="no">(30.1)</span></span>
 ```
 
 Esempio: lo ione [M+H]^+^ misurato a 216,1011 corrisponde a una massa neutra di 215,0938, che è quella di C~8~H~14~ClN~5~ (l'atrazina, a titolo di esempio). Ogni formula elencata deve poi avere un RDB intero e non negativo ([capitolo 11](11-formula.html)).
@@ -38,7 +38,7 @@ Ogni formula ha un gruppo teorico di picchi M, M+1, M+2, M+3, ricavabile dalle a
 
 Qui *r~k~* è l'intensità misurata del picco M+*k* e *t~k~* quella teorica. I programmi reali usano punteggi propri, più raffinati: questo serve a capire l'effetto.
 
-Per C~8~H~14~ClN~5~ il pattern teorico è 100 : 10,64 : 32,51 : 3,42. Se si misura 100 : 10,0 : 30,0 : 3,0, la somma degli scarti è 3,57 e quella dei valori teorici 46,57: *S* = 0,923. Se M+2 sparisce sotto la soglia, *S* scende a 0,21. Un rivelatore saturo gonfia tutti i rapporti rispetto a M. Il segnale va quindi controllato prima (capitolo [22](22-segnale.html)).
+Per C~8~H~14~ClN~5~ il pattern teorico è 100 : 10,64 : 32,51 : 3,42. Se si misura 100 : 10,0 : 30,0 : 3,0, la somma degli scarti è 3,57 e quella dei valori teorici 46,57: *S* = 0,923. Se M+2 e M+3 spariscono sotto la soglia, *S* scende a 0,21. Un rivelatore saturo gonfia tutti i rapporti rispetto a M. Il segnale va quindi controllato prima (capitolo [22](22-segnale.html)).
 
 ## Regole euristiche
 

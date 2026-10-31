@@ -31,7 +31,7 @@ Griss2014	10.1074/mcp.O113.036681	verified	19,23	Griss J. et al. (2014) The mzTa
 Hoffmann2019	10.1021/acs.analchem.8b04310	verified	19,23	Hoffmann N. et al. (2019) mzTab-M: a data standard for sharing quantitative results in mass spectrometry metabolomics. Anal. Chem. 91, 3302-3310
 Lampen1994	10.1366/0003702944027840	verified	19,23	Lampen P. et al. (1994) JCAMP-DX for mass spectrometry. Appl. Spectrosc. 48, 1545-1552
 McDonald1988	10.1366/0003702884428734	verified	19,23	McDonald R.S., Wilks P.A. (1988) JCAMP-DX: a standard form for exchange of infrared spectra in computer readable form. Appl. Spectrosc. 42, 151-162
-ASTM-E2077		to verify		ASTM E2077, Standard specification for analytical data interchange protocol for mass spectrometric data (ANDI-MS / netCDF)
+ASTM-E2077	10.1520/E2077-00R24	verified		ASTM E2077-00(2024) Standard Specification for Analytical Data Interchange Protocol for Mass Spectrometric Data. ASTM International
 Chambers2012	10.1038/nbt.2377	verified	19,23	Chambers M.C. et al. (2012) A cross-platform toolkit for mass spectrometry and proteomics (ProteoWizard). Nat. Biotechnol. 30, 918-920
 Kessner2008	10.1093/bioinformatics/btn323	verified	19,23	Kessner D. et al. (2008) ProteoWizard: open source software for rapid proteomics tools development. Bioinformatics 24, 2534-2536
 Hulstaert2020	10.1021/acs.jproteome.9b00328	verified	19,23	Hulstaert N. et al. (2020; online 2019) ThermoRawFileParser: modular, scalable, and cross-platform RAW file conversion. J. Proteome Res. 19, 537-542
@@ -82,9 +82,9 @@ Winkler2020	10.1039/9781788019880	verified	19,32	Winkler R. (ed.) (2020) Process
 deHoffmann2007		to verify		de Hoffmann E., Stroobant V. (2007) Mass Spectrometry: Principles and Applications, 3rd ed., Wiley (ISBN 978-0-470-03310-4)
 McLaffertyTurecek1993		to verify		McLafferty F.W., Tureček F. (1993) Interpretation of Mass Spectra, 4th ed., University Science Books
 xcms-src		verified	19,24	xcms R package source, `R/functions-Params.R` (CentWaveParam, MatchedFilterParam, PeakDensityParam defaults), github.com/sneumann/xcms, devel
-NIST-MSSearch		to verify		NIST Mass Spectral Search Program manual (match factor, reverse match factor, probability)
-GNPS-docs		to verify		GNPS documentation, molecular networking parameters
-MassBank-licences		to verify		massbank.eu record licences
+NIST-MSSearch		verified		NIST Mass Spectral Search Program, manual v2.2, p. 39 (match factor, reverse match factor; composite formula not verified)
+GNPS-docs		verified		GNPS documentation, molecular networking parameters, ccms-ucsd.github.io/GNPSDocumentation/networking/ (read 2026-10-31)
+MassBank-licences		verified		MassBank record format, §2.1.5 LICENSE (github.com/MassBank/MassBank-web, Documentation/MassBankRecordFormat.md)
 preexisting-01	10.1002/0471479357	preexisting		
 preexisting-02	10.1002/hlca.19580410703	preexisting		
 preexisting-03	10.1002/jms.1190301102	preexisting		
