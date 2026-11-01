@@ -113,7 +113,7 @@ def test_pages_workflow_publishes_only_the_site():
 
 
 def test_published_set_has_no_stray_file():
-    """Everything the workflow copies is a file of index.html, capitoli/, pratica/ or assets/; nothing like tests/, tools/, docs/ or editor/ is inside them."""
+    """Everything the workflow copies is a file of index.html, capitoli/, pratica/ or assets/; nothing like tests/, tools/ or docs/ is inside them."""
     for f in site_files():
         rel = f.relative_to(ROOT).parts
         assert rel[0] in PUBLISHED, f

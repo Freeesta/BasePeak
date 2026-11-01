@@ -89,7 +89,7 @@ def test_body_text_edits_do_not_demand_regeneration_but_titles_and_glossary_do(t
 
 
 def test_no_tool_or_script_reads_the_markdown_twins():
-    """The html is the only source: no tool or script of the site reads capitoli/src/*.md (the tests only look at a twin that happens to exist)."""
+    """The html is the only source: no tool or script of the site reads capitoli/src/*.md; the twins are deleted."""
     import re
     for d in ("tools", "assets"):
         for f in (ROOT / d).glob("*.*"):

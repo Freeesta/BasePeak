@@ -89,7 +89,6 @@ def test_rows_22_to_32():
     for f, n, _, _ in rs:
         assert (ROOT / f).is_file(), f
         assert Path(f).name.startswith(f"{int(n):02d}-"), f
-        # the .md twin is optional: the html is the only source (docs/COME-MODIFICARE.md); a twin that exists is not required to follow it
 
 
 def test_public_pages_not_hidden():
@@ -318,20 +317,18 @@ def test_formulary_section_6_names_chapters_that_contain_the_formula():
 
 def test_back_links_to_part_vii_are_plain_visible_text():
     """Part VII is published: the pointers from the older chapters are no longer gated (no .solo-esteso, no hidden) and each names an existing chapter."""
-    for p in sorted(CAP.glob("*.html")) + sorted((CAP / "src").glob("*.md")):
+    for p in sorted(CAP.glob("*.html")):
         # Storia is published too: no pointer anywhere is gated
         assert not re.search(r'<\w+[^>]*solo-esteso[^>]*\bhidden\b', text(p)), p.name
-    # the six chapters of the plan carry the back-links, in the html and in the md twin
+    # the six chapters of the plan carry the back-links
     for name in ("03-gc", "09-risoluzione", "10-dati", "11-formula", "17-hr-dda", "18-disegno"):
         h = text(CAP / f"{name}.html")
-        m = text(CAP / "src" / f"{name}.md")
         n = h.count("Approfondimento: <a")
-        assert n >= 1 and n == m.count("Approfondimento: <a"), name
-        for t in (h, m):
-            found = re.findall(r'Approfondimento: <a href="(\d\d-[a-z-]+\.html)">capitolo (\d+) \([^)]+\)</a>\.', t)
-            assert len(found) == n, name
-            for href, num in found:
-                assert part_files().get(href) == int(num), (name, href)
+        assert n >= 1, name
+        found = re.findall(r'Approfondimento: <a href="(\d\d-[a-z-]+\.html)">capitolo (\d+) \([^)]+\)</a>\.', h)
+        assert len(found) == n, name
+        for href, num in found:
+            assert part_files().get(href) == int(num), (name, href)
 
 
 def test_part_vii_bibliography_block_has_every_cited_doi_once():
