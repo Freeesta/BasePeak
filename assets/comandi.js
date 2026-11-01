@@ -58,8 +58,8 @@
   const TCMD = {
     lista: [
       { id: "indice", icona: "indice", etichetta: "Indice", titolo: "Mostra/nascondi indice", gruppo: "nav", chiave: "F", premuto: () => (narrow.matches ? !!$("#side.open") : !(window.QA11Y && QA11Y.read().noside)), run: indice },
-      { id: "prec", icona: "prec", etichetta: "Precedente", testo: prevC ? prevC[1] : "", titolo: prevC ? "Precedente: " + nm(prevC) : "", gruppo: "nav", href: prevC && SITE.up + prevC[0], nascosto: !prevC, run: () => prevC && go(prevC[0]) },
-      { id: "succ", icona: "succ", etichetta: "Successivo", testo: nextC ? nextC[1] : "", dopo: true, titolo: nextC ? "Successivo: " + nm(nextC) : "", gruppo: "nav", href: nextC && SITE.up + nextC[0], nascosto: !nextC, run: () => nextC && go(nextC[0]) },
+      { id: "prec", icona: "prec", etichetta: "Precedente", testo: prevC ? prevC[1] : "", nome: prevC ? prevC[2] : "", titolo: prevC ? "Precedente: " + nm(prevC) : "", gruppo: "nav", href: prevC && SITE.up + prevC[0], nascosto: !prevC, run: () => prevC && go(prevC[0]) },
+      { id: "succ", icona: "succ", etichetta: "Successivo", testo: nextC ? nextC[1] : "", nome: nextC ? nextC[2] : "", dopo: true, titolo: nextC ? "Successivo: " + nm(nextC) : "", gruppo: "nav", href: nextC && SITE.up + nextC[0], nascosto: !nextC, run: () => nextC && go(nextC[0]) },
       { id: "cerca", icona: "cerca", etichetta: "Cerca", titolo: "Cerca nella Teoria (" + (mac ? "⌘K" : "Ctrl+K") + ")", gruppo: "uso", chiave: mac ? "⌘K" : "Ctrl K", run: () => T().cerca && T().cerca() },
       { id: "glossario", posto: "side", icona: "glossario", etichetta: "Glossario", titolo: "Glossario e bibliografia", gruppo: "uso", href: SITE.up + "capitoli/19-glossario.html", run: () => go("capitoli/19-glossario.html") },
       { id: "formule", posto: "side", icona: "formule", etichetta: "Formule", titolo: "Formulario per l'orale", gruppo: "uso", href: SITE.up + "capitoli/20-formulario.html", run: () => go("capitoli/20-formulario.html") },
@@ -122,7 +122,9 @@
     const el = document.createElement(c.href && !c.disabilitato ? "a" : "button");
     if (el.tagName === "BUTTON") el.type = "button"; else el.href = c.href;
     el.className = "tb"; el.id = "tc-" + c.id; el.dataset.cmd = c.id;
-    const l = `<span class="l">${c.testo || c.etichetta}</span>`;
+    // previous / next: the number of the neighbour AND its title (cut with an ellipsis by the CSS, never by the script); the full title stays in title / aria-label
+    const l = c.nome ? `<span class="l"><span class="n">${c.testo}</span><span class="lt">${c.nome.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</span></span>` : `<span class="l">${c.testo || c.etichetta}</span>`;
+    if (c.nome) el.classList.add("nb");
     el.innerHTML = (c.dopo ? l + svg(c.icona) : svg(c.icona) + l) + (c.figli ? '<span class="l car" aria-hidden="true">▾</span>' : "");
     el.setAttribute("aria-label", c.testo ? c.titolo : c.etichetta + (c.chiave ? " (" + c.chiave + ")" : "")); el.title = c.titolo || c.etichetta;
     if (c.disabilitato) { el.setAttribute("aria-disabled", "true"); el.tabIndex = -1; }
