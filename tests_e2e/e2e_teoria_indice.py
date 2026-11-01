@@ -75,7 +75,7 @@ try:
                 q.wait_for_function("id=>{const a=document.querySelector('#side a[aria-current=location]');return a&&a.getAttribute('href')==='#'+id}", arg=h, timeout=5000)
                 seen.append(h)
                 assert q.evaluate("document.querySelectorAll('#side a[aria-current=location]').length") == 1
-                assert q.evaluate("(()=>{const a=document.querySelector('#side a[aria-current=location]').getBoundingClientRect(),s=document.querySelector('#side').getBoundingClientRect();return a.top>=s.top-1&&a.bottom<=s.bottom+1})()"), "current section not scrolled into view in the menu"
+                assert q.evaluate("(()=>{const a=document.querySelector('#side a[aria-current=location]').getBoundingClientRect(),s=document.querySelector('#side .sidescroll').getBoundingClientRect();return a.top>=s.top-1&&a.bottom<=s.bottom+1})()"), "current section not scrolled into view in the menu"
             assert len(set(seen)) == 3
             q.evaluate("scrollTo(0,0)"); q.wait_for_function("!document.querySelector('#side a[aria-current=location]')", timeout=5000)
             c.close()
@@ -240,7 +240,7 @@ try:
             bad = "(()=>{const s=document.querySelector('#side'),o=[];if(s.scrollWidth>s.clientWidth+1)o.push('side h-scroll');s.querySelectorAll('*').forEach(e=>{if(!e.offsetParent)return;const c=getComputedStyle(e);if(e.scrollWidth>e.clientWidth+1&&c.display!=='inline'&&c.overflowX!=='auto'&&c.overflowX!=='visible')o.push(e.tagName+' clipped');if(c.textOverflow==='ellipsis'||c.overflowX==='hidden'&&e.scrollHeight>e.clientHeight+1)o.push(e.tagName+' cut')});return o})()"
             c, q = ctx(); go(q, LONG); q.add_style_tag(content=css); q.wait_for_timeout(150)
             assert q.evaluate(bad) == [], q.evaluate(bad)
-            assert q.evaluate("(()=>{const s=document.querySelector('#side');return getComputedStyle(s).overflowY==='auto'&&s.scrollHeight>=s.clientHeight})()"), "menu cannot scroll"
+            assert q.evaluate("(()=>{const s=document.querySelector('#side .sidescroll');return getComputedStyle(s).overflowY==='auto'&&s.scrollHeight>=s.clientHeight})()"), "menu cannot scroll"   # the list scrolls under the fixed logo strip and search field
             c.close()
             c, q = ctx(390, 844, is_mobile=True, has_touch=True); q.goto(T + LONG); q.wait_for_selector("#menu"); q.add_style_tag(content=css); q.click("#menu"); q.wait_for_timeout(200)
             assert q.evaluate(bad) == [], q.evaluate(bad)
@@ -264,13 +264,13 @@ try:
         def keeps_scroll():
             c, q = ctx(1280, 600); go(q, LONG)
             link = q.locator("#side li a[href$='capitoli/09-risoluzione.html']")
-            q.evaluate("(()=>{const s=document.querySelector('#side'),a=document.querySelector(\"#side li a[href$='capitoli/09-risoluzione.html']\");s.scrollTop+=a.getBoundingClientRect().top-s.getBoundingClientRect().top-150})()")
+            q.evaluate("(()=>{const s=document.querySelector('#side .sidescroll'),a=document.querySelector(\"#side li a[href$='capitoli/09-risoluzione.html']\");s.scrollTop+=a.getBoundingClientRect().top-s.getBoundingClientRect().top-150})()")
             assert link.is_visible()
-            st = q.evaluate("document.querySelector('#side').scrollTop"); link.click(); q.wait_for_url("**/09-risoluzione.html"); q.wait_for_selector("#side a.on")
-            q.wait_for_timeout(300); st2 = q.evaluate("document.querySelector('#side').scrollTop"); 
+            st = q.evaluate("document.querySelector('#side .sidescroll').scrollTop"); link.click(); q.wait_for_url("**/09-risoluzione.html"); q.wait_for_selector("#side a.on")
+            q.wait_for_timeout(300); st2 = q.evaluate("document.querySelector('#side .sidescroll').scrollTop"); 
             # the sub-list of the old chapter collapses, so the numbers differ; what must hold: not reset to the top, the saved value was the old one, the current chapter is in view
             assert st > 0 and st2 > 0, (st, st2)
-            assert q.evaluate("(()=>{const a=document.querySelector('#side a.on').getBoundingClientRect(),s=document.querySelector('#side').getBoundingClientRect();return a.top>=s.top-2&&a.bottom<=s.bottom+2})()"), "current chapter out of view"
+            assert q.evaluate("(()=>{const a=document.querySelector('#side a.on').getBoundingClientRect(),s=document.querySelector('#side .sidescroll').getBoundingClientRect();return a.top>=s.top-2&&a.bottom<=s.bottom+2})()"), "current chapter out of view"
             c.close()
         step("the menu keeps its scroll position between pages", keeps_scroll)
         def layout_geometry():
@@ -316,9 +316,9 @@ try:
             pb(q, "IV. Analizzare").click(); assert q.is_hidden("#side a[aria-current=page]"), "the user can close the part of the current chapter"
             q.reload(); q.wait_for_selector("#side a.on"); assert q.is_visible("#side a[aria-current=page]") and q.is_visible("#side #toc-cur"), "on arrival the current chapter is never hidden"
             # the scroll-spy still works with a closed chapter: aria-current=location moves to a hidden link, no error, no jump of the menu
-            q.click("#side button.ctog"); top = q.evaluate("document.querySelector('#side').scrollTop")
+            q.click("#side button.ctog"); top = q.evaluate("document.querySelector('#side .sidescroll').scrollTop")
             q.evaluate("document.documentElement.style.scrollBehavior='auto';document.querySelectorAll('main h2')[3].scrollIntoView()"); q.wait_for_timeout(300)
-            assert q.evaluate("document.querySelector('#side').scrollTop") == top and q.evaluate("document.querySelectorAll('#side a[aria-current=location]').length") == 1
+            assert q.evaluate("document.querySelector('#side .sidescroll').scrollTop") == top and q.evaluate("document.querySelectorAll('#side a[aria-current=location]').length") == 1
             c.close()
         step("closing the current chapter or its part just closes it (nothing lost); on arrival it is open again; the scroll-spy keeps working", collapse_current)
         def collapse_persist():
@@ -376,7 +376,7 @@ try:
             if not AXE: print("SKIP axe (pip install axe-playwright-python)"); return
             for scheme in ("light", "dark"):
                 for f in SAMPLES:
-                    c, q = ctx(color_scheme=scheme); go(q, f); q.add_script_tag(path=AXE); q.evaluate("document.querySelector('main .ha').focus();document.querySelector('#side').scrollTop=0")   # the index at rest: with every part open it is long, and the sticky logo + search strip partly covers whichever row is at the scroll edge (axe target-size counts that as obscured)
+                    c, q = ctx(color_scheme=scheme); go(q, f); q.add_script_tag(path=AXE); q.evaluate("document.querySelector('main .ha').focus()")
                     v = q.evaluate("axe.run('#side, #top, .navtop, main h2, main h3',{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa','best-practice']}}).then(r=>r.violations.filter(v=>['serious','critical','moderate'].includes(v.impact)).map(v=>[v.id,v.nodes[0].html.slice(0,90)]))")
                     assert not v, (scheme, f, v); c.close()
             c, q = ctx(390, 844, is_mobile=True, has_touch=True); q.goto(T + LONG); q.wait_for_selector("#menu"); q.add_script_tag(path=AXE); q.click("#menu"); q.wait_for_timeout(250)

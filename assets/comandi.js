@@ -100,7 +100,7 @@
     det.innerHTML = `<summary class="sc" title="${st.titolo}">${svg(st.icona)}<span>${st.etichetta}</span></summary><div class="sc-sub"></div>`;
     st.figli.forEach(f => { const b = document.createElement("button"); b.type = "button"; b.dataset.cmd = f.id; b.textContent = f.etichetta; b.onclick = () => f.run(); $(".sc-sub", det).appendChild(b); });
     nav.appendChild(det);
-    const br = $(".sidesearch", lat) || $(".brand", lat); if (br) br.after(nav); else lat.prepend(nav);   // the logo block and the search field stay the first things of the index (the search is a field now, not a command)
+    const sc = $(".sidescroll", lat), br = $(".sidesearch", lat) || $(".brand", lat); if (sc) sc.prepend(nav); else if (br) br.after(nav); else lat.prepend(nav);   // the logo block and the search field stay the first things of the index (the search is a field now, not a command)
   }
   if (embedded) { document.dispatchEvent(new Event("tcmd-pronto")); return; }   // in the program the bar of the app draws them
 

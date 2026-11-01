@@ -67,7 +67,7 @@ try:
             assert ib["y"] >= bb["y"] + bb["height"] and ib["height"] >= 44, (ib, bb)          # directly under the logo, large target
             assert q.evaluate("getComputedStyle(document.querySelector('#sc-cerca')).fontSize") == "16px"
             # always visible: still there with the index scrolled to the end
-            q.evaluate("document.querySelector('#side').scrollTop=99999"); q.wait_for_timeout(100)
+            q.evaluate("document.querySelector('#side .sidescroll').scrollTop=99999"); q.wait_for_timeout(100)
             ib2 = box(q, "#sc-cerca"); assert abs(ib2["y"] - ib["y"]) < 1 and q.is_visible("#sc-cerca"), (ib, ib2)
             assert q.evaluate("!document.querySelector('#sidecmd #sc-cerca') && !document.querySelector('a[href*=cerca]')"), "not a link or a command button"
             c.close()

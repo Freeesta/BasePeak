@@ -184,6 +184,8 @@ const TP = (() => {
       }
     });
   }
+  /** The element of the index that scrolls: from 900 px the list lives in `.sidescroll` under the fixed logo strip and search field (nothing scrolls beneath them); on a phone the whole sheet scrolls. */
+  const scroller = side => { const sc = side.querySelector(".sidescroll"); return sc && getComputedStyle(sc).overflowY !== "visible" ? sc : side; };
   /** The top of the index: the logo (the way to the home page) and the name of the site. */
   const brandHtml = () => `<div class="brand"><a id="logo" href="${SITE.up}index.html"><img src="${SITE.assets}icone/icon.svg" alt="" width="28" height="28"><span>BasePeak</span></a></div>`;
   /** The search field at the top of the index, under the logo: results are listed right below it (cerca.js wires it; the index is read on the first key typed). */
@@ -217,7 +219,7 @@ const TP = (() => {
       }).join("");
       html += `<section class="grp"><h4 id="h-part-${key}"><button type="button" class="ptog" data-k="${key}" aria-expanded="${open}" aria-controls="part-${key}">${CHEV}<span>${esc(pt.label)}</span></button></h4><ol id="part-${key}" aria-labelledby="h-part-${key}"${open ? "" : " hidden"}>${lis}</ol></section>`;
     });
-    side.innerHTML = brandHtml() + searchHtml() + html + "</div>";
+    side.innerHTML = brandHtml() + searchHtml() + `<div class="sidescroll">` + html + "</div></div>";
     const toc = side.querySelector("ol.toc"); if (toc) tree.forEach(it => toc.appendChild(node(it)));
     wireToggles(side); syncAll(side);
     return items;
@@ -233,8 +235,8 @@ const TP = (() => {
       cur = a; if (!a) return;
       a.setAttribute("aria-current", "location"); a.classList.add("cur");
       if (!a.offsetParent) return;   // inside a closed chapter: nothing to show
-      const sr = side.getBoundingClientRect(), ar = a.getBoundingClientRect(), pin = [...side.querySelectorAll(".brand, .sidesearch")].reduce((n, hd) => n + (getComputedStyle(hd).position === "sticky" ? hd.offsetHeight : 0), 0);   // keep it in view inside the menu only (the page never moves)
-      if (sr.height && (ar.top < sr.top + pin + 8 || ar.bottom > sr.bottom - 8)) side.scrollTop += ar.top - sr.top - sr.height / 3;
+      const sc = scroller(side), sr = sc.getBoundingClientRect(), ar = a.getBoundingClientRect(), pin = [...side.querySelectorAll(".brand, .sidesearch")].reduce((n, hd) => n + (getComputedStyle(hd).position === "sticky" ? hd.offsetHeight : 0), 0);   // keep it in view inside the menu only (the page never moves)
+      if (sr.height && (ar.top < sr.top + pin + 8 || ar.bottom > sr.bottom - 8)) sc.scrollTop += ar.top - sr.top - sr.height / 3;
     };
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver(update, { rootMargin: "0px 0px -70% 0px" });
@@ -286,16 +288,16 @@ const TP = (() => {
     $("main").appendChild(pn);
     // the index keeps its scroll from one chapter to the next (the active entry is brought into view if it would be hidden)
     const restoreSide = () => {
-      try { const y = sessionStorage.getItem("qqq.teoria.side"); if (y !== null) side.scrollTop = +y || 0; } catch (_) { /* no storage: top */ }
-      const cur = side.querySelector("li a.on"), sr = side.getBoundingClientRect();
+      try { const y = sessionStorage.getItem("qqq.teoria.side"); if (y !== null) scroller(side).scrollTop = +y || 0; } catch (_) { /* no storage: top */ }
+      const sc = scroller(side), cur = side.querySelector("li a.on"), sr = sc.getBoundingClientRect();
       const pin = [...side.querySelectorAll(".brand, .sidesearch")].reduce((n, hd) => n + (getComputedStyle(hd).position === "sticky" ? hd.offsetHeight : 0), 0);   // the logo strip and the search field stay on top of the list: the current chapter must not hide under them
-      if (cur && sr.height) { const cr = cur.getBoundingClientRect(); if (cr.top < sr.top + pin) side.scrollTop -= sr.top + pin - cr.top + 8; else if (cr.bottom > sr.bottom) side.scrollTop += cr.bottom - sr.bottom; }
+      if (cur && sr.height) { const cr = cur.getBoundingClientRect(); if (cr.top < sr.top + pin) sc.scrollTop -= sr.top + pin - cr.top + 8; else if (cr.bottom > sr.bottom) sc.scrollTop += cr.bottom - sr.bottom; }
     };
     restoreSide();
     // comandi.js adds the commands block on top of the index a moment later: scrollTop is clamped to the height at that time, so it is applied again once the block is there
     const sideWatch = new MutationObserver(() => { if (side.querySelector("#sidecmd")) { sideWatch.disconnect(); restoreSide(); } });
     sideWatch.observe(side, { childList: true }); setTimeout(() => sideWatch.disconnect(), 5000);
-    addEventListener("pagehide", () => { try { sessionStorage.setItem("qqq.teoria.side", String(side.scrollTop)); } catch (_) { /* not kept */ } });
+    addEventListener("pagehide", () => { try { sessionStorage.setItem("qqq.teoria.side", String(scroller(side).scrollTop)); } catch (_) { /* not kept */ } });
     // the neighbouring chapters are fetched ahead (small pages), unless the connection is saving data, slow or cellular (and never on a phone)
     const net = navigator.connection || {};
     if (!embedded && !PHONE && location.protocol !== "file:" && !net.saveData && net.type !== "cellular" && (!net.effectiveType || net.effectiveType === "4g") && window.HTMLScriptElement && HTMLScriptElement.supports && HTMLScriptElement.supports("speculationrules")) {
