@@ -12,14 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // fictitious compounds: [precursor m/z, abundance, colour, name, fragments [m/z, rel]]
     const MIX = [
       { mz: 250, ab: 100, c: col(1), n: "parent X", fr: [[208, 100], [180, 45], [152, 70]] },
-      { mz: 266, ab: 35, c: col(2), n: "TP +O", fr: [[224, 100], [196, 40], [168, 60]] },
-      { mz: 222, ab: 25, c: col(3), n: "TP −28", fr: [[180, 100], [152, 80]] },
+      { mz: 266, ab: 35, c: col(2), n: "derivato +O", fr: [[224, 100], [196, 40], [168, 60]] },
+      { mz: 222, ab: 25, c: col(3), n: "derivato −28", fr: [[180, 100], [152, 80]] },
       { mz: 238, ab: 40, c: "#9b978c", n: "interferente", fr: [[120, 100], [91, 50]] },
     ];
     const MODES = {
-      full: { t: "Full scan (Q1 MS)", q1: "scan", q2: "RF, nessuna frammentazione", q3: "RF (trasmette tutto)", x: "m/z (Q1)", info: "Q1 scorre la scala delle masse, cella e Q3 lasciano passare tutto: è lo spettro degli ioni che escono dalla sorgente. Base dello screening dei TP." },
+      full: { t: "Full scan (Q1 MS)", q1: "scan", q2: "RF, nessuna frammentazione", q3: "RF (trasmette tutto)", x: "m/z (Q1)", info: "Q1 scorre la scala delle masse, cella e Q3 lasciano passare tutto: è lo spettro degli ioni che escono dalla sorgente. Base dello screening dei composti correlati." },
       prod: { t: "Product ion scan (MS2) di m/z 250", q1: "fisso 250", q2: "CID", q3: "scan", x: "m/z dei frammenti (Q3)", info: "Q1 isola il precursore, la cella lo frammenta, Q3 registra tutti i frammenti: è lo spettro MS2, la carta d'identità strutturale." },
-      prec: { t: "Precursor ion scan di m/z 152", q1: "scan", q2: "CID", q3: "fisso 152", x: "m/z dei precursori (Q1)", info: "Q3 è fermo su un frammento caratteristico, Q1 scorre: compaiono tutti i precursori che producono quel frammento. Notate che il TP +O non c'è: l'ossigeno è finito proprio sulla parte che genera 152 (che diventa 168)." },
+      prec: { t: "Precursor ion scan di m/z 152", q1: "scan", q2: "CID", q3: "fisso 152", x: "m/z dei precursori (Q1)", info: "Q3 è fermo su un frammento caratteristico, Q1 scorre: compaiono tutti i precursori che producono quel frammento. Notate che il derivato +O non c'è: l'ossigeno è finito proprio sulla parte che genera 152 (che diventa 168)." },
       nl: { t: "Neutral loss scan di 42 Da", q1: "scan", q2: "CID", q3: "scan (Q1 − 42)", x: "m/z dei precursori (Q1)", info: "Q1 e Q3 scorrono insieme, sfalsati di 42: compaiono tutti i precursori che perdono una molecola neutra di 42 Da (qui propene: gruppo isopropile). L'interferente non c'è." },
       mrm: { t: "MRM: 250→208 e 266→224", q1: "fisso 250 / 266", q2: "CID", q3: "fisso 208 / 224", x: "tempo di ritenzione (min)", info: "Q1 e Q3 fissi, alternati tra le transizioni: nessuno spettro, ma un cromatogramma per transizione, con il rumore più basso possibile. Serve a quantificare." },
     };
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const A = ts.filter(t => t <= prog);
         TP.line(ax, A, A.map(t => g(t, 9.3, 0.12, 100) + 0.6 * Math.random()), col(1), 1.8);
         TP.line(ax, A, A.map(t => g(t, 7.1, 0.12, 38) + 0.6 * Math.random()), col(2), 1.8, TP.DASH[1]);
-        TP.legend(ax, [["250→208 (parent X)", col(1)], ["266→224 (TP +O)", col(2), TP.DASH[1]]]);
+        TP.legend(ax, [["250→208 (parent X)", col(1)], ["266→224 (derivato +O)", col(2), TP.DASH[1]]]);
         return;
       }
       const lo = 80, hi = 280, ax = TP.axes(c2, { x0: lo, x1: hi, y0: 0, y1: 115, xl: MODES[mode].x, yl: "intensità", yfmt: () => "" });

@@ -31,7 +31,7 @@
 <h3>Cromatogrammi: TIC, BPC, XIC</h3>
 <p>Mettendo in fila gli spettri si ottiene un cubo di dati: tempo × <i>m/z</i> × intensità. Un cromatogramma è una sua fetta.</p>
 <ul>
-<li><b>TIC</b> (total ion current): somma di tutte le intensità di ogni spettro. Dominato dal fondo e dalle specie più abbondanti: utile per un colpo d'occhio, quasi inutile per trovare un TP minore.</li>
+<li><b>TIC</b> (total ion current): somma di tutte le intensità di ogni spettro. Dominato dal fondo e dalle specie più abbondanti: utile per un colpo d'occhio, quasi inutile per trovare un composto correlato minore.</li>
 <li><b>BPC</b> (base peak chromatogram): per ogni spettro, l'intensità dello ione più intenso. Fa emergere meglio i picchi stretti sul fondo diffuso.</li>
 <li><b>XIC</b> o EIC (extracted ion chromatogram): intensità entro una finestra di m/z attorno a un valore scelto. È lo strumento principale: un m/z = una traccia nel tempo.</li>
 </ul>
@@ -43,9 +43,9 @@
 <p>Lo spettro "di un composto" si ottiene mediando gli spettri lungo il picco cromatografico e sottraendo quelli di una zona vicina senza picchi (o lo stesso intervallo nel bianco). Senza sottrazione, ioni del fondo (plastificanti, polisilossani, cluster della fase mobile) contaminano lo spettro e possono sembrare frammenti o addotti.</p>
 <div class="box warn"><b>Errori frequenti nel full scan</b>
 <ul>
-<li>Considerare TP un m/z presente anche nel bianco o a t0 con intensità simile: è fondo o un'impurezza dello standard.</li>
-<li>Considerare TP isotopi, addotti o frammenti in sorgente del parent: hanno lo stesso RT e la stessa forma di picco del parent (capitoli 2 e 4).</li>
-<li>Confrontare le altezze di TP diversi come se fossero concentrazioni: la risposta ESI cambia da molecola a molecola.</li>
+<li>Considerare un candidato un m/z presente anche nel bianco o nel campione di controllo con intensità simile: è fondo o un'impurezza dello standard.</li>
+<li>Considerare candidati isotopi, addotti o frammenti in sorgente del parent: hanno lo stesso RT e la stessa forma di picco del parent (capitoli 2 e 4).</li>
+<li>Confrontare le altezze di candidati diversi come se fossero concentrazioni: la risposta ESI cambia da molecola a molecola.</li>
 <li>Integrare XIC con picchi saturi (appiattiti in cima): l'area è sottostimata.</li>
 </ul></div>
 <p class="storia-link solo-esteso" hidden>Per la storia: <a href="42-storia-rivelatori-dati.html">Rivelatori, dati, applicazioni</a>.</p>
@@ -156,12 +156,12 @@
 <tr><td>S</td><td><sup>34</sup>S, 4,25%</td><td>M+2 ≈ 4,4% per ogni S</td></tr>
 <tr><td>N, O</td><td>piccoli</td><td>Contributi minori a M+1 (N) e M+2 (O)</td></tr>
 </table>
-<p>Per i TP è un controllo potentissimo: se il parent contiene un cloro e il candidato mostra ancora M+2 al ~32%, il cloro è rimasto; se il pattern scompare e la massa è calata di 18 (−Cl +OH), la declorurazione idrossilativa è un'ipotesi coerente. Approfondimento: <a href="26-gruppi.html">capitolo 26 (Isotopi, addotti, frammenti)</a>.</p>
+<p>Per i derivati del parent è un controllo potentissimo: se il parent contiene un cloro e il candidato mostra ancora M+2 al ~32%, il cloro è rimasto; se il pattern scompare e la massa è calata di 18 (−Cl +OH), la declorurazione idrossilativa è un'ipotesi coerente. Approfondimento: <a href="26-gruppi.html">capitolo 26 (Isotopi, addotti, frammenti)</a>.</p>
 <div class="sim" id="sim-iso"><h4>Cluster isotopico a risoluzione unitaria</h4>
 <p class="note">Scrivete una formula bruta (elementi C, H, N, O, S, P, F, Cl, Br, I, Si, Na, K). Il calcolo convolve le distribuzioni isotopiche per massa nominale. L'esempio è l'atrazina, un erbicida usato come esempio svolto nel capitolo 16.</p></div>
 <h3>Regola dell'azoto e insaturazioni</h3>
 <ul>
-<li><b>Regola dell'azoto</b>: una molecola neutra con massa nominale dispari contiene un numero dispari di atomi di N. Per lo ione [M+H]<sup>+</sup> vale il contrario: m/z pari ⇒ numero dispari di N. Utile per scartare formule incompatibili e per capire se una trasformazione ha tolto o aggiunto azoto.</li>
+<li><b>Regola dell'azoto</b>: una molecola neutra con massa nominale dispari contiene un numero dispari di atomi di N. Per lo ione [M+H]<sup>+</sup> vale il contrario: m/z pari ⇒ numero dispari di N. Utile per scartare formule incompatibili e per capire se una variazione di formula ha tolto o aggiunto azoto.</li>
 <li><b>RDBE</b> (anelli + doppi legami) = C − H/2 − X/2 + N/2 + 1 per la molecola neutra (X = alogeni). Deve essere intero e ≥ 0. Un'apertura d'anello o un'idratazione lo riducono; un'ossidazione a carbonile no.</li>
 </ul>
 <h2>Dal dato alla quantità</h2>
@@ -201,8 +201,8 @@
 <p>Come pianificare i livelli, i bianchi e la sequenza è nel capitolo 18.</p>
 <h3>Conferma dell'identità</h3>
 <p>L'identità dell'analita è confermata se: RT coincide con quello dello standard (entro pochi secondi), entrambe le transizioni sono presenti, rapporto qual/quant entro la tolleranza (capitolo 8).</p>
-<h3>Dalla quantificazione alla cinetica</h3>
-<p>Con le concentrazioni del parent si traccia <i>C</i>/<i>C</i><sub>0</sub> e ln(<i>C</i><sub>0</sub>/<i>C</i>) in funzione del tempo. Per i TP, senza standard, si tracciano le aree degli XIC (dal full scan) o delle transizioni MRM, eventualmente normalizzate al loro massimo: si confronta la forma della curva, non l'altezza tra TP diversi.</p>
+<h3>Dalla quantificazione al confronto tra campioni</h3>
+<p>Con le concentrazioni del parent nei vari campioni si confrontano risposte e repliche. Per i composti correlati, senza standard, si confrontano le aree degli XIC (dal full scan) o delle transizioni MRM, eventualmente normalizzate al loro massimo: si confronta l'andamento tra i campioni, non l'altezza tra candidati diversi.</p>
 <h2>Per approfondire</h2>
 <ul class="refs">
 <li><span class="tag">formato</span>Martens L. et al. (2011) mzML—a community standard for mass spectrometry data. <i>Mol. Cell. Proteomics</i> 10, R110.000133. <a href="https://doi.org/10.1074/mcp.R110.000133" target="_blank" rel="noopener">doi:10.1074/mcp.R110.000133</a></li>
