@@ -31,7 +31,7 @@ Solo il ^12^C ha massa intera. L'idrogeno pesa un po' più di 1 (1,00783), l'oss
 ```
 
 ```html
-<p class="storia-link solo-esteso" hidden>Per la storia: <a href="35-storia-aston-dempster.html">Aston e Dempster: isotopi e numeri interi</a>.</p>
+<p class="storia-link">Per la storia: <a href="35-storia-aston-dempster.html">Aston e Dempster: isotopi e numeri interi</a>.</p>
 ```
 
 ## La regola dell'azoto
