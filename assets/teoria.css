@@ -68,7 +68,6 @@ body.emb #top,body.emb #side .brand{display:none}
 .crumbs ol{display:flex;flex-wrap:wrap;list-style:none;margin:0;padding:0}
 .crumbs li+li::before{content:">";margin:0 .5em;color:var(--ink)}
 .crumbs a,.crumbs [aria-current]{color:var(--ink)}.crumbs [aria-current]{font-weight:650}
-.pnt{display:flex;gap:8px}.pnt a{display:inline-block;padding:3px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);text-decoration:none}.pnt a:hover{border-color:var(--accent)}
 /* the link at the end of h2/h3/h4: shown on hover and on keyboard focus (always on touch screens) */
 .ha{margin-left:.4em;padding:0 .35em;border-radius:4px;font-weight:400;font-size:.8em;text-decoration:none;color:var(--ink);opacity:0}
 :is(h2,h3,h4):hover>.ha,.ha:focus,.ha:focus-visible{opacity:1}
@@ -132,9 +131,6 @@ figcaption b{color:var(--ink)}
 details.q{border:1px solid var(--line);border-radius:6px;background:var(--panel);margin:8px 0;padding:8px 12px}
 details.q summary{cursor:pointer;font-weight:600}details.q[open] summary{margin-bottom:6px}
 .refs li{margin-bottom:6px}.refs .tag{display:inline-block;font-size:11.5px;border:1px solid var(--line);border-radius:9px;padding:0 7px;color:var(--muted);margin-right:4px;vertical-align:1px}
-.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:14px;border-top:1px solid var(--line)}
-.pn a{display:block;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);text-decoration:none;max-width:48%}
-.pn a small{display:block;color:var(--muted)}.pn a:hover{border-color:var(--accent)}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:14px 0}
 .cards a{display:block;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px;text-decoration:none;color:var(--ink)}
 .cards a:hover{border-color:var(--accent);box-shadow:0 2px 10px rgba(30,40,60,.07)}
@@ -279,9 +275,8 @@ body.noex main>:not(.navtop):not(.kicker):not(h1):not(.phex):not(.pn){display:no
 :root[data-a11y-reduce]{scroll-behavior:auto}
 :root[data-a11y-reduce] *,:root[data-a11y-reduce] *::before,:root[data-a11y-reduce] *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
 /* concentration mode: no index and no menu, a progress bar */
-:root[data-a11y-noside]{--sidew:0px}
+/* the index is hidden but its column is kept (--sidew unchanged): the article does not move or change width when the index is toggled on a wide screen */
 :root[data-a11y-noside] #side{display:none}
-:root[data-a11y-noside] .wrap{max-width:924px}
 @media (max-width:899.98px){:root[data-a11y-noside] #side{display:none}:root[data-a11y-noside] #side.open{display:block}}
 /* reading ruler: a band follows the pointer/focus, the rest is dimmed (the overlay never takes clicks) */
 #a11y-ruler{position:fixed;inset:0;z-index:50;pointer-events:none;display:none;
@@ -348,7 +343,6 @@ main:focus{outline:none}
   #side li a{min-height:44px;align-items:center;padding:6px 8px}
   #side li a span{min-width:0}
   #side ol.toc a{display:flex;align-items:center;min-height:44px}
-  .pnt{display:none}
   .navtop{font-size:16px}
   #side ol.toc a,#side ol.toc ol a,#side .ptog,#side .navall{font-size:16px}#side .ptog,#side .ctog,#side .navall{min-height:44px}#side .ctog{min-width:44px}#side .brand{position:static;margin:0 0 8px}#side .sidesearch{top:66px;margin:0 -14px 8px -14px;padding:8px 14px}#side .sidesearch .ss-ico{left:26px}#ss-panel{left:14px;right:14px}
   #cbar #menu .ml{font-weight:700}
@@ -396,7 +390,14 @@ html.vt-no main{animation:vt-fade 120ms ease-out}
 :root[data-a11y-reduce]::view-transition-group(*),:root[data-a11y-reduce]::view-transition-old(*),:root[data-a11y-reduce]::view-transition-new(*){animation:none!important}
 :root[data-a11y-reduce].vt-no main{animation:none!important}
 /* ---- commands of the header (comandi.js: TCMD) ---- */
-#tbar{display:flex;align-items:center;gap:4px;flex:none;position:relative}
+#tbar{display:flex;align-items:center;gap:4px;flex:0 1 auto;min-width:0;position:relative}
+/* previous / next: number + title of the neighbour. The title is the last thing to give way: the other items (index label, gap) shrink first, then the title is cut with an ellipsis (never the number) */
+#tbar #tnav{flex:0 1 auto;min-width:0}
+#tbar .nb{flex:0 1 auto;min-width:0;max-width:min(36ch,34vw)}
+#tbar .nb .l{display:inline-flex;gap:8px;min-width:0;overflow:hidden;align-items:baseline}
+#tbar .nb .n{flex:none;font-weight:700}
+#tbar .nb .lt{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+#top .sp{min-width:0}
 #tbar .tgrp,#tbar .hasmenu{display:inline-flex;gap:4px;position:relative}
 #tbar .tsep{width:1px;align-self:stretch;margin:6px 4px;background:var(--line)}
 #top .tb,#cbar .tb{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;min-width:44px;padding:0 10px;font:inherit;font-size:14px;font-weight:600;line-height:1;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;cursor:pointer;text-decoration:none;white-space:nowrap}
@@ -405,7 +406,7 @@ html.vt-no main{animation:vt-fade 120ms ease-out}
 #top .tb[aria-disabled=true],#cbar .tb[aria-disabled=true]{opacity:.45;cursor:default;border-color:var(--line)}
 #top .tb svg,#cbar .tb svg{flex:none;color:var(--accent)}
 #top .tb[aria-expanded=true],#top .tb[aria-pressed=true]{border-color:var(--accent)}
-#tbar.ico .l{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#tbar.ico .tb:not(.nb) .l{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 #top.cmp .t{display:none}
 #tbar .tmenu{position:absolute;top:calc(100% + 4px);right:0;z-index:60;min-width:200px;display:flex;flex-direction:column;padding:4px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 #tbar .tmenu[hidden]{display:none}
@@ -419,7 +420,7 @@ html.phone #top #a11y-btn{margin-left:0}
 @media (max-width:899.98px){#tbar .tsep,#tbar #tnav{display:none}}
 @media (max-width:640px){#top{gap:6px;padding:4px 10px}#tbar{gap:2px}#tbar .l{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
 /* same compact bar as the header of the program with a mouse; touch keeps the 44 px targets */
-@media (pointer:fine){#top{padding:4px 12px;gap:10px}#top .tb{min-height:32px;min-width:32px;font-size:13px;padding:0 10px}}
+@media (pointer:fine){#top{padding:4px 12px;gap:10px}#top .tb{font-size:14px;padding:0 10px}}
 @media (prefers-reduced-motion:reduce){#top,#top *{transition:none!important}}
 @media print{#tbar{display:none}}
 
@@ -450,7 +451,7 @@ html.phone #top #a11y-btn{margin-left:0}
 
 /* ---- reserved space (no layout shift): the header (#top, built by teoria.js) and the commands block of the index (#sidecmd, added by comandi.js) arrive after the first paint; until then a blank box of their final height stands in their place ---- */
 :root{--toph:61px;--sidech:241px}
-@media (pointer:fine){:root{--toph:42px;--sidech:179px}}
+@media (pointer:fine){:root{--toph:53px;--sidech:179px}}
 @media (pointer:coarse) and (max-width:640px){:root{--toph:53px}}
 #top{min-height:var(--toph)}
 html:not(.tp-emb) body:not(.hdr)::before{content:"";display:block;height:var(--toph)}

@@ -37,7 +37,7 @@ try:
             assert names[0].startswith("Indice") and names[-1].startswith("Impostazioni"), names
             assert q.get_attribute("#sc-cerca", "aria-label") == "Cerca nel manuale" and q.get_attribute("#sc-cerca", "placeholder").startswith("Cerca nel manuale"), "the visible placeholder is in the name (WCAG 2.5.3)"
             for sel in ("#sc-glossario", "#sc-formule", "#sc-esercizi", "#sc-esporta", "#tc-indice", "#tc-prec"):
-                lab = q.inner_text(sel).strip(); assert lab and lab in q.get_attribute(sel, "aria-label"), (sel, lab)   # visible label in the name (WCAG 2.5.3)
+                lab = " ".join(q.inner_text(sel).split()); assert lab and lab in q.get_attribute(sel, "aria-label").replace(".", ""), (sel, lab)   # visible label (for prev / next: number and title) in the name (WCAG 2.5.3)
             assert q.get_attribute("#tc-indice", "aria-pressed") == "true"
             for dead in ("Esporta capitolo o corso", "Avanzamento"): assert dead not in q.inner_text("#top") + q.inner_text("#sidecmd"), dead
             assert q.locator("#tabs, [id^=tab-]").count() == 0 and q.is_visible("#side #logo"), "no tabs; the logo is at the top of the index"
@@ -55,7 +55,8 @@ try:
             q.click("#tc-succ"); q.wait_for_url("**/12-frammentazione-esi.html")
             q.wait_for_selector("#tbar"); assert q.get_attribute("#tc-prec", "href") == "../capitoli/11-formula.html"
             q.click("#tc-prec"); q.wait_for_url("**/11-formula.html"); q.wait_for_selector("#tbar")
-            assert q.inner_text("#tc-succ").strip() == "12" and q.inner_text("#tc-prec").strip() == "10", (q.inner_text("#tc-succ"), q.inner_text("#tc-prec"))
+            assert q.inner_text("#tc-succ").split()[0] == "12" and q.inner_text("#tc-prec").split()[0] == "10", (q.inner_text("#tc-succ"), q.inner_text("#tc-prec"))      # number first, then the title (the old check wanted the number alone)
+            assert len(q.inner_text("#tc-succ").split()) > 2 and len(q.inner_text("#tc-prec").split()) > 2, "the title of the neighbour is shown next to its number"
             pb, sb = q.locator("#tc-prec svg").bounding_box(), q.locator("#tc-prec .l").bounding_box(); assert pb["x"] < sb["x"], "arrow left of the number (previous)"
             pb, sb = q.locator("#tc-succ svg").bounding_box(), q.locator("#tc-succ .l").bounding_box(); assert pb["x"] > sb["x"], "arrow right of the number (next)"
             assert q.get_attribute("#tc-prec", "title").startswith("Precedente: 10.") and q.get_attribute("#tc-succ", "title").startswith("Successivo: 12."), (q.get_attribute("#tc-prec", "title"), q.get_attribute("#tc-succ", "title"))
