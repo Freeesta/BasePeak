@@ -14,6 +14,12 @@ SPY = """(()=>{addEventListener('pagereveal',e=>{try{sessionStorage.length}catch
  if(e.viewTransition)e.viewTransition.ready.then(()=>{o.anims=document.documentElement.getAnimations({subtree:true}).map(a=>(a.effect.pseudoElement||'')+':'+a.animationName+':'+a.effect.getTiming().duration);
   bg.push(getComputedStyle(document.documentElement).backgroundColor);sessionStorage.setItem('__rev',JSON.stringify(o))}).catch(()=>{})});
  window.__errs=[];addEventListener('error',e=>window.__errs.push(String(e.message)))})();"""
+# smooth scroll (scroll-behavior: smooth) takes longer on a long page or a slow runner: wait for the real condition (scrollY and the
+# heading's top unchanged for 12 consecutive frames, 15 s at most) instead of a fixed delay, then the assertions run on the settled page
+SETTLE = """(hid=>new Promise(res=>{const t=Date.now();let last=null,n=0;(function f(){const h=document.getElementById(hid);
+ const k=scrollY+'|'+(h?h.getBoundingClientRect().top:'x');n=(k===last)?n+1:0;last=k;
+ if(n>=12||Date.now()-t>15000)res(n>=12);else requestAnimationFrame(f)})()}))"""
+def settle(pg, hid): assert pg.evaluate(SETTLE, hid), "the scroll never settled"
 def rev(pg): return pg.evaluate("JSON.parse(sessionStorage.getItem('__rev')||'null')")
 def ctxpage(b, init=SPY, **kw):
     ctx = b.new_context(viewport={"width": 1280, "height": 800}, **kw); ctx.add_init_script(init); pg = ctx.new_page(); errs = []
@@ -61,7 +67,7 @@ try:
             ctx, pg, errs = ctxpage(b); pg.goto(T + "capitoli/04-esi.html"); real_wait(pg, 400)
             pg.goto(T + "capitoli/06-vuoto.html"); real_wait(pg, 300)
             hid = pg.evaluate("document.querySelectorAll('main h2')[2].id")
-            pg.evaluate("location.href=location.pathname+'#" + hid + "'"); real_wait(pg, 700)
+            pg.evaluate("location.href=location.pathname+'#" + hid + "'"); settle(pg, hid)
             y1 = pg.evaluate("scrollY"); top = pg.evaluate(f"document.getElementById('{hid}').getBoundingClientRect().top"); real_wait(pg, 600)
             y2 = pg.evaluate("scrollY"); assert y1 > 100 and y1 == y2 and 0 <= top < 140, (y1, y2, top)
             ctx.close()
@@ -70,7 +76,7 @@ try:
             ctx, pg, errs = ctxpage(b); pg.goto(T + "capitoli/06-vuoto.html"); real_wait(pg, 300)
             hid = pg.evaluate("document.querySelectorAll('main h2')[2].id")
             pg.goto(T + "capitoli/04-esi.html"); real_wait(pg, 300)
-            pg.evaluate(f"location.href='06-vuoto.html#{hid}'"); pg.wait_for_url("**#" + hid); real_wait(pg, 1200)
+            pg.evaluate(f"location.href='06-vuoto.html#{hid}'"); pg.wait_for_url("**#" + hid); settle(pg, hid)
             y1 = pg.evaluate("scrollY"); top = pg.evaluate(f"document.getElementById('{hid}').getBoundingClientRect().top")
             assert y1 > 100 and 0 <= top < 140, (y1, top); assert not errs, errs; ctx.close()
         step("navigating to chapter#section lands on the section after the transition", anchor_nav)
