@@ -21,7 +21,6 @@ const INDICE_RICERCA = [
 ["Allargamento della banda: N e H", "sezione", "capitoli/01-cromatografia.html#allargamento-della-banda-n-e-h", "Cap. 1", "allargamento della banda: n e h"],
 ["L'equazione di van Deemter", "sezione", "capitoli/01-cromatografia.html#l-equazione-di-van-deemter", "Cap. 1", "l'equazione di van deemter"],
 ["Curva di van Deemter per una colonna HPLC", "simulazione", "capitoli/01-cromatografia.html#sim-vandeemter", "Cap. 1", "curva di van deemter per una colonna hplc"],
-["Allargamento fuori dalla colonna", "sezione", "capitoli/01-cromatografia.html#allargamento-fuori-dalla-colonna", "Cap. 1", "allargamento fuori dalla colonna"],
 ["Risoluzione", "sezione", "capitoli/01-cromatografia.html#risoluzione", "Cap. 1", "risoluzione"],
 ["Risoluzione di due picchi", "simulazione", "capitoli/01-cromatografia.html#sim-risoluzione", "Cap. 1", "risoluzione di due picchi"],
 ["Forma del picco", "sezione", "capitoli/01-cromatografia.html#forma-del-picco", "Cap. 1", "forma del picco"],
