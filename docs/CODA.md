@@ -34,3 +34,9 @@ Never edit past entries; add new ones at the bottom.
 - Chemioinformatica 22-32 complete but hidden from readers until the Opus review fixes land. Opus review running (ARCH-CHEMI-REVIEW).
 - Rules from Federico this session: no "in costruzione" text; no verification sections; GIRO every 30 min; slow theme transition; easy editing for the author.
 - Open doubts for the review: Schymanski/MSI wording, modified cosine, entropy weighting, ppm sign convention, 1,0034/z, DTW cost.
+
+## 2026-11-01 (6)
+- Merged since (5): #30-#51 (Chemioinformatica published #38, Storia chapters 33-42, flake root-cause fixes #46 #50), #53 + #58 photocatalysis/TP removed everywhere, #55 download list clean, #54 linked exports (PDF/MD/Word/HTML, in-file anchors), #59 editor save in 3 steps (copy + open GitHub), #62 + #63 navigation (index open on first visit, header right of sidebar, search field, icon-only gear, "Riduci tutto", header prev/next with titles), #57 Storia published (nothing hidden any more), #67 Storia cold review + #70-#74 its fixes, #52 depth plan + #56 #60 #61 #64 #65 #66 #68 #69 #75 #76 #77 #78 #79 #80 #81 #82 (28 chapters 20 716 -> 48 980 prose words, menu 336 -> 283).
+- Federico decisions: publish everything immediately, never hide drafts (review afterwards); Copilot = no; remove photocatalysis/TP everywhere; check every 60 min (token saving); editor must save in a few clicks.
+- Lessons: archive a chat only after the merge result is known (never in the same call); `e2e_teoria_transizione` fixed at the root (waits for the smooth scroll to settle) instead of shortening prose.
+- Open: nothing blocking. Later queue: delete old `editor/` (Rust chapter editor, superseded by in-page editor), delete `capitoli/src` twins, rename "QqQ lab" in titles/appname, size-budget tests + service worker, dyslexia audit, stale old-path mentions in COORDINAMENTO/COORDINATORE.
