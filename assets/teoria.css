@@ -465,7 +465,7 @@ html:not(.tp-emb) body:not(.hdr)::before{content:"";display:block;height:var(--t
 .storia-fig{display:block;position:relative;min-height:160px;margin:14px 0}
 .storia-fig img,.storia-fig svg{display:block;max-width:100%;height:auto}
 figure>img{max-width:100%;height:auto}   /* any figure image, wrapped in .storia-fig or not, never wider than the column (390 px phones) */
-.storia-link{margin:14px 0;font-size:15px;color:var(--ink)}
+.storia-link{margin:14px 0;font-size:16px;color:var(--ink)}
 .storia-link a{color:var(--accent);text-decoration:underline}
 .storia-chip[aria-pressed=true]{border:2px solid var(--accent);background:var(--sel);font-weight:700}
 .storia-chip[aria-pressed=true]::before{content:"\2713\00a0"}

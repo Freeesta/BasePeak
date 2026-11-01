@@ -4,7 +4,7 @@
 // [file, number shown in the menu, title, part]. The order is the study path: each chapter uses only what comes before it.
 // The "Pratica" pages (pratica/*.html) are the exercises and games; they use the same layout.
 // The menu has three parts, in this order: Teoria (chapters 1-18 and the introduction), Pratica, Reference (part "Reference": glossary, formulary, timings), see groupOf().
-// A 5th field `true` marks an administrator-only draft (today only the Storia rows 33-42; part VII Chemioinformatica was published by deleting it): it is removed from CHAPTERS for readers (menu, breadcrumb, prev/next, home cards, search, glossary links) and its URL shows a notice; to publish a chapter delete that field from its row.
+// A 5th field `true` marks an administrator-only draft (none today: parts VII and VIII were published by deleting it): it is removed from CHAPTERS for readers (menu, breadcrumb, prev/next, home cards, search, glossary links) and its URL shows a notice; to publish a chapter delete that field from its row.
 // Files are written relative to the site root (the folder above assets/); SITE.up is the way from the current page back to that root.
 const SITE = (() => {
   const src = document.currentScript && document.currentScript.src;
@@ -57,16 +57,16 @@ const CHAPTERS = [
   ["capitoli/30-candidati.html", "30", "Formule e candidati in silico", "VII. Chemioinformatica"],
   ["capitoli/31-confidenza.html", "31", "Livelli di confidenza", "VII. Chemioinformatica"],
   ["capitoli/32-esempio.html", "32", "Esempio completo", "VII. Chemioinformatica"],
-  ["capitoli/33-storia-mappa.html", "33", "La storia in una pagina", "VIII. Storia", true],
-  ["capitoli/34-storia-origini.html", "34", "Le origini: raggi catodici, raggi canale, raggi positivi", "VIII. Storia", true],
-  ["capitoli/35-storia-aston-dempster.html", "35", "Aston e Dempster: isotopi e numeri interi", "VIII. Storia", true],
-  ["capitoli/36-storia-settori.html", "36", "Settori magnetici e doppia focalizzazione", "VIII. Storia", true],
-  ["capitoli/37-storia-tof.html", "37", "Il tempo di volo", "VIII. Storia", true],
-  ["capitoli/38-storia-rf.html", "38", "Campi a radiofrequenza: quadrupolo e trappola ionica", "VIII. Storia", true],
-  ["capitoli/39-storia-ft.html", "39", "Ioni che girano: ICR, FT-ICR, Orbitrap", "VIII. Storia", true],
-  ["capitoli/40-storia-sorgenti.html", "40", "Le sorgenti: dall'impatto elettronico alla ionizzazione morbida", "VIII. Storia", true],
-  ["capitoli/41-storia-accoppiamenti.html", "41", "Accoppiamenti, MS/MS e ibridi", "VIII. Storia", true],
-  ["capitoli/42-storia-rivelatori-dati.html", "42", "Rivelatori, dati, applicazioni", "VIII. Storia", true],
+  ["capitoli/33-storia-mappa.html", "33", "La storia in una pagina", "VIII. Storia"],
+  ["capitoli/34-storia-origini.html", "34", "Le origini: raggi catodici, raggi canale, raggi positivi", "VIII. Storia"],
+  ["capitoli/35-storia-aston-dempster.html", "35", "Aston e Dempster: isotopi e numeri interi", "VIII. Storia"],
+  ["capitoli/36-storia-settori.html", "36", "Settori magnetici e doppia focalizzazione", "VIII. Storia"],
+  ["capitoli/37-storia-tof.html", "37", "Il tempo di volo", "VIII. Storia"],
+  ["capitoli/38-storia-rf.html", "38", "Campi a radiofrequenza: quadrupolo e trappola ionica", "VIII. Storia"],
+  ["capitoli/39-storia-ft.html", "39", "Ioni che girano: ICR, FT-ICR, Orbitrap", "VIII. Storia"],
+  ["capitoli/40-storia-sorgenti.html", "40", "Le sorgenti: dall'impatto elettronico alla ionizzazione morbida", "VIII. Storia"],
+  ["capitoli/41-storia-accoppiamenti.html", "41", "Accoppiamenti, MS/MS e ibridi", "VIII. Storia"],
+  ["capitoli/42-storia-rivelatori-dati.html", "42", "Rivelatori, dati, applicazioni", "VIII. Storia"],
 ];
 const APP = typeof APP_NAME === "string" ? APP_NAME : "mzLab";        // appname.js is loaded first by every page
 CHAPTERS.forEach(c => { c[2] = c[2].split("{APP}").join(APP); });

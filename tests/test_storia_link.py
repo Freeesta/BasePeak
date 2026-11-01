@@ -1,7 +1,7 @@
-"""Links from the published chapters to the hidden Storia drafts (33-42) must stay invisible to readers.
+"""Storia (chapters 33-42) is published: links to it from the other chapters are plain visible text.
 
-Outside the Storia chapters themselves, every link to a `NN-storia-*` page is either inside a `solo-esteso` element carrying `hidden`
-(shown only in administrator mode) or inside a glossary definition (teoria.js drops it for readers while the chapter is a draft).
+Outside the Storia chapters themselves, every link to a `NN-storia-*` page sits in a `<p class="storia-link">` line with no `solo-esteso`
+and no `hidden`, or inside a glossary definition.
 """
 import re
 from pathlib import Path
@@ -14,16 +14,17 @@ def published_html():
     return [p for p in sorted(CAP.glob("*.html")) if "-storia-" not in p.name]
 
 
-def test_storia_links_in_visible_chapters_are_gated():
+def test_storia_links_in_visible_chapters_are_plain_visible_lines():
     n = 0
     for p in published_html():
         t = p.read_text(encoding="utf-8")
         if p.name == "19-glossario.html":
             continue
-        gated = [m.span() for m in re.finditer(r'<(\w+)[^>]*class="[^"]*solo-esteso[^"]*"[^>]*\bhidden\b[^>]*>.*?</\1>', t, re.S)]
+        assert "solo-esteso" not in t and 'class="storia-link" hidden' not in t, p.name
+        lines = [m.span() for m in re.finditer(r'<p class="storia-link">.*?</p>', t, re.S)]
         for m in LINK.finditer(t):
             n += 1
-            assert any(a <= m.start() < b for a, b in gated), (p.name, m.group(0))
+            assert any(a <= m.start() < b for a, b in lines), (p.name, m.group(0))
     assert n >= 9, n
 
 

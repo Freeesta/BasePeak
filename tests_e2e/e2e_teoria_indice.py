@@ -32,7 +32,7 @@ try:
               return out})()"""
 
         pb = lambda q, t: q.locator("#side button.ptog", has_text=t)
-        PARTS = ["Guida", "II. Separare", "III. Ionizzare", "IV. Analizzare gli ioni", "V. Leggere gli spettri", "VI. Dal dato al risultato", "VII. Chemioinformatica", "Pratica", "Reference"]
+        PARTS = ["Guida", "II. Separare", "III. Ionizzare", "IV. Analizzare gli ioni", "V. Leggere gli spettri", "VI. Dal dato al risultato", "VII. Chemioinformatica", "VIII. Storia", "Pratica", "Reference"]
         def sidebar():
             c, q = ctx()
             for f in SAMPLES:
@@ -117,8 +117,8 @@ try:
         step("breadcrumb BasePeak > part > chapter", breadcrumb)
         def prevnext(admin):
             c, q = ctx(admin=admin); q.goto(T + "index.html"); q.wait_for_selector("#side")
-            last = None if admin else "capitoli/32-esempio.html"      # reader: the Storia drafts are absent, so part VII (22-32) ends the path (admin: the Storia follows 32)
-            order = q.evaluate("CHAPTERS.map(c=>c[0])"); assert order[0] == "index.html" and (last is None or order[-1] == last), (admin, order[0], order[-1])
+            last = "capitoli/42-storia-rivelatori-dati.html"      # Storia (33-42) is published for everyone and ends the path
+            order = q.evaluate("CHAPTERS.map(c=>c[0])"); assert order[0] == "index.html" and (order[-1] == last), (admin, order[0], order[-1])
             groups = [("Teoria" if not f.startswith("pratica") and not re.search(r"/(19|20|21)-", f) else "Pratica" if f.startswith("pratica") else "Reference") for f in order]
             part7 = [f for f in order if re.search(r"capitoli/(2[2-9]|3[0-2])-", f)]      # part VII (22-32) is in the Teoria group but must follow row 21 (numbers run 1..32 in array order)
             assert len(part7) == 11, (admin, part7)      # published: readers and the administrator both get part VII
@@ -127,7 +127,7 @@ try:
             assert order[i21 + 1] == "capitoli/22-segnale.html" and order[i21 + 11] == "capitoli/32-esempio.html", "21 is not followed by 22 ... 32"
             groups = groups[:i21 + 1]      # existing rule: the prev/next path is the CHAPTERS order, so part VII follows Reference there (the sidebar groups it under Teoria after part VI)
             storia = [f for f in order if re.search(r"capitoli/(3[3-9]|4[0-2])-", f)]
-            assert len(storia) == (10 if admin else 0), (admin, storia)      # the Storia stays an administrator-only draft
+            assert len(storia) == 10, (admin, storia)      # the Storia is published: readers and the administrator both get it
             assert groups == sorted(groups, key={"Teoria": 0, "Pratica": 1, "Reference": 2}.get), "order is not Teoria > Pratica > Reference"
             for i, f in enumerate(order):
                 q.goto(T + f); q.wait_for_selector("#tbar"); q.wait_for_selector("#tc-prec, #tc-succ", state="attached")
@@ -142,7 +142,7 @@ try:
         step("previous / next in administrator mode: 21 -> 22 ... 32, then the Storia", lambda: prevnext(True))
         def drafts():
             F = re.findall(r'"capitoli/((?:2[2-9]|3[0-2])-[^"]+\.html)", "\d+", "[^"]+", "VII\. Chemioinformatica"', (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8")); assert len(F) == 11, F
-            S = re.findall(r'"capitoli/((?:3[3-9]|4[0-2])-[^"]+\.html)", "\d+", "[^"]+", "VIII\. Storia", true', (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8")); assert len(S) == 10, S
+            S = re.findall(r'"capitoli/((?:3[3-9]|4[0-2])-[^"]+\.html)", "\d+", "[^"]+", "VIII\. Storia"\]', (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8")); assert len(S) == 10, S
             for admin in (False, True):
                 c, q = ctx(admin=admin); q.goto(T + "index.html"); q.wait_for_selector("#side"); q.wait_for_selector("main h3")
                 heads = q.eval_on_selector_all("main h3", "e=>e.map(h=>h.textContent.trim())"); cards = q.eval_on_selector_all("main .cards a", "e=>e.map(a=>a.getAttribute('href'))")
@@ -151,45 +151,39 @@ try:
                 hasS = lambda L: [h for h in L if re.search(r"(3[3-9]|4[0-2])-[a-z]", h)]
                 assert any(h.startswith("VII. Chemioinformatica") for h in heads) and len(has(cards)) == 11 and len(has(menu)) == 11, (admin, heads, has(cards), has(menu))
                 assert intro.startswith("Sei parti"), (admin, intro)
-                assert bool(hasS(cards)) == admin and bool(hasS(menu)) == admin, (admin, hasS(cards), hasS(menu))      # the Storia: administrator only
+                assert len(hasS(cards)) == 10 and len(hasS(menu)) == 10, (admin, hasS(cards), hasS(menu))      # the Storia: everyone
                 q.keyboard.press("Control+k"); q.wait_for_selector("#cerca-in", state="visible"); q.fill("#cerca-in", "centroide")
                 q.wait_for_function("document.querySelector('#cerca-st').textContent.trim().length > 0")
                 found = q.inner_text("#cerca-list")
                 assert "cap. 22" in found.lower() and "ntroide" in found, (admin, found[:200])
                 q.fill("#cerca-in", "Dempster"); q.wait_for_timeout(400)
-                assert ("cap. 35" in q.inner_text("#cerca-list").lower()) == admin, (admin, q.inner_text("#cerca-list")[:200])      # search finds the Storia only for the administrator
+                assert "cap. 35" in q.inner_text("#cerca-list").lower(), (admin, q.inner_text("#cerca-list")[:200])      # search finds the Storia for everyone
                 q.keyboard.press("Escape")
                 q.goto(T + "capitoli/19-glossario.html"); q.wait_for_selector("#side a.on")
                 links = q.eval_on_selector_all("main dd a", "e=>e.map(a=>a.getAttribute('href'))")
-                assert has(links) and (admin or not hasS(links)), (admin, has(links)[:3])      # glossary «Cap. N» links to part VII are kept
+                assert has(links) and hasS(links), (admin, has(links)[:3])      # glossary «Cap. N» links to part VII and to the Storia are kept
                 q.goto(T + "capitoli/22-segnale.html"); q.wait_for_selector("#side a.on"); assert q.locator("#bozza-avviso").count() == 0
-                q.goto(T + "capitoli/35-storia-aston-dempster.html")
-                if not admin:
-                    q.wait_for_selector("#bozza-avviso")
-                    assert q.inner_text("#bozza-avviso h1") == "Questa pagina non è ancora pubblicata" and q.get_attribute("#bozza-avviso a", "href") == "../index.html"
-                    assert q.locator("main .kicker, #side").count() == 0, "the chapter must not be shown to a reader"
-                else:
-                    q.wait_for_selector("#side a.on"); assert q.locator("#bozza-avviso").count() == 0
+                q.goto(T + "capitoli/35-storia-aston-dempster.html"); q.wait_for_selector("#side a.on"); assert q.locator("#bozza-avviso").count() == 0, admin      # no draft notice for anyone
                 c.close()
-        step("part VII published (home cards, heading count, menu, search, glossary links); the Storia stays absent for readers (cards, menu, search, direct URL notice) and present for the administrator", drafts)
+        step("part VII published (home cards, heading count, menu, search, glossary links); the Storia (VIII) is there for readers and the administrator alike (cards, menu, search, glossary links, no draft notice)", drafts)
 
         def part7_reader():
-            """Reader mode: every chapter 22-32 is in the sidebar and the home cards, and reachable from 21 by following «Successivo» only; the Storia is nowhere."""
+            """Reader mode: every chapter 22-32 is in the sidebar and the home cards, and reachable from 21 by following «Successivo» only, then the Storia 33-42."""
             F = ["capitoli/" + f for f in re.findall(r'"capitoli/((?:2[2-9]|3[0-2])-[^"]+\.html)", "\d+", "[^"]+", "VII\. Chemioinformatica"', (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8"))]; assert len(F) == 11, F
+            S = ["capitoli/" + f for f in re.findall(r'"capitoli/((?:3[3-9]|4[0-2])-[^"]+\.html)", "\d+", "[^"]+", "VIII\. Storia"', (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8"))]; assert len(S) == 10, S
             c, q = ctx(admin=False); q.goto(T + "index.html"); q.wait_for_selector("main .cards a")
             cards = q.eval_on_selector_all("main .cards a", "e=>e.map(a=>a.getAttribute('href'))")
-            for f in F: assert f in cards, ("home card missing", f)
+            for f in F + S: assert f in cards, ("home card missing", f)
             f = "capitoli/21-tempi.html"; seen = []
-            for _ in range(15):
+            for _ in range(25):
                 q.goto(T + f); q.wait_for_selector("#side a.on"); side = q.eval_on_selector_all("#side a", "e=>e.map(a=>a.getAttribute('href'))")
-                assert all(("../" * f.count("/") + g) in side for g in F), ("sidebar misses part VII", f)
-                assert not [h for h in side if re.search(r"(3[3-9]|4[0-2])-storia", h)], ("Storia in the sidebar", f)
+                assert all(("../" * f.count("/") + g) in side for g in F + S), ("sidebar misses part VII or the Storia", f)
                 nxt = q.get_attribute("#tc-succ", "href") if q.locator("#tc-succ").count() else None
                 if not nxt: break
                 f = "capitoli/" + nxt.split("/")[-1]; seen.append(f)
-            assert seen == F, seen      # 21 -> 22 -> ... -> 32 and nothing after 32
+            assert seen == F + S, seen      # 21 -> 22 -> ... -> 32 -> 33 ... 42 and nothing after 42
             c.close()
-        step("reader mode: chapters 22-32 are in the home cards, the sidebar and reachable by next from 21; 32 is the last page, no Storia", part7_reader)
+        step("reader mode: chapters 22-32 are in the home cards, the sidebar and reachable by next from 21; then the Storia 33-42, 42 is the last page", part7_reader)
 
         def drawer():
             c, q = ctx(390, 844, is_mobile=True, has_touch=True)
