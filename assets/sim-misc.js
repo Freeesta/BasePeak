@@ -1,57 +1,9 @@
-/* QqQ lab - Teoria: small interactive figures (kinetics, isotope patterns, mean free path).
+/* QqQ lab - Teoria: small interactive figures (isotope patterns, mean free path, mass differences).
    Each block initialises only if its container exists on the page. */
 "use strict";
 document.addEventListener("DOMContentLoaded", () => {
   const C = getComputedStyle(document.documentElement);
   const col = n => C.getPropertyValue("--c" + n).trim();
-
-  // ------------------------------------------------------------ kinetics A -> B -> C -> D
-  const kin = document.getElementById("sim-kin");
-  if (kin) {
-    const T = [0, 5, 10, 15, 30, 45, 60];
-    let mode = "lin";
-    TP.buttons(kin, [["lin", "Concentrazioni"], ["ln", "ln(C₀/C) del parent"]], "lin", k => { mode = k; draw(); });
-    const v = TP.controls(kin, [
-      { id: "k1", label: "k₁ (A → B)", min: 0.005, max: 0.3, step: 0.005, value: 0.06, unit: "min⁻¹", fmt: x => TP.fmt(x, 3) },
-      { id: "k2", label: "k₂ (B → C)", min: 0.005, max: 0.3, step: 0.005, value: 0.04, unit: "min⁻¹", fmt: x => TP.fmt(x, 3) },
-      { id: "k3", label: "k₃ (C → D, mineralizzazione)", min: 0, max: 0.3, step: 0.005, value: 0.02, unit: "min⁻¹", fmt: x => TP.fmt(x, 3) },
-    ], () => draw());
-    const c = TP.canvas(kin, 300); c.onresize = draw;
-    const out = document.createElement("div"); out.className = "readout"; kin.appendChild(out);
-    function sim(k1, k2, k3) {
-      const n = 1200, dt = 60 / n, t = [], A = [], B = [], Cc = [], D = [];
-      let a = 1, b = 0, cc = 0, d = 0;
-      for (let i = 0; i <= n; i++) {
-        t.push(i * dt); A.push(a); B.push(b); Cc.push(cc); D.push(d);
-        // exact exponential step for A, RK2 for the rest (dt small)
-        const f = (a, b, cc) => [-k1 * a, k1 * a - k2 * b, k2 * b - k3 * cc, k3 * cc];
-        const s1 = f(a, b, cc), s2 = f(a + s1[0] * dt, b + s1[1] * dt, cc + s1[2] * dt);
-        a += (s1[0] + s2[0]) / 2 * dt; b += (s1[1] + s2[1]) / 2 * dt; cc += (s1[2] + s2[2]) / 2 * dt; d += (s1[3] + s2[3]) / 2 * dt;
-      }
-      return { t, A, B, C: Cc, D };
-    }
-    function draw() {
-      const s = sim(v.k1, v.k2, v.k3);
-      if (mode === "lin") {
-        const ax = TP.axes(c, { x0: 0, x1: 60, y0: 0, y1: 1.02, xl: "tempo di irraggiamento (min)", yl: "C / [A]₀", xticks: [0, 5, 10, 15, 30, 45, 60] });
-        const ser = [["A parent", s.A, col(1)], ["B TP 1ª gen.", s.B, col(2)], ["C TP 2ª gen.", s.C, col(3)], ["D (CO₂, ioni)", s.D, "#9b978c"]];
-        ser.forEach(([, y, k], i) => TP.line(ax, s.t, y, k, 2.2, i === 3 ? [5, 4] : null));
-        ser.slice(0, 3).forEach(([, y, k]) => T.forEach(tt => { const i = Math.round(tt / 60 * (s.t.length - 1)); ax.ctx.fillStyle = k; ax.ctx.beginPath(); ax.ctx.arc(ax.X(tt), ax.Y(y[i]), 4, 0, 7); ax.ctx.fill(); }));
-        TP.legend(ax, ser.map(([n, , k], i) => [n, k, i === 3 ? [5, 4] : null]), ax.m.l + 260);
-      } else {
-        const y = s.A.map(a => Math.log(1 / a)), ymax = Math.max(1, y[y.length - 1] * 1.05);
-        const ax = TP.axes(c, { x0: 0, x1: 60, y0: 0, y1: ymax, xl: "tempo di irraggiamento (min)", yl: "ln(C₀/C)", xticks: [0, 5, 10, 15, 30, 45, 60], yfmt: x => TP.fmt(x, 1) });
-        TP.line(ax, s.t, y, col(1), 2.2);
-        T.forEach(tt => { ax.ctx.fillStyle = col(1); ax.ctx.beginPath(); ax.ctx.arc(ax.X(tt), ax.Y(v.k1 * tt), 4, 0, 7); ax.ctx.fill(); });
-        TP.label(ax, 40, v.k1 * 40, "pendenza = k₁ = kₐₚₚ", col(1), "right", "bottom", -8);
-      }
-      const k1 = v.k1, k2 = v.k2, tmax = Math.abs(k2 - k1) < 1e-9 ? 1 / k1 : Math.log(k2 / k1) / (k2 - k1);
-      const bmax = Math.max(...s.B);
-      out.innerHTML = `Parent: t<sub>1/2</sub> = <b>${TP.fmt(Math.LN2 / k1, 1)} min</b>, residuo a 60 min = <b>${TP.fmt(100 * s.A[s.A.length - 1], 1)} %</b> · ` +
-        `TP B: massimo a <b>${TP.fmt(tmax, 1)} min</b> (${TP.fmt(100 * bmax, 0)} % di [A]₀)` + (tmax > 60 ? " <span class='bad'>oltre l'ultimo prelievo</span>" : "");
-    }
-    draw();
-  }
 
   // ------------------------------------------------------------ isotope pattern at unit resolution
   const iso = document.getElementById("sim-iso");
@@ -136,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     draw();
   }
 
-  // ------------------------------------------------------------ mass differences (TP hypotheses)
+  // ------------------------------------------------------------ mass differences (formula-change hypotheses)
   const dmb = document.getElementById("sim-dm");
   if (dmb) {
     // [label, exact mass change (Da)]
@@ -164,9 +116,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const parity = (Math.round(p) % 2) === (Math.round(c) % 2);
       out.innerHTML = `Δ = <b>${d >= 0 ? "+" : ""}${TP.fmt(d, 2)}</b> (nominale ${dn >= 0 ? "+" : ""}${dn}). ` +
         `Parità dell'm/z ${parity ? "uguale: numero di N con la stessa parità" : "<b>diversa</b>: è cambiato di un numero dispari il numero di atomi di N"}.<br>` +
-        (hits.length ? `Trasformazioni compatibili (${hits.length}):<ul style="margin:4px 0 0 18px;padding:0">` + hits.slice(0, 14).map(h => `<li>${h[0]} <span style="color:var(--muted)">(Δ esatta ${h[1] >= 0 ? "+" : ""}${TP.fmt(h[1], 4)})</span></li>`).join("") + "</ul>" +
+        (hits.length ? `Variazioni di formula compatibili (${hits.length}):<ul style="margin:4px 0 0 18px;padding:0">` + hits.slice(0, 14).map(h => `<li>${h[0]} <span style="color:var(--muted)">(Δ esatta ${h[1] >= 0 ? "+" : ""}${TP.fmt(h[1], 4)})</span></li>`).join("") + "</ul>" +
         (hits.length > 1 ? `<span style="color:var(--muted)">Differenze esatte diverse ma stessa massa nominale: con risoluzione unitaria non si distinguono. Decidono la chimica del parent, gli isotopi, l'RT e l'MS2.</span>` : "")
-        : "Nessuna trasformazione semplice (o coppia) in elenco: può essere un'idrolisi con rottura della molecola, un addotto diverso o un segnale non correlato.");
+        : "Nessuna variazione semplice (o coppia) in elenco: può essere un'idrolisi con rottura della molecola, un addotto diverso o un segnale non correlato.");
     }
     draw();
   }
