@@ -151,7 +151,7 @@ const TP = (() => {
   }
   // ---- collapsible index: every part (Guida, II..VII, Pratica, Reference) and the sections of the current chapter open and close with a real button
   // (aria-expanded + aria-controls). Every part is open the first time the site is opened (nothing saved); after that the parts the reader closed or opened again are kept in localStorage, and the part and the sections of the current chapter are always open on arrival.
-  const NAVKEY = "qqq.teoria.nav";
+  const NAVKEY = "qqq.teoria.nav2";   // new key: the old one (qqq.teoria.nav) held the old all-closed default; it is ignored, so nobody stays stuck closed. Written only when the reader toggles a group
   const navStore = {
     get() { try { const o = JSON.parse(localStorage.getItem(NAVKEY)); return o && typeof o === "object" ? o : {}; } catch (_) { return {}; } },
     set(o) { try { localStorage.setItem(NAVKEY, JSON.stringify(o)); } catch (_) { /* no storage: the state lasts for this page only */ } },
@@ -162,24 +162,18 @@ const TP = (() => {
     const box = document.getElementById(btn.getAttribute("aria-controls"));
     btn.setAttribute("aria-expanded", String(open)); if (box) box.hidden = !open;
   }
-  /** «Apri tutto» / «Chiudi tutto»: the label says what a press does. */
-  function syncAll(side) {
-    const all = side.querySelector("#navall"); if (!all) return;
-    const some = [...side.querySelectorAll("button[aria-controls][aria-expanded]")].some(b => b.id !== "menu" && b.getAttribute("aria-expanded") === "false");
-    all.textContent = some ? "Apri tutto" : "Chiudi tutto"; all.dataset.act = some ? "open" : "close";
-  }
   function wireToggles(side) {
     const st = navStore.get(); st.p = st.p || {};
     side.addEventListener("click", e => {
       const b = e.target.closest("button.ptog, button.ctog"); if (b) {
         const open = b.getAttribute("aria-expanded") !== "true"; setOpen(b, open);
         if (b.classList.contains("ptog")) st.p[b.dataset.k] = open ? 1 : 0;   // the sections of the current chapter are always open on arrival: nothing to keep
-        navStore.set(st); syncAll(side); return;
+        navStore.set(st); return;
       }
-      if (e.target.closest("#navall")) {
-        const open = side.querySelector("#navall").dataset.act === "open";
-        side.querySelectorAll("button.ptog, button.ctog").forEach(x => { setOpen(x, open); if (x.classList.contains("ptog")) st.p[x.dataset.k] = open ? 1 : 0; });
-        navStore.set(st); syncAll(side);
+      if (e.target.closest("#navall")) {   // «Riduci tutto»: every part closes except the one of the current chapter (it keeps the reader's place); there is no «open all»
+        side.querySelectorAll("button.ptog").forEach(x => { const keep = !!x.closest(".grp").querySelector("a[aria-current=page]"); setOpen(x, keep); st.p[x.dataset.k] = keep ? 1 : 0; });
+        side.querySelectorAll("button.ctog").forEach(x => setOpen(x, false));
+        navStore.set(st);
       }
     });
   }
@@ -207,7 +201,7 @@ const TP = (() => {
       if (last && last.g === g && last.label === label) last.ix.push(i); else parts.push({ g, label, ix: [i] });
     }));
     const st = navStore.get(), sp = st.p || {};
-    let html = `<div class="navtools"><button type="button" id="navall" class="navall" data-act="open">Apri tutto</button></div><div class="navparts" role="group" aria-label="Capitoli">`;
+    let html = `<div class="navtools"><button type="button" id="navall" class="navall">Riduci tutto</button></div><div class="navparts" role="group" aria-label="Capitoli">`;
     parts.forEach((pt, n) => {
       const key = String(n), here0 = pt.ix.includes(idx), open = here0 || sp[key] !== 0;   // first visit (nothing kept): everything open; a part with the current chapter is open whatever was kept
       const lis = pt.ix.map(i => {
@@ -220,7 +214,7 @@ const TP = (() => {
     });
     side.innerHTML = brandHtml() + searchHtml() + `<div class="sidescroll">` + html + "</div></div>";
     const toc = side.querySelector("ol.toc"); if (toc) tree.forEach(it => toc.appendChild(node(it)));
-    wireToggles(side); syncAll(side);
+    wireToggles(side);
     return items;
   }
   /** Scroll-spy: the last section whose heading is above 30% of the window is the current one (aria-current="location"). IntersectionObserver only wakes the check up. */
@@ -247,11 +241,9 @@ const TP = (() => {
   }
   /** Breadcrumb (BasePeak > part > chapter) and the compact previous / next pair at the top of the page. */
   function crumbs(i) {
-    const c = CHAPTERS[i], g = groupOf(c), p = CHAPTERS[i - 1], n = CHAPTERS[i + 1];
+    const c = CHAPTERS[i], g = groupOf(c);
     const nav = document.createElement("div"); nav.className = "navtop";
-    const pr = (x, rel, txt) => x ? `<a rel="${rel}" href="${SITE.up + x[0]}" aria-label="${txt === "prev" ? "Precedente" : "Successivo"}: ${esc(chTitle(x))}" title="${esc(chTitle(x))}">${rel === "prev" ? "&larr; Precedente" : "Successivo &rarr;"}</a>` : "";
-    nav.innerHTML = `<nav class="crumbs" aria-label="Percorso"><ol><li><a href="${SITE.up}index.html">BasePeak</a></li><li><a href="${SITE.up + GROUP_HOME[g]}">${g}</a></li><li><span aria-current="page">${esc(chTitle(c))}</span></li></ol></nav>` +
-      `<nav class="pnt" aria-label="Capitolo precedente e successivo">${pr(p, "prev", "prev")}${pr(n, "next", "next")}</nav>`;
+    nav.innerHTML = `<nav class="crumbs" aria-label="Percorso"><ol><li><a href="${SITE.up}index.html">BasePeak</a></li><li><a href="${SITE.up + GROUP_HOME[g]}">${g}</a></li><li><span aria-current="page">${esc(chTitle(c))}</span></li></ol></nav>`;
     $("main").prepend(nav);
   }
 
@@ -279,12 +271,8 @@ const TP = (() => {
     $("#menu").onclick = () => $("#menu").setAttribute("aria-expanded", String(side.classList.toggle("open")));
     side.addEventListener("click", e => { if (e.target.closest("a")) { side.classList.remove("open"); $("#menu").setAttribute("aria-expanded", "false"); } });   // narrow screens: the index is a full-screen panel
     if (PHONE) phone(top);
-    // prev / next
-    const pn = document.createElement("div"); pn.className = "pn";
+    // previous / next live only in the header (comandi.js), not in the page
     const p = CHAPTERS[idx - 1], n = CHAPTERS[idx + 1];
-    pn.innerHTML = (p ? `<a rel="prev" href="${SITE.up + p[0]}"><small>&larr; Precedente</small>${p[1]}. ${p[2]}</a>` : "<span></span>") +
-                   (n ? `<a rel="next" href="${SITE.up + n[0]}" style="text-align:right"><small>Successivo &rarr;</small>${n[1]}. ${n[2]}</a>` : "<span></span>");
-    $("main").appendChild(pn);
     // the index keeps its scroll from one chapter to the next (the active entry is brought into view if it would be hidden)
     const restoreSide = () => {
       try { const y = sessionStorage.getItem("qqq.teoria.side"); if (y !== null) scroller(side).scrollTop = +y || 0; } catch (_) { /* no storage: top */ }
