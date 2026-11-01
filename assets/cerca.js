@@ -1,4 +1,4 @@
-/* mzLab - Teoria: search dialog (Ctrl/⌘K or TEORIA.cerca()). Classic script, no network: it works from file:// too.
+/* mzLab - Teoria: search dialog (Ctrl/⌘K or TEORIA.cerca()) and the search field of the index ("/"). Classic script, no network: it works from file:// too.
    The index (indice-ricerca.js, from tools/genera_indice_teoria.py) is read only the first time the dialog opens.
    Matching: every word typed must be the start of a word of the entry (accent and case insensitive). Results are grouped by chapter. */
 "use strict";
@@ -161,11 +161,72 @@
     open = false; bg.hidden = true; document.documentElement.removeAttribute("data-cerca"); seq++;
     if (back && opener && opener.focus && document.contains(opener)) opener.focus({ preventScroll: true });
   }
+
+  // ---------------------------------------------------------------- search field of the index (#sidesearch, built by teoria.js)
+  // Same index and same matching as the dialog; the list opens right under the field while typing. Enter opens the first (or the marked) result, arrows move, Esc clears, "/" focuses the field.
+  const esc = t => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  (function side() {
+    const form = document.getElementById && document.getElementById("sidesearch"); if (!form) return;   // (the node test runs this file with a bare document)
+    const inp = form.querySelector("input"), panel = form.querySelector("#ss-panel"), ul = form.querySelector("#ss-list"), st = form.querySelector("#ss-st"), all = form.querySelector("#ss-all");
+    const SMAX = 8; let items = [], sel = -1, seqS = 0;
+    const hide = () => { panel.hidden = true; inp.setAttribute("aria-expanded", "false"); inp.removeAttribute("aria-activedescendant"); };
+    function pick(i, scroll) {
+      sel = i;
+      ul.querySelectorAll("[role=option]").forEach(o => o.setAttribute("aria-selected", String(+o.dataset.i === i)));
+      const o = ul.querySelector(`[data-i="${i}"]`);
+      if (o) { inp.setAttribute("aria-activedescendant", o.id); if (scroll) o.scrollIntoView({ block: "nearest" }); } else inp.removeAttribute("aria-activedescendant");
+    }
+    function show() {
+      const q = inp.value, mine = ++seqS, toks = tokens(q);
+      if (!toks.length) { hide(); items = []; st.textContent = ""; return; }
+      loadIndex().then(idx => {
+        if (mine !== seqS) return;
+        const groups = search(idx.filter(e => !(TEORIA.nascosto && TEORIA.nascosto(e[2].replace(/#.*$/, "")))), q);   // drafts only in administrator mode, as in the dialog
+        items = groups.flatMap(g => g.items).slice(0, SMAX);
+        ul.innerHTML = items.map((e, i) => `<li role="option" id="ss${i}" data-i="${i}" aria-selected="false"><span>${mark(e[0], toks)}</span><small>${esc(e[3])} · ${esc(TYPE[e[1]] || e[1])}</small></li>`).join("");
+        ul.hidden = !items.length;
+        st.textContent = toks.length === 1 && toks[0].length < 2 ? "Scrivi almeno due lettere." : items.length ? "" : "Nessun risultato.";
+        st.hidden = !st.textContent;
+        all.hidden = !items.length;
+        panel.hidden = false; inp.setAttribute("aria-expanded", String(items.length > 0));
+        pick(items.length ? 0 : -1, false);
+      }).catch(() => { items = []; ul.innerHTML = ""; ul.hidden = true; all.hidden = true; st.textContent = "Indice di ricerca non disponibile."; st.hidden = false; panel.hidden = false; });
+    }
+    function open(e) {
+      if (!e) return;
+      hide(); inp.blur();
+      const file = e[2].split("#")[0], sheet = document.getElementById("side");
+      if (sheet && sheet.classList.contains("open")) { const x = sheet.querySelector(".sheetx"); if (x) x.click(); }   // phone: the index sheet closes
+      if (file === here && e[2].includes("#")) { location.hash = e[2].split("#")[1]; const t = document.getElementById(e[2].split("#")[1]); if (t) t.scrollIntoView({ behavior: "auto", block: "start" }); }
+      else location.href = SITE.up + e[2];
+    }
+    form.addEventListener("submit", e => { e.preventDefault(); open(items[sel >= 0 ? sel : 0]); });
+    inp.addEventListener("input", show);
+    inp.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        if (inp.value || !panel.hidden) { e.preventDefault(); e.stopPropagation(); inp.value = ""; items = []; seqS++; hide(); st.textContent = ""; }
+      } else if ((e.key === "ArrowDown" || e.key === "ArrowUp") && items.length) {
+        e.preventDefault(); if (panel.hidden) { panel.hidden = false; inp.setAttribute("aria-expanded", "true"); }
+        pick(e.key === "ArrowDown" ? (sel + 1) % items.length : (sel - 1 + items.length) % items.length, true);
+      } else if (e.key === "Enter") { e.preventDefault(); open(items[sel >= 0 ? sel : 0]); }
+    });
+    ul.addEventListener("mousedown", e => e.preventDefault());   // a click on a result must not blur the field first
+    ul.addEventListener("click", e => { const o = e.target.closest("[role=option]"); if (o) open(items[+o.dataset.i]); });
+    ul.addEventListener("mousemove", e => { const o = e.target.closest("[role=option]"); if (o && +o.dataset.i !== sel) pick(+o.dataset.i, false); });
+    all.addEventListener("click", () => { const q = inp.value; hide(); openDialog(q); });
+    inp.addEventListener("focus", () => { if (inp.value) show(); });
+    form.addEventListener("focusout", e => { if (!form.contains(e.relatedTarget)) setTimeout(() => { if (!form.contains(document.activeElement)) hide(); }, 0); });
+    TEORIA.cercaLaterale = () => { inp.focus(); inp.select(); };
+  })();
+
   TEORIA.cerca = openDialog;
   TEORIA.cerca.chiudi = close;
   TEORIA.cerca.aperta = () => open;
 
   document.addEventListener("keydown", e => {
+    if (e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey && !open && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName || "") && !e.target.isContentEditable) {   // "/" jumps to the search field (the dialog where the index is hidden)
+      e.preventDefault(); const f = document.getElementById("sc-cerca"); if (f && f.offsetParent !== null && TEORIA.cercaLaterale) TEORIA.cercaLaterale(); else openDialog("");
+    }
     if ((e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey && (e.key || "").toLowerCase() === "k") { e.preventDefault(); open ? close() : openDialog(""); }
   });
 })();

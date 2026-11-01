@@ -86,7 +86,7 @@ try:
             assert q.evaluate("document.documentElement.scrollWidth") <= 390
             q.click("#menu"); q.wait_for_selector("#side", state="visible")
             assert q.locator("#side #logo").is_visible() or q.evaluate("document.querySelector('#side #logo')!==null")      # the logo is at the top of the index (scrolled to the current chapter)
-            q.evaluate("document.querySelector('#side').scrollTop = 0"); assert q.locator("#side #logo").is_visible() and q.locator("#logo").bounding_box()["height"] >= 44
+            q.evaluate("document.querySelector('#side .sidescroll').scrollTop = 0"); assert q.locator("#side #logo").is_visible() and q.locator("#logo").bounding_box()["height"] >= 44
             idle(q); c.close()
         step("phone: the bar is full width, the drawer carries the logo", phone)
         def dark():
