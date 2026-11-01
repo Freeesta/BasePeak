@@ -1,5 +1,5 @@
 """Page editor (editor.js, administrator mode): the button only for the administrator; a paragraph and a ready-made box edited; the save without server and without token
-(download + clipboard + GitHub web editor of that file in a new tab + the four steps in Italian) gives the page identical to the source except the edit; the GitHub address
+(clipboard + download, then a 3-step dialog whose first button opens the GitHub web editor of that file in a new tab) gives the page identical to the source except the edit; the GitHub address
 for three pages including file://; invalid HTML is flagged and blocks the save; keyboard, contrast >= 7:1 in every theme, no animation, no request outside the site."""
 import sys, os, difflib; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import *
@@ -16,6 +16,7 @@ def fine(q, loc):
     loc.evaluate("e => { e.scrollIntoView({block: 'center'}); const r = document.createRange(); r.selectNodeContents(e); r.collapse(false); const s = getSelection(); s.removeAllRanges(); s.addRange(r); document.querySelector('main').focus(); }")
 ADMIN = "try{localStorage.setItem('mzlab.admin','1')}catch(_){}"
 GH = "https://github.com/Freeesta/BasePeak/edit/main/"
+UP = "https://github.com/Freeesta/BasePeak/upload/main/"
 PAGE = "capitoli/05-ei-ci.html"
 r = Run(port=8977, wd="/tmp/wd_teoria_modifica")
 try:
@@ -52,10 +53,13 @@ try:
             q.click("[data-act=box-key]"); assert q.locator("main .box.key").count() == src.count('class="box key"') + 1
             sel = q.evaluate("getSelection().toString()"); assert sel == "Scrivi qui il testo.", sel
             q.keyboard.type("Testo del nuovo riquadro.")
-            with q.expect_download() as dl, c.expect_page() as pp:
+            with q.expect_download() as dl:
                 q.click("[data-act=salva]")
             new = open(dl.value.path(), encoding="utf-8").read()
             assert dl.value.suggested_filename == "05-ei-ci.html"
+            q.wait_for_selector("#ed-pannello .ed-passi", timeout=5000)
+            assert q.evaluate("(() => { const a = document.querySelector('#ed-pannello [data-p=apri]'); a.scrollIntoView({block: 'center', behavior: 'instant'}); const b = a.getBoundingClientRect(), e = document.elementFromPoint(b.x + 5, b.y + 5); return !!e && !!e.closest('#ed-pannello'); })()"), "the side menu covers the dialog"
+            with c.expect_page() as pp: q.click("#ed-pannello [data-p=apri]")   # step 1 opens GitHub in a new tab; it does not open by itself
             assert pp.value.url == GH + PAGE, pp.value.url
             assert q.evaluate("navigator.clipboard.readText()") == new
             d = [l for l in difflib.unified_diff(src.split("\n"), new.split("\n"), lineterm="", n=0) if l[:1] in "+-" and l[:3] not in ("+++", "---")]
@@ -64,10 +68,14 @@ try:
             assert len(plus) == 2 and plus[0][1:].replace("&nbsp;", " ").endswith("AGGIUNTA</p>") and plus[0][1:].startswith(old[:-4]) and '<div class="box key"><b>Concetto chiave</b><p>Testo del nuovo riquadro.</p></div>' in plus[1], plus
             assert not [x for x in cm.controlla(new) if x[1] == "struttura"]
             panel = q.inner_text("#ed-pannello")
-            for frag in ("Seleziona tutto", "Incolla", "Scrivi in alto", "Propose changes", "Create pull request"): assert frag in panel, frag
-            assert q.get_attribute("#ed-pannello a", "href") == GH + PAGE
+            # obsolete: the four steps (select, paste, write, Propose changes / Create pull request) became three; the clipboard now holds the page before GitHub opens
+            for frag in ("Apri GitHub", "Testo copiato", "Commit changes", "solo dopo che hai incollato", "pochi minuti", "Alternativa: trascina il file"): assert frag in panel, frag
+            assert q.locator("#ed-pannello .ed-passi > li").count() == 3
+            assert q.get_attribute("#ed-pannello [data-p=apri]", "href") == GH + PAGE
+            assert q.get_attribute("#ed-pannello [data-p=carica]", "href") == UP + "capitoli"
+            assert "Ctrl+A" in panel and "Ctrl+V" in panel and "⌘" not in panel
             c.close()
-        step("edit a paragraph and insert a box; the save gives the source plus only that edit (download, clipboard, GitHub tab, four steps)", edit_and_save)
+        step("edit a paragraph and insert a box; the save gives the source plus only that edit (download, exact clipboard text, 3-step dialog, GitHub tab opened by its button)", edit_and_save)
         def urls():
             f = "file://" + str(ROOT / PAGE)
             q0 = r.b.new_context().new_page(); q0.goto(T + PAGE); q0.wait_for_function("!!window.TEORIA_EDITOR", timeout=8000)
@@ -76,21 +84,50 @@ try:
                            ("file:///C:/Users/f/BasePeak%20nuovo/pratica/orale.html", "pratica/orale.html")]:
                 assert q0.evaluate("u => TEORIA_EDITOR.percorso(u)", u) == exp, (u, exp)
             assert q0.evaluate("TEORIA_EDITOR.urlGitHub('capitoli/02-lc.html')") == GH + "capitoli/02-lc.html"
+            for pg, up in [("capitoli/02-lc.html", "capitoli"), ("pratica/ei.html", "pratica"), ("index.html", "")]:
+                assert q0.evaluate("p => TEORIA_EDITOR.urlCarica(p)", pg) == (UP + up).rstrip("/") or q0.evaluate("p => TEORIA_EDITOR.urlCarica(p)", pg) == UP + up, pg
+            assert q0.evaluate("TEORIA_EDITOR.urlCarica('index.html')") == UP.rstrip("/") and q0.evaluate("TEORIA_EDITOR.urlGitHub('index.html')") == GH + "index.html"
             # from file:// the browser cannot read the source: the file is chosen once, then the same flow
             c, q = ctx(permissions=["clipboard-read", "clipboard-write"]); apri(q, f)
             fine(q, q.locator("main > p").nth(1)); q.keyboard.type(" DADISCO")
             q.click("[data-act=salva]"); q.wait_for_selector("#ed-file", timeout=5000)
             q.set_input_files("#ed-file", str(ROOT / "capitoli/03-gc.html")); q.wait_for_function("document.getElementById('ed-pst').textContent.includes('giusto')", timeout=5000)
             q.set_input_files("#ed-file", str(ROOT / PAGE)); q.wait_for_function("document.getElementById('ed-pst').textContent.includes('File letto')", timeout=5000)
-            with q.expect_download() as dl, c.expect_page() as pp: q.click("[data-act=salva]")
+            with q.expect_download() as dl: q.click("[data-act=salva]")
+            with c.expect_page() as pp: q.click("#ed-pannello [data-p=apri]")
             new = open(dl.value.path(), encoding="utf-8").read()
             assert pp.value.url == GH + PAGE and new.count("DADISCO") == 1 and new.replace("&nbsp; DADISCO", "").replace(" DADISCO", "") == src, pp.value.url
             c.close()
             for page in ("capitoli/01-cromatografia.html",):          # the live-site shape on the local server: the address follows the page
                 c, q = ctx(); apri(q, T + page); fine(q, q.locator("main > p").first); q.keyboard.type(" X")
-                with c.expect_page() as pp, q.expect_download(): q.click("[data-act=salva]")
-                assert pp.value.url == GH + page, pp.value.url; c.close()
+                with q.expect_download(): q.click("[data-act=salva]")
+                with c.expect_page() as pp: q.click("#ed-pannello [data-p=apri]")
+                assert pp.value.url == GH + page, pp.value.url
+                assert q.get_attribute("#ed-pannello [data-p=carica]", "href") == UP + page.rsplit("/", 1)[0]; c.close()
         step("the GitHub address is right for 3+ pages, live-site shape and file:// (file chosen once)", urls)
+        def copy_fallback():
+            # clipboard API refused (file://, permission denied): the hidden textarea + execCommand('copy') copies; if even that fails the button «Copia il testo» and the file alternative show
+            c, q = ctx(); apri(q, T + PAGE)
+            q.evaluate("""() => { navigator.clipboard.writeText = () => Promise.reject(new Error('denied')); window.__copiato = null;
+              const ec = document.execCommand.bind(document); document.execCommand = (c, ...a) => { if (c === 'copy') { window.__copiato = document.activeElement.value; return true; } return ec(c, ...a); }; }""")
+            fine(q, q.locator("main > p").nth(1)); q.keyboard.type(" FALLBACK")
+            with q.expect_download() as dl: q.click("[data-act=salva]")
+            new = open(dl.value.path(), encoding="utf-8").read(); q.wait_for_selector("#ed-pannello .ed-passi")
+            assert q.evaluate("window.__copiato") == new and "FALLBACK" in new
+            assert "Testo copiato" in q.inner_text("#ed-pst")
+            q.evaluate("() => { document.execCommand = (c) => c === 'copy' ? false : true; }")
+            with q.expect_download(): q.click("[data-act=salva]")
+            q.wait_for_function("document.getElementById('ed-pst').textContent.includes('non è stato copiato')", timeout=5000)
+            assert q.is_visible("#ed-pannello [data-p=copia]") and q.locator("#ed-pannello details.ed-alt[open]").count() == 1
+            c.close()
+        step("clipboard refused: fallback copy works; if it fails too the «Copia il testo» button and the file alternative are shown", copy_fallback)
+        def mac_keys():
+            c, q = ctx(permissions=["clipboard-read", "clipboard-write"]); q.add_init_script("Object.defineProperty(navigator, 'platform', {get: () => 'MacIntel'})"); apri(q, T + PAGE)
+            fine(q, q.locator("main > p").nth(1)); q.keyboard.type(" MAC")
+            with q.expect_download(): q.click("[data-act=salva]")
+            q.wait_for_selector("#ed-pannello .ed-passi"); t = q.inner_text("#ed-pannello .ed-passi"); assert "⌘+A" in t and "⌘+V" in t and "Ctrl" not in t, t
+            c.close()
+        step("the dialog shows ⌘ keys on a Mac and Ctrl on Windows/Linux", mac_keys)
         def invalid():
             c, q = ctx(); apri(q, T + PAGE)
             q.click("[data-act=vista-code]"); q.wait_for_selector("#ed-ta"); q.wait_for_function("document.getElementById('ed-esito').className==='ok'", timeout=5000)

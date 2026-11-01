@@ -1,6 +1,6 @@
 /* BasePeak - Teoria: page editor of the administrator mode (five clicks on the logo, sblocco.js). Alt+E or the button «Modifica questa pagina».
-   The text is edited where it stands (contenteditable); «Salva e proponi la modifica» downloads the whole page, copies it and opens the GitHub web editor of that
-   file: GitHub makes the branch and the pull request, the CI checks it, the COO merges. No server, no token, no network except that GitHub tab: it works from file:// too.
+   The text is edited where it stands (contenteditable); «Salva e proponi la modifica» copies the whole page to the clipboard (and downloads it too), then a dialog with three steps opens the GitHub web editor of that
+   file where the author pastes it: GitHub makes the branch and the pull request, the CI checks it, the COO merges. No server, no token, no network except that GitHub tab: it works from file:// too.
    The page is rebuilt from its SOURCE (read from the site, or chosen once from disk on file://): every block you did not touch is copied as it was, so the pull request shows only your change.
    HTML checks: editor-controlli.js (same rules as tools/controlla_modifica.py). Styles: editor.css (read only when the editor opens). */
 "use strict";
@@ -20,6 +20,8 @@
     return /(^|\/)(index(\.html)?)?$/.test(u) ? "index.html" : null;
   }
   const urlGitHub = p => `https://github.com/${REPO}/edit/${BRANCH}/${p.split("/").map(encodeURIComponent).join("/")}`;
+  const cartella = p => p.includes("/") ? p.replace(/\/[^/]*$/, "") : "";
+  const urlCarica = p => `https://github.com/${REPO}/upload/${BRANCH}` + (cartella(p) ? "/" + cartella(p).split("/").map(encodeURIComponent).join("/") : "");   // upload page of the folder: the file keeps its name and replaces the original
   const here = percorso(location.href) || SITE.here;
   if (!here.endsWith(".html")) return;
 
@@ -295,12 +297,20 @@
     if (nuova === sorgente) return dire("Non hai cambiato niente: non c'è nulla da proporre.");
     const E = nuoviErrori(nuova, sorgente, true);
     if (E.length) { mostraErrori(E); return dire("La pagina ha degli errori: correggili prima di salvare."); }
-    const nome = here.replace(/^.*\//, ""), url = urlGitHub(here);
+    const nome = here.replace(/^.*\//, "");
+    const copiato = await copia(nuova);                                           // first, while the click is still fresh: the clipboard needs it
     const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([nuova], { type: "text/html;charset=utf-8" })); a.download = nome;
     document.body.appendChild(a); a.click(); setTimeout(() => { a.remove(); URL.revokeObjectURL(a.href); }, 500);
-    let copiato = false; try { await navigator.clipboard.writeText(nuova); copiato = true; } catch (_) { /* the file is downloaded anyway */ }
-    const w = window.open(url, "_blank", "noopener");
-    pannelloFinale(url, nuova, copiato, !!w);
+    pannelloFinale(nome, nuova, copiato);
+  }
+  /** Copies the text: the clipboard API, else a hidden textarea + execCommand (file://, old browsers, permission denied). true if it worked. */
+  async function copia(testo) {
+    try { await navigator.clipboard.writeText(testo); return true; } catch (_) { /* denied or not available: the fallback */ }
+    const t = document.createElement("textarea"); t.value = testo; t.setAttribute("readonly", ""); t.setAttribute("aria-hidden", "true"); t.style.cssText = "position:fixed;top:0;left:0;opacity:0;pointer-events:none";
+    document.body.appendChild(t); t.select(); let ok = false;
+    try { ok = document.execCommand("copy"); } catch (_) { /* no copy */ }
+    t.remove(); if (ultimo) { const s = getSelection(); s.removeAllRanges(); s.addRange(ultimo); }
+    return ok;
   }
   function mostraErrori(E) {
     const p = apriPannello("Prima di salvare", `<p>Ci sono errori nel testo:</p><ul>${elenco(E)}</ul><div class="ed-az"><button type="button" class="ed-b" data-p="chiudi">Ho capito</button></div>`);
@@ -315,21 +325,30 @@
     pannello.addEventListener("keydown", e => { if (e.key === "Escape") { pannello.remove(); pannello = null; main().focus({ preventScroll: true }); } });
     return pannello;
   }
-  function pannelloFinale(url, nuova, copiato, aperta) {
-    const p = apriPannello("Ultimo passo: proponi la modifica su GitHub", `
-      <p>Ho scaricato il file <b>${here.replace(/^.*\//, "")}</b>${copiato ? " e ne ho copiato il testo" : ""}. ${aperta ? "Si è aperta una scheda di GitHub." : "Il browser ha bloccato la nuova scheda: usa il pulsante qui sotto."} Ti serve un account GitHub.</p>
+  function pannelloFinale(nome, nuova, copiato) {
+    const mac = /Mac|iPhone|iPad/i.test(navigator.platform || ""), K = mac ? "⌘" : "Ctrl", url = urlGitHub(here), carica = urlCarica(here);
+    const p = apriPannello("Salva su GitHub: 3 passi", `
+      <p id="ed-pst" class="ed-stato" role="status">${copiato ? "<b>Testo copiato.</b> Ora puoi incollarlo su GitHub." : "<b>Il testo non è stato copiato.</b> Premi «Copia il testo»."}</p>
       <ol class="ed-passi">
-        <li><b>Seleziona tutto</b> il testo nella pagina GitHub (Ctrl+A, su Mac Cmd+A).</li>
-        <li><b>Incolla</b> (Ctrl+V, su Mac Cmd+V)${copiato ? "" : ": il testo non è stato copiato, apri il file scaricato, copialo e incollalo"}.</li>
-        <li><b>Scrivi in alto</b> che cosa hai cambiato.</li>
-        <li>Premi <b>«Commit changes…»</b>, scegli di creare un nuovo ramo e premi <b>«Propose changes»</b>, poi <b>«Create pull request»</b>.</li>
+        <li><a class="ed-b ed-pri ed-grande" href="${url}" target="_blank" rel="noopener" data-p="apri">Apri GitHub</a></li>
+        <li>Su GitHub <b>clicca nel testo</b>, premi <b>${K}+A</b>, poi <b>${K}+V</b>.</li>
+        <li>Premi il verde <b>«Commit changes…»</b>, poi di nuovo <b>«Commit changes»</b>.</li>
       </ol>
-      <p>Poi aspetta: il controllo automatico guarda la pagina e il COO la pubblica.</p>
-      <p>Se compare una X rossa e il messaggio parla di «indice di ricerca» o di «glossario»: è normale quando cambi un titolo o una parola del glossario. Scrivi a Claude: «rigenera gli indici della mia modifica (PR n)».</p>
-      <div class="ed-az"><a class="ed-b" href="${url}" target="_blank" rel="noopener">Apri GitHub di nuovo</a><button type="button" class="ed-b" data-p="copia">Copia di nuovo il testo</button><button type="button" class="ed-b" data-p="chiudi">Chiudi</button></div>
-      <p id="ed-pst" role="status"></p>`);
-    p.addEventListener("click", async e => { if (e.target.closest("[data-p=copia]")) { let ok = false; try { await navigator.clipboard.writeText(nuova); ok = true; } catch (_) { /* no clipboard */ } $("#ed-pst", p).textContent = ok ? "Testo copiato." : "Non riesco a copiare: apri il file scaricato e copialo da lì."; } });
-    dire("File scaricato. Segui i quattro passi qui sotto.");
+      <p><b>«Commit changes…» si accende solo dopo che hai incollato.</b> Dopo il salvataggio il sito si aggiorna in pochi minuti.</p>
+      <div class="ed-az"><button type="button" class="ed-b ed-grande${copiato ? "" : " ed-pri"}" data-p="copia">Copia il testo</button><button type="button" class="ed-b" data-p="chiudi">Chiudi</button></div>
+      <details class="ed-alt"><summary>Alternativa: trascina il file</summary>
+        <p>Il file <b>${nome}</b> è stato scaricato. Aprilo nella pagina di caricamento di GitHub e trascinalo lì: ha lo stesso nome e sostituisce quello vecchio.</p>
+        <p><a class="ed-b" href="${carica}" target="_blank" rel="noopener" data-p="carica">Apri la pagina di caricamento</a></p>
+      </details>
+      <p>Se compare una X rossa e il messaggio parla di «indice di ricerca» o di «glossario»: è normale quando cambi un titolo o una parola del glossario. Scrivi a Claude: «rigenera gli indici della mia modifica (PR n)».</p>`);
+    p.addEventListener("click", async e => {
+      if (!e.target.closest("[data-p=copia]")) return;
+      const ok = await copia(nuova);
+      $("#ed-pst", p).innerHTML = ok ? "<b>Testo copiato.</b> Ora puoi incollarlo su GitHub." : "<b>Non riesco a copiare.</b> Usa l'alternativa: trascina il file scaricato.";
+      const d = $(".ed-alt", p); if (!ok && d) d.open = true;
+    });
+    if (!copiato) { const d = $(".ed-alt", p); if (d) d.open = true; }
+    dire("File scaricato e testo copiato. Segui i 3 passi qui sotto.");
   }
   function sceltaFile() {
     const p = apriPannello("Scegli il file di questa pagina", `
@@ -375,6 +394,6 @@
     return mode === "code" ? pagina(C().segmenta(sorgente), ta.value) : (r => pagina(r.S, r.testo))(contenuto());
   }
 
-  window.TEORIA_EDITOR = { toggle, percorso, urlGitHub, salva, anteprima, attiva: bottone };
+  window.TEORIA_EDITOR = { toggle, percorso, urlGitHub, urlCarica, salva, anteprima, attiva: bottone };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
