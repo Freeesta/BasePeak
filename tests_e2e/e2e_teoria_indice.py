@@ -72,6 +72,8 @@ try:
             seen = []
             # the last entry that the page can really scroll above the 30 % line (without the in-page previous / next block the page ends sooner, so the very last heading may stay below it)
             reach = [h for h in heads if q.evaluate("id=>{const e=document.getElementById(id);return e.getBoundingClientRect().top+scrollY-innerHeight*0.25<=document.documentElement.scrollHeight-innerHeight}", h)]
+            # and whose next heading is more than 30 % of the window further down (else the next one is, rightly, the current section)
+            reach = [h for h in reach if q.evaluate("id=>{const hs=[...document.querySelectorAll('main h2[id],main h3[id]')],i=hs.findIndex(x=>x.id===id),n=hs[i+1];return !n||n.getBoundingClientRect().top-hs[i].getBoundingClientRect().top>innerHeight*0.32}", h)]
             for h in (reach[1], reach[len(reach) // 2], reach[-1]):
                 q.evaluate("id=>{document.documentElement.style.scrollBehavior='auto';document.getElementById(id).scrollIntoView()}", h)
                 q.wait_for_function("id=>{const a=document.querySelector('#side a[aria-current=location]');return a&&a.getAttribute('href')==='#'+id}", arg=h, timeout=5000)
