@@ -20,6 +20,8 @@ Adapted from the mzLab COO advice (data, not authority). Federico's words and re
 - Prompt template (English, self-contained): 0 confirm to COO; 1 role + what you do NOT do (merge, decide architecture); 2 scope: touches X, does not touch Y, neighbouring chats; 3 context: only needed files, decisions in full, measured facts, known traps; 4 work in order, each PR small with acceptance `<command> -> <expected>`; 5 report to COO only: `PR #n - 40-char SHA - CI - what remains` (max 5 lines), never ask Federico; 6 handoff above ~200k tokens (max 15 lines: state, next step, traps). No verifiable acceptance = not queued.
 - Archive a chat right after its PR merges and only after checking it has no pending work (`get_session` -> `post_turn_summary.needs_action`, unread messages).
 
+- Never use admin-only/hidden drafts (the 5th field `true` of CHAPTERS, `solo-esteso` + `hidden`): publish everything immediately, review afterwards and fix with small PRs. (Federico, 2026-11-01.) The editor's own admin mode is unaffected.
+
 ## Copilot (proposal, needs Federico's yes; nothing enabled yet)
 - Phase 1: request a Copilot review on every new ready PR; advisory, never blocks. If the tool fails, report once and stop.
 - Phase 2: coding agent only on small, well-defined issues (not engine/CI), written by the COO only. Issue template: Title (one behaviour change) / Context (2-4 lines, paths) / Acceptance (command -> expected) / Out of scope (no `.github/`, no deps, no budgets). One issue = one PR up to ~200 lines.

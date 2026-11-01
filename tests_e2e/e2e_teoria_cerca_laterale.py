@@ -147,11 +147,10 @@ try:
         step("«Apri la ricerca completa» opens the full search dialog with the same query", full)
         def drafts():
             q0 = "settori magnetici"
-            c, q = ctx(); go(q); q.click("#sc-cerca"); q.keyboard.type(q0); q.wait_for_function("document.querySelector('#ss-st').textContent.includes('Nessun')")
-            assert q.locator("#ss-list [role=option]").count() == 0, "a draft chapter must not be found by a reader"; c.close()
-            c, q = ctx(admin=True); go(q); q.click("#sc-cerca"); q.keyboard.type(q0); q.wait_for_selector("#ss-list [role=option]")
-            assert any("ettor" in t for t in q.eval_on_selector_all("#ss-list [role=option]", "e=>e.map(x=>x.innerText)")), "the administrator finds drafts"; c.close()
-        step("drafts: hidden for readers, found by the administrator (same filter as the dialog)", drafts)
+            for admin in (False, True):      # the Storia is published: readers and the administrator both find it
+                c, q = ctx(admin=admin); go(q); q.click("#sc-cerca"); q.keyboard.type(q0); q.wait_for_selector("#ss-list [role=option]")
+                assert any("ettor" in t for t in q.eval_on_selector_all("#ss-list [role=option]", "e=>e.map(x=>x.innerText)")), ("Storia chapter not found", admin); c.close()
+        step("the Storia is found by readers and by the administrator (same filter as the dialog)", drafts)
         def phone():
             c, q = ctx(390, 844, is_mobile=True, has_touch=True); go(q)
             q.click("#menu"); q.wait_for_selector("#side", state="visible"); q.tap("#sc-cerca"); q.keyboard.type("frammenta"); q.wait_for_selector("#ss-list [role=option]")

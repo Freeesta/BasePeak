@@ -74,7 +74,7 @@ Lo spettro "di un composto" si ottiene mediando gli spettri lungo il picco croma
 ```
 
 ```html
-<p class="storia-link solo-esteso" hidden>Per la storia: <a href="42-storia-rivelatori-dati.html">Rivelatori, dati, applicazioni</a>.</p>
+<p class="storia-link">Per la storia: <a href="42-storia-rivelatori-dati.html">Rivelatori, dati, applicazioni</a>.</p>
 ```
 
 ## Formati dei file
