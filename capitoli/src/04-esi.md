@@ -11,7 +11,7 @@ Un flusso HPLC di 0,3 mL/min di acqua corrisponde, vaporizzato, a circa 0,4 L/mi
 L'ESI, sviluppata per l'analisi di macromolecole da John Fenn (premio Nobel per la chimica 2002), è oggi la sorgente di gran lunga più usata in LC-MS. È una ionizzazione **soft**: produce quasi solo lo ione molecolare (protonato o cationizzato), con poca o nessuna frammentazione. Per avere informazioni strutturali bisogna frammentare dopo, nella cella di collisione (capitolo 8).
 
 ```html
-<p class="storia-link solo-esteso" hidden>Per la storia: <a href="40-storia-sorgenti.html">Le sorgenti: dall'impatto elettronico alla ionizzazione morbida</a>.</p>
+<p class="storia-link">Per la storia: <a href="40-storia-sorgenti.html">Le sorgenti: dall'impatto elettronico alla ionizzazione morbida</a>.</p>
 ```
 
 ## La sorgente
