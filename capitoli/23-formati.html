@@ -35,7 +35,7 @@
 <p>La scelta tra 32 e 64 bit è un compromesso tra dimensione e precisione. Un float a 32 bit ha 24 bit di mantissa, quindi un errore relativo fino a 2<sup>−24</sup>, circa 0,06 ppm. È piccolo rispetto agli errori di misura di uno spettrometro, e la figura lo calcola.</p>
 <details class="poe"><summary>Prima di provare: con la previsione lineare, 500 m/z di un profilo occupano più o meno di 500 centroidi irregolari?</summary>
 <p>Meno: in un profilo i punti sono equidistanti, la previsione è quasi perfetta e basta circa un byte per valore (510 byte contro 4000). Con centroidi irregolari servono più byte (circa 1500). Provalo nella figura.</p></details>
-<div class="sim" id="sim-chemi-codifica" data-sim="../assets/sim-chemi-formati.js"><h4>Figura 23.1 Come si scrive uno spettro in un file</h4>
+<div class="sim" id="sim-chemi-codifica" data-sim="../assets/sim-chemi-formati.js"><h3>Figura 23.1 Come si scrive uno spettro in un file</h3>
 <p class="note nota">Mostra che cosa fanno precisione, compressione e base64 alla dimensione e ai numeri di un array. Dati sintetici, a scopo didattico.</p></div>
 <h2>L'indice</h2>
 <p>Il file <code>indexedmzML</code> avvolge il resto con l'elenco delle posizioni in byte di ogni spettro: un programma salta allo spettro 12 345 senza leggere i precedenti. Se si modifica il file a mano le posizioni non tornano: conviene rigenerare l'indice.</p>
@@ -48,7 +48,7 @@
 <p><b>mzTab-M</b> non contiene spettri ma risultati: una tabella di testo, con righe <code>MTD</code> per i metadati e <code>SML</code> per i composti (Griss et al., 2014, per mzTab; Hoffmann et al., 2019, per la versione per piccole molecole). Serve a condividere che cosa si è trovato, non a rifare l'analisi.</p>
 <details class="poe"><summary>Prima di provare: quali metadati si perdono passando da mzML a MGF?</summary>
 <p>Si perdono la dichiarazione profilo o centroide, il software di conversione e l'energia di collisione; la polarità resta solo nel segno della carica e l'unità del tempo solo nel nome della chiave. Controlla la tabella sotto lo spettro.</p></details>
-<div class="sim" id="sim-chemi-formati" data-sim="../assets/sim-chemi-formati.js"><h4>Figura 23.2 Lo stesso spettro in cinque formati</h4>
+<div class="sim" id="sim-chemi-formati" data-sim="../assets/sim-chemi-formati.js"><h3>Figura 23.2 Lo stesso spettro in cinque formati</h3>
 <p class="note nota">Mostra lo stesso spettro scritto in cinque formati e quali metadati ciascuno conserva. Spettro sintetico, a scopo didattico.</p></div>
 <h2>Dal formato del costruttore al formato aperto</h2>
 <p>I costruttori scrivono i dati in formati propri, pensati per il loro software e per la velocità di acquisizione, non per lo scambio. Eccoli: file <code>.raw</code> (Thermo), cartelle <code>.d</code> (Agilent, Bruker), <code>.wiff</code> e <code>.wiff2</code> (Sciex), cartelle <code>.raw</code> (Waters). Per usare i dati altrove si convertono.</p>
