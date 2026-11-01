@@ -6,7 +6,7 @@
 <div class="wrap"><nav id="side"></nav><main>
 <div class="kicker">Capitolo 16</div>
 <h1>Strategia di analisi LC-MS: dal campione al risultato</h1>
-<p class="lead">Il metodo di lavoro sistematico, passo per passo, dalla caratterizzazione di un composto noto all'identificazione dei composti a lui correlati (derivati, metaboliti, prodotti di degradazione, impurezze) presenti in un campione. Include un esempio pratico dettagliato e criteri rigorosi per stabilire il livello di confidenza di ciascun candidato.</p>
+<p class="lead">Il metodo di lavoro sistematico, passo per passo, dalla caratterizzazione di un composto noto all'identificazione dei composti a lui correlati (derivati, metaboliti, impurezze) presenti in un campione. Include un esempio pratico dettagliato e criteri rigorosi per stabilire il livello di confidenza di ciascun candidato.</p>
 <h2>Il flusso di lavoro</h2>
 <figure>
 <svg viewBox="0 0 880 210" role="img" aria-label="Flusso di lavoro in cinque passi: dal composto noto ai candidati confermati in MS2" aria-describedby="fd-16-0">
@@ -24,47 +24,50 @@
 </svg><details class="figdesc" id="fd-16-0"><summary>Descrizione della figura</summary><p>Cinque riquadri in sequenza: 1 Conoscere il parent ([M+H]⁺, addotti, RT, isotopi, MS2 a più CE, transizioni MRM); 2 Quantificare il parent (MRM, retta di taratura, repliche, LOD e LOQ); 3 Trovare i candidati (full scan campione contro bianco, XIC di ipotesi, mappa RT–m/z); 4 Filtrare e ipotizzare (Δm, isotopi, regola dell'azoto, RT); 5 Confermare in MS2 (frammenti condivisi o spostati rispetto al parent).</p></details>
 <figcaption><b>Figura 16.1</b> Il percorso dal campione alla proposta strutturale. I passi 3–5 si ripetono: ogni MS2 può suggerire nuove masse da cercare nel full scan.</figcaption>
 </figure>
-<h2>1. Conoscere il parent</h2>
-<p>Il <em>parent</em> è il composto noto da cui si parte. Tutto il lavoro successivo è un confronto con lui, quindi la sua caratterizzazione deve essere completa:</p>
-<ul>
-<li>m/z osservato di [M+H]<sup>+</sup> (con l'offset dello strumento), addotti (Na, K, NH<sub>4</sub>), eventuali dimeri e frammenti in sorgente <em>allo stesso RT</em>: tutti questi m/z vanno annotati come «non candidati»;</li>
-<li>cluster isotopico (alogeni? zolfo?);</li>
-<li>spettro MS2 a più energie: frammenti principali, perdite neutre, a che porzione della molecola corrispondono;</li>
-<li>tempo di ritenzione e forma del picco.</li>
-</ul>
-<h2>2. Quantificare il parent</h2>
-<p>Retta MRM, concentrazioni nei campioni, repliche, limiti di rivelabilità e di quantificazione (capitolo 10). Servono a sapere quanto parent c'è e con quale incertezza: ogni segnale correlato si valuta rispetto a questo riferimento.</p>
-<h2>3. Trovare i candidati nel full scan</h2>
-<p>Due approcci complementari:</p>
-<ul>
-<li><b>Guidato da ipotesi (suspect)</b>: calcolate gli m/z attesi per le variazioni di formula tipiche (ossidrilazione +16, perdita di gruppi, ecc.; calcolatrice qui sotto) ed estraete gli XIC in tutti i campioni.</li>
-<li><b>Guidato dai dati (non-target)</b>: confrontate il campione con il bianco (o con un campione di controllo) cercando segnali che compaiono solo nel campione: BPC sovrapposti, spettri sottratti alla stessa finestra di RT, mappa RT–m/z con differenza tra file. Questo cattura anche composti che non avevate previsto.</li>
-</ul>
+<p>Il percorso ha cinque passi e un'idea sola: ogni composto correlato si riconosce per confronto con ciò che si conosce già. I primi due passi costruiscono il riferimento. Si caratterizza il composto di partenza, il <em>parent</em> della figura, e si misura quanto ce n'è nei campioni. Senza questo riferimento nessun segnale del full scan si può leggere, perché non si sa quali picchi siano suoi e quali no.</p>
+<p>I passi 3 e 4 trasformano il full scan in una lista corta: prima si raccolgono i segnali che potrebbero essere correlati, poi li si mette alla prova con criteri che possono escluderli. Il passo 5 interroga in MS2 i pochi sopravvissuti e porta a una proposta di struttura. Il percorso non è lineare: un frammento MS2 può suggerire una massa nuova da cercare nel full scan, e allora si torna al passo 3, finché non compaiono più candidati nuovi.</p>
+<h2>Passi 1 e 2: conoscere e quantificare il composto di partenza</h2>
+<p>Il composto di partenza è il composto noto da cui si parte. Tutto il lavoro successivo è un confronto con lui, quindi lo si caratterizza per intero prima di guardare il campione. Si registrano il tempo di ritenzione e la forma del picco, il cluster isotopico (cloro e zolfo lo rendono riconoscibile) e lo spettro MS2 a più energie di collisione, assegnando ogni frammento a una porzione della molecola.</p>
+<p>La parte meno ovvia è la lista dei segnali che appartengono al composto di partenza stesso. Nel full scan lo stesso composto compare con più m/z: lo ione protonato, gli addotti con ammonio, sodio e potassio, il dimero, l'isotopo con un <sup>13</sup>C e i frammenti formati in sorgente. Ognuno ha il suo picco, allo stesso tempo di ritenzione. Se non li si annota prima, ciascuno può sembrare un composto nuovo.</p>
+<p>Un esempio: la caffeina (C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O<sub>2</sub>, massa monoisotopica 194,0804) in un campione di tè o di acqua di superficie. Lo ione [M+H]<sup>+</sup> sta a <i>m/z</i> 195,0877. Nella stessa corsa, allo stesso RT, si trovano [M+NH<sub>4</sub>]<sup>+</sup> a 212,1142 (se la fase mobile contiene ammonio), [M+Na]<sup>+</sup> a 217,0696, [M+K]<sup>+</sup> a 233,0435 e il dimero [2M+H]<sup>+</sup> a 389,1680.</p>
+<p>A questi si aggiungono l'isotopo con un <sup>13</sup>C a 196,0910, circa il 10% del segnale principale, e il frammento a 138,0662. Quest'ultimo nasce dalla perdita di 57,0215 (CH<sub>3</sub>NCO) dallo ione protonato e può formarsi già in sorgente se la tensione è alta. Sette valori di <i>m/z</i>, un solo composto: vanno tutti in lista come «non candidati», e un segnale a 138,0662 allo stesso RT non è una molecola nuova.</p>
+<p>La quantificazione del composto di partenza (capitolo 10) risponde a un'altra domanda: quanto ce n'è? Si costruisce la retta di taratura in MRM con standard di concentrazione nota, si analizzano i campioni in repliche e si calcolano i limiti di rivelabilità e di quantificazione, di solito come 3,3 e 10 volte la deviazione standard della risposta divisa per la pendenza.</p>
+<p>Questi numeri servono al ragionamento successivo in tre modi. Dicono quale intensità aspettarsi: se il composto di partenza è appena sopra il LOQ, i suoi composti correlati, spesso meno abbondanti, stanno probabilmente sotto il limite. Dicono se il segnale è saturo, cosa che allarga la base del picco e falsa i rapporti isotopici. Danno infine l'andamento di riferimento nei campioni, che serve al criterio di coerenza del passo 4.</p>
+<h2>Passo 3: trovare i candidati nel full scan</h2>
+<p>Nel full scan si cercano i segnali che potrebbero essere correlati al composto di partenza. Gli approcci sono due e si completano: partire da un'ipotesi (suspect screening) o partire dai dati (non-target). Differiscono per ciò che trovano e per ciò che lasciano sfuggire.</p>
+<p>Nel suspect screening si compila prima una lista di composti sospetti: derivati noti, variazioni di formula tipiche come l'ossidrilazione (+15,9949), la perdita di un metile (−14,0157) o la coniugazione con acido glucuronico (+176,0321), oppure un elenco preso da una libreria. Per ognuno si calcola l'<i>m/z</i> atteso e si estrae lo XIC in tutti i campioni; la calcolatrice qui sotto aiuta con le differenze di massa.</p>
+<p>Il vantaggio è la sensibilità: conoscendo <i>m/z</i> e RT attesi si cerca un picco preciso e si può accettare anche un segnale debole. Il limite è la cecità. Ciò che non è nella lista non si trova mai, e una lista incompleta dà un risultato che sembra pulito solo perché non ha guardato dove serviva.</p>
+<p>Nel non-target si confronta il campione con il bianco o con un campione di controllo e si tengono i segnali che compaiono solo nel campione, o che vi sono molto più intensi. Si possono sovrapporre i BPC, sottrarre gli spettri nella stessa finestra di RT o confrontare le mappe RT–<i>m/z</i> dei due file. Così si trovano anche composti che nessuno aveva previsto, per esempio una molecola nuova in un campione di metabolomica.</p>
+<p>Il costo è il rumore, insieme alla perdita dei segnali deboli. Il confronto richiede una soglia, per esempio un'intensità dieci volte quella del bianco: ciò che resta sotto è scartato anche se era vero. I segnali co-eluiti o soppressi nella ionizzazione restano mascherati, e se l'MS2 è in DDA (capitolo 17) i picchi poco intensi spesso non vengono frammentati. Inoltre il confronto dice che un segnale c'è, non che cos'è.</p>
+<p>In pratica si combinano: prima il suspect screening per ciò che ci si aspetta, poi il non-target su ciò che resta. Ogni scoperta del non-target entra nella lista dei sospetti delle analisi successive.</p>
 <div class="sim" id="sim-dm"><h4>Calcolatrice di differenze di massa</h4>
-<p class="note">Inserite l'm/z del parent e quello di un candidato (stesso tipo di ione, ad esempio entrambi [M+H]<sup>+</sup>). Vengono elencate le variazioni di formula, singole o in coppia, con la stessa differenza nominale. Sono ipotesi da verificare: a risoluzione unitaria molte coincidono.</p></div>
-<h2>4. Filtrare i candidati</h2>
-<p>Un segnale diventa un candidato credibile se supera questi criteri; ognuno va controllato sui dati e documentato.</p>
+<p class="note">Inserite l'm/z del composto di partenza e quello di un candidato (stesso tipo di ione, ad esempio entrambi [M+H]<sup>+</sup>). Vengono elencate le variazioni di formula, singole o in coppia, con la stessa differenza nominale. Sono solo ipotesi da controllare sui dati: a risoluzione unitaria molte coincidono.</p></div>
+<h2>Passo 4: filtrare i candidati</h2>
+<p>Un segnale diventa un candidato credibile se supera questi criteri. Ognuno si controlla sui dati e si documenta: la tabella li riassume e i paragrafi sotto spiegano perché ciascuno è una prova.</p>
 <table>
 <tr><th>Criterio</th><th>Domanda</th><th>Se fallisce</th></tr>
 <tr><td>Picco vero</td><td>Forma cromatografica, S/N ≥ 3 (meglio 10), presente in tutte le repliche?</td><td>Rumore o spike</td></tr>
 <tr><td>Bianco</td><td>Assente (o molto minore) nel bianco di procedura e nel solvente?</td><td>Fondo, carry-over, impurezza dello standard</td></tr>
-<tr><td>RT proprio</td><td>RT diverso dal parent e forma del picco indipendente?</td><td>Addotto, isotopo o frammento in sorgente del parent</td></tr>
-<tr><td>Coerenza con il parent</td><td>Se l'area segue esattamente quella del parent in tutti i campioni, è un suo artefatto?</td><td>Isotopo, addotto o frammento in sorgente del parent</td></tr>
+<tr><td>RT proprio</td><td>RT diverso dal composto di partenza e forma del picco indipendente?</td><td>Addotto, isotopo o frammento in sorgente</td></tr>
+<tr><td>Coerenza con il composto di partenza</td><td>Se l'area segue esattamente quella del composto di partenza in tutti i campioni, è un suo artefatto?</td><td>Isotopo, addotto o frammento in sorgente</td></tr>
 <tr><td>Isotopi</td><td>Il cluster è coerente con la variazione di formula ipotizzata (alogeni mantenuti o persi)?</td><td>Ipotesi di formula sbagliata</td></tr>
 <tr><td>Regola dell'azoto, RDBE</td><td>La formula ipotizzata è possibile?</td><td>Formula impossibile</td></tr>
-<tr><td>Ritenzione plausibile</td><td>Un composto ossidato o dealchilato esce prima del parent?</td><td>Non escludente, ma da discutere</td></tr>
+<tr><td>Ritenzione plausibile</td><td>Un composto ossidato o dealchilato esce prima del composto di partenza?</td><td>Non escludente, ma da discutere</td></tr>
 </table>
-<h2>5. Confermare in MS2</h2>
-<p>Nel campione in cui il candidato è più abbondante si registra il suo product ion scan e lo si confronta con quello del parent, frammento per frammento:</p>
-<ul>
-<li><b>frammento identico</b> a uno del parent → quella porzione è intatta;</li>
-<li><b>frammento spostato di Δ</b> (lo stesso Δ del precursore) → la modifica sta in quella porzione;</li>
-<li><b>perdita neutra caratteristica conservata</b> (es. −42 del propene) → il gruppo che la genera è ancora presente;</li>
-<li><b>perdita neutra scomparsa</b> → quel gruppo è stato rimosso o trasformato.</li>
-</ul>
-<p>Con questi vincoli si disegnano le strutture candidate con un programma di disegno chimico (capitolo 18), si verifica che formula e m/z tornino (capitolo 11) e si propone una struttura, con le sue ambiguità dichiarate.</p>
+<p><b>Picco vero.</b> Un rapporto segnale/rumore di almeno 3 separa un picco dal rumore, ma 10 è molto più sicuro. Una forma regolare e la presenza in tutte le repliche escludono gli spike isolati, che spesso sono disturbi elettronici o di sorgente. Un segnale visto in una sola replica non si riproduce, quindi non è un'evidenza.</p>
+<p><b>Bianco.</b> Il bianco di procedura e il solvente contengono tutto tranne il campione. Un segnale che c'è anche lì viene dal sistema: fondo, carry-over dell'iniezione precedente, impurezza dello standard. Se è presente ma molto più basso nel bianco, può restare candidato con la differenza dichiarata.</p>
+<p><b>RT proprio.</b> Un composto diverso ha una polarità diversa e quindi un RT diverso. Un segnale con lo stesso RT e lo stesso profilo di picco del composto di partenza è quasi certamente un suo addotto, un isotopo o un frammento in sorgente, come i sette valori della caffeina.</p>
+<p><b>Coerenza con il composto di partenza.</b> Si confronta l'area del segnale con quella del composto di partenza in tutti i campioni. Se il rapporto è costante, i due segnali nascono dalla stessa specie in sorgente. Un composto correlato vero segue un andamento proprio, perché si forma o si consuma in modo indipendente (capitolo 15).</p>
+<p><b>Isotopi.</b> Il cluster isotopico dice quali elementi sono nella formula. Se il composto di partenza ha un cloro (M+2 a circa un terzo di M) e il candidato mantiene quel rapporto, il cloro c'è ancora. Se il rapporto sparisce, il cloro è stato perso: l'ipotesi di formula deve spiegare il cluster osservato.</p>
+<p><b>Regola dell'azoto e RDBE.</b> Per uno ione a elettroni pari, <i>m/z</i> nominale pari richiede un numero dispari di azoti (capitolo 11). Il RDBE, cioè la somma di anelli e doppi legami, non può essere negativo. Una formula che viola una delle due regole non esiste, e l'ipotesi si scarta.</p>
+<p><b>Ritenzione plausibile.</b> In fase inversa, aggiungere un ossidrile o togliere un alchile rende la molecola più polare e la fa uscire prima; aggiungere un gruppo apolare la fa uscire dopo. Un candidato che contraddice questa tendenza non è escluso, perché le eccezioni esistono, ma richiede una spiegazione scritta.</p>
+<h2>Passo 5: confermare in MS2</h2>
+<p>Nel campione in cui il candidato è più abbondante si registra il suo product ion scan e lo si confronta con quello del composto di partenza, frammento per frammento. Ciò che resta uguale indica la parte di molecola rimasta intatta; ciò che cambia indica dov'è la modifica.</p>
+<p>Un frammento identico a uno del composto di partenza viene da una porzione che non è cambiata. Un frammento spostato dello stesso Δ del precursore contiene la modifica: la variazione sta in quella porzione. Un frammento che non si sposta, mentre il precursore sì, delimita invece dove la modifica non può stare.</p>
+<p>Le perdite neutre si leggono allo stesso modo (capitolo 12). Una perdita caratteristica conservata, come −42 del propene, dice che il gruppo che la genera c'è ancora. Una perdita scomparsa dice che quel gruppo è stato rimosso o trasformato.</p>
+<p>Con questi vincoli si disegnano le strutture candidate con un programma di disegno chimico (capitolo 18), si verifica che formula e <i>m/z</i> tornino (capitolo 11) e si propone una struttura, con le ambiguità dichiarate. Quanto ci si può fidare della proposta è il tema del livello di confidenza (capitolo 31).</p>
 <h2>Esempio svolto: l'atrazina e i suoi derivati</h2>
-<p>L'atrazina (C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub>, erbicida triazinico, vietato nell'UE dal 2004 ma ancora presente nelle acque sotterranee) è un buon caso di scuola: un cloro e due alchili su un nucleo triazinico, con derivati noti e disponibili come standard. Supponiamo di cercare in un campione le specie correlate all'atrazina. I numeri sono teorici; gli m/z osservati su uno strumento con offset sarebbero spostati di qualche decimo.</p>
+<p>L'atrazina (C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub>, erbicida triazinico, vietato nell'UE dal 2004 ma ancora presente nelle acque sotterranee) è un buon caso di scuola per il suspect screening: un cloro e due alchili su un nucleo triazinico, con derivati noti e disponibili come standard. Supponiamo di cercare in un campione di acqua sotterranea le specie correlate all'atrazina. I numeri sono teorici; gli <i>m/z</i> osservati su uno strumento con offset sarebbero spostati di qualche decimo.</p>
 <table>
 <tr><th>Specie</th><th>Formula</th><th class="n">[M+H]<sup>+</sup> esatto</th><th class="n">nominale</th><th>Cl</th><th class="n">Δ dal parent</th></tr>
 <tr><td>Atrazina (parent)</td><td>C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub></td><td class="n">216,1010</td><td class="n">216</td><td>sì</td><td class="n">—</td></tr>
@@ -75,29 +78,29 @@
 <tr><td>Acido cianurico (derivato estremo)</td><td>C<sub>3</sub>H<sub>3</sub>N<sub>3</sub>O<sub>3</sub></td><td class="n">130,0247</td><td class="n">130</td><td>no</td><td class="n">—</td></tr>
 </table>
 <h3>Il ragionamento</h3>
-<ol>
-<li><b>Il parent</b>: [M+H]<sup>+</sup> 216 con M+2 (218) al ~32%: un cloro. m/z pari ⇒ numero dispari di N (5 ✓). In MS2 il frammento principale è 174, perdita di 42 (propene dal gruppo isopropilammino): è la classica transizione MRM 216 → 174.</li>
-<li><b>Candidato a m/z 188</b>, assente nel bianco e presente in tutte le repliche, RT minore del parent, cluster ancora 3:1. Δ = −28: −C<sub>2</sub>H<sub>4</sub> o −CO? L'atrazina non ha carbonili, mentre ha un etile su azoto: N-deetilazione. In MS2 ci si aspetta che 188 perda ancora 42 (→ 146): l'isopropile è intatto.</li>
-<li><b>Candidato a m/z 174</b>: Δ = −42, cloro conservato: N-deisopropilazione. In MS2 la perdita di 42 non dovrebbe più esserci; può comparire invece la perdita di etene (−28) dall'etile rimasto.</li>
-<li><b>Candidato a m/z 198</b>: il pattern del cloro sparisce, Δ = −18 nominale (−34,97 + 17,00). m/z pari come il parent: la parità degli N non cambia ✓. Ipotesi: sostituzione di Cl con OH (idrolisi).</li>
-<li><b>Candidato a m/z 146</b>: attenzione, 146 è anche il frammento MS2 di 188. Se l'XIC di 146 nel full scan ha un picco <em>allo stesso RT della DEA</em>, è un frammento in sorgente della DEA; se ha un picco proprio, a RT ancora minore, è il derivato di doppia dealchilazione.</li>
-<li><b>Il derivato estremo</b>, l'acido cianurico, è molto polare (poco trattenuto in C18) e si ionizza male in ESI positivo: probabilmente non lo vedreste. La sua assenza dai dati non prova che non sia presente.</li>
-</ol>
+<p><b>Il composto di partenza.</b> Lo ione [M+H]<sup>+</sup> sta a 216, con M+2 (218) a circa il 32% di M: un cloro. <i>m/z</i> pari richiede un numero dispari di azoti, e infatti sono 5. In MS2 il frammento principale è 174, perdita di 42 (propene dal gruppo isopropilammino): è la classica transizione MRM 216 → 174. Anche 218 e 174 entrano nella lista dei «non candidati».</p>
+<p><b>Candidato a <i>m/z</i> 188.</b> Il segnale è assente nel bianco e presente in tutte le repliche, ha RT minore del composto di partenza e un cluster ancora 3:1. Δ = −28 può essere −C<sub>2</sub>H<sub>4</sub> o −CO, ma l'atrazina non ha carbonili e ha un etile su azoto: la lettura naturale è una N-deetilazione.</p>
+<p>La lettura si controlla in MS2. Se l'isopropile è intatto, 188 deve perdere ancora 42 e dare 146.</p>
+<p><b>Candidato a <i>m/z</i> 174.</b> Δ = −42 con il cloro conservato fa pensare a una N-deisopropilazione. In MS2 la perdita di 42 non dovrebbe più esserci. Può comparire invece la perdita di etene (−28) dall'etile rimasto, proprio il contrario di quanto visto per 188.</p>
+<p><b>Candidato a <i>m/z</i> 198.</b> Il pattern del cloro sparisce e Δ = −18 nominale (−34,97 + 17,00). <i>m/z</i> pari come il composto di partenza: la parità degli azoti non cambia, quindi la regola dell'azoto è rispettata. L'ipotesi è la sostituzione di Cl con OH.</p>
+<p><b>Candidato a <i>m/z</i> 146.</b> Attenzione: 146 è anche il frammento MS2 di 188. Se l'XIC di 146 nel full scan ha un picco <em>allo stesso RT della DEA</em>, è un frammento in sorgente della DEA. Se ha un picco proprio, a RT ancora minore, è il derivato di doppia dealchilazione.</p>
+<p><b>Il derivato estremo.</b> L'acido cianurico è molto polare, poco trattenuto in C18, e si ionizza male in ESI positivo: probabilmente non lo si vedrebbe. La sua assenza dai dati non prova che non sia presente.</p>
 <div class="box warn"><b>Livello di confidenza</b>
-<p>Senza standard, tutte queste attribuzioni restano al livello 3 di Schymanski: per esempio, l'idrossilazione al posto del cloro è la spiegazione più ragionevole di Δ = −18 con perdita del cloro, ma non è l'unica formula con quella massa nominale. Con gli standard commerciali di DEA, DIA e HA (stesso RT e stesso MS2) si arriverebbe al livello 1.</p></div>
-<h2>Checklist di sintesi analitica</h2>
+<p>Senza standard, tutte queste attribuzioni restano al livello 3 di Schymanski: per esempio, la sostituzione del cloro con un ossidrile è la spiegazione più ragionevole di Δ = −18 con perdita del cloro, ma non è l'unica formula con quella massa nominale. Con gli standard commerciali di DEA, DIA e HA (stesso RT e stesso MS2) si arriverebbe al livello 1.</p></div>
+<div class="box lab"><b>Checklist di sintesi analitica</b>
 <ul>
-<li>Parent: [M+H]<sup>+</sup> osservato e teorico, addotti, RT, cluster isotopico, MS2 con frammenti assegnati, transizioni MRM scelte e perché.</li>
-<li>Retta di taratura con residui, intervallo, LOD/LOQ; concentrazioni del parent nei campioni, con le repliche.</li>
-<li>Tabella dei candidati: m/z osservato, RT, criteri superati, cluster isotopico, Δ dal parent, variazione di formula ipotizzata, ioni prodotto caratteristici, livello di confidenza.</li>
-<li>Strutture proposte, disegnate, con le ambiguità dichiarate (isomeri di posizione, Δ con più interpretazioni). Le aree di candidati diversi non si confrontano come se fossero concentrazioni: la risposta ESI cambia da molecola a molecola.</li>
+<li>Composto di partenza: [M+H]<sup>+</sup> osservato e teorico, addotti, RT, cluster isotopico, MS2 con frammenti assegnati, transizioni MRM scelte e perché.</li>
+<li>Retta di taratura con residui, intervallo, LOD/LOQ; concentrazioni nei campioni, con le repliche.</li>
+<li>Tabella dei candidati: <i>m/z</i> osservato, RT, criteri superati, cluster isotopico, Δ dal composto di partenza, variazione di formula ipotizzata, ioni prodotto caratteristici, livello di confidenza.</li>
+<li>Strutture proposte, disegnate, con le ambiguità dichiarate (isomeri di posizione, Δ con più interpretazioni).</li>
+<li>Le aree di candidati diversi non si confrontano come concentrazioni: la risposta ESI cambia da molecola a molecola.</li>
 <li>Limiti: risoluzione unitaria, solo ESI positivo, nessuno standard per i candidati.</li>
-</ul>
+</ul></div>
 <h2>Per approfondire</h2>
 <ul class="refs">
 <li><span class="tag">metodo</span>Schymanski E.L. et al. (2014), livelli di confidenza: <a href="https://doi.org/10.1021/es5002105" target="_blank" rel="noopener">doi:10.1021/es5002105</a></li>
 <li><span class="tag">tutorial</span>De Vijlder T. et al. (2018), identificazione di piccole molecole in ESI-MS: <a href="https://doi.org/10.1002/mas.21551" target="_blank" rel="noopener">doi:10.1002/mas.21551</a></li>
-<li><span class="tag">strumento</span><a href="https://envipath.org" target="_blank" rel="noopener">enviPath</a> e <a href="https://biotransformer.ca" target="_blank" rel="noopener">BioTransformer</a> per generare ipotesi di derivati e metaboliti (ogni ipotesi va controllata sui dati).</li>
+<li><span class="tag">strumento</span><a href="https://envipath.org" target="_blank" rel="noopener">enviPath</a> e <a href="https://biotransformer.ca" target="_blank" rel="noopener">BioTransformer</a> per generare ipotesi di derivati e metaboliti; ogni ipotesi va controllata sui dati.</li>
 </ul>
 </main></div>
 <script src="../assets/appname.js"></script><script src="../assets/teoria.js"></script><script src="../assets/sim-misc.js"></script>
