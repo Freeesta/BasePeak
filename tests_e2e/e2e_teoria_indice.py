@@ -27,7 +27,7 @@ try:
         def contrast_js():
             return """(()=>{const L=c=>{const m=c.match(/[0-9.]+/g).map(Number),f=v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)};return .2126*f(m[0])+.7152*f(m[1])+.0722*f(m[2])};
               const bgOf=e=>{for(;e;e=e.parentElement){const b=getComputedStyle(e).backgroundColor;if(b&&!/rgba\\(.*, 0\\)|transparent/.test(b))return b}return getComputedStyle(document.documentElement).backgroundColor};
-              const out=[];document.querySelectorAll('#side a, #side .ptog, #side .navall, #side .ctog, #logo, .crumbs a, .crumbs [aria-current], .pnt a').forEach(e=>{if(!e.offsetParent)return;
+              const out=[];document.querySelectorAll('#side a, #side .ptog, #side .navall, #side .ctog, #logo, .crumbs a, .crumbs [aria-current], #tbar .nb').forEach(e=>{if(!e.offsetParent)return;
                 const a=L(getComputedStyle(e).color),b=L(bgOf(e)),hi=Math.max(a,b),lo=Math.min(a,b);out.push([e.textContent.trim().slice(0,25),Math.round((hi+.05)/(lo+.05)*100)/100])});
               return out})()"""
 
@@ -70,7 +70,11 @@ try:
             c, q = ctx(); go(q, LONG)
             heads = q.eval_on_selector_all("#side ol.toc a", "e=>e.map(a=>a.getAttribute('href').slice(1))")
             seen = []
-            for h in (heads[1], heads[len(heads) // 2], heads[-1]):
+            # the last entry that the page can really scroll above the 30 % line (without the in-page previous / next block the page ends sooner, so the very last heading may stay below it)
+            reach = [h for h in heads if q.evaluate("id=>{const e=document.getElementById(id);return e.getBoundingClientRect().top+scrollY-innerHeight*0.25<=document.documentElement.scrollHeight-innerHeight}", h)]
+            # and whose next heading is more than 30 % of the window further down (else the next one is, rightly, the current section)
+            reach = [h for h in reach if q.evaluate("id=>{const hs=[...document.querySelectorAll('main h2[id],main h3[id]')],i=hs.findIndex(x=>x.id===id),n=hs[i+1];return !n||n.getBoundingClientRect().top-hs[i].getBoundingClientRect().top>innerHeight*0.32}", h)]
+            for h in (reach[1], reach[len(reach) // 2], reach[-1]):
                 q.evaluate("id=>{document.documentElement.style.scrollBehavior='auto';document.getElementById(id).scrollIntoView()}", h)
                 q.wait_for_function("id=>{const a=document.querySelector('#side a[aria-current=location]');return a&&a.getAttribute('href')==='#'+id}", arg=h, timeout=5000)
                 seen.append(h)
@@ -126,15 +130,15 @@ try:
             assert len(storia) == 10, (admin, storia)      # the Storia is published: readers and the administrator both get it
             assert groups == sorted(groups, key={"Teoria": 0, "Pratica": 1, "Reference": 2}.get), "order is not Teoria > Pratica > Reference"
             for i, f in enumerate(order):
-                q.goto(T + f); q.wait_for_selector("main .pn")
-                for sel in (".pn", ".pnt"):
-                    prev = q.eval_on_selector_all(f"main {sel} a[rel=prev]", "e=>e.map(a=>a.getAttribute('href'))"); nxt = q.eval_on_selector_all(f"main {sel} a[rel=next]", "e=>e.map(a=>a.getAttribute('href'))")
-                    up = "../" * f.count("/")
-                    assert prev == ([up + order[i - 1]] if i else []), (f, sel, prev)
-                    assert nxt == ([up + order[i + 1]] if i < len(order) - 1 else []), (f, sel, nxt)
+                q.goto(T + f); q.wait_for_selector("#tbar"); q.wait_for_selector("#tc-prec, #tc-succ", state="attached")
+                assert q.locator("main .pn, main .pnt").count() == 0 and q.evaluate("[...document.querySelectorAll('main a,main button')].filter(a=>/^\\s*(←|→)?\\s*(Precedente|Successivo)/.test(a.textContent)).length") == 0, ("prev/next buttons must live only in the header", f)
+                prev = q.eval_on_selector_all("#tbar #tc-prec", "e=>e.map(a=>a.getAttribute('href'))"); nxt = q.eval_on_selector_all("#tbar #tc-succ", "e=>e.map(a=>a.getAttribute('href'))")
+                up = "../" * f.count("/")
+                assert prev == ([up + order[i - 1]] if i else []), (f, prev)
+                assert nxt == ([up + order[i + 1]] if i < len(order) - 1 else []), (f, nxt)
                 for href in prev + nxt: assert q.request.get(q.evaluate("h=>new URL(h,location.href).href", href)).ok, (f, href)
             c.close()
-        step("previous / next (top and bottom) resolve on every page; first has no previous, last no next (reader mode: last is 32, no Storia)", lambda: prevnext(False))
+        step("previous / next (header buttons only, none in the page body) resolve on every page; first has no previous, last no next (reader mode: last is 32, no Storia)", lambda: prevnext(False))
         step("previous / next in administrator mode: 21 -> 22 ... 32, then the Storia", lambda: prevnext(True))
         def drafts():
             F = re.findall(r'"capitoli/((?:2[2-9]|3[0-2])-[^"]+\.html)", "\d+", "[^"]+", "VII\. Chemioinformatica"', (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8")); assert len(F) == 11, F
@@ -174,7 +178,7 @@ try:
             for _ in range(25):
                 q.goto(T + f); q.wait_for_selector("#side a.on"); side = q.eval_on_selector_all("#side a", "e=>e.map(a=>a.getAttribute('href'))")
                 assert all(("../" * f.count("/") + g) in side for g in F + S), ("sidebar misses part VII or the Storia", f)
-                nxt = q.get_attribute("main .pnt a[rel=next]", "href") if q.locator("main .pnt a[rel=next]").count() else None
+                nxt = q.get_attribute("#tc-succ", "href") if q.locator("#tc-succ").count() else None
                 if not nxt: break
                 f = "capitoli/" + nxt.split("/")[-1]; seen.append(f)
             assert seen == F + S, seen      # 21 -> 22 -> ... -> 32 -> 33 ... 42 and nothing after 42
@@ -288,7 +292,7 @@ try:
             assert all(x[3] == (x[1] == "false") for x in st), "aria-expanded and hidden disagree"
             assert q.is_visible("#side a[aria-current=page]") and q.is_visible("#side a[href$='capitoli/02-lc.html']") and q.is_visible("#side a[href$='pratica/ei.html']")
             ct = q.locator("#side button.ctog"); assert ct.count() == 1 and ct.get_attribute("aria-expanded") == "true" and ct.get_attribute("aria-controls") == "toc-cur" and q.is_visible("#side #toc-cur")
-            assert q.locator("#navall").inner_text() == "Chiudi tutto"
+            assert q.locator("#navall").inner_text() == "Riduci tutto"
             c.close()
         step("collapsible parts: real <button> with aria-expanded / aria-controls and a chevron; on the first visit every part is open, the sections of the current chapter too", collapse_default)
         def collapse_keyboard():
@@ -318,7 +322,7 @@ try:
         def collapse_persist():
             c, q = ctx(); go(q, LONG)
             pb(q, "II. Separare").click(); pb(q, "Pratica").click()
-            assert q.evaluate("JSON.parse(localStorage.getItem('qqq.teoria.nav')).p") is not None
+            assert q.evaluate("JSON.parse(localStorage.getItem('qqq.teoria.nav2')).p") is not None
             q.reload(); q.wait_for_selector("#side a.on")
             assert pb(q, "II. Separare").get_attribute("aria-expanded") == "false" and pb(q, "Pratica").get_attribute("aria-expanded") == "false"
             assert pb(q, "III. Ionizzare").get_attribute("aria-expanded") == "true", "a part the reader did not touch stays open"
@@ -339,24 +343,37 @@ try:
             for w, h, kw in ((1280, 800, {}), (784, 900, {}), (390, 844, {"is_mobile": True, "has_touch": True})):
                 c, q = ctx(w, h, **kw)
                 q.goto(T + LONG); q.wait_for_selector("#side a.on", state="attached")
-                assert q.evaluate("localStorage.getItem('qqq.teoria.nav')") is None, "nothing is stored by merely opening the site"
+                assert q.evaluate("localStorage.getItem('qqq.teoria.nav2')") is None, "nothing is stored by merely opening the site"
                 st = q.eval_on_selector_all("#side button.ptog", "e=>e.map(b=>[b.textContent.trim(),b.getAttribute('aria-expanded'),document.getElementById(b.getAttribute('aria-controls')).hidden])")
                 assert [x[0] for x in st] == PARTS and all(x[1] == "true" and x[2] is False for x in st), (w, st)
                 c.close()
         step("first visit (no saved state): every group of the chapter index is open at 1280, 784 and 390 px; opening the site stores nothing", first_visit_open)
-        def open_all():
+        def reduce_all():
             c, q = ctx(); go(q, LONG)
-            assert q.inner_text("#navall") == "Chiudi tutto"
-            q.click("#navall"); assert q.inner_text("#navall") == "Apri tutto"
-            assert q.eval_on_selector_all("#side button.ptog, #side button.ctog", "e=>e.every(b=>b.getAttribute('aria-expanded')==='false')")
-            q.click("#navall"); assert q.inner_text("#navall") == "Chiudi tutto"
-            assert q.eval_on_selector_all("#side button.ptog, #side button.ctog", "e=>e.every(b=>b.getAttribute('aria-expanded')==='true')")
-            assert q.is_visible("#side a[href$='capitoli/02-lc.html']") and q.is_visible("#side a[href$='pratica/ei.html']")
-            pb(q, "Reference").click(); pb(q, "Pratica").click(); assert q.inner_text("#navall") == "Apri tutto"
-            q.focus("#navall"); q.keyboard.press("Enter"); assert q.inner_text("#navall") == "Chiudi tutto"
-            q.click("#navall"); q.reload(); q.wait_for_selector("#side a.on"); assert q.is_visible("#side a[aria-current=page]")
+            assert q.inner_text("#navall") == "Riduci tutto" and q.evaluate("!/Apri tutto|Chiudi tutto/.test(document.body.innerText + document.body.innerHTML.replace(/<[^>]+>/g,' '))"), "one button, never «Apri tutto»"
+            q.click("#navall")
+            st = q.eval_on_selector_all("#side button.ptog", "e=>e.map(b=>[b.textContent.trim(),b.getAttribute('aria-expanded')])")
+            assert [x[0] for x in st if x[1] == "true"] == ["IV. Analizzare gli ioni"] and len(st) == len(PARTS), st      # every group closes; the group of the current chapter stays open so the reader keeps their place
+            assert q.eval_on_selector("#side button.ctog", "b=>b.getAttribute('aria-expanded')") == "false" and q.is_visible("#side a[aria-current=page]") and q.is_hidden("#side a[href$='capitoli/02-lc.html']")
+            assert q.inner_text("#navall") == "Riduci tutto", "the button does not turn into «open all»"
+            q.click("#navall"); assert q.inner_text("#navall") == "Riduci tutto" and q.locator("#side button.ptog[aria-expanded=true]").count() == 1
+            pb(q, "Reference").click(); assert pb(q, "Reference").get_attribute("aria-expanded") == "true"      # groups are reopened one by one
+            q.focus("#navall"); q.keyboard.press("Enter"); assert pb(q, "Reference").get_attribute("aria-expanded") == "false"      # keyboard
+            q.reload(); q.wait_for_selector("#side a.on"); assert q.is_visible("#side a[aria-current=page]") and q.is_hidden("#side a[href$='capitoli/02-lc.html']"), "the reduced state is remembered"
+            assert q.inner_text("#navall") == "Riduci tutto"
             c.close()
-        step("«Apri tutto» / «Chiudi tutto» opens or closes every part and chapter (mouse and keyboard); the current page is reachable after a reload", open_all)
+        step("«Riduci tutto»: the only button of the index, always that label; it closes every group except the one of the current chapter (mouse and keyboard), never «Apri tutto»", reduce_all)
+        def old_key():
+            # readers who had the old all-closed default saved under the old key must not stay closed: the old key is ignored
+            c, q = ctx()
+            q.add_init_script("try{localStorage.setItem('qqq.teoria.nav',JSON.stringify({p:{0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0}}));sessionStorage.setItem('qqq.teoria.nav',JSON.stringify({p:{0:0,1:0,2:0}}))}catch(_){}")
+            go(q, LONG)
+            st = q.eval_on_selector_all("#side button.ptog", "e=>e.map(b=>b.getAttribute('aria-expanded'))")
+            assert len(st) == len(PARTS) and all(x == "true" for x in st), st
+            assert q.evaluate("localStorage.getItem('qqq.teoria.nav2')") is None, "nothing is saved until the reader toggles a group"
+            pb(q, "II. Separare").click(); assert q.evaluate("JSON.parse(localStorage.getItem('qqq.teoria.nav2')).p[1]") == 0
+            c.close()
+        step("old saved state (key qqq.teoria.nav, all closed) is ignored: everything is open; the new key is written only after the reader toggles a group", old_key)
         def drawer_collapse():
             c, q = ctx(390, 844, is_mobile=True, has_touch=True); q.goto(T + LONG); q.wait_for_selector("#menu"); q.click("#menu"); q.wait_for_selector("#side", state="visible")
             b = q.locator("#side button.ptog", has_text="II. Separare"); assert b.bounding_box()["height"] >= 44

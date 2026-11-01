@@ -49,7 +49,7 @@ try:
         step("slow script: no transition over a page that has no index yet, no errors", slow)
         def scroll():
             ctx, pg, errs = ctxpage(b); pg.goto(T + "capitoli/04-esi.html"); real_wait(pg, 400)
-            assert pg.inner_text("#navall") == "Chiudi tutto"   # every part is open on the first visit: a long list to scroll
+            assert pg.inner_text("#navall") == "Riduci tutto"   # every part is open on the first visit: a long list to scroll
             pg.evaluate("document.querySelector('#side .sidescroll').scrollTop=150"); pg.evaluate("scrollTo(0,900)"); real_wait(pg, 200)
             before = pg.evaluate("document.querySelector('#side .sidescroll').scrollTop"); assert before > 100, before
             href = pg.evaluate("(()=>{const s=document.querySelector('#side').getBoundingClientRect();return [...document.querySelectorAll('#side ol a[href$=html]')].find(a=>{const r=a.getBoundingClientRect();return r.top>s.top+80&&r.bottom<s.bottom-80&&!a.classList.contains('on')}).getAttribute('href')})()")

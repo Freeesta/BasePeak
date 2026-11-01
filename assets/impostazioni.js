@@ -26,7 +26,7 @@
   btn.setAttribute("aria-label", "Impostazioni"); btn.setAttribute("aria-haspopup", "dialog"); btn.setAttribute("aria-expanded", "false");
   const top = $("#top"), tbar = $("#tbar");
   if (tbar && !embedded) {   // standalone page: the gear closes the bar of comandi.js
-    btn.className = "tb"; btn.innerHTML = window.TCMD.icona("impostazioni") + '<span class="l">Impostazioni</span>'; btn.title = "Impostazioni";
+    btn.className = "tb"; btn.innerHTML = window.TCMD.icona("impostazioni"); btn.title = "Impostazioni";   // icon only: the name is the aria-label (and the tooltip)
     btn.setAttribute("aria-label", "Impostazioni");
     tbar.appendChild(btn);
   } else if (top && !embedded) top.appendChild(btn);
