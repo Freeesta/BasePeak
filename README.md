@@ -13,7 +13,7 @@ Accessibile: font Atkinson Hyperlegible e OpenDyslexic, spaziatura WCAG, sfondi 
 ```
 index.html        introduzione e mappa del percorso (pagina iniziale del sito)
 capitoli/         un file per capitolo (NN-nome.html) e i vecchi nomi come rimandi automatici;
-                  capitoli/src/ = i sorgenti Markdown (non pubblicati)
+                  l'HTML è l'unica fonte del testo
 pratica/          index.html (pagina iniziale della Pratica), una pagina per gioco (ei.html, perdite.html, ...)
                   e il codice e i dati dei giochi (motore.js, ei-dati*.js, ...)
 assets/           stile (teoria.css), motore JavaScript (teoria.js, cerca.js, sim-*.js, ...), caratteri,
@@ -22,7 +22,6 @@ tools/            script di servizio (indice di ricerca, glossario, controllo de
 tests/            test Python (pytest) e controlli con node
 tests_e2e/        test nel browser (Playwright)
 docs/             guide (come modificare i capitoli: docs/COME-MODIFICARE.md), coordinamento, dati
-editor/           editor dei capitoli: NON è pubblicato sul sito
 ```
 
 Il sito pubblicato contiene solo `index.html`, `capitoli/`, `pratica/` e `assets/` (lo assembla `.github/workflows/pages.yml` a ogni push su `main`). Tutti i collegamenti sono relativi, per questo si può aprire anche da disco.

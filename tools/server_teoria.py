@@ -3,7 +3,7 @@ Ascolta su http://127.0.0.1:8765. Serve esclusivamente i file del sito: index.ht
 Sicurezza:
 1. CORS restrittivo: accetta solo Origin da 127.0.0.1 / localhost e https://freeesta.github.io (nessun '*').
 2. Token casuale generato all'avvio: ogni richiesta POST /salva richiede il token per prevenire CSRF.
-3. Path traversal bloccato: serve e modifica solo pagine .html di capitoli/ e pratica/ e index.html (mai tests/, tools/, docs/, editor/).
+3. Path traversal bloccato: serve e modifica solo pagine .html di capitoli/ e pratica/ e index.html (mai tests/, tools/, docs/).
 
 Uso da terminale:
     python3 tools/server_teoria.py

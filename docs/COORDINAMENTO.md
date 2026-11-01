@@ -44,4 +44,4 @@ One `send_later` (60 min, Federico's rule to save tokens; name "GIRO COO BasePea
 1. Chemioinformatica: review fixes merged (#33-#37); part VII (22-32) un-hidden for readers in DEV-PUBLISH-CHEMI (PR open, `dev/publish-chemi`); delete this row when it merges. Storia 33-42 stays hidden.
 2. Storia: DEV-02 SVG merged; DEV-01 photos running; then chapters DEV-03..12 (prompts docs/piani/prompt-storia-ms/), DEV-13 glossary/search/links, ARCH-14 review, DEV-15 publish. No Verifica sections, no placeholder text.
 3. Size-budget tests + service worker (one chat alone on assets/teoria.js).
-4. Dyslexia audit. 5. Rename "QqQ lab" in titles/appname. 6. Delete capitoli/src md twins after chapters 22-42 are done (2nd PR of the easy-edit work). 7. Proposal for the old chapter editor (Rust/wasm) to Federico: now superseded by the in-page editor, propose deleting `editor/`.
+4. Dyslexia audit. 5. Rename "QqQ lab" in titles/appname.

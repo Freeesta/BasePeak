@@ -230,6 +230,6 @@ def test_photo_not_named_in_third_party_licences_fails(site):
 
 def test_storia_skeleton_has_no_placeholder_text():
     """Federico's rule: no «in costruzione» / «in preparazione» box or sentence in any chapter, drafts included."""
-    for p in sorted((ROOT / "capitoli").glob("*-storia-*.html")) + sorted((ROOT / "capitoli" / "src").glob("*-storia-*.md")):
+    for p in sorted((ROOT / "capitoli").glob("*-storia-*.html")):
         t = re.sub(r"<!--.*?-->", "", p.read_text(encoding="utf-8"), flags=re.S)      # the draft header comment may say TODO
         assert not re.search(r"in costruzione|in preparazione", t, re.I) and "TODO" not in t, p.name
