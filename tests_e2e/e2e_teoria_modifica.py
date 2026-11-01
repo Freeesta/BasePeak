@@ -58,7 +58,7 @@ try:
             new = open(dl.value.path(), encoding="utf-8").read()
             assert dl.value.suggested_filename == "05-ei-ci.html"
             q.wait_for_selector("#ed-pannello .ed-passi", timeout=5000)
-            assert q.evaluate("(() => { const b = document.querySelector('#ed-pannello [data-p=apri]').getBoundingClientRect(); return !!document.elementFromPoint(b.x + 5, b.y + 5).closest('#ed-pannello'); })()"), "the side menu covers the dialog"
+            assert q.evaluate("(() => { const a = document.querySelector('#ed-pannello [data-p=apri]'); a.scrollIntoView({block: 'center', behavior: 'instant'}); const b = a.getBoundingClientRect(), e = document.elementFromPoint(b.x + 5, b.y + 5); return !!e && !!e.closest('#ed-pannello'); })()"), "the side menu covers the dialog"
             with c.expect_page() as pp: q.click("#ed-pannello [data-p=apri]")   # step 1 opens GitHub in a new tab; it does not open by itself
             assert pp.value.url == GH + PAGE, pp.value.url
             assert q.evaluate("navigator.clipboard.readText()") == new
