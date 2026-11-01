@@ -281,22 +281,22 @@
     m.innerHTML = `
       <div class="exp-card" role="dialog" aria-modal="true" aria-labelledby="exp-h">
         <div class="exp-header">
-          <h2 id="exp-h">📥 Scarica</h2>
+          <h2 id="exp-h"><span class="exp-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4v11"/><path d="M7.5 11l4.5 4.5 4.5-4.5"/><path d="M5 19h14"/></svg></span>Scarica</h2>
           <button type="button" class="exp-close" id="exp-btn-close" aria-label="Chiudi">✕</button>
         </div>
         <table class="exp-tab">
           <thead><tr><th scope="col"><span class="vh">Formato</span></th><th scope="col">Capitolo</th><th scope="col">Tutta la Teoria</th></tr></thead>
           <tbody>
-          <tr><th scope="row" class="exp-fmt"><span class="exp-ico" aria-hidden="true">📄</span><b>PDF</b> <span class="d">· per stampare</span></th>
+          <tr><th scope="row" class="exp-fmt"><span class="exp-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8 17v-4h1.5a1.2 1.2 0 0 1 0 2.4H8"/><path d="M13 13v4"/><path d="M13 13h2.5M13 15h2"/></svg></span><b>PDF</b></th>
             <td><button type="button" class="exp-item" id="exp-cur-pdf" aria-label="Capitolo, PDF" title="Scarica il capitolo">↓</button></td>
             <td><button type="button" class="exp-item" id="exp-all-pdf" aria-label="Tutta la Teoria, PDF" title="Scarica tutta la Teoria">↓</button></td></tr>
-          <tr><th scope="row" class="exp-fmt"><span class="exp-ico" aria-hidden="true">📝</span><b>Markdown</b> <span class="d">· per appunti</span></th>
+          <tr><th scope="row" class="exp-fmt"><span class="exp-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M6.5 15V9l2.5 3 2.5-3v6"/><path d="M16.5 9v6M14.5 13l2 2 2-2"/></svg></span><b>Markdown</b></th>
             <td><button type="button" class="exp-item" id="exp-cur-md" aria-label="Capitolo, Markdown" title="Scarica il capitolo">↓</button></td>
             <td><button type="button" class="exp-item" id="exp-all-md" aria-label="Tutta la Teoria, Markdown" title="Scarica tutta la Teoria">↓</button></td></tr>
-          <tr><th scope="row" class="exp-fmt"><span class="exp-ico" aria-hidden="true">📄</span><b>Word</b> <span class="d">· da modificare</span></th>
+          <tr><th scope="row" class="exp-fmt"><span class="exp-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8 12.5l1.2 4.5 1.3-3.5 1.3 3.5 1.2-4.5"/></svg></span><b>Word</b></th>
             <td><button type="button" class="exp-item" id="exp-cur-doc" aria-label="Capitolo, Word" title="Scarica il capitolo">↓</button></td>
             <td><button type="button" class="exp-item" id="exp-all-doc" aria-label="Tutta la Teoria, Word" title="Scarica tutta la Teoria">↓</button></td></tr>
-          <tr><th scope="row" class="exp-fmt"><span class="exp-ico" aria-hidden="true">🌐</span><b>HTML</b> <span class="d">· da aprire offline</span></th>
+          <tr><th scope="row" class="exp-fmt"><span class="exp-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.5 7L3.5 12l5 5"/><path d="M15.5 7l5 5-5 5"/><path d="M13.5 5l-3 14"/></svg></span><b>HTML</b></th>
             <td><button type="button" class="exp-item" id="exp-cur-html" aria-label="Capitolo, HTML" title="Scarica il capitolo">↓</button></td>
             <td><button type="button" class="exp-item" id="exp-all-html" aria-label="Tutta la Teoria, HTML" title="Scarica tutta la Teoria">↓</button></td></tr>
           </tbody>
@@ -407,7 +407,7 @@
     }
     showStatus(`Generazione del pacchetto completo (${fmt.toUpperCase()})…`);
     try {
-      if (fmt === "pdf") { printPack(loaded); showStatus("✅ Finestra di stampa aperta: scegli «Salva come PDF»."); return; }
+      if (fmt === "pdf") { printPack(loaded); const st = document.getElementById("exp-status"); if (st) st.style.display = "none"; return; }
       if (fmt !== "md") await Promise.all(loaded.map(c => inlineImages(c.el)));
       const out = buildAll(fmt, loaded);
       if (fmt === "md") triggerDownload(out, `${NAME}_Teoria_Completa.md`, "text/markdown;charset=utf-8");
