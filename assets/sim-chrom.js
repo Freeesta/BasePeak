@@ -98,8 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ------------------------------------------------------------ 3) reversed-phase LC: isocratic vs gradient (LSS model)
   const gr = document.getElementById("sim-gradiente");
   if (gr) {
-    // log k = log kw - S phi; four model compounds (illustrative: two polar TPs, the parent, a hydrophobic by-product)
-    const CMP = [["TP polare", 1.6, 3.2, 3], ["TP idrossilato", 2.3, 3.6, 4], ["parent", 3.2, 4.0, 1], ["prodotto idrofobo", 4.4, 4.6, 2]];
+    // log k = log kw - S phi; four model compounds (illustrative: two polar derivatives, the parent, a hydrophobic by-product)
+    const CMP = [["derivato polare", 1.6, 3.2, 3], ["derivato idrossilato", 2.3, 3.6, 4], ["parent", 3.2, 4.0, 1], ["prodotto idrofobo", 4.4, 4.6, 2]];
     let modeG = "grad";
     TP.buttons(gr, [["iso", "Isocratica"], ["grad", "Gradiente"]], modeG, k => { modeG = k; draw(); });
     const v = TP.controls(gr, [

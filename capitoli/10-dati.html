@@ -27,7 +27,7 @@
 <p>Il passaggio da profilo a centroide si chiama <em>peak picking</em>. Non si può invertire. Dal centroide non si recupera la forma del picco e non si separano due ioni vicini che l'algoritmo ha fuso in un punto solo. Per questo si conserva sempre il file originale e si converte solo una copia. Approfondimento: <a href="22-segnale.html">capitolo 22 (Segnale, profilo e centroide)</a>.</p>
 <h3>Cromatogrammi: TIC, BPC, XIC</h3>
 <p>Mettendo in fila gli spettri si ottiene un cubo di dati: tempo × <i>m/z</i> × intensità. Un cromatogramma è una sua fetta. Si sceglie una regola che riduce ogni spettro a un numero e si mette il numero in funzione del tempo. La regola decide che cosa si vede.</p>
-<p>Il <b>TIC</b> (total ion current) somma tutte le intensità di ogni spettro. È dominato dal fondo e dalle specie più abbondanti. Serve per un colpo d'occhio sulla corsa: si vede se l'iniezione è avvenuta e se il gradiente ha lavorato. È quasi inutile per trovare un TP minore.</p>
+<p>Il <b>TIC</b> (total ion current) somma tutte le intensità di ogni spettro. È dominato dal fondo e dalle specie più abbondanti. Serve per un colpo d'occhio sulla corsa: si vede se l'iniezione è avvenuta e se il gradiente ha lavorato. È quasi inutile per trovare un composto correlato minore.</p>
 <p>Il <b>BPC</b> (base peak chromatogram) prende, per ogni spettro, l'intensità dello ione più intenso. Fa emergere meglio i picchi stretti sul fondo diffuso, perché non somma i molti ioni deboli del rumore chimico. Si usa per vedere i componenti principali di un campione.</p>
 <p>L'<b>XIC</b> o EIC (extracted ion chromatogram) riporta l'intensità entro una finestra di <i>m/z</i> attorno a un valore scelto: un <i>m/z</i>, una traccia nel tempo. È lo strumento principale, perché isola il composto cercato da tutto il resto. Si usa quando si conosce la massa dell'analita o la si vuole cercare.</p>
 <p>La larghezza della finestra di estrazione è la scelta che conta. Con risoluzione unitaria il profilo di uno ione è largo ~0,7 Da a metà altezza e va da circa −0,5 a +0,5 Da dal centro. Una finestra di ±0,5 Da centrata sul valore <em>osservato</em> raccoglie quasi tutto il segnale senza prendere i vicini.</p>
@@ -37,9 +37,9 @@
 <p>Poi si sottraggono gli spettri di una zona vicina senza picchi, per esempio quella subito prima del picco, oppure lo stesso intervallo nel bianco. Senza sottrazione, ioni del fondo (plastificanti, polisilossani, cluster della fase mobile) contaminano lo spettro e possono sembrare frammenti o addotti.</p>
 <div class="box warn"><b>Errori frequenti nel full scan</b>
 <ul>
-<li>Considerare TP un m/z presente anche nel bianco o a t0 con intensità simile: è fondo o un'impurezza dello standard.</li>
-<li>Considerare TP isotopi, addotti o frammenti in sorgente del parent: hanno lo stesso RT e la stessa forma di picco del parent (capitoli 2 e 4).</li>
-<li>Confrontare le altezze di TP diversi come se fossero concentrazioni: la risposta ESI cambia da molecola a molecola.</li>
+<li>Considerare un candidato un m/z presente anche nel bianco o nel campione di controllo con intensità simile: è fondo o un'impurezza dello standard.</li>
+<li>Considerare candidati isotopi, addotti o frammenti in sorgente del parent: hanno lo stesso RT e la stessa forma di picco del parent (capitoli 2 e 4).</li>
+<li>Confrontare le altezze di candidati diversi come se fossero concentrazioni: la risposta ESI cambia da molecola a molecola.</li>
 <li>Integrare XIC con picchi saturi (appiattiti in cima): l'area è sottostimata.</li>
 </ul></div>
 <p class="storia-link solo-esteso" hidden>Per la storia: <a href="42-storia-rivelatori-dati.html">Rivelatori, dati, applicazioni</a>.</p>
@@ -110,10 +110,10 @@
 <tr><td>S</td><td><sup>34</sup>S, 4,25%</td><td>M+2 ≈ 4,4% per ogni S</td></tr>
 <tr><td>N, O</td><td>piccoli</td><td>Contributi minori a M+1 (N) e M+2 (O)</td></tr>
 </table>
-<p>Per i TP è un controllo potentissimo: se il parent contiene un cloro e il candidato mostra ancora M+2 al ~32%, il cloro è rimasto; se il pattern scompare e la massa è calata di 18 (−Cl +OH), la declorurazione idrossilativa è un'ipotesi coerente. Approfondimento: <a href="26-gruppi.html">capitolo 26 (Isotopi, addotti, frammenti)</a>.</p>
+<p>Per i derivati del parent è un controllo potentissimo: se il parent contiene un cloro e il candidato mostra ancora M+2 al ~32%, il cloro è rimasto; se il pattern scompare e la massa è calata di 18 (−Cl +OH), la declorurazione idrossilativa è un'ipotesi coerente. Approfondimento: <a href="26-gruppi.html">capitolo 26 (Isotopi, addotti, frammenti)</a>.</p>
 <div class="sim" id="sim-iso"><h3>Cluster isotopico a risoluzione unitaria</h3>
 <p class="note">Scrivete una formula bruta (elementi C, H, N, O, S, P, F, Cl, Br, I, Si, Na, K). Il calcolo convolve le distribuzioni isotopiche per massa nominale. L'esempio è l'atrazina, un erbicida usato come esempio svolto nel capitolo 16.</p></div>
-<p>Il secondo controllo è la regola dell'azoto. Una molecola neutra con massa nominale dispari contiene un numero dispari di atomi di N. Per lo ione [M+H]<sup>+</sup> vale il contrario: <i>m/z</i> pari implica un numero dispari di N. Per l'atrazina (C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub>) la massa nominale è 215, dispari, con cinque atomi di azoto, e lo ione [M+H]<sup>+</sup> sta a <i>m/z</i> 216. La regola serve a scartare formule incompatibili e a capire se una trasformazione ha tolto o aggiunto azoto.</p>
+<p>Il secondo controllo è la regola dell'azoto. Una molecola neutra con massa nominale dispari contiene un numero dispari di atomi di N. Per lo ione [M+H]<sup>+</sup> vale il contrario: <i>m/z</i> pari implica un numero dispari di N. Per l'atrazina (C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub>) la massa nominale è 215, dispari, con cinque atomi di azoto, e lo ione [M+H]<sup>+</sup> sta a <i>m/z</i> 216. La regola serve a scartare formule incompatibili e a capire se una variazione di formula ha tolto o aggiunto azoto.</p>
 <p>Il terzo controllo conta le insaturazioni. Gli anelli più i doppi legami (RDBE) di una molecola neutra valgono C − H/2 − X/2 + N/2 + 1, con X il numero di alogeni. Il risultato deve essere intero e ≥ 0. Per l'atrazina viene 8 − 7 − 0,5 + 2,5 + 1 = 4: l'anello triazinico e i suoi tre doppi legami. Un'apertura d'anello o un'idratazione lo riducono; un'ossidazione a carbonile no.</p>
 <h2>Dal dato alla quantità</h2>
 <h3>Correggere il fondo e integrare</h3>
@@ -135,10 +135,10 @@
 <p>con <i>b</i> pendenza della retta e <i>s</i> deviazione standard della risposta (del bianco o dell'intercetta). In alternativa si usa il rapporto segnale/rumore (3 e 10) su standard di bassa concentrazione.</p>
 <p>In parole, il limite è un multiplo della variabilità della risposta, riportato in concentrazione dividendo per la pendenza. Con <i>s</i> = 120 unità di area e <i>b</i> = 4000 unità di area per mg/L, il LOD è 3,3 × 120 / 4000 ≈ 0,10 mg/L e il LOQ è 10 × 120 / 4000 = 0,30 mg/L. Il LOQ è circa il triplo del LOD perché per quantificare serve un'incertezza relativa più piccola che per rivelare.</p>
 <p>Come pianificare i livelli, i bianchi e la sequenza è nel capitolo 18.</p>
-<h3>Identità e cinetica</h3>
+<h3>Identità e confronto tra campioni</h3>
 <p>L'identità dell'analita è confermata se tre condizioni valgono insieme: l'RT coincide con quello dello standard (entro pochi secondi), entrambe le transizioni sono presenti e il rapporto qualificatore/quantificatore sta entro la tolleranza (capitolo 8). Una sola condizione non basta: uno ione con lo stesso RT ma con un rapporto sbagliato può essere un interferente.</p>
-<p>Con le concentrazioni del parent si traccia <i>C</i>/<i>C</i><sub>0</sub> e ln(<i>C</i><sub>0</sub>/<i>C</i>) in funzione del tempo. Per una cinetica di primo ordine la seconda curva è una retta con pendenza <i>k</i>, e il tempo di dimezzamento è ln 2 / <i>k</i>: con <i>k</i> = 0,05 min<sup>−1</sup> sono circa 14 min.</p>
-<p>Per i TP, senza standard, si tracciano le aree degli XIC (dal full scan) o delle transizioni MRM, eventualmente normalizzate al loro massimo: si confronta la forma della curva, non l'altezza tra TP diversi.</p>
+<p>Dalla quantificazione si passa al confronto tra campioni. Con le concentrazioni del parent nei vari campioni si confrontano risposte e repliche: se due repliche dello stesso campione differiscono molto, la differenza tra campioni diversi non si può interpretare.</p>
+<p>Per i composti correlati, senza standard, si confrontano le aree degli XIC (dal full scan) o delle transizioni MRM, eventualmente normalizzate al loro massimo. Si confronta l'andamento tra i campioni, non l'altezza tra candidati diversi, perché la risposta ESI cambia da molecola a molecola.</p>
 <h2>Per approfondire</h2>
 <ul class="refs">
 <li><span class="tag">formato</span>Martens L. et al. (2011) mzML—a community standard for mass spectrometry data. <i>Mol. Cell. Proteomics</i> 10, R110.000133. <a href="https://doi.org/10.1074/mcp.R110.000133" target="_blank" rel="noopener">doi:10.1074/mcp.R110.000133</a></li>

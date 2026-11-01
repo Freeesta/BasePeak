@@ -13,12 +13,15 @@ Non serve installare niente. Non serve il terminale. Non serve nessuna password 
    - annullare e ripetere.
 
    Il bottone **«Codice»** mostra il testo con i tag. Dice se hai dimenticato di chiudere un tag.
-4. **Premi «Salva e proponi la modifica».** Il file della pagina si scarica da solo e il suo testo viene copiato. Si apre una scheda di GitHub.
+4. **Premi «Salva e proponi la modifica».** Il testo della pagina viene **copiato** (e il file si scarica anche). Compare una finestra con 3 passi.
 5. **Su GitHub** (serve il tuo account):
-   1. seleziona tutto il testo (Ctrl+A, su Mac Cmd+A);
-   2. incolla (Ctrl+V, su Mac Cmd+V);
-   3. scrivi in alto che cosa hai cambiato;
-   4. premi «Commit changes…», poi «Propose changes», poi «Create pull request».
+   1. premi **«Apri GitHub»**: si apre una scheda;
+   2. **clicca nel testo**, premi **Ctrl+A** (su Mac **⌘A**), poi **Ctrl+V** (su Mac **⌘V**);
+   3. premi il verde **«Commit changes…»**, poi di nuovo **«Commit changes»**.
+
+   **«Commit changes…» resta spento finché non incolli:** GitHub apre il file vecchio, e senza modifiche non si può salvare. Dopo il salvataggio il sito si aggiorna in pochi minuti.
+
+   Se il testo non si è copiato, premi **«Copia il testo»** nella finestra. In alternativa, nella finestra, apri la pagina di caricamento di GitHub e trascina il file scaricato: ha lo stesso nome e sostituisce quello vecchio.
 
 Fatto. Il controllo automatico guarda la pagina. Se è tutto a posto, il COO la pubblica. Se compare una X rossa, leggi il messaggio: dice che cosa correggere.
 
