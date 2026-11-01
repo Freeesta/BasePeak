@@ -36,7 +36,7 @@
 <li>ogni massimo di densità definisce un gruppo, con i picchi sotto di esso;</li>
 <li>il gruppo si tiene se compare in una frazione minima di campioni (minFraction, di default 0,5).</li>
 </ol>
-<p>I valori di default sono un punto di partenza, non una regola. La tolleranza in m/z dipende dalla risoluzione: con dati ad alta risoluzione una finestra di 10 ppm vale 0,003 Da a m/z 300, e una fetta di 0,25 sarebbe troppo larga<!-- to verify against source: XCMS mzwid values suggested for high-resolution data (Smith2006, Tautenhahn2008) -->. La tolleranza in tempo deve superare la deriva rimasta dopo l'allineamento, ma restare sotto la distanza fra due composti da tenere separati.</p>
+<p>I valori di default sono un punto di partenza, non una regola. La tolleranza in m/z dipende dalla risoluzione: con dati ad alta risoluzione una finestra di 10 ppm vale 0,003 Da a m/z 300, e una fetta di 0,25 sarebbe troppo larga. La tolleranza in tempo deve superare la deriva rimasta dopo l'allineamento, ma restare sotto la distanza fra due composti da tenere separati.</p>
 <p>Un altro approccio, tipico di MZmine (Pluskal et al., 2010), dà un punteggio a ogni coppia di picchi e assegna in ordine di punteggio, un picco per campione.</p>
 <span class="eq">punteggio = <i>w</i><sub>mz</sub> (1 − Δ<i>m</i>/tol<sub>mz</sub>) + <i>w</i><sub>rt</sub> (1 − Δrt/tol<sub>rt</sub>)<span class="no">(27.3)</span></span>
 <p>Una coppia identica vale <i>w</i><sub>mz</sub> + <i>w</i><sub>rt</sub>; una coppia al limite della tolleranza non vale niente. Così il punteggio premia i picchi vicini in entrambe le dimensioni.</p>
