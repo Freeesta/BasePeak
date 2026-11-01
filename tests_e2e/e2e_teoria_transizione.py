@@ -49,12 +49,12 @@ try:
         step("slow script: no transition over a page that has no index yet, no errors", slow)
         def scroll():
             ctx, pg, errs = ctxpage(b); pg.goto(T + "capitoli/04-esi.html"); real_wait(pg, 400)
-            pg.click("#navall")   # every part open (kept for the next page): a long list to scroll
-            pg.evaluate("document.querySelector('#side').scrollTop=150"); pg.evaluate("scrollTo(0,900)"); real_wait(pg, 200)
-            before = pg.evaluate("document.querySelector('#side').scrollTop"); assert before > 100, before
+            assert pg.inner_text("#navall") == "Chiudi tutto"   # every part is open on the first visit: a long list to scroll
+            pg.evaluate("document.querySelector('#side .sidescroll').scrollTop=150"); pg.evaluate("scrollTo(0,900)"); real_wait(pg, 200)
+            before = pg.evaluate("document.querySelector('#side .sidescroll').scrollTop"); assert before > 100, before
             href = pg.evaluate("(()=>{const s=document.querySelector('#side').getBoundingClientRect();return [...document.querySelectorAll('#side ol a[href$=html]')].find(a=>{const r=a.getBoundingClientRect();return r.top>s.top+80&&r.bottom<s.bottom-80&&!a.classList.contains('on')}).getAttribute('href')})()")
             click_chapter(pg, href)
-            y = pg.evaluate("scrollY"); st = pg.evaluate("document.querySelector('#side').scrollTop")
+            y = pg.evaluate("scrollY"); st = pg.evaluate("document.querySelector('#side .sidescroll').scrollTop")
             assert y == 0, y; assert abs(st - before) <= 2, (st, before); assert not errs, errs; ctx.close()
         step("new chapter starts at the top and the index keeps its scroll position", scroll)
         def anchor():

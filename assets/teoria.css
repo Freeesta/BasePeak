@@ -153,10 +153,42 @@ main{overflow-wrap:break-word}
 @media print{.g{border-bottom:0}#gtip{display:none}}
 
 /* logo and name of the site: the top of the index, pinned while the list scrolls (a phone sheet scrolls it away) */
-#side .brand{position:sticky;top:0;z-index:3;display:flex;align-items:center;min-height:var(--toph);margin:0 -8px 8px -12px;padding:0 12px;background:var(--panel);border-bottom:1px solid var(--line)}
+#side .brand{position:sticky;top:0;z-index:5;display:flex;align-items:center;min-height:var(--toph);margin:0 -8px 0 -12px;padding:0 12px;background:var(--panel);border-bottom:1px solid var(--line)}
 #logo{display:inline-flex;align-items:center;gap:10px;min-height:44px;color:var(--ink);font-size:17px;font-weight:700;text-decoration:none}
+/* search field under the logo: always visible, results open right below it */
+#side .sidesearch{position:sticky;top:var(--toph);z-index:4;margin:0 -8px 10px -12px;padding:8px 12px;background:var(--panel);border-bottom:1px solid var(--line)}
+#side .sidesearch .ss-ico{position:absolute;left:24px;top:22px;color:var(--accent);pointer-events:none}
+#sc-cerca{display:block;width:100%;min-height:44px;margin:0;padding:6px 12px 6px 40px;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;box-sizing:border-box;-webkit-appearance:none;appearance:none}
+#sc-cerca::placeholder{color:var(--ink);opacity:.78}
+#sc-cerca::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+#sc-cerca:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+#ss-panel{position:absolute;left:12px;right:12px;top:calc(100% - 6px);z-index:6;display:flex;flex-direction:column;max-height:min(70vh,440px);overflow:auto;padding:4px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+#ss-panel[hidden],#ss-panel [hidden]{display:none}
+#ss-list{list-style:none;margin:0;padding:0}
+#ss-list [role=option]{display:flex;flex-direction:column;justify-content:center;gap:1px;min-height:44px;padding:6px 10px;border-radius:8px;cursor:pointer;border:2px solid transparent;line-height:1.3}
+#ss-list [role=option] small{color:var(--ink);opacity:.8;font-size:12.5px}
+#ss-list [role=option][aria-selected=true]{background:var(--sel);border-color:var(--accent)}
+#ss-list mark{background:transparent;color:var(--accent);font-weight:700;text-decoration:underline}
+#ss-st{margin:0;padding:10px 10px;font-size:14px;color:var(--ink)}
+#ss-all{min-height:44px;margin-top:2px;padding:6px 10px;font:inherit;font-size:14px;text-align:left;color:var(--ink);background:transparent;border:0;border-top:1px solid var(--line);border-radius:0 0 6px 6px;text-decoration:underline;cursor:pointer}
+#ss-all:hover{background:var(--sel)}#ss-all:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+@media (forced-colors:active){#ss-list [role=option][aria-selected=true]{outline:2px solid Highlight}}
+@media print{.sidesearch{display:none}}
+body.emb #side .sidesearch{display:none}
+/* from 900 px the index is a column: logo strip and search field on top, NOT scrolling, and the list scrolls in .sidescroll under them (nothing slides beneath the strip, the scrollbar starts under it);
+   on a phone the sheet scrolls as a whole and the search field is sticky below the sheet header */
+@media (min-width:900px){
+  #side{overflow:hidden;display:flex;flex-direction:column;padding:0;scrollbar-gutter:auto}
+  #side .brand,#side .sidesearch{position:relative;top:auto;margin:0;flex:none}
+  #side .brand{padding:0 12px}
+  #side .sidesearch{padding:8px 12px;margin:0 0 4px}
+  #side .sidescroll{flex:1 1 auto;min-height:0;overflow:auto;overflow-anchor:none;padding:6px 8px 24px 12px;scrollbar-gutter:stable;overflow-wrap:anywhere}
+}
+@media (max-width:899.98px){#side .sidescroll{display:contents}}
 #logo img{display:block;height:28px;width:auto}
 #logo:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+/* wide screens: the logo strip is exactly as tall as the header bar to its right (--toph, border included), so the two bottom lines are one continuous line */
+@media (min-width:900px){#side .brand{height:var(--toph);min-height:0;box-sizing:border-box}#top{height:var(--toph);min-height:0;box-sizing:border-box}#logo{min-height:0;height:100%}}
 /* collapsible parts and chapter: the button is the heading of the part (h4 > button) */
 #side .navtools{display:flex;justify-content:flex-end;margin:0 0 4px}
 #side .navall{min-height:32px;padding:2px 8px;font:inherit;font-size:13px;color:var(--ink);background:transparent;border:0;border-radius:6px;text-decoration:underline;cursor:pointer}
@@ -318,7 +350,7 @@ main:focus{outline:none}
   #side ol.toc a{display:flex;align-items:center;min-height:44px}
   .pnt{display:none}
   .navtop{font-size:16px}
-  #side ol.toc a,#side ol.toc ol a,#side .ptog,#side .navall{font-size:16px}#side .ptog,#side .ctog,#side .navall{min-height:44px}#side .ctog{min-width:44px}#side .brand{position:static;margin:0 0 8px}
+  #side ol.toc a,#side ol.toc ol a,#side .ptog,#side .navall{font-size:16px}#side .ptog,#side .ctog,#side .navall{min-height:44px}#side .ctog{min-width:44px}#side .brand{position:static;margin:0 0 8px}#side .sidesearch{top:66px;margin:0 -14px 8px -14px;padding:8px 14px}#side .sidesearch .ss-ico{left:26px}#ss-panel{left:14px;right:14px}
   #cbar #menu .ml{font-weight:700}
   main table,main figcaption,.box,.obj,.cards a span,.sim .note,.ctl label{font-size:16px}
   .eq{overflow-x:auto;max-width:100%}
@@ -417,12 +449,12 @@ html.phone #top #a11y-btn{margin-left:0}
 
 
 /* ---- reserved space (no layout shift): the header (#top, built by teoria.js) and the commands block of the index (#sidecmd, added by comandi.js) arrive after the first paint; until then a blank box of their final height stands in their place ---- */
-:root{--toph:61px;--sidech:285px}
-@media (pointer:fine){:root{--toph:42px;--sidech:213px}}
+:root{--toph:61px;--sidech:241px}
+@media (pointer:fine){:root{--toph:42px;--sidech:179px}}
 @media (pointer:coarse) and (max-width:640px){:root{--toph:53px}}
 #top{min-height:var(--toph)}
 html:not(.tp-emb) body:not(.hdr)::before{content:"";display:block;height:var(--toph)}
-#side:not(:has(#sidecmd))::before{content:"";display:block;height:calc(var(--sidech) + 14px)}
+#side .sidescroll:not(:has(#sidecmd))::before,#side:not(:has(.sidescroll)):not(:has(#sidecmd))::before{content:"";display:block;height:calc(var(--sidech) + 14px)}
 /* history chapters (part VII Storia): boxes, step line, figure host, links, filter chips */
 .storia-chi{border:1px solid var(--line);border-left:4px solid var(--accent2);background:var(--panel);border-radius:6px;padding:8px 14px;margin:14px 0}
 .storia-chi summary{cursor:pointer;font-weight:700;color:var(--ink)}

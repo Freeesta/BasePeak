@@ -49,6 +49,11 @@ try:
                     assert bt[0] >= x["th"][0] - 1, x
                     assert bt[1] <= x["th"][1] + 1 and bt[2] >= 40, x
                 assert abs(x["btns"][0][0] - x["btns"][1][0]) <= 1, x
+            labels = q.evaluate("[...document.querySelectorAll('.exp-tab tbody th')].map(t => t.textContent.trim())")
+            assert labels == ["PDF", "Markdown", "Word", "HTML"], labels   # only the format name: no grey " · ..." hints
+            assert all(" · " not in l for l in labels), labels
+            icos = q.evaluate("[...document.querySelectorAll('.exp-tab tbody .exp-ico')].map(e => [e.getAttribute('aria-hidden'), e.querySelectorAll('svg').length, e.innerHTML.length])")
+            assert all(i[0] == "true" and i[1] == 1 for i in icos) and len({i[2] for i in icos}) == 4, icos   # one aria-hidden SVG per row, all different
             tops = [x["th"][0] for x in rows]; bots = [x["th"][1] for x in rows]
             assert all(abs(tops[i + 1] - bots[i]) <= 1 for i in range(3)), (tops, bots)   # rows are contiguous: shared borders
             c.close()
@@ -142,6 +147,7 @@ try:
             c, q = newpage(); opened(q, "capitoli/07-quadrupolo.html"); n = len(chapters(q))
             q.evaluate("window.__p = 0; window.print = () => { window.__p++; }; window.__pop = 0; window.open = () => { window.__pop++; return null; }; null")
             q.click("#exp-all-pdf"); q.wait_for_function("window.__p === 1", timeout=60000)
+            assert "Finestra di stampa" not in q.inner_text("#export-modal") and "Salva come PDF" not in q.inner_text("#export-modal"), "PDF must show no success banner"
             assert q.evaluate("window.__pop") == 0, "the package PDF must not need a pop-up window"
             assert q.evaluate("document.querySelectorAll('#print-pack .chapter-block').length") == n
             assert q.evaluate("getComputedStyle(document.getElementById('print-pack')).display") == "none", "the print block must not show on screen"

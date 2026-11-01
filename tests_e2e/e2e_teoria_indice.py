@@ -75,7 +75,7 @@ try:
                 q.wait_for_function("id=>{const a=document.querySelector('#side a[aria-current=location]');return a&&a.getAttribute('href')==='#'+id}", arg=h, timeout=5000)
                 seen.append(h)
                 assert q.evaluate("document.querySelectorAll('#side a[aria-current=location]').length") == 1
-                assert q.evaluate("(()=>{const a=document.querySelector('#side a[aria-current=location]').getBoundingClientRect(),s=document.querySelector('#side').getBoundingClientRect();return a.top>=s.top-1&&a.bottom<=s.bottom+1})()"), "current section not scrolled into view in the menu"
+                assert q.evaluate("(()=>{const a=document.querySelector('#side a[aria-current=location]').getBoundingClientRect(),s=document.querySelector('#side .sidescroll').getBoundingClientRect();return a.top>=s.top-1&&a.bottom<=s.bottom+1})()"), "current section not scrolled into view in the menu"
             assert len(set(seen)) == 3
             q.evaluate("scrollTo(0,0)"); q.wait_for_function("!document.querySelector('#side a[aria-current=location]')", timeout=5000)
             c.close()
@@ -234,7 +234,7 @@ try:
             bad = "(()=>{const s=document.querySelector('#side'),o=[];if(s.scrollWidth>s.clientWidth+1)o.push('side h-scroll');s.querySelectorAll('*').forEach(e=>{if(!e.offsetParent)return;const c=getComputedStyle(e);if(e.scrollWidth>e.clientWidth+1&&c.display!=='inline'&&c.overflowX!=='auto'&&c.overflowX!=='visible')o.push(e.tagName+' clipped');if(c.textOverflow==='ellipsis'||c.overflowX==='hidden'&&e.scrollHeight>e.clientHeight+1)o.push(e.tagName+' cut')});return o})()"
             c, q = ctx(); go(q, LONG); q.add_style_tag(content=css); q.wait_for_timeout(150)
             assert q.evaluate(bad) == [], q.evaluate(bad)
-            assert q.evaluate("(()=>{const s=document.querySelector('#side');return getComputedStyle(s).overflowY==='auto'&&s.scrollHeight>=s.clientHeight})()"), "menu cannot scroll"
+            assert q.evaluate("(()=>{const s=document.querySelector('#side .sidescroll');return getComputedStyle(s).overflowY==='auto'&&s.scrollHeight>=s.clientHeight})()"), "menu cannot scroll"   # the list scrolls under the fixed logo strip and search field
             c.close()
             c, q = ctx(390, 844, is_mobile=True, has_touch=True); q.goto(T + LONG); q.wait_for_selector("#menu"); q.add_style_tag(content=css); q.click("#menu"); q.wait_for_timeout(200)
             assert q.evaluate(bad) == [], q.evaluate(bad)
@@ -258,13 +258,13 @@ try:
         def keeps_scroll():
             c, q = ctx(1280, 600); go(q, LONG)
             link = q.locator("#side li a[href$='capitoli/09-risoluzione.html']")
-            q.evaluate("(()=>{const s=document.querySelector('#side'),a=document.querySelector(\"#side li a[href$='capitoli/09-risoluzione.html']\");s.scrollTop+=a.getBoundingClientRect().top-s.getBoundingClientRect().top-150})()")
+            q.evaluate("(()=>{const s=document.querySelector('#side .sidescroll'),a=document.querySelector(\"#side li a[href$='capitoli/09-risoluzione.html']\");s.scrollTop+=a.getBoundingClientRect().top-s.getBoundingClientRect().top-150})()")
             assert link.is_visible()
-            st = q.evaluate("document.querySelector('#side').scrollTop"); link.click(); q.wait_for_url("**/09-risoluzione.html"); q.wait_for_selector("#side a.on")
-            q.wait_for_timeout(300); st2 = q.evaluate("document.querySelector('#side').scrollTop"); 
+            st = q.evaluate("document.querySelector('#side .sidescroll').scrollTop"); link.click(); q.wait_for_url("**/09-risoluzione.html"); q.wait_for_selector("#side a.on")
+            q.wait_for_timeout(300); st2 = q.evaluate("document.querySelector('#side .sidescroll').scrollTop"); 
             # the sub-list of the old chapter collapses, so the numbers differ; what must hold: not reset to the top, the saved value was the old one, the current chapter is in view
             assert st > 0 and st2 > 0, (st, st2)
-            assert q.evaluate("(()=>{const a=document.querySelector('#side a.on').getBoundingClientRect(),s=document.querySelector('#side').getBoundingClientRect();return a.top>=s.top-2&&a.bottom<=s.bottom+2})()"), "current chapter out of view"
+            assert q.evaluate("(()=>{const a=document.querySelector('#side a.on').getBoundingClientRect(),s=document.querySelector('#side .sidescroll').getBoundingClientRect();return a.top>=s.top-2&&a.bottom<=s.bottom+2})()"), "current chapter out of view"
             c.close()
         step("the menu keeps its scroll position between pages", keeps_scroll)
         def layout_geometry():
@@ -284,22 +284,22 @@ try:
             c, q = ctx(); go(q, LONG)
             st = q.eval_on_selector_all("#side button.ptog", "e=>e.map(b=>{const r=document.getElementById(b.getAttribute('aria-controls'));return [b.textContent.trim(),b.getAttribute('aria-expanded'),!!r,r&&r.hidden,b.tagName,b.querySelector('svg.chev')&&b.querySelector('svg.chev').getBoundingClientRect().width]})")
             assert [x[0] for x in st] == PARTS and all(x[2] and x[4] == "BUTTON" and x[5] > 8 for x in st), st      # real buttons with a visible chevron and an existing target
-            assert [x[0] for x in st if x[1] == "true"] == ["IV. Analizzare gli ioni"], st                       # only the part of the current chapter is open
+            assert [x[0] for x in st if x[1] == "true"] == PARTS, st                                             # first visit (nothing kept): every part is open
             assert all(x[3] == (x[1] == "false") for x in st), "aria-expanded and hidden disagree"
-            assert q.is_visible("#side a[aria-current=page]") and q.is_hidden("#side a[href$='capitoli/02-lc.html']") and q.is_hidden("#side a[href$='pratica/ei.html']")
+            assert q.is_visible("#side a[aria-current=page]") and q.is_visible("#side a[href$='capitoli/02-lc.html']") and q.is_visible("#side a[href$='pratica/ei.html']")
             ct = q.locator("#side button.ctog"); assert ct.count() == 1 and ct.get_attribute("aria-expanded") == "true" and ct.get_attribute("aria-controls") == "toc-cur" and q.is_visible("#side #toc-cur")
-            assert q.locator("#navall").inner_text() == "Apri tutto"
+            assert q.locator("#navall").inner_text() == "Chiudi tutto"
             c.close()
-        step("collapsible parts: real <button> with aria-expanded / aria-controls and a chevron; only the part of the current chapter is open, its sections too", collapse_default)
+        step("collapsible parts: real <button> with aria-expanded / aria-controls and a chevron; on the first visit every part is open, the sections of the current chapter too", collapse_default)
         def collapse_keyboard():
             c, q = ctx(); go(q, LONG)
             b = q.locator("#side button.ptog", has_text="II. Separare"); b.focus()
-            q.keyboard.press("Enter"); assert b.get_attribute("aria-expanded") == "true" and q.is_visible("#side a[href$='capitoli/02-lc.html']")
-            q.keyboard.press("Space"); assert b.get_attribute("aria-expanded") == "false" and q.is_hidden("#side a[href$='capitoli/02-lc.html']")
-            q.keyboard.press("Space"); assert b.get_attribute("aria-expanded") == "true"
+            q.keyboard.press("Enter"); assert b.get_attribute("aria-expanded") == "false" and q.is_hidden("#side a[href$='capitoli/02-lc.html']")
+            q.keyboard.press("Space"); assert b.get_attribute("aria-expanded") == "true" and q.is_visible("#side a[href$='capitoli/02-lc.html']")
             assert q.evaluate("(()=>{const s=getComputedStyle(document.activeElement);return s.outlineStyle!=='none'&&parseFloat(s.outlineWidth)>=2})()"), "no visible focus on the toggle"
             # Tab from a closed part goes to the next heading, not into its hidden list
-            q.keyboard.press("Space"); q.keyboard.press("Tab"); assert q.evaluate("document.activeElement.textContent.trim()") == "III. Ionizzare", q.evaluate("document.activeElement.textContent")
+            q.keyboard.press("Space"); assert b.get_attribute("aria-expanded") == "false"
+            q.keyboard.press("Tab"); assert q.evaluate("document.activeElement.textContent.trim()") == "III. Ionizzare", q.evaluate("document.activeElement.textContent")
             c.close()
         step("collapse and expand with the keyboard: Enter and Space on the button, visible focus, a closed part is skipped by Tab", collapse_keyboard)
         def collapse_current():
@@ -310,44 +310,58 @@ try:
             pb(q, "IV. Analizzare").click(); assert q.is_hidden("#side a[aria-current=page]"), "the user can close the part of the current chapter"
             q.reload(); q.wait_for_selector("#side a.on"); assert q.is_visible("#side a[aria-current=page]") and q.is_visible("#side #toc-cur"), "on arrival the current chapter is never hidden"
             # the scroll-spy still works with a closed chapter: aria-current=location moves to a hidden link, no error, no jump of the menu
-            q.click("#side button.ctog"); top = q.evaluate("document.querySelector('#side').scrollTop")
+            q.click("#side button.ctog"); top = q.evaluate("document.querySelector('#side .sidescroll').scrollTop")
             q.evaluate("document.documentElement.style.scrollBehavior='auto';document.querySelectorAll('main h2')[3].scrollIntoView()"); q.wait_for_timeout(300)
-            assert q.evaluate("document.querySelector('#side').scrollTop") == top and q.evaluate("document.querySelectorAll('#side a[aria-current=location]').length") == 1
+            assert q.evaluate("document.querySelector('#side .sidescroll').scrollTop") == top and q.evaluate("document.querySelectorAll('#side a[aria-current=location]').length") == 1
             c.close()
         step("closing the current chapter or its part just closes it (nothing lost); on arrival it is open again; the scroll-spy keeps working", collapse_current)
         def collapse_persist():
             c, q = ctx(); go(q, LONG)
             pb(q, "II. Separare").click(); pb(q, "Pratica").click()
-            assert q.evaluate("JSON.parse(sessionStorage.getItem('qqq.teoria.nav')).p") is not None
+            assert q.evaluate("JSON.parse(localStorage.getItem('qqq.teoria.nav')).p") is not None
             q.reload(); q.wait_for_selector("#side a.on")
-            assert pb(q, "II. Separare").get_attribute("aria-expanded") == "true" and pb(q, "Pratica").get_attribute("aria-expanded") == "true"
-            assert pb(q, "III. Ionizzare").get_attribute("aria-expanded") == "false"
-            q.click("#side a[href$='pratica/ei.html']"); q.wait_for_url("**/pratica/ei.html"); q.wait_for_selector("#side a.on")        # another page of the same tab: the choices follow
-            assert pb(q, "II. Separare").get_attribute("aria-expanded") == "true"
-            assert pb(q, "Pratica").get_attribute("aria-expanded") == "true" and q.is_visible("#side a[aria-current=page]")
-            assert pb(q, "IV. Analizzare").get_attribute("aria-expanded") == "false"
-            c.close()
-            c, q = ctx(); go(q, LONG); assert pb(q, "II. Separare").get_attribute("aria-expanded") == "false", "a new tab starts from the default"
+            assert pb(q, "II. Separare").get_attribute("aria-expanded") == "false" and pb(q, "Pratica").get_attribute("aria-expanded") == "false"
+            assert pb(q, "III. Ionizzare").get_attribute("aria-expanded") == "true", "a part the reader did not touch stays open"
+            q.click("#side a[href$='pratica/ei.html']", force=True) if q.is_visible("#side a[href$='pratica/ei.html']") else q.goto(T + "pratica/ei.html")
+            q.wait_for_url("**/pratica/ei.html"); q.wait_for_selector("#side a.on")        # another page: the choices follow
+            assert pb(q, "II. Separare").get_attribute("aria-expanded") == "false"
+            assert pb(q, "Pratica").get_attribute("aria-expanded") == "true" and q.is_visible("#side a[aria-current=page]"), "the part of the current page is open whatever was kept"
+            assert pb(q, "IV. Analizzare").get_attribute("aria-expanded") == "true"
+            # a closed part stays closed in a NEW tab of the same browser (localStorage, not the session)
+            q2 = c.new_page(); go(q2, LONG); assert pb(q2, "II. Separare").get_attribute("aria-expanded") == "false", "the choice must survive a new tab"
             c.close()
             c, q = ctx()
-            q.add_init_script("Object.defineProperty(window,'sessionStorage',{get(){throw new Error('blocked')}})")
-            go(q, LONG); pb(q, "II. Separare").click(); assert q.is_visible("#side a[href$='capitoli/02-lc.html']"), "toggles must work without sessionStorage"; c.close()
-        step("the open / closed choices are remembered in sessionStorage (and everything works when it is blocked)", collapse_persist)
+            q.add_init_script("Object.defineProperty(window,'localStorage',{get(){throw new Error('blocked')}})")
+            go(q, LONG); assert pb(q, "II. Separare").get_attribute("aria-expanded") == "true"
+            pb(q, "II. Separare").click(); assert q.is_hidden("#side a[href$='capitoli/02-lc.html']"), "toggles must work without localStorage"; c.close()
+        step("the open / closed choices are remembered in localStorage (and everything works when it is blocked)", collapse_persist)
+        def first_visit_open():
+            for w, h, kw in ((1280, 800, {}), (784, 900, {}), (390, 844, {"is_mobile": True, "has_touch": True})):
+                c, q = ctx(w, h, **kw)
+                q.goto(T + LONG); q.wait_for_selector("#side a.on", state="attached")
+                assert q.evaluate("localStorage.getItem('qqq.teoria.nav')") is None, "nothing is stored by merely opening the site"
+                st = q.eval_on_selector_all("#side button.ptog", "e=>e.map(b=>[b.textContent.trim(),b.getAttribute('aria-expanded'),document.getElementById(b.getAttribute('aria-controls')).hidden])")
+                assert [x[0] for x in st] == PARTS and all(x[1] == "true" and x[2] is False for x in st), (w, st)
+                c.close()
+        step("first visit (no saved state): every group of the chapter index is open at 1280, 784 and 390 px; opening the site stores nothing", first_visit_open)
         def open_all():
             c, q = ctx(); go(q, LONG)
+            assert q.inner_text("#navall") == "Chiudi tutto"
+            q.click("#navall"); assert q.inner_text("#navall") == "Apri tutto"
+            assert q.eval_on_selector_all("#side button.ptog, #side button.ctog", "e=>e.every(b=>b.getAttribute('aria-expanded')==='false')")
             q.click("#navall"); assert q.inner_text("#navall") == "Chiudi tutto"
             assert q.eval_on_selector_all("#side button.ptog, #side button.ctog", "e=>e.every(b=>b.getAttribute('aria-expanded')==='true')")
             assert q.is_visible("#side a[href$='capitoli/02-lc.html']") and q.is_visible("#side a[href$='pratica/ei.html']")
-            q.click("#navall"); assert q.inner_text("#navall") == "Apri tutto"
-            assert q.eval_on_selector_all("#side button.ptog, #side button.ctog", "e=>e.every(b=>b.getAttribute('aria-expanded')==='false')")
-            pb(q, "Reference").click(); pb(q, "Pratica").click()
+            pb(q, "Reference").click(); pb(q, "Pratica").click(); assert q.inner_text("#navall") == "Apri tutto"
             q.focus("#navall"); q.keyboard.press("Enter"); assert q.inner_text("#navall") == "Chiudi tutto"
-            q.reload(); q.wait_for_selector("#side a.on"); assert q.is_visible("#side a[aria-current=page]")
+            q.click("#navall"); q.reload(); q.wait_for_selector("#side a.on"); assert q.is_visible("#side a[aria-current=page]")
             c.close()
         step("«Apri tutto» / «Chiudi tutto» opens or closes every part and chapter (mouse and keyboard); the current page is reachable after a reload", open_all)
         def drawer_collapse():
             c, q = ctx(390, 844, is_mobile=True, has_touch=True); q.goto(T + LONG); q.wait_for_selector("#menu"); q.click("#menu"); q.wait_for_selector("#side", state="visible")
             b = q.locator("#side button.ptog", has_text="II. Separare"); assert b.bounding_box()["height"] >= 44
+            assert b.get_attribute("aria-expanded") == "true" and q.is_visible("#side a[href$='capitoli/02-lc.html']")      # open on the first visit
+            b.tap(); assert b.get_attribute("aria-expanded") == "false" and q.is_hidden("#side a[href$='capitoli/02-lc.html']")
             b.tap(); assert b.get_attribute("aria-expanded") == "true" and q.is_visible("#side a[href$='capitoli/02-lc.html']")
             assert q.is_visible("#side")      # a toggle does not close the drawer
             q.locator("#side a[href$='capitoli/02-lc.html']").tap(); q.wait_for_url("**/02-lc.html"); c.close()

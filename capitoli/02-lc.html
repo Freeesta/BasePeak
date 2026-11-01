@@ -39,10 +39,10 @@
 <p>La fase stazionaria più usata è <b>silice</b> porosa con catene alchiliche legate chimicamente ai silanoli (Si–O–Si–R). Dopo la funzionalizzazione restano silanoli liberi, acidi: si «chiudono» con gruppi trimetilsilile (<b>end-capping</b>) perché con le basi protonate darebbero code.</p>
 <table>
 <tr><th>Fase</th><th>Caratteristiche</th><th>Quando</th></tr>
-<tr><td>C18 (ottadecile)</td><td>La più idrofoba e versatile</td><td>Prima scelta: farmaci, pesticidi, metaboliti e prodotti di trasformazione</td></tr>
+<tr><td>C18 (ottadecile)</td><td>La più idrofoba e versatile</td><td>Prima scelta: farmaci, pesticidi, metaboliti e derivati</td></tr>
 <tr><td>C8</td><td>Meno trattenente</td><td>Molecole molto idrofobe, corse più brevi</td></tr>
 <tr><td>Fenil-esile, pentafluorofenile (PFP)</td><td>Interazioni π-π, dipolari, di forma</td><td>Cambiare α per aromatici, isomeri di posizione, alogenati</td></tr>
-<tr><td>Fasi «polar-embedded», C18 per acqua al 100%</td><td>Non collassano in acqua pura</td><td>Molecole molto polari (alcuni TP)</td></tr>
+<tr><td>Fasi «polar-embedded», C18 per acqua al 100%</td><td>Non collassano in acqua pura</td><td>Molecole molto polari (alcuni derivati)</td></tr>
 </table>
 <p>Formati: lunghezza 50-150 mm, diametro interno 2,1 mm (LC-MS, 0,2-0,5 mL/min) o 4,6 mm (UV, 1 mL/min); particelle totalmente porose da 5, 3 o sub-2 µm, oppure <b>core-shell</b> (nucleo pieno e guscio poroso, 2,6-2,7 µm) che danno quasi l'efficienza delle sub-2 µm con metà della pressione (termini A e C più piccoli, capitolo 1). La silice si scioglie sopra pH ~8 e perde le catene sotto pH ~2: ogni colonna ha il suo intervallo di pH.</p>
 <h2>Perché serve la separazione</h2>
@@ -52,11 +52,11 @@
 <span class="eq"><i>t</i><sub>R</sub> = <i>t</i><sub>0</sub>(1 + <i>k</i>), &nbsp;&nbsp; <i>k</i> = <span class="frac"><span><i>n</i><sub>stazionaria</sub></span><span><i>n</i><sub>mobile</sub></span></span>, &nbsp;&nbsp; log <i>k</i> ≈ log <i>k</i><sub>w</sub> − <i>S</i> φ<span class="no">(2.1)</span></span>
 <p><i>t</i><sub>0</sub> è il tempo morto (una molecola non trattenuta), <i>k</i> il fattore di ritenzione, φ la frazione di solvente organico. La relazione lineare tra log <i>k</i> e φ (<b>modello del solvente forte</b>, LSS, Snyder) spiega perché basta aumentare l'acetonitrile per far uscire anche le molecole più trattenute: è il principio del <b>gradiente</b>. Una regola pratica: in fase inversa il 10% di organico in più divide k per 2-3 circa (S ≈ 4 per molecole piccole). Il <b>metanolo</b> è un solvente più debole dell'acetonitrile (serve più metanolo per lo stesso k) e cambia la selettività perché dona e accetta legami a idrogeno.</p>
 <details class="poe"><summary>Prima di provare: in isocratica al 30% di acetonitrile, che aspetto avranno i picchi dei quattro composti?</summary>
-<p>I due TP polari usciranno presto e vicini; il parent con k alto, largo e basso; il prodotto idrofobo forse non uscirà nella corsa. Con un gradiente 10 → 95% tutti escono con picchi stretti di larghezza simile. Prova anche a rendere il gradiente più lento (durata maggiore): i picchi si allontanano, la risoluzione cresce, la corsa si allunga.</p></details>
+<p>I due derivati polari usciranno presto e vicini; il parent con k alto, largo e basso; il prodotto idrofobo forse non uscirà nella corsa. Con un gradiente 10 → 95% tutti escono con picchi stretti di larghezza simile. Prova anche a rendere il gradiente più lento (durata maggiore): i picchi si allontanano, la risoluzione cresce, la corsa si allunga.</p></details>
 <div class="sim" id="sim-gradiente"><h4>Isocratica o gradiente in fase inversa</h4>
 <p class="note">Quattro composti modello con parametri LSS diversi (log k<sub>w</sub> e S). In gradiente ogni banda accelera man mano che la percentuale di organico sale: il programma integra il moto della banda lungo la colonna. Il tratteggio è la % di acetonitrile che arriva in colonna.</p></div>
 <figure>
-<svg viewBox="0 0 860 330" role="img" aria-label="Cromatogramma in gradiente: picchi dai sali ai TP polari fino al parent, con la linea tratteggiata del % di ACN" aria-describedby="fd-02-1">
+<svg viewBox="0 0 860 330" role="img" aria-label="Cromatogramma in gradiente: picchi dai sali ai derivati polari fino al parent, con la linea tratteggiata del % di ACN" aria-describedby="fd-02-1">
 <style>.ax{stroke:#9b978c}.t{font:12px system-ui,sans-serif;fill:#6b675c}.b{font:600 12.5px system-ui,sans-serif}</style>
 <path class="ax" d="M60 270 H830 M60 270 V30"/>
 <path d="M60 250 L190 250 L700 70 L760 70 L770 250 L830 250" fill="none" stroke="#9b978c" stroke-dasharray="5 4"/>
@@ -70,26 +70,26 @@
 <path d="M560 270 C575 270 580 50 590 50 C600 50 605 270 620 270" stroke="#2b5c8a"/>
 </g>
 <text class="b" x="140" y="200" fill="#6b675c">sali, t₀</text>
-<text class="b" x="262" y="140" fill="#047857">TP molto polare</text>
+<text class="b" x="262" y="140" fill="#047857">derivato molto polare</text>
 <text class="b" x="340" y="108" fill="#c2410c">+OH (due isomeri)</text>
 <text class="b" x="452" y="166" fill="#7c3aed">dealchilato</text>
 <text class="b" x="568" y="40" fill="#2b5c8a">parent</text>
 <text class="t" x="400" y="300">tempo di ritenzione →</text>
 <text class="t" x="18" y="150" transform="rotate(-90 18 150)">intensità</text>
 <text class="t" x="790" y="80" text-anchor="end">% organico (tratteggio)</text>
-</svg><details class="figdesc" id="fd-02-1"><summary>Descrizione della figura</summary><p>Asse orizzontale: tempo di ritenzione; verticale: intensità. Da sinistra: «sali, t₀», «TP molto polare», «+OH (due isomeri)» (un picco pieno e uno tratteggiato vicino), «dealchilato» e infine «parent», il più alto. Una linea tratteggiata mostra il % organico: parte da 5–10% ACN, sale fino al 95% ACN e poi scende di colpo.</p></details>
-<figcaption><b>Figura 2.2</b> Quadro tipico, non una regola: i TP ossidati o dealchilati sono più polari del parent ed eluiscono prima. Due idrossilazioni in posizioni diverse danno due picchi con lo stesso m/z. Il ritorno alle condizioni iniziali a fine corsa serve a riequilibrare la colonna.</figcaption>
+</svg><details class="figdesc" id="fd-02-1"><summary>Descrizione della figura</summary><p>Asse orizzontale: tempo di ritenzione; verticale: intensità. Da sinistra: «sali, t₀», «derivato molto polare», «+OH (due isomeri)» (un picco pieno e uno tratteggiato vicino), «dealchilato» e infine «parent», il più alto. Una linea tratteggiata mostra il % organico: parte da 5–10% ACN, sale fino al 95% ACN e poi scende di colpo.</p></details>
+<figcaption><b>Figura 2.2</b> Quadro tipico, non una regola: i derivati ossidati o dealchilati sono più polari del parent ed eluiscono prima. Due idrossilazioni in posizioni diverse danno due picchi con lo stesso m/z. Il ritorno alle condizioni iniziali a fine corsa serve a riequilibrare la colonna.</figcaption>
 </figure>
 <h2>Gli altri modi della cromatografia liquida</h2>
 <table>
 <tr><th>Modo</th><th>Fase stazionaria / mobile</th><th>Separa per</th><th>Uso</th></tr>
 <tr><td><b>Fase inversa (RP)</b></td><td>Apolare (C18) / acqua + organico</td><td>Idrofobicità</td><td>La grande maggioranza delle analisi LC-MS</td></tr>
 <tr><td>Fase normale (NP)</td><td>Polare (silice) / solventi apolari (esano + alcol)</td><td>Polarità, adsorbimento</td><td>Isomeri, composti lipofili; poco compatibile con l'ESI</td></tr>
-<tr><td><b>HILIC</b></td><td>Polare (silice, ammide, zwitterionica) / molto organico (&gt;70% ACN) + acqua</td><td>Ripartizione in uno strato d'acqua sulla superficie: i polari sono trattenuti di più (ordine circa inverso alla RP)</td><td>Molecole molto polari che in RP escono al tempo morto: piccoli TP, metaboliti, zuccheri; ottima sensibilità ESI per l'alto contenuto organico</td></tr>
+<tr><td><b>HILIC</b></td><td>Polare (silice, ammide, zwitterionica) / molto organico (&gt;70% ACN) + acqua</td><td>Ripartizione in uno strato d'acqua sulla superficie: i polari sono trattenuti di più (ordine circa inverso alla RP)</td><td>Molecole molto polari che in RP escono al tempo morto: piccoli derivati, metaboliti, zuccheri; ottima sensibilità ESI per l'alto contenuto organico</td></tr>
 <tr><td>Scambio ionico (IC)</td><td>Gruppi carichi / tamponi acquosi</td><td>Carica</td><td>Ioni inorganici, acidi organici, proteine</td></tr>
 <tr><td>Esclusione dimensionale (SEC)</td><td>Particelle con pori di dimensione definita</td><td>Dimensione (le molecole grandi escono prima)</td><td>Polimeri, proteine, materia organica disciolta</td></tr>
 </table>
-<h2>La polarità dei TP e il tempo di ritenzione</h2>
+<h2>La polarità dei derivati e il tempo di ritenzione</h2>
 <ul>
 <li><b>Idrossilazione, N-ossidazione, formazione di acidi</b>: aggiungono gruppi polari o ionizzabili → di solito <i>t</i><sub>R</sub> minore.</li>
 <li><b>Dealchilazione</b>: toglie una porzione idrofoba (e spesso lascia un N–H) → di solito <i>t</i><sub>R</sub> minore.</li>
@@ -97,7 +97,7 @@
 <li><b>pH della fase mobile</b>: conta la lipofilia della forma presente a quel pH (log <i>D</i>, non log <i>P</i>). Con HCOOH 0,05% (pH intorno a 3) acidi carbossilici sono in buona parte neutri e trattenuti, le ammine basiche protonate e poco trattenute.</li>
 </ul>
 <div class="box key"><b>Concetto chiave</b>
-<p>Ogni m/z va letto insieme al suo tempo di ritenzione. <b>Stesso m/z a RT diversi</b> = isomeri (o molecole diverse con la stessa massa nominale). <b>m/z diversi esattamente allo stesso RT e con la stessa forma di picco del parent</b> = quasi sempre ioni del parent stesso (addotti, isotopi, frammenti in sorgente), non TP. Lo riprendiamo nei capitoli 4 e 16.</p></div>
+<p>Ogni m/z va letto insieme al suo tempo di ritenzione. <b>Stesso m/z a RT diversi</b> = isomeri (o molecole diverse con la stessa massa nominale). <b>m/z diversi esattamente allo stesso RT e con la stessa forma di picco del parent</b> = quasi sempre ioni del parent stesso (addotti, isotopi, frammenti in sorgente), non composti distinti. Lo riprendiamo nei capitoli 4 e 16.</p></div>
 <h2>Fasi mobili compatibili con l'elettrospray</h2>
 <p>La fase mobile deve servire due padroni: la colonna e la sorgente.</p>
 <table>
@@ -108,7 +108,7 @@
 <tr><td>Flussi da 0,2 a 0,5 mL/min con colonne da 2,1 mm</td><td>Compromesso tra efficienza cromatografica e capacità della sorgente di nebulizzare ed evaporare</td></tr>
 </table>
 <div class="box warn"><b>Conseguenza per l'interpretazione</b>
-<p>Parent e TP eluiscono a percentuali diverse di acetonitrile e hanno basicità diverse: anche a pari concentrazione danno aree diverse. Per questo le aree dei TP descrivono un <em>andamento</em>, non una concentrazione.</p></div>
+<p>Parent e derivati eluiscono a percentuali diverse di acetonitrile e hanno basicità diverse: anche a pari concentrazione danno aree diverse. Per questo le aree dei derivati si confrontano come <em>andamento tra i campioni</em>, non come concentrazioni.</p></div>
 <h2>Forma del picco e campionamento</h2>
 <p>Un picco cromatografico largo 10–20 s alla base deve essere descritto da abbastanza punti per essere integrato bene: in pratica <b>almeno 10–15 punti per picco</b>. Ogni punto è uno spettro (full scan) o un ciclo di transizioni (MRM). Il tempo di ciclo dello spettrometro deve quindi stare sotto 1–2 s; lo vedremo nel capitolo 8, dove dwell time e numero di transizioni decidono quanti punti avete.</p>
 <p>La qualità della separazione si descrive con il numero di piatti teorici <i>N</i> e la risoluzione cromatografica tra due picchi (capitolo 1, equazioni 1.3 e 1.5):</p>
