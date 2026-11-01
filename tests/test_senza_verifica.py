@@ -59,4 +59,4 @@ def test_pratica_rows_numbered_without_gaps():
     block = js[js.index("const CHAPTERS = ["):]
     block = block[:block.index("\n];")]
     nums = [n for f, n in re.findall(r'\["(pratica/[^"]+)", "(P\d*)"', block) if n != "P"]
-    assert nums == [f"P{i}" for i in range(1, len(nums) + 1)] and len(nums) == 7, nums
+    assert nums == [f"P{i}" for i in range(1, len(nums) + 1)] and len(nums) == 6, nums
