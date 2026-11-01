@@ -99,13 +99,14 @@ def test_public_pages_not_hidden():
         assert "data-esteso" not in t and "noindex" not in t, p.name
 
 
-def test_part_vii_is_published_and_storia_is_still_a_draft():
-    """Part VII is published: no row 22-32 carries the 5th field `true` (readers see it). The Storia rows 33-42 stay administrator-only drafts."""
+def test_parts_vii_and_viii_are_published():
+    """Part VII is published: no row 22-32 carries the 5th field `true` (readers see it). The Storia rows 33-42 are published too: no 5th field."""
     js = text(ASSETS / "teoria.js")
     assert not re.findall(r'\["capitoli/(?:2[2-9]|3[0-2])-[^"]*", "\d+", "[^"]*", "[^"]*", true\]', js)
     published = re.findall(r'\["capitoli/((?:2[2-9]|3[0-2])-[^"]*)", "\d+", "[^"]*", "VII\. Chemioinformatica"\]', js)
     assert len(published) == 11, published
-    storia = re.findall(r'\["capitoli/(3[3-9]|4[0-2])-[^"]*", "\d+", "[^"]*", "VIII\. Storia", true\]', js)
+    assert not re.findall(r'\["capitoli/(?:3[3-9]|4[0-2])-[^"]*", "\d+", "[^"]*", "[^"]*", true\]', js)
+    storia = re.findall(r'\["capitoli/(3[3-9]|4[0-2])-[^"]*", "\d+", "[^"]*", "VIII\. Storia"\]', js)
     assert len(storia) == 10, storia
 
 
@@ -318,9 +319,8 @@ def test_formulary_section_6_names_chapters_that_contain_the_formula():
 def test_back_links_to_part_vii_are_plain_visible_text():
     """Part VII is published: the pointers from the older chapters are no longer gated (no .solo-esteso, no hidden) and each names an existing chapter."""
     for p in sorted(CAP.glob("*.html")) + sorted((CAP / "src").glob("*.md")):
-        # the gate stays only for the pointers to the Storia drafts (33-42); see tests/test_storia_link.py
-        for m in re.finditer(r'<(\w+)[^>]*solo-esteso[^>]*>(.*?)</\1>', text(p), re.S):
-            assert re.search(r'href="(3[3-9]|4[0-2])-storia-', m.group(2)) and not re.search(r'href="(?!(3[3-9]|4[0-2])-storia-)', m.group(2)), (p.name, m.group(0)[:80])
+        # Storia is published too: no pointer anywhere is gated
+        assert not re.search(r'<\w+[^>]*solo-esteso[^>]*\bhidden\b', text(p)), p.name
     # the six chapters of the plan carry the back-links, in the html and in the md twin
     for name in ("03-gc", "09-risoluzione", "10-dati", "11-formula", "17-hr-dda", "18-disegno"):
         h = text(CAP / f"{name}.html")

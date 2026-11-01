@@ -14,7 +14,7 @@ Il quadrupolo non "pesa" gli ioni e non misura il tempo di volo: in ogni istante
 Il principio è dovuto a Wolfgang Paul (premio Nobel per la fisica 1989, condiviso, anche per la trappola ionica). La teoria è elegante e sorprendentemente completa: tutto discende da un'equazione differenziale nota dall'Ottocento.
 
 ```html
-<p class="storia-link solo-esteso" hidden>Per la storia: <a href="38-storia-rf.html">Campi a radiofrequenza: quadrupolo e trappola ionica</a>.</p>
+<p class="storia-link">Per la storia: <a href="38-storia-rf.html">Campi a radiofrequenza: quadrupolo e trappola ionica</a>.</p>
 ```
 
 ## Geometria e potenziale
