@@ -58,10 +58,10 @@ try:
             pb, sb = q.locator("#tc-prec svg").bounding_box(), q.locator("#tc-prec .l").bounding_box(); assert pb["x"] < sb["x"], "arrow left of the number (previous)"
             pb, sb = q.locator("#tc-succ svg").bounding_box(), q.locator("#tc-succ .l").bounding_box(); assert pb["x"] > sb["x"], "arrow right of the number (next)"
             assert q.get_attribute("#tc-prec", "title").startswith("Precedente: 10.") and q.get_attribute("#tc-succ", "title").startswith("Successivo: 12."), (q.get_attribute("#tc-prec", "title"), q.get_attribute("#tc-succ", "title"))
-            for f, gone, kept in (("index.html", "#tc-prec", "#tc-succ"), ("capitoli/32-esempio.html", "#tc-succ", "#tc-prec")):      # reader: part VII (22-32) is published, the Storia is hidden, so 32 is the last page
+            for f, gone, kept in (("index.html", "#tc-prec", "#tc-succ"), ("capitoli/42-storia-rivelatori-dati.html", "#tc-succ", "#tc-prec")):      # reader: part VII and the Storia are published, so 42 is the last page
                 q.goto(T + f); q.wait_for_selector("#tbar"); assert not q.query_selector(gone) and q.query_selector(kept), (f, gone)
             q.goto(T + "capitoli/21-tempi.html"); q.wait_for_selector("#tbar"); assert q.get_attribute("#tc-succ", "href") == "../capitoli/22-segnale.html", q.get_attribute("#tc-succ", "href")      # reader: 21 -> 22
-            qa = new(); qa.add_init_script("try{localStorage.setItem('mzlab.admin','1')}catch(_){}")      # administrator mode: 21 -> 22 ... 32 (other drafts, e.g. the Storia, may follow 32)
+            qa = new(); qa.add_init_script("try{localStorage.setItem('mzlab.admin','1')}catch(_){}")      # administrator mode behaves the same: 21 -> 22 ... 42
             for f, gone, kept in (("index.html", "#tc-prec", "#tc-succ"), ("capitoli/32-esempio.html", None, "#tc-prec"), ("capitoli/21-tempi.html", None, "#tc-succ")):
                 qa.goto(T + f); qa.wait_for_selector("#tbar"); assert (gone is None or not qa.query_selector(gone)) and qa.query_selector(kept), (f, gone)
             qa.goto(T + "capitoli/21-tempi.html"); qa.wait_for_selector("#tbar"); assert qa.get_attribute("#tc-succ", "href") == "../capitoli/22-segnale.html", qa.get_attribute("#tc-succ", "href")

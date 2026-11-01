@@ -79,7 +79,7 @@
       case "sup": return `^${ch().trim()}^`;
       case "code": case "kbd": return `\`${ch().trim()}\``;
       case "pre": return `\n\`\`\`\n${node.textContent.trim()}\n\`\`\`\n`;
-      case "a": return `[${ch().trim()}](${node.getAttribute("href") || ""})`;
+      case "a": { const h = node.getAttribute("href") || ""; return /^file:/i.test(h) ? ch() : `[${ch().trim()}](${h})`; }      // opened from disk, a relative link becomes a file:// URL that means nothing in the exported file: keep the text only
       case "img": return `![${node.getAttribute("alt") || ""}](${node.getAttribute("src") || ""})`;
       case "svg": case "canvas": case "script": case "style": return "";
       case "figure": { const cap = node.querySelector("figcaption"), im = node.querySelector("img"); return `\n\n${im ? walkMd(im) + "\n\n" : ""}${cap ? "*" + cap.textContent.replace(/\s+/g, " ").trim() + "*" : "*(figura: si vede sul sito)*"}\n\n`; }
