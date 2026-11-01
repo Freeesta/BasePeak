@@ -19,34 +19,43 @@
 <tr><td>MoNA</td><td>spettri raccolti da fonti diverse</td><td>per ogni record</td></tr>
 </table>
 <p>Stein (2012) e Vinaixa et al. (2016) passano in rassegna le raccolte e le banche dati per GC-MS e LC-MS; Kind et al. (2018) trattano la ricerca MS/MS in accurata. Programmi come MS-DIAL integrano la ricerca in libreria nell'elaborazione dei dati (Tsugawa et al., 2015) e, nella versione 4, l'annotazione dei lipidi (Tsugawa et al., 2020).</p>
+<p>Una libreria contiene solo i composti di cui qualcuno ha misurato uno standard, e ogni libreria ha le sue lacune. Per la maggior parte delle molecole possibili non esiste uno spettro di riferimento: «nessun risultato» dice allora che la libreria non sa, non che il composto manca dal campione.</p>
 <h2>Ricerca EI: match factor e indice di ritenzione</h2>
 <p>In EI il programma confronta lo spettro cercato con quelli di libreria e dà un <b>match factor</b> e un <b>match factor inverso</b> su una scala da 0 a 999 (programma NIST MS Search); il calcolo preciso è nel manuale del programma. Il secondo ignora i picchi dello spettro cercato assenti in libreria, come la ricerca inversa del capitolo 28.</p>
-<p>Allo spettro si aggiunge l'<b>indice di ritenzione</b> (RI, <a href="03-gc.html">capitolo 3</a>): si scartano i candidati il cui RI differisce da quello misurato oltre una finestra (nella figura ±35 unità). Vale solo se la fase della colonna è la stessa. L'idea di associare una probabilità a ciascun risultato risale a McLafferty et al. (1974). Se il composto manca, lo spettro può comunque indicare sottostrutture (Stein, 1995). L'interpretazione a mano è nel <a href="13-ei-metodo.html">capitolo 13</a>.</p>
+<p>Allo spettro si aggiunge l'<b>indice di ritenzione</b> (RI, <a href="03-gc.html">capitolo 3</a>): si scartano i candidati il cui RI differisce da quello misurato oltre una finestra (nella figura ±35 unità). Vale solo se la fase della colonna è la stessa. </p>
+<p>Il RI serve perché isomeri di posizione hanno spesso spettri quasi uguali e indici diversi: un match factor alto con un RI lontano di cento unità va trattato con sospetto. L'idea di associare una probabilità a ciascun risultato risale a McLafferty et al. (1974). Se il composto manca, lo spettro può comunque indicare sottostrutture (Stein, 1995). L'interpretazione a mano è nel <a href="13-ei-metodo.html">capitolo 13</a>.</p>
 <h2>Ricerca MS/MS: precursore, energia, punteggio</h2>
-<p>In MS/MS la libreria si filtra prima: massa del precursore entro la tolleranza, polarità, addotto, classe di strumento, energia di collisione. Poi si calcola un punteggio (capitolo 28) e si richiede un numero minimo di picchi accoppiati. Una libreria con una sola energia per composto può non riconoscere uno spettro misurato a un'altra energia: conviene guardare più di un risultato. Per una rassegna della ricerca MS/MS ad accurata, Kind et al. (2018).</p>
+<p>In MS/MS la libreria si filtra prima: massa del precursore entro la tolleranza, polarità, addotto, classe di strumento, energia di collisione. Il primo filtro è il più selettivo: con una tolleranza di 5 ppm a m/z 300 la finestra è ± 0,0015, e restano solo le voci di massa quasi uguale. Poi si calcola un punteggio (capitolo 28) e si richiede un numero minimo di picchi accoppiati. </p>
+<p>Una libreria con una sola energia per composto può non riconoscere uno spettro misurato a un'altra energia: conviene guardare più di un risultato e, se si può, ripetere la misura a un'altra energia di collisione. Per una rassegna della ricerca MS/MS ad accurata, Kind et al. (2018).</p>
+<p>Richiedere un numero minimo di picchi accoppiati protegge dai punteggi alti ottenuti con due soli picchi: due frammenti intensi in comune possono dare un coseno vicino a 1 anche fra composti che non c'entrano nulla.</p>
 <h2>Quanti risultati sono falsi?</h2>
-<p>Il miglior risultato esiste sempre, anche per un composto assente: è il meno diverso. Più la libreria è grande, più è facile trovarne uno somigliante per caso.</p>
-<h3>L'approccio target-decoy</h3>
-<p>L'idea viene dalla proteomica (Elias e Gygi, 2007) ed è stata adattata alle piccole molecole da Scheubert et al. (2017):</p>
-<ol>
-<li>si costruisce una libreria di <b>esche</b> (<i>decoy</i>): spettri falsi, per esempio con picchi riassegnati o mescolati, oppure costruiti dagli alberi di frammentazione, come in Scheubert et al.;</li>
-<li>ogni query si cerca nei bersagli e nelle esche insieme, e si tiene il miglior risultato;</li>
-<li>le esche che vincono contano i risultati sbagliati che vincono fra i bersagli.</li>
-</ol>
-<p>Tutto dipende dalla qualità delle esche: esche troppo facili da riconoscere fanno stimare troppo pochi errori.</p>
-<h3>FDR e q-value</h3>
+<p>Il miglior risultato esiste sempre, anche per un composto assente: è il meno diverso fra quelli presenti. Più la libreria è grande, più è facile trovarne uno somigliante per caso.</p>
+<p>Un esempio con i numeri. Si cercano 1000 spettri e per 600 di essi il composto non è in libreria. Ognuno di questi 600 riceve comunque un «miglior risultato», con un punteggio per lo più basso, ma qualche volta alto per puro caso.</p>
+<p>Si fissa una soglia e ne passano 300. Con una FDR dell'1% si accettano al più 3 risultati sbagliati su 300; con il 5% fino a 15. Il punteggio da solo non dice in quale caso ci si trova.</p>
+<h2>L'approccio target-decoy</h2>
+<p>L'idea viene dalla proteomica (Elias e Gygi, 2007) ed è stata adattata alle piccole molecole da Scheubert et al. (2017). Si affianca alla libreria vera, i <b>bersagli</b>, una libreria di <b>esche</b> (<i>decoy</i>): spettri falsi che non corrispondono a nessun composto reale.</p>
+<p>Le esche si costruiscono in più modi: riassegnando o mescolando i picchi di spettri veri, oppure partendo dagli alberi di frammentazione, come in Scheubert et al. Devono assomigliare a spettri veri, con lo stesso numero di picchi e lo stesso intervallo di massa, senza coincidere con nessuno.</p>
+<p>Ogni query si cerca nei bersagli e nelle esche insieme e si tiene solo il miglior risultato. Un risultato sbagliato ha la stessa probabilità di cadere su un bersaglio o su un'esca. Le esche che vincono fanno quindi da vero e proprio contatore dei bersagli sbagliati che vincono.</p>
+<p>Tutto dipende dalla qualità delle esche, cioè da quanto somigliano a spettri veri: esche troppo facili da riconoscere fanno stimare troppo pochi errori.</p>
+<h2>FDR e q-value</h2>
 <p>Il tasso di falsi scoperti (FDR; Benjamini e Hochberg, 1995, ne hanno definito il controllo) alla soglia <i>t</i> si stima con D esche e T bersagli che hanno il miglior risultato con punteggio ≥ <i>t</i>:</p>
 <span class="eq">FDR(<i>t</i>) ≈ <span class="frac"><span><i>D</i>(<i>t</i>)</span><span><i>T</i>(<i>t</i>)</span></span><span class="no">(29.1)</span></span>
 <p>Il <b>q-value</b> di un risultato di punteggio <i>s</i> è la FDR minima a cui verrebbe accettato:</p>
 <span class="eq"><i>q</i>(<i>s</i>) = min<sub><i>t</i> ≤ <i>s</i></sub> FDR(<i>t</i>)<span class="no">(29.2)</span></span>
 <p>Di solito si tengono i risultati con q ≤ 0,01 o 0,05.</p>
+<p>Un esempio con dieci risultati, in ordine di punteggio decrescente. I primi sei sono bersagli, il settimo un'esca, l'ottavo e il nono bersagli, il decimo un'esca. Alla soglia del sesto risultato D = 0 e T = 6, quindi FDR = 0.</p>
+<p>Al settimo compare la prima esca: D = 1, T = 6, FDR = 1/6 ≈ 0,167. All'ottavo T = 7 e FDR = 1/7 ≈ 0,143; al nono T = 8 e FDR = 1/8 = 0,125. Al decimo entra la seconda esca: D = 2, T = 8, FDR = 0,25.</p>
+<p>Il q-value di un risultato è il minimo delle FDR a quella soglia o più in basso. Per l'ottavo è 0,125, minore della sua FDR di 0,143, perché accettando anche il nono la stima migliora. I primi sei hanno q = 0.</p>
+<p>Con q ≤ 0,05 si tengono i primi sei; con q ≤ 0,15 anche l'ottavo e il nono. Con dieci risultati la stima è grossolana: servono migliaia di query.</p>
 <details class="poe"><summary>Prima di provare: a parità di soglia ci sono più risultati sbagliati con 100 voci o con 2000? Con esche casuali, la FDR stimata è più alta o più bassa di quella vera?</summary><p>Con più voci crescono i risultati sbagliati sopra la stessa soglia. Le esche casuali sono troppo facili da riconoscere: la FDR stimata scende sotto quella vera.</p></details>
-<div class="sim" id="sim-chemi-libreria" data-sim="../assets/sim-chemi-librerie.js"><h4>Figura 29.1 Classifica dei risultati e falsi positivi</h4>
+<div class="sim" id="sim-chemi-libreria" data-sim="../assets/sim-chemi-librerie.js"><h3>Figura 29.1 Classifica dei risultati e falsi positivi</h3>
 <p class="note nota">Stima la quota di falsi con una libreria di esche e la confronta con quella vera. Dati sintetici, a scopo didattico.</p></div>
 <h2>Le reti molecolari</h2>
 <p>Nel modello di Watrous et al. (2012) ogni <b>nodo</b> è uno spettro MS2 di consenso; due nodi si collegano se il coseno modificato supera una soglia e hanno abbastanza picchi in comune. Ogni nodo tiene al più i K legami migliori (nella figura il legame resta se è fra i K migliori di entrambi).</p>
+<p>Che cosa significa un legame? Il coseno modificato (capitolo 28) accoppia i picchi uguali e anche quelli spostati della differenza fra le due masse dei precursori (Watrous et al., 2012; Wang et al., 2016).</p>
+<p>Una differenza di 15,9949 fra i precursori è un atomo di ossigeno in più, per esempio un'idrossilazione; 14,0157 è un gruppo CH<sub>2</sub>. Il legame suggerisce una parentela strutturale, ma non dimostra una struttura.</p>
 <p>Watrous et al. (2012) usavano un coseno di almeno 0,7, almeno 6 picchi in comune e al più 10 legami per spettro. Le componenti connesse sono <b>famiglie</b> di molecole imparentate, e l'annotazione di un nodo trovato in libreria si propaga ai vicini.</p>
-<p>GNPS e il suo protocollo (Wang et al., 2016; Aron et al., 2020) rendono la procedura riproducibile. Le soglie decidono tutto: permissive, collegano ogni cosa; strette, spezzano le famiglie. I valori predefiniti dei programmi vanno letti nella loro documentazione.</p>
+<p>GNPS e il suo protocollo (Wang et al., 2016; Aron et al., 2020) rendono la procedura riproducibile. Le soglie decidono tutto: permissive, collegano ogni cosa; strette, spezzano le famiglie. I valori predefiniti dei programmi vanno letti nella loro documentazione. La rete indica dove guardare; l'identificazione resta compito della libreria e delle altre prove.</p>
 <details class="poe"><summary>Prima di provare: passando dal coseno modificato al semplice, le famiglie di analoghi restano unite?</summary><p>No: il coseno semplice non accoppia i frammenti spostati dalla modifica e i legami cadono. Con soglie molto basse ricompare invece un legame fra famiglie diverse.</p></details>
 <div class="sim" id="sim-chemi-rete" data-sim="../assets/sim-chemi-librerie.js"><h3>Figura 29.2 Una rete molecolare</h3>
 <p class="note nota">Collega quattordici spettri sintetici in famiglie secondo soglia di coseno e picchi in comune. Spettri sintetici, a scopo didattico.</p></div>
