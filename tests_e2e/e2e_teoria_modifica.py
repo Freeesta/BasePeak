@@ -98,7 +98,7 @@ try:
             new = open(dl.value.path(), encoding="utf-8").read()
             assert pp.value.url == GH + PAGE and new.count("DADISCO") == 1 and new.replace("&nbsp; DADISCO", "").replace(" DADISCO", "") == src, pp.value.url
             c.close()
-            for page in ("capitoli/01-cromatografia.html", "pratica/tp.html"):          # the live-site shape on the local server: the address follows the page
+            for page in ("capitoli/01-cromatografia.html",):          # the live-site shape on the local server: the address follows the page
                 c, q = ctx(); apri(q, T + page); fine(q, q.locator("main > p").first); q.keyboard.type(" X")
                 with q.expect_download(): q.click("[data-act=salva]")
                 with c.expect_page() as pp: q.click("#ed-pannello [data-p=apri]")

@@ -71,7 +71,7 @@ Sul sito (https://freeesta.github.io/BasePeak/) arrivano solo `index.html`, `cap
 |---|---|
 | Introduzione e mappa | `index.html` |
 | Capitoli 1–21 | `capitoli/01-cromatografia.html` … `capitoli/21-tempi.html` (il numero del capitolo è nel nome del file e va da 1 a 32 senza buchi, contando anche la parte VII; i vecchi nomi, come `capitoli/04-lc.html` o `capitoli/06-quadrupolo.html`, sono rimandi automatici al nuovo capitolo) |
-| Pratica (giochi ed esercizi) | `pratica/index.html` (pagina iniziale), `pratica/ei.html`, `pratica/perdite.html`, `pratica/isotopi.html`, `pratica/formula.html`, `pratica/strumento.html`, `pratica/quadrupolo.html`, `pratica/tp.html`; codice e dati negli stessi file `.js` di `pratica/` |
+| Pratica (giochi ed esercizi) | `pratica/index.html` (pagina iniziale), `pratica/ei.html`, `pratica/perdite.html`, `pratica/isotopi.html`, `pratica/formula.html`, `pratica/strumento.html`, `pratica/quadrupolo.html`; codice e dati negli stessi file `.js` di `pratica/` |
 | Spettri EI dei capitoli 13-14 e del gioco | `pratica/ei-dati.js` e `pratica/ei-dati-l1.js`…`l5.js` (da MassBank Europe; struttura e come aggiungerne uno a mano: `docs/DATI-EI.md`) |
 | Glossario (parole sottolineate nel testo) | `capitoli/19-glossario.html`, poi `python3 tools/genera_glossario.py` (crea `assets/glossario-dati.js`) e `python3 tools/genera_indice_teoria.py` (ricerca: `assets/indice-ricerca.js`) |
 | Elenco dei capitoli nel menu laterale | `assets/teoria.js`, in alto: lista `CHAPTERS` (i file sono scritti a partire dalla cartella principale: `capitoli/02-lc.html`, `pratica/ei.html`) |
