@@ -1,4 +1,4 @@
-/* mzLab - Teoria: the commands of the page header (TCMD). One list (id, icon, label, run) feeds the bar of the standalone Teoria
+/* BasePeak - Teoria: the commands of the page header (TCMD). One list (id, icon, label, run) feeds the bar of the standalone Teoria
    and, from the program, the bar of the «Teoria» tab (barra.js reads window.TCMD of the iframe). Classic script, no network:
    it works from file:// too. Only navigation and tools: nothing here changes the text of a chapter. */
 "use strict";

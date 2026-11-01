@@ -1,4 +1,4 @@
-/* QqQ lab - Teoria: electrospray figures.
+/* BasePeak - Teoria: electrospray figures.
    1) life of a droplet: evaporation at constant charge until a fraction of the Rayleigh limit, then fission
       (offspring carry ~2% of the mass and ~15% of the charge: Kebarle & Verkerk 2009). Time in arbitrary units.
    2) Rayleigh limit vs droplet size for different solvents.

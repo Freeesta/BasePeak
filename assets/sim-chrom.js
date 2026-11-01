@@ -1,4 +1,4 @@
-/* QqQ lab - Teoria: chromatography figures (chapters 1, 2, 3).
+/* BasePeak - Teoria: chromatography figures (chapters 1, 2, 3).
    1) van Deemter (packed LC column) and Golay (open-tubular GC column) curves;
    2) resolution: two Gaussian peaks and the Purnell equation;
    3) reversed-phase LC: isocratic or gradient elution with the linear solvent strength model;

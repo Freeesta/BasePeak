@@ -1,4 +1,4 @@
-/* QqQ lab - Teoria: electron ionization and chemical ionization (chapter 5).
+/* BasePeak - Teoria: electron ionization and chemical ionization (chapter 5).
    1) ionization efficiency against electron energy, with the de Broglie wavelength of the electron;
    2) internal energy deposited by EI and competition of three fragmentation channels (RRK model) -> spectrum of a model ketone;
    3) chemical ionization: proton transfer from the reagent ion, exothermicity from proton affinities.

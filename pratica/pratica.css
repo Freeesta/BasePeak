@@ -1,4 +1,4 @@
-/* QqQ lab - Pratica: exercises and games (pages teoria/pratica*.html), on top of teoria.css */
+/* BasePeak - Pratica: exercises and games (pages teoria/pratica*.html), on top of teoria.css */
 :root{--pa:#0e7490}:root[data-theme=dark]{--pa:#38bdf8}@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--pa:#38bdf8}}   /* teal for text on the panels, readable in both themes */
 .gcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:14px 0}
 .gcards a{display:flex;flex-direction:column;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--ink)}

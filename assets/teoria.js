@@ -1,4 +1,4 @@
-/* QqQ lab - Teoria: shared layout (header, chapter list, on-page TOC, prev/next) and tiny plotting helpers.
+/* BasePeak - Teoria: shared layout (header, chapter list, on-page TOC, prev/next) and tiny plotting helpers.
    Classic script, no modules, no network: the pages work from file:// and from the local server. */
 "use strict";
 // [file, number shown in the menu, title, part]. The order is the study path: each chapter uses only what comes before it.
@@ -68,7 +68,7 @@ const CHAPTERS = [
   ["capitoli/41-storia-accoppiamenti.html", "41", "Accoppiamenti, MS/MS e ibridi", "VIII. Storia"],
   ["capitoli/42-storia-rivelatori-dati.html", "42", "Rivelatori, dati, applicazioni", "VIII. Storia"],
 ];
-const APP = typeof APP_NAME === "string" ? APP_NAME : "mzLab";        // appname.js is loaded first by every page
+const APP = typeof APP_NAME === "string" ? APP_NAME : "BasePeak";        // appname.js is loaded first by every page
 CHAPTERS.forEach(c => { c[2] = c[2].split("{APP}").join(APP); });
 // «Teoria estesa»: part of the administrator mode (5 clicks on the logo, sblocco.js); a chapter with a 5th field `true` is listed only then
 // One administrator switch for the whole site: localStorage «mzlab.admin» = «1» (5 clicks on the logo); the older flags «qqq.admin» and «teoria.esteso» still count.
@@ -291,7 +291,7 @@ const TP = (() => {
       const urls = [p, n].filter(Boolean).map(c => SITE.up + c[0]);
       if (urls.length) { const sr2 = document.createElement("script"); sr2.type = "speculationrules"; sr2.textContent = JSON.stringify({ prefetch: [{ source: "list", urls, eagerness: "immediate" }] }); document.head.appendChild(sr2); }
     }
-    document.title = `${/^[0-9]+$/.test(CHAPTERS[idx][1]) && CHAPTERS[idx][1] !== "0" ? CHAPTERS[idx][1] + ". " : ""}${CHAPTERS[idx][2]} · ${/^pratica/.test(here) ? "Pratica" : "Teoria"} ${APP}`;
+    document.title = `${/^[0-9]+$/.test(CHAPTERS[idx][1]) && CHAPTERS[idx][1] !== "0" ? CHAPTERS[idx][1] + ". " : ""}${CHAPTERS[idx][2]} · ${APP}`;
     fixLevels();
     // figures without a name take the caption that already stands just above them (no new text)
     document.querySelectorAll("main svg:not([aria-label]):not([aria-labelledby]):not([aria-hidden])").forEach((s, i) => {

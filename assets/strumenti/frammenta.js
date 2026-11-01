@@ -1,4 +1,4 @@
-/* mzLab - Teoria: «Frammenta» (chapter 12). The two calculators of the chapter in a side panel: competition between a rearrangement and a
+/* BasePeak - Teoria: «Frammenta» (chapter 12). The two calculators of the chapter in a side panel: competition between a rearrangement and a
    simple cleavage (RRK model) and the neutral-loss calculator with the nitrogen-rule parity. Only the arithmetic: no verdict.
    The example comes from data-esempio on <html> (or from the argument of TEORIA.strumenti.frammenta). */
 "use strict";

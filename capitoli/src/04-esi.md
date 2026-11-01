@@ -58,7 +58,7 @@ L'ESI, sviluppata per l'analisi di macromolecole da John Fenn (premio Nobel per 
 
 ```html
 <div class="box lab"><b>I parametri della sorgente del laboratorio</b>
-<p>Li trovate nel popup <b>Metodo</b> di QqQ lab, letti dai file dei metodi Analyst. Che cosa fanno:</p>
+<p>Li trovate nel popup <b>Metodo</b> del software di acquisizione, letti dai file dei metodi Analyst. Che cosa fanno:</p>
 <table>
 <tr><th>Sigla</th><th>Nome</th><th>Ruolo fisico</th></tr>
 <tr><td>IS</td><td>Ion spray voltage (+5500 V nel metodo)</td><td>Crea il campo che deforma il menisco in cono di Taylor e carica le gocce</td></tr>

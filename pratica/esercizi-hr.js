@@ -1,4 +1,4 @@
-/* mzLab - Pratica: data and generators of the HR levels of the formula page (game "hr-nt"; classic script, also loadable by node).
+/* BasePeak - Pratica: data and generators of the HR levels of the formula page (game "hr-nt"; classic script, also loadable by node).
    ALL DATA ARE SYNTHETIC: formulas drawn at random for teaching, never a compound of a laboratory experience, never a measurement.
    - H6 "nt" (formula from a non-target HR ion): accurate [M+H]+ and M, M+1, M+2 -> candidate formulas within N ppm -> which fail which test
      (nitrogen rule / integer DBE, DBE >= 0, H/C, isotopes), which formula is kept.

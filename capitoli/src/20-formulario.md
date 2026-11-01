@@ -1,5 +1,5 @@
 <!-- inline: formulario-quiz -->
-<!-- full-title: Formulario · Teoria mzLab -->
+<!-- full-title: Formulario · BasePeak -->
 # Formulario essenziale {kicker: Capitolo 20}
 
 {.lead} Le relazioni fondamentali di cromatografia, sorgenti, vuoto, analizzatori ed elaborazione degli spettri. Per ciascuna formula: significato fisico, parametri critici, ordini di grandezza tipici e capitolo di derivazione.

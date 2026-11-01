@@ -1,4 +1,4 @@
-/* mzLab - Pratica: shared engine of the exercises and games (classic script; also loadable by node for the tests).
+/* BasePeak - Pratica: shared engine of the exercises and games (classic script; also loadable by node for the tests).
    - progress kept ONLY in this browser (localStorage "mzlab.pratica"): nothing is sent anywhere, no leaderboard;
    - a level per skill with an Elo-like rule (Pelánek 2016): p = 1/(1+e^-(theta-d)), theta += K (s - p), K = 0.4/(1+0.05 n);
    - spaced repetition of the items that went badly (1, 3, 7, 21 days: Leitner boxes);
@@ -77,7 +77,7 @@ const PAL = (() => {
     const all = [...new Set(fams.map(f => f.fam))];
     return { ready: last3 && all.every(f => okFam.has(f)), last3, missing: all.filter(f => !okFam.has(f)) };
   }
-  function exportText() { const st = load(); return JSON.stringify({ app: "mzLab Pratica", v: 1, date: new Date().toISOString().slice(0, 10), skills: st.skills, log: st.log.slice(-200) }); }
+  function exportText() { const st = load(); return JSON.stringify({ app: "BasePeak Pratica", v: 1, date: new Date().toISOString().slice(0, 10), skills: st.skills, log: st.log.slice(-200) }); }
 
   // ------------------------------------------------------------------ seeded random numbers and challenge codes
   function rng(seed) { let a = seed >>> 0; return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }

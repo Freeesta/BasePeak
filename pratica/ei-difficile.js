@@ -1,4 +1,4 @@
-// QqQ lab - Pratica EI, "Modalità difficile": the student gets ONLY the spectrum (no formula, no class, no step order) and has to draw the
+// BasePeak - Pratica EI, "Modalità difficile": the student gets ONLY the spectrum (no formula, no class, no step order) and has to draw the
 // structure. The program never says "right" or "wrong" before «Consegna e correggi»: it only reports what does not hold together
 // (nominal mass against the chosen M, nitrogen rule, integer RDB >= 0, isotope ratios of the proposed formula, impossible losses,
 // ions that are not sub-formulae of the proposed formula, electron parity against the proposed mechanism). Peak annotations appear only

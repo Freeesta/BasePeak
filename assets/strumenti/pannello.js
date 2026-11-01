@@ -1,4 +1,4 @@
-/* mzLab - Teoria: didactic tools in a side panel (TEORIA.strumenti.massa(), .tavola(), .frammenta()). Classic script, no network:
+/* BasePeak - Teoria: didactic tools in a side panel (TEORIA.strumenti.massa(), .tavola(), .frammenta()). Classic script, no network:
    it works from file:// too. The panel is loaded with every page, each tool (strumenti/*.js and its data) only when it is opened.
    The tools only compute: they never say what a signal is. */
 "use strict";
