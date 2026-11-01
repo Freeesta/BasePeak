@@ -16,6 +16,7 @@
 <li>i <b>frammenti in sorgente</b>: perdite neutre che avvengono prima dell'analizzatore (<a href="15-origine.html">capitolo 15</a>);</li>
 <li>i <b>dimeri</b> e gli ioni a più cariche.</li>
 </ul>
+<p>Un conto semplice mostra il problema. Un composto con tre addotti, ognuno con il suo isotopo <sup>13</sup>C, dà sei feature. Con cento composti la tabella ha seicento righe, e ogni analisi statistica li tratta come seicento variabili indipendenti, anche se sono cento molecole.</p>
 <p>Se non si raggruppa, lo stesso composto compare più volte nella tabella e conta più volte nelle statistiche. Raggruppare dà anche una <b>ipotesi sulla massa neutra</b> M, da cui partono formule e librerie (capitoli 29 e 30).</p>
 <h2>Raggruppare per tempo e per forma</h2>
 <p>Il procedimento è quello dei programmi di annotazione come CAMERA (Kuhl et al., 2012). Si lavora su un composto alla volta, in sei passi:</p>
@@ -29,7 +30,9 @@
 <li>Un <b>composto</b> è una componente connessa del grafo dei legami spiegati.</li>
 </ol></div>
 <span class="eq"><i>r</i> = <span class="frac"><span>Σ (<i>x</i><sub>i</sub> − <i>x̄</i>)(<i>y</i><sub>i</sub> − <i>ȳ</i>)</span><span>√[ Σ (<i>x</i><sub>i</sub> − <i>x̄</i>)<sup>2</sup> · Σ (<i>y</i><sub>i</sub> − <i>ȳ</i>)<sup>2</sup> ]</span></span><span class="no">(26.1)</span></span>
-<p>La correlazione conta solo se i punti sono abbastanza: su quattro punti anche due segnali senza relazione possono avere <i>r</i> alto per caso. Per questo un picco con pochi punti (capitolo 25) si raggruppa male. Con molti campioni si può correlare anche l'intensità da un campione all'altro. RAMClust (Broeckling et al., 2014) è un altro metodo che raggruppa le feature dello stesso composto.</p>
+<p>La soglia di correlazione è una scelta con un prezzo. Con una soglia di 0,8 due segnali che seguono lo stesso picco restano insieme anche con un po' di rumore. Una soglia di 0,95 li separerebbe quando uno dei due è debole e rumoroso, e uno di 0,5 unirebbe composti che eluiscono vicini. I valori predefiniti dei programmi sono un punto di partenza.</p>
+<!-- to verify against source: the default correlation threshold of CAMERA (Kuhl et al., 2012) is not stated here because the value was not checked against the paper -->
+<p>La correlazione conta solo se i punti sono abbastanza: su quattro punti anche due segnali senza relazione possono avere <i>r</i> alto per caso: con <i>r</i> = 0,8 la probabilità di ottenerlo da dati scorrelati è circa 0,2, mentre con dieci punti scende sotto 0,01. Per questo un picco con pochi punti (capitolo 25) si raggruppa male. Con molti campioni si può correlare anche l'intensità da un campione all'altro. RAMClust (Broeckling et al., 2014) è un altro metodo che raggruppa le feature dello stesso composto.</p>
 <h2>Gli isotopologhi</h2>
 <p>Un isotopo pesante sposta la massa di una quantità fissa e riduce l'intensità in modo prevedibile (<a href="10-dati.html">capitolo 10</a> e <a href="11-formula.html">capitolo 11</a>). Per uno ione con carica <i>z</i> la distanza fra i picchi è Δm/<i>z</i>.</p>
 <table id="tab-isotopi">
@@ -41,6 +44,7 @@
 </table>
 <span class="eq"><i>I</i>(M+1) / <i>I</i>(M) ≈ <i>n</i><sub>C</sub> · 1,1 % + <i>n</i><sub>N</sub> · 0,37 %<span class="no">(26.2)</span></span>
 <p>Esempio: per C<sub>15</sub>H<sub>12</sub>N<sub>2</sub>O la formula dà 15 · 1,1 + 2 · 0,37 ≈ 17,2 % (il calcolo completo, con H e O, dà 17,1 %). Per uno ione con <i>z</i> = 1, un picco a +1,0034 u con quel rapporto è il suo isotopo <sup>13</sup>C. Per una piccola molecola (meno di circa 90 atomi di C) un picco a +1,0034 u più intenso del picco di partenza non può esserlo.</p>
+<p>Con più atomi di Cl i picchi crescono in sequenza. Per due Cl i rapporti sono circa 1 : 0,64 : 0,10 per M, M+2 e M+4, cioè 1 : 2 · 0,32 : 0,32<sup>2</sup>. Una feature con un compagno a +1,997 u al 64 % e un altro a +3,994 u al 10 % ha quindi due atomi di cloro: la serie di isotopi indica la formula, non solo l'appartenenza al gruppo.</p>
 <p>Cl e Br differiscono di appena 1 mDa: a 5 ppm sono indistinguibili, e decide il rapporto (32 % contro 97 %).</p>
 <h2>Addotti e perdite neutre</h2>
 <p>In ESI la stessa molecola dà ioni diversi a seconda di che cosa si lega. La differenza fra due ioni dello stesso composto è costante, e la tabella permette di riconoscerla. I valori sono calcolati con le masse esatte del capitolo 11.</p>
@@ -59,17 +63,16 @@
 <p>Per [2M+H]<sup>+</sup> la differenza non è fissa: dipende da M, e il dimero si cerca con 2 · <i>m</i>([M+H]<sup>+</sup>) − 1,0073.</p>
 <span class="eq">M = <i>m/z</i> − 1,0073 &nbsp;(da [M+H]<sup>+</sup>) &nbsp;&nbsp; M = <i>m/z</i> − 22,9892 &nbsp;(da [M+Na]<sup>+</sup>)<span class="no">(26.3)</span></span>
 <p>Esempio: due feature con lo stesso tempo e Δm = 21,9819 sono [M+H]<sup>+</sup> e [M+Na]<sup>+</sup> dello stesso composto; la massa neutra si ricava dalla più leggera con la (26.3). Attenzione: 17,0265 vale sia per l'addotto di ammonio sia per la perdita di NH<sub>3</sub>, due ipotesi diverse con lo stesso numero.</p>
+<p>Con i numeri: due feature allo stesso tempo hanno m/z 250,1200 e 272,1019. La differenza è 21,9819, quindi sono [M+H]<sup>+</sup> e [M+Na]<sup>+</sup>. Dalla più leggera M = 250,1200 − 1,0073 = 249,1127; dalla più pesante M = 272,1019 − 22,9892 = 249,1127. I due valori coincidono, ed è questo accordo che dà fiducia all'ipotesi, più della sola differenza.</p>
 <h2>I frammenti in sorgente</h2>
 <p>Un frammento formato in sorgente nasce dalla stessa molecola nello stesso istante: ha lo stesso tempo e la stessa forma del suo precursore, e il rapporto fra le intensità resta circa costante da un campione all'altro. La differenza di massa è una perdita neutra comune (H<sub>2</sub>O, NH<sub>3</sub>, CO<sub>2</sub>; tabella sopra).</p>
+<p>Un controllo pratico è la dipendenza dalla sorgente. Un frammento in sorgente cresce quando si aumenta l'energia nella sorgente (per esempio il declustering potential del capitolo 4), mentre un composto vero non cambia. Gli addotti dipendono invece da sali e additivi della fase mobile, non dall'energia.</p>
+<p>Lo stesso confronto vale per i campioni diversi. Se il rapporto fra frammento e precursore è lo stesso in tutti, lo spiega un'unica fonte; se varia in modo irregolare, si tratta più probabilmente di due composti che coeluiscono.</p>
 <p>Il criterio che li distingue da un composto vero è il tempo: un composto con un'acqua in meno, che si forma davvero, di solito eluisce in un punto diverso. Come riconoscere i frammenti cambiando le condizioni della sorgente è spiegato nel <a href="15-origine.html">capitolo 15</a>.</p>
 <h2>Quando il raggruppamento sbaglia</h2>
-<p>Ogni passo ha un modo di fallire. Ne segue che il risultato è un'ipotesi da controllare, non un fatto.</p>
-<ul>
-<li>Due composti che eluiscono insieme finiscono nello stesso gruppo, soprattutto con una soglia di correlazione bassa.</li>
-<li>L'isotopo di un composto viene scambiato per un altro composto, se l'intensità è troppo bassa per superare la soglia.</li>
-<li>Più regole ci sono nella lista, più coincidenze casuali di Δm si trovano: ogni regola in più è un'altra occasione di legare due segnali che non c'entrano.</li>
-<li>Dimeri e ioni a più cariche hanno differenze di massa che dipendono da M o da <i>z</i>, e sfuggono alle regole fisse.</li>
-</ul>
+<p>Ogni passo ha un modo di fallire, per questo il risultato è un'ipotesi da controllare e non un fatto. Il primo errore: <b>due composti che eluiscono insieme finiscono nello stesso gruppo</b>. Succede con una soglia di correlazione bassa, perché i due picchi si sovrappongono e le loro forme sono simili. Lo spettro del gruppo mescola allora ioni di due molecole e la massa neutra proposta non è di nessuna delle due.</p>
+<p>Il secondo: <b>un addotto viene scambiato per un composto nuovo</b>. Se l'intensità è troppo bassa per superare la soglia, o la regola non è nella lista, l'addotto resta fuori dal gruppo e conta come un'altra molecola. Al contrario, più regole ci sono, più coincidenze casuali di Δ<i>m</i> si trovano, e ogni regola in più può legare due segnali che non c'entrano.</p>
+<p>Il terzo: <b>un frammento in sorgente viene scambiato per un metabolita</b>. Una perdita di acqua ha lo stesso tempo e la stessa forma del precursore. Se il programma non la cerca, la tabella riporta un composto che non esiste. Dimeri e ioni a più cariche sfuggono alle regole fisse, perché la loro differenza dipende da M o da <i>z</i>.</p>
 <div class="box warn"><b>Errore frequente</b>
 <p>Fidarsi del gruppo perché «la massa torna». Con una tolleranza larga e molte regole, quasi ogni coppia di feature vicine trova una spiegazione: controlla sempre anche la forma e il rapporto fra le intensità.</p></div>
 <details class="poe"><summary>Prima di provare: aggiungendo il secondo composto che eluisce quasi insieme al primo, che cosa succede ai legami se abbassi la soglia di correlazione?</summary>
