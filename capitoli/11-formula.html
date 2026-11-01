@@ -8,6 +8,10 @@
 <h1>Dalla massa alla formula: isotopi, regole e massa esatta</h1>
 <p class="lead">Prima di proporre una struttura bisogna sapere quali atomi ci sono. A risoluzione unitaria la formula si ricava dagli isotopi e da poche regole; ad alta risoluzione la massa esatta restringe molto i candidati. Sono gli stessi passaggi logici con cui si affronta l'interpretazione sistematica di uno spettro di massa (capitolo 13).</p>
 <h2>Tre masse diverse</h2>
+<p>La parola «massa» ha tre significati in spettrometria, e confonderli porta a errori di qualche decimale. Il caso tipico è l'atrazina, C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub>, che usiamo come esempio in tutto il capitolo.</p>
+<p>La <b>massa nominale</b> è la più semplice: si sommano i numeri di massa interi dell'isotopo più abbondante di ogni elemento. Per l'atrazina 8 × 12 + 14 × 1 + 35 + 5 × 14 = 215. A risoluzione unitaria è l'unico numero che lo strumento distingue.</p>
+<p>La <b>massa monoisotopica</b> usa invece le masse esatte: 8 × 12,0000 + 14 × 1,00783 + 34,96885 + 5 × 14,00307 = 215,0938. È il valore che si confronta con la misura ad alta risoluzione.</p>
+<p>La <b>massa media</b> pesa tutti gli isotopi con le loro abbondanze naturali. Con gli stessi elementi dà circa 215,7 g/mol, perché il cloro medio (35,45) pesa più del <sup>35</sup>Cl. Serve per pesare e preparare soluzioni, ma nessuna molecola singola ha quella massa.</p>
 <table>
 <tr><th>Massa</th><th>Definizione</th><th>Esempio: atrazina C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub></th></tr>
 <tr><td><b>Nominale</b></td><td>Somma dei numeri di massa interi dell'isotopo più abbondante di ogni elemento</td><td class="n">215</td></tr>
@@ -26,6 +30,7 @@
 <p class="storia-link">Per la storia: <a href="35-storia-aston-dempster.html">Aston e Dempster: isotopi e numeri interi</a>.</p>
 <h2>La regola dell'azoto</h2>
 <p>Gli elementi comuni delle molecole organiche hanno massa e valenza entrambe pari (C 12, valenza 4; O 16, valenza 2; S 32, valenza 2) o entrambe dispari (H 1, Cl 35, Br 79, valenza 1; P 31, valenza 3 o 5). L'azoto no: massa 14 pari, valenza 3 dispari. Ne segue:</p>
+<p>Il perché è una questione di parità. In una molecola neutra ogni legame unisce due valenze, quindi la somma delle valenze è pari: gli atomi di valenza dispari (H, alogeni, P, N) sono in numero pari. Tolto l'azoto, tutti questi atomi hanno anche massa dispari. Il numero di atomi di massa dispari ha quindi la stessa parità del numero di azoti, e la massa nominale segue la stessa regola.</p>
 <div class="box key"><b>Regola dell'azoto</b>
 <p>Una <b>molecola</b> (e ogni ione a elettroni dispari, come M<sup>+•</sup> in EI) con <b>numero pari di azoti</b> (anche zero) ha massa nominale <b>pari</b>; con numero dispari di azoti ha massa <b>dispari</b>. Per gli <b>ioni a elettroni pari</b> ([M+H]<sup>+</sup> in ESI, i frammenti delle scissioni semplici in EI) è il contrario: N pari → m/z dispari.</p></div>
 <table>
@@ -39,6 +44,8 @@
 <div class="box warn"><b>Errore frequente</b>
 <p>Applicare la regola a [M+H]<sup>+</sup> come se fosse la molecola. In ESI un m/z <b>pari</b> indica un numero <b>dispari</b> di azoti, perché il protone aggiunge 1. Prima di usare la regola chiediti sempre: è M<sup>+•</sup>, [M+H]<sup>+</sup> o un frammento?</p></div>
 <h2>Anelli più doppi legami (RDB)</h2>
+<p>L'RDB (<i>rings plus double bonds</i>) conta quanti legami in più, rispetto alla catena satura, la formula deve contenere. Il motivo è la saturazione: un idrocarburo aciclico saturo ha 2<i>c</i> + 2 idrogeni. Ogni anello o doppio legame ne toglie due, quindi l'RDB è il numero di H mancanti diviso per due.</p>
+<p>Il ragionamento spiega anche la formula. Gli alogeni valgono come l'idrogeno, perché hanno valenza 1. Ogni azoto (valenza 3) permette un legame in più e fa salire l'RDB di mezza unità. L'ossigeno e lo zolfo, con valenza 2, si inseriscono in un legame senza cambiare il conteggio.</p>
 <p>Per una formula C<sub>c</sub>H<sub>h</sub>N<sub>n</sub>O<sub>o</sub>X<sub>x</sub> (X = alogeni, contati come H; Si conta come C, P come N; O e S non contano):</p>
 <span class="eq">RDB = <i>c</i> − <span class="frac"><span><i>h</i> + <i>x</i></span><span>2</span></span> + <span class="frac"><span><i>n</i></span><span>2</span></span> + 1<span class="no">(11.1)</span></span>
 <ul>
@@ -47,6 +54,7 @@
 <li>RDB negativo o non coerente con il tipo di ione: la formula è sbagliata.</li>
 </ul>
 <p>Un RDB ≥ 4 con pochi H suggerisce un anello aromatico; un triplo legame vale 2, un C=O vale 1. Il valore guida la scelta delle strutture.</p>
+<p>Un esempio con l'atrazina neutra, C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub>: RDB = 8 − (14 + 1)/2 + 5/2 + 1 = 4. L'anello triazinico vale 1 e i tre doppi legami dell'anello valgono 3. Il risultato è intero perché la molecola è neutra e a elettroni pari. Per lo ione [M+H]<sup>+</sup>, C<sub>8</sub>H<sub>15</sub>ClN<sub>5</sub><sup>+</sup>, la stessa formula dà 3,5 (8 − 8 + 2,5 + 1) ed è per questo che il valore semintero è la firma di uno ione a elettroni pari: il protone in più toglie mezza unità al conto.</p>
 <h2>Gli isotopi a risoluzione unitaria</h2>
 <p>Ogni elemento ha isotopi con abbondanze naturali quasi costanti (IUPAC). Dal punto di vista dello spettro gli elementi si dividono in tre gruppi (McLafferty):</p>
 <table>
@@ -74,6 +82,9 @@
 <p>Poi si aggiungono gli eteroatomi sostituendo gruppi di pari massa: <b>O</b> al posto di CH<sub>4</sub>; <b>N</b> al posto di CH<sub>2</sub>; <b>Cl</b> al posto di C<sub>2</sub>H<sub>11</sub>; <b>S</b> al posto di C<sub>2</sub>H<sub>8</sub>; un <b>C</b> al posto di H<sub>12</sub>. Esempio, M = 128: 128 = 9·13 + 11 → C<sub>9</sub>H<sub>20</sub> (RDB 0, il nonano); con un O: C<sub>8</sub>H<sub>16</sub>O (RDB 1, per esempio un ottanale o un ottanone); sostituendo H<sub>12</sub> con C: C<sub>10</sub>H<sub>8</sub> (RDB 7, il naftalene). Tre molecole diversissime con la stessa massa nominale: gli isotopi (M+1 ≈ 10% per C<sub>9</sub>, 11% per C<sub>10</sub>, 9% per C<sub>8</sub>…) e i frammenti decidono.</p>
 <h2>Ad alta risoluzione</h2>
 <p>Con una massa esatta misurata entro pochi ppm il numero di formule compatibili crolla, ma non si azzera: cresce rapidamente con la massa e con gli elementi ammessi. Approfondimento: <a href="30-candidati.html">capitolo 30 (Formule e candidati in silico)</a>.</p>
+<p>Il primo guadagno viene dall'accuratezza. Una tolleranza di 5 ppm a m/z 300 vale 1,5 mDa: due formule che differiscono di meno non si distinguono. Stringere la tolleranza restringe la rosa dei candidati. Per questo si lavora con 1-3 ppm quando lo strumento è ben tarato (capitolo 9).</p>
+<p>Il secondo guadagno viene dagli isotopi. Con risoluzione sufficiente i picchi M+1 e M+2 si separano in più componenti, per esempio <sup>13</sup>C e <sup>15</sup>N a M+1, e dalla loro intensità si conta il numero di atomi di C, N e S. È un vincolo indipendente dalla massa, ed è quello che spesso decide fra due formule che la massa lascia entrambe in gara.</p>
+<p>I limiti sono tre. Gli isomeri hanno la stessa formula e restano indistinguibili. Gli ioni deboli hanno masse e intensità isotopiche meno precise. Infine la lista dei candidati dipende dagli elementi ammessi: se se ne dimentica uno (un fosforo, un bromo) la formula giusta non compare. Ci si arriva solo aggiungendo MS2 e un confronto con banche dati.</p>
 <details class="poe"><summary>Prima di provare: quante formule CHNOSCl plausibili ha una molecola di massa 300,10 entro 5 ppm? E entro ±0,5 Da?</summary>
 <p>Per una massa di 300,10 Da, con le regole di plausibilità: oltre 500 formule entro ±0,5 Da, circa 7 entro 5 ppm, una o due entro 1-2 ppm. A 500 Da ne restano una ventina entro 5 ppm e qualcuna anche entro 1 ppm: servono gli isotopi e la frammentazione. Verifica muovendo i cursori (anche il difetto di massa).</p></details>
 <div class="sim" id="sim-formule"><h4>Quante formule per una massa?</h4>
