@@ -8,17 +8,12 @@
 <h1>I dati: file, scansioni e modi di acquisizione</h1>
 <p class="lead">Che cosa contiene un file di spettrometria di massa, come si controlla quando lo si apre e come il modo di acquisizione ne cambia la forma.</p>
 <h2>Che cosa contiene un file</h2>
-<p>Un file di dati è una sequenza di scansioni. Ogni scansione è uno spettro. Uno spettro è un elenco di coppie <i>m/z</i> e intensità. Ogni scansione ha il suo tempo di ritenzione.</p>
+<p>Un file di dati è una sequenza di scansioni. Ogni scansione è uno spettro: un elenco di coppie <i>m/z</i> e intensità, registrato in un preciso istante dell'analisi. Capire come sono organizzate queste informazioni serve a non perdersi quando si apre un file nuovo.</p>
 <h3>Scansione, tempo di ritenzione e livello</h3>
-<p>Ogni scansione porta con sé alcune informazioni, oltre alle coppie <i>m/z</i>–intensità:</p>
-<ul>
-<li><b>Scan</b>: il numero d'ordine della scansione nel file.</li>
-<li><b>Tempo di ritenzione</b> (RT): il momento dell'analisi in cui lo spettro è stato registrato.</li>
-<li><b>Livello MS</b>: MS1 se lo spettro descrive gli ioni intatti, MS2 se descrive i frammenti di uno ione isolato (precursore).</li>
-<li><b>Polarità</b>: ioni positivi o negativi.</li>
-<li><b>Per l'MS2</b>: <i>m/z</i> del precursore, larghezza della finestra di isolamento ed energia di collisione.</li>
-</ul>
-<p>Il tempo di ritenzione può essere in minuti o in secondi. Va letto con l'unità scritta nel file.</p>
+<p>Oltre alle coppie <i>m/z</i>–intensità, ogni scansione porta con sé alcuni campi di intestazione. Il primo è il numero d'ordine (scan), che identifica la scansione nel file. Il secondo è il tempo di ritenzione (RT), cioè il momento dell'analisi in cui lo spettro è stato registrato. Il terzo è il livello MS: MS1 se lo spettro descrive gli ioni intatti, MS2 se descrive i frammenti di uno ione isolato, il precursore.</p>
+<p>La polarità dice se gli ioni sono positivi o negativi e decide quali spettri si possono confrontare: uno spettro in negativo non si legge con le regole di uno in positivo. Per l'MS2 l'intestazione riporta anche l'<i>m/z</i> del precursore, la larghezza della finestra di isolamento e l'energia di collisione. Questi tre numeri servono dopo, per raggruppare gli spettri dello stesso precursore e per confrontarli con altri registrati alle stesse condizioni, perché lo spettro di frammentazione cambia con l'energia.</p>
+<p>Il tempo di ritenzione dice a quale picco cromatografico appartiene uno spettro. Da lui dipende quali spettri si mediano e quale tratto si usa come fondo. Può essere scritto in minuti o in secondi, a seconda del programma che ha prodotto il file, e l'unità va letta dal file e non supposta. Un errore di fattore 60 sposta tutti i picchi e fa cadere le finestre di estrazione nel posto sbagliato. Nel formato mzML l'unità è dichiarata accanto a ogni valore.</p>
+<p>Il livello MS e il precursore servono a sapere quali scansioni usare per quale scopo. Gli spettri MS1 danno i cromatogrammi e le informazioni sugli ioni intatti. Gli spettri MS2 danno la struttura. In una corsa in cui MS1 e MS2 si alternano le scansioni dei due livelli sono mescolate nel file, e il programma le separa leggendo il campo del livello.</p>
 <h3>Profilo e centroide</h3>
 <p>Lo stesso spettro può essere salvato in due forme.</p>
 <table>
@@ -27,20 +22,19 @@
 <tr><td><b>Profilo</b></td><td>Tutti i punti del segnale, con la forma del picco</td><td>Valutare risoluzione, forma e saturazione dei picchi</td></tr>
 <tr><td><b>Centroide</b></td><td>Un solo punto per picco: <i>m/z</i> al centro e intensità</td><td>Lavoro di routine: file più piccoli, ricerca nelle banche dati</td></tr>
 </table>
-<p>Il passaggio da profilo a centroide si chiama <em>peak picking</em>. Non si può invertire. Dal centroide non si recupera la forma del picco. Per questo si conserva sempre il file originale. Approfondimento: <a href="22-segnale.html">capitolo 22 (Segnale, profilo e centroide)</a>.</p>
+<p>Il profilo mostra la forma del picco, e la forma dice molto. La larghezza a metà altezza fissa la risoluzione: un picco a <i>m/z</i> 300 largo 0,7 Da ha una risoluzione di circa 430 (300 / 0,7). Un picco con una spalla fa pensare a due ioni vicini non separati. Un picco con la cima piatta indica un rivelatore saturo.</p>
+<p>Il centroide sostituisce ogni picco con un solo punto: l'<i>m/z</i> del centro e un'intensità, che a seconda del programma è l'altezza o l'area. Il file diventa molto più piccolo e la ricerca in banca dati molto più semplice. Il prezzo è che la forma sparisce.</p>
+<p>Il passaggio da profilo a centroide si chiama <em>peak picking</em>. Non si può invertire. Dal centroide non si recupera la forma del picco e non si separano due ioni vicini che l'algoritmo ha fuso in un punto solo. Per questo si conserva sempre il file originale e si converte solo una copia. Approfondimento: <a href="22-segnale.html">capitolo 22 (Segnale, profilo e centroide)</a>.</p>
 <h3>Cromatogrammi: TIC, BPC, XIC</h3>
-<p>Mettendo in fila gli spettri si ottiene un cubo di dati: tempo × <i>m/z</i> × intensità. Un cromatogramma è una sua fetta.</p>
-<ul>
-<li><b>TIC</b> (total ion current): somma di tutte le intensità di ogni spettro. Dominato dal fondo e dalle specie più abbondanti: utile per un colpo d'occhio, quasi inutile per trovare un TP minore.</li>
-<li><b>BPC</b> (base peak chromatogram): per ogni spettro, l'intensità dello ione più intenso. Fa emergere meglio i picchi stretti sul fondo diffuso.</li>
-<li><b>XIC</b> o EIC (extracted ion chromatogram): intensità entro una finestra di m/z attorno a un valore scelto. È lo strumento principale: un m/z = una traccia nel tempo.</li>
-</ul>
-<h3>La finestra di estrazione</h3>
-<p>Con risoluzione unitaria il profilo di uno ione è largo ~0,7 Da a metà altezza e va da circa −0,5 a +0,5 Da dal centro. Una finestra di ±0,5 Da centrata sul valore <em>osservato</em> raccoglie quasi tutto il segnale senza prendere i vicini.</p>
+<p>Mettendo in fila gli spettri si ottiene un cubo di dati: tempo × <i>m/z</i> × intensità. Un cromatogramma è una sua fetta. Si sceglie una regola che riduce ogni spettro a un numero e si mette il numero in funzione del tempo. La regola decide che cosa si vede.</p>
+<p>Il <b>TIC</b> (total ion current) somma tutte le intensità di ogni spettro. È dominato dal fondo e dalle specie più abbondanti. Serve per un colpo d'occhio sulla corsa: si vede se l'iniezione è avvenuta e se il gradiente ha lavorato. È quasi inutile per trovare un TP minore.</p>
+<p>Il <b>BPC</b> (base peak chromatogram) prende, per ogni spettro, l'intensità dello ione più intenso. Fa emergere meglio i picchi stretti sul fondo diffuso, perché non somma i molti ioni deboli del rumore chimico. Si usa per vedere i componenti principali di un campione.</p>
+<p>L'<b>XIC</b> o EIC (extracted ion chromatogram) riporta l'intensità entro una finestra di <i>m/z</i> attorno a un valore scelto: un <i>m/z</i>, una traccia nel tempo. È lo strumento principale, perché isola il composto cercato da tutto il resto. Si usa quando si conosce la massa dell'analita o la si vuole cercare.</p>
+<p>La larghezza della finestra di estrazione è la scelta che conta. Con risoluzione unitaria il profilo di uno ione è largo ~0,7 Da a metà altezza e va da circa −0,5 a +0,5 Da dal centro. Una finestra di ±0,5 Da centrata sul valore <em>osservato</em> raccoglie quasi tutto il segnale senza prendere i vicini.</p>
 <p>Se l'asse di massa è spostato, la finestra va allargata. Esempio: con uno spostamento di +0,3 Da, centrare la finestra sul valore teorico taglia il picco. Si usa ±1 Da sul valore teorico, oppure ±0,5 Da sul valore osservato nello spettro dello standard.</p>
-<p>Con l'alta risoluzione la finestra si esprime in ppm (di solito 5–10 ppm). Approfondimento: <a href="24-tracce.html">capitolo 24 (Tracce di massa e ROI)</a>.</p>
-<h3>Spettro di un picco e sottrazione del fondo</h3>
-<p>Lo spettro "di un composto" si ottiene mediando gli spettri lungo il picco cromatografico e sottraendo quelli di una zona vicina senza picchi (o lo stesso intervallo nel bianco). Senza sottrazione, ioni del fondo (plastificanti, polisilossani, cluster della fase mobile) contaminano lo spettro e possono sembrare frammenti o addotti.</p>
+<p>Con l'alta risoluzione la finestra si esprime in ppm, di solito 5–10 ppm. A <i>m/z</i> 300, 5 ppm sono ±0,0015 Da: una finestra più di trecento volte più stretta di quella a risoluzione unitaria. Approfondimento: <a href="24-tracce.html">capitolo 24 (Tracce di massa e ROI)</a>.</p>
+<p>Lo spettro «di un composto» si ottiene mediando gli spettri lungo il picco cromatografico. Mediare riduce il rumore e dà uno spettro più stabile di quello di una singola scansione.</p>
+<p>Poi si sottraggono gli spettri di una zona vicina senza picchi, per esempio quella subito prima del picco, oppure lo stesso intervallo nel bianco. Senza sottrazione, ioni del fondo (plastificanti, polisilossani, cluster della fase mobile) contaminano lo spettro e possono sembrare frammenti o addotti.</p>
 <div class="box warn"><b>Errori frequenti nel full scan</b>
 <ul>
 <li>Considerare TP un m/z presente anche nel bianco o a t0 con intensità simile: è fondo o un'impurezza dello standard.</li>
@@ -50,16 +44,8 @@
 </ul></div>
 <p class="storia-link solo-esteso" hidden>Per la storia: <a href="42-storia-rivelatori-dati.html">Rivelatori, dati, applicazioni</a>.</p>
 <h2>Formati dei file</h2>
-<h3>Formati aperti: mzML e mzXML</h3>
-<p>I formati aperti sono scritti in XML. Sono leggibili da molti programmi diversi e non dipendono da uno strumento.</p>
-<ul>
-<li><b>mzML</b>: lo standard attuale, definito dalla comunità (HUPO-PSI). Contiene spettri e cromatogrammi, con metadati e vocabolario controllato.</li>
-<li><b>mzXML</b>: il formato più vecchio. Ancora diffuso, ma meno completo e non più sviluppato.</li>
-</ul>
-<p>Negli stessi file gli array di <i>m/z</i> e di intensità sono codificati in binario e di solito compressi. Il file è molto più piccolo di quello che si vede aprendolo in un editor di testo.</p>
-<p>In mzML, full scan e MS2 sono serie di spettri. I dati di MRM sono salvati come cromatogrammi (SRM), uno per transizione.</p>
-<p>Per la GC-MS esiste anche il vecchio formato CDF (ANDI-MS), ancora letto da molti programmi di deconvoluzione. Approfondimento: <a href="23-formati.html">capitolo 23 (File e formati aperti)</a>.</p>
-<h3>Formati dei costruttori e conversione</h3>
+<p>Esistono due famiglie di formati: quelli aperti e quelli dei costruttori. I formati aperti sono scritti in XML e sono leggibili da molti programmi diversi, senza dipendere da uno strumento. <b>mzML</b> è lo standard attuale, definito dalla comunità (HUPO-PSI): contiene spettri e cromatogrammi, con metadati e vocabolario controllato. <b>mzXML</b> è il formato più vecchio, ancora diffuso ma meno completo e non più sviluppato.</p>
+<p>Negli stessi file gli array di <i>m/z</i> e di intensità sono codificati in binario e di solito compressi. Il file è molto più piccolo di quello che si vede aprendolo in un editor di testo. In mzML, full scan e MS2 sono serie di spettri, mentre i dati di MRM sono salvati come cromatogrammi (SRM), uno per transizione. Per la GC-MS esiste anche il vecchio formato CDF (ANDI-MS), ancora letto da molti programmi di deconvoluzione. Approfondimento: <a href="23-formati.html">capitolo 23 (File e formati aperti)</a>.</p>
 <p>Ogni costruttore salva i dati nel proprio formato. Spesso è una cartella e non un singolo file.</p>
 <table>
 <caption>Formati dei costruttori</caption>
@@ -71,31 +57,14 @@
 <tr><td>Sciex</td><td>.wiff con il file .wiff.scan</td></tr>
 <tr><td>Shimadzu</td><td>.lcd</td></tr>
 </table>
-<p>I formati dei costruttori contengono tutto, comprese le calibrazioni e il metodo di acquisizione. Si leggono bene solo con il programma del costruttore. Per usare programmi di terzi si converte in mzML.</p>
-<p>ProteoWizard (programma <em>msconvert</em>) è lo strumento libero più usato. Alcune scelte da fare, e da annotare, durante la conversione:</p>
-<ul>
-<li><b>Centroide o profilo</b>: se si converte in centroide, l'algoritmo di peak picking è quello del costruttore (di solito il migliore) o uno generico.</li>
-<li><b>Livelli MS e polarità</b>: tenere tutti i livelli. Eventuali filtri vanno scritti nel registro.</li>
-<li><b>Precisione</b>: 64 bit per <i>m/z</i> se serve l'alta risoluzione.</li>
-<li><b>Compressione</b>: la compressione zlib non perde informazione.</li>
-<li><b>Nome del file</b>: uguale all'originale, per poter risalire alla corsa.</li>
-</ul>
+<p>I formati dei costruttori contengono tutto, comprese le calibrazioni e il metodo di acquisizione. Si leggono bene solo con il programma del costruttore. Per usare programmi di terzi si converte in mzML. ProteoWizard (programma <em>msconvert</em>) è lo strumento libero più usato.</p>
+<p>Durante la conversione si fanno alcune scelte, e vanno annotate nel registro. Se si converte in centroide, l'algoritmo di peak picking è quello del costruttore (di solito il migliore) oppure uno generico. Si tengono tutti i livelli MS e le polarità, e un eventuale filtro va scritto. Si usano 64 bit per l'<i>m/z</i> se serve l'alta risoluzione. La compressione zlib non perde informazione. Il nome del file resta uguale all'originale, per poter risalire alla corsa.</p>
 <h2>Che cosa controllare quando si importa un file</h2>
-<p>Prima di interpretare, si guarda il file. Pochi controlli evitano errori lunghi da trovare.</p>
-<ul>
-<li><b>Il file si apre per intero.</b> Un file troncato (analisi interrotta, copia incompleta) ha meno scansioni del previsto.</li>
-<li><b>Profilo o centroide.</b> Dipende dall'uso: per valutare la risoluzione serve il profilo.</li>
-<li><b>Livelli MS presenti.</b> Un file di sola MS1 non permette di studiare i frammenti.</li>
-<li><b>Polarità.</b> Positiva, negativa o alternata. Uno spettro in negativo non si confronta con uno in positivo.</li>
-<li><b>Intervallo di <i>m/z</i> e di tempo.</b> Il segnale cercato deve cadere dentro entrambi.</li>
-<li><b>Unità del tempo.</b> Minuti o secondi? Un errore di fattore 60 sposta tutti i picchi.</li>
-<li><b>Punti per picco.</b> Servono almeno 10–12 scansioni su un picco cromatografico per descriverne la forma e integrarlo bene.</li>
-<li><b>Asse di massa.</b> Con uno standard noto si controlla che <i>m/z</i> osservato e teorico coincidano (entro pochi ppm in alta risoluzione, entro pochi decimi di Da in risoluzione unitaria).</li>
-<li><b>Saturazione.</b> Picchi appiattiti in cima segnalano un rivelatore saturo.</li>
-<li><b>Scansioni vuote.</b> Nei file MS2 sono normali prima e dopo il picco.</li>
-<li><b>Bianco e standard nello stesso lotto.</b> Senza il bianco non si distingue il fondo dal segnale.</li>
-<li><b>Nome e ordine delle corse.</b> Il nome deve dire campione, replica e ordine di iniezione (capitolo 18).</li>
-</ul>
+<p>Prima di interpretare, si guarda il file. Pochi controlli evitano errori lunghi da trovare. Conviene raggrupparli per ciò che può andare storto.</p>
+<p>Il primo gruppo riguarda un file incompleto o con il contenuto sbagliato. Un file troncato, per un'analisi interrotta o una copia incompleta, ha meno scansioni del previsto. Si verifica poi che ci siano i livelli MS e la forma (profilo o centroide) che servono: un file di sola MS1 non permette di studiare i frammenti, e per valutare la risoluzione serve il profilo. Si controlla anche la polarità, che può essere positiva, negativa o alternata.</p>
+<p>Il secondo gruppo riguarda gli assi di tempo e di massa. Il segnale cercato deve cadere dentro l'intervallo di <i>m/z</i> e di tempo del file. Si legge l'unità del tempo, minuti o secondi. L'asse di massa si controlla con uno standard noto: <i>m/z</i> osservato e teorico devono coincidere entro pochi ppm in alta risoluzione, entro pochi decimi di Da in risoluzione unitaria.</p>
+<p>Il terzo gruppo riguarda la qualità del segnale. Servono almeno 10–12 scansioni su un picco cromatografico per descriverne la forma e integrarlo bene. Un picco largo 6 s con un ciclo di 0,5 s ha 12 punti. Con un ciclo di 1,5 s ne ha solo 4, e l'area diventa instabile. Picchi appiattiti in cima segnalano un rivelatore saturo, e l'area di un picco saturo è sottostimata.</p>
+<p>L'ultimo gruppo riguarda la sequenza. Bianco e standard devono stare nello stesso lotto, perché senza il bianco non si distingue il fondo dal segnale. Il nome della corsa deve dire campione, replica e ordine di iniezione (capitolo 18). Le scansioni vuote nei file MS2 sono normali prima e dopo il picco e non sono un errore.</p>
 <div class="box key"><b>Regola pratica</b><p>Conservare sempre il file originale del costruttore. I file convertiti si possono rifare. Gli originali no.</p></div>
 <h2>Modi di acquisizione</h2>
 <p>Lo stesso strumento può registrare cose diverse. Il modo di acquisizione decide che forma ha il dato e quale domanda si può fare. I nomi sono quelli generali: i costruttori usano sigle proprie per gli stessi concetti.</p>
@@ -109,44 +78,29 @@
 <tr><td><b>DDA</b></td><td>MS1, poi MS2 sugli ioni più intensi</td><td>Spettri MS1 e MS2 alternati</td><td>Che cosa sono i picchi principali?</td></tr>
 <tr><td><b>DIA</b></td><td>MS2 di tutti gli ioni, per finestre larghe</td><td>MS1 e MS2 composti, alternati</td><td>Che cosa c'è, senza perdere nulla?</td></tr>
 </table>
-<h3>Full scan</h3>
-<p>Lo strumento registra tutto l'intervallo di <i>m/z</i> a ogni ciclo, di solito circa una volta al secondo. È il modo giusto per cercare l'ignoto. Il prezzo è la sensibilità: il tempo di misura si divide su tutto l'intervallo.</p>
-<h3>SIM</h3>
-<p>Nel <em>selected ion monitoring</em> lo strumento misura solo alcuni <i>m/z</i> scelti in anticipo. Ogni ione è misurato più a lungo. Il segnale sale e il rumore scende. Gli ioni non scelti non si vedono. Non si ottiene uno spettro.</p>
-<h3>Product ion scan (MS2)</h3>
-<p>Un product ion scan registra i frammenti di un precursore isolato con risoluzione unitaria. Alcuni punti pratici:</p>
-<ul>
-<li><b>Che cosa entra in cella</b>: solo il picco isotopico selezionato (di solito il monoisotopico). Se isolate invece l'M+2 di un composto clorurato, i frammenti che contengono il cloro risultano spostati di +2, quelli senza cloro no: un trucco elegante per localizzare l'alogeno.</li>
-<li><b>Precursore residuo</b>: all'energia di collisione scelta parte del precursore sopravvive e compare nello spettro; serve a confermare che si sta guardando lo ione giusto.</li>
-<li><b>Coeluenti isobari</b>: se allo stesso RT ci sono due molecole con la stessa massa nominale, lo spettro MS2 è la somma dei loro frammenti. Guardate gli XIC dei singoli frammenti: frammenti dello stesso precursore hanno profili cromatografici identici.</li>
-<li><b>Spettri vuoti</b>: nei file MS2 molti scan sono vuoti (prima e dopo il picco). È normale; ciò che conta è lo spettro mediato sul picco.</li>
-<li><b>Confronto con il parent</b>: si registrano frammento per frammento le differenze. Frammenti uguali = porzione intatta; frammenti spostati di Δ = porzione modificata (capitolo 16).</li>
-</ul>
-<h3>MRM</h3>
-<p>Nel <em>multiple reaction monitoring</em> si scelgono transizioni: coppie precursore → frammento. Per ogni transizione lo strumento misura per un tempo breve (<em>dwell time</em>) e passa alla successiva. Il risultato è un cromatogramma per transizione.</p>
+<h3>Full scan e SIM</h3>
+<p>Nel full scan lo strumento registra tutto l'intervallo di <i>m/z</i> a ogni ciclo, di solito circa una volta al secondo. È il modo giusto per cercare l'ignoto: risponde alla domanda su che cosa c'è e su che cosa cambia nel tempo. Il prezzo è la sensibilità, perché il tempo di misura si divide su tutto l'intervallo.</p>
+<p>Nel <em>selected ion monitoring</em> (SIM) lo strumento misura solo alcuni <i>m/z</i> scelti in anticipo. Ogni ione è misurato più a lungo, quindi il segnale sale e il rumore scende. Il prezzo è che gli ioni non scelti non si vedono e che non si ottiene uno spettro.</p>
+<p>Un esempio con i numeri, per uno strumento a scansione come il quadrupolo. Un full scan di 450 Da in un secondo dedica a ogni unità di massa circa 2 ms. Un SIM su 3 ioni nello stesso secondo dedica a ciascuno circa 330 ms, cioè 150 volte di più. Il guadagno reale è minore, per i tempi morti tra uno ione e l'altro, ma resta grande.</p>
+<h3>MS2 e MRM</h3>
+<p>Un product ion scan registra i frammenti di un precursore isolato con risoluzione unitaria. Risponde alla domanda su com'è fatto quello ione. Il risultato è una serie di spettri di frammenti nel tempo. Il prezzo è che si guarda un precursore alla volta.</p>
+<p>In cella entra solo il picco isotopico selezionato, di solito il monoisotopico. Se si isola invece l'M+2 di un composto clorurato, i frammenti che contengono il cloro risultano spostati di +2 e quelli senza cloro no: un trucco elegante per localizzare l'alogeno.</p>
+<p>All'energia di collisione scelta parte del precursore sopravvive e compare nello spettro. Serve a confermare che si sta guardando lo ione giusto. Nei file MS2 molti scan sono vuoti, prima e dopo il picco: è normale, e conta lo spettro mediato sul picco.</p>
+<p>Se allo stesso RT ci sono due molecole con la stessa massa nominale, lo spettro MS2 è la somma dei loro frammenti. Si guardano allora gli XIC dei singoli frammenti: quelli dello stesso precursore hanno profili cromatografici identici. Confrontando con il parent, frammenti uguali indicano una porzione intatta e frammenti spostati di Δ una porzione modificata (capitolo 16).</p>
+<p>Nel <em>multiple reaction monitoring</em> (MRM) si scelgono transizioni: coppie precursore → frammento. Per ogni transizione lo strumento misura per un tempo breve (<em>dwell time</em>) e passa alla successiva. Il risultato è un cromatogramma per transizione.</p>
 <p>Il metodo è molto sensibile e selettivo. È il modo della quantificazione. Non dà spettri e non scopre ciò che non è stato scelto. Per ogni analita si usano di solito due transizioni, una per quantificare e una per confermare (capitolo 8).</p>
-<p>Il numero di transizioni e il dwell time fissano il tempo di ciclo. Un ciclo troppo lungo lascia pochi punti su un picco stretto.</p>
-<h3>DDA</h3>
-<p>Nella <em>data-dependent acquisition</em> lo strumento alterna due passi. Prima un full scan (MS1). Poi sceglie da solo gli ioni più intensi di quella scansione e ne registra l'MS2.</p>
-<p>Alcune regole servono a non ripetersi:</p>
-<ul>
-<li><b>Top-N</b>: si seleziona un numero fisso di precursori per ciclo.</li>
-<li><b>Soglia di intensità</b>: sotto una certa intensità lo ione non è scelto.</li>
-<li><b>Esclusione dinamica</b>: uno ione già frammentato è escluso per un po', così lo strumento passa a quelli meno intensi.</li>
-<li><b>Lista di inclusione</b>: si possono forzare ioni di interesse, anche se deboli.</li>
-</ul>
+<p>Il numero di transizioni e il dwell time fissano il tempo di ciclo. Con 10 transizioni e un dwell time di 50 ms il ciclo dura circa 0,5 s, più le pause tra una transizione e l'altra. Su un picco largo 6 s restano poco meno di 12 punti. Un ciclo troppo lungo lascia pochi punti su un picco stretto.</p>
+<h3>DDA e DIA</h3>
+<p>Nella <em>data-dependent acquisition</em> (DDA) lo strumento alterna due passi. Prima registra un full scan (MS1). Poi sceglie da solo gli ioni più intensi di quella scansione e ne registra l'MS2.</p>
+<p>Il numero di precursori scelti per ciclo è fisso e si chiama top-N. Con top-10, a ogni ciclo lo strumento registra un MS1 e dieci MS2: l'undicesimo ione per intensità non è frammentato in quel ciclo. Sotto una soglia di intensità lo ione non è scelto.</p>
+<p>L'esclusione dinamica evita di ripetersi. Uno ione già frammentato è escluso per un tempo scelto dall'operatore, così lo strumento passa a quelli meno intensi. Una lista di inclusione permette invece di forzare ioni di interesse, anche se deboli.</p>
 <p>Gli spettri MS2 sono puliti perché il precursore è isolato in una finestra stretta. Il limite è che la scelta dipende dall'intensità: ioni deboli o coeluenti possono non essere frammentati, e due corse della stessa miscela non scelgono sempre gli stessi ioni. Un esempio di uso è nel capitolo 17. Approfondimento: <a href="28-somiglianza.html">capitolo 28 (Somiglianza spettrale)</a>.</p>
-<h3>DIA</h3>
-<p>Nella <em>data-independent acquisition</em> non c'è scelta. Lo strumento divide l'intervallo di <i>m/z</i> in finestre larghe (per esempio 20–25 Da) e frammenta tutto ciò che entra in ogni finestra, a ogni ciclo.</p>
-<ul>
-<li><b>Vantaggio</b>: ogni ione è frammentato in ogni corsa, anche se debole. I risultati sono più riproducibili.</li>
-<li><b>Svantaggio</b>: ogni spettro MS2 contiene frammenti di più precursori. Per assegnarli si usano il profilo cromatografico (frammenti e precursore sono nello stesso picco) e programmi di deconvoluzione.</li>
-</ul>
+<p>Nella <em>data-independent acquisition</em> (DIA) non c'è scelta. Lo strumento divide l'intervallo di <i>m/z</i> in finestre larghe (per esempio 20–25 Da) e frammenta tutto ciò che entra in ogni finestra, a ogni ciclo. Un intervallo di 400 Da diviso in finestre da 20 Da dà 20 finestre: ogni ciclo contiene un MS1 e 20 spettri MS2.</p>
+<p>Il vantaggio è che ogni ione è frammentato in ogni corsa, anche se debole, e i risultati sono più riproducibili. Lo svantaggio è che ogni spettro MS2 contiene frammenti di più precursori. Per assegnarli si usano il profilo cromatografico (frammenti e precursore sono nello stesso picco) e programmi di deconvoluzione.</p>
 <p>I costruttori hanno nomi commerciali diversi per le varianti della DIA. Il principio è lo stesso.</p>
 <h2>Spettri a risoluzione unitaria: che cosa si può dedurre</h2>
 <p>Qui un riassunto pratico per i vostri dati; la teoria completa (masse, isotopi, regola dell'azoto, RDB, regola del 13 e il confronto con l'alta risoluzione) è nel capitolo 11.</p>
-<h3>Pattern isotopici</h3>
-<p>Anche senza massa accurata, il <b>cluster isotopico</b> porta informazione sulla composizione:</p>
+<p>Anche senza massa accurata, il <b>cluster isotopico</b> porta informazione sulla composizione. Il carbonio dà un M+1 di circa 1,1% per ogni atomo di C: un M+1 al 22% suggerisce circa 20 atomi di carbonio, come stima grossolana. Cl e Br danno un M+2 inconfondibile, e lo zolfo ne dà uno più piccolo.</p>
 <table>
 <caption>Effetto degli isotopi pesanti sul cluster</caption>
 <tr><th>Elemento</th><th>Isotopo pesante</th><th>Effetto sul cluster</th></tr>
@@ -157,52 +111,34 @@
 <tr><td>N, O</td><td>piccoli</td><td>Contributi minori a M+1 (N) e M+2 (O)</td></tr>
 </table>
 <p>Per i TP è un controllo potentissimo: se il parent contiene un cloro e il candidato mostra ancora M+2 al ~32%, il cloro è rimasto; se il pattern scompare e la massa è calata di 18 (−Cl +OH), la declorurazione idrossilativa è un'ipotesi coerente. Approfondimento: <a href="26-gruppi.html">capitolo 26 (Isotopi, addotti, frammenti)</a>.</p>
-<div class="sim" id="sim-iso"><h4>Cluster isotopico a risoluzione unitaria</h4>
+<div class="sim" id="sim-iso"><h3>Cluster isotopico a risoluzione unitaria</h3>
 <p class="note">Scrivete una formula bruta (elementi C, H, N, O, S, P, F, Cl, Br, I, Si, Na, K). Il calcolo convolve le distribuzioni isotopiche per massa nominale. L'esempio è l'atrazina, un erbicida usato come esempio svolto nel capitolo 16.</p></div>
-<h3>Regola dell'azoto e insaturazioni</h3>
-<ul>
-<li><b>Regola dell'azoto</b>: una molecola neutra con massa nominale dispari contiene un numero dispari di atomi di N. Per lo ione [M+H]<sup>+</sup> vale il contrario: m/z pari ⇒ numero dispari di N. Utile per scartare formule incompatibili e per capire se una trasformazione ha tolto o aggiunto azoto.</li>
-<li><b>RDBE</b> (anelli + doppi legami) = C − H/2 − X/2 + N/2 + 1 per la molecola neutra (X = alogeni). Deve essere intero e ≥ 0. Un'apertura d'anello o un'idratazione lo riducono; un'ossidazione a carbonile no.</li>
-</ul>
+<p>Il secondo controllo è la regola dell'azoto. Una molecola neutra con massa nominale dispari contiene un numero dispari di atomi di N. Per lo ione [M+H]<sup>+</sup> vale il contrario: <i>m/z</i> pari implica un numero dispari di N. Per l'atrazina (C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub>) la massa nominale è 215, dispari, con cinque atomi di azoto, e lo ione [M+H]<sup>+</sup> sta a <i>m/z</i> 216. La regola serve a scartare formule incompatibili e a capire se una trasformazione ha tolto o aggiunto azoto.</p>
+<p>Il terzo controllo conta le insaturazioni. Gli anelli più i doppi legami (RDBE) di una molecola neutra valgono C − H/2 − X/2 + N/2 + 1, con X il numero di alogeni. Il risultato deve essere intero e ≥ 0. Per l'atrazina viene 8 − 7 − 0,5 + 2,5 + 1 = 4: l'anello triazinico e i suoi tre doppi legami. Un'apertura d'anello o un'idratazione lo riducono; un'ossidazione a carbonile no.</p>
 <h2>Dal dato alla quantità</h2>
 <h3>Correggere il fondo e integrare</h3>
-<p>L'area di un picco è la quantità che si porta in una retta di taratura. Prima di integrare si sceglie come trattare il fondo. Tre strade, da usare una alla volta:</p>
-<ul>
-<li><b>Sottrarre un bianco</b>: segue il tempo, quindi è utile quando il fondo cambia lungo la corsa.</li>
-<li><b>Sottrarre il fondo di un tratto</b>: un solo numero, la media di un tratto senza picchi. Utile se il fondo è piatto.</li>
-<li><b>Linea di base automatica</b> (per esempio SNIP): toglie la base che sale sotto i picchi.</li>
-</ul>
-<p>Aiutano sui picchi piccoli. Vanno usate con lo stesso criterio su tutti i campioni e tutti i tempi, altrimenti l'andamento è un artefatto.</p>
-<p>L'integrazione automatica segue quattro passi:</p>
-<ol>
-<li><b>Smoothing di Savitzky-Golay.</b> In ogni finestra scorrevole i punti vengono interpolati con un polinomio di secondo grado: il picco si ripulisce dal rumore senza abbassarsi e allargarsi come con una media mobile. La finestra è circa il 60% della larghezza del picco a metà altezza.</li>
-<li><b>Apice dalla derivata.</b> La derivata prima passa da positiva a negativa nel massimo del picco.</li>
-<li><b>Bordi.</b> Si cammina dall'apice verso i due lati e ci si ferma dove il segnale scende sotto la linea di base locale più il 3% dell'altezza del picco (e comunque sopra 3 volte il rumore), oppure dove la derivata cambia segno per un tratto continuo: è la valle che separa dal picco vicino.</li>
-<li><b>Area.</b> Regola dei trapezi sui dati originali (non smussati), meno la linea di base retta tra i due bordi.</li>
-</ol>
+<p>L'area di un picco è la quantità che si porta in una retta di taratura. Prima di integrare si sceglie come trattare il fondo, e si usa una sola strada alla volta.</p>
+<p>Si può sottrarre un bianco: segue il tempo, quindi è utile quando il fondo cambia lungo la corsa. Si può sottrarre il fondo di un tratto, cioè la media di un tratto senza picchi: è un solo numero, adatto a un fondo piatto. Oppure si usa una linea di base automatica (per esempio SNIP), che toglie la base che sale sotto i picchi.</p>
+<p>Queste correzioni aiutano sui picchi piccoli. Vanno applicate con lo stesso criterio a tutti i campioni e a tutti i tempi. Se un punto è corretto in un modo e il successivo in un altro, la differenza tra le aree contiene un artefatto di metodo e non una variazione del campione. Lo stesso criterio vale per gli standard della retta e per i campioni.</p>
+<p>L'integrazione automatica segue quattro passi. Il primo è lo smoothing di Savitzky-Golay: in ogni finestra scorrevole i punti vengono interpolati con un polinomio di secondo grado. Il picco si ripulisce dal rumore senza abbassarsi e allargarsi come con una media mobile. La finestra è circa il 60% della larghezza del picco a metà altezza.</p>
+<p>Il secondo passo trova l'apice: la derivata prima passa da positiva a negativa nel massimo del picco. Il terzo passo trova i bordi. Si cammina dall'apice verso i due lati e ci si ferma dove il segnale scende sotto la linea di base locale più il 3% dell'altezza del picco (e comunque sopra 3 volte il rumore), oppure dove la derivata cambia segno per un tratto continuo. Quella è la valle che separa dal picco vicino.</p>
+<p>Il quarto passo calcola l'area con la regola dei trapezi sui dati originali, non smussati, meno la linea di base retta tra i due bordi. Lo smoothing serve a trovare apice e bordi, mentre l'area si misura sul segnale vero.</p>
 <p>Limiti: due picchi sovrapposti vengono separati solo se tra i due c'è una valle. Una deriva forte della linea di base sposta i bordi. Si guardano sempre i bordi proposti prima di fidarsi dell'area.</p>
-<h3>Figure del picco</h3>
-<ul>
-<li><b>S/N</b>: altezza del picco sopra la linea di base, divisa per la deviazione standard del segnale in una zona senza picchi (tolta la deriva).</li>
-<li><b>w<sub>½</sub></b>: larghezza a metà altezza.</li>
-<li><b>N</b> = 5,54 (t<sub>R</sub> / w<sub>½</sub>)<sup>2</sup>: piatti teorici.</li>
-<li><b>Coda USP</b> T = W<sub>0,05</sub> / 2f, con W<sub>0,05</sub> la larghezza e f la parte anteriore del picco al 5% dell'altezza (T = 1 per un picco simmetrico).</li>
-</ul>
+<p>Dallo stesso picco si ricavano alcune figure. Il rapporto <b>S/N</b> è l'altezza del picco sopra la linea di base, divisa per la deviazione standard del segnale in una zona senza picchi (tolta la deriva). La larghezza a metà altezza <b>w<sub>½</sub></b> dà i piatti teorici: <b>N</b> = 5,54 (t<sub>R</sub> / w<sub>½</sub>)<sup>2</sup>. Con t<sub>R</sub> = 4,00 min e w<sub>½</sub> = 0,10 min si ha N = 5,54 × 40<sup>2</sup> ≈ 8900.</p>
+<p>La <b>coda USP</b> è T = W<sub>0,05</sub> / 2f, con W<sub>0,05</sub> la larghezza e f la parte anteriore del picco al 5% dell'altezza. Per un picco simmetrico T = 1. Valori sempre maggiori di 1 indicano una coda sempre più marcata.</p>
 <h3>La retta di taratura</h3>
-<p>Si iniettano standard a concentrazione nota (ad esempio, una serie scalare dal decimo di mg/L a decine di mg/L) e si costruisce area contro concentrazione. Per una retta affidabile:</p>
-<ul>
-<li>almeno 5–6 livelli che coprano l'intervallo dei campioni (non estrapolare);</li>
-<li>controllare i <b>residui</b> (area misurata − area dalla retta) in funzione della concentrazione: un andamento sistematico (a "U" o a gomito) indica non linearità, tipicamente saturazione dell'ESI o del rivelatore ai livelli alti; R<sup>2</sup> = 0,99 non basta a escluderla;</li>
-<li>su intervalli ampi, la varianza cresce con la concentrazione: una regressione pesata (1/<i>x</i> o 1/<i>x</i><sup>2</sup>) evita che i punti alti dominino e che quelli bassi siano sbagliati del 50%;</li>
-<li>il campione che cade sopra l'ultimo standard va diluito e reiniettato.</li>
-</ul>
+<p>Si iniettano standard a concentrazione nota (ad esempio, una serie scalare dal decimo di mg/L a decine di mg/L) e si costruisce area contro concentrazione. Servono almeno 5–6 livelli che coprano l'intervallo dei campioni, perché fuori dall'intervallo non si estrapola. Un campione che cade sopra l'ultimo standard va diluito e reiniettato.</p>
+<p>Dopo il fit si guardano i <b>residui</b>, cioè l'area misurata meno l'area calcolata dalla retta, in funzione della concentrazione. Un andamento sistematico, a «U» o a gomito, indica non linearità, tipicamente per saturazione dell'ESI o del rivelatore ai livelli alti. R<sup>2</sup> = 0,99 non basta a escluderla.</p>
+<p>Su intervalli ampi la varianza cresce con la concentrazione. In una regressione non pesata i punti alti dominano il fit e quelli bassi possono risultare sbagliati del 50%. Una regressione pesata (1/<i>x</i> o 1/<i>x</i><sup>2</sup>) dà più peso ai punti bassi e corregge lo squilibrio.</p>
+<p>I limiti di rivelabilità e di quantificazione si ricavano dalla retta, come nell'equazione 10.1.</p>
 <span class="eq">LOD ≈ <span class="frac"><span>3,3 <i>s</i></span><span><i>b</i></span></span>, &nbsp;&nbsp; LOQ ≈ <span class="frac"><span>10 <i>s</i></span><span><i>b</i></span></span><span class="no">(10.1)</span></span>
 <p>con <i>b</i> pendenza della retta e <i>s</i> deviazione standard della risposta (del bianco o dell'intercetta). In alternativa si usa il rapporto segnale/rumore (3 e 10) su standard di bassa concentrazione.</p>
+<p>In parole, il limite è un multiplo della variabilità della risposta, riportato in concentrazione dividendo per la pendenza. Con <i>s</i> = 120 unità di area e <i>b</i> = 4000 unità di area per mg/L, il LOD è 3,3 × 120 / 4000 ≈ 0,10 mg/L e il LOQ è 10 × 120 / 4000 = 0,30 mg/L. Il LOQ è circa il triplo del LOD perché per quantificare serve un'incertezza relativa più piccola che per rivelare.</p>
 <p>Come pianificare i livelli, i bianchi e la sequenza è nel capitolo 18.</p>
-<h3>Conferma dell'identità</h3>
-<p>L'identità dell'analita è confermata se: RT coincide con quello dello standard (entro pochi secondi), entrambe le transizioni sono presenti, rapporto qual/quant entro la tolleranza (capitolo 8).</p>
-<h3>Dalla quantificazione alla cinetica</h3>
-<p>Con le concentrazioni del parent si traccia <i>C</i>/<i>C</i><sub>0</sub> e ln(<i>C</i><sub>0</sub>/<i>C</i>) in funzione del tempo. Per i TP, senza standard, si tracciano le aree degli XIC (dal full scan) o delle transizioni MRM, eventualmente normalizzate al loro massimo: si confronta la forma della curva, non l'altezza tra TP diversi.</p>
+<h3>Identità e cinetica</h3>
+<p>L'identità dell'analita è confermata se tre condizioni valgono insieme: l'RT coincide con quello dello standard (entro pochi secondi), entrambe le transizioni sono presenti e il rapporto qualificatore/quantificatore sta entro la tolleranza (capitolo 8). Una sola condizione non basta: uno ione con lo stesso RT ma con un rapporto sbagliato può essere un interferente.</p>
+<p>Con le concentrazioni del parent si traccia <i>C</i>/<i>C</i><sub>0</sub> e ln(<i>C</i><sub>0</sub>/<i>C</i>) in funzione del tempo. Per una cinetica di primo ordine la seconda curva è una retta con pendenza <i>k</i>, e il tempo di dimezzamento è ln 2 / <i>k</i>: con <i>k</i> = 0,05 min<sup>−1</sup> sono circa 14 min.</p>
+<p>Per i TP, senza standard, si tracciano le aree degli XIC (dal full scan) o delle transizioni MRM, eventualmente normalizzate al loro massimo: si confronta la forma della curva, non l'altezza tra TP diversi.</p>
 <h2>Per approfondire</h2>
 <ul class="refs">
 <li><span class="tag">formato</span>Martens L. et al. (2011) mzML—a community standard for mass spectrometry data. <i>Mol. Cell. Proteomics</i> 10, R110.000133. <a href="https://doi.org/10.1074/mcp.R110.000133" target="_blank" rel="noopener">doi:10.1074/mcp.R110.000133</a></li>
