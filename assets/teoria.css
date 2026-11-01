@@ -431,6 +431,7 @@ html:not(.tp-emb) body:not(.hdr)::before{content:"";display:block;height:var(--t
 .storia-passo{margin:6px 0 0;font-size:15px;color:var(--ink);min-height:1.6em}
 .storia-fig{display:block;position:relative;min-height:160px;margin:14px 0}
 .storia-fig img,.storia-fig svg{display:block;max-width:100%;height:auto}
+figure>img{max-width:100%;height:auto}   /* any figure image, wrapped in .storia-fig or not, never wider than the column (390 px phones) */
 .storia-link{margin:14px 0;font-size:15px;color:var(--ink)}
 .storia-link a{color:var(--accent);text-decoration:underline}
 .storia-chip[aria-pressed=true]{border:2px solid var(--accent);background:var(--sel);font-weight:700}
@@ -448,4 +449,4 @@ html.theme-vt::view-transition-old(root){animation:-ua-view-transition-fade-out 
 html.theme-vt::view-transition-new(root){animation:-ua-view-transition-fade-in var(--theme-fade) ease-in-out both}
 html.theme-x:not(.theme-vt),html.theme-x:not(.theme-vt) *,html.theme-x:not(.theme-vt) *::before,html.theme-x:not(.theme-vt) *::after{transition:background-color var(--theme-fade) ease-in-out,color var(--theme-fade) ease-in-out,border-color var(--theme-fade) ease-in-out,fill var(--theme-fade) ease-in-out,stroke var(--theme-fade) ease-in-out,box-shadow var(--theme-fade) ease-in-out!important}
 /* pointers to chapters not published yet (none today; part VII is published): hidden for readers, shown when teoria.js sets html.esteso (administrator mode) */
-html.esteso .solo-esteso[hidden]{display:inline}html.esteso details.solo-esteso[hidden]{display:block}
+html.esteso .solo-esteso[hidden]{display:inline}html.esteso p.solo-esteso[hidden]{display:block}html.esteso details.solo-esteso[hidden]{display:block}
