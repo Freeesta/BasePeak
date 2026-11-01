@@ -21,10 +21,15 @@ body.ed-on .sim::before{content:"Figura interattiva: qui non si modifica";positi
 #ed-esito{padding:8px 12px;border:2px solid var(--ink);border-left-width:10px;border-radius:6px;background:var(--panel);color:var(--ink);font-size:14px}
 #ed-esito.ko{border-left-style:double}
 #ed-esito ul{margin:6px 0 0;padding-left:20px}
-#ed-pannello{margin:12px 14px;padding:14px 18px;background:var(--panel);color:var(--ink);border:3px solid var(--ink);border-radius:10px;max-width:760px}
+#ed-pannello{margin:12px 14px 12px calc(var(--sidew, 0px) + 14px);padding:14px 18px;background:var(--panel);color:var(--ink);border:3px solid var(--ink);border-radius:10px;max-width:760px}
 #ed-pannello h2{margin:0 0 8px;font-size:19px;border:0;padding:0}
 #ed-pannello .ed-passi{margin:8px 0;padding-left:22px;line-height:1.7}
 #ed-pannello .ed-az{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+#ed-pannello .ed-grande{font-size:19px;min-height:48px;padding:6px 22px}
+#ed-pannello .ed-passi li{margin:10px 0;font-size:17px}
+#ed-pannello .ed-stato{font-size:17px;padding:8px 10px;border:2px solid var(--ink);border-radius:6px;background:var(--sel)}
+#ed-pannello .ed-alt{margin:8px 0}
+#ed-pannello .ed-alt summary{cursor:pointer;font-weight:600}
 #ed-pannello input[type=file]{font:inherit;color:var(--ink)}
 @media (max-width:700px){#ed-bar{position:static}}
 @media print{#ed-bar,#ed-pannello,#ed-code{display:none!important}}
