@@ -9,9 +9,10 @@
 <p class="lead">Dire che un composto è identificato richiede di dire con quale prova. Qui si impara a assegnare un livello di confidenza e a non confonderlo con un punteggio.</p>
 <details class="q storia"><summary>Un po' di storia</summary><p>Nel 2007 la Metabolomics Standards Initiative propose livelli minimi per riportare l'identificazione di un composto (Sumner et al., 2007). Nel 2014 Creek e colleghi chiesero come i laboratori misurino la propria sicurezza, e Sumner e colleghi proposero misure quantitative e alfanumeriche (Creek et al., 2014; Sumner et al., 2014).</p><p>Nello stesso anno Schymanski e colleghi pubblicarono la scala a cinque livelli, messa alla prova nel 2015 con una prova collaborativa sull'analisi dell'acqua (Schymanski et al., 2014; 2015). Seguirono estensioni per i PFAS (Charbonnet et al., 2022) e guide alla comunicazione dei risultati (Alseekh et al., 2021; Hollender et al., 2023).</p></details>
 <h2>Perché serve un livello</h2>
-<p>«Identificato» può voler dire cose molto diverse: un nome preso dal primo risultato di una ricerca in libreria, oppure un composto confermato con lo standard puro. Un livello di confidenza dice con quali prove si sostiene il nome.</p>
-<p>Le scale in uso sono due. Sumner et al. (2007) hanno definito livelli minimi per la metabolomica. Schymanski et al. (2014) hanno proposto una scala a cinque livelli per la spettrometria di massa ad alta risoluzione; Schymanski et al. (2015) l'hanno poi messa alla prova in una prova collaborativa. Creek et al. (2014) e Sumner et al. (2014) hanno discusso come esprimere la sicurezza in modo più quantitativo.</p>
-<p>Il livello non dipende da quanto un programma si dichiara sicuro, ma da quali dati esistono. Il collegamento con la ricerca in libreria è nel capitolo <a href="29-librerie.html">29</a>; la sintesi di base è già nel capitolo <a href="18-disegno.html">18</a>.</p>
+<p>«Identificato» può voler dire cose molto diverse: un nome preso dal primo risultato di una ricerca in libreria, oppure un composto confermato con lo standard puro. Un livello di confidenza dice con quali prove si sostiene il nome. Non dipende da quanto un programma si dichiara sicuro, ma da quali dati esistono.</p>
+<p>Un contrasto lo rende chiaro. Nel caso (a) un picco a m/z 216,1010 produce uno spettro MS2 che la libreria assegna a un composto con un buon punteggio. Chi scrive il nome può dire che lo spettro assomiglia a quello di libreria, e niente di più: il tempo di ritenzione non è stato confrontato e un isomero darebbe lo stesso risultato.</p>
+<p>Nel caso (b) lo stesso composto è stato acquistato come standard e iniettato con lo stesso metodo. Massa, spettro e tempo di ritenzione coincidono con quelli del campione. Ora si può affermare che il composto è quello, perché la risposta del metodo è stata misurata e non solo letta in una banca dati.</p>
+<p>Il nome è lo stesso nei due casi, la prova no. Per questo il livello va scritto accanto al nome. Il collegamento con la ricerca in libreria è nel capitolo <a href="29-librerie.html">29</a>; la sintesi di base è già nel capitolo <a href="18-disegno.html">18</a>.</p>
 <h2>La scala di Schymanski (2014)</h2>
 <p>I nomi sono tradotti dall'inglese; l'originale è tra parentesi. La traduzione è nostra.</p>
 <table>
@@ -24,7 +25,13 @@
 <tr><td>4</td><td>Formula molecolare univoca (<i>Unequivocal molecular formula</i>)</td><td>MS con isotopi o addotti che fissano la formula</td></tr>
 <tr><td>5</td><td>Massa esatta di interesse (<i>Exact mass of interest</i>)</td><td>MS: il solo valore di massa</td></tr>
 </table>
-<p>Il livello 2 ha due sottolivelli: 2a se lo spettro coincide senza ambiguità con uno di libreria o di letteratura, 2b se nessun'altra struttura spiega i dati ma mancano standard e letteratura. Solo il livello 1 richiede uno standard di riferimento.</p>
+<p>Il livello 1 è l'unico che richiede uno standard di riferimento misurato con lo stesso metodo. Un esempio di prova che lo raggiunge: massa esatta, spettro MS2 e tempo di ritenzione del campione coincidono con quelli dello standard iniettato nella stessa sequenza. Con un solo dato in meno, per esempio senza il tempo di ritenzione, il livello scende.</p>
+<p>Il livello 2 ha due sottolivelli. Il 2a vale quando lo spettro coincide senza ambiguità con uno di libreria o di letteratura: una prova è un confronto con una libreria pubblica, con picchi e intensità relative simili. Il 2b vale quando nessun'altra struttura spiega i dati, ma mancano standard e spettro di riferimento: per esempio due frammenti diagnostici di una classe, più il contesto del campione.</p>
+<h2>I livelli bassi: 3, 4 e 5</h2>
+<p>Al livello 3 i dati sono compatibili con uno o più candidati, ma non bastano per sceglierne uno. Tipico è il caso di isomeri di posizione che danno lo stesso spettro MS2: si può scrivere «uno di questi tre», non il nome di uno solo. Il livello 3 è il limite oltre il quale si sta ancora parlando di strutture.</p>
+<p>Al livello 4 si conosce solo la formula molecolare, fissata da massa esatta e isotopi o addotti. Un esempio: lo scarto di massa è di pochi ppm e il pattern isotopico conferma la presenza di cloro, ma nessuno spettro MS2 distingue le strutture possibili. La formula è nota, la struttura no.</p>
+<p>Al livello 5 c'è solo una massa esatta di interesse, per esempio un picco che compare nei campioni esposti e non nei bianchi. Non si può dire altro, ed è giusto scriverlo così: segnala dove guardare meglio, non che cosa c'è.</p>
+<p>Per salire di livello serve un dato in più, non un calcolo migliore. Dal 5 al 4 si aggiunge la formula, con isotopi e addotti; dal 4 al 3 uno spettro MS2 compatibile con qualche candidato; dal 3 al 2 un confronto che escluda gli altri; dal 2 al 1 lo standard. Conoscere il gradino successivo aiuta a decidere quale misura fare dopo.</p>
 <h2>La scala MSI (2007)</h2>
 <p>Sumner et al. (2007) distinguono quattro livelli. Il livello 1 richiede almeno due dati indipendenti e ortogonali, per esempio tempo di ritenzione e spettro, confrontati con quelli di un composto autentico misurato nelle stesse condizioni. Dati di letteratura o di un altro laboratorio portano al livello 2.</p>
 <ol>
@@ -33,6 +40,8 @@
 <li>Classi di composti caratterizzate in via provvisoria (<i>Putatively characterized compound classes</i>);</li>
 <li>Composti sconosciuti (<i>Unknown compounds</i>).</li>
 </ol>
+<p>La differenza principale con Schymanski sta nel tipo di prova. La scala MSI chiede dati ortogonali, cioè indipendenti tra loro, come tempo di ritenzione e spettro; quella di Schymanski parla di evidenza di spettrometria di massa ad alta risoluzione e distingue meglio i casi in cui lo standard manca. Per questo la corrispondenza non è uno a uno.</p>
+<p>Nella pratica conviene sceglierne una sola e dichiararla. Chi lavora in ambito ambientale con alta risoluzione usa di solito Schymanski; chi riporta metabolomica spesso usa MSI. Mescolare le due nello stesso rapporto, o convertire un livello nell'altro senza dirlo, rende i risultati difficili da confrontare con quelli di altri laboratori.</p>
 <table>
 <caption>Corrispondenza approssimata, a scopo didattico</caption>
 <tr><th scope="col">Schymanski</th><td>1</td><td>2a, 2b</td><td>3</td><td>4, 5</td></tr>
@@ -41,6 +50,8 @@
 <p>Le due scale non sono equivalenti: la tabella è un'indicazione, non una regola. Altre proposte più specifiche esistono, per esempio quella per i PFAS (Charbonnet et al., 2022).</p>
 <h2>Un punteggio non è un livello</h2>
 <p>Un coseno di 0,95 con una libreria non porta oltre il livello 2a: senza il confronto con lo standard misurato con lo stesso metodo (stesso laboratorio, stessa colonna, stesse condizioni) il livello 1 non si raggiunge. Il punteggio dice quanto due spettri si somigliano, non che il composto sia quello.</p>
+<p>Un caso concreto: due isomeri di posizione danno spettri MS2 quasi identici, e il campione ha un coseno di 0,95 con entrambi. Il punteggio non aiuta a scegliere, perché è alto per tutti e due. Solo il tempo di ritenzione, che di solito differisce tra isomeri, confrontato con lo standard di ciascuno, indica quale dei due è presente.</p>
+<p>In sintesi, il punteggio misura la somiglianza; il livello descrive la prova. Quando due candidati hanno punteggi vicini la differenza tra 0,95 e 0,93 non è un criterio, e il livello resta il 3 finché i dati ortogonali non separano i candidati.</p>
 <div class="box warn"><b>Errori frequenti</b><p>Scrivere «livello 1» perché lo spettro coincide con uno di libreria. Dare lo stesso livello a tutti i risultati di una tabella. Dimenticare di dire con quale scala è stato assegnato il livello.</p></div>
 <details class="poe"><summary>Prima di provare: con un punteggio 0,99 e 8 picchi in comune, ma senza standard, quale livello ottieni?</summary>
 <p>Il livello 2a. Alza il punteggio quanto vuoi: senza lo standard iniettato con lo stesso metodo non si passa al livello 1.</p></details>
@@ -48,6 +59,9 @@
 <p class="note nota">Ricava il livello di confidenza dalle prove disponibili e dice che cosa manca per salire. Dati sintetici, a scopo didattico.</p></div>
 <h2>Che cosa riportare</h2>
 <p>Perché un risultato si possa verificare, accanto al nome vanno scritte le prove. Alseekh et al. (2021) e Hollender et al. (2023) danno indicazioni dettagliate per la comunicazione dei risultati.</p>
+<p>Le prime righe della tabella descrivono il dato: massa, ione, tempo di ritenzione, formula con il suo errore in ppm. Chi legge può rifare il calcolo e controllare che la formula sia coerente con la massa. Le righe sull'evidenza MS2 e sullo standard dicono invece su che cosa poggia il nome.</p>
+<p>Senza le ultime due righe, livello e software, un risultato non si può né ripetere né giudicare. Dire «livello 2a» senza la scala non basta: lo stesso numero ha significati diversi in Schymanski e in MSI. Scrivere programma, versione e parametri permette di capire perché un altro laboratorio ottenga un punteggio diverso.</p>
+<p>Un esempio di riga ben scritta: «m/z 216,1010 [M+H]+, tempo di ritenzione 8,4 min, formula proposta con errore in ppm, spettro confrontato con una libreria pubblica (punteggio e picchi in comune), livello 2a secondo Schymanski». In una riga chi legge trova che cosa è stato misurato, con che prova e con quale scala.</p>
 <table>
 <caption>Informazioni minime da riportare per ogni composto</caption>
 <tr><th scope="col">Voce</th><th scope="col">Che cosa scrivere</th></tr>

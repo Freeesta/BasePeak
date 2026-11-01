@@ -10,16 +10,14 @@
 <details class="q storia"><summary>Un po' di storia</summary><p>I formati aperti nascono per non dipendere dai file dei costruttori: mzXML (Pedrioli et al., 2004) per la proteomica. Un unico formato unificante fu annunciato nel 2008 (Deutsch, 2008) e pubblicato come mzML nel 2011 (Martens et al., 2011). Nel 2014 arrivano la compressione MS-Numpress (Teleman et al.) e mzTab per i risultati (Griss et al.), esteso alla metabolomica nel 2019 (mzTab-M, Hoffmann et al.). JCAMP-DX nacque per gli spettri infrarossi nel 1988 (McDonald e Wilks) e fu esteso alla spettrometria di massa nel 1994 (Lampen et al.).</p></details>
 <h2>Che cosa c'è in un file di dati</h2>
 <p>Un file contiene molto più degli spettri (<a href="10-dati.html">capitolo 10</a>, «Che cosa contiene un file»). Per ogni scansione ci sono i parametri di acquisizione (tempo, livello MS, polarità, precursore) e due array, m/z e intensità. In più ci sono lo strumento e i programmi che hanno elaborato i dati.</p>
+<p>Questa distinzione guida la scelta del formato. Per rielaborare i dati servono gli spettri completi, con i loro metadati. Per confrontare uno spettro con una libreria basta un elenco di picchi. Per condividere un risultato serve una tabella. Usare un formato per uno scopo che non è il suo fa perdere informazioni senza che nessuno se ne accorga.</p>
 <p>Conviene distinguere tre famiglie: i <b>dati</b> (mzML, mzXML), gli <b>elenchi di spettri</b> (MGF, MSP), che servono a cercare e alle librerie, e i <b>risultati</b> (mzTab-M), che dicono che cosa si è trovato.</p>
 <h2>mzML dall'interno</h2>
-<p>mzML è un file XML, cioè testo (Martens et al., 2011). Le sue parti, nell'ordine:</p>
-<ul>
-<li><code>cvList</code> e <code>fileDescription</code>: vocabolari e contenuto;</li>
-<li><code>softwareList</code>, <code>instrumentConfigurationList</code>, <code>dataProcessingList</code>: programmi, strumento, elaborazioni;</li>
-<li><code>run</code>: una <code>spectrumList</code> con uno <code>spectrum</code> per scansione, e i cromatogrammi.</li>
-</ul>
+<p>mzML è un file XML, cioè testo (Martens et al., 2011). Nella parte iniziale, <code>cvList</code> e <code>fileDescription</code> dicono quali vocabolari il file usa e che cosa contiene. Subito dopo, <code>softwareList</code>, <code>instrumentConfigurationList</code> e <code>dataProcessingList</code> descrivono i programmi, lo strumento e le elaborazioni già applicate.</p>
+<p>Queste parti servono quando un programma legge il file. Dalla configurazione dello strumento si capisce quale analizzatore ha prodotto i dati e quindi quale risoluzione aspettarsi. Dalla lista delle elaborazioni si vede se qualcuno ha già centroidato o filtrato i dati. Infine il blocco <code>run</code> contiene una <code>spectrumList</code>, con un elemento <code>spectrum</code> per ogni scansione, e i cromatogrammi.</p>
 <h3>Il vocabolario controllato</h3>
-<p>Quasi ogni informazione è un <code>cvParam</code> con codice e nome del vocabolario PSI-MS, uguali in ogni programma.</p>
+<p>Quasi ogni informazione è un <code>cvParam</code> con codice e nome del vocabolario PSI-MS, uguali in ogni programma. Un esempio è il livello MS, che si scrive con il codice MS:1000511 e non con un'etichetta libera come «livello» o «MSn».</p>
+<p>Il vantaggio è che un codice non si presta a più letture. Un nome libero può essere scritto in modi diversi o tradotto, e ogni programma dovrebbe riconoscerli uno per uno. Un codice invece si cerca nel vocabolario e ha lo stesso significato ovunque.</p>
 <table>
 <caption>Alcuni termini del vocabolario PSI-MS usati negli spettri</caption>
 <tr><th>Codice</th><th>Nome</th></tr>
@@ -29,43 +27,37 @@
 <tr><td>MS:1000744, MS:1000041</td><td>selected ion m/z, charge state</td></tr>
 <tr><td>MS:1000514, MS:1000515</td><td>m/z array, intensity array</td></tr>
 </table>
-<h3>Gli array binari: base64, precisione, compressione</h3>
-<p>Gli array sono scritti in tre passaggi:</p>
-<ol>
-<li>i numeri diventano byte: float a 32 bit (MS:1000521) o a 64 bit (MS:1000523), sempre in ordine little-endian;</li>
-<li>facoltativa, la compressione: zlib (MS:1000574, senza perdita) o MS-Numpress (MS:1002312-4; Teleman et al., 2014), in parte con perdita; nessuna è MS:1000576;</li>
-<li>i byte diventano testo base64: 3 byte in 4 caratteri.</li>
-</ol>
+<h2>Gli array binari: base64, precisione, compressione</h2>
+<p>Gli array di m/z e di intensità sono la parte più pesante del file. Prima i numeri diventano byte: float a 32 bit (MS:1000521) o a 64 bit (MS:1000523), sempre in ordine little-endian. Poi, se si vuole, i byte si comprimono con zlib (MS:1000574), che non perde nulla, oppure con MS-Numpress (MS:1002312-4; Teleman et al., 2014), che in parte perde informazione; il codice MS:1000576 indica l'assenza di compressione.</p>
+<p>L'ultimo passaggio serve perché XML è testo e un byte qualsiasi non si può scrivere in un file di testo. Il base64 trasforma ogni gruppo di 3 byte in 4 caratteri stampabili: il file cresce di un terzo, ma resta leggibile da qualunque programma e da qualunque editor.</p>
 <span class="eq">caratteri = 4 · ⌈<i>n</i> / 3⌉<span class="no">(23.1)</span></span>
-<p>con <i>n</i> byte. Esempio: 500 m/z a 64 bit sono 4000 byte e 5336 caratteri. Un float a 32 bit ha 24 bit di mantissa, quindi un errore relativo fino a 2<sup>−24</sup>, circa 0,06 ppm: piccolo rispetto agli errori di misura, ma la figura lo calcola.</p>
+<p>con <i>n</i> byte. Esempio: 500 m/z a 64 bit sono 4000 byte e 5336 caratteri, cioè circa 4/3 in più.</p>
+<p>La scelta tra 32 e 64 bit è un compromesso tra dimensione e precisione. Un float a 32 bit ha 24 bit di mantissa, quindi un errore relativo fino a 2<sup>−24</sup>, circa 0,06 ppm. È piccolo rispetto agli errori di misura di uno spettrometro, e la figura lo calcola.</p>
 <details class="poe"><summary>Prima di provare: con la previsione lineare, 500 m/z di un profilo occupano più o meno di 500 centroidi irregolari?</summary>
 <p>Meno: in un profilo i punti sono equidistanti, la previsione è quasi perfetta e basta circa un byte per valore (510 byte contro 4000). Con centroidi irregolari servono più byte (circa 1500). Provalo nella figura.</p></details>
-<div class="sim" id="sim-chemi-codifica" data-sim="../assets/sim-chemi-formati.js"><h4>Figura 23.1 Come si scrive uno spettro in un file</h4>
+<div class="sim" id="sim-chemi-codifica" data-sim="../assets/sim-chemi-formati.js"><h3>Figura 23.1 Come si scrive uno spettro in un file</h3>
 <p class="note nota">Mostra che cosa fanno precisione, compressione e base64 alla dimensione e ai numeri di un array. Dati sintetici, a scopo didattico.</p></div>
-<h3>L'indice</h3>
+<h2>L'indice</h2>
 <p>Il file <code>indexedmzML</code> avvolge il resto con l'elenco delle posizioni in byte di ogni spettro: un programma salta allo spettro 12 345 senza leggere i precedenti. Se si modifica il file a mano le posizioni non tornano: conviene rigenerare l'indice.</p>
+<p>Lo stesso vale per i file molto grandi. Senza indice un programma deve leggere il file dall'inizio per trovare lo spettro cercato, e per una corsa di centinaia di migliaia di scansioni l'attesa si nota. Con l'indice la lettura è quasi immediata, perché le posizioni sono già elencate e si salta direttamente al punto giusto.</p>
+<p>Per questo, dopo una modifica a mano, conviene rigenerare l'indice con un programma e non correggere le posizioni a occhio. Un indice sbagliato di pochi byte basta a far leggere uno spettro tagliato a metà, e l'errore compare solo quando qualcuno apre quella scansione.</p>
 <h2>Gli altri formati</h2>
-<p>Altri formati servono ad altri scopi, dai dati grezzi ai risultati.</p>
-<h3>mzXML</h3>
-<p>Precede mzML (Pedrioli et al., 2004) e si trova ancora negli archivi. Le coppie (m/z, intensità) stanno intercalate in un solo array, in ordine di byte di rete (big-endian). Usa nomi di attributo propri, non il vocabolario controllato.</p>
-<h3>MGF e MSP: elenchi di spettri</h3>
-<p>Sono file di testo che elencano spettri MS2 uno dopo l'altro. MGF usa le righe <code>BEGIN IONS</code>, <code>PEPMASS=</code>, <code>CHARGE=</code>, <code>RTINSECONDS=</code>, i picchi, <code>END IONS</code>. MSP è il formato testuale delle librerie NIST: <code>Name:</code>, <code>Num Peaks:</code>, i picchi. Senza vocabolario controllato, polarità, unità del tempo ed energia di collisione dipendono dal programma.</p>
-<h3>JCAMP-DX e netCDF (ANDI)</h3>
-<p>JCAMP-DX nacque per gli spettri infrarossi (McDonald e Wilks, 1988) e fu esteso alla spettrometria di massa (Lampen et al., 1994): testo con campi etichettati. netCDF (ANDI) è un formato binario storico, usato soprattutto per la gascromatografia.</p>
-<h3>mzTab-M: i risultati, non i dati</h3>
-<p>Non contiene spettri ma risultati: una tabella di testo, con righe <code>MTD</code> per i metadati e <code>SML</code> per i composti (Griss et al., 2014, per mzTab; Hoffmann et al., 2019, per la versione per piccole molecole).</p>
+<p><b>mzXML</b> precede mzML (Pedrioli et al., 2004) e si trova ancora negli archivi. Le coppie (m/z, intensità) stanno intercalate in un solo array, in ordine di byte di rete (big-endian), e gli attributi hanno nomi propri. Senza il vocabolario controllato, molte informazioni dello strumento restano fuori o hanno nomi diversi da un programma all'altro.</p>
+<p><b>MGF e MSP</b> sono file di testo che elencano spettri MS2 uno dopo l'altro. MGF usa le righe <code>BEGIN IONS</code>, <code>PEPMASS=</code>, <code>CHARGE=</code>, <code>RTINSECONDS=</code>, i picchi, <code>END IONS</code>. MSP è il formato testuale delle librerie NIST: <code>Name:</code>, <code>Num Peaks:</code>, i picchi. Servono a cercare e a confrontare, ma polarità, unità del tempo ed energia di collisione dipendono dal programma.</p>
+<p><b>JCAMP-DX</b> nacque per gli spettri infrarossi (McDonald e Wilks, 1988) e fu esteso alla spettrometria di massa (Lampen et al., 1994): testo con campi etichettati. <b>netCDF (ANDI)</b> è un formato binario storico, usato soprattutto per la gascromatografia. Entrambi conservano lo spettro ma pochi metadati moderni.</p>
+<p><b>mzTab-M</b> non contiene spettri ma risultati: una tabella di testo, con righe <code>MTD</code> per i metadati e <code>SML</code> per i composti (Griss et al., 2014, per mzTab; Hoffmann et al., 2019, per la versione per piccole molecole). Serve a condividere che cosa si è trovato, non a rifare l'analisi.</p>
 <details class="poe"><summary>Prima di provare: quali metadati si perdono passando da mzML a MGF?</summary>
 <p>Si perdono la dichiarazione profilo o centroide, il software di conversione e l'energia di collisione; la polarità resta solo nel segno della carica e l'unità del tempo solo nel nome della chiave. Controlla la tabella sotto lo spettro.</p></details>
-<div class="sim" id="sim-chemi-formati" data-sim="../assets/sim-chemi-formati.js"><h4>Figura 23.2 Lo stesso spettro in cinque formati</h4>
+<div class="sim" id="sim-chemi-formati" data-sim="../assets/sim-chemi-formati.js"><h3>Figura 23.2 Lo stesso spettro in cinque formati</h3>
 <p class="note nota">Mostra lo stesso spettro scritto in cinque formati e quali metadati ciascuno conserva. Spettro sintetico, a scopo didattico.</p></div>
 <h2>Dal formato del costruttore al formato aperto</h2>
-<p>I costruttori usano formati propri: file <code>.raw</code> (Thermo), cartelle <code>.d</code> (Agilent, Bruker), <code>.wiff</code> e <code>.wiff2</code> (Sciex), cartelle <code>.raw</code> (Waters). Per usare i dati altrove si convertono.</p>
-<h3>Conversione</h3>
+<p>I costruttori scrivono i dati in formati propri, pensati per il loro software e per la velocità di acquisizione, non per lo scambio. Eccoli: file <code>.raw</code> (Thermo), cartelle <code>.d</code> (Agilent, Bruker), <code>.wiff</code> e <code>.wiff2</code> (Sciex), cartelle <code>.raw</code> (Waters). Per usare i dati altrove si convertono.</p>
+<p>La conversione non è solo un cambio di estensione. Il programma legge il file del costruttore con le sue librerie, ricostruisce gli spettri e li riscrive nel formato aperto, e nel farlo può applicare filtri, scegliere la precisione dei numeri e decidere se centroidare. Ogni scelta lascia una traccia nei metadati, che vanno letti.</p>
 <p>ProteoWizard e il suo programma <code>msconvert</code> (Kessner et al., 2008; Chambers et al., 2012) leggono molti formati; ThermoRawFileParser (Hulstaert et al., 2020) converte i file Thermo. Dopo la conversione si controllano il numero di spettri, la polarità, l'unità del tempo e la dichiarazione profilo o centroide (<a href="10-dati.html">capitolo 10</a>, «Che cosa controllare quando si importa un file»).</p>
-<h3>Centroidare durante la conversione?</h3>
-<p>Convertire già in centroidi riduce molto la dimensione, ma è irreversibile: il profilo non si recupera e l'algoritmo è quello del costruttore (<a href="22-segnale.html">capitolo 22</a>, «Tre modi di calcolare un centroide»). Conviene conservare il profilo se si vuole scegliere il metodo, e annotare sempre quale scelta è stata fatta.</p>
+<p>Una scelta pesa più delle altre: centroidare già durante la conversione. Il file diventa molto più piccolo, ma l'operazione è irreversibile: il profilo non si recupera. Inoltre l'algoritmo è quello del costruttore, descritto solo in parte (<a href="22-segnale.html">capitolo 22</a>, «Tre modi di calcolare un centroide»).</p>
+<p>Conviene quindi convertire in profilo e centroidare dopo, con un metodo che si conosce e si può ripetere. Se si centroida subito, per esempio per ridurre lo spazio, lo si scrive nel registro dell'analisi: programma e versione, opzione usata, data. Chi riprende i dati dopo mesi saprà così che il profilo non esiste più.</p>
 <h2>I metadati che contano</h2>
-<p>Alcune informazioni, se si perdono, cambiano il risultato senza avvisare.</p>
+<p>Alcune informazioni, se si perdono, cambiano il risultato senza avvisare. Senza la polarità un programma non sa se calcolare gli addotti con +H o con −H, e le masse attese differiscono di circa 2,015, cioè due volte la massa del protone.</p>
 <table>
 <caption>Metadati da controllare dopo ogni conversione</caption>
 <tr><th>Metadato</th><th>Che cosa verificare</th></tr>
@@ -77,6 +69,8 @@
 <tr><td>Risoluzione, strumento, sorgente</td><td>modello e impostazioni</td></tr>
 <tr><td>Software e filtri</td><td>nome, versione, peak picking applicato</td></tr>
 </table>
+<p>Il tempo di inizio scansione è l'esempio più insidioso. Se un file è in secondi e un altro in minuti, un picco a 5 minuti diventa 300 oppure 5. Una finestra di ±0,1 sono 6 secondi in un caso e un decimo di secondo nell'altro. Nessun errore compare: i picchi semplicemente non si allineano.</p>
+<p>La stessa cautela vale per profilo e centroide e per l'energia di collisione. Un valore in eV e uno normalizzato (NCE) non sono confrontabili, e una libreria costruita con l'uno non si legge con l'altro. Per questo la tabella va controllata dopo ogni conversione, su uno o due spettri scelti, prima di elaborare l'intera serie. Se la serie è lunga, si converte tutta con lo stesso programma e la stessa versione, così le differenze non si sommano di nascosto.</p>
 <div class="box warn"><b>Errori frequenti</b>
 <ul>
 <li>Il centroide del costruttore applicato in conversione senza che nessuno lo noti.</li>
