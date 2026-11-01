@@ -16,56 +16,50 @@
 <li>per ogni combinazione degli elementi diversi da H si calcola quanti idrogeni completano la massa;</li>
 <li>si tengono le formule con errore, in valore assoluto, non oltre la tolleranza.</li>
 </ol>
+<p>I limiti del secondo passo pesano molto. Ogni elemento aggiunto alla lista moltiplica le combinazioni che possono dare la stessa massa, e con esse le formule da scartare dopo. Un elemento si ammette solo se il campione, il metodo o il pattern isotopico lo rendono plausibile.</p>
 <span class="eq">errore (ppm) = <span class="frac"><span><i>m</i><sub>mis</sub> − <i>m</i><sub>teo</sub></span><span><i>m</i><sub>teo</sub></span></span> × 10<sup>6</sup><span class="no">(30.1)</span></span>
-<p>Esempio: lo ione [M+H]<sup>+</sup> misurato a 216,1011 corrisponde a una massa neutra di 215,0938, che è quella di C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub> (l'atrazina, a titolo di esempio). Ogni formula elencata deve poi avere un RDB intero e non negativo (<a href="11-formula.html">capitolo 11</a>).</p>
+<p>Esempio: lo ione [M+H]<sup>+</sup> misurato a 216,1011 corrisponde a una massa neutra di 215,0938, che è quella di C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub> (l'atrazina, a titolo di esempio). Con una tolleranza di 5 ppm la finestra intorno a 215,0938 è di circa ± 0,0011: ogni formula la cui massa teorica cade in quell'intervallo resta in lista. Ogni formula elencata deve poi avere un RDB intero e non negativo (<a href="11-formula.html">capitolo 11</a>).</p>
 <div class="box warn"><b>Errori frequenti</b><p>Una finestra in ppm più stretta dell'errore reale esclude la formula vera. Un tipo di ione sbagliato (per esempio [M+H]<sup>+</sup> al posto di [M+Na]<sup>+</sup>) rende sbagliate tutte le formule. La figura 30.1 mostra entrambi gli effetti.</p></div>
 <h2>Il pattern isotopico come filtro</h2>
 <p>Ogni formula ha un gruppo teorico di picchi M, M+1, M+2, M+3, ricavabile dalle abbondanze naturali degli isotopi (<a href="11-formula.html">capitolo 11</a>). Si confronta con le intensità misurate, riferite a M = 100. Un punteggio didattico semplice è:</p>
 <span class="eq"><i>S</i> = 1 − <span class="frac"><span>Σ<sub><i>k</i>=1..3</sub> |<i>r<sub>k</sub></i> − <i>t<sub>k</sub></i>|</span><span>Σ<sub><i>k</i>=1..3</sub> <i>t<sub>k</sub></i></span></span><span class="no">(30.2)</span></span>
 <p>Qui <i>r<sub>k</sub></i> è l'intensità misurata del picco M+<i>k</i> e <i>t<sub>k</sub></i> quella teorica. I programmi reali usano punteggi propri, più raffinati: questo serve a capire l'effetto.</p>
-<p>Per C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub> il pattern teorico è 100 : 10,64 : 32,51 : 3,42. Se si misura 100 : 10,0 : 30,0 : 3,0, la somma degli scarti è 3,57 e quella dei valori teorici 46,57: <i>S</i> = 0,923. Se M+2 e M+3 spariscono sotto la soglia, <i>S</i> scende a 0,21. Un rivelatore saturo gonfia tutti i rapporti rispetto a M. Il segnale va quindi controllato prima (capitolo <a href="22-segnale.html">22</a>).</p>
+<p>Il pattern isotopico da solo non decide. Per masse piccole i picchi M+1 e M+2 cambiano poco da una formula all'altra, e un errore di pochi punti sulle intensità basta a far preferire la formula sbagliata. Funziona meglio con elementi dal pattern marcato, come cloro e bromo.</p>
+<p>Per C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub> il pattern teorico è 100 : 10,64 : 32,51 : 3,42. Il picco M+2 alto viene dal cloro: <sup>37</sup>Cl pesa circa un terzo di <sup>35</sup>Cl, e un solo atomo basta a dare un M+2 di circa 32 su 100. </p>
+<p>Se si misura 100 : 10,0 : 30,0 : 3,0, la somma degli scarti è 3,57 e quella dei valori teorici 46,57: <i>S</i> = 0,923. Se M+2 e M+3 spariscono sotto la soglia, <i>S</i> scende a 0,21. Un rivelatore saturo gonfia tutti i rapporti rispetto a M. Il segnale va quindi controllato prima (capitolo <a href="22-segnale.html">22</a>).</p>
 <h2>Regole euristiche</h2>
-<p>Kind e Fiehn (2007) hanno raccolto sette regole per togliere le formule chimicamente improbabili senza perdere quelle vere. In breve:</p>
-<ol>
-<li>limiti sul numero di atomi di ogni elemento, in funzione della massa;</li>
-<li>regole di valenza di Lewis e di Senior;</li>
-<li>accordo con il pattern isotopico;</li>
-<li>intervallo ammesso per il rapporto H/C;</li>
-<li>limiti sui rapporti tra eteroatomi (N, O, P, S) e carbonio;</li>
-<li>probabilità delle combinazioni di rapporti tra elementi;</li>
-<li>controllo del trimetilsilile, per le molecole derivatizzate.</li>
-</ol>
+<p>Kind e Fiehn (2007) hanno raccolto sette regole per togliere le formule chimicamente improbabili senza perdere quelle vere. Le prime riguardano la composizione: limiti sul numero di atomi di ogni elemento in funzione della massa, regole di valenza di Lewis e di Senior, intervallo ammesso per il rapporto H/C.</p>
+<p>Ognuna scarta un tipo di formula impossibile. Una molecola di massa 230 non contiene dieci atomi di zolfo; le regole di valenza escludono le formule in cui gli atomi non si legano in una sola molecola con legami possibili. Un H/C troppo alto o troppo basso descrive composti che non si trovano fra i metaboliti.</p>
+<p>Le altre regole confrontano i dati con la formula. L'accordo con il pattern isotopico verifica che l'abbondanza di M+1 e M+2 sia quella attesa. I limiti sui rapporti fra eteroatomi (N, O, P, S) e carbonio, e la probabilità delle loro combinazioni, scartano formule con troppo azoto o ossigeno per il carbonio disponibile. L'ultima regola, sul trimetilsilile, vale per le molecole derivatizzate.</p>
+<p>Un caso concreto: C<sub>8</sub>H<sub>14</sub>ClN<sub>5</sub> ha H/C = 14/8 = 1,75, dentro l'intervallo, e un RDB di 4 (8 − 7 − 0,5 + 2,5 + 1), intero. Una formula C<sub>8</sub>H<sub>15</sub>ClN<sub>5</sub>, con un idrogeno in più, darebbe RDB = 3,5: non intero, quindi scartata.</p>
 <p>La figura usa tre filtri di questo tipo: RDB intero e non negativo, H/C tra 0,2 e 3,1 (come nel capitolo 11) e punteggio isotopico minimo. I limiti dei singoli elementi sono quelli, più stretti, della ricerca didattica.</p>
 <details class="poe"><summary>Prima di provare: quante formule restano per l'atrazina con C H N O, S e Cl, a 5 ppm? E se il rivelatore è saturo?</summary>
 <p>Dopo la sola massa restano pochi candidati; il filtro RDB ne toglie qualcuno, quello H/C quasi nessuno. Il filtro isotopico lascia solo la formula vera. Con il pattern saturo, invece, anche la formula vera viene scartata: prova.</p></details>
 <div class="sim" id="sim-chemi-formula" data-sim="../assets/sim-chemi-candidati.js"><h3>Figura 30.1 Quante formule restano?</h3>
 <p class="note nota">Mostra quante formule restano dopo ogni indizio: tolleranza, elementi, isotopi e regole. Dati sintetici, a scopo didattico.</p></div>
 <h2>Dalla formula ai candidati</h2>
-<p>Una formula non è una struttura: ne ammette in genere molte, tutte isomere. Per elencarle si interroga una banca dati di strutture note, per formula o per massa. Il risultato è una lista di candidati, che ha due limiti.</p>
-<ul>
-<li>Contiene solo ciò che la banca dati conosce: un composto assente non può essere trovato.</li>
-<li>L'ordine dipende dalla banca dati scelta e dai suoi contenuti, e cambia se si cambia banca.</li>
-</ul>
-<p>Per ordinare i candidati si ricorre allo spettro MS2, confrontandolo con quello che ciascun candidato produrrebbe: è la frammentazione in silico. Un candidato in cima alla lista, senza altre prove, è al più di livello 3 (<a href="31-confidenza.html">capitolo 31</a>).</p>
+<p>Una formula non è una struttura: ne ammette in genere molte, tutte isomere. Per elencarle si interroga una banca dati di strutture note, per formula o per massa. Il risultato è una lista di candidati.</p>
+<p>Un esempio. La formula C<sub>9</sub>H<sub>16</sub>ClN<sub>5</sub> (massa monoisotopica 229,1094) è quella della terbutilazina e anche della propazina, due erbicidi isomeri. Hanno la stessa massa, lo stesso pattern isotopico e la stessa classe chimica: né la massa né gli isotopi li distinguono, e nemmeno una regola euristica. Una banca dati grande elenca di norma ben più di due strutture per una formula così.</p>
+<p>La lista ha due limiti. Contiene solo ciò che la banca dati conosce: un composto assente non può essere trovato. E l'ordine dipende dalla banca dati scelta e dai suoi contenuti, quindi cambia se si cambia banca.</p>
+<p>Per ordinare i candidati si ricorre allo spettro MS2, confrontandolo con quello che ciascun candidato produrrebbe: è la frammentazione in silico. Nell'esempio, solo i frammenti che differiscono fra i due erbicidi, come la perdita di un gruppo alchilico diverso, possono separarli. Un candidato in cima alla lista, senza altre prove, è al più di livello 3 (<a href="31-confidenza.html">capitolo 31</a>).</p>
 <div class="box warn"><b>Non fidarsi del solo primo posto</b><p>Gli isomeri non si distinguono dalla formula e spesso nemmeno dall'MS2. L'ordine cambia con la banca dati e con il programma. Il primo della lista è un candidato, non un'identificazione.</p></div>
 <h2>Frammentazione in silico</h2>
-<p>Il calcolatore prevede come ogni candidato si romperebbe e confronta la previsione con i picchi misurati. I tre approcci differiscono nel prevedere.</p>
+<p>Il calcolatore prevede come ogni candidato si romperebbe e confronta la previsione con i picchi misurati. I tre approcci differiscono nel modo di prevedere.</p>
+<p>MetFrag rompe i legami della struttura candidata e controlla se le masse dei frammenti coincidono con i picchi. CFM-ID impara da spettri misurati quali rotture sono probabili e ne prevede lo spettro intero. SIRIUS parte dallo spettro, non dal candidato: ricava formule e un'impronta molecolare e poi cerca le strutture.</p>
+<p>Il primo ragiona sulla chimica del legame, il secondo sulla statistica degli spettri noti, il terzo sul legame fra spettro e struttura appreso dai dati.</p>
 <h3>MetFrag: rompere legami</h3>
-<p>MetFrag (Wolf et al., 2010) rompe i legami in modo combinatorio; la versione rilanciata (Ruttkies et al., 2016) aggiunge termini di punteggio facoltativi, come il tempo di ritenzione. Il procedimento:</p>
-<ol>
-<li>si prendono i candidati di una banca dati, per formula o per massa;</li>
-<li>per ciascuno si rompono i legami in tutte le combinazioni, fino a una profondità fissata;</li>
-<li>si abbina la massa di ogni frammento ai picchi entro la tolleranza;</li>
-<li>il punteggio cresce con i picchi spiegati e cala con le rotture meno probabili, penalizzate per energia di legame.</li>
-</ol>
+<p>MetFrag (Wolf et al., 2010) rompe i legami in modo combinatorio; la versione rilanciata (Ruttkies et al., 2016) aggiunge termini di punteggio facoltativi, come il tempo di ritenzione. Il procedimento è il seguente.</p>
+<p>Si prendono i candidati di una banca dati, per formula o per massa. Per ciascuno si rompono i legami in tutte le combinazioni, fino a una profondità fissata, e si abbina la massa di ogni frammento ai picchi entro la tolleranza.</p>
+<p>Il punteggio cresce con i picchi spiegati e cala con le rotture meno probabili, penalizzate per l'energia di legame. Un candidato che spiega molti picchi con rotture facili vale più di uno che ne spiega pochi con rotture forzate.</p>
+<p>Ai termini del punteggio si possono aggiungere informazioni esterne, come il tempo di ritenzione (Ruttkies et al., 2016). Due isomeri che si rompono negli stessi punti restano a pari merito: il punteggio li separa solo se i frammenti previsti differiscono.</p>
 <h3>CFM-ID: prevedere lo spettro</h3>
 <p>CFM-ID usa un modello probabilistico della frammentazione, addestrato su spettri misurati (Allen et al., 2015). Per ogni candidato prevede uno spettro a energia di collisione bassa, media e alta; i candidati si ordinano per somiglianza con lo spettro misurato (Allen et al., 2014). La versione 4.0 è più accurata (Wang et al., 2021).</p>
-<h3>SIRIUS e CSI:FingerID: alberi di frammentazione e impronte</h3>
+<h2>SIRIUS e CSI:FingerID: alberi di frammentazione e impronte</h2>
 <p>SIRIUS (Dührkop et al., 2019) costruisce un albero di frammentazione, in cui ogni frammento ha una formula contenuta in quella del precursore, e lo combina con il pattern isotopico per ordinare le formule. ZODIAC (Ludwig et al., 2020) ne migliora la scelta senza banca dati.</p>
 <p>CSI:FingerID (Dührkop et al., 2015) prevede dallo spettro, con l'apprendimento automatico, un'impronta molecolare e cerca nelle banche dati le strutture con impronta più simile. CANOPUS (Dührkop et al., 2021) ne ricava la classe del composto. Blaženović et al. (2018) li confrontano con altri strumenti.</p>
 <details class="poe"><summary>Prima di provare: tre isomeri, uno spettro. Possono avere punteggi molto diversi?</summary>
 <p>Dipende dai frammenti predetti: isomeri che si rompono nello stesso modo pareggiano. Cambia il peso dell'intensità e guarda.</p></details>
-<div class="sim" id="sim-chemi-candidati" data-sim="../assets/sim-chemi-candidati.js"><h4>Figura 30.2 Tre isomeri, uno spettro</h4>
+<div class="sim" id="sim-chemi-candidati" data-sim="../assets/sim-chemi-candidati.js"><h3>Figura 30.2 Tre isomeri, uno spettro</h3>
 <p class="note nota">Confronta tre isomeri sintetici con uno stesso spettro e mostra che i punteggi possono pareggiare. Dati sintetici, a scopo didattico.</p></div>
 <h2>Per approfondire</h2>
 <ul class="refs">

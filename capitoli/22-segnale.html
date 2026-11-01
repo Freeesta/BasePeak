@@ -10,20 +10,24 @@
 <details class="q storia"><summary>Un po' di storia</summary><p>Il modo di registrare uno spettro è cambiato più volte. Wiley e McLaren (1955) descrissero un tempo di volo con risoluzione migliorata. Nel 1974 Comisarow e Marshall applicarono la trasformata di Fourier alla risonanza ciclotronica ionica: il segnale diventa un transiente digitale, da cui un calcolo ricava lo spettro. Makarov (2000) propose l'Orbitrap, la trappola orbitale elettrostatica. I termini sono stati fissati dalle raccomandazioni IUPAC del 2013 (Murray et al., 2013).</p></details>
 <h2>Dal rivelatore al numero</h2>
 <p>Lo strumento non scrive subito masse e intensità. Un rivelatore (<a href="09-risoluzione.html">capitolo 9, «Il rivelatore»</a>) trasforma gli ioni in un segnale elettrico e un'elettronica lo trasforma in numeri. Il percorso dipende dall'analizzatore; Gross (2017) lo descrive nei testi di base.</p>
-<h3>Contare gli ioni: il TDC</h3>
+<p>Conviene capire questo passaggio perché le scelte fatte qui restano nei dati: un campionamento lento o un rivelatore saturo cambiano posizione e intensità dei picchi, e nessun programma a valle può rimediare.</p>
 <p>Nel tempo di volo (<a href="09-risoluzione.html">capitolo 9, «Tempo di volo (TOF)»</a>; Wiley e McLaren, 1955, ne migliorarono la risoluzione) il convertitore tempo-digitale, o TDC, segna l'istante in cui un impulso supera una soglia. A ogni spinta il TDC registra al più un arrivo per intervallo di tempo (<i>bin</i>). Migliaia di spinte si sommano in un istogramma dei tempi, che la taratura converte in m/z.</p>
-<h3>Misurare una corrente: l'ADC</h3>
-<p>Il convertitore analogico-digitale, o ADC, campiona la corrente del rivelatore a intervalli regolari e la scrive come numero intero. Il valore è proporzionale alla corrente, ma porta con sé il rumore elettronico anche quando non arriva nessuno ione. Il TDC conta gli ioni, l'ADC misura una carica: sono due strade diverse verso l'intensità.</p>
+<p>Il convertitore analogico-digitale, o ADC, campiona invece la corrente del rivelatore a intervalli regolari e la scrive come numero intero. Il valore è proporzionale alla corrente, ma porta con sé il rumore elettronico anche quando non arriva nessuno ione.</p>
+<p>Il TDC conta gli ioni, l'ADC misura una carica: il primo sottostima i segnali intensi, il secondo non distingue uno ione isolato dal rumore di fondo.</p>
 <h3>Orbitrap: dalla corrente immagine allo spettro (FFT)</h3>
 <p>Nell'Orbitrap gli ioni oscillano lungo l'elettrodo centrale con una frequenza che dipende da m/z (Makarov, 2000). La corrente indotta sugli elettrodi esterni, registrata nel tempo, è un <b>transiente</b>. La trasformata di Fourier lo scompone in frequenze, come già nella risonanza ciclotronica ionica (Comisarow e Marshall, 1974). Per l'Orbitrap vale:</p>
 <span class="eq">ω = √(k · z / m)<span class="no">(22.1)</span></span>
 <p>con <i>k</i> costante dello strumento: la frequenza cresce al diminuire di m/z. Un transiente più lungo dà picchi di frequenza più stretti, cioè più risoluzione (<a href="09-risoluzione.html">capitolo 9, «Orbitrap»</a>).</p>
+<p>Poiché la frequenza va come 1/√(m/z), quadruplicare m/z la dimezza: gli ioni di m/z 100 oscillano al doppio della frequenza di quelli di m/z 400.</p>
 <h2>Profilo e centroide: quanti punti servono</h2>
 <p>Un picco in <b>profilo</b> è una curva campionata; il <b>centroide</b> la riduce a una coppia (m/z, intensità), come spiega il <a href="10-dati.html">capitolo 10, «Profilo e centroide»</a>. La larghezza a metà altezza dipende dal potere risolutivo <i>R</i> (<a href="09-risoluzione.html">capitolo 9, «Potere risolutivo e risoluzione»</a>):</p>
 <span class="eq">FWHM = (m/z) / <i>R</i><span class="no">(22.2)</span></span>
 <p>A m/z 300 con <i>R</i> = 50 000 la FWHM è 6 mDa; con <i>R</i> = 240 000 scende a 1,25 mDa. I punti che cadono nel picco dipendono dal passo di campionamento <i>d</i>:</p>
 <span class="eq">punti per FWHM = FWHM / <i>d</i><span class="no">(22.3)</span></span>
-<p>Con pochi punti il più alto può cadere lontano dal centro vero: l'errore arriva a mezzo passo. Nel modello della Figura 22.1, a <i>R</i> = 50 000 e con il picco a metà tra due punti, il massimo locale sbaglia fino a 5,0 ppm con 2 punti per FWHM, 2,0 con 5 e 1,0 con 10. Come intensità un file può salvare l'altezza del vertice o la somma dei punti (simile all'area): controlla quale.</p>
+<p>Con pochi punti il più alto può cadere lontano dal centro vero: l'errore arriva a mezzo passo. Nel modello della Figura 22.1, a <i>R</i> = 50 000 e con il picco a metà tra due punti, il massimo locale sbaglia fino a 5,0 ppm con 2 punti per FWHM, 2,0 con 5 e 1,0 con 10.</p>
+<p>Un esempio a m/z 300. Con un punto ogni 1,2 mDa, la FWHM di 6 mDa contiene 5 punti e il massimo locale sbaglia al più 0,6 mDa, cioè 2 ppm. Con <i>R</i> = 240 000 e lo stesso passo si ha poco più di un punto per FWHM: il picco è quasi un punto solo, e non c'è una forma da cui ricavare il centro.</p>
+<p>La risoluzione migliora l'accuratezza del centroide solo se anche il campionamento è abbastanza fitto. Un file con pochi punti per FWHM ha già perso accuratezza prima di essere centroidato, e la perdita non si recupera.</p>
+<p>Come intensità un file può salvare l'altezza del vertice o la somma dei punti (simile all'area): controlla quale. Se la larghezza dei picchi cambia, altezza e area non sono più proporzionali, e il confronto fra campioni ne risente.</p>
 <div class="box warn"><b>Errori frequenti</b>
 <ul>
 <li>Centroidare dati già centroidati: il secondo passaggio lavora su pochi punti isolati.</li>
@@ -31,47 +35,51 @@
 <li>Pochi punti per FWHM: la parabola perde accuratezza.</li>
 </ul></div>
 <h2>Tre modi di calcolare un centroide</h2>
-<p>Dal profilo di un picco isolato il centro si ricava in tre modi, ciascuno con un errore sistematico (<i>bias</i>) e una dispersione propri.</p>
-<h3>Il massimo locale</h3>
-<p>Il punto <i>i</i> è un picco se supera il precedente, non è sotto il successivo e supera la soglia. Il centro è il suo m/z: errore fino a mezzo passo.</p>
-<h3>L'interpolazione su tre punti</h3>
-<p>Si prendono il massimo e i due vicini, con intensità <i>a</i>, <i>b</i>, <i>c</i> e passo uniforme <i>d</i>. Il vertice della parabola per i tre punti dista dal massimo di</p>
+<p>Dal profilo di un picco isolato il centro si ricava in tre modi, ciascuno con un errore sistematico (<i>bias</i>) e una dispersione propri. Il più semplice è il <b>massimo locale</b>: il punto <i>i</i> è un picco se supera il precedente, non è sotto il successivo e supera la soglia, e il centro è il suo m/z. L'errore arriva a mezzo passo, ed è il motivo per cui gli altri due metodi esistono.</p>
+<p>Questi usano anche i punti vicini al vertice. L'idea è che un picco sia una curva liscia: i punti accanto al massimo dicono da che parte sta il vertice vero e di quanto.</p>
+<p><b>L'interpolazione su tre punti.</b> Si prendono il massimo e i due vicini, con intensità <i>a</i>, <i>b</i>, <i>c</i> e passo uniforme <i>d</i>. Il vertice della parabola per i tre punti dista dal massimo di</p>
 <span class="eq">δ = <span class="frac"><span><i>a</i> − <i>c</i></span><span>2 (<i>a</i> − 2<i>b</i> + <i>c</i>)</span></span>, &nbsp; m/z* = m/z<sub><i>i</i></sub> + δ · <i>d</i><span class="no">(22.4)</span></span>
-<p>Con m/z 200,11; 200,12; 200,13 e intensità 4; 8; 6: δ = (4 − 6) / (2 · (4 − 16 + 6)) = 0,167 e il centro è 200,1217. La variante «gaussiana» usa i logaritmi di <i>a</i>, <i>b</i>, <i>c</i>: è esatta per una gaussiana senza rumore, perché il suo logaritmo è una parabola.</p>
-<h3>Il baricentro dell'area</h3>
-<p>Si prendono i punti contigui attorno al vertice con intensità almeno <i>f</i> volte quella del vertice (di solito 0,5) e si pesano gli m/z con le intensità:</p>
+<p>Con m/z 200,11; 200,12; 200,13 e intensità 4; 8; 6: δ = (4 − 6) / (2 · (4 − 16 + 6)) = 0,167 e il centro è 200,1217. Il vicino di destra è più alto di quello di sinistra, quindi il centro si sposta verso destra, di un sesto di passo.</p>
+<p>La variante «gaussiana» usa i logaritmi di <i>a</i>, <i>b</i>, <i>c</i>: è esatta per una gaussiana senza rumore, perché il suo logaritmo è una parabola. Entrambe usano solo tre punti, quindi il rumore su uno di essi sposta il risultato, e valgono vicino al vertice, dove la curva somiglia a una parabola.</p>
+<h2>Il baricentro e il software dello strumento</h2>
+<p>Il terzo metodo usa più punti. Si prendono quelli contigui attorno al vertice con intensità almeno <i>f</i> volte quella del vertice (di solito 0,5) e si pesano gli m/z con le intensità:</p>
 <span class="eq">m/z* = <span class="frac"><span>Σ m/z<sub><i>j</i></sub> · <i>y</i><sub><i>j</i></sub></span><span>Σ <i>y</i><sub><i>j</i></sub></span></span><span class="no">(22.5)</span></span>
-<p>Nello stesso esempio il risultato è 200,1211.</p>
+<p>Nello stesso esempio il risultato è 200,1211, cioè 0,6 mDa sotto la parabola: 3 ppm a m/z 200. I due metodi non sono intercambiabili. Il baricentro risente meno del rumore su un solo punto, ma il suo risultato dipende da dove la soglia <i>f</i> taglia il picco.</p>
 <h3>Che cosa fa il software dello strumento</h3>
-<p>Ogni costruttore applica un suo algoritmo, descritto solo in parte. Il file dice se i dati sono in profilo o in centroidi, non come sono stati calcolati (<a href="23-formati.html">capitolo 23, «I metadati che contano»</a>).</p>
+<p>Ogni costruttore applica un suo algoritmo, descritto solo in parte. Il file dice se i dati sono in profilo o in centroidi, non come sono stati calcolati (<a href="23-formati.html">capitolo 23, «I metadati che contano»</a>). Se serve un confronto fra strumenti, conviene partire dal profilo e usare lo stesso metodo per tutti.</p>
 <details class="poe"><summary>Prima di provare: con 5 punti per FWHM e il picco a 0,3 passi dal punto più vicino, quale algoritmo sbaglia meno in media?</summary>
 <p>Parabola e gaussiana (+0,01 e −0,03 ppm, dispersione 0,2 ppm a S/N 100). Il massimo dà +1,2 ppm, il baricentro +0,75 ppm. Verifica con «Ripeti 200 volte».</p></details>
 <div class="sim" id="sim-chemi-centroide" data-sim="../assets/sim-chemi-segnale.js"><h4>Figura 22.1 Dal profilo al centroide</h4>
 <p class="note nota">Confronta i quattro algoritmi al variare di risoluzione, punti per picco e rumore. Dati sintetici, a scopo didattico.</p></div>
 <h2>Rumore e soglie</h2>
-<p>Il rumore decide quali picchi entrano nella lista e con quale precisione.</p>
-<h3>La statistica degli ioni</h3>
+<p>Il rumore decide quali picchi entrano nella lista e con quale precisione. Le fonti sono due: gli ioni arrivano in numero finito, e l'elettronica aggiunge un segnale anche quando non arriva nulla. La prima fissa il limite statistico, la seconda la soglia minima.</p>
 <p>Il numero di ioni contati <i>N</i> fluttua come una variabile di Poisson:</p>
 <span class="eq">σ<sub><i>N</i></sub> = √(N)<span class="no">(22.6)</span></span>
 <p>Con 100 ioni l'incertezza relativa è 10%, con 10 000 è 1%. Anche il centro ne risente: per <i>N</i> ioni in un picco gaussiano la dispersione del centroide non scende sotto circa</p>
 <span class="eq">σ<sub>c</sub> ≈ <span class="frac"><span>FWHM</span><span>2,355 √(N)</span></span><span class="no">(22.7)</span></span>
 <p>È una stima statistica approssimata. A m/z 300 con <i>R</i> = 50 000 e 10 000 ioni vale 0,085 ppm. Solo chi usa tutti gli ioni la raggiunge: nella Figura 22.1, con 2000 ioni, il limite è 0,19 ppm ma la parabola su tre punti dà circa 1 ppm.</p>
-<h3>Rumore elettronico e linea di base</h3>
-<p>Anche senza ioni il segnale non è zero. Una soglia decide che cosa è picco: troppo bassa lascia passare il rumore, troppo alta cancella segnali veri. Nel modello, con 5 punti per FWHM, la dispersione della parabola è 1,8 ppm a S/N 10, 0,20 ppm a S/N 100 e 0,02 ppm a S/N 1000. Una soglia che elimina M+1 e M+2 rende impossibile giudicare il profilo isotopico (capitolo 30).</p>
-<h3>Saturazione e tempo morto</h3>
-<p>Nel TDC un bin non registra due ioni della stessa spinta. Nel modello didattico, semplificato, con <i>k</i> ioni in media per bin e per spinta (Poisson) se ne vedono</p>
+<p>Anche senza ioni il segnale non è zero. Una soglia decide che cosa è picco: troppo bassa lascia passare il rumore, troppo alta cancella segnali veri. Di solito la si pone a un multiplo del rumore misurato in una zona del file senza picchi.</p>
+<p>Nel modello, con 5 punti per FWHM, la dispersione della parabola è 1,8 ppm a S/N 10, 0,20 ppm a S/N 100 e 0,02 ppm a S/N 1000. Un picco appena sopra la soglia ha quindi anche la massa meno accurata. Una soglia che elimina M+1 e M+2 rende impossibile giudicare il profilo isotopico (capitolo 30).</p>
+<h2>Saturazione e tempo morto</h2>
+<p>Un rivelatore ha un limite alto oltre il quale non risponde più in modo proporzionale. Nel TDC un bin non registra due ioni della stessa spinta. Nel modello didattico, semplificato, con <i>k</i> ioni in media per bin e per spinta (Poisson) se ne vedono</p>
 <span class="eq"><i>k</i><sub>oss</sub> = 1 − e<sup>−<i>k</i></sup><span class="no">(22.8)</span></span>
-<p>Con <i>k</i> = 0,1 se ne vedono 0,095 (perso il 4,8%); con <i>k</i> = 1, 0,632 (perso il 37%). I bin più alti si saturano per primi e l'intensità è sottostimata. Se il tempo morto dura più di un bin, uno ione arrivato prima blocca anche quelli che lo seguono: il picco si deforma e il centroide si sposta verso i tempi più brevi, cioè verso m/z più bassi. Un ADC invece si ferma al valore massimo del convertitore.</p>
+<p>Con <i>k</i> = 0,1 se ne vedono 0,095 (perso il 4,8%); con <i>k</i> = 1, 0,632 (perso il 37%). I bin più alti si saturano per primi e l'intensità è sottostimata. Un ADC invece si ferma al valore massimo del convertitore.</p>
+<p>Se il tempo morto dura più di un bin, uno ione arrivato prima blocca anche quelli che lo seguono: il picco si deforma e il centroide si sposta verso i tempi più brevi, cioè verso m/z più bassi.</p>
+<p>Un picco saturo si riconosce dalla cima appiattita e dai rapporti isotopici alterati. Il picco più intenso, M, è sottostimato, quindi M+1 e M+2 risultano gonfiati rispetto a lui. Se la saturazione sembra probabile, si diluisce il campione o si usa un isotopo meno abbondante.</p>
 <h2>Accuratezza, precisione e taratura</h2>
-<h3>Errore in ppm e in mDa</h3>
+<p>Per confrontare masse a valori diversi si usa l'errore relativo, in ppm:</p>
 <span class="eq">ppm = <span class="frac"><span>m<sub>mis</sub> − m<sub>teo</sub></span><span>m<sub>teo</sub></span></span> × 10<sup>6</sup><span class="no">(22.9)</span></span>
-<p>Lo stesso scarto in mDa vale ppm diversi: 1 mDa sono 10 ppm a m/z 100 e 1 ppm a m/z 1000 (Brenton e Godfrey, 2010, trattano convenzioni ed errori). L'<b>accuratezza</b> è la vicinanza al valore vero, la <b>precisione</b> la dispersione di misure ripetute; i termini sono fissati da Murray et al. (2013) e usati nel <a href="09-risoluzione.html">capitolo 9, «Accuratezza di massa»</a>. Kind et al. (2018) mostrano come l'accuratezza di massa entri nella ricerca di spettri MS/MS di piccole molecole (capitolo 29).</p>
-<h3>Taratura esterna, lock mass e ricalibrazione</h3>
+<p>Lo stesso scarto in mDa vale ppm diversi: 1 mDa sono 10 ppm a m/z 100 e 1 ppm a m/z 1000 (Brenton e Godfrey, 2010, trattano convenzioni ed errori). Un'accuratezza di 3 ppm a m/z 400 sono 1,2 mDa.</p>
+<p>L'<b>accuratezza</b> è la vicinanza al valore vero, la <b>precisione</b> la dispersione di misure ripetute; i termini sono fissati da Murray et al. (2013) e usati nel <a href="09-risoluzione.html">capitolo 9, «Accuratezza di massa»</a>. Dieci misure che danno tutte 400,0012 per uno ione di 400,0000 sono molto precise ma inaccurate (+3 ppm). Dieci misure sparse attorno a 400,0000 sono accurate in media, ma poco precise.</p>
+<p>La distinzione conta perché si rimedia in modo diverso. Un errore sistematico si corregge con la taratura; la dispersione casuale no. Kind et al. (2018) mostrano come l'accuratezza di massa entri nella ricerca di spettri MS/MS di piccole molecole (capitolo 29).</p>
+<h2>Taratura esterna, lock mass e ricalibrazione</h2>
 <p>Un TOF converte il tempo in massa con una legge quadratica, i cui parametri <i>A</i> e <i>t</i><sub>0</sub> si stimano su calibranti noti prima della corsa:</p>
 <span class="eq">m/z = <i>A</i> (<i>t</i> − <i>t</i><sub>0</sub>)<sup>2</sup><span class="no">(22.10)</span></span>
+<h3>La massa di riferimento</h3>
 <p>Poi la scala deriva. La <b>massa di riferimento</b> (<i>lock mass</i>) è un composto noto presente in ogni scansione. Lo schema più semplice moltiplica tutti gli m/z per</p>
 <span class="eq"><span class="frac"><span>m<sub>teo,rif</sub></span><span>m<sub>mis,rif</sub></span></span><span class="no">(22.11)</span></span>
-<p>Corregge bene un errore uguale in ppm per tutte le masse, meno bene se cambia con m/z. Toglie la deriva, non la dispersione casuale.</p>
+<p>Un esempio. Una massa di riferimento di m/z 400,0000 viene misurata a 400,0016: l'errore è +4 ppm. Il fattore è 400,0000 / 400,0016 e ogni m/z si riduce di 4 ppm, per cui un ione letto 300,0012 torna a 300,0000.</p>
+<p>La correzione funziona bene se l'errore è uguale in ppm per tutte le masse, meno bene se cambia con m/z. Toglie la deriva, non la dispersione casuale.</p>
 <details class="poe"><summary>Prima di provare: con una deriva di 4 ppm/ora e senza errore casuale, quanto vale l'errore assoluto medio in un'ora? E con la massa di riferimento?</summary>
 <p>L'errore cresce da 0 a 4 ppm: la media è 2,0 ppm. Con la massa di riferimento torna a 0. Nella figura l'errore casuale resta, quindi i valori dopo la correzione non sono zero.</p></details>
 <div class="sim" id="sim-chemi-taratura" data-sim="../assets/sim-chemi-segnale.js"><h4>Figura 22.2 Taratura e lock mass</h4>

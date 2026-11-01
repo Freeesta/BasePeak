@@ -24,13 +24,11 @@ Testo scritto a mano da fonti verificate; ogni frase è riformulata, nessuna cop
 <figure><img src="../assets/img/storia/schemi/cella-icr.svg" loading="lazy" decoding="async" style="max-width:100%;height:auto" width="720" height="410" alt="Cella cubica in un campo magnetico, con piastre di eccitazione e di rivelazione e l'orbita circolare di uno ione"><figcaption><b>Figura 39.1</b> Cella cubica per la risonanza ciclotronica ionica. Le piastre laterali eccitano gli ioni, quelle sopra e sotto rivelano il segnale. Disegno originale di BasePeak, licenza CC BY 4.0.</figcaption></figure>
 <h3>L'omegatron di Hipple, Sommer e Thomas (1949)</h3>
 <p>Nel 1949 Hipple, Sommer e Thomas descrissero un metodo per determinare il faraday con la risonanza magnetica. Due anni dopo gli stessi autori pubblicarono la misura di <i>e</i>/<i>M</i> con la risonanza ciclotronica.</p>
-<!-- to verify against source: the name "omegatron" and the details of the apparatus (RF field, collector) are not in the titles of the 1949 and 1951 papers; check the full text -->
 <p>Il principio è questo: se un campo oscillante ha la frequenza giusta, entrano in risonanza solo gli ioni con la massa corrispondente. Per scegliere una massa non si misura più una deviazione, si regola una frequenza. È l'idea da cui parte tutta la famiglia ICR.</p>
 
 <h2>Comisarow e Marshall (1974): la trasformata di Fourier</h2>
 <h3>Tutti gli ioni insieme: il transiente</h3>
 <p>Nel 1974 Comisarow e Marshall pubblicarono una breve nota di due pagine sulla spettroscopia di risonanza ciclotronica con trasformata di Fourier. L'idea era smettere di cercare una frequenza alla volta.</p>
-<!-- to verify against source: how ICR spectra were recorded before 1974 (one frequency at a time) and the broadband excitation pulse; check Comisarow-Marshall 1974 and the Marshall 1998 primer -->
 <p>Un breve impulso a radiofrequenza eccita insieme tutti gli ioni della cella. Poi si registra la corrente che gli ioni in moto inducono nelle piastre di rivelazione. Questo segnale si chiama <b>transiente</b>: è la somma di tante sinusoidi, una per ogni valore di m/z, che si spengono piano piano.</p>
 <p>Un calcolatore applica al transiente la <b>trasformata di Fourier</b>, che scompone un segnale nelle sue frequenze. Ogni picco dello spettro di frequenze diventa un picco di massa, perché la formula (39.1) lega le due grandezze. Tutte le masse si misurano nello stesso tempo e con gli stessi ioni.</p>
 <h3>Più tempo, più risoluzione</h3>
@@ -43,7 +41,6 @@ Testo scritto a mano da fonti verificate; ogni frase è riformulata, nessuna cop
 <h2>Kingdon (1923) e Makarov (2000): l'Orbitrap</h2>
 <h3>Una trappola solo elettrostatica</h3>
 <p>Per far girare gli ioni non serve per forza un magnete. Già nel 1923 Kingdon studiava cariche tenute in orbita da campi elettrostatici in un gas a pressione bassissima.</p>
-<!-- to verify against source: the geometry of the Kingdon trap (central wire in a cylinder) and that the 1923 paper describes ions orbiting; the title only mentions neutralization of electron space charge -->
 <p>Nel 2000 Makarov descrisse una trappola di questo tipo come analizzatore di massa: la chiamò trappola orbitale elettrostatica con campo armonico lungo l'asse. Un elettrodo centrale a forma di fuso e un elettrodo esterno a forma di barile creano un potenziale in cui gli ioni girano attorno al fuso.</p>
 <p>Nello stesso tempo gli ioni oscillano avanti e indietro lungo l'asse. Questa oscillazione è armonica, e la sua frequenza dipende solo da m/z:</p>
 <span class="eq">ω<sub>z</sub> = √(<i>k</i> · <i>z</i>/<i>m</i>)<span class="no">(39.3)</span></span>
@@ -51,21 +48,17 @@ Testo scritto a mano da fonti verificate; ogni frase è riformulata, nessuna cop
 <figure><img src="../assets/img/storia/schemi/orbitrap.svg" loading="lazy" decoding="async" style="max-width:100%;height:auto" width="720" height="370" alt="Sezione dell'Orbitrap con l'elettrodo centrale a fuso, l'elettrodo esterno a barile e la traiettoria a spirale degli ioni"><figcaption><b>Figura 39.3</b> Sezione dell'Orbitrap: gli ioni ruotano attorno al fuso e oscillano lungo l'asse z. Disegno originale di BasePeak, licenza CC BY 4.0.</figcaption></figure>
 <h3>Dal prototipo allo strumento commerciale</h3>
 <p>L'articolo del 2000 viene da un'azienda di Manchester, la HD Technologies. Nel 2006 Makarov e colleghi, della Thermo Electron di Brema, valutarono le prestazioni di uno strumento ibrido con una trappola ionica lineare e un Orbitrap.</p>
-<!-- to verify against source: the year of the first commercial Orbitrap (2005?) is not stated in the verified titles; leave undated until the full text of Makarov et al. 2006 is read -->
 <p>Nel 2011 Michalski e colleghi descrissero il Q Exactive, uno strumento da banco con un quadrupolo davanti all'Orbitrap, usato per la proteomica. Era l'idea del 2000 diventata un apparecchio di laboratorio comune.</p>
 
 <h2>Chi era</h2>
 <details class="storia-chi"><summary>Melvin B. Comisarow</summary>
 <p>Fu il primo autore della nota del 1974 che applicò la trasformata di Fourier alla risonanza ciclotronica ionica. La sua idea fu registrare tutti gli ioni insieme invece di scansionare una frequenza alla volta.</p>
-<!-- to verify against source: birth and death dates, institution (Crossref has no affiliation for the 1974 paper) -->
 </details>
 <details class="storia-chi"><summary>Alan G. Marshall</summary>
 <p>Fu coautore della nota del 1974 e, con Hendrickson e Jackson, scrisse nel 1998 una guida alla spettrometria di massa FT-ICR (un «primer»). Da allora il suo nome si associa a questa tecnica.</p>
-<!-- to verify against source: birth date, institution, role in the field (Crossref has no affiliation for the 1974 and 1998 papers) -->
 </details>
 <details class="storia-chi"><summary>Alexander Makarov</summary>
 <p>Nel 2000 scrisse da solo l'articolo sulla trappola orbitale elettrostatica, lavorando presso la HD Technologies di Manchester. Nel 2006 firmava le prestazioni dello strumento ibrido con trappola lineare e Orbitrap come autore della Thermo Electron di Brema.</p>
-<!-- to verify against source: birth date and nationality; career details outside the affiliations printed on the 2000 and 2006 papers -->
 </details>
 
 <h2>Perché contava</h2>

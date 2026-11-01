@@ -55,7 +55,6 @@ Fotografie e tavole di terzi (cartella `assets/img/storia/foto/`), tutte control
 | `thomson-ritratto.webp` | Bain News Service (Library of Congress) | Public domain (Commons: PD-Bain; Library of Congress, nessuna restrizione nota) | https://commons.wikimedia.org/wiki/File:J.J._Thomson_LCCN2014715407.jpg |
 | `wien-ritratto.webp` | Autore sconosciuto | Public domain (Commons: PD-Sweden-photo; pubblicata nel 1912 in Les Prix Nobel) | https://commons.wikimedia.org/wiki/File:Wilhelm_Wien_1911.jpg |
 | `aston-ritratto.webp` | Bain News Service (Library of Congress) | Public domain (Commons: PD-Bain; Library of Congress, nessuna restrizione nota) | https://commons.wikimedia.org/wiki/File:Dr._F.W._Aston_LCCN2014715455.jpg |
-| `calutron-racetrack.webp` | James Edward Westcott (fotografo del governo degli Stati Uniti) | Public domain (Commons: PD-USGov) | https://commons.wikimedia.org/wiki/File:Y-12_Calutron_Alpha_racetrack.jpg |
 | `trappola-paul-demo.webp` | Jan Pavelka | CC BY 4.0 (Commons: opera propria) | https://commons.wikimedia.org/wiki/File:Paul_quadrupole_trap.jpg |
 
 ## Spettri EI della Teoria e della Pratica
