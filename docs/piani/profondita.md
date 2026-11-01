@@ -61,36 +61,38 @@ Acceptance for every planned chapter: prose >= target, menu <= target, **prose/m
 
 | ch | file | prose now | menu now | prose target | menu target | prompt | wave | after |
 |---|---|---:|---:|---:|---:|---|---|---|
-| 16 | 16-strategia | 212 | 10 | 1500 | 8 | DEV-15 | held | |
-| 18 | 18-disegno | 473 | 14 | 1800 | 11 | DEV-01 | 1 | |
-| 23 | 23-formati | 545 | 15 | 1300 | 10 | DEV-06 | 1 | |
-| 13 | 13-ei-metodo | 956 | 21 | 2600 | 15 | DEV-03 | 1 | |
-| 10 | 10-dati | 1231 | 27 | 2800 | 16 | DEV-02 | 1 | |
-| 8 | 08-qqq | 654 | 13 | 1800 | 12 | DEV-04 | 1 | |
-| 3 | 03-gc | 565 | 11 | 1800 | 10 | DEV-04 | 1 | |
-| 12 | 12-frammentazione-esi | 1270 | 23 | 2600 | 16 | DEV-05 | 1 | |
-| 21 | 21-tempi | 339 | 6 | 1100 | 6 | DEV-01 | 1 | |
-| 27 | 27-tabella | 625 | 11 | 1400 | 9 | DEV-07 | 1 | |
-| 28 | 28-somiglianza | 739 | 12 | 1500 | 10 | DEV-07 | 1 | |
-| 31 | 31-confidenza | 380 | 6 | 1100 | 7 | DEV-06 | 1 | |
-| 22 | 22-segnale | 1177 | 18 | 1600 | 12 | DEV-10 | 2 | |
-| 2 | 02-lc | 594 | 9 | 1500 | 9 | DEV-08 | 2 | |
-| 5 | 05-ei-ci | 599 | 9 | 1500 | 9 | DEV-08 | 2 | |
-| 7 | 07-quadrupolo | 963 | 14 | 1900 | 13 | DEV-09 | 2 | |
-| 24 | 24-tracce | 689 | 10 | 1300 | 9 | DEV-10 | 2 | |
-| 30 | 30-candidati | 624 | 9 | 1300 | 9 | DEV-11 | 2 | |
-| 9 | 09-risoluzione | 657 | 9 | 1400 | 9 | DEV-12 | 2 | |
-| 14 | 14-ei-famiglie | 1244 | 17 | 1800 | 14 | DEV-14 | 2 | |
-| 29 | 29-librerie | 599 | 8 | 1200 | 8 | DEV-11 | 2 | |
-| 25 | 25-picchi | 986 | 13 | 1500 | 11 | DEV-13 | 2 | |
-| 6 | 06-vuoto | 410 | 5 | 900 | 6 | DEV-09 | 2 | |
-| 4 | 04-esi | 1012 | 12 | 1700 | 12 | DEV-13 | 2 | |
-| 26 | 26-gruppi | 602 | 7 | 1100 | 7 | DEV-13 | 2 | |
-| 11 | 11-formula | 698 | 8 | 1300 | 8 | DEV-12 | 2 | |
-| 1 | 01-cromatografia | 998 | 11 | 1400 | 10 | DEV-08 | 2 | |
-| 32 | 32-esempio | 875 | 8 | 1100 | 8 | DEV-14 | 2 | |
-| 15 | 15-origine | 748 | 9 | - | - | none (quality bar) | | |
-| 17 | 17-hr-dda | 859 | 7 | - | - | none (quality bar) | | |
+| 16 | 16-strategia | 212 | 10 | 1500 | 8 | DEV-15 | held | 1935 words, menu 8, 241 w/menu |
+| 18 | 18-disegno | 473 | 14 | 1800 | 11 | DEV-01 | 1 | 2495 words, menu 11, 226 w/menu |
+| 23 | 23-formati | 545 | 15 | 1300 | 10 | DEV-06 | 1 | 1312 words, menu 9, 145 w/menu |
+| 13 | 13-ei-metodo | 956 | 21 | 2600 | 15 | DEV-03 | 1 | 3265 words, menu 15, 217 w/menu |
+| 10 | 10-dati | 1231 | 27 | 2800 | 16 | DEV-02 | 1 | 3569 words, menu 16, 223 w/menu |
+| 8 | 08-qqq | 654 | 13 | 1800 | 12 | DEV-04 | 1 | 1824 words, menu 12, 152 w/menu |
+| 3 | 03-gc | 565 | 11 | 1800 | 10 | DEV-04 | 1 | 1921 words, menu 10, 192 w/menu |
+| 12 | 12-frammentazione-esi | 1270 | 23 | 2600 | 16 | DEV-05 | 1 | 3472 words, menu 16, 217 w/menu |
+| 21 | 21-tempi | 339 | 6 | 1100 | 6 | DEV-01 | 1 | 1437 words, menu 6, 239 w/menu |
+| 27 | 27-tabella | 625 | 11 | 1400 | 9 | DEV-07 | 1 | 1460 words, menu 9, 162 w/menu |
+| 28 | 28-somiglianza | 739 | 12 | 1500 | 10 | DEV-07 | 1 | 1505 words, menu 10, 150 w/menu |
+| 31 | 31-confidenza | 380 | 6 | 1100 | 7 | DEV-06 | 1 | 1115 words, menu 7, 159 w/menu |
+| 22 | 22-segnale | 1177 | 18 | 1600 | 12 | DEV-10 | 2 | 1797 words, menu 12, 149 w/menu |
+| 2 | 02-lc | 594 | 9 | 1500 | 9 | DEV-08 | 2 | 1636 words, menu 9, 181 w/menu |
+| 5 | 05-ei-ci | 599 | 9 | 1500 | 9 | DEV-08 | 2 | 1515 words, menu 9, 168 w/menu |
+| 7 | 07-quadrupolo | 963 | 14 | 1900 | 13 | DEV-09 | 2 | 2056 words, menu 13, 158 w/menu |
+| 24 | 24-tracce | 689 | 10 | 1300 | 9 | DEV-10 | 2 | 1376 words, menu 9, 152 w/menu |
+| 30 | 30-candidati | 624 | 9 | 1300 | 9 | DEV-11 | 2 | 1303 words, menu 9, 144 w/menu |
+| 9 | 09-risoluzione | 657 | 9 | 1400 | 9 | DEV-12 | 2 | 1404 words, menu 9, 156 w/menu |
+| 14 | 14-ei-famiglie | 1244 | 17 | 1800 | 14 | DEV-14 | 2 | 1971 words, menu 14, 140 w/menu |
+| 29 | 29-librerie | 599 | 8 | 1200 | 8 | DEV-11 | 2 | 1208 words, menu 8, 151 w/menu |
+| 25 | 25-picchi | 986 | 13 | 1500 | 11 | DEV-13 | 2 | 1578 words, menu 11, 143 w/menu |
+| 6 | 06-vuoto | 410 | 5 | 900 | 6 | DEV-09 | 2 | 1049 words, menu 6, 174 w/menu |
+| 4 | 04-esi | 1012 | 12 | 1700 | 12 | DEV-13 | 2 | 1725 words, menu 12, 143 w/menu |
+| 26 | 26-gruppi | 602 | 7 | 1100 | 7 | DEV-13 | 2 | 1130 words, menu 7, 161 w/menu |
+| 11 | 11-formula | 698 | 8 | 1300 | 8 | DEV-12 | 2 | 1305 words, menu 8, 163 w/menu |
+| 1 | 01-cromatografia | 998 | 11 | 1400 | 10 | DEV-08 | 2 | 1472 words, menu 10, 147 w/menu |
+| 32 | 32-esempio | 875 | 8 | 1100 | 8 | DEV-14 | 2 | 1145 words, menu 8, 143 w/menu |
+| 15 | 15-origine | 748 | 9 | - | - | none (quality bar) | | 759 words, menu 9, 84 w/menu |
+| 17 | 17-hr-dda | 859 | 7 | - | - | none (quality bar) | | 859 words, menu 7, 122 w/menu |
+
+Measured after DEV-16 (2026-11-01): the 28 planned chapters hold **48 980 prose words** (target >= 43 800) under **283 menu entries** (target <= 284); every chapter is at or above its prose target, at or below its menu target, with >= 130 words per menu entry and prose% >= 55. No chapter is below target.
 
 Part VII (22-32) has a hard limit in `tests/test_chemi.py`: <= 350 words per h2 section counted with everything in it, <= 90 words per paragraph. Its targets are set so they fit; a DEV that hits the cap splits an h2 and merges h3 elsewhere, never loosens the test.
 
