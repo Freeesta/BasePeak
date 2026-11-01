@@ -11,21 +11,22 @@
 <h2>Perché il tempo di ritenzione si sposta</h2>
 <p>Lo stesso composto non esce sempre allo stesso istante. Nel corso di una sequenza di decine di iniezioni cambiano la temperatura della colonna, la composizione della fase mobile, la pressione e lo stato della fase stazionaria, e la matrice del campione modifica la ritenzione.</p>
 <p>Lo spostamento è di solito di secondi, a volte di decine di secondi, e non è lineare: dipende dal punto del gradiente. Se non si corregge, lo stesso composto compare a tempi diversi nei diversi campioni e il passo successivo (la corrispondenza) lo scambia per composti diversi. I QC iniettati a intervalli regolari mostrano quanto vale lo spostamento (<a href="18-disegno.html">capitolo 18</a>).</p>
-<h2>Allineare i campioni</h2>
-<h3>Picchi di riferimento e curva LOWESS</h3>
+<h2>Allineare con i picchi di riferimento</h2>
+<p>Allineare vuol dire correggere i tempi di ritenzione di ogni campione, in modo che lo stesso composto esca allo stesso istante in tutti. Ci sono due famiglie di metodi: quelli che si appoggiano a picchi di riferimento e quelli che deformano l'intero profilo. Si comincia dai primi.</p>
 <p>Il metodo dei gruppi di picchi (Smith et al., 2006) cerca picchi «ben comportati»: presenti nella maggior parte dei campioni, uno solo per campione. Per ogni campione si calcola lo scarto <i>d</i>(rt) = rt<sub>campione</sub> − mediana degli rt del gruppo, e lo si interpola con una curva LOWESS (Cleveland, 1979): una retta locale con pesi tricubici, ripetuta riducendo il peso dei punti anomali.</p>
 <span class="eq"><i>w</i>(<i>u</i>) = (1 − |<i>u</i>|<sup>3</sup>)<sup>3</sup> &nbsp;per |<i>u</i>| &lt; 1 &nbsp;&nbsp; rt<sub>corr</sub> = rt − <i>d</i>(rt)<span class="no">(27.1)</span></span>
 <p>Qui <i>u</i> è la distanza dal punto divisa per quella dell'ultimo vicino incluso: la frazione di punti usata è l'ampiezza.</p>
-<h3>Deformare l'asse dei tempi (DTW, OBI-Warp)</h3>
+<p>Un esempio con i numeri. Un picco di riferimento ha mediana 6,00 min nel gruppo, ma in un campione esce a 6,10 min: lo scarto è +6 s. Un secondo, con mediana 9,00 min, esce a 9,15 min: lo scarto è +9 s. La curva passa per i due punti, quindi un picco a 7,50 min viene riportato indietro di circa 7,5 s.</p>
+<p>Più i riferimenti sono numerosi e distribuiti lungo il gradiente, più la curva è affidabile. Con pochi riferimenti, concentrati in una zona, la correzione negli altri tratti è solo un'estrapolazione.</p>
+<h2>Allineare con la deformazione del tempo</h2>
 <p>Il DTW (Sakoe e Chiba, 1978) non ha bisogno di picchi di riferimento. Si costruisce una matrice di costo <i>c</i>(<i>i</i>, <i>j</i>) fra i punti di due profili e si accumula il costo minimo; poi si risale il cammino ottimo.</p>
 <span class="eq"><i>D</i>(<i>i</i>, <i>j</i>) = <i>c</i>(<i>i</i>, <i>j</i>) + min[ <i>D</i>(<i>i</i>−1, <i>j</i>), <i>D</i>(<i>i</i>, <i>j</i>−1), <i>D</i>(<i>i</i>−1, <i>j</i>−1) ]<span class="no">(27.2)</span></span>
 <p>Nella figura il costo <i>c</i>(<i>i</i>, <i>j</i>) è la differenza assoluta fra le intensità dei due profili; OBI-Warp (Prince e Marcotte, 2006) applica la programmazione dinamica a una somiglianza fra scansioni intere, per esempio la correlazione, e interpola poi in modo monotono.</p>
-<p>Una banda limita le deformazioni.</p>
-<h3>Come controllare l'allineamento</h3>
-<p>Lo scarto stimato deve essere una curva liscia. Sovrapponi i QC prima e dopo e controlla un composto noto in tutti i campioni. Metodi diversi danno risultati diversi (Lange et al., 2008).</p>
+<p>Una banda intorno alla diagonale limita le deformazioni. Senza banda il metodo può stirare un tratto del profilo fino a far coincidere picchi che non corrispondono.</p>
+<p>Per controllare l'allineamento si guardano tre cose. Lo scarto stimato deve essere una curva liscia, senza salti. I QC sovrapposti prima e dopo la correzione devono avvicinarsi, e un composto noto deve cadere in una finestra stretta di tempi in tutti i campioni. Metodi diversi danno risultati diversi (Lange et al., 2008): se la correzione peggiora un composto noto, conviene cambiare ampiezza o metodo.</p>
 <details class="poe"><summary>Prima di provare: con un gradino a metà corsa, quale ampiezza LOWESS segue meglio la deriva, 0,3 o 1?</summary>
 <p>0,3: una curva locale segue il gradino; con 1 lo smussa e restano errori di alcuni secondi. Poi aggiungi accoppiamenti sbagliati e guarda quanto pesano.</p></details>
-<div class="sim" id="sim-chemi-allinea" data-sim="../assets/sim-chemi-tabella.js"><h4>Figura 27.1 Allineare due corse</h4>
+<div class="sim" id="sim-chemi-allinea" data-sim="../assets/sim-chemi-tabella.js"><h3>Figura 27.1 Allineare due corse</h3>
 <p class="note nota">Due cromatogrammi sintetici, uno deformato. Dati sintetici, a scopo didattico.</p></div>
 <h2>Corrispondenza fra campioni</h2>
 <p>Dopo l'allineamento bisogna decidere quali picchi dei diversi campioni sono la stessa feature. Il metodo a densità dei picchi (Smith et al., 2006) procede così:</p>
@@ -35,46 +36,47 @@
 <li>ogni massimo di densità definisce un gruppo, con i picchi sotto di esso;</li>
 <li>il gruppo si tiene se compare in una frazione minima di campioni (minFraction, di default 0,5).</li>
 </ol>
+<p>I valori di default sono un punto di partenza, non una regola. La tolleranza in m/z dipende dalla risoluzione: con dati ad alta risoluzione una finestra di 10 ppm vale 0,003 Da a m/z 300, e una fetta di 0,25 sarebbe troppo larga<!-- to verify against source: XCMS mzwid values suggested for high-resolution data (Smith2006, Tautenhahn2008) -->. La tolleranza in tempo deve superare la deriva rimasta dopo l'allineamento, ma restare sotto la distanza fra due composti da tenere separati.</p>
 <p>Un altro approccio, tipico di MZmine (Pluskal et al., 2010), dà un punteggio a ogni coppia di picchi e assegna in ordine di punteggio, un picco per campione.</p>
 <span class="eq">punteggio = <i>w</i><sub>mz</sub> (1 − Δ<i>m</i>/tol<sub>mz</sub>) + <i>w</i><sub>rt</sub> (1 − Δrt/tol<sub>rt</sub>)<span class="no">(27.3)</span></span>
+<p>Una coppia identica vale <i>w</i><sub>mz</sub> + <i>w</i><sub>rt</sub>; una coppia al limite della tolleranza non vale niente. Così il punteggio premia i picchi vicini in entrambe le dimensioni.</p>
 <div class="box warn"><b>Errore frequente</b>
 <p>Un bw più piccolo della deriva residua <b>divide</b> un composto in due righe. Un bw o una fetta troppo larghi <b>fondono</b> due composti vicini (quasi-isobari).</p></div>
 <h2>Riempire i buchi</h2>
-<p>Se un picco manca in un campione, la cella della tabella resta vuota. Il riempimento (gap filling) integra il segnale grezzo nella finestra [mzmin, mzmax] × [rtmin, rtmax] della feature in quel campione.</p>
-<p>Il numero ottenuto è una misura di ciò che c'è in quella finestra, spesso rumore: non è una rivelazione. Per questo va segnalato nella tabella.</p>
+<p>Se un picco manca in un campione, la cella della tabella resta vuota. Un valore mancante però non è uno zero: può voler dire che il composto è sotto il limite di rivelazione, oppure solo che il programma non ha integrato un picco che c'era.</p>
+<p>Il riempimento (gap filling) torna ai dati grezzi e integra il segnale nella finestra [mzmin, mzmax] × [rtmin, rtmax] della feature in quel campione, la stessa dove gli altri campioni hanno un picco.</p>
+<p>Il numero ottenuto è una misura di ciò che c'è in quella finestra, spesso rumore o la coda di un picco vicino: non è una rivelazione. Per questo va segnalato nella tabella.</p>
+<p>Scrivere zero al posto del vuoto sarebbe peggio: abbassa le medie e impedisce di usare i logaritmi. Il valore integrato dà invece una stima del livello più basso misurabile.</p>
 <details class="poe"><summary>Prima di provare: con bw = 30 s e una fetta di 0,25 u, quali composti si fondono?</summary>
 <p>Finiscono nella stessa riga i due quasi-isobari a m/z 255 (distano 5 mu) e i due composti a m/z 301 (distano 32 s). Riduci bw e la fetta e guarda quali tornano separati, e quali composti rari spariscono.</p></details>
 <div class="sim" id="sim-chemi-corrispondenza" data-sim="../assets/sim-chemi-tabella.js"><h3>Figura 27.2 Lo stesso composto in sei campioni</h3>
 <p class="note nota">Sei campioni sintetici con alcune rivelazioni mancanti. Le celle riempite sono in corsivo e segnate «(riempito)». Dati sintetici, a scopo didattico.</p></div>
 <h2>Filtrare: bianchi, repliche, QC</h2>
 <p>I filtri tolgono le feature che non si possono usare. Si calcolano sui campioni di controllo del capitolo 18 (<a href="18-disegno.html">bianchi</a>, <a href="18-disegno.html">repliche</a> e <a href="18-disegno.html">QC</a>).</p>
-<ul>
-<li><b>Bianco</b>: si tiene la feature se media(campioni) / media(bianchi) ≥ una soglia. Valori da 3 a 10 sono usati come esempio; in letteratura variano.</li>
-<li><b>Frequenza nelle repliche</b>: si tiene se compare in almeno <i>n</i> repliche su <i>m</i>.</li>
-<li><b>QC</b>: si tiene se l'RSD dei QC è sotto una soglia, di solito 20-30 %. Broadhurst e colleghi (2018) discutono i criteri.</li>
-</ul>
+<p>Il filtro del bianco confronta l'intensità media nei campioni con quella nei bianchi: si tiene la feature se media(campioni) / media(bianchi) supera una soglia. Con 5000 nei campioni e 1000 nei bianchi il rapporto è 5: la feature passa con soglia 3, non con soglia 10. Valori da 3 a 10 sono usati come esempio; in letteratura variano.</p>
+<p>Il filtro sulle repliche tiene la feature se compare in almeno <i>n</i> repliche su <i>m</i>, per esempio due su tre. Un picco visto in una sola replica è spesso rumore, e non si può dire che sia ripetibile.</p>
+<p>Il filtro sui QC usa l'RSD (equazione 27.4), calcolato sulle iniezioni ripetute dello stesso campione. Con tre QC di 90, 100 e 110 la media è 100, la deviazione standard è 10 e l'RSD è 10 %. Si tiene la feature se l'RSD è sotto una soglia, di solito 20-30 %; Broadhurst e colleghi (2018) discutono i criteri.</p>
 <span class="eq">RSD = 100 · <i>s</i> / <i>x̄</i><span class="no">(27.4)</span></span>
 <div class="box warn"><b>Errore frequente</b>
 <p>Il filtro del bianco elimina anche un composto vero presente in tracce nel bianco (contaminazione da riporto): una feature scartata non è per forza un artefatto.</p></div>
 <h2>Normalizzare</h2>
-<p>La normalizzazione corregge le differenze di quantità fra campioni, come una diluizione o la deriva dello strumento. Ci sono diversi modi:</p>
-<ul>
-<li><b>intensità totale</b> o <b>mediana</b>: si divide ogni campione per un fattore calcolato su tutte le feature;</li>
-<li><b>PQN</b> (Dieterle et al., 2006): dopo una normalizzazione sull'area totale, si divide ogni campione per la mediana dei quozienti fra il campione e uno spettro di riferimento, di solito lo spettro mediano;</li>
-<li><b>standard interni</b>: si divide per un composto aggiunto in quantità nota;</li>
-<li><b>correzione con i QC</b>: una curva LOESS sull'ordine di iniezione dei QC corregge la deriva (Dunn et al., 2011).</li>
-</ul>
+<p>La normalizzazione corregge le differenze di quantità che non dipendono dalla chimica del campione: un volume iniettato un po' diverso, una diluizione, la perdita di sensibilità dello strumento nel corso della sequenza. Senza correzione queste differenze si confondono con quelle vere fra i campioni. Ci sono quattro modi principali.</p>
+<p>Con l'intensità totale o con la mediana si divide ogni campione per un fattore calcolato su tutte le feature. È semplice, ma presume che la maggior parte delle feature resti uguale fra i campioni.</p>
+<p>Il PQN (Dieterle et al., 2006) è più robusto. Dopo una normalizzazione sull'area totale, per ogni feature si calcola il quoziente fra il campione e uno spettro di riferimento, di solito lo spettro mediano, e si divide il campione per la mediana dei quozienti. Se i quozienti sono 2,0, 2,1 e 1,9, la mediana è 2,0: il campione è due volte più concentrato.</p>
 <span class="eq"><i>q</i><sub>i</sub> = <i>x</i><sub>i</sub> / <i>x</i><sub>rif,i</sub> &nbsp;&nbsp; fattore = mediana(<i>q</i><sub>i</sub>) &nbsp;&nbsp; <i>x</i><sub>norm</sub> = <i>x</i> / fattore<span class="no">(27.5)</span></span>
+<p>Gli standard interni sono composti aggiunti in quantità nota: si divide l'intensità di ogni feature per quella dello standard. Correggono bene gli errori di iniezione, ma uno standard rappresenta solo i composti che si comportano come lui.</p>
+<p>La correzione con i QC usa i campioni QC iniettati a intervalli regolari. Una curva LOESS sull'ordine di iniezione descrive la deriva, e ogni campione si corregge con il valore della curva nel suo punto (Dunn et al., 2011). Funziona solo se i QC coprono tutta la sequenza.</p>
 <div class="box warn"><b>Errore frequente</b>
 <p>Normalizzare con la somma di tutte le feature può nascondere un effetto vero, se molte feature cambiano nello stesso verso. Con il PQN o la mediana il rischio è minore.</p></div>
 <h2>La tabella delle feature</h2>
-<p>Alla fine di questi passi c'è una tabella con una riga per feature:</p>
+<p>Alla fine di questi passi c'è una tabella con una riga per feature, cioè per una coppia (m/z, tempo di ritenzione) trovata in modo coerente in più campioni. Ogni colonna di intensità è un campione, e ogni cella dice quanto segnale c'è per quella feature in quel campione. Le colonne sono di quattro tipi:</p>
 <ul>
 <li>identificazione: id, m/z (mediana), mzmin, mzmax, rt, rtmin, rtmax, npeaks (numero di picchi);</li>
 <li>una colonna di intensità per campione, ed è importante dire se è altezza o area;</li>
 <li>annotazione: isotopo, addotto, gruppo del capitolo 26;</li>
 <li>segnalazioni: riempito, nel bianco, RSD dei QC.</li>
 </ul>
+<p>La tabella però non dice che cosa sia una feature. Un solo composto può dare più righe (isotopi, addotti, frammenti in sorgente), mentre due composti molto vicini possono finire nella stessa. Per passare dalle feature ai composti servono l'annotazione del <a href="26-gruppi.html">capitolo 26</a> e l'identificazione dei capitoli seguenti.</p>
 <p>Può andare storto in più modi: un composto diviso in due righe (deriva maggiore di bw), due composti in una riga, valori riempiti letti come rivelazioni, altezze e aree mischiate, un effetto vero nascosto dalla normalizzazione, un composto presente in tracce nel bianco e perso.</p>
 <details class="poe"><summary>Prima di provare: quali delle cinque feature artefatto (contaminante, frammento, isotopo, rumore, deriva) tolgono i tre filtri da soli?</summary>
 <p>Tre: il contaminante (bianco), la feature di rumore (repliche) e quella con deriva (QC). Frammento e isotopo restano finché non si usa l'annotazione del capitolo 26.</p></details>
