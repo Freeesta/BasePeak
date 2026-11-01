@@ -123,7 +123,6 @@ const GLOSSARIO = [
 {"k": ["TDC"], "t": "TDC", "d": "Convertitore tempo-digitale: registra l'istante di arrivo di ogni ione.", "h": "capitoli/22-segnale.html", "n": "Cap. 22"},
 {"k": ["tempo di volo", "TOF"], "t": "Tempo di volo (TOF)", "d": "Analizzatore che misura il tempo che ioni accelerati con la stessa energia impiegano a percorrere un tubo: t ∝ √(m/z). Con il reflectron raggiunge R 20 000-60 000.", "h": "capitoli/09-risoluzione.html", "n": "Cap. 9"},
 {"k": ["TIC"], "t": "TIC", "d": "Total ion current: somma delle intensità di ogni spettro nel tempo.", "h": "capitoli/10-dati.html", "n": "Cap. 10"},
-{"k": ["TP"], "t": "TP", "d": "Prodotto di trasformazione di un contaminante.", "h": "capitoli/16-strategia.html", "n": "Cap. 16"},
 {"k": ["Traccia di massa", "ROI"], "t": "Traccia di massa / ROI", "d": "Regione d'interesse: serie di centroidi vicini in m/z e consecutivi nel tempo, candidata a diventare un picco.", "h": "capitoli/24-tracce.html", "n": "Cap. 24"},
 {"k": ["Transizione", "transizioni"], "t": "Transizione", "d": "Coppia m/z del precursore → m/z del prodotto (con la sua CE) monitorata in MRM.", "h": "capitoli/08-qqq.html", "n": "Cap. 8"},
 {"k": ["Trappola ionica", "trappole ioniche"], "t": "Trappola ionica", "d": "Analizzatore che intrappola gli ioni con un campo a radiofrequenza e li espelle in ordine di m/z; permette MS<sup>n</sup>.", "h": "capitoli/09-risoluzione.html", "n": "Cap. 9"},

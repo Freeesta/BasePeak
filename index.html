@@ -57,18 +57,18 @@
   <g stroke="#c2410c" stroke-width="3"><path d="M820 262 v-40 M836 262 v-20 M852 262 v-30 M862 262 v-8"/></g>
   <text class="ch" x="670" y="200">CAP. 10–16</text><text class="tt" x="740" y="200">Full scan · MS2 · MRM</text></a>
 </svg><details class="figdesc" id="fd-index-0"><summary>Descrizione della figura</summary><p>Otto riquadri in due righe, uniti da frecce. Prima riga: Campione; Filtrazione 0,45 µm; HPLC C18, acqua/ACN + HCOOH (cap. 2); Elettrospray, ioni [M+H]⁺ in fase gas (cap. 4); Interfaccia e vuoto, 760 Torr → 10⁻⁵ (cap. 6). Seconda riga: Q1 filtro di massa (cap. 7); q2 cella di collisione, CID con N₂ (cap. 8–12); Q3 + rivelatore; Full scan · MS2 · MRM (cap. 10–16).</p></details>
-<figcaption><b>Figura 0.1</b> Il percorso fisico della molecola, dal reattore al dato analizzato. Ogni blocco porta al capitolo che lo spiega.</figcaption>
+<figcaption><b>Figura 0.1</b> Il percorso fisico della molecola, dal campione al dato analizzato. Ogni blocco porta al capitolo che lo spiega.</figcaption>
 </figure>
 
 <h2>Il workflow analitico tipico</h2>
 <table>
 <tr><th>Fase</th><th>Operazione analitica</th><th>Modalità MS</th><th>Capitoli</th></tr>
-<tr><td>1</td><td>Studio cinetico di degradazione (prelievi a tempi definiti: t = 0, 5, 10, 15, 30, 45, 60 min; filtrazione 0,45 µm). Standard del precursore: ottimizzazione delle transizioni più diagnostiche.</td><td>Full scan, product ion scan (MS2)</td><td><a href="capitoli/08-qqq.html">8</a>, <a href="capitoli/12-frammentazione-esi.html">12</a></td></tr>
-<tr><td>2</td><td>Retta di taratura in MRM e quantificazione del precursore residuo. Analisi dei campioni a tempo in full scan per individuare i segnali dei prodotti intermedi.</td><td>MRM, full scan</td><td><a href="capitoli/10-dati.html">10</a>, <a href="capitoli/16-strategia.html">16</a></td></tr>
-<tr><td>3</td><td>Sui campioni a massima abbondanza dei prodotti di trasformazione, esperimento di MS/MS per elucidazione strutturale.</td><td>MS2</td><td><a href="capitoli/08-qqq.html">8</a>, <a href="capitoli/12-frammentazione-esi.html">12</a>, <a href="capitoli/16-strategia.html">16</a></td></tr>
+<tr><td>1</td><td>Preparazione dei campioni (filtrazione 0,45 µm, bianchi). Standard del composto di interesse: ottimizzazione delle transizioni più diagnostiche.</td><td>Full scan, product ion scan (MS2)</td><td><a href="capitoli/08-qqq.html">8</a>, <a href="capitoli/12-frammentazione-esi.html">12</a></td></tr>
+<tr><td>2</td><td>Retta di taratura in MRM e quantificazione del composto nei campioni. Analisi dei campioni in full scan per individuare i segnali dei composti correlati.</td><td>MRM, full scan</td><td><a href="capitoli/10-dati.html">10</a>, <a href="capitoli/16-strategia.html">16</a></td></tr>
+<tr><td>3</td><td>Sui campioni in cui i composti correlati sono più abbondanti, esperimento di MS/MS per elucidazione strutturale.</td><td>MS2</td><td><a href="capitoli/08-qqq.html">8</a>, <a href="capitoli/12-frammentazione-esi.html">12</a>, <a href="capitoli/16-strategia.html">16</a></td></tr>
 </table>
 <div class="box key"><b>Elaborazione e presentazione dei risultati</b>
-<p>Tabella riassuntiva con i rapporti m/z dei prodotti intermedi e i loro ioni prodotto caratteristici; profilo cinetico di degradazione del composto di partenza ed evoluzione temporale dei prodotti. Il <a href="capitoli/16-strategia.html">capitolo 16</a> spiega come condurre l'indagine e dichiarare con rigore il livello di confidenza di ogni attribuzione.</p></div>
+<p>Tabella riassuntiva con i rapporti m/z dei composti trovati e i loro ioni prodotto caratteristici, con le concentrazioni del composto di interesse. Il <a href="capitoli/16-strategia.html">capitolo 16</a> spiega come condurre l'indagine e dichiarare con rigore il livello di confidenza di ogni attribuzione.</p></div>
 
 <h2>I capitoli</h2>
 <p>Sei parti di teoria, più la pratica e i riferimenti, nell'ordine in cui conviene studiarle: ogni capitolo usa solo quello che c'è prima.</p>
@@ -101,7 +101,7 @@
 </div>
 <h3>VI. Dal dato al risultato</h3>
 <div class="cards">
-<a href="capitoli/16-strategia.html"><b>16 · Strategia per i TP</b><span>Dal full scan all'ipotesi strutturale, con un esempio svolto e una checklist.</span></a>
+<a href="capitoli/16-strategia.html"><b>16 · Strategia di analisi LC-MS</b><span>Dal full scan all'ipotesi strutturale, con un esempio svolto e una checklist.</span></a>
 <a href="capitoli/17-hr-dda.html"><b>17 · Alta risoluzione e DDA</b><span>Come si usano i dati ad alta risoluzione nel programma.</span></a>
 <a href="capitoli/18-disegno.html"><b>18 · Disegno sperimentale</b><span>Bianchi, repliche, QC, taratura, ordine di iniezione e come scrivere le strutture.</span></a>
 </div>
@@ -151,7 +151,7 @@
 <li><b>Fuori dall'app</b>: la cartella <code>teoria</code> si apre con doppio clic su <code>index.html</code> in qualsiasi browser, anche senza Python e senza internet. I link di approfondimento richiedono la rete.</li>
 </ul>
 <div class="box warn"><b>Una regola metodologica fondamentale</b>
-<p>Un quadrupolo standard lavora a <em>risoluzione unitaria</em>: misura la massa nominale, non la formula elementare. Un m/z osservato è un <em>candidato</em> prodotto di trasformazione, non un'identificazione definitiva. Queste pagine offrono gli strumenti logici e analitici per formulare e verificare ipotesi strutturali con rigore.</p></div>
+<p>Un quadrupolo standard lavora a <em>risoluzione unitaria</em>: misura la massa nominale, non la formula elementare. Un m/z osservato è un <em>candidato</em>, non un'identificazione definitiva. Queste pagine offrono gli strumenti logici e analitici per formulare e verificare ipotesi strutturali con rigore.</p></div>
 </main></div>
 <script src="assets/appname.js"></script><script src="assets/teoria.js"></script>
 </body></html>
