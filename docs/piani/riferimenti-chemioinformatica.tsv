@@ -1,6 +1,6 @@
 key	doi	status	chapters	citation
-Schymanski2014	10.1021/es5002105	verified	19,31	Schymanski E.L. et al. (2014) Identifying small molecules via high resolution mass spectrometry: communicating confidence. Environ. Sci. Technol. 48, 2097-2098
-Sumner2007	10.1007/s11306-007-0082-2	verified	19,31	Sumner L.W. et al. (2007) Proposed minimum reporting standards for chemical analysis. Metabolomics 3, 211-221
+Schymanski2014	10.1021/es5002105	verified	19,31,42	Schymanski E.L. et al. (2014) Identifying small molecules via high resolution mass spectrometry: communicating confidence. Environ. Sci. Technol. 48, 2097-2098
+Sumner2007	10.1007/s11306-007-0082-2	verified	19,31,42	Sumner L.W. et al. (2007) Proposed minimum reporting standards for chemical analysis. Metabolomics 3, 211-221
 Charbonnet2022	10.1021/acs.estlett.2c00206	verified	19,31	Charbonnet J.A. et al. (2022) Communicating confidence of per- and polyfluoroalkyl substance identification via HRMS. Environ. Sci. Technol. Lett. 9, 473-481
 Smith2006	10.1021/ac051437y	verified	19,24,25,27	Smith C.A. et al. (2006) XCMS: processing mass spectrometry data for metabolite profiling using nonlinear peak alignment, matching, and identification. Anal. Chem. 78, 779-787
 Tautenhahn2008	10.1186/1471-2105-9-504	verified	19,24,25	Tautenhahn R. et al. (2008) Highly sensitive feature detection for high resolution LC/MS. BMC Bioinformatics 9, 504
@@ -63,11 +63,11 @@ Duhrkop2019	10.1038/s41592-019-0344-8	verified	19,30	Dührkop K. et al. (2019) S
 Duhrkop2021	10.1038/s41587-020-0740-8	verified	19,30	Dührkop K. et al. (2021; online 2020) Systematic classification of unknown metabolites using high-resolution fragmentation mass spectra (CANOPUS). Nat. Biotechnol. 39, 462-471
 Brenton2010	10.1016/j.jasms.2010.06.006	verified	19,22	Brenton A.G., Godfrey A.R. (2010) Accurate mass measurement: terminology and treatment of data. J. Am. Soc. Mass Spectrom. 21, 1821-1835
 Murray2013	10.1351/PAC-REC-06-04-06	verified	19,22	Murray K.K. et al. (2013) Definitions of terms relating to mass spectrometry (IUPAC Recommendations 2013). Pure Appl. Chem. 85, 1515-1609
-WileyMcLaren1955	10.1063/1.1715212	verified	19,22	Wiley W.C., McLaren I.H. (1955) Time-of-flight mass spectrometer with improved resolution. Rev. Sci. Instrum. 26, 1150-1157
-ComisarowMarshall1974	10.1016/0009-2614(74)89137-2	verified	19,22	Comisarow M.B., Marshall A.G. (1974) Fourier transform ion cyclotron resonance spectroscopy. Chem. Phys. Lett. 25, 282-283
-Makarov2000	10.1021/ac991131p	verified	19,22	Makarov A. (2000) Electrostatic axially harmonic orbital trapping: a high-performance technique of mass analysis. Anal. Chem. 72, 1156-1162
+WileyMcLaren1955	10.1063/1.1715212	verified	19,22,37	Wiley W.C., McLaren I.H. (1955) Time-of-flight mass spectrometer with improved resolution. Rev. Sci. Instrum. 26, 1150-1157
+ComisarowMarshall1974	10.1016/0009-2614(74)89137-2	verified	19,22,39	Comisarow M.B., Marshall A.G. (1974) Fourier transform ion cyclotron resonance spectroscopy. Chem. Phys. Lett. 25, 282-283
+Makarov2000	10.1021/ac991131p	verified	19,22,39	Makarov A. (2000) Electrostatic axially harmonic orbital trapping: a high-performance technique of mass analysis. Anal. Chem. 72, 1156-1162
 HitesBiemann1970	10.1021/ac60290a009	verified	19,24	Hites R.A., Biemann K. (1970) Computer evaluation of continuously scanned mass spectra of gas chromatographic effluents. Anal. Chem. 42, 855-860
-Hertz1971	10.1021/ac60301a009	verified	19,28,29	Hertz H.S., Hites R.A., Biemann K. (1971) Identification of mass spectra by computer-searching a file of known spectra. Anal. Chem. 43, 681-691
+Hertz1971	10.1021/ac60301a009	verified	19,28,29,42	Hertz H.S., Hites R.A., Biemann K. (1971) Identification of mass spectra by computer-searching a file of known spectra. Anal. Chem. 43, 681-691
 McLafferty1974	10.1002/oms.1210090710	verified	19,28,29	McLafferty F.W. et al. (1974) Probability based matching of mass spectra. Rapid identification of specific compounds in mixtures. Org. Mass Spectrom. 9, 690-702
 Stein2012	10.1021/ac301205z	verified	19,29	Stein S. (2012) Mass spectral reference libraries: an ever-expanding resource for chemical identification. Anal. Chem. 84, 7274-7282
 Deutsch2008	10.1002/pmic.200890049	verified	19,23	Deutsch E. (2008) mzML: a single, unifying data format for mass spectrometer output. Proteomics 8, 2776-2777
@@ -146,22 +146,22 @@ Dempster1918	10.1103/PhysRev.11.316	verified	35	Dempster A.J. (1918) A new metho
 Dempster1935	10.1038/136180a0	verified	35	Dempster A.J. (1935) Isotopic constitution of uranium. Nature 136, 180
 Downard2007	10.1255/ejms.878	verified	35	Downard K.M. (2007) Francis William Aston: the man behind the mass spectrograph. Eur. J. Mass Spectrom. 13, 177-190
 Budzikiewicz2006	10.1002/mas.20061	verified	35	Budzikiewicz H., Grigsby R.D. (2006) Mass spectrometry and isotopes: a century of research and discussion. Mass Spectrom. Rev. 25, 146-157
-Griffiths2008	10.1021/ac8013065	verified	33,35	Griffiths J. (2008) A brief history of mass spectrometry. Anal. Chem. 80, 5678-5683
-Yates2011	10.1038/nmeth.1659	verified	33	Yates J.R. III (2011) A century of mass spectrometry: from atoms to proteomes. Nat. Methods 8, 633-637
+Griffiths2008	10.1021/ac8013065	verified	33,35,42	Griffiths J. (2008) A brief history of mass spectrometry. Anal. Chem. 80, 5678-5683
+Yates2011	10.1038/nmeth.1659	verified	33,42	Yates J.R. III (2011) A century of mass spectrometry: from atoms to proteomes. Nat. Methods 8, 633-637
 Fenn2003	10.1002/anie.200300605	verified	33	Fenn J.B. (2003) Electrospray wings for molecular elephants (Nobel lecture). Angew. Chem. Int. Ed. 42, 3871-3894
 Wolff1953	10.1063/1.1770801	verified	37	Wolff M.M., Stephens W.E. (1953) A Pulsed Mass Spectrometer with Time Dispersion. Rev. Sci. Instrum. 24, 616-617
 Dawson1989	10.1002/rcm.1290030511	verified	37	Dawson J.H.J., Guilhaus M. (1989) Orthogonal-acceleration time-of-flight mass spectrometer. Rapid Commun. Mass Spectrom. 3, 155-159
 Guilhaus2000	10.1002/(sici)1098-2787(2000)19:2%3c65::aid-mas1%3e3.0.co;2-e	verified	37	Guilhaus M., Selby D., Mlynski V. (2000) Orthogonal acceleration time-of-flight mass spectrometry. Mass Spectrom. Rev. 19, 65-107
 Mamyrin2001	10.1016/s1387-3806(00)00392-4	verified	37	Mamyrin B.A. (2001) Time-of-flight mass spectrometry (concepts, achievements, and prospects). Int. J. Mass Spectrom. 206, 251-266
-KarasHillenkamp1988	10.1021/ac00171a028	verified	37	Karas M., Hillenkamp F. (1988) Laser desorption ionization of proteins with molecular masses exceeding 10,000 daltons. Anal. Chem. 60, 2299-2301
-Tanaka1988	10.1002/rcm.1290020802	verified	37	Tanaka K. et al. (1988) Protein and polymer analyses up to m/z 100 000 by laser ionization time-of-flight mass spectrometry. Rapid Commun. Mass Spectrom. 2, 151-153
-Morris1996	10.1002/(sici)1097-0231(19960610)10:8%3c889::aid-rcm615%3e3.0.co;2-f	verified	37	Morris H.R. et al. (1996) High Sensitivity Collisionally-activated Decomposition Tandem Mass Spectrometry on a Novel Quadrupole/Orthogonal-acceleration Time-of-flight Mass Spectrometer. Rapid Commun. Mass Spectrom. 10, 889-896
+KarasHillenkamp1988	10.1021/ac00171a028	verified	37,40	Karas M., Hillenkamp F. (1988) Laser desorption ionization of proteins with molecular masses exceeding 10,000 daltons. Anal. Chem. 60, 2299-2301
+Tanaka1988	10.1002/rcm.1290020802	verified	37,40	Tanaka K. et al. (1988) Protein and polymer analyses up to m/z 100 000 by laser ionization time-of-flight mass spectrometry. Rapid Commun. Mass Spectrom. 2, 151-153
+Morris1996	10.1002/(sici)1097-0231(19960610)10:8%3c889::aid-rcm615%3e3.0.co;2-f	verified	37,41	Morris H.R. et al. (1996) High Sensitivity Collisionally-activated Decomposition Tandem Mass Spectrometry on a Novel Quadrupole/Orthogonal-acceleration Time-of-flight Mass Spectrometer. Rapid Commun. Mass Spectrom. 10, 889-896
 Gohlke1959	10.1021/ac50164a024	verified	41	Gohlke R.S. (1959) Time-of-flight mass spectrometry and gas-liquid partition chromatography. Anal. Chem. 31, 535-541
 GohlkeMcLafferty1993	10.1016/1044-0305(93)85001-e	verified	41	Gohlke R.S., McLafferty F.W. (1993) Early gas chromatography/mass spectrometry. J. Am. Soc. Mass Spectrom. 4, 367-371
 BaldwinMcLafferty1973	10.1002/oms.1210070913	verified	41	Baldwin M.A., McLafferty F.W. (1973) Liquid chromatography-mass spectrometry interface-I. Org. Mass Spectrom. 7, 1111-1112
 Arpino1989	10.1002/mas.1280080103	verified	41	Arpino P. (1989) Combined liquid chromatography mass spectrometry. Part I. Mass Spectrom. Rev. 8, 35-55
-BlakleyVestal1983	10.1021/ac00255a036	verified	41	Blakley C.R., Vestal M.L. (1983) Thermospray interface for liquid chromatography/mass spectrometry. Anal. Chem. 55, 750-754
-Horning1973	10.1021/ac60328a035	verified	41	Horning E.C. et al. (1973) New picogram detection system based on a mass spectrometer with an external ionization source at atmospheric pressure. Anal. Chem. 45, 936-943
+BlakleyVestal1983	10.1021/ac00255a036	verified	40,41	Blakley C.R., Vestal M.L. (1983) Thermospray interface for liquid chromatography/mass spectrometry. Anal. Chem. 55, 750-754
+Horning1973	10.1021/ac60328a035	verified	40,41	Horning E.C. et al. (1973) New picogram detection system based on a mass spectrometer with an external ionization source at atmospheric pressure. Anal. Chem. 45, 936-943
 YostEnke1978	10.1021/ja00475a072	verified	41	Yost R.A., Enke C.G. (1978) Selected ion fragmentation with a tandem quadrupole mass spectrometer. J. Am. Chem. Soc. 100, 2274-2275
 CohenKarasek1970	10.1093/chromsci/8.6.330	verified	41	Cohen M.J., Karasek F.W. (1970) Plasma chromatography. J. Chromatogr. Sci. 8, 330-337
 Munson1966	10.1021/ja00964a001	verified	40	Munson M.S.B., Field F.H. (1966) Chemical ionization mass spectrometry. I. General introduction. J. Am. Chem. Soc. 88, 2621-2630
