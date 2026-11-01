@@ -10,6 +10,10 @@ Uno spettro ESI di una piccola molecola contiene quasi solo lo ione molecolare: 
 
 Nel triplo quadrupolo i tre stadi sono separati **nello spazio** (Q1, cella, Q3), e funzionano contemporaneamente. In una trappola ionica sono separati **nel tempo** (isolare, frammentare, analizzare nello stesso volume, uno dopo l'altro). Lo spazio permette modalità che il tempo non consente, come la scansione dei precursori e delle perdite neutre.
 
+```html
+<p class="storia-link solo-esteso" hidden>Per la storia: <a href="38-storia-rf.html">Campi a radiofrequenza: quadrupolo e trappola ionica</a>; <a href="41-storia-accoppiamenti.html">Accoppiamenti, MS/MS e ibridi</a>.</p>
+```
+
 ## Architettura
 
 ```html

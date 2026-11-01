@@ -34,6 +34,10 @@ Il **potere risolutivo** R è il rapporto fra la massa di un picco e la sua larg
 <p class="note">Picchi gaussiani con FWHM = m/R. Il tratteggio mostra i due ioni, la linea piena ciò che registra lo strumento. Quando i picchi si fondono il centroide cade in mezzo: l'errore di massa che ne risulta non dipende dalla taratura.</p></div>
 ```
 
+```html
+<p class="storia-link solo-esteso" hidden>Per la storia: <a href="36-storia-settori.html">Settori magnetici e doppia focalizzazione</a>; <a href="37-storia-tof.html">Il tempo di volo</a>; <a href="39-storia-ft.html">Ioni che girano: ICR, FT-ICR, Orbitrap</a>.</p>
+```
+
 ## Accuratezza di massa
 
 L'**accuratezza** dice quanto il valore misurato si discosta da quello vero; la **precisione** quanto si ripetono misure successive. Si esprime in parti per milione (ppm) o in millidalton (mDa):

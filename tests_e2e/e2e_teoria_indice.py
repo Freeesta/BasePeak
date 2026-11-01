@@ -138,7 +138,7 @@ try:
         step("previous / next in administrator mode: 21 -> 22 ... 32, then the Storia", lambda: prevnext(True))
         def drafts():
             F = re.findall(r'"capitoli/((?:2[2-9]|3[0-2])-[^"]+\.html)", "\d+", "[^"]+", "VII\. Chemioinformatica"', (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8")); assert len(F) == 11, F
-            S = re.findall(r'"capitoli/((?:3[3-9]|4[0-2])-[^"]+\.html)", "\d+", "[^"]+", "VII\. Storia", true', (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8")); assert len(S) == 10, S
+            S = re.findall(r'"capitoli/((?:3[3-9]|4[0-2])-[^"]+\.html)", "\d+", "[^"]+", "VIII\. Storia", true', (ROOT / "assets" / "teoria.js").read_text(encoding="utf-8")); assert len(S) == 10, S
             for admin in (False, True):
                 c, q = ctx(admin=admin); q.goto(T + "index.html"); q.wait_for_selector("#side"); q.wait_for_selector("main h3")
                 heads = q.eval_on_selector_all("main h3", "e=>e.map(h=>h.textContent.trim())"); cards = q.eval_on_selector_all("main .cards a", "e=>e.map(a=>a.getAttribute('href'))")
