@@ -60,7 +60,7 @@
       { id: "indice", icona: "indice", etichetta: "Indice", titolo: "Mostra/nascondi indice", gruppo: "nav", chiave: "F", premuto: () => (narrow.matches ? !!$("#side.open") : !(window.QA11Y && QA11Y.read().noside)), run: indice },
       { id: "prec", icona: "prec", etichetta: "Precedente", testo: prevC ? prevC[1] : "", titolo: prevC ? "Precedente: " + nm(prevC) : "", gruppo: "nav", href: prevC && SITE.up + prevC[0], nascosto: !prevC, run: () => prevC && go(prevC[0]) },
       { id: "succ", icona: "succ", etichetta: "Successivo", testo: nextC ? nextC[1] : "", dopo: true, titolo: nextC ? "Successivo: " + nm(nextC) : "", gruppo: "nav", href: nextC && SITE.up + nextC[0], nascosto: !nextC, run: () => nextC && go(nextC[0]) },
-      { id: "cerca", posto: "side", icona: "cerca", etichetta: "Cerca", titolo: "Cerca nella Teoria (" + (mac ? "⌘K" : "Ctrl+K") + ")", gruppo: "uso", chiave: mac ? "⌘K" : "Ctrl K", run: () => T().cerca && T().cerca() },
+      { id: "cerca", icona: "cerca", etichetta: "Cerca", titolo: "Cerca nella Teoria (" + (mac ? "⌘K" : "Ctrl+K") + ")", gruppo: "uso", chiave: mac ? "⌘K" : "Ctrl K", run: () => T().cerca && T().cerca() },
       { id: "glossario", posto: "side", icona: "glossario", etichetta: "Glossario", titolo: "Glossario e bibliografia", gruppo: "uso", href: SITE.up + "capitoli/19-glossario.html", run: () => go("capitoli/19-glossario.html") },
       { id: "formule", posto: "side", icona: "formule", etichetta: "Formule", titolo: "Formulario per l'orale", gruppo: "uso", href: SITE.up + "capitoli/20-formulario.html", run: () => go("capitoli/20-formulario.html") },
       { id: "esercizi", posto: "side", icona: "esercizi", etichetta: "Esercizi", titolo: "Esercizi di questo capitolo e Pratica", gruppo: "uso", run: esercizi },
@@ -100,7 +100,7 @@
     det.innerHTML = `<summary class="sc" title="${st.titolo}">${svg(st.icona)}<span>${st.etichetta}</span></summary><div class="sc-sub"></div>`;
     st.figli.forEach(f => { const b = document.createElement("button"); b.type = "button"; b.dataset.cmd = f.id; b.textContent = f.etichetta; b.onclick = () => f.run(); $(".sc-sub", det).appendChild(b); });
     nav.appendChild(det);
-    const br = $(".brand", lat); if (br) br.after(nav); else lat.prepend(nav);   // the logo block stays the first thing of the index
+    const br = $(".sidesearch", lat) || $(".brand", lat); if (br) br.after(nav); else lat.prepend(nav);   // the logo block and the search field stay the first things of the index (the search is a field now, not a command)
   }
   if (embedded) { document.dispatchEvent(new Event("tcmd-pronto")); return; }   // in the program the bar of the app draws them
 

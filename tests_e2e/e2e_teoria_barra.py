@@ -32,10 +32,11 @@ try:
         def order():
             ids = q.eval_on_selector_all("#tbar > *, #tbar .tgrp > *", "e=>e.filter(x=>x.matches('a,button')).map(x=>x.id)")
             assert ids == ["tc-indice", "tc-prec", "tc-succ", "tc-schermo", "a11y-btn"], ids
-            side = q.eval_on_selector_all("#sidecmd > *", "e=>e.map(x=>x.id)"); assert side == ["sc-cerca", "sc-glossario", "sc-formule", "sc-esercizi", "sc-esporta", "sc-strumenti"], side
+            side = q.eval_on_selector_all("#sidecmd > *", "e=>e.map(x=>x.id)"); assert side == ["sc-glossario", "sc-formule", "sc-esercizi", "sc-esporta", "sc-strumenti"], side
             names = q.eval_on_selector_all("#tbar a,#tbar button", "e=>e.map(x=>x.getAttribute('aria-label'))")
             assert names[0].startswith("Indice") and names[-1].startswith("Impostazioni"), names
-            for sel in ("#sc-cerca", "#sc-glossario", "#sc-formule", "#sc-esercizi", "#sc-esporta", "#tc-indice", "#tc-prec"):
+            assert q.get_attribute("#sc-cerca", "aria-label") == "Cerca nel manuale" and q.get_attribute("#sc-cerca", "placeholder").startswith("Cerca nel manuale"), "the visible placeholder is in the name (WCAG 2.5.3)"
+            for sel in ("#sc-glossario", "#sc-formule", "#sc-esercizi", "#sc-esporta", "#tc-indice", "#tc-prec"):
                 lab = q.inner_text(sel).strip(); assert lab and lab in q.get_attribute(sel, "aria-label"), (sel, lab)   # visible label in the name (WCAG 2.5.3)
             assert q.get_attribute("#tc-indice", "aria-pressed") == "true"
             for dead in ("Esporta capitolo o corso", "Avanzamento"): assert dead not in q.inner_text("#top") + q.inner_text("#sidecmd"), dead
@@ -72,11 +73,12 @@ try:
             q.set_viewport_size({"width": 1280, "height": 900}); q.goto(T + "capitoli/11-formula.html"); q.wait_for_selector("#tbar")
         step("previous / next show the chapter number (arrow outside), change the chapter, are absent at the ends, one header row", prevnext)
         def cerca():
-            q.click("#sc-cerca"); q.wait_for_selector("#cerca-in", state="visible"); assert q.evaluate("TEORIA.cerca.aperta()")
+            assert q.evaluate("document.querySelector('#sc-cerca').tagName") == "INPUT" and q.evaluate("!document.querySelector('#sidecmd #sc-cerca')"), "Cerca is a field above the commands"
+            q.click("#sc-cerca"); assert q.evaluate("document.activeElement.id") == "sc-cerca" and q.is_hidden("#cerca-bg"), "clicking the field must not open the dialog"
+            q.keyboard.press("Control+k"); q.wait_for_selector("#cerca-in", state="visible"); assert q.evaluate("TEORIA.cerca.aperta()")
             q.keyboard.press("Escape"); q.wait_for_selector("#cerca-bg", state="hidden")
             assert q.evaluate("document.activeElement.id") == "sc-cerca"
-            q.keyboard.press("Control+k"); q.wait_for_selector("#cerca-in", state="visible"); q.keyboard.press("Escape")
-        step("Cerca opens the dialog (button and Ctrl+K), Esc gives the focus back", cerca)
+        step("Cerca is a field in the index (no longer a button); Ctrl+K still opens the dialog and Esc gives the focus back", cerca)
         def links():
             q.click("#sc-glossario"); q.wait_for_url("**/19-glossario.html"); q.wait_for_selector("#tbar")
             q.click("#sc-formule"); q.wait_for_url("**/20-formulario.html"); q.wait_for_selector("#tbar"); q.goto(T + "capitoli/11-formula.html"); q.wait_for_selector("#tbar")

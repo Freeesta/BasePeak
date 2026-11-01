@@ -151,11 +151,11 @@ const TP = (() => {
     h.appendChild(a);
   }
   // ---- collapsible index: every part (Guida, II..VII, Pratica, Reference) and the sections of the current chapter open and close with a real button
-  // (aria-expanded + aria-controls). The parts the reader opened or closed are kept in sessionStorage; the part and the sections of the current chapter are always open on arrival.
+  // (aria-expanded + aria-controls). Every part is open the first time the site is opened (nothing saved); after that the parts the reader closed or opened again are kept in localStorage, and the part and the sections of the current chapter are always open on arrival.
   const NAVKEY = "qqq.teoria.nav";
   const navStore = {
-    get() { try { const o = JSON.parse(sessionStorage.getItem(NAVKEY)); return o && typeof o === "object" ? o : {}; } catch (_) { return {}; } },
-    set(o) { try { sessionStorage.setItem(NAVKEY, JSON.stringify(o)); } catch (_) { /* no storage: the state lasts for this page only */ } },
+    get() { try { const o = JSON.parse(localStorage.getItem(NAVKEY)); return o && typeof o === "object" ? o : {}; } catch (_) { return {}; } },
+    set(o) { try { localStorage.setItem(NAVKEY, JSON.stringify(o)); } catch (_) { /* no storage: the state lasts for this page only */ } },
   };
   const CHEV = '<svg class="chev" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2.5 9.5 7 5 11.5"/></svg>';
   /** Opens or closes the region a toggle button controls (and says so with aria-expanded). */
@@ -186,6 +186,10 @@ const TP = (() => {
   }
   /** The top of the index: the logo (the way to the home page) and the name of the site. */
   const brandHtml = () => `<div class="brand"><a id="logo" href="${SITE.up}index.html"><img src="${SITE.assets}icone/icon.svg" alt="" width="28" height="28"><span>BasePeak</span></a></div>`;
+  /** The search field at the top of the index, under the logo: results are listed right below it (cerca.js wires it; the index is read on the first key typed). */
+  const searchHtml = () => `<form class="sidesearch" id="sidesearch" role="search" action="#"><svg class="ss-ico" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="5.2"/><path d="M13 13l4 4"/></svg>` +
+    `<input id="sc-cerca" type="search" role="combobox" aria-expanded="false" aria-controls="ss-list" aria-autocomplete="list" aria-label="Cerca nel manuale" placeholder="Cerca nel manuale\u2026" autocomplete="off" spellcheck="false" enterkeyhint="search">` +
+    `<div id="ss-panel" hidden><ul id="ss-list" role="listbox" aria-label="Risultati"></ul><p id="ss-st" role="status" aria-live="polite"></p><button type="button" id="ss-all">Apri la ricerca completa</button></div></form>`;
   /** The menu: the parts (Guida, II...VII, Pratica, Reference), every chapter with its title; the current one also lists the h2 and h3 of the page. Returns the page sections [{h, a}] for the scroll-spy. */
   function buildSide(side) {
     const sections = [...document.querySelectorAll("main h2, main h3")].filter(h => h.id && htext(h) && !h.closest(".box,figure,.sim,details,.phex,#phnote"));
@@ -204,7 +208,7 @@ const TP = (() => {
     const st = navStore.get(), sp = st.p || {};
     let html = `<div class="navtools"><button type="button" id="navall" class="navall" data-act="open">Apri tutto</button></div><div class="navparts" role="group" aria-label="Capitoli">`;
     parts.forEach((pt, n) => {
-      const key = String(n), here0 = pt.ix.includes(idx), open = here0 || sp[key] === 1;   // a part with the current chapter is open whatever was kept
+      const key = String(n), here0 = pt.ix.includes(idx), open = here0 || sp[key] !== 0;   // first visit (nothing kept): everything open; a part with the current chapter is open whatever was kept
       const lis = pt.ix.map(i => {
         const c = CHAPTERS[i], on = i === idx, cur = on && tree.length;
         const link = `<a href="${SITE.up + c[0]}" class="${on ? "on" : ""}"${on ? ' aria-current="page"' : ""}><b>${esc(c[1])}</b><span>${esc(c[2])}</span></a>`;
@@ -213,7 +217,7 @@ const TP = (() => {
       }).join("");
       html += `<section class="grp"><h4 id="h-part-${key}"><button type="button" class="ptog" data-k="${key}" aria-expanded="${open}" aria-controls="part-${key}">${CHEV}<span>${esc(pt.label)}</span></button></h4><ol id="part-${key}" aria-labelledby="h-part-${key}"${open ? "" : " hidden"}>${lis}</ol></section>`;
     });
-    side.innerHTML = brandHtml() + html + "</div>";
+    side.innerHTML = brandHtml() + searchHtml() + html + "</div>";
     const toc = side.querySelector("ol.toc"); if (toc) tree.forEach(it => toc.appendChild(node(it)));
     wireToggles(side); syncAll(side);
     return items;
@@ -229,7 +233,7 @@ const TP = (() => {
       cur = a; if (!a) return;
       a.setAttribute("aria-current", "location"); a.classList.add("cur");
       if (!a.offsetParent) return;   // inside a closed chapter: nothing to show
-      const sr = side.getBoundingClientRect(), ar = a.getBoundingClientRect(), hd = side.querySelector(".brand"), pin = hd && getComputedStyle(hd).position === "sticky" ? hd.offsetHeight : 0;   // keep it in view inside the menu only (the page never moves)
+      const sr = side.getBoundingClientRect(), ar = a.getBoundingClientRect(), pin = [...side.querySelectorAll(".brand, .sidesearch")].reduce((n, hd) => n + (getComputedStyle(hd).position === "sticky" ? hd.offsetHeight : 0), 0);   // keep it in view inside the menu only (the page never moves)
       if (sr.height && (ar.top < sr.top + pin + 8 || ar.bottom > sr.bottom - 8)) side.scrollTop += ar.top - sr.top - sr.height / 3;
     };
     if ("IntersectionObserver" in window) {
@@ -284,7 +288,8 @@ const TP = (() => {
     const restoreSide = () => {
       try { const y = sessionStorage.getItem("qqq.teoria.side"); if (y !== null) side.scrollTop = +y || 0; } catch (_) { /* no storage: top */ }
       const cur = side.querySelector("li a.on"), sr = side.getBoundingClientRect();
-      if (cur && sr.height) { const cr = cur.getBoundingClientRect(); if (cr.top < sr.top) side.scrollTop -= sr.top - cr.top; else if (cr.bottom > sr.bottom) side.scrollTop += cr.bottom - sr.bottom; }
+      const pin = [...side.querySelectorAll(".brand, .sidesearch")].reduce((n, hd) => n + (getComputedStyle(hd).position === "sticky" ? hd.offsetHeight : 0), 0);   // the logo strip and the search field stay on top of the list: the current chapter must not hide under them
+      if (cur && sr.height) { const cr = cur.getBoundingClientRect(); if (cr.top < sr.top + pin) side.scrollTop -= sr.top + pin - cr.top + 8; else if (cr.bottom > sr.bottom) side.scrollTop += cr.bottom - sr.bottom; }
     };
     restoreSide();
     // comandi.js adds the commands block on top of the index a moment later: scrollTop is clamped to the height at that time, so it is applied again once the block is there
