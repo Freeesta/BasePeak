@@ -31,6 +31,10 @@
 
 Tutto avviene nel **vuoto** (10^−5^-10^−6^ Torr): il cammino libero medio è di metri (capitolo 6), quindi uno ione non urta altre molecole prima di uscire. Le reazioni che vede sono solo **unimolecolari**: lo ione si frammenta da solo, con l'energia che ha ricevuto. È il motivo per cui gli spettri EI sono «firme» della molecola e si possono raccogliere in librerie.
 
+```html
+<p class="storia-link solo-esteso" hidden>Per la storia: <a href="40-storia-sorgenti.html">Le sorgenti: dall'impatto elettronico alla ionizzazione morbida</a>.</p>
+```
+
 ## Che cosa succede alla molecola
 
 ```html

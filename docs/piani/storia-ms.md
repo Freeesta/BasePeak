@@ -24,10 +24,10 @@ must check before writing it, and drop it if it cannot be confirmed.
 
 ### 1.1 A new part "Storia", appended after the last chapter
 
-- New part label in `CHAPTERS` (`assets/teoria.js`): **"VII. Storia"**.
+- New part label in `CHAPTERS` (`assets/teoria.js`): **"VIII. Storia"**.
   DEV8 (PR #10, `dev/nav-patroon`) is rewriting the menu into Teoria / Pratica /
   Reference groups and merges before this is built: DEV-00 reads the merged
-  `CHAPTERS` format and puts "VII. Storia" as the **last part of the Teoria
+  `CHAPTERS` format and puts "VIII. Storia" as the **last part of the Teoria
   group**, before Pratica (history is reading material, not reference). If the
   merged format has no notion of groups, the part label alone is enough.
 - **Numbering.** Chapter numbers run 1..N without gaps
@@ -108,7 +108,7 @@ change; DEV-13 checks them):
 | accoppiamenti | `03-gc` (GC-MS), `02-lc`, `08-qqq` (CID, MRM), `10-dati`, `17-hr-dda` |
 | rivelatori-dati | `08-qqq` and `09-risoluzione` (Il rivelatore), `10-dati`, `05-ei-ci` (librerie EI) |
 
-Index page (`index.html`): one new card group "VII. Storia" with ten cards
+Index page (`index.html`): one new card group "VIII. Storia" with ten cards
 (title + one line), added by DEV-00 with the final numbers.
 
 Search and glossary: after the chapters, DEV-13 adds glossary terms
