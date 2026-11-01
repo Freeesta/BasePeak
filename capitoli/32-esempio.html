@@ -31,6 +31,7 @@
 <p>Per il composto A il profilo ha 810 punti e dà due centroidi: m/z 237,1025 e 238,1060. Il valore teorico calcolato con masse.js per [M+H]<sup>+</sup> è 237,1022, l'errore è quindi di 1,2 ppm.</p>
 <span class="eq">errore (ppm) = <span class="frac"><span><i>m</i><sub>mis</sub> − <i>m</i><sub>teo</sub></span><span><i>m</i><sub>teo</sub></span></span> × 10<sup>6</sup><span class="no">(32.1)</span></span>
 <p>Il secondo centroide è il primo isotopo (M+1), a 1,7 ppm dal valore atteso. I due centroidi sono la lista di partenza del passo successivo.</p>
+<p><b>Che cosa può andare storto.</b> Con una soglia troppo alta il secondo centroide (M+1) sparisce e si perde il controllo isotopico. Se due picchi vicini si sovrappongono, il centroide cade in mezzo e l'errore supera i 5 ppm. Se tutti i composti hanno un errore dello stesso segno, il sospetto è la calibrazione di massa (capitolo <a href="22-segnale.html">22</a>).</p>
 <h2>2. Dalle tracce ai picchi</h2>
 <p>Dai centroidi di tutte le scansioni si costruisce, per ogni m/z di interesse, una traccia di massa: l'intensità in una finestra di ±5 ppm in funzione del tempo (capitolo <a href="24-tracce.html">24</a>). Per A la finestra va da 237,1013 a 237,1037.</p>
 <p>Sulla traccia si cercano i picchi cromatografici (capitolo <a href="25-picchi.html">25</a>).</p>
@@ -42,6 +43,7 @@
 </ol>
 <p>Il picco di A nel campione C1 è a 8,20 min, alto 7,4·10<sup>5</sup>, con S/N 238 e area 9,7·10<sup>4</sup> (unità arbitrarie · min). Lo stesso si fa per ogni campione e per ogni composto.</p>
 <div class="box warn"><b>Errori frequenti</b><p>Una soglia di S/N troppo bassa trasforma il rumore in picchi; troppo alta fa perdere i composti in traccia. Una finestra di massa troppo stretta spezza il picco, una troppo larga somma composti diversi.</p></div>
+<p><b>Che cosa può andare storto.</b> Se la traccia ha una spalla o due massimi ravvicinati, la media mobile li fonde e l'area somma due composti. Conviene riguardare la traccia con un'altra finestra (capitolo <a href="25-picchi.html">25</a>). Anche la stima del rumore cambia da strumento a strumento: va riportata con il valore.</p>
 <h2>3. Dai picchi alla tabella delle feature</h2>
 <p>Un picco, in un campione, non è ancora una feature. Si raggruppano i picchi dei diversi campioni che hanno lo stesso m/z (entro 5 ppm) e lo stesso tempo di ritenzione (entro 0,1 min), capitoli <a href="26-gruppi.html">26</a> e <a href="27-tabella.html">27</a>. Ogni gruppo diventa una riga.</p>
 <table>
@@ -54,6 +56,7 @@
 </table>
 <p>Si tiene una feature se l'area media dei campioni è almeno 3 volte quella del bianco e se la variabilità tra repliche (CV) è sotto il 30 %. F1, F2 e F3 hanno CV tra 4 e 8 % e nulla nel bianco. F4 ha un'area di 0,97 volte quella del bianco: è un contaminante e si scarta.</p>
 <span class="eq">rapporto = <span class="frac"><span>area media dei campioni</span><span>area nel bianco</span></span> ≥ 3<span class="no">(32.2)</span></span>
+<p><b>Che cosa può andare storto.</b> Con una tolleranza di 0,1 min sul tempo di ritenzione, una deriva tra le repliche spezza un composto in due righe. Con una tolleranza troppo larga si fondono due isomeri vicini. In entrambi i casi la tabella sembra in ordine: lo si vede solo riguardando le tracce (capitoli <a href="26-gruppi.html">26</a> e <a href="27-tabella.html">27</a>).</p>
 <h2>4. Dallo spettro MS2 al candidato</h2>
 <p>Per le feature tenute l'acquisizione dipendente dai dati sceglie gli ioni più intensi e ne registra lo spettro MS2. Qui la soglia è 2·10<sup>5</sup>: A e B la superano, C (circa 1,1·10<sup>5</sup>) no. Per C quindi non esiste uno spettro MS2.</p>
 <p>Per A e B si cerca nella libreria sintetica (capitolo <a href="29-librerie.html">29</a>).</p>
@@ -66,6 +69,7 @@
 <span class="eq">coseno = <span class="frac"><span>Σ √(<i>I</i><sub>mis</sub> · <i>I</i><sub>lib</sub>)</span><span>√(Σ <i>I</i><sub>mis</sub>) · √(Σ <i>I</i><sub>lib</sub>)</span></span><span class="no">(32.3)</span></span>
 <p>Per A ci sono due voci con lo stesso precursore: lo spettro di A, con coseno 0,999 e 4 picchi in comune, e un isomero sintetico con coseno 0,15 e 1 picco in comune. Per B la sola voce compatibile dà 0,998. Il coseno distingue gli isomeri; il solo precursore non può.</p>
 <p>Sulla massa si controlla anche la formula (capitolo <a href="30-candidati.html">30</a>): per C, entro 3 ppm e con C, H, N, O e fino a due Cl, l'unica formula è C<sub>13</sub>H<sub>18</sub>N<sub>4</sub>O<sub>3</sub> e il suo profilo isotopico (M+1 circa 16 %, nessun M+2 da cloro) concorda con quello misurato. Per B il rapporto M+2/M di circa 33 % indica un atomo di cloro.</p>
+<p><b>Che cosa può andare storto.</b> Se lo spettro misurato e quello di libreria sono presi a energie di collisione diverse, il coseno scende anche per il composto giusto (capitolo <a href="29-librerie.html">29</a>). Una finestra di isolamento larga porta nello spettro anche i picchi di un composto coeluente, e il punteggio cala di nuovo (capitolo <a href="28-somiglianza.html">28</a>).</p>
 <h2>5. Il livello di confidenza</h2>
 <p>Alla fine si assegna a ogni composto un livello, secondo la scala di Schymanski et al. (2014), capitolo <a href="31-confidenza.html">31</a>. Il livello dipende dalle prove raccolte, non dal punteggio.</p>
 <table>
@@ -77,6 +81,7 @@
 </table>
 <p>A ha il livello 1 perché lo standard, misurato con lo stesso metodo, coincide per tempo di ritenzione, massa e MS2. B ha un coseno alto come A ma il livello 2a, perché manca lo standard. C ha il livello 4: massa e profilo isotopico fissano la formula, ma senza MS2 non c'è nessun candidato.</p>
 <div class="box warn"><b>Errori frequenti</b><p>Scrivere «livello 1» per B perché il coseno è alto. Dimenticare che le soglie di questo esempio (S/N 10, rapporto 3, coseno 0,7) sono scelte didattiche e vanno fissate e dichiarate in ogni studio.</p></div>
+<p><b>Che cosa può andare storto.</b> Un coseno alto con uno o due picchi in comune ha poco valore, perciò accanto al punteggio si riporta il numero di picchi. Anche uno standard misurato in un altro giorno o con un altro gradiente non basta per il livello 1: serve lo stesso metodo (capitolo <a href="31-confidenza.html">31</a>).</p>
 <h2>Che cosa scrivere nel rapporto</h2>
 <p>Il risultato si può verificare solo se il rapporto dice come ci si è arrivati. Per ogni composto vanno riportati, come nel capitolo <a href="31-confidenza.html">31</a>, il m/z, il tipo di ione, il tempo di ritenzione, la formula con l'errore in ppm, le prove MS2 (libreria, punteggio, picchi in comune) e il livello con la scala usata. Hollender et al. (2023) danno indicazioni per l'ambiente.</p>
 <ol>
