@@ -8,8 +8,8 @@ FORBIDDEN = [re.compile(p, re.I) for p in (r'class="box oral"', r"Domande di rip
 
 
 def scanned_files():
-    """capitoli/ (html and src, hidden drafts 22-42 included), index.html and pratica/ (pages and scripts)."""
-    files = list((ROOT / "capitoli").rglob("*.html")) + list((ROOT / "capitoli" / "src").glob("*.md"))
+    """capitoli/ (html, hidden drafts 22-42 included), index.html and pratica/ (pages and scripts)."""
+    files = list((ROOT / "capitoli").rglob("*.html"))
     files += [ROOT / "index.html"] + [p for p in (ROOT / "pratica").iterdir() if p.suffix in {".html", ".js", ".css"}]
     return sorted(set(files))
 
@@ -31,8 +31,6 @@ VERIFICA_PENDING = {
 def test_no_verifica_section_outside_the_pending_files():
     tripped = {p.name for p in (ROOT / "capitoli").glob("*.html") if "<h2>Verifica</h2>" in p.read_text(encoding="utf-8")}
     assert tripped <= VERIFICA_PENDING, sorted(tripped - VERIFICA_PENDING)
-    twins = {p.stem for p in (ROOT / "capitoli" / "src").glob("*.md") if re.search(r"^## Verifica$", p.read_text(encoding="utf-8"), re.M)}
-    assert twins <= {Path(f).stem for f in VERIFICA_PENDING}, sorted(twins)
 
 
 def test_new_chapter_skeleton_has_no_verifica():

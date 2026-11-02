@@ -35,4 +35,4 @@ Texts CC BY 4.0, code MIT, EI spectra from MassBank Europe (CC BY-NC-SA, source 
 2. Fix the Teoria's use of mzLab chemistry masses (`sim-*.js` / `mzlab-chem-wasm`): ship a small own version or plain JS, keep wasm out unless clearly needed.
 3. EI spectra data files are generated from private data by `tools/genera_*.py`: keep only the already generated public files (`pratica/ei-dati.js`, `glossario-dati.js`), document it.
 4. Reorganise the layout (see Product), then the patRoon-style navigation, then speed budget tests, then dyslexia audit.
-5. Decide what to do with the chapter editor (`web/libro`, crates `mzlab-libro`, `mzlab-tutor` not imported yet): propose to Federico before importing Rust/wasm.
+5. (Done) The old chapter editor is not imported: the in-page editor (`assets/editor.js`) replaced it, and the `editor/` folder and the `capitoli/src` Markdown twins were deleted (Federico approved, 2026-11-01).

@@ -57,11 +57,10 @@ Il resto di questa guida serve se preferisci un editor di testo. Non c'è niente
 | Cartella | Contenuto |
 |---|---|
 | `index.html` | introduzione e mappa del percorso (pagina iniziale) |
-| `capitoli/` | un file HTML per capitolo: **è l'unica fonte del testo**. `capitoli/src/` ha i vecchi gemelli Markdown: non si aggiornano più, non servono a niente e si cancelleranno |
+| `capitoli/` | un file HTML per capitolo: **è l'unica fonte del testo**. |
 | `pratica/` | le pagine della Pratica (`index.html`, `ei.html`, ...) e il codice e i dati dei giochi |
 | `assets/` | stile, motore JavaScript, caratteri, icone, librerie di terzi (`vendor/`), indice di ricerca e glossario generati |
 | `tools/`, `tests/`, `tests_e2e/`, `docs/` | script, controlli, guide: non fanno parte del sito |
-| `editor/` | editor dei capitoli: **non è pubblicato** (vedi in fondo) |
 
 Sul sito (https://freeesta.github.io/BasePeak/) arrivano solo `index.html`, `capitoli/`, `pratica/` e `assets/`. I collegamenti sono sempre relativi (`../assets/teoria.css`, mai `/assets/...`): così le pagine si aprono anche con doppio clic dal disco.
 
@@ -76,14 +75,14 @@ Sul sito (https://freeesta.github.io/BasePeak/) arrivano solo `index.html`, `cap
 | Glossario (parole sottolineate nel testo) | `capitoli/19-glossario.html`, poi `python3 tools/genera_glossario.py` (crea `assets/glossario-dati.js`) e `python3 tools/genera_indice_teoria.py` (ricerca: `assets/indice-ricerca.js`) |
 | Elenco dei capitoli nel menu laterale | `assets/teoria.js`, in alto: lista `CHAPTERS` (i file sono scritti a partire dalla cartella principale: `capitoli/02-lc.html`, `pratica/ei.html`) |
 | Menu laterale (a tutta altezza, con logo e nome in cima; la barra degli strumenti sta alla sua destra) | l'ordine di `CHAPTERS` è l'ordine del menu e dei link Precedente/Successivo: prima la Teoria (con le parti «Guida», «II. …», … «VII. …», ognuna chiudibile con il suo pulsante), poi le pagine di `pratica/` («Pratica»), poi i capitoli con parte `"Reference"` (glossario, formulario, tempi). Si apre da sola la parte del capitolo che stai leggendo, con le sue sezioni; le altre sono chiuse; «Apri tutto / Chiudi tutto» le apre o chiude tutte; la scelta resta per la durata della scheda (`sessionStorage`). Le sezioni (h2 e h3) del capitolo aperto, le ancore `#` sui titoli e le briciole di pane sono generate da `assets/teoria.js` dai titoli della pagina: nei capitoli non c'è niente da scrivere |
-| Pulsante «Scarica» (menu laterale) | `assets/esporta.js`: capitolo singolo o tutta la Teoria in PDF (finestra di stampa), Markdown, Word (`.doc`) e HTML (un solo file, leggibile offline); i file sono generati dalle pagine così come si vedono (i sorgenti `capitoli/src/` non sono pubblicati). Il pacchetto completo si crea solo dal sito (o dal server locale): dal disco con doppio clic il browser non lascia leggere gli altri capitoli, e il pulsante lo dice senza creare file a metà |
-| Parte VII, Chemioinformatica (capitoli 22–32), **pubblicata** per i lettori | `capitoli/22-segnale.html`, `23-formati`, `24-tracce`, `25-picchi`, `26-gruppi`, `27-tabella`, `28-somiglianza`, `29-librerie`, `30-candidati`, `31-confidenza`, `32-esempio` (sorgenti Markdown in `capitoli/src/`). Il disegno è in `docs/piani/chemioinformatica.md`; le letture verificate in `docs/piani/riferimenti-chemioinformatica.tsv` (i libri con stato `to verify` non compaiono negli elenchi visibili della parte VII). Nel menu la parte VII sta dopo la parte VI dentro «Teoria»; nei link Precedente/Successivo segue invece l'ordine di `CHAPTERS`, quindi viene dopo il capitolo 21 (Reference) ed è l'ultima pagina finché la Storia (33–42) resta bozza |
+| Pulsante «Scarica» (menu laterale) | `assets/esporta.js`: capitolo singolo o tutta la Teoria in PDF (finestra di stampa), Markdown, Word (`.doc`) e HTML (un solo file, leggibile offline); i file sono generati dalle pagine così come si vedono. Il pacchetto completo si crea solo dal sito (o dal server locale): dal disco con doppio clic il browser non lascia leggere gli altri capitoli, e il pulsante lo dice senza creare file a metà |
+| Parte VII, Chemioinformatica (capitoli 22–32), **pubblicata** per i lettori | `capitoli/22-segnale.html`, `23-formati`, `24-tracce`, `25-picchi`, `26-gruppi`, `27-tabella`, `28-somiglianza`, `29-librerie`, `30-candidati`, `31-confidenza`, `32-esempio`. Il disegno è in `docs/piani/chemioinformatica.md`; le letture verificate in `docs/piani/riferimenti-chemioinformatica.tsv` (i libri con stato `to verify` non compaiono negli elenchi visibili della parte VII). Nel menu la parte VII sta dopo la parte VI dentro «Teoria»; nei link Precedente/Successivo segue invece l'ordine di `CHAPTERS`, quindi viene dopo il capitolo 21 (Reference) ed è l'ultima pagina finché la Storia (33–42) resta bozza |
 | Rimandi alla parte VII dai capitoli 3, 9, 10, 11, 17, 18 e dal formulario (frasi «Approfondimento: capitolo NN», sezione 6) | sono testo normale, visibile ai lettori: la parte VII è pubblicata. La classe `solo-esteso` con `hidden` (stile in `assets/teoria.css`) resta disponibile per i rimandi a capitoli ancora in bozza (oggi la Storia, 33–42): compaiono solo in modalità amministratore e vanno resi normali quando il capitolo viene pubblicato. Nel glossario non serve: `assets/teoria.js` toglie da solo i «Cap. NN» delle bozze |
 | Figure della parte VII | `assets/chemi-common.js` (funzioni comuni e caricamento al bisogno) e un file per capitolo: `sim-chemi-segnale.js` e `sim-chemi-formati.js` (cap. 22-23), `sim-chemi-tracce.js` e `sim-chemi-picchi.js` (24-25), `sim-chemi-gruppi.js`, `sim-chemi-tabella.js` e `sim-chemi-esplora.js` (26-27), `sim-chemi-somiglianza.js` e `sim-chemi-librerie.js` (28-29), `sim-chemi-candidati.js` e `sim-chemi-confidenza.js` (30-31), `sim-chemi-esempio.js` (32) |
 | Colori, caratteri, aspetto dei riquadri | `assets/teoria.css` |
 | Figure interattive (calcoli e grafici) | in `assets/`: `sim-quad.js`, `sim-esi.js`, `sim-qqq.js`, `sim-frag.js`, `sim-misc.js`, `sim-chrom.js` (cromatografia), `sim-ei.js` (EI), `sim-hr.js` (risoluzione e formule) |
 
-Per il testo servono solo i file `.html` di `capitoli/`. I `.js` vanno toccati solo per cambiare le figure interattive. I file `capitoli/src/*.md` non vanno modificati: nessun controllo li legge più come fonte.
+Per il testo servono solo i file `.html` di `capitoli/`. I `.js` vanno toccati solo per cambiare le figure interattive.
 
 ## Con che cosa
 
@@ -188,10 +187,6 @@ Nei capitoli 22–32 il file di una figura non si collega in fondo alla pagina: 
 - Il motore comune è `pratica/motore.js` (livello per competenza con una regola tipo Elo, ripasso distanziato 1-3-7-21 giorni, codici sfida, conti chimici). I giochi brevi sono in `pratica/giochi.js`, il gioco EI in `pratica/gioco-ei.js`.
 - Il gioco EI e l'editor di strutture funzionano dal sito (o da un server locale, per esempio `python3 -m http.server` dalla cartella principale), non da un file aperto con doppio clic (il browser blocca i moduli JavaScript da `file://`). I capitoli e gli altri giochi funzionano anche da disco.
 - Spettri: solo da MassBank (licenza CC BY-NC-SA, fonte indicata sotto ogni spettro), mai dalla libreria NIST. Mai usare composti dei metodi del laboratorio.
-
-## L'editor dei capitoli (`editor/`)
-
-La cartella `editor/` contiene l'editor dei capitoli (pagina `editor/teoria.html`), spostato qui senza modifiche. **Non è pubblicato** sul sito: il workflow `pages.yml` copia solo `index.html`, `capitoli/`, `pratica/` e `assets/`. I suoi file scrivono ancora i percorsi del vecchio layout (`mzlab/web/teoria/...`) e cercano le librerie in `vendor/libro/`, che non è nel repository: va adattato prima di usarlo con questa struttura.
 
 ## Server locale per modificare nel browser
 

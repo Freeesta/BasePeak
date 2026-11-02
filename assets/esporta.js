@@ -1,5 +1,5 @@
 /* BasePeak - Teoria: export of a chapter or of the whole handbook (PDF, Markdown, Word, HTML). Classic script, no network but the pages of the site itself.
-   Everything is generated from the pages as the reader sees them (the Markdown sources of capitoli/src are not published). Notes on what is deliberate:
+   Everything is generated from the pages as the reader sees them. Notes on what is deliberate:
    - the whole-handbook files are built only when EVERY chapter was read: a partial file is never handed out as «tutta la Teoria»;
    - from file:// a browser does not let a page read its sibling files: the single chapter works, the package says so (or uses the local server, tools/server_teoria.py);
    - the PDF of the package is the print dialog of THIS page (a hidden #print-pack shown only to the printer): no pop-up window, which browsers block once the chapters have been loaded;

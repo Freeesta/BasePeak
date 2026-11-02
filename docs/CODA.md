@@ -40,3 +40,6 @@ Never edit past entries; add new ones at the bottom.
 - Federico decisions: publish everything immediately, never hide drafts (review afterwards); Copilot = no; remove photocatalysis/TP everywhere; check every 60 min (token saving); editor must save in a few clicks.
 - Lessons: archive a chat only after the merge result is known (never in the same call); `e2e_teoria_transizione` fixed at the root (waits for the smooth scroll to settle) instead of shortening prose.
 - Open: nothing blocking. Later queue: delete old `editor/` (Rust chapter editor, superseded by in-page editor), delete `capitoli/src` twins, rename "QqQ lab" in titles/appname, size-budget tests + service worker, dyslexia audit, stale old-path mentions in COORDINAMENTO/COORDINATORE.
+
+## 2026-11-01 (dev/clean)
+- Federico approved "1 e 2 sì": deleted the old chapter editor `editor/` (and its tests `test_teoria_editor.py`, `storia_node.mjs`, `teoria_editor_node.mjs`) and the Markdown twins `capitoli/src/*.md`. The HTML pages are the only source. Removed only the html-vs-md twin comparisons from `test_chemi.py`, `test_numerazione.py`, `test_senza_verifica.py`, `test_immagini.py`; `test_controlla_modifica.py` still forbids code that reads `capitoli/src`. `.github/` untouched (`pages.yml` still runs a harmless `rm -rf capitoli/src`).
