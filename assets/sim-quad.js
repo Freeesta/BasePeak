@@ -1,4 +1,4 @@
-/* QqQ lab - Teoria: quadrupole mass filter.
+/* BasePeak - Teoria: quadrupole mass filter.
    Physics (de Hoffmann & Stroobant; Douglas 2009): potential Phi = (U - V cos Wt)(x^2 - y^2)/r0^2,
    Mathieu form  d2u/dxi2 + (a_u - 2 q_u cos 2xi) u = 0,  xi = W t / 2,
    a_x = -a_y = 8 z e U / (m r0^2 W^2),   q_x = -q_y = 4 z e V / (m r0^2 W^2).

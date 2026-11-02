@@ -1,4 +1,4 @@
-// QqQ lab - Pratica EI: third level of the hints of the hard mode, one sentence per compound of the path (original text). Levels 1 and 2
+// BasePeak - Pratica EI: third level of the hints of the hard mode, one sentence per compound of the path (original text). Levels 1 and 2
 // are built in ei-difficile.js from the spectrum itself (zone of the cluster; odd-electron ions and series). Level 3 only points at a
 // ZONE of the skeleton to reason about, as a question: it uses only what the formula already says (which elements are there), never
 // names a group, a ring, a chain length, a symmetry or the compound, and never confirms a fragment (the program does not give the

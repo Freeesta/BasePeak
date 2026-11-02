@@ -1,4 +1,4 @@
-"""Mini-server locale per l'editor visivo della Teoria di mzLab.
+"""Mini-server locale per l'editor visivo della Teoria di BasePeak.
 Ascolta su http://127.0.0.1:8765. Serve esclusivamente i file del sito: index.html, capitoli/, pratica/, assets/.
 Sicurezza:
 1. CORS restrittivo: accetta solo Origin da 127.0.0.1 / localhost e https://freeesta.github.io (nessun '*').
@@ -94,7 +94,7 @@ def handle_get_api(handler: http.server.BaseHTTPRequestHandler, parsed: urllib.p
         return True
 
     if parsed.path == "/stato":
-        send_json(handler, 200, {"ok": True, "servizio": "mzLab Editor Server"})
+        send_json(handler, 200, {"ok": True, "servizio": "BasePeak Editor Server"})
         return True
 
     if parsed.path == "/appname.js":

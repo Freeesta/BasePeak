@@ -1,4 +1,4 @@
-/* QqQ lab - Teoria: small interactive figures (isotope patterns, mean free path, mass differences).
+/* BasePeak - Teoria: small interactive figures (isotope patterns, mean free path, mass differences).
    Each block initialises only if its container exists on the page. */
 "use strict";
 document.addEventListener("DOMContentLoaded", () => {

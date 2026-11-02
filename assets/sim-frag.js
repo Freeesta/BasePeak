@@ -1,4 +1,4 @@
-/* QqQ lab - Teoria: fragmentation chemistry.
+/* BasePeak - Teoria: fragmentation chemistry.
    1) competition between a rearrangement (tight TS) and a simple cleavage (loose TS), classical RRK model;
    2) neutral-loss calculator: losses from the precursor and between fragments, nitrogen-rule parity. */
 "use strict";

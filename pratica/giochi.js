@@ -1,4 +1,4 @@
-/* QqQ lab - Pratica: the short games (pages pratica-perdite, -isotopi, -formula, -strumento, -quadrupolo).
+/* BasePeak - Pratica: the short games (pages pratica-perdite, -isotopi, -formula, -strumento, -quadrupolo).
    Classic script on top of teoria.js (TP), motore.js (PAL) and masse.js (ELEMENTS). Each page calls GIOCHI.<name>(element).
    Every problem is generated here from the chemistry and the physics (no data file): neutral losses from their formulas,
    isotope clusters by convolution of the natural abundances, candidate formulas by enumeration, quadrupole stability

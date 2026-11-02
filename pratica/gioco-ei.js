@@ -1,4 +1,4 @@
-// QqQ lab - Pratica: «Dallo spettro alla struttura». A real EI spectrum (pratica/ei-dati.js) and the steps of the McLafferty procedure
+// BasePeak - Pratica: «Dallo spettro alla struttura». A real EI spectrum (pratica/ei-dati.js) and the steps of the McLafferty procedure
 // (chapter 13): molecular ion, formula and RDB, key ions and their mechanisms, structure drawn in Ketcher and compared with
 // OpenChemLib (same molecule, isomer or wrong formula). Levels 1-4 give feedback at every step; "Modalità orale" asks for the written
 // reasoning and corrects only at the end. Globals from classic scripts: TP (teoria.js), EI_DATA, EISPEC, PAL.

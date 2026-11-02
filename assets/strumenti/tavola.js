@@ -1,4 +1,4 @@
-/* mzLab - Teoria: «Tavola periodica con isotopi» (chapters 9, 11, 20). The table is the one of the program (tavola-periodica.js,
+/* BasePeak - Teoria: «Tavola periodica con isotopi» (chapters 9, 11, 20). The table is the one of the program (tavola-periodica.js,
    data in masse.js); here it only gets the Italian texts. Hover or focus an element to read masses and abundances, click or Enter pins it. */
 "use strict";
 (function () {

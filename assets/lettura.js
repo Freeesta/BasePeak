@@ -1,4 +1,4 @@
-/* mzLab - Teoria: reading aids for narrow screens and touch (loaded by teoria.js after the layout).
+/* BasePeak - Teoria: reading aids for narrow screens and touch (loaded by teoria.js after the layout).
    1. chapter menu as a bottom sheet with one fixed button (icon + current chapter) and a thin progress bar;
    2. last reading position per chapter (localStorage, optional);
    3. figures open in a full-screen viewer (pinch, double tap, drag, wheel, keys).

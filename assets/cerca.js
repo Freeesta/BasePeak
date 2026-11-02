@@ -1,4 +1,4 @@
-/* mzLab - Teoria: search dialog (Ctrl/⌘K or TEORIA.cerca()) and the search field of the index ("/"). Classic script, no network: it works from file:// too.
+/* BasePeak - Teoria: search dialog (Ctrl/⌘K or TEORIA.cerca()) and the search field of the index ("/"). Classic script, no network: it works from file:// too.
    The index (indice-ricerca.js, from tools/genera_indice_teoria.py) is read only the first time the dialog opens.
    Matching: every word typed must be the start of a word of the entry (accent and case insensitive). Results are grouped by chapter. */
 "use strict";

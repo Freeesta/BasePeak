@@ -1,4 +1,4 @@
-/* QqQ lab - Teoria. Plain CSS, no build, works from file:// and from the local server. */
+/* BasePeak - Teoria. Plain CSS, no build, works from file:// and from the local server. */
 :root{color-scheme:light;--bg:#fbfbf9;--panel:#ffffff;--line:#e4e2dc;--ink:#24231f;--muted:#6b675c;--accent:#2b5c8a;--accent2:#c2410c;--ok:#047857;--bad:#b42318;--warn:#92400e;--sel:#eef3f8;--code:#f4f3ef;
   --c1:#2b5c8a;--c2:#c2410c;--c3:#047857;--c4:#7c3aed;--c5:#b45309;--c6:#0e7490}
 /* dark theme (tema.js sets data-theme on <html>; the media query only avoids a flash before the script runs) */

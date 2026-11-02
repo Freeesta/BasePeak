@@ -1,4 +1,4 @@
-/* QqQ lab - Teoria: triple quadrupole figures.
+/* BasePeak - Teoria: triple quadrupole figures.
    1) scan modes explorer (fictitious mixture): what Q1, q2 and Q3 do and which spectrum you get;
    2) collision energy: centre-of-mass energy and an illustrative breakdown curve;
    3) MRM timing: dwell, cycle time, points per peak, duty cycle vs full scan. */

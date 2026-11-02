@@ -1,4 +1,4 @@
-/* QqQ lab - Simulazione dinamica e visiva dei tempi del quadrupolo:
+/* BasePeak - Simulazione dinamica e visiva dei tempi del quadrupolo:
    Fascio continuo ESI (3 ioni distinti: A m/z 200, B target m/z 350, C m/z 500).
    Confronto fra scansione continua Full Scan vs selezione MRM e costruzione del picco.
 */

@@ -1,4 +1,4 @@
-/* QqQ lab - Teoria: resolution and high-resolution analyzers (chapters 9 and 11).
+/* BasePeak - Teoria: resolution and high-resolution analyzers (chapters 9 and 11).
    1) two close ions against the resolving power (Gaussian peaks, FWHM = m/R): resolved or merged, centroid error;
    2) Orbitrap: image-current envelope and Fourier spectrum of two ions, resolving power against transient length;
    3) TOF: arrival-time spread from the initial energy spread, linear against reflectron;

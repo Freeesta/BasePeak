@@ -1,4 +1,4 @@
-/* mzLab - Pratica: the two HR levels of pratica-formula.html (game "hr-nt": H6 formula from a non-target ion, H8 fine isotopic structure).
+/* BasePeak - Pratica: the two HR levels of pratica-formula.html (game "hr-nt": H6 formula from a non-target ion, H8 fine isotopic structure).
    Classic script on top of esercizi-hr.js (HRNT), giochi-lc.js (LCUI helpers) and motore.js (PAL). Data are CONSTRUCTED for teaching.
    The program never gives the answer before an attempt: aids (3 levels) narrow the reasoning, the check gives numbers. */
 "use strict";

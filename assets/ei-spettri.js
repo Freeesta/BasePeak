@@ -1,4 +1,4 @@
-/* QqQ lab - Teoria: real 70 eV EI spectra (data: pratica/ei-dati.js, from MassBank, CC BY-NC-SA) drawn as bar spectra.
+/* BasePeak - Teoria: real 70 eV EI spectra (data: pratica/ei-dati.js, from MassBank, CC BY-NC-SA) drawn as bar spectra.
    Used by chapters 13-14 and by the Pratica. A chapter only writes
      <div class="eispec" data-ei="2-esanone" data-keys="1"></div>
    (data-keys: list the teaching notes under the spectrum; data-hide: hide the name, for "which compound is it?";

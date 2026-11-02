@@ -1,4 +1,4 @@
-/* mzLab - Pratica: shared helpers (LCUI) of the high-resolution games (giochi-hr-nt.js): level frame, feedback, step locking, three-level aids.
+/* BasePeak - Pratica: shared helpers (LCUI) of the high-resolution games (giochi-hr-nt.js): level frame, feedback, step locking, three-level aids.
    Classic script on top of teoria.js (TP) and motore.js (PAL). Data are CONSTRUCTED for teaching.
    The program never gives the answer before an attempt: aids (3 levels) narrow the reasoning, the coherence check gives numbers. */
 "use strict";

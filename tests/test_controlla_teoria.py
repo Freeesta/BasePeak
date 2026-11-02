@@ -40,7 +40,7 @@ def test_structure(tmp_path):
     assert has(errs(tmp_path, g.replace("Figura 25.1", "Figura 25.3")), "figure 25.1 is missing")
     assert has(errs(tmp_path, g.replace("</figure>", "<figcaption><b>Figura 25.1</b> x</figcaption></figure>")), "appears 2 times")
     assert has(errs(tmp_path, g.replace('lang="it" ', "")), "lang")
-    assert has(errs(tmp_path, g.replace("<title>Capitolo di prova · Teoria QqQ lab</title>", "<title></title>")), "title")
+    assert has(errs(tmp_path, g.replace("<title>Capitolo di prova · BasePeak</title>", "<title></title>")), "title")
     assert has(errs(tmp_path, g.replace('href="19-glossario.html"', 'href="nonesiste.html"')), "missing file")
     assert has(errs(tmp_path, g + '<a href="#manca">x</a>'), "#manca")
     assert not has(errs(tmp_path, g + '<a href="#fd-25-0">x</a>'), "#fd")
