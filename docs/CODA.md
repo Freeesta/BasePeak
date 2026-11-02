@@ -43,3 +43,9 @@ Never edit past entries; add new ones at the bottom.
 
 ## 2026-11-01 (dev/clean)
 - Federico approved "1 e 2 sì": deleted the old chapter editor `editor/` (and its tests `test_teoria_editor.py`, `storia_node.mjs`, `teoria_editor_node.mjs`) and the Markdown twins `capitoli/src/*.md`. The HTML pages are the only source. Removed only the html-vs-md twin comparisons from `test_chemi.py`, `test_numerazione.py`, `test_senza_verifica.py`, `test_immagini.py`; `test_controlla_modifica.py` still forbids code that reads `capitoli/src`. `.github/` untouched (`pages.yml` still runs a harmless `rm -rf capitoli/src`).
+
+## 2026-11-02 (7)
+- Merged: #84 old `editor/` (Rust chapter editor) and `capitoli/src` Markdown twins deleted (70 files, -9 000 lines; `.github/` untouched), #85 site renamed to "BasePeak" (no "QqQ lab" branding; QqQ stays as the instrument term; localStorage keys unchanged on purpose), #83 CODA (6).
+- Federico decisions: site is only a place for the theory (Pratica stays for now, asked again later); deletions of `editor/` and `capitoli/src` approved; pause/resume by message.
+- Check to do by Federico: chapter 4 sentence now reads "del software di acquisizione" (was a QqQ lab popup).
+- Open: nothing. Later queue: size-budget tests + service worker (one chat alone on `assets/teoria.js`), dyslexia audit, stale old-path mentions in COORDINAMENTO/COORDINATORE.
